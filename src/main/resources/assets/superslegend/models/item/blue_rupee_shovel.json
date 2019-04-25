@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "supersmod:item/blue_rupee_shovel"
+    }
+}
