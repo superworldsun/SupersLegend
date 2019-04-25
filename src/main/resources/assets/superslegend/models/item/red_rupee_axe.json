@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "supersmod:item/red_rupee_axe"
+        "layer0": "superslegend:item/red_rupee_axe"
     }
 }

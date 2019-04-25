@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures": 
 	{
-        "layer0": "supersmod:item/goron_cap"
+        "layer0": "superslegend:item/goron_cap"
     }
 }

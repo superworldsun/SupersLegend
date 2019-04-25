@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures": 
 	{
-        "layer0": "supersmod:item/hover_boots"
+        "layer0": "superslegend:item/hover_boots"
     }
 }

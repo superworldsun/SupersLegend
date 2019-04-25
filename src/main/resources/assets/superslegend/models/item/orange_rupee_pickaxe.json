@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "supersmod:item/orange_rupee_pickaxe"
+        "layer0": "superslegend:item/orange_rupee_pickaxe"
     }
 }

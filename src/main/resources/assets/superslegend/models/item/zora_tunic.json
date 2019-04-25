@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures": 
 	{
-        "layer0": "supersmod:item/zora_tunic"
+        "layer0": "superslegend:item/zora_tunic"
     }
 }

@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "supersmod:item/gilded_sword"
+        "layer0": "superslegend:item/gilded_sword"
     }
 }

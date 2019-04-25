@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "supersmod:item/kokiri_sword"
+        "layer0": "superslegend:item/kokiri_sword"
     }
 }

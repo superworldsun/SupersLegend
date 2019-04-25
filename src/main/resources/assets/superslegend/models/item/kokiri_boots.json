@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures": 
 	{
-        "layer0": "supersmod:item/kokiri_boots"
+        "layer0": "superslegend:item/kokiri_boots"
     }
 }

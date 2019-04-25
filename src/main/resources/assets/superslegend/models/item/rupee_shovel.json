@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "supersmod:item/rupee_shovel"
+        "layer0": "superslegend:item/rupee_shovel"
     }
 }

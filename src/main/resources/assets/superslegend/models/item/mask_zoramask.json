@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures": 
 	{
-        "layer0": "supersmod:item/mask_zoramask"
+        "layer0": "superslegend:item/mask_zoramask"
     }
 }

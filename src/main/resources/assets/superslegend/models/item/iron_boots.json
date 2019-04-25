@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures": 
 	{
-        "layer0": "supersmod:item/iron_boots"
+        "layer0": "superslegend:item/iron_boots"
     }
 }
