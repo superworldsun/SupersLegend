@@ -17,7 +17,7 @@ public class ItemList
 	/* 
 	 *  Generic Items
 	 */
-	public static Item rupee = new GenericItem("rupee", "item.unlocalized.rupee", CreativeTabs.MISC);
+	public static Item rupee = new GenericItem("rupee", CreativeTabs.MISC);
 	
 	public static void addGenericItem(GenericItem item) {
 		generics.add(item);

@@ -8,8 +8,8 @@ import net.minecraft.item.Item;
 // TODO: Document this class and methods inside
 public class GenericItem extends Item {
 
-	public GenericItem(String name, String unlocalized, CreativeTabs tab) {
-		setRegistryName(SupersLegend.MODID, name).setUnlocalizedName(unlocalized).setCreativeTab(tab);
+	public GenericItem(String name, CreativeTabs tab) {
+		setRegistryName(SupersLegend.MODID, name).setUnlocalizedName(name).setCreativeTab(tab);
 		ItemList.addGenericItem(this);
 	}
 }
