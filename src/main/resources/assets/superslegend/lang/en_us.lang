@@ -2,3 +2,71 @@ item.rupee.name=Rupee
 item.blue_rupee.name=Blue Rupee
 item.red_rupee.name=Red Rupee
 item.orange_rupee.name=Orange Rupee
+
+item.kokiri_sword.name=Kokiri Sword
+item.razor_sword.name=Razor Sword
+item.gilded_sword.name=Gilded Sword
+		
+item.rupee_pickaxe.name=Rupee Pickaxe
+item.blue_rupee_pickaxe.name=Blue Rupee Pickaxe
+item.red_rupee_pickaxe.name=Red Rupee Pickaxe
+item.orange_rupee_pickaxe.name=Orange Rupee Pickaxe
+
+item.rupee_axe.name=Rupee Axe
+item.blue_rupee_axe.name=Blue Rupee Axe
+item.red_rupee_axe.name=Red Rupee Axe
+item.orange_rupee_axe.name=Orange Rupee Axe
+
+item.rupee_hoe.name=Rupee Hoe
+item.blue_rupee_hoe.name=Blue Rupee Hoe
+item.red_rupee_hoe.name=Red Rupee Hoe
+item.orange_rupee_hoe.name=Orange Rupee Hoe
+
+item.rupee_shovel.name=Rupee Shovel
+item.blue_rupee_shovel.name=Blue Rupee Shovel
+item.red_rupee_shovel.name=Red Rupee Shovel
+item.orange_rupee_shovel.name=Orange Rupee Shovel
+
+item.rupee_sword.name=Rupee Sword
+item.blue_rupee_sword.name=Blue Rupee Sword
+item.red_rupee_sword.name=Red Rupee Sword
+item.orange_rupee_sword.name=Orange Rupee Sword
+
+item.mask_clay.name=Clay Mask
+item.mask_postmanshat.name=Postman's Hat
+item.mask_allnightmask.name=All-Night Mask
+item.mask_blastmask.name=Blast Mask
+item.mask_stonemask.name=Stone Mask
+item.mask_greatfairymask.name=Great Fairy Mask
+item.mask_dekumask.name=Deku Mask
+item.mask_keatonmask.name=Keaton Mask
+item.mask_bremenmask.name=Bremen Mask
+item.mask_bunnyhood.name=Bunny Hood
+item.mask_dongerosmask.name=Don Gero's Mask
+item.mask_maskofscents.name=Mask of Scents
+item.mask_goronmask.name=Goron Mask
+item.mask_romanismask.name=Romani's Mask
+item.mask_troupeleadersmask.name=Troupe Leader's Mask
+item.mask_kafeismask.name=Kafei's Mask
+item.mask_couplesmask.name=couple's Mask
+item.mask_maskoftruth.name=Mask of Truth
+item.mask_zoramask.name=Zora Mask
+item.mask_kamarosmask.name=Komaro's Mask
+item.mask_gibdomask.name=Gibdo Mask
+item.mask_garosmask.name=Garo's Mask
+item.mask_captainshat.name=Captain's Hat
+item.mask_giantsmask.name=Giant's Mask
+item.mask_fiercedeitysmask.name=Fierce Deity's Mask
+
+item.kokiri_cap.name=Kokiri Cap
+item.kokiri_tunic.name=Kokiri Tunic
+item.kokiri_leggings.name=Kokiri Leggings
+item.kokiri_boots.name=Kokiri Boots
+item.zora_cap.name=Zora Cap
+item.zora_tunic.name=Zora Tunic
+item.zora_leggings.name=Zora Leggings
+item.iron_boots.name=Iron Boots
+item.goron_cap.name=Goron Cap
+item.goron_tunic.name=Goron Tunic
+item.goron_leggings.name=Goron Leggings
+item.hover_boots.name=Hover Boots
