@@ -15,5 +15,8 @@ public class ItemList
 	 *  Items
 	 */
 	public static final Item RUPEE = new ItemBase("rupee");
+	public static final Item BLUE_RUPEE = new ItemBase("blue_rupee");
+	public static final Item RED_RUPEE = new ItemBase("red_rupee");
+	public static final Item ORANGE_RUPEE = new ItemBase("orange_rupee");
 	
 }
