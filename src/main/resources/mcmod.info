@@ -1,0 +1,16 @@
+[
+{
+  "modid": "superslegend",
+  "name": "SupersLegend",
+  "description": "Enter the description here",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["superworldsun"],
+  "credits": "Enter the credits here",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
