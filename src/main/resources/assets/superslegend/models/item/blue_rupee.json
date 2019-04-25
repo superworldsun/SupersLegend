@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures": 
 	{
-        "layer0": "supersmod:item/blue_rupee"
+        "layer0": "superslegend:item/blue_rupee"
     }
 }
