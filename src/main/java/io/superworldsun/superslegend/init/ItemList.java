@@ -58,7 +58,7 @@ public class ItemList
 	public static final Item MASK_GORONMASK = new ItemBase("mask_goronmask");
 	public static final Item MASK_ROMANISMASK = new ItemBase("mask_romanismask");
 	public static final Item MASK_TROUPELEADERSMASK= new ItemBase("mask_troupeleadersmask");
-	public static final Item MASK_KAFEISMASK = new ItemBase("mask_troupeleadersmask");
+	public static final Item MASK_KAFEISMASK = new ItemBase("mask_kafeismask");
 	public static final Item MASK_COUPLESMASK = new ItemBase("mask_couplesmask");
 	public static final Item MASK_MASKOFTRUTH = new ItemBase("mask_maskoftruth");
 	public static final Item MASK_ZORAMASK = new ItemBase("mask_zoramask");
@@ -73,14 +73,14 @@ public class ItemList
 	public static final Item KOKIRI_TUNIC = new ItemBase("kokiri_tunic");
 	public static final Item KOKIRI_LEGGINGS = new ItemBase("kokiri_leggings");
 	public static final Item KOKIRI_BOOTS = new ItemBase("kokiri_boots");
-	public static final Item ZORA_CAP = new ItemBase("kokiri_cap");
+	public static final Item ZORA_CAP = new ItemBase("zora_cap");
 	public static final Item ZORA_TUNIC = new ItemBase("zora_tunic");
 	public static final Item ZORA_LEGGINGS = new ItemBase("zora_leggings");
 	public static final Item IRON_BOOTS = new ItemBase("iron_boots");
-	public static final Item GORON_CAP = new ItemBase("kokiri_cap");
-	public static final Item GORON_TUNIC = new ItemBase("kokiri_cap");
-	public static final Item GORON_LEGGINGS = new ItemBase("kokiri_cap");
-	public static final Item HOVER_BOOTS = new ItemBase("kokiri_cap");
+	public static final Item GORON_CAP = new ItemBase("goron_cap");
+	public static final Item GORON_TUNIC = new ItemBase("goron_tunic");
+	public static final Item GORON_LEGGINGS = new ItemBase("goron_leggings");
+	public static final Item HOVER_BOOTS = new ItemBase("hover_boots");
 	
 	
 }
