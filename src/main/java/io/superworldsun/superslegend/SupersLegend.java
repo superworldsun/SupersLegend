@@ -1,5 +1,9 @@
 package io.superworldsun.superslegend;
 
+import io.superworldsun.superslegend.init.ItemList;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -16,15 +20,21 @@ import io.superworldsun.superslegend.proxy.CommonProxy;
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class SupersLegend
 {
-	
 	@Instance
 	public static SupersLegend instance;
 	
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
 	public static CommonProxy proxy;
 
-
     public static Logger logger;
+
+    public static final CreativeTabs tabSupersLegend = (new CreativeTabs("tabSupersLegend") {
+
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(ItemList.MASK_GAROSMASK);
+        }
+    });
 
     @EventHandler
     public static void preInit(FMLPreInitializationEvent event)

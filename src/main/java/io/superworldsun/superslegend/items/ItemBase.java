@@ -12,7 +12,7 @@ public class ItemBase extends Item implements IHasModel
 	{
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(CreativeTabs.MATERIALS);
+		setCreativeTab(SupersLegend.tabSupersLegend);
 		
 		ItemList.ITEMS.add(this);
 	}
@@ -22,6 +22,5 @@ public class ItemBase extends Item implements IHasModel
 	{
 		SupersLegend.proxy.registerItemRenderer(this, 0, "inventory");
 	}
-
 }
 
