@@ -3,7 +3,6 @@ package io.superworldsun.superslegend.items;
 import io.superworldsun.superslegend.SupersLegend;
 import io.superworldsun.superslegend.init.ItemList;
 import io.superworldsun.superslegend.util.IHasModel;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class ItemBase extends Item implements IHasModel
@@ -12,7 +11,7 @@ public class ItemBase extends Item implements IHasModel
 	{
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(CreativeTabs.MATERIALS);
+		setCreativeTab(SupersLegend.tabSupersLegend);
 		
 		ItemList.ITEMS.add(this);
 	}
