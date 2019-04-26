@@ -12,37 +12,49 @@ public class ItemList
 {
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	/* 
-	 *  Items
+	 *  Rupees
 	 */
 	public static final Item RUPEE = new ItemBase("rupee");
 	public static final Item BLUE_RUPEE = new ItemBase("blue_rupee");
 	public static final Item RED_RUPEE = new ItemBase("red_rupee");
 	public static final Item ORANGE_RUPEE = new ItemBase("orange_rupee");
-	
+	/*
+	 *  Swords
+	 */
 	public static final Item KOKIRI_SWORD = new ItemBase("kokiri_sword");
 	public static final Item RAZOR_SWORD = new ItemBase("razor_sword");
 	public static final Item GILDED_SWORD = new ItemBase("gilded_sword");
-	
+	/*
+	 *  Pickaxes
+	 */
 	public static final Item RUPEE_PICKAXE = new ItemBase("rupee_pickaxe");
 	public static final Item BLUE_RUPEE_PICKAXE = new ItemBase("blue_rupee_pickaxe");
 	public static final Item RED_RUPEE_PICKAXE = new ItemBase("red_rupee_pickaxe");
 	public static final Item ORANGE_RUPEE_PICKAXE = new ItemBase("orange_rupee_pickaxe");
-	
+	/*
+	 *  Axes
+	 */
 	public static final Item RUPEE_AXE = new ItemBase("rupee_axe");
 	public static final Item BLUE_RUPEE_AXE = new ItemBase("blue_rupee_axe");
 	public static final Item RED_RUPEE_AXE = new ItemBase("red_rupee_axe");
 	public static final Item ORANGE_RUPEE_AXE = new ItemBase("orange_rupee_axe");
-	
+	/*
+	 *  Hoes
+	 */
 	public static final Item RUPEE_HOE = new ItemBase("rupee_hoe");
 	public static final Item BLUE_RUPEE_HOE = new ItemBase("blue_rupee_hoe");
 	public static final Item RED_RUPEE_HOE = new ItemBase("red_rupee_hoe");
 	public static final Item ORANGE_RUPEE_HOE = new ItemBase("orange_rupee_hoe");
-	
+	/*
+	 *  Shovels
+	 */
 	public static final Item RUPEE_SHOVEL = new ItemBase("rupee_shovel");
 	public static final Item BLUE_RUPEE_SHOVEL = new ItemBase("blue_rupee_shovel");
 	public static final Item RED_RUPEE_SHOVEL = new ItemBase("red_rupee_shovel");
 	public static final Item ORANGE_RUPEE_SHOVEL = new ItemBase("orange_rupee_shovel");
-	
+	/*
+	 *  Masks
+	 */
 	public static final Item MASK_CLAY = new ItemBase("mask_clay");
 	public static final Item MASK_POSTMANSHAT = new ItemBase("mask_postmanshat");
 	public static final Item MASK_ALLNIGHTMASK = new ItemBase("mask_allnightmask");
@@ -81,6 +93,4 @@ public class ItemList
 	public static final Item GORON_TUNIC = new ItemBase("goron_tunic");
 	public static final Item GORON_LEGGINGS = new ItemBase("goron_leggings");
 	public static final Item HOVER_BOOTS = new ItemBase("hover_boots");
-	
-	
 }
