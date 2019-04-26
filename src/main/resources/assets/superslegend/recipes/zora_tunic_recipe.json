@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#L#",
+        "RER",
+        "#R#"
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:blue_rupee"
+        },
+        "L": {
+            "item": "superslegend:kokiri_tunic"
+        },
+        "R": {
+            "item": "superslegend:red_rupee"
+        },
+        "E": {
+            "item": "superslegend:orange_rupee"
+        }
+    },
+    "result": {
+        "item": "superslegend:zora_tunic",
+        "count": 1
+    }
+}

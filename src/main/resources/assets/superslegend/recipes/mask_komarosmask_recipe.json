@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#N#",
+        " C ",
+        "RRR"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:cactus_green"
+        },
+        "N": {
+            "item": "minecraft:note_block"
+        },
+        "C": {
+            "item": "superslegend:mask_clay"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_komarosmask",
+        "count": 1
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "#L#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:rose_red"
+        },
+        "L": {
+            "item": "superslegend:kokiri_leggings"
+        }
+    },
+    "result": {
+        "item": "superslegend:goron_leggings",
+        "count": 1
+    }
+}

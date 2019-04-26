@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#S#",
+        "RCR",
+        "SOS"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:bone_meal"
+        },
+        "S": {
+            "item": "minecraft:spider_eye"
+        },
+        "R": {
+            "item": "minecraft:rose_red"
+        },
+        "C": {
+            "item": "superslegend:mask_clay"
+        },
+        "O": {
+            "item": "minecraft:observer"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_maskoftruth",
+        "count": 1
+    }
+}

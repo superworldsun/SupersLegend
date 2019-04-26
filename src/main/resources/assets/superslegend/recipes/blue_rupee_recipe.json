@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:rupee"
+        },
+        {
+            "item": "superslegend:rupee"
+        },
+        {
+            "item": "superslegend:rupee"
+        },
+        {
+            "item": "superslegend:rupee"
+        },
+        {
+            "item": "superslegend:rupee"
+        }
+    ],
+    "result": {
+        "item": "superslegend:blue_rupee",
+        "count": 1
+    }
+}

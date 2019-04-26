@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#EE",
+        "#EE",
+        " IE"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_block"
+        },
+        "E": {
+            "item": "superslegend:red_rupee"
+        },
+        "I": {
+            "item": "superslegend:kokiri_sword"
+        }
+    },
+    "result": {
+        "item": "superslegend:razor_sword",
+        "count": 1
+    }
+}
