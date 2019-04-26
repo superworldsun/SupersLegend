@@ -30,6 +30,7 @@ public class SupersLegend
     public static void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
+        logger.info("Pre-initializing SupersLegend mod...");
     }
 
     @EventHandler
@@ -41,10 +42,8 @@ public class SupersLegend
     @EventHandler
     public static void Postinit(FMLPostInitializationEvent event)
     {
-        
+        logger.info("Post-initializing SupersLegend mod...");
     }
-    
-    
     
     @Mod.EventBusSubscriber(modid = Reference.MODID)
     public static class RegistrationHandler {
