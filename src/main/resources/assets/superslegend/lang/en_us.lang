@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 
 //Items
+=======
+itemGroup.tabSupersLegend=Supers Legend
+
+>>>>>>> 77ec5371e0237b6838668f30af37691b3acc1180
 item.rupee.name=Rupee
 item.blue_rupee.name=Blue Rupee
 item.red_rupee.name=Red Rupee
@@ -76,4 +81,3 @@ item.goron_cap.name=Goron Cap
 item.goron_tunic.name=Goron Tunic
 item.goron_leggings.name=Goron Leggings
 item.hover_boots.name=Hover Boots
-
