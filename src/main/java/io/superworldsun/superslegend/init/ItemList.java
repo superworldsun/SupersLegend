@@ -66,7 +66,7 @@ public class ItemList
 	public static final Item MASK_GIBDOMASK = new ItemBase("mask_gibdomask");
 	public static final Item MASK_GAROSMASK = new ItemBase("mask_garosmask");
 	public static final Item MASK_CAPTAINSHAT = new ItemBase("mask_captainshat");
-	public static final Item MASK_GIANTSMASK = new ItemBase("mask_captainshat");
+	public static final Item MASK_GIANTSMASK = new ItemBase("mask_giantsmask");
 	public static final Item MASK_FIERCEDEITYSMASK = new ItemBase("mask_fiercedeitysmask");
 
 	public static final Item KOKIRI_CAP = new ItemBase("kokiri_cap");
