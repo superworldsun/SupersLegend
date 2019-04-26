@@ -11,18 +11,25 @@ import io.superworldsun.superslegend.items.ItemBase;
 public class ItemList
 {
 	public static final List<Item> ITEMS = new ArrayList<Item>();
-	/* 
-	 *  Items
-	 */
+	
+	
+	//Items
 	public static final Item RUPEE = new ItemBase("rupee");
 	public static final Item BLUE_RUPEE = new ItemBase("blue_rupee");
 	public static final Item RED_RUPEE = new ItemBase("red_rupee");
 	public static final Item ORANGE_RUPEE = new ItemBase("orange_rupee");
 	
+	//Swords
 	public static final Item KOKIRI_SWORD = new ItemBase("kokiri_sword");
 	public static final Item RAZOR_SWORD = new ItemBase("razor_sword");
 	public static final Item GILDED_SWORD = new ItemBase("gilded_sword");
 	
+	public static final Item RUPEE_SWORD = new ItemBase("rupee_sword");
+	public static final Item BLUE_RUPEE_SWORD = new ItemBase("blue_rupee_sword");
+	public static final Item RED_RUPEE_SWORD = new ItemBase("red_rupee_sword");
+	public static final Item ORANGE_RUPEE_SWORD = new ItemBase("orange_rupee_sword");
+	
+	//Tools
 	public static final Item RUPEE_PICKAXE = new ItemBase("rupee_pickaxe");
 	public static final Item BLUE_RUPEE_PICKAXE = new ItemBase("blue_rupee_pickaxe");
 	public static final Item RED_RUPEE_PICKAXE = new ItemBase("red_rupee_pickaxe");
@@ -43,6 +50,7 @@ public class ItemList
 	public static final Item RED_RUPEE_SHOVEL = new ItemBase("red_rupee_shovel");
 	public static final Item ORANGE_RUPEE_SHOVEL = new ItemBase("orange_rupee_shovel");
 	
+	//Masks
 	public static final Item MASK_CLAY = new ItemBase("mask_clay");
 	public static final Item MASK_POSTMANSHAT = new ItemBase("mask_postmanshat");
 	public static final Item MASK_ALLNIGHTMASK = new ItemBase("mask_allnightmask");
@@ -68,7 +76,8 @@ public class ItemList
 	public static final Item MASK_CAPTAINSHAT = new ItemBase("mask_captainshat");
 	public static final Item MASK_GIANTSMASK = new ItemBase("mask_giantsmask");
 	public static final Item MASK_FIERCEDEITYSMASK = new ItemBase("mask_fiercedeitysmask");
-
+	
+	//Armors
 	public static final Item KOKIRI_CAP = new ItemBase("kokiri_cap");
 	public static final Item KOKIRI_TUNIC = new ItemBase("kokiri_tunic");
 	public static final Item KOKIRI_LEGGINGS = new ItemBase("kokiri_leggings");
