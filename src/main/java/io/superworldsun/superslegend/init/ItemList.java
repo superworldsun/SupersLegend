@@ -26,7 +26,14 @@ public class ItemList
 	
 	
 	//Materials (name, harvestLevel, maxUses, efficiency, damage, enchantability)
-	public static final ToolMaterial MATERIAL_RUPEE = EnumHelper.addToolMaterial("material_rupee", 2, 32, 2f, 2f, 0);
+	
+	public static final ToolMaterial MATERIAL_KOKIRI_SWORD = EnumHelper.addToolMaterial	("material_kokiri_sword", 1, 0, -2.6f, 1.0f, 0);
+	public static final ToolMaterial MATERIAL_RAZOR_SWORD = EnumHelper.addToolMaterial	("material_razor_sword", 1, 100, -2.6f, 2.0f, 0);
+	public static final ToolMaterial MATERIAL_GILDED_SWORD = EnumHelper.addToolMaterial	("material_gilded_sword", 1, 0, -2.6f, 2.0f, 0);
+	public static final ToolMaterial MATERIAL_RUPEE = EnumHelper.addToolMaterial		("material_rupee", 1, 32, 2f, 2f, 0);
+	public static final ToolMaterial MATERIAL_BLUE_RUPEE = EnumHelper.addToolMaterial	("material_blue_rupee", 540, 240, 2f, 2f, 0);
+	public static final ToolMaterial MATERIAL_RED_RUPEE = EnumHelper.addToolMaterial	("material_red_rupee", 3, 720, 2f, 2f, 0);
+	public static final ToolMaterial MATERIAL_ORANGE_RUPEE = EnumHelper.addToolMaterial	("material_orange_rupee", 4, 1204, 2f, 2f, 0);
 	
 	//Items
 	public static final Item RUPEE = new ItemBase("rupee");
@@ -35,35 +42,35 @@ public class ItemList
 	public static final Item ORANGE_RUPEE = new ItemBase("orange_rupee");
 	
 	//Swords
-	public static final Item KOKIRI_SWORD = new ItemBase("kokiri_sword");
-	public static final Item RAZOR_SWORD = new ItemBase("razor_sword");
-	public static final Item GILDED_SWORD = new ItemBase("gilded_sword");
+	public static final ItemSword KOKIRI_SWORD = new ToolSword("kokiri_sword", MATERIAL_KOKIRI_SWORD);
+	public static final ItemSword RAZOR_SWORD = new ToolSword("razor_sword", MATERIAL_RAZOR_SWORD);
+	public static final ItemSword GILDED_SWORD = new ToolSword("gilded_sword", MATERIAL_GILDED_SWORD);
 	
 	public static final ItemSword RUPEE_SWORD = new ToolSword("rupee_sword", MATERIAL_RUPEE);
-	public static final Item BLUE_RUPEE_SWORD = new ItemBase("blue_rupee_sword");
-	public static final Item RED_RUPEE_SWORD = new ItemBase("red_rupee_sword");
-	public static final Item ORANGE_RUPEE_SWORD = new ItemBase("orange_rupee_sword");
+	public static final ItemSword BLUE_RUPEE_SWORD = new ToolSword("blue_rupee_sword", MATERIAL_BLUE_RUPEE);
+	public static final ItemSword RED_RUPEE_SWORD = new ToolSword("red_rupee_sword", MATERIAL_RED_RUPEE);
+	public static final ItemSword ORANGE_RUPEE_SWORD = new ToolSword("orange_rupee_sword", MATERIAL_ORANGE_RUPEE);
 	
 	//Tools
 	public static final ItemPickaxe RUPEE_PICKAXE = new ToolPickaxe("rupee_pickaxe", MATERIAL_RUPEE);
-	public static final Item BLUE_RUPEE_PICKAXE = new ItemBase("blue_rupee_pickaxe");
-	public static final Item RED_RUPEE_PICKAXE = new ItemBase("red_rupee_pickaxe");
-	public static final Item ORANGE_RUPEE_PICKAXE = new ItemBase("orange_rupee_pickaxe");
+	public static final ItemPickaxe BLUE_RUPEE_PICKAXE = new ToolPickaxe("blue_rupee_pickaxe", MATERIAL_BLUE_RUPEE);
+	public static final ItemPickaxe RED_RUPEE_PICKAXE = new ToolPickaxe("red_rupee_pickaxe", MATERIAL_RED_RUPEE);
+	public static final ItemPickaxe ORANGE_RUPEE_PICKAXE = new ToolPickaxe("orange_rupee_pickaxe", MATERIAL_ORANGE_RUPEE);
 	
 	public static final ItemAxe RUPEE_AXE = new ToolAxe("rupee_axe", MATERIAL_RUPEE);
-	public static final Item BLUE_RUPEE_AXE = new ItemBase("blue_rupee_axe");
-	public static final Item RED_RUPEE_AXE = new ItemBase("red_rupee_axe");
-	public static final Item ORANGE_RUPEE_AXE = new ItemBase("orange_rupee_axe");
+	public static final ItemAxe BLUE_RUPEE_AXE = new ToolAxe("blue_rupee_axe", MATERIAL_BLUE_RUPEE);
+	public static final ItemAxe RED_RUPEE_AXE = new ToolAxe("red_rupee_axe", MATERIAL_RED_RUPEE);
+	public static final ItemAxe ORANGE_RUPEE_AXE = new ToolAxe("orange_rupee_axe", MATERIAL_ORANGE_RUPEE);
 	
 	public static final ItemHoe RUPEE_HOE = new ToolHoe("rupee_hoe", MATERIAL_RUPEE);
-	public static final Item BLUE_RUPEE_HOE = new ItemBase("blue_rupee_hoe");
-	public static final Item RED_RUPEE_HOE = new ItemBase("red_rupee_hoe");
-	public static final Item ORANGE_RUPEE_HOE = new ItemBase("orange_rupee_hoe");
+	public static final ItemHoe BLUE_RUPEE_HOE = new ToolHoe("blue_rupee_hoe", MATERIAL_BLUE_RUPEE);
+	public static final ItemHoe RED_RUPEE_HOE = new ToolHoe("red_rupee_hoe", MATERIAL_RED_RUPEE);
+	public static final ItemHoe ORANGE_RUPEE_HOE = new ToolHoe("orange_rupee_hoe", MATERIAL_ORANGE_RUPEE);
 	
 	public static final ItemSpade RUPEE_SHOVEL = new ToolSpade("rupee_shovel", MATERIAL_RUPEE);
-	public static final Item BLUE_RUPEE_SHOVEL = new ItemBase("blue_rupee_shovel");
-	public static final Item RED_RUPEE_SHOVEL = new ItemBase("red_rupee_shovel");
-	public static final Item ORANGE_RUPEE_SHOVEL = new ItemBase("orange_rupee_shovel");
+	public static final ItemSpade BLUE_RUPEE_SHOVEL = new ToolSpade("blue_rupee_shovel", MATERIAL_BLUE_RUPEE);
+	public static final ItemSpade RED_RUPEE_SHOVEL = new ToolSpade("red_rupee_shovel", MATERIAL_RED_RUPEE);
+	public static final ItemSpade ORANGE_RUPEE_SHOVEL = new ToolSpade("orange_rupee_shovel", MATERIAL_ORANGE_RUPEE);
 	
 	//Masks
 	public static final Item MASK_CLAY = new ItemBase("mask_clay");
