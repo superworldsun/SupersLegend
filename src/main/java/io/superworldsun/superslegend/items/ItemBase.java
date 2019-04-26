@@ -22,6 +22,5 @@ public class ItemBase extends Item implements IHasModel
 	{
 		SupersLegend.proxy.registerItemRenderer(this, 0, "inventory");
 	}
-
 }
 
