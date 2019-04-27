@@ -1,7 +1,10 @@
 package io.superworldsun.superslegend.init;
 
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemPickaxe;
@@ -13,11 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.superworldsun.superslegend.items.ItemBase;
+import io.superworldsun.superslegend.items.armor.ArmorBase;
 import io.superworldsun.superslegend.items.tools.ToolAxe;
 import io.superworldsun.superslegend.items.tools.ToolHoe;
 import io.superworldsun.superslegend.items.tools.ToolPickaxe;
 import io.superworldsun.superslegend.items.tools.ToolSpade;
 import io.superworldsun.superslegend.items.tools.ToolSword;
+import io.superworldsun.superslegend.util.Reference;
 
 //TODO: Document this class and methods inside
 public class ItemList
@@ -27,19 +32,30 @@ public class ItemList
 	
 	//Materials (name, harvestLevel, maxUses, efficiency, damage, enchantability)
 	
-	public static final ToolMaterial MATERIAL_KOKIRI_SWORD = EnumHelper.addToolMaterial	("material_kokiri_sword", 1, 0, -2.6f, 1.0f, 0);
-	public static final ToolMaterial MATERIAL_RAZOR_SWORD = EnumHelper.addToolMaterial	("material_razor_sword", 1, 100, -2.6f, 2.0f, 0);
-	public static final ToolMaterial MATERIAL_GILDED_SWORD = EnumHelper.addToolMaterial	("material_gilded_sword", 1, 0, -2.6f, 2.0f, 0);
-	public static final ToolMaterial MATERIAL_RUPEE = EnumHelper.addToolMaterial		("material_rupee", 1, 32, 2f, 2f, 0);
-	public static final ToolMaterial MATERIAL_BLUE_RUPEE = EnumHelper.addToolMaterial	("material_blue_rupee", 540, 240, 2f, 2f, 0);
-	public static final ToolMaterial MATERIAL_RED_RUPEE = EnumHelper.addToolMaterial	("material_red_rupee", 3, 720, 2f, 2f, 0);
-	public static final ToolMaterial MATERIAL_ORANGE_RUPEE = EnumHelper.addToolMaterial	("material_orange_rupee", 4, 1204, 2f, 2f, 0);
+	public static final ToolMaterial MATERIAL_KOKIRI_SWORD = EnumHelper.addToolMaterial	("material_kokiri_sword" , 1, 0, -2.6f, 1.0f, 0);
+	public static final ToolMaterial MATERIAL_RAZOR_SWORD = EnumHelper.addToolMaterial	("material_razor_sword"	 , 1, 100, -2.6f, 2.0f, 0);
+	public static final ToolMaterial MATERIAL_GILDED_SWORD = EnumHelper.addToolMaterial	("material_gilded_sword" , 1, 0, -2.6f, 2.0f, 0);
+	public static final ToolMaterial MATERIAL_RUPEE = EnumHelper.addToolMaterial		("material_rupee"		 , 1, 32, 2f, 2f, 0);
+	public static final ToolMaterial MATERIAL_BLUE_RUPEE = EnumHelper.addToolMaterial	("material_blue_rupee"	 , 540, 240, 2f, 2f, 0);
+	public static final ToolMaterial MATERIAL_RED_RUPEE = EnumHelper.addToolMaterial	("material_red_rupee"	 , 3, 720, 2f, 2f, 0);
+	public static final ToolMaterial MATERIAL_ORANGE_RUPEE = EnumHelper.addToolMaterial	("material_orange_rupee" , 4, 1204, 2f, 2f, 0);
+	
+	public static final ArmorMaterial ARMOR_MATERIAL_KOKIRI = EnumHelper.addArmorMaterial("armor_material_kokiri", Reference.MODID + ":kokiri", 5,
+			new int[] {1, 2, 3, 1}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_ZORA = EnumHelper.addArmorMaterial("armor_material_zora", Reference.MODID + ":zora", 5,
+			new int[] {1, 2, 3, 1}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_GORON = EnumHelper.addArmorMaterial("armor_material_zora", Reference.MODID + ":goron", 5,
+			new int[] {1, 2, 3, 1}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_POSTMANSHAT = EnumHelper.addArmorMaterial("armor_material_mask_postmanshat", Reference.MODID + ":mask_postmanshat", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	
 	
 	//Items
 	public static final Item RUPEE = new ItemBase("rupee");
 	public static final Item BLUE_RUPEE = new ItemBase("blue_rupee");
 	public static final Item RED_RUPEE = new ItemBase("red_rupee");
 	public static final Item ORANGE_RUPEE = new ItemBase("orange_rupee");
+	public static final Item MASK_CLAY = new ItemBase("mask_clay");
 	
 	//Swords
 	public static final ItemSword KOKIRI_SWORD = new ToolSword("kokiri_sword", MATERIAL_KOKIRI_SWORD);
@@ -73,8 +89,7 @@ public class ItemList
 	public static final ItemSpade ORANGE_RUPEE_SHOVEL = new ToolSpade("orange_rupee_shovel", MATERIAL_ORANGE_RUPEE);
 	
 	//Masks
-	public static final Item MASK_CLAY = new ItemBase("mask_clay");
-	public static final Item MASK_POSTMANSHAT = new ItemBase("mask_postmanshat");
+	public static final Item MASK_POSTMANSHAT = new ArmorBase("mask_postmanshat", ARMOR_MATERIAL_MASK_POSTMANSHAT, 1, EntityEquipmentSlot.HEAD);
 	public static final Item MASK_ALLNIGHTMASK = new ItemBase("mask_allnightmask");
 	public static final Item MASK_BLASTMASK = new ItemBase("mask_blastmask");
 	public static final Item MASK_STONEMASK = new ItemBase("mask_stonemask");
@@ -100,18 +115,18 @@ public class ItemList
 	public static final Item MASK_FIERCEDEITYSMASK = new ItemBase("mask_fiercedeitysmask");
 	
 	//Armors
-	public static final Item KOKIRI_CAP = new ItemBase("kokiri_cap");
-	public static final Item KOKIRI_TUNIC = new ItemBase("kokiri_tunic");
-	public static final Item KOKIRI_LEGGINGS = new ItemBase("kokiri_leggings");
-	public static final Item KOKIRI_BOOTS = new ItemBase("kokiri_boots");
-	public static final Item ZORA_CAP = new ItemBase("zora_cap");
-	public static final Item ZORA_TUNIC = new ItemBase("zora_tunic");
-	public static final Item ZORA_LEGGINGS = new ItemBase("zora_leggings");
-	public static final Item IRON_BOOTS = new ItemBase("iron_boots");
-	public static final Item GORON_CAP = new ItemBase("goron_cap");
-	public static final Item GORON_TUNIC = new ItemBase("goron_tunic");
-	public static final Item GORON_LEGGINGS = new ItemBase("goron_leggings");
-	public static final Item HOVER_BOOTS = new ItemBase("hover_boots");
+	public static final Item KOKIRI_CAP = new ArmorBase("kokiri_cap", ARMOR_MATERIAL_KOKIRI, 1, EntityEquipmentSlot.HEAD);
+	public static final Item KOKIRI_TUNIC = new ArmorBase("kokiri_tunic", ARMOR_MATERIAL_KOKIRI, 1, EntityEquipmentSlot.CHEST);
+	public static final Item KOKIRI_LEGGINGS = new ArmorBase("kokiri_leggings", ARMOR_MATERIAL_KOKIRI, 2, EntityEquipmentSlot.LEGS);
+	public static final Item KOKIRI_BOOTS = new ArmorBase("kokiri_boots", ARMOR_MATERIAL_KOKIRI, 1, EntityEquipmentSlot.FEET);
+	public static final Item ZORA_CAP = new ArmorBase("zora_cap", ARMOR_MATERIAL_ZORA, 1, EntityEquipmentSlot.HEAD);
+	public static final Item ZORA_TUNIC = new ArmorBase("zora_tunic", ARMOR_MATERIAL_ZORA, 1, EntityEquipmentSlot.CHEST);
+	public static final Item ZORA_LEGGINGS = new ArmorBase("zora_leggings", ARMOR_MATERIAL_ZORA, 2, EntityEquipmentSlot.LEGS);
+	public static final Item IRON_BOOTS = new ArmorBase("iron_boots", ARMOR_MATERIAL_ZORA, 1, EntityEquipmentSlot.FEET);
+	public static final Item GORON_CAP = new ArmorBase("goron_cap", ARMOR_MATERIAL_GORON, 1, EntityEquipmentSlot.HEAD);
+	public static final Item GORON_TUNIC = new ArmorBase("goron_tunic", ARMOR_MATERIAL_GORON, 1, EntityEquipmentSlot.CHEST);
+	public static final Item GORON_LEGGINGS = new ArmorBase("goron_leggings", ARMOR_MATERIAL_GORON, 2, EntityEquipmentSlot.LEGS);
+	public static final Item HOVER_BOOTS = new ArmorBase("hover_boots", ARMOR_MATERIAL_GORON, 1, EntityEquipmentSlot.FEET);
 	
 	
 }
