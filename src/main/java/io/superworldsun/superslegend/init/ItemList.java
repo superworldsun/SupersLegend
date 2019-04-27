@@ -70,7 +70,30 @@ public class ItemList
 			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
 	public static final ArmorMaterial ARMOR_MATERIAL_MASK_GORONMASK = EnumHelper.addArmorMaterial("armor_material_mask_goronmask", Reference.MODID + ":mask_goronmask", 5,
 			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
-	
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_ROMANISMASK = EnumHelper.addArmorMaterial("armor_material_mask_romanismask", Reference.MODID + ":mask_romanismask", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_TROUPELEADERSMASK = EnumHelper.addArmorMaterial("armor_material_mask_troupeleadersmask", Reference.MODID + ":mask_troupeleadersmask", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_KAFEISMASK = EnumHelper.addArmorMaterial("armor_material_mask_kafeismask", Reference.MODID + ":mask_kafeismask", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_COUPLESMASK = EnumHelper.addArmorMaterial("armor_material_mask_couplesmask", Reference.MODID + ":mask_couplesmask", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_MASKOFTRUTH = EnumHelper.addArmorMaterial("armor_material_mask_maskoftruth", Reference.MODID + ":mask_maskoftruth", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_ZORAMASK = EnumHelper.addArmorMaterial("armor_material_mask_zoramask", Reference.MODID + ":mask_zoramask", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_KAMAROSMASK = EnumHelper.addArmorMaterial("armor_material_mask_kamarosmask", Reference.MODID + ":mask_kamarosmask", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_GIBDOMASK = EnumHelper.addArmorMaterial("armor_material_mask_gibdomask", Reference.MODID + ":mask_gibdomask", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_GAROSMASK = EnumHelper.addArmorMaterial("armor_material_mask_garosmask", Reference.MODID + ":mask_garosmask", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_CAPTAINSHAT = EnumHelper.addArmorMaterial("armor_material_mask_captainshat", Reference.MODID + ":mask_captainshat", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_GIANTSMASK = EnumHelper.addArmorMaterial("armor_material_mask_giantsmask", Reference.MODID + ":mask_giantsmask", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
+	public static final ArmorMaterial ARMOR_MATERIAL_MASK_FIERCEDEITYSMASK = EnumHelper.addArmorMaterial("armor_material_mask_fiercedeitysmask", Reference.MODID + ":mask_fiercedeitysmask", 5,
+			new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f);
 	
 	
 	//Items
@@ -124,18 +147,18 @@ public class ItemList
 	public static final Item MASK_DONGEROSMASK = new ArmorBase("mask_dongerosmask", ARMOR_MATERIAL_MASK_DONGEROSMASK, 1,EntityEquipmentSlot.HEAD);
 	public static final Item MASK_MASKOFSCENTS = new ArmorBase("mask_maskofscents", ARMOR_MATERIAL_MASK_MASKOFSCENTS, 1,EntityEquipmentSlot.HEAD);
 	public static final Item MASK_GORONMASK = new ArmorBase("mask_goronmask", ARMOR_MATERIAL_MASK_GORONMASK, 1,EntityEquipmentSlot.HEAD);
-	public static final Item MASK_ROMANISMASK = new ItemBase("mask_romanismask");
-	public static final Item MASK_TROUPELEADERSMASK= new ItemBase("mask_troupeleadersmask");
-	public static final Item MASK_KAFEISMASK = new ItemBase("mask_kafeismask");
-	public static final Item MASK_COUPLESMASK = new ItemBase("mask_couplesmask");
-	public static final Item MASK_MASKOFTRUTH = new ItemBase("mask_maskoftruth");
-	public static final Item MASK_ZORAMASK = new ItemBase("mask_zoramask");
-	public static final Item MASK_KAMAROSMASK = new ItemBase("mask_kamarosmask");
-	public static final Item MASK_GIBDOMASK = new ItemBase("mask_gibdomask");
-	public static final Item MASK_GAROSMASK = new ItemBase("mask_garosmask");
-	public static final Item MASK_CAPTAINSHAT = new ItemBase("mask_captainshat");
-	public static final Item MASK_GIANTSMASK = new ItemBase("mask_giantsmask");
-	public static final Item MASK_FIERCEDEITYSMASK = new ItemBase("mask_fiercedeitysmask");
+	public static final Item MASK_ROMANISMASK = new ArmorBase("mask_romanismask", ARMOR_MATERIAL_MASK_ROMANISMASK, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_TROUPELEADERSMASK= new ArmorBase("mask_troupeleadersmask", ARMOR_MATERIAL_MASK_TROUPELEADERSMASK, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_KAFEISMASK = new ArmorBase("mask_kafeismask", ARMOR_MATERIAL_MASK_KAFEISMASK, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_COUPLESMASK = new ArmorBase("mask_couplesmask", ARMOR_MATERIAL_MASK_COUPLESMASK, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_MASKOFTRUTH = new ArmorBase("mask_maskoftruth", ARMOR_MATERIAL_MASK_MASKOFTRUTH, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_ZORAMASK = new ArmorBase("mask_zoramask", ARMOR_MATERIAL_MASK_ZORAMASK, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_KAMAROSMASK = new ArmorBase("mask_kamarosmask", ARMOR_MATERIAL_MASK_KAMAROSMASK, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_GIBDOMASK = new ArmorBase("mask_gibdomask", ARMOR_MATERIAL_MASK_GIBDOMASK, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_GAROSMASK = new ArmorBase("mask_garosmask", ARMOR_MATERIAL_MASK_GAROSMASK, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_CAPTAINSHAT = new ArmorBase("mask_captainshat", ARMOR_MATERIAL_MASK_CAPTAINSHAT, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_GIANTSMASK = new ArmorBase("mask_giantsmask", ARMOR_MATERIAL_MASK_GIANTSMASK, 1,EntityEquipmentSlot.HEAD);
+	public static final Item MASK_FIERCEDEITYSMASK = new ArmorBase("mask_fiercedeitysmask", ARMOR_MATERIAL_MASK_FIERCEDEITYSMASK, 1,EntityEquipmentSlot.HEAD);
 	
 	//Armors
 	public static final Item KOKIRI_CAP = new ArmorBase("kokiri_cap", ARMOR_MATERIAL_KOKIRI, 1, EntityEquipmentSlot.HEAD);
