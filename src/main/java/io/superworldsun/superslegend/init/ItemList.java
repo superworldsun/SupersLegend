@@ -15,13 +15,9 @@ import net.minecraftforge.common.util.EnumHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.superworldsun.superslegend.items.armor.*;
+import io.superworldsun.superslegend.items.tools.*;
 import io.superworldsun.superslegend.items.ItemBase;
-import io.superworldsun.superslegend.items.armor.ArmorBase;
-import io.superworldsun.superslegend.items.tools.ToolAxe;
-import io.superworldsun.superslegend.items.tools.ToolHoe;
-import io.superworldsun.superslegend.items.tools.ToolPickaxe;
-import io.superworldsun.superslegend.items.tools.ToolSpade;
-import io.superworldsun.superslegend.items.tools.ToolSword;
 import io.superworldsun.superslegend.util.Reference;
 
 //TODO: Document this class and methods inside
@@ -166,9 +162,9 @@ public class ItemList
 	public static final Item KOKIRI_LEGGINGS = new ArmorBase("kokiri_leggings", ARMOR_MATERIAL_KOKIRI, 2, EntityEquipmentSlot.LEGS);
 	public static final Item KOKIRI_BOOTS = new ArmorBase("kokiri_boots", ARMOR_MATERIAL_KOKIRI, 1, EntityEquipmentSlot.FEET);
 	public static final Item ZORA_CAP = new ArmorBase("zora_cap", ARMOR_MATERIAL_ZORA, 1, EntityEquipmentSlot.HEAD);
-	public static final Item ZORA_TUNIC = new ArmorBase("zora_tunic", ARMOR_MATERIAL_ZORA, 1, EntityEquipmentSlot.CHEST);
+	public static final Item ZORA_TUNIC = new ZoraArmor("zora_tunic", ARMOR_MATERIAL_ZORA, 1, EntityEquipmentSlot.CHEST);
 	public static final Item ZORA_LEGGINGS = new ArmorBase("zora_leggings", ARMOR_MATERIAL_ZORA, 2, EntityEquipmentSlot.LEGS);
-	public static final Item IRON_BOOTS = new ArmorBase("iron_boots", ARMOR_MATERIAL_ZORA, 1, EntityEquipmentSlot.FEET);
+	public static final Item ZORA_BOOTS = new ZoraArmor("iron_boots", ARMOR_MATERIAL_ZORA, 1, EntityEquipmentSlot.FEET);
 	public static final Item GORON_CAP = new ArmorBase("goron_cap", ARMOR_MATERIAL_GORON, 1, EntityEquipmentSlot.HEAD);
 	public static final Item GORON_TUNIC = new ArmorBase("goron_tunic", ARMOR_MATERIAL_GORON, 1, EntityEquipmentSlot.CHEST);
 	public static final Item GORON_LEGGINGS = new ArmorBase("goron_leggings", ARMOR_MATERIAL_GORON, 2, EntityEquipmentSlot.LEGS);
