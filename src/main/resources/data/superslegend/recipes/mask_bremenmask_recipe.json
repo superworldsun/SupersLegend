@@ -1,0 +1,29 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "# #",
+        "WCW",
+        "LIL"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:feather"
+        },
+        "W": {
+            "item": "minecraft:wheat"
+        },
+        "C": {
+            "item": "supersmod:mask_clay"
+        },
+        "L": {
+            "item": "minecraft:wheat_seeds"
+        },
+        "I": {
+            "item": "minecraft:carrot"
+        }
+    },
+    "result": {
+        "item": "supersmod:mask_bremenmask",
+        "count": 1
+    }
+}

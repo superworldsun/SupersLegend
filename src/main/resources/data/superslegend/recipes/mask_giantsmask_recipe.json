@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "B#B"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:soul_sand"
+        },
+        "C": {
+            "item": "supersmod:mask_clay"
+        },
+        "B": {
+            "item": "minecraft:blaze_powder"
+        }
+    },
+    "result": {
+        "item": "supersmod:mask_giantsmask",
+        "count": 1
+    }
+}

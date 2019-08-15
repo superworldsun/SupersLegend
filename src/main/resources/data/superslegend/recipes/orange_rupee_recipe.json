@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"RRR",
+		"RRR",
+		"RRR"
+	],
+	
+	"key":
+	{
+		"R":
+		{
+			"item": "supersmod:red_rupee"
+		}
+	},
+	
+	"result":
+	{
+		"item": "supersmod:orange_rupee"
+	}
+}

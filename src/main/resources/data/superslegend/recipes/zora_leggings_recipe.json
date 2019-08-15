@@ -1,0 +1,20 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        " # ",
+        "#L#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "L": {
+            "item": "supersmod:kokiri_leggings"
+        }
+    },
+    "result": {
+        "item": "supersmod:zora_leggings",
+        "count": 1
+    }
+}

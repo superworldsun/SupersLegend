@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#RR",
+        "RC#",
+        "##R"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:paper"
+        },
+        "R": {
+            "item": "minecraft:rotten_flesh"
+        },
+        "C": {
+            "item": "supersmod:mask_clay"
+        }
+    },
+    "result": {
+        "item": "supersmod:mask_gibdomask",
+        "count": 1
+    }
+}

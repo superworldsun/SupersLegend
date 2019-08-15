@@ -1,0 +1,20 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#",
+        "/",
+        "/"
+    ],
+    "key": {
+        "#": {
+            "item": "supersmod:blue_rupee"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "supersmod:blue_rupee_shovel",
+        "count": 1
+    }
+}

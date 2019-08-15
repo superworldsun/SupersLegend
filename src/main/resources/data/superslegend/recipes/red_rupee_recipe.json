@@ -1,0 +1,21 @@
+{
+    "type": "crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "supersmod:blue_rupee"
+        },
+        {
+            "item": "supersmod:blue_rupee"
+        },
+        {
+            "item": "supersmod:blue_rupee"
+        },
+        {
+            "item": "supersmod:blue_rupee"
+        }
+    ],
+    "result": {
+        "item": "supersmod:red_rupee",
+        "count": 1
+    }
+}

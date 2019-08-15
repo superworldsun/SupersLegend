@@ -1,0 +1,26 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        " # ",
+        "BCB",
+        " W "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:dispenser"
+        },
+        "B": {
+            "item": "minecraft:bone_meal"
+        },
+        "C": {
+            "item": "supersmod:mask_clay"
+        },
+        "W": {
+            "item": "minecraft:water_bucket"
+        }
+    },
+    "result": {
+        "item": "supersmod:mask_clay",
+        "count": 1
+    }
+}

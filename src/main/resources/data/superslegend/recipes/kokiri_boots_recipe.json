@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#R#",
+        "#L#",
+        "# #"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:leather"
+        },
+        "R": {
+            "item": "supersmod:rupee"
+        },
+        "L": {
+            "item": "minecraft:leather_boots"
+        }
+    },
+    "result": {
+        "item": "supersmod:kokiri_boots",
+        "count": 1
+    }
+}

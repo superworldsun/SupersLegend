@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#B#",
+        "BCB",
+        "BBB"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:rose_red"
+        },
+        "B": {
+            "item": "minecraft:bone"
+        },
+        "C": {
+            "item": "supersmod:mask_clay"
+        }
+    },
+    "result": {
+        "item": "supersmod:mask_captainshat",
+        "count": 1
+    }
+}

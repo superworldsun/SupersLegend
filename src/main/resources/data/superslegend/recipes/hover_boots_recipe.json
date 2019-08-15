@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#I#",
+        "G G",
+        "G G"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:feather"
+        },
+        "I": {
+            "item": "supersmod:kokiri_boots"
+        },
+        "G": {
+            "item": "minecraft:gold_block"
+        }
+    },
+    "result": {
+        "item": "supersmod:hover_boots",
+        "count": 1
+    }
+}

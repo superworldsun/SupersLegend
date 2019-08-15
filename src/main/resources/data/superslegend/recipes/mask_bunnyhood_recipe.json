@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#S#",
+        "SCS",
+        "S S"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:rabbit_foot"
+        },
+        "S": {
+            "item": "minecraft:sugar"
+        },
+        "C": {
+            "item": "supersmod:mask_clay"
+        }
+    },
+    "result": {
+        "item": "supersmod:mask_bunnyhood",
+        "count": 1
+    }
+}

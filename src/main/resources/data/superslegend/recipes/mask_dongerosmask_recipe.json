@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#S#",
+        "#C#",
+        "# #"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:lily_pad"
+        },
+        "S": {
+            "item": "minecraft:slime_ball"
+        },
+        "C": {
+            "item": "supersmod:mask_clay"
+        }
+    },
+    "result": {
+        "item": "supersmod:mask_dongerosmask",
+        "count": 1
+    }
+}

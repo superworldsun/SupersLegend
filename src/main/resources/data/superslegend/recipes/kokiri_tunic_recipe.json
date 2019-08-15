@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#E#",
+        "ELE",
+        "#E#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:leather"
+        },
+        "E": {
+            "item": "supersmod:rupee"
+        },
+        "L": {
+            "item": "minecraft:leather_chestplate"
+        }
+    },
+    "result": {
+        "item": "supersmod:kokiri_tunic",
+        "count": 1
+    }
+}

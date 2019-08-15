@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "###",
+        "ECE",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:stone"
+        },
+        "E": {
+            "item": "minecraft:ender_pearl"
+        },
+        "C": {
+            "item": "supersmod:mask_clay"
+        }
+    },
+    "result": {
+        "item": "supersmod:mask_stonemask",
+        "count": 1
+    }
+}

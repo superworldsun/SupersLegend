@@ -1,0 +1,26 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#L#",
+        "RER",
+        "#R#"
+    ],
+    "key": {
+        "#": {
+            "item": "supersmod:blue_rupee"
+        },
+        "L": {
+            "item": "supersmod:kokiri_tunic"
+        },
+        "R": {
+            "item": "supersmod:red_rupee"
+        },
+        "E": {
+            "item": "supersmod:orange_rupee"
+        }
+    },
+    "result": {
+        "item": "supersmod:zora_tunic",
+        "count": 1
+    }
+}

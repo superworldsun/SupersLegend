@@ -1,0 +1,20 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "# #",
+        "#C#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:dandelion_yellow"
+        },
+        "C": {
+            "item": "supersmod:mask_clay"
+        }
+    },
+    "result": {
+        "item": "supersmod:mask_keatonmask",
+        "count": 1
+    }
+}
