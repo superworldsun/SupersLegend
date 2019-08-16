@@ -37,15 +37,26 @@
 
 	"item.superslegend.mask_clay": "Clay Mask",
 	"item.superslegend.mask_postmanshat": "Postman's Hat",
+		
 	"item.superslegend.mask_allnightmask": "All-Night Mask",
+	"superslegend.all_night_mask.description": "Cant sleep huh?",
+	
 	"item.superslegend.mask_blastmask": "Blast Mask",
+	
 	"item.superslegend.mask_stonemask": "Stone Mask",
+	"superslegend.mask_stonemask.description": "You wont be noticed, more than usual",
+	
 	"item.superslegend.mask_greatfairymask": "Great Fairy Mask",
 	"item.superslegend.mask_dekumask": "Deku Mask",
 	"item.superslegend.mask_keatonmask": "Keaton Mask",
 	"item.superslegend.mask_bremenmask": "Bremen Mask",
+	
 	"item.superslegend.mask_bunnyhood": "Bunny Hood",
+	"superslegend.mask_bunnyhood.description": "I am Speed",
+	
 	"item.superslegend.mask_dongerosmask": "Don Gero's Mask",
+	"superslegend.mask_dongerosmask.description": "This Hood is Hoppin!",
+		
 	"item.superslegend.mask_maskofscents": "Mask of Scents",
 	"item.superslegend.mask_goronmask": "Goron Mask",
 	"item.superslegend.mask_romanismask": "Romani's Mask",
@@ -60,17 +71,21 @@
 	"item.superslegend.mask_captainshat": "Captain's Hat",
 	"item.superslegend.mask_giantsmask": "Giant's Mask",
 	"item.superslegend.mask_fiercedeitysmask": "Fierce Deity's Mask",
-
 	"item.superslegend.kokiri_cap": "Kokiri Cap",
 	"item.superslegend.kokiri_tunic": "Kokiri Tunic",
 	"item.superslegend.kokiri_leggings": "Kokiri Leggings",
 	"item.superslegend.kokiri_boots": "Kokiri Boots",
+	
 	"item.superslegend.zora_cap": "Zora Cap",
 	"item.superslegend.zora_tunic": "Zora Tunic",
+	"superslegend.zora_tunic.description": "Swimming with the fishes",
 	"item.superslegend.zora_leggings": "Zora Leggings",
 	"item.superslegend.iron_boots": "Iron Boots",
+	
+	
 	"item.superslegend.goron_cap": "Goron Cap",
 	"item.superslegend.goron_tunic": "Goron Tunic",
+	"superslegend.goron_tunic.description": "This Armor set is Hot!",
 	"item.superslegend.goron_leggings": "Goron Leggings",
 	"item.superslegend.hover_boots": "Hover Boots"
 }
