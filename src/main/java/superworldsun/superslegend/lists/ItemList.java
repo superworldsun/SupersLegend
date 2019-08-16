@@ -3,6 +3,10 @@ package superworldsun.superslegend.lists;
 import net.minecraft.item.Item;
 import superworldsun.superslegend.items.ArmorGoronEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
+import superworldsun.superslegend.items.MaskAllnightmaskEffects;
+import superworldsun.superslegend.items.MaskBunnyhoodEffects;
+import superworldsun.superslegend.items.MaskDongerosmaskEffects;
+import superworldsun.superslegend.items.MaskStonemaskEffects;
 
 
 
@@ -45,15 +49,15 @@ public class ItemList
 		//masks
 		public static Item mask_clay;
 		public static Item mask_postmanshat;
-
+		public static MaskAllnightmaskEffects mask_allnightmask;
 		public static Item mask_blastmask;
-
+		public static MaskStonemaskEffects mask_stonemask;
 		public static Item mask_greatfairymask;
 		public static Item mask_dekumask;
 		public static Item mask_keatonmask;
 		public static Item mask_bremenmask;
-
-		
+		public static MaskBunnyhoodEffects mask_bunnyhood;
+		public static MaskDongerosmaskEffects mask_dongerosmask;
 		public static Item mask_maskofscents;
 		public static Item mask_goronmask;
 		public static Item mask_romanismask;
