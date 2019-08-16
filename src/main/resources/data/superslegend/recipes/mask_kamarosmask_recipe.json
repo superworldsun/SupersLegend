@@ -7,20 +7,20 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:cactus_green"
+            "item": "minecraft:green_dye"
         },
         "N": {
             "item": "minecraft:note_block"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         },
         "R": {
             "item": "minecraft:redstone"
         }
     },
     "result": {
-        "item": "supersmod:mask_komarosmask",
+        "item": "superslegend:mask_kamarosmask",
         "count": 1
     }
 }

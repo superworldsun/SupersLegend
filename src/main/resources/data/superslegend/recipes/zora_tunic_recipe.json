@@ -7,20 +7,20 @@
     ],
     "key": {
         "#": {
-            "item": "supersmod:blue_rupee"
+            "item": "superslegend:blue_rupee"
         },
         "L": {
-            "item": "supersmod:kokiri_tunic"
+            "item": "superslegend:kokiri_tunic"
         },
         "R": {
-            "item": "supersmod:red_rupee"
+            "item": "superslegend:red_rupee"
         },
         "E": {
-            "item": "supersmod:orange_rupee"
+            "item": "superslegend:orange_rupee"
         }
     },
     "result": {
-        "item": "supersmod:zora_tunic",
+        "item": "superslegend:zora_tunic",
         "count": 1
     }
 }

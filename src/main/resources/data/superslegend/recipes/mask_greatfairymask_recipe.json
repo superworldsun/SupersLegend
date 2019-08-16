@@ -1,5 +1,5 @@
 {
-    "type": "crafting_shaped",
+    "type": "minecraft:crafting_shaped",
     "pattern": [
         "#VV",
         " C#",
@@ -7,20 +7,20 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:rose_red"
+            "item": "minecraft:red_dye"
         },
         "V": {
             "item": "minecraft:vine"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         },
         "G": {
             "item": "minecraft:glistering_melon_slice"
         }
     },
     "result": {
-        "item": "supersmod:mask_greatfairmask",
+        "item": "superslegend:mask_greatfairymask",
         "count": 1
     }
 }

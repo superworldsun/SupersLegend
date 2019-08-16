@@ -13,11 +13,11 @@
             "item": "minecraft:golden_carrot"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         }
     },
     "result": {
-        "item": "supersmod:mask_allnightmask",
+        "item": "superslegend:mask_allnightmask",
         "count": 1
     }
 }

@@ -2,23 +2,23 @@
     "type": "crafting_shapeless",
     "ingredients": [
         {
-            "item": "supersmod:rupee"
+            "item": "superslegend:rupee"
         },
         {
-            "item": "supersmod:rupee"
+            "item": "superslegend:rupee"
         },
         {
-            "item": "supersmod:rupee"
+            "item": "superslegend:rupee"
         },
         {
-            "item": "supersmod:rupee"
+            "item": "superslegend:rupee"
         },
         {
-            "item": "supersmod:rupee"
+            "item": "superslegend:rupee"
         }
     ],
     "result": {
-        "item": "supersmod:blue_rupee",
+        "item": "superslegend:blue_rupee",
         "count": 1
     }
 }

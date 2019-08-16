@@ -7,14 +7,14 @@
     ],
     "key": {
         "#": {
-            "item": "supersmod:rupee"
+            "item": "superslegend:rupee"
         },
         "/": {
             "item": "minecraft:stick"
         }
     },
     "result": {
-        "item": "supersmod:rupee_pickaxe",
+        "item": "superslegend:rupee_pickaxe",
         "count": 1
     }
 }

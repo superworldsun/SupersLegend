@@ -7,14 +7,14 @@
     ],
     "key": {
         "#": {
-            "item": "supersmod:kokiri_boots"
+            "item": "superslegend:kokiri_boots"
         },
         "I": {
             "item": "minecraft:iron_block"
         }
     },
     "result": {
-        "item": "supersmod:iron_boots",
+        "item": "superslegend:iron_boots",
         "count": 1
     }
 }

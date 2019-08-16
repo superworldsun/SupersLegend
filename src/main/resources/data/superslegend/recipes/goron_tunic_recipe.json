@@ -7,14 +7,14 @@
     ],
     "key": {
         "#": {
-            "item": "supersmod:red_rupee"
+            "item": "superslegend:red_rupee"
         },
         "L": {
-            "item": "supersmod:kokiri_tunic"
+            "item": "superslegend:kokiri_tunic"
         }
     },
     "result": {
-        "item": "supersmod:goron_tunic",
+        "item": "superslegend:goron_tunic",
         "count": 1
     }
 }

@@ -10,14 +10,14 @@
             "item": "minecraft:leather"
         },
         "E": {
-            "item": "supersmod:rupee"
+            "item": "superslegend:rupee"
         },
         "L": {
             "item": "minecraft:leather_chestplate"
         }
     },
     "result": {
-        "item": "supersmod:kokiri_tunic",
+        "item": "superslegend:kokiri_tunic",
         "count": 1
     }
 }

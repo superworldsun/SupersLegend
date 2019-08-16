@@ -13,11 +13,11 @@
             "item": "minecraft:slime_ball"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         }
     },
     "result": {
-        "item": "supersmod:mask_dongerosmask",
+        "item": "superslegend:mask_dongerosmask",
         "count": 1
     }
 }

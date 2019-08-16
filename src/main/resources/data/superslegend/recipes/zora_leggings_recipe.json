@@ -10,11 +10,11 @@
             "item": "minecraft:lapis_lazuli"
         },
         "L": {
-            "item": "supersmod:kokiri_leggings"
+            "item": "superslegend:kokiri_leggings"
         }
     },
     "result": {
-        "item": "supersmod:zora_leggings",
+        "item": "superslegend:zora_leggings",
         "count": 1
     }
 }

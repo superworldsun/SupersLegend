@@ -7,14 +7,14 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:dandelion_yellow"
+            "item": "minecraft:yellow_dye"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         }
     },
     "result": {
-        "item": "supersmod:mask_keatonmask",
+        "item": "superslegend:mask_keatonmask",
         "count": 1
     }
 }

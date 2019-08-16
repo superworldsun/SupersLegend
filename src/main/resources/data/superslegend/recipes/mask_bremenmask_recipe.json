@@ -13,7 +13,7 @@
             "item": "minecraft:wheat"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         },
         "L": {
             "item": "minecraft:wheat_seeds"
@@ -23,7 +23,7 @@
         }
     },
     "result": {
-        "item": "supersmod:mask_bremenmask",
+        "item": "superslegend:mask_bremenmask",
         "count": 1
     }
 }

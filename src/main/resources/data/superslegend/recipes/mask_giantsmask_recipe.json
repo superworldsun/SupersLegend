@@ -10,14 +10,14 @@
             "item": "minecraft:soul_sand"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         },
         "B": {
             "item": "minecraft:blaze_powder"
         }
     },
     "result": {
-        "item": "supersmod:mask_giantsmask",
+        "item": "superslegend:mask_giantsmask",
         "count": 1
     }
 }

@@ -9,14 +9,14 @@
             "item": "minecraft:leather"
         },
         "R": {
-            "item": "supersmod:rupee"
+            "item": "superslegend:rupee"
         },
         "L": {
             "item": "minecraft:leather_helmet"
         }
     },
     "result": {
-        "item": "supersmod:kokiri_cap",
+        "item": "superslegend:kokiri_cap",
         "count": 1
     }
 }

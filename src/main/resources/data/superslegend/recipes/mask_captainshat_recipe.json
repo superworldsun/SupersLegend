@@ -7,17 +7,17 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:rose_red"
+            "item": "minecraft:red_dye"
         },
         "B": {
             "item": "minecraft:bone"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         }
     },
     "result": {
-        "item": "supersmod:mask_captainshat",
+        "item": "superslegend:mask_captainshat",
         "count": 1
     }
 }

@@ -10,11 +10,11 @@
             "item": "minecraft:lapis_lazuli"
         },
         "L": {
-            "item": "supersmod:kokiri_cap"
+            "item": "superslegend:kokiri_cap"
         }
     },
     "result": {
-        "item": "supersmod:zora_cap",
+        "item": "superslegend:zora_cap",
         "count": 1
     }
 }

@@ -19,14 +19,14 @@
             "item": "minecraft:leather"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         },
         "g": {
             "item": "minecraft:gold_ingot"
         }
     },
     "result": {
-        "item": "supersmod:mask_garosmask",
+        "item": "superslegend:mask_garosmask",
         "count": 1
     }
 }

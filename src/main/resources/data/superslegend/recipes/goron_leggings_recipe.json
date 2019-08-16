@@ -7,14 +7,14 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:rose_red"
+            "item": "minecraft:red_dye"
         },
         "L": {
-            "item": "supersmod:kokiri_leggings"
+            "item": "superslegend:kokiri_leggings"
         }
     },
     "result": {
-        "item": "supersmod:goron_leggings",
+        "item": "superslegend:goron_leggings",
         "count": 1
     }
 }

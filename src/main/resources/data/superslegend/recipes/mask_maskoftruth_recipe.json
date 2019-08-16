@@ -13,17 +13,17 @@
             "item": "minecraft:spider_eye"
         },
         "R": {
-            "item": "minecraft:rose_red"
+            "item": "minecraft:red_dye"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         },
         "O": {
             "item": "minecraft:observer"
         }
     },
     "result": {
-        "item": "supersmod:mask_maskoftruth",
+        "item": "superslegend:mask_maskoftruth",
         "count": 1
     }
 }

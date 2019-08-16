@@ -13,14 +13,14 @@
             "item": "minecraft:tripwire_hook"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         },
         "A": {
             "item": "minecraft:tnt"
         }
     },
     "result": {
-        "item": "supersmod:mask_blastmask",
+        "item": "superslegend:mask_blastmask",
         "count": 1
     }
 }

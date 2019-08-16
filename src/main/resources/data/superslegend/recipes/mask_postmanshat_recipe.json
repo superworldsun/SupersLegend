@@ -7,20 +7,20 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:rose_red"
+            "item": "minecraft:red_dye"
         },
         "F": {
             "item": "minecraft:feather"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         },
         "P": {
             "item": "minecraft:paper"
         }
     },
     "result": {
-        "item": "supersmod:mask_postmanshat",
+        "item": "superslegend:mask_postmanshat",
         "count": 1
     }
 }

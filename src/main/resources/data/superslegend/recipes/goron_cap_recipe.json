@@ -7,14 +7,14 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:rose_red"
+            "item": "minecraft:red_dye"
         },
         "L": {
-            "item": "supersmod:kokiri_cap"
+            "item": "superslegend:kokiri_cap"
         }
     },
     "result": {
-        "item": "supersmod:goron_cap",
+        "item": "superslegend:goron_cap",
         "count": 1
     }
 }

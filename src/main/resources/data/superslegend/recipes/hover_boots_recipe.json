@@ -10,14 +10,14 @@
             "item": "minecraft:feather"
         },
         "I": {
-            "item": "supersmod:kokiri_boots"
+            "item": "superslegend:kokiri_boots"
         },
         "G": {
             "item": "minecraft:gold_block"
         }
     },
     "result": {
-        "item": "supersmod:hover_boots",
+        "item": "superslegend:hover_boots",
         "count": 1
     }
 }

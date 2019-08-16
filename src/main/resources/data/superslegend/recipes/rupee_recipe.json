@@ -10,13 +10,13 @@
 	{
 		"B":
 		{
-			"item": "supersmod:blue_rupee"
+			"item": "superslegend:blue_rupee"
 		}
 	},
 	
 	"result":
 	{
-		"item": "supersmod:rupee",
+		"item": "superslegend:rupee",
 		"count": 5
 	}
 }

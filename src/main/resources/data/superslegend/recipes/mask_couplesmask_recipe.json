@@ -16,11 +16,11 @@
             "item": "minecraft:bone_meal"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         }
     },
     "result": {
-        "item": "supersmod:mask_couplesmask",
+        "item": "superslegend:mask_couplesmask",
         "count": 1
     }
 }

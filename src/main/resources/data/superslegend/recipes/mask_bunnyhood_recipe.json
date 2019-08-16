@@ -13,11 +13,11 @@
             "item": "minecraft:sugar"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         }
     },
     "result": {
-        "item": "supersmod:mask_bunnyhood",
+        "item": "superslegend:mask_bunnyhood",
         "count": 1
     }
 }

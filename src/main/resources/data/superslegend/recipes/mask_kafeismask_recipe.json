@@ -13,11 +13,11 @@
             "item": "minecraft:lapis_lazuli"
         },
         "C": {
-            "item": "minecraft:clay_ball"
+            "item": "superslegend:mask_clay"
         }
     },
     "result": {
-        "item": "supersmod:mask_kafeismask",
+        "item": "superslegend:mask_kafeismask",
         "count": 1
     }
 }

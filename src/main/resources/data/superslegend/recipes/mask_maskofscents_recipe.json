@@ -10,7 +10,7 @@
             "item": "minecraft:porkchop"
         },
         "C": {
-            "item": "supersmod:mask_clay"
+            "item": "superslegend:mask_clay"
         },
         "B": {
             "item": "minecraft:brown_mushroom"
@@ -20,7 +20,7 @@
         }
     },
     "result": {
-        "item": "supersmod:mask_maskofscents",
+        "item": "superslegend:mask_maskofscents",
         "count": 1
     }
 }
