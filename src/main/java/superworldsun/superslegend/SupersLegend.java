@@ -31,12 +31,15 @@ import superworldsun.superslegend.CustomLootMobs.CustomLootGuardian;
 import superworldsun.superslegend.CustomLootMobs.CustomLootHusk;
 import superworldsun.superslegend.CustomLootMobs.CustomLootMagmacube;
 import superworldsun.superslegend.CustomLootMobs.CustomLootPhantom;
+import superworldsun.superslegend.CustomLootMobs.CustomLootPillager;
+import superworldsun.superslegend.CustomLootMobs.CustomLootRavager;
 import superworldsun.superslegend.CustomLootMobs.CustomLootShulker;
 import superworldsun.superslegend.CustomLootMobs.CustomLootSilverfish;
 import superworldsun.superslegend.CustomLootMobs.CustomLootSkeleton;
 import superworldsun.superslegend.CustomLootMobs.CustomLootSlime;
 import superworldsun.superslegend.CustomLootMobs.CustomLootSpider;
 import superworldsun.superslegend.CustomLootMobs.CustomLootStray;
+import superworldsun.superslegend.CustomLootMobs.CustomLootVindicator;
 import superworldsun.superslegend.CustomLootMobs.CustomLootWitch;
 import superworldsun.superslegend.CustomLootMobs.CustomLootWither;
 import superworldsun.superslegend.CustomLootMobs.CustomLootWitherskeleton;
@@ -148,6 +151,15 @@ public class SupersLegend
 				
 				CustomLootZombievillager customLootZombievillager = new CustomLootZombievillager();
 				MinecraftForge.EVENT_BUS.register(customLootZombievillager);
+				
+				CustomLootPillager customLootPillager = new CustomLootPillager();
+				MinecraftForge.EVENT_BUS.register(customLootPillager);
+				
+				CustomLootRavager customLootRavager = new CustomLootRavager();
+				MinecraftForge.EVENT_BUS.register(customLootRavager);
+				
+				CustomLootVindicator CustomLootVindicator = new CustomLootVindicator();
+				MinecraftForge.EVENT_BUS.register(CustomLootVindicator);
 		
 	}
 	
