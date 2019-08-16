@@ -17,6 +17,31 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import superworldsun.superslegend.CustomLootMobs.CustomLootBlaze;
+import superworldsun.superslegend.CustomLootMobs.CustomLootCavespider;
+import superworldsun.superslegend.CustomLootMobs.CustomLootCreeper;
+import superworldsun.superslegend.CustomLootMobs.CustomLootDragon;
+import superworldsun.superslegend.CustomLootMobs.CustomLootDrowned;
+import superworldsun.superslegend.CustomLootMobs.CustomLootElderguardian;
+import superworldsun.superslegend.CustomLootMobs.CustomLootEnderman;
+import superworldsun.superslegend.CustomLootMobs.CustomLootEndermite;
+import superworldsun.superslegend.CustomLootMobs.CustomLootEvoker;
+import superworldsun.superslegend.CustomLootMobs.CustomLootGhast;
+import superworldsun.superslegend.CustomLootMobs.CustomLootGuardian;
+import superworldsun.superslegend.CustomLootMobs.CustomLootHusk;
+import superworldsun.superslegend.CustomLootMobs.CustomLootMagmacube;
+import superworldsun.superslegend.CustomLootMobs.CustomLootPhantom;
+import superworldsun.superslegend.CustomLootMobs.CustomLootShulker;
+import superworldsun.superslegend.CustomLootMobs.CustomLootSilverfish;
+import superworldsun.superslegend.CustomLootMobs.CustomLootSkeleton;
+import superworldsun.superslegend.CustomLootMobs.CustomLootSlime;
+import superworldsun.superslegend.CustomLootMobs.CustomLootSpider;
+import superworldsun.superslegend.CustomLootMobs.CustomLootStray;
+import superworldsun.superslegend.CustomLootMobs.CustomLootWitch;
+import superworldsun.superslegend.CustomLootMobs.CustomLootWither;
+import superworldsun.superslegend.CustomLootMobs.CustomLootWitherskeleton;
+import superworldsun.superslegend.CustomLootMobs.CustomLootZombie;
+import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
 import superworldsun.superslegend.items.ArmorGoronEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
 import superworldsun.superslegend.items.ItemCustomAxe;
@@ -48,6 +73,82 @@ public class SupersLegend
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 		
 		MinecraftForge.EVENT_BUS.register(this);
+		//Custom Loot Drops
+				CustomLootZombie customLootZombie = new CustomLootZombie();
+				MinecraftForge.EVENT_BUS.register(customLootZombie);
+				
+				CustomLootSkeleton customLootSkeleton = new CustomLootSkeleton();
+				MinecraftForge.EVENT_BUS.register(customLootSkeleton);
+				
+				CustomLootSpider customLootSpider = new CustomLootSpider();
+				MinecraftForge.EVENT_BUS.register(customLootSpider);
+				
+				CustomLootSlime customLootSlime = new CustomLootSlime();
+				MinecraftForge.EVENT_BUS.register(customLootSlime);
+				
+				CustomLootCreeper customLootCreeper = new CustomLootCreeper();
+				MinecraftForge.EVENT_BUS.register(customLootCreeper);
+				
+				CustomLootSilverfish customLootSilverfish = new CustomLootSilverfish();
+				MinecraftForge.EVENT_BUS.register(customLootSilverfish);
+				
+				CustomLootPhantom customLootPhantom = new CustomLootPhantom();
+				MinecraftForge.EVENT_BUS.register(customLootPhantom);
+				
+				CustomLootEnderman customLootEnderman = new CustomLootEnderman();
+				MinecraftForge.EVENT_BUS.register(customLootEnderman);
+				
+				CustomLootCavespider customLootCavespider = new CustomLootCavespider();
+				MinecraftForge.EVENT_BUS.register(customLootCavespider);
+				
+				CustomLootBlaze customLootBlaze = new CustomLootBlaze();
+				MinecraftForge.EVENT_BUS.register(customLootBlaze);
+				
+				CustomLootGhast customLootGhast = new CustomLootGhast();
+				MinecraftForge.EVENT_BUS.register(customLootGhast);
+				
+				CustomLootWitch customLootWitch = new CustomLootWitch();
+				MinecraftForge.EVENT_BUS.register(customLootWitch);
+				
+				CustomLootWitherskeleton customLootWitherskeleton = new CustomLootWitherskeleton();
+				MinecraftForge.EVENT_BUS.register(customLootWitherskeleton);
+				
+				CustomLootMagmacube customLootMagmacube = new CustomLootMagmacube();
+				MinecraftForge.EVENT_BUS.register(customLootMagmacube);
+				
+				CustomLootDrowned customLootDrowned = new CustomLootDrowned();
+				MinecraftForge.EVENT_BUS.register(customLootDrowned);
+				
+				CustomLootGuardian customLootGuardian = new CustomLootGuardian();
+				MinecraftForge.EVENT_BUS.register(customLootGuardian);
+				
+				CustomLootElderguardian customLootElderguardian = new CustomLootElderguardian();
+				MinecraftForge.EVENT_BUS.register(customLootElderguardian);
+				
+				CustomLootEndermite customLootEdermite = new CustomLootEndermite();
+				MinecraftForge.EVENT_BUS.register(customLootEdermite);
+				
+				CustomLootShulker customLootShulker = new CustomLootShulker();
+				MinecraftForge.EVENT_BUS.register(customLootShulker);
+				
+				CustomLootDragon customLootDragon = new CustomLootDragon();
+				MinecraftForge.EVENT_BUS.register(customLootDragon);
+				
+				CustomLootWither customLootWither = new CustomLootWither();
+				MinecraftForge.EVENT_BUS.register(customLootWither);
+				
+				CustomLootEvoker customLootEvoker = new CustomLootEvoker();
+				MinecraftForge.EVENT_BUS.register(customLootEvoker);
+				
+				CustomLootStray customLootStray = new CustomLootStray();
+				MinecraftForge.EVENT_BUS.register(customLootStray);
+				
+				CustomLootHusk customLootHusk = new CustomLootHusk();
+				MinecraftForge.EVENT_BUS.register(customLootHusk);
+				
+				CustomLootZombievillager customLootZombievillager = new CustomLootZombievillager();
+				MinecraftForge.EVENT_BUS.register(customLootZombievillager);
+		
 	}
 	
 	private void setup(final FMLCommonSetupEvent event)
