@@ -1,6 +1,7 @@
 package superworldsun.superslegend.lists;
 
 import net.minecraft.item.Item;
+import superworldsun.superslegend.items.ArmorFlippersEffects;
 import superworldsun.superslegend.items.ArmorGoronEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
 import superworldsun.superslegend.items.MaskAllnightmaskEffects;
@@ -79,6 +80,7 @@ public class ItemList
 		public static Item kokiri_tunic;
 		public static Item kokiri_leggings;
 		public static Item kokiri_boots;
+		public static ArmorFlippersEffects zoras_flippers;
 		public static ArmorZoraEffects zora_cap;
 		public static ArmorZoraEffects zora_tunic;
 		public static ArmorZoraEffects zora_leggings;

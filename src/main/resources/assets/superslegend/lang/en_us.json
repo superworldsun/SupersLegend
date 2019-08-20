@@ -56,7 +56,7 @@
 	
 	"item.superslegend.mask_dongerosmask": "Don Gero's Mask",
 	"superslegend.mask_dongerosmask.description": "This Hood is Hoppin!",
-		
+	
 	"item.superslegend.mask_maskofscents": "Mask of Scents",
 	"item.superslegend.mask_goronmask": "Goron Mask",
 	"item.superslegend.mask_romanismask": "Romani's Mask",
@@ -81,6 +81,8 @@
 	"superslegend.zora_tunic.description": "Swimming with the fishes",
 	"item.superslegend.zora_leggings": "Zora Leggings",
 	"item.superslegend.iron_boots": "Iron Boots",
+	
+	"item.superslegend.zoras_flippers": "Zora's Flippers",
 	
 	
 	"item.superslegend.goron_cap": "Goron Cap",

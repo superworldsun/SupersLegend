@@ -45,6 +45,7 @@ import superworldsun.superslegend.CustomLootMobs.CustomLootWither;
 import superworldsun.superslegend.CustomLootMobs.CustomLootWitherskeleton;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombie;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
+import superworldsun.superslegend.items.ArmorFlippersEffects;
 import superworldsun.superslegend.items.ArmorGoronEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
 import superworldsun.superslegend.items.ItemCustomAxe;
@@ -255,6 +256,9 @@ public class SupersLegend
 			ItemList.zora_tunic = new ArmorZoraEffects("zora_tunic", EquipmentSlotType.CHEST),
 			ItemList.zora_leggings = new ArmorZoraEffects("zora_leggings", EquipmentSlotType.LEGS),
 			ItemList.iron_boots = new ArmorZoraEffects("iron_boots", EquipmentSlotType.FEET),
+			
+			ItemList.zoras_flippers = new ArmorFlippersEffects("zoras_flippers", EquipmentSlotType.FEET),
+			
 			ItemList.goron_cap = new ArmorGoronEffects("goron_cap", EquipmentSlotType.HEAD),
 			ItemList.goron_tunic = new ArmorGoronEffects("goron_tunic", EquipmentSlotType.CHEST),
 			ItemList.goron_leggings = new ArmorGoronEffects("goron_leggings", EquipmentSlotType.LEGS),
