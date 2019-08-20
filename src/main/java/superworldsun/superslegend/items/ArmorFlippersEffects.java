@@ -25,7 +25,7 @@ public class ArmorFlippersEffects extends ArmorItem {
     public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.AQUA + "Provides the ability to swim like a Zora"));
+		list.add(new StringTextComponent(TextFormatting.BLUE + "Provides the ability to swim"));
 	}
 
     @Override
