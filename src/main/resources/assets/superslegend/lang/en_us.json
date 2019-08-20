@@ -15,6 +15,8 @@
 	"item.superslegend.red_rupee_sword": "Red Rupee Pickaxe",
 	"item.superslegend.orange_rupee_sword": "Orange Rupee Pickaxe",	
 	
+	"item.superslegend.deku_shield": "Deku Shield",
+	
 	"item.superslegend.rupee_pickaxe": "Rupee Pickaxe",
 	"item.superslegend.blue_rupee_pickaxe": "Blue Rupee Pickaxe",
 	"item.superslegend.red_rupee_pickaxe": "Red Rupee Pickaxe",
@@ -43,9 +45,7 @@
 	
 	"item.superslegend.mask_blastmask": "Blast Mask",
 	
-	"item.superslegend.mask_stonemask": "Stone Mask",
-	"superslegend.mask_stonemask.description": "You wont be noticed, more than usual",
-	
+	"item.superslegend.mask_stonemask": "Stone Mask",	
 	"item.superslegend.mask_greatfairymask": "Great Fairy Mask",
 	"item.superslegend.mask_dekumask": "Deku Mask",
 	"item.superslegend.mask_keatonmask": "Keaton Mask",
@@ -78,16 +78,13 @@
 	
 	"item.superslegend.zora_cap": "Zora Cap",
 	"item.superslegend.zora_tunic": "Zora Tunic",
-	"superslegend.zora_tunic.description": "Swimming with the fishes",
 	"item.superslegend.zora_leggings": "Zora Leggings",
 	"item.superslegend.iron_boots": "Iron Boots",
-	
 	"item.superslegend.zoras_flippers": "Zora's Flippers",
 	
 	
 	"item.superslegend.goron_cap": "Goron Cap",
 	"item.superslegend.goron_tunic": "Goron Tunic",
-	"superslegend.goron_tunic.description": "This Armor set is Hot!",
 	"item.superslegend.goron_leggings": "Goron Leggings",
 	"item.superslegend.hover_boots": "Hover Boots"
 }

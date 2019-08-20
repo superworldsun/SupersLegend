@@ -7,6 +7,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ShieldItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.ResourceLocation;
@@ -47,6 +48,7 @@ import superworldsun.superslegend.CustomLootMobs.CustomLootZombie;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
 import superworldsun.superslegend.items.ArmorFlippersEffects;
 import superworldsun.superslegend.items.ArmorGoronEffects;
+import superworldsun.superslegend.items.ArmorKokiriEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
 import superworldsun.superslegend.items.ItemCustomAxe;
 import superworldsun.superslegend.items.ItemCustomHoe;
@@ -189,6 +191,8 @@ public class SupersLegend
 			ItemList.red_rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee")),
 			ItemList.orange_rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee")),
 			
+		//Weapons
+			
 			ItemList.kokiri_sword = new SwordItem(ToolMaterialList.kokiri_sword,		(int) 2, -2f, new Item.Properties().group(supers_legend)).setRegistryName(location("kokiri_sword")),
 			ItemList.razor_sword = new SwordItem(ToolMaterialList.razor_sword, 			(int) 2, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("razor_sword")),
 			ItemList.gilded_sword = new SwordItem(ToolMaterialList.gilded_sword, 		(int) 2, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("gilded_sword")),
@@ -197,6 +201,10 @@ public class SupersLegend
 			ItemList.blue_rupee_sword = new SwordItem(ToolMaterialList.blue_rupee_sword, 	(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_sword")),
 			ItemList.red_rupee_sword = new SwordItem(ToolMaterialList.red_rupee_sword, 		(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_sword")),
 			ItemList.orange_rupee_sword = new SwordItem(ToolMaterialList.orange_rupee_sword,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_sword")),
+			
+		//Shields
+			
+			ItemList.deku_shield = new ShieldItem(new Item.Properties().group(supers_legend)).setRegistryName(location("deku_shield")),
 			
 		//Tools
 			
@@ -248,10 +256,10 @@ public class SupersLegend
 			ItemList.mask_fiercedeitysmask = new ArmorItem(ArmourMaterialList.fiercedeitysmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_fiercedeitysmask"),
 			
 		//Armors
-			ItemList.kokiri_cap = new ArmorItem(ArmourMaterialList.kokiri, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("kokiri_cap"),
-			ItemList.kokiri_tunic = new ArmorItem(ArmourMaterialList.kokiri, EquipmentSlotType.CHEST, new Item.Properties().group(supers_legend)).setRegistryName("kokiri_tunic"),
-			ItemList.kokiri_leggings = new ArmorItem(ArmourMaterialList.kokiri, EquipmentSlotType.LEGS, new Item.Properties().group(supers_legend)).setRegistryName("kokiri_leggings"),
-			ItemList.kokiri_boots = new ArmorItem(ArmourMaterialList.kokiri, EquipmentSlotType.FEET, new Item.Properties().group(supers_legend)).setRegistryName("kokiri_boots"),
+			ItemList.kokiri_cap = new ArmorKokiriEffects("kokiri_cap",EquipmentSlotType.HEAD),
+			ItemList.kokiri_tunic = new ArmorKokiriEffects("kokiri_tunic",EquipmentSlotType.CHEST),
+			ItemList.kokiri_leggings = new ArmorKokiriEffects("kokiri_leggings",EquipmentSlotType.LEGS),
+			ItemList.kokiri_boots = new ArmorKokiriEffects("kokiri_boots",EquipmentSlotType.FEET),
 			ItemList.zora_cap = new ArmorZoraEffects("zora_cap", EquipmentSlotType.HEAD),
 			ItemList.zora_tunic = new ArmorZoraEffects("zora_tunic", EquipmentSlotType.CHEST),
 			ItemList.zora_leggings = new ArmorZoraEffects("zora_leggings", EquipmentSlotType.LEGS),

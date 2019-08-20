@@ -26,6 +26,11 @@ public class ItemList
 		public static Item blue_rupee_sword;
 		public static Item red_rupee_sword;
 		public static Item orange_rupee_sword;
+		
+	//shields
+		
+		public static Item deku_shield;
+		
 	//tools
 		public static Item rupee_pickaxe;
 		public static Item blue_rupee_pickaxe;
