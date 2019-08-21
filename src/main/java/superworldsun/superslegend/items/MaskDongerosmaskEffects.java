@@ -40,7 +40,7 @@ public class MaskDongerosmaskEffects extends ArmorItem {
     	
         if (!world.isRemote){
                 boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_dongerosmask);
-                if(isHelmeton) player.addPotionEffect(new EffectInstance(Effect.get(8), 10, 1));
+                if(isHelmeton) player.addPotionEffect(new EffectInstance(Effect.get(8), 10, 1, false, false));
                 }
             }
         }

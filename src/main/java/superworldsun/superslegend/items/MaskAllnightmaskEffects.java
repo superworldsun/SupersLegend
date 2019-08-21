@@ -40,7 +40,7 @@ public class MaskAllnightmaskEffects extends ArmorItem {
     	
         if (!world.isRemote){
                 boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_allnightmask);
-                if(isHelmeton) player.addPotionEffect(new EffectInstance(Effect.get(16), 200, 0));
+                if(isHelmeton) player.addPotionEffect(new EffectInstance(Effect.get(16), 200, 0, false, false));
                 }
             }
         }

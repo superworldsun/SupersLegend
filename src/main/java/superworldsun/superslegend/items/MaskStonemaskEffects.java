@@ -38,7 +38,7 @@ public class MaskStonemaskEffects extends ArmorItem {
     	
         if (!world.isRemote){
                 boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_stonemask);
-                if(isHelmeton) player.addPotionEffect(new EffectInstance(Effect.get(14), 10, 0));
+                if(isHelmeton) player.addPotionEffect(new EffectInstance(Effect.get(14), 10, 0, false, false));
                 }
             }
         }

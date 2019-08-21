@@ -38,7 +38,7 @@ public class ArmorZoraEffects extends ArmorItem {
         if (!world.isRemote){
                 boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.zora_tunic);
                 boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.iron_boots);
-                if(isChestplateOn) player.addPotionEffect(new EffectInstance(Effect.get(13), 10, 0));
+                if(isChestplateOn) player.addPotionEffect(new EffectInstance(Effect.get(13), 10, 0, false, false));
                 if(isBootsOn)
                 	{
                 	if(player.isInWater()) 
@@ -47,7 +47,7 @@ public class ArmorZoraEffects extends ArmorItem {
                 	}
                 	else
                 	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 1));
+                		player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 1, false, false));
                 	}
                 }
         }
