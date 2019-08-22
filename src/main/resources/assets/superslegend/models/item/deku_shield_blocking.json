@@ -1,7 +1,7 @@
 {
     "parent": "superslegend:item/deku_shield",
 "textures": {
-		"1": "superslegend:models/shield/deku_shield"
+		"1": "superslegend:item/deku_shield"
 	},
 	"elements": [
 		{
