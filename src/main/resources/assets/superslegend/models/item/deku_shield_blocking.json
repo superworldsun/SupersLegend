@@ -1,9 +1,7 @@
 {
-    "textures": {
-        "particle": "block/dark_oak_planks"
-    },
-    "textures": {
-		"1": "superslegend:item/deku_shield"
+    "parent": "superslegend:item/deku_shield",
+"textures": {
+		"1": "superslegend:models/shield/deku_shield"
 	},
 	"elements": [
 		{
@@ -33,7 +31,8 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"translation": [3, 0, 0],
+			"rotation": [64.25, 88, 0],
+			"translation": [-1, 2, 2.75],
 			"scale": [1, 1.02148, 0.84571]
 		},
 		"thirdperson_lefthand": {
@@ -53,14 +52,6 @@
 		"fixed": {
 			"rotation": [0, 90, 0],
 			"translation": [-0.25, 0, -0.75]
-        }
-    },
-    "overrides": [
-        {
-            "predicate": {
-                "blocking": 1
-            },
-            "model": "superslegend:item/deku_shield_blocking"
-        }
-    ]
+		}
+	}
 }
