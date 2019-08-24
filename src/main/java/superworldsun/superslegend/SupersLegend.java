@@ -204,7 +204,7 @@ public class SupersLegend
 			
 		//Shields
 			
-			ItemList.deku_shield = new ShieldItem(new Item.Properties().group(supers_legend)).setRegistryName(location("deku_shield")),
+			ItemList.deku_shield = new ShieldItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("deku_shield")),
 			
 		//Tools
 			
