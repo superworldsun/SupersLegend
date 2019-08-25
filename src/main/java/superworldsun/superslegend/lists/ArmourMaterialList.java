@@ -14,7 +14,7 @@ public enum ArmourMaterialList implements IArmorMaterial
 	kokiri("kokiri", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	zora("zora", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	goron("goron", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	flippers("flippers", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
+	flippers("flippers", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	//masks
 	postmanshat("postmanshat", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	allnightmask("allnightmask", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
