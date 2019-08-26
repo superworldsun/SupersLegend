@@ -42,6 +42,7 @@ public class ArmorGoronEffects extends ArmorItem {
                 if(isBootsOn&&player.isSprinting())
                 {
                 	player.setNoGravity(true);
+                	player.addPotionEffect(new EffectInstance(Effect.get(2), 3, 2, false, false));
                 }
     			else
     			{
