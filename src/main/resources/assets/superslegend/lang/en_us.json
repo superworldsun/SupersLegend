@@ -6,6 +6,7 @@
 	"item.superslegend.red_rupee": "Red Rupee",
 	"item.superslegend.orange_rupee": "Orange Rupee",
 	"item.superslegend.rocs_feather": "Roc's Feather'",
+	"item.superslegend.magic_mirror": "Magic Mirror",
 	
 	"item.superslegend.kokiri_sword": "Kokiri Sword",
 	"item.superslegend.razor_sword": "Razor Sword",
@@ -87,5 +88,7 @@
 	"item.superslegend.goron_cap": "Goron Cap",
 	"item.superslegend.goron_tunic": "Goron Tunic",
 	"item.superslegend.goron_leggings": "Goron Leggings",
-	"item.superslegend.hover_boots": "Hover Boots"
+	"item.superslegend.hover_boots": "Hover Boots",
+	
+	"item.superslegend.rocs_cape": "Roc's Cape'"
 }

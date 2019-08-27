@@ -8,6 +8,7 @@ import superworldsun.superslegend.items.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.MaskBunnyhoodEffects;
 import superworldsun.superslegend.items.MaskDongerosmaskEffects;
 import superworldsun.superslegend.items.MaskStonemaskEffects;
+import superworldsun.superslegend.items.RocsCapeEffects;
 
 
 
@@ -19,6 +20,7 @@ public class ItemList
 		public static Item red_rupee;
 		public static Item orange_rupee;
 		public static Item rocs_feather;
+		public static Item magic_mirror;
 		
 	//weapons
 		public static Item kokiri_sword;
@@ -96,4 +98,5 @@ public class ItemList
 		public static ArmorGoronEffects goron_tunic;
 		public static ArmorGoronEffects goron_leggings;
 		public static ArmorGoronEffects hover_boots;
+		public static RocsCapeEffects rocs_cape;
 }

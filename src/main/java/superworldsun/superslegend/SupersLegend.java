@@ -53,10 +53,12 @@ import superworldsun.superslegend.items.ArmorZoraEffects;
 import superworldsun.superslegend.items.ItemCustomAxe;
 import superworldsun.superslegend.items.ItemCustomHoe;
 import superworldsun.superslegend.items.ItemCustomPickaxe;
+import superworldsun.superslegend.items.MagicMirror;
 import superworldsun.superslegend.items.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.MaskBunnyhoodEffects;
 import superworldsun.superslegend.items.MaskDongerosmaskEffects;
 import superworldsun.superslegend.items.MaskStonemaskEffects;
+import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.RocsFeather;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
@@ -192,6 +194,7 @@ public class SupersLegend
 			ItemList.red_rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee")),
 			ItemList.orange_rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee")),
 			ItemList.rocs_feather = new RocsFeather(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rocs_feather")),
+			ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
 			
 		//Weapons
 			
@@ -272,7 +275,9 @@ public class SupersLegend
 			ItemList.goron_cap = new ArmorGoronEffects("goron_cap", EquipmentSlotType.HEAD),
 			ItemList.goron_tunic = new ArmorGoronEffects("goron_tunic", EquipmentSlotType.CHEST),
 			ItemList.goron_leggings = new ArmorGoronEffects("goron_leggings", EquipmentSlotType.LEGS),
-			ItemList.hover_boots = new ArmorGoronEffects("hover_boots", EquipmentSlotType.FEET)
+			ItemList.hover_boots = new ArmorGoronEffects("hover_boots", EquipmentSlotType.FEET),
+			
+			ItemList.rocs_cape = new RocsCapeEffects("rocs_cape",EquipmentSlotType.CHEST)
 			);
 			Logger.info("Items registered.");		
 		}
