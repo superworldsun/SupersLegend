@@ -18,6 +18,8 @@ public class ItemList
 		public static Item blue_rupee;
 		public static Item red_rupee;
 		public static Item orange_rupee;
+		public static Item rocs_feather;
+		
 	//weapons
 		public static Item kokiri_sword;
 		public static Item razor_sword;
