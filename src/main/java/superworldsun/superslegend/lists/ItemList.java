@@ -28,14 +28,18 @@ public class ItemList
 		public static Item kokiri_sword;
 		public static Item razor_sword;
 		public static Item gilded_sword;
+		public static Item master_sword;
+		
 		public static Item rupee_sword;
 		public static Item blue_rupee_sword;
 		public static Item red_rupee_sword;
 		public static Item orange_rupee_sword;
 		
+		public static Item heros_bow;
+		
 	//shields
 		
-		public static Item hylain_shield;
+		public static Item deku_shield;
 		
 	//tools
 		public static Item rupee_pickaxe;

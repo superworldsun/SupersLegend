@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -205,15 +206,18 @@ public class SupersLegend
 			ItemList.kokiri_sword = new SwordItem(ToolMaterialList.kokiri_sword,		(int) 2, -2f, new Item.Properties().group(supers_legend)).setRegistryName(location("kokiri_sword")),
 			ItemList.razor_sword = new SwordItem(ToolMaterialList.razor_sword, 			(int) 2, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("razor_sword")),
 			ItemList.gilded_sword = new SwordItem(ToolMaterialList.gilded_sword, 		(int) 2, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("gilded_sword")),
+			ItemList.master_sword = new SwordItem(ToolMaterialList.master_sword,		(int) 2, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
 			
 			ItemList.rupee_sword = new SwordItem(ToolMaterialList.rupee_sword, 				(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_sword")),
 			ItemList.blue_rupee_sword = new SwordItem(ToolMaterialList.blue_rupee_sword, 	(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_sword")),
 			ItemList.red_rupee_sword = new SwordItem(ToolMaterialList.red_rupee_sword, 		(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_sword")),
 			ItemList.orange_rupee_sword = new SwordItem(ToolMaterialList.orange_rupee_sword,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_sword")),
 			
+			ItemList.heros_bow = new BowItem(new Item.Properties().group(supers_legend)).setRegistryName(location("heros_bow")),
+			
 		//Shields
 			
-			ItemList.hylain_shield = new ShieldItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("hylain_shield")),
+			ItemList.deku_shield = new ShieldItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("deku_shield")),
 			
 		//Tools
 			

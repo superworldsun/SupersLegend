@@ -10,6 +10,7 @@ public enum ToolMaterialList implements IItemTier
 		kokiri_sword	(2, -2f, 0, 0, 0, ItemList.kokiri_sword),
 		razor_sword		(3, -2f, 100, 1, 0, ItemList.razor_sword),
 		gilded_sword	(4, -2f, 0, 2, 0, ItemList.gilded_sword),
+		master_sword	(5, -2f, 0, 0, 0, ItemList.master_sword),
 		
 		rupee_sword			(2, -2f, 32, 0, 0, ItemList.rupee_sword),
 		blue_rupee_sword	(3, -2f, 74, 1, 0, ItemList.blue_rupee_sword),
