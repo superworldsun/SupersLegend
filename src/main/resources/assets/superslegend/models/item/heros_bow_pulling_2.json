@@ -1,5 +1,5 @@
 {
-    "parent": "superslegend:item/bow",
+    "parent": "item/bow",
     "textures": {
         "layer0": "superslegend:item/heros_bow_pulling_2"
     }
