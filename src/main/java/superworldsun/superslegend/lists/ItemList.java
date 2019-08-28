@@ -21,6 +21,8 @@ public class ItemList
 		public static Item orange_rupee;
 		public static Item rocs_feather;
 		public static Item magic_mirror;
+		public static Item farores_wind;
+		public static Item dins_fire;
 		
 	//weapons
 		public static Item kokiri_sword;
@@ -33,7 +35,7 @@ public class ItemList
 		
 	//shields
 		
-		public static Item deku_shield;
+		public static Item hylain_shield;
 		
 	//tools
 		public static Item rupee_pickaxe;
