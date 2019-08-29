@@ -62,6 +62,7 @@ import superworldsun.superslegend.items.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.MaskBunnyhoodEffects;
 import superworldsun.superslegend.items.MaskDongerosmaskEffects;
 import superworldsun.superslegend.items.MaskStonemaskEffects;
+import superworldsun.superslegend.items.NayrusLove;
 import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.RocsFeather;
 import superworldsun.superslegend.lists.ArmourMaterialList;
@@ -201,6 +202,7 @@ public class SupersLegend
 			ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
 			ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
 			ItemList.dins_fire = new FlintAndSteelItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
+			ItemList.nayrus_love = new NayrusLove(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("nayrus_love")),
 			ItemList.magnetic_glove = new MagneticGlove(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magnetic_glove")),
 			
 		//Weapons
