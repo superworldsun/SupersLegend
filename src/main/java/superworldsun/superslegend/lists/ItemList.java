@@ -23,6 +23,7 @@ public class ItemList
 		public static Item magic_mirror;
 		public static Item farores_wind;
 		public static Item dins_fire;
+		public static Item magnetic_glove;
 		
 	//weapons
 		public static Item kokiri_sword;

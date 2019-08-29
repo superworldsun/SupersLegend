@@ -57,6 +57,7 @@ import superworldsun.superslegend.items.ItemCustomAxe;
 import superworldsun.superslegend.items.ItemCustomHoe;
 import superworldsun.superslegend.items.ItemCustomPickaxe;
 import superworldsun.superslegend.items.MagicMirror;
+import superworldsun.superslegend.items.MagneticGlove;
 import superworldsun.superslegend.items.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.MaskBunnyhoodEffects;
 import superworldsun.superslegend.items.MaskDongerosmaskEffects;
@@ -200,6 +201,7 @@ public class SupersLegend
 			ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
 			ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
 			ItemList.dins_fire = new FlintAndSteelItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
+			ItemList.magnetic_glove = new MagneticGlove(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magnetic_glove")),
 			
 		//Weapons
 			
