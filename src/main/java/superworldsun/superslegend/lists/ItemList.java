@@ -25,6 +25,10 @@ public class ItemList
 		public static Item dins_fire;
 		public static Item nayrus_love;
 		public static Item magnetic_glove;
+		public static Item triforce;
+		public static Item triforce_power;
+		public static Item triforce_wisdom;
+		public static Item triforce_courage;
 		
 	//weapons
 		public static Item kokiri_sword;
