@@ -14,6 +14,6 @@ public class SupersLegendItemGroup extends ItemGroup
 	@Override
 	public ItemStack createIcon() 
 	{
-		return new ItemStack(ItemList.rupee);
+		return new ItemStack(ItemList.triforce);
 	}
 }
