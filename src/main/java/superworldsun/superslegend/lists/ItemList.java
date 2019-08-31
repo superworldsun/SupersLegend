@@ -30,6 +30,14 @@ public class ItemList
 		public static Item triforce_wisdom;
 		public static Item triforce_courage;
 		
+	//Block Items
+		
+		public static Item rupee_item_block;
+		public static Item rupee_block;
+		
+	//Liquids
+		public static Item poison;
+		
 	//weapons
 		public static Item kokiri_sword;
 		public static Item razor_sword;

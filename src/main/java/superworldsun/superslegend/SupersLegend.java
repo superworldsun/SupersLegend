@@ -3,8 +3,12 @@ package superworldsun.superslegend;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.Item;
@@ -70,6 +74,7 @@ import superworldsun.superslegend.items.TriforceCourage;
 import superworldsun.superslegend.items.TriforcePower;
 import superworldsun.superslegend.items.TriforceWisdom;
 import superworldsun.superslegend.lists.ArmourMaterialList;
+import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.ToolMaterialList;
 
@@ -213,6 +218,9 @@ public class SupersLegend
 			ItemList.triforce_wisdom = new TriforceWisdom(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_wisdom")),
 			ItemList.triforce_courage = new TriforceCourage(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_courage")),
 			
+		//Block Items
+			ItemList.rupee_block = new BlockItem(BlockList.rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.rupee_block.getRegistryName()),
+			
 		//Weapons
 			
 			ItemList.kokiri_sword = new SwordItem(ToolMaterialList.kokiri_sword,		(int) 2, -2f, new Item.Properties().group(supers_legend)).setRegistryName(location("kokiri_sword")),
@@ -300,6 +308,20 @@ public class SupersLegend
 			ItemList.rocs_cape = new RocsCapeEffects("rocs_cape",EquipmentSlotType.CHEST)
 			);
 			Logger.info("Items registered.");		
+		}
+		
+		@SubscribeEvent
+		public static void registerBlocks(final RegistryEvent.Register<Block> event)
+		{
+			event.getRegistry().registerAll
+			(	
+				//Blocks
+					
+					
+					BlockList.rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(2.0f, 3.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("rupee_block"))
+
+			);
+			Logger.info("Blocks registered.");
 		}
 		
 		private static ResourceLocation location(String name)
