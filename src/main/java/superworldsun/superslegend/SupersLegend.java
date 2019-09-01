@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
@@ -24,6 +25,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.IForgeRegistry;
 import superworldsun.superslegend.CustomLootMobs.CustomLootBlaze;
 import superworldsun.superslegend.CustomLootMobs.CustomLootCavespider;
 import superworldsun.superslegend.CustomLootMobs.CustomLootCreeper;
@@ -52,6 +54,7 @@ import superworldsun.superslegend.CustomLootMobs.CustomLootWither;
 import superworldsun.superslegend.CustomLootMobs.CustomLootWitherskeleton;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombie;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
+import superworldsun.superslegend.fluids.FluidLiquid;
 import superworldsun.superslegend.items.ArmorFlippersEffects;
 import superworldsun.superslegend.items.ArmorGoronEffects;
 import superworldsun.superslegend.items.ArmorKokiriEffects;
@@ -193,6 +196,8 @@ public class SupersLegend
 		Logger.info("ClientRegistries method registered");
 	}
 	
+
+	
 	@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 	public static class RegistryEvents
 	{
@@ -310,6 +315,8 @@ public class SupersLegend
 			Logger.info("Items registered.");		
 		}
 		
+		
+		
 		@SubscribeEvent
 		public static void registerBlocks(final RegistryEvent.Register<Block> event)
 		{
@@ -318,7 +325,7 @@ public class SupersLegend
 				//Blocks
 					
 					
-					BlockList.rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(2.0f, 3.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("rupee_block"))
+					BlockList.rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("rupee_block"))
 
 			);
 			Logger.info("Blocks registered.");
@@ -328,5 +335,12 @@ public class SupersLegend
 		{
 			return new ResourceLocation(modid, name);
 		}
+		
+		 public void onFluidRegistry(final RegistryEvent.Register<Fluid> event) 
+		 {
+		        IForgeRegistry<Fluid> registry = event.getRegistry();
+
+		        FluidLiquid.register(registry);
+		 }
 	}
 }
