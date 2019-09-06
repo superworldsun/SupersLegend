@@ -54,6 +54,7 @@ import superworldsun.superslegend.CustomLootMobs.CustomLootWither;
 import superworldsun.superslegend.CustomLootMobs.CustomLootWitherskeleton;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombie;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
+import superworldsun.superslegend.blocks.SpikesBlock;
 import superworldsun.superslegend.fluids.FluidLiquid;
 import superworldsun.superslegend.items.ArmorFlippersEffects;
 import superworldsun.superslegend.items.ArmorGoronEffects;
@@ -228,6 +229,7 @@ public class SupersLegend
 			ItemList.blue_rupee_block = new BlockItem(BlockList.blue_rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.blue_rupee_block.getRegistryName()),
 			ItemList.red_rupee_block = new BlockItem(BlockList.red_rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.red_rupee_block.getRegistryName()),
 			ItemList.orange_rupee_block = new BlockItem(BlockList.orange_rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.orange_rupee_block.getRegistryName()),
+			ItemList.spikes_block = new BlockItem(BlockList.spikes_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.spikes_block.getRegistryName()),
 			
 		//Weapons
 			
@@ -330,7 +332,8 @@ public class SupersLegend
 					BlockList.rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("rupee_block")),
 					BlockList.blue_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("blue_rupee_block")),
 					BlockList.red_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("red_rupee_block")),
-					BlockList.orange_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("orange_rupee_block"))
+					BlockList.orange_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("orange_rupee_block")),
+					BlockList.spikes_block = new SpikesBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("spikes_block"))
 
 			);
 			Logger.info("Blocks registered.");

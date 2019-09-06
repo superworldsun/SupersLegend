@@ -37,6 +37,7 @@ public class ItemList
 		public static Item blue_rupee_block;
 		public static Item red_rupee_block;
 		public static Item orange_rupee_block;
+		public static Item spikes_block;
 		
 	//Liquids
 		public static Item poison;
