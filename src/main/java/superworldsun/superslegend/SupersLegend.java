@@ -225,6 +225,9 @@ public class SupersLegend
 			
 		//Block Items
 			ItemList.rupee_block = new BlockItem(BlockList.rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.rupee_block.getRegistryName()),
+			ItemList.blue_rupee_block = new BlockItem(BlockList.blue_rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.blue_rupee_block.getRegistryName()),
+			ItemList.red_rupee_block = new BlockItem(BlockList.red_rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.red_rupee_block.getRegistryName()),
+			ItemList.orange_rupee_block = new BlockItem(BlockList.orange_rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.orange_rupee_block.getRegistryName()),
 			
 		//Weapons
 			
@@ -324,8 +327,10 @@ public class SupersLegend
 			(	
 				//Blocks
 					
-					
-					BlockList.rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("rupee_block"))
+					BlockList.rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("rupee_block")),
+					BlockList.blue_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("blue_rupee_block")),
+					BlockList.red_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("red_rupee_block")),
+					BlockList.orange_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("orange_rupee_block"))
 
 			);
 			Logger.info("Blocks registered.");

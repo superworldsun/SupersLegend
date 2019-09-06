@@ -32,8 +32,11 @@ public class ItemList
 		
 	//Block Items
 		
-		public static Item rupee_item_block;
+		
 		public static Item rupee_block;
+		public static Item blue_rupee_block;
+		public static Item red_rupee_block;
+		public static Item orange_rupee_block;
 		
 	//Liquids
 		public static Item poison;
