@@ -39,6 +39,7 @@ public class ItemList
 		public static Item orange_rupee_block;
 		public static Item spikes_block;
 		public static Item gossip_stone_block;
+		public static Item bush_block;
 		
 	//Liquids
 		public static Item poison;

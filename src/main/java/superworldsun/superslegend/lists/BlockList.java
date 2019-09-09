@@ -10,4 +10,5 @@ public class BlockList
 	public static Block orange_rupee_block;
 	public static Block spikes_block;
 	public static Block gossip_stone_block;
+	public static Block bush_block;
 }
