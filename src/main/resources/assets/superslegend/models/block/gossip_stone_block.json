@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "particle": "superslegend:block/gossip_stone_block_front",
+        "down": "superslegend:block/gossip_stone_block_bottom",
+        "up": "superslegend:block/gossip_stone_block_top",
+        "north": "superslegend:block/gossip_stone_block_side",
+        "east": "superslegend:block/gossip_stone_block_front",
+        "south": "superslegend:block/gossip_stone_block_side",
+        "west": "superslegend:block/gossip_stone_block_side"
+    }
+}
