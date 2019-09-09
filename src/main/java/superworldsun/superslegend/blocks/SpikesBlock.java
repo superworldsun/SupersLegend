@@ -27,7 +27,7 @@ public class SpikesBlock extends Block {
 
       super.onEntityWalk(worldIn, pos, entityIn);
    }
-
+   
    /**
     * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
