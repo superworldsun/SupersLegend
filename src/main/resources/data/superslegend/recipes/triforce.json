@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:triforce_power"
+        },
+        {
+            "item": "superslegend:triforce_wisdom"
+        },
+        {
+            "item": "superslegend:triforce_courage"
+        }
+    ],
+    "result": {
+        "item": "superslegend:triforce",
+        "count": 1
+    }
+}
