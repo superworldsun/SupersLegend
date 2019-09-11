@@ -21,6 +21,7 @@ public class ItemList
 		public static Item orange_rupee;
 		public static Item rocs_feather;
 		public static Item magic_mirror;
+		public static Item empty_container;
 		public static Item farores_wind;
 		public static Item dins_fire;
 		public static Item nayrus_love;
