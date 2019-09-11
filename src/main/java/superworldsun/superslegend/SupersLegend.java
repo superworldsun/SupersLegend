@@ -225,10 +225,10 @@ public class SupersLegend
 			ItemList.triforce_courage = new TriforceCourage(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_courage")),
 			
 		//Block Items
-			ItemList.rupee_block = new BlockItem(BlockList.rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.rupee_block.getRegistryName()),
-			ItemList.blue_rupee_block = new BlockItem(BlockList.blue_rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.blue_rupee_block.getRegistryName()),
-			ItemList.red_rupee_block = new BlockItem(BlockList.red_rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.red_rupee_block.getRegistryName()),
-			ItemList.orange_rupee_block = new BlockItem(BlockList.orange_rupee_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.orange_rupee_block.getRegistryName()),
+			ItemList.rupee_block = new BlockItem(BlockList.rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.rupee_block.getRegistryName()),
+			ItemList.blue_rupee_block = new BlockItem(BlockList.blue_rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.blue_rupee_block.getRegistryName()),
+			ItemList.red_rupee_block = new BlockItem(BlockList.red_rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.red_rupee_block.getRegistryName()),
+			ItemList.orange_rupee_block = new BlockItem(BlockList.orange_rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.orange_rupee_block.getRegistryName()),
 			ItemList.spikes_block = new BlockItem(BlockList.spikes_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.spikes_block.getRegistryName()),
 			ItemList.gossip_stone_block = new BlockItem(BlockList.gossip_stone_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.gossip_stone_block.getRegistryName()),
 			ItemList.bush_block = new BlockItem(BlockList.bush_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.bush_block.getRegistryName()),
