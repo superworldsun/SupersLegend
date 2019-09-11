@@ -2,59 +2,58 @@ package superworldsun.superslegend.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.pathfinding.PathType;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class SpikesBlock extends Block {
-   public SpikesBlock(Block.Properties properties) {
-      super(properties);
-   }
+public class SpikesBlock extends Block 
 
-   /**
-    * Called when the given entity walks on this Block
-    */
-   public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-      {
-         entityIn.attackEntityFrom(DamageSource.SWEET_BERRY_BUSH, 1.0F);
-      }
+	{
+	   protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
 
-      super.onEntityWalk(worldIn, pos, entityIn);
-   }
-   
-   /**
-    * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-    * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
-    * returns its solidified counterpart.
-    * Note that this method should ideally consider only the specific face passed in.
-    */
-   @SuppressWarnings("deprecation")
-public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-      if (facing == Direction.UP && facingState.getBlock() == Blocks.WATER) {
-         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, this.tickRate(worldIn));
-      }
+	   public SpikesBlock(Block.Properties properties) {
+	      super(properties);
+	   }
 
-      return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-   }
+	   public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+	      return SHAPE;
+	   }
 
-   /**
-    * How many world ticks before ticking
-    */
-   public int tickRate(IWorldReader worldIn) {
-      return 20;
-   }
+	   public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+		  entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+	   }
 
-   public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-      worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
-   }
-   
-   public boolean needsPostProcessing(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return true;
-   }
-}
+	   public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+	      worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+	   }
+
+	   public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos) {
+	      return true;
+	   }
+
+	   /**
+	    * How many world ticks before ticking
+	    */
+	   public int tickRate(IWorldReader worldIn) {
+	      return 20;
+	   }
+
+	   public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+	      worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+	   }
+
+	   public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+	      return false;
+	   }
+
+	   public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type) {
+	      return true;
+	   }
+	}
