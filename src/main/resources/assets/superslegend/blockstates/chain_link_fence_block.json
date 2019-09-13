@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "superslegend:block/chain_link_fence_block" }
+    }
+}
