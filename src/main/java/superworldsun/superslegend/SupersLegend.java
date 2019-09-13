@@ -54,6 +54,7 @@ import superworldsun.superslegend.CustomLootMobs.CustomLootWither;
 import superworldsun.superslegend.CustomLootMobs.CustomLootWitherskeleton;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombie;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
+import superworldsun.superslegend.blocks.ChainLinkFenceBlock;
 import superworldsun.superslegend.blocks.SpikesBlock;
 import superworldsun.superslegend.fluids.FluidLiquid;
 import superworldsun.superslegend.items.ArmorFlippersEffects;
@@ -64,6 +65,7 @@ import superworldsun.superslegend.items.FaroresWind;
 import superworldsun.superslegend.items.ItemCustomAxe;
 import superworldsun.superslegend.items.ItemCustomHoe;
 import superworldsun.superslegend.items.ItemCustomPickaxe;
+import superworldsun.superslegend.items.MagicCape;
 import superworldsun.superslegend.items.MagicMirror;
 import superworldsun.superslegend.items.MagneticGlove;
 import superworldsun.superslegend.items.MaskAllnightmaskEffects;
@@ -215,6 +217,7 @@ public class SupersLegend
 			ItemList.orange_rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee")),
 			ItemList.rocs_feather = new RocsFeather(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rocs_feather")),
 			ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
+			ItemList.magic_cape = new MagicCape(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_cape")),
 			ItemList.empty_container = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("empty_container")),
 			ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
 			ItemList.dins_fire = new FlintAndSteelItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
@@ -233,6 +236,7 @@ public class SupersLegend
 			ItemList.spikes_block = new BlockItem(BlockList.spikes_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.spikes_block.getRegistryName()),
 			ItemList.gossip_stone_block = new BlockItem(BlockList.gossip_stone_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.gossip_stone_block.getRegistryName()),
 			ItemList.bush_block = new BlockItem(BlockList.bush_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.bush_block.getRegistryName()),
+			ItemList.chain_link_fence_block = new BlockItem(BlockList.chain_link_fence_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.chain_link_fence_block.getRegistryName()),
 			
 		//Weapons
 			
@@ -338,7 +342,8 @@ public class SupersLegend
 					BlockList.orange_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("orange_rupee_block")),
 					BlockList.spikes_block = new SpikesBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("spikes_block")),
 					BlockList.gossip_stone_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("gossip_stone_block")),
-					BlockList.bush_block = new Block(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0f, 0.0f).lightValue(0).sound(SoundType.CROP)).setRegistryName(location("bush_block"))
+					BlockList.bush_block = new Block(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0f, 0.0f).lightValue(0).sound(SoundType.CROP)).setRegistryName(location("bush_block")),
+					BlockList.chain_link_fence_block = new ChainLinkFenceBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("chain_link_fence_block"))
 			);
 			Logger.info("Blocks registered.");
 		}

@@ -1,12 +1,22 @@
 {
     "parent": "block/cube_all",
-    "textures": {
-        "particle": "superslegend:block/spikes_block_side",
-        "down": "superslegend:block/spikes_block_down",
-        "up": "superslegend:block/spikes_block_top",
-        "north": "superslegend:block/spikes_block_side",
-        "east": "superslegend:block/spikes_block_side",
-        "south": "superslegend:block/spikes_block_side",
-        "west": "superslegend:block/spikes_block_side"
-    }
+	"textures": {
+		"0": "superslegend:block/spikes_block_down",
+		"1": "superslegend:block/spikes_block_top",
+		"particle": "superslegend:block/spikes_block_down"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		}
+	]
 }
