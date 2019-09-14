@@ -11,12 +11,11 @@ import net.minecraft.world.IBlockReader;
 public class TorchTowerBlock extends Block
 
 {
-	protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 12.0D, 32.0D, 12.0D);
+	protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 32.0D, 14.0D);
 
 	   public TorchTowerBlock(Block.Properties properties) {
 	      super(properties);
 	   }
-	   
 
 	   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 	      return SHAPE;
