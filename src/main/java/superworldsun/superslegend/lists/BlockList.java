@@ -12,4 +12,5 @@ public class BlockList
 	public static Block gossip_stone_block;
 	public static Block bush_block;
 	public static Block chain_link_fence_block;
+	public static Block torch_tower_block;
 }

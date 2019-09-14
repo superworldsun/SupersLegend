@@ -56,6 +56,7 @@ import superworldsun.superslegend.CustomLootMobs.CustomLootZombie;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
 import superworldsun.superslegend.blocks.ChainLinkFenceBlock;
 import superworldsun.superslegend.blocks.SpikesBlock;
+import superworldsun.superslegend.blocks.TorchTowerBlock;
 import superworldsun.superslegend.fluids.FluidLiquid;
 import superworldsun.superslegend.items.ArmorFlippersEffects;
 import superworldsun.superslegend.items.ArmorGoronEffects;
@@ -237,6 +238,7 @@ public class SupersLegend
 			ItemList.gossip_stone_block = new BlockItem(BlockList.gossip_stone_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.gossip_stone_block.getRegistryName()),
 			ItemList.bush_block = new BlockItem(BlockList.bush_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.bush_block.getRegistryName()),
 			ItemList.chain_link_fence_block = new BlockItem(BlockList.chain_link_fence_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.chain_link_fence_block.getRegistryName()),
+			ItemList.torch_tower_block = new BlockItem(BlockList.torch_tower_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.torch_tower_block.getRegistryName()),
 			
 		//Weapons
 			
@@ -343,7 +345,8 @@ public class SupersLegend
 					BlockList.spikes_block = new SpikesBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("spikes_block")),
 					BlockList.gossip_stone_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("gossip_stone_block")),
 					BlockList.bush_block = new Block(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0f, 0.0f).lightValue(0).sound(SoundType.CROP)).setRegistryName(location("bush_block")),
-					BlockList.chain_link_fence_block = new ChainLinkFenceBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("chain_link_fence_block"))
+					BlockList.chain_link_fence_block = new ChainLinkFenceBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("chain_link_fence_block")),
+					BlockList.torch_tower_block = new TorchTowerBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(1.0f, 1.0f).lightValue(15).sound(SoundType.STONE)).setRegistryName(location("torch_tower_block"))
 			);
 			Logger.info("Blocks registered.");
 		}

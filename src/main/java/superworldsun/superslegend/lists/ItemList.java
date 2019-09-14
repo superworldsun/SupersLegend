@@ -43,6 +43,7 @@ public class ItemList
 		public static Item gossip_stone_block;
 		public static Item bush_block;
 		public static Item chain_link_fence_block;
+		public static Item torch_tower_block;
 		
 	//Liquids
 		public static Item poison;
