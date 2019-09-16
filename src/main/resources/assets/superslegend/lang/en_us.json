@@ -5,12 +5,12 @@
 	"item.superslegend.blue_rupee": "Blue Rupee",
 	"item.superslegend.red_rupee": "Red Rupee",
 	"item.superslegend.orange_rupee": "Orange Rupee",
-	"item.superslegend.rocs_feather": "Roc's Feather'",
+	"item.superslegend.rocs_feather": "Roc's Feather",
 	"item.superslegend.magic_mirror": "Magic Mirror",
 	"item.superslegend.magic_cape": "Magic Cape",
 	"item.superslegend.empty_container": "Empty Container",
-	"item.superslegend.farores_wind": "Farores Wind",
-	"item.superslegend.dins_fire": "Dins Fire",
+	"item.superslegend.farores_wind": "Farore's Wind",
+	"item.superslegend.dins_fire": "Din's Fire",
 	"item.superslegend.nayrus_love": "Nayru's Love",
 	"item.superslegend.magnetic_glove": "Magnetic Glove",
 	"item.superslegend.triforce": "The Triforce",
@@ -39,7 +39,7 @@
 	"item.superslegend.red_rupee_sword": "Red Rupee Sword",
 	"item.superslegend.orange_rupee_sword": "Orange Rupee Sword",	
 	
-	"item.superslegend.heros_bow": "Heros Bow",
+	"item.superslegend.heros_bow": "Hero's Bow",
 	
 	"item.superslegend.deku_shield": "Deku Shield",
 	
@@ -97,6 +97,9 @@
 	"item.superslegend.mask_captainshat": "Captain's Hat",
 	"item.superslegend.mask_giantsmask": "Giant's Mask",
 	"item.superslegend.mask_fiercedeitysmask": "Fierce Deity's Mask",
+	"item.superslegend.mask_majorasmask": "Majora's Mask'",
+	
+	
 	"item.superslegend.kokiri_cap": "Kokiri Cap",
 	"item.superslegend.kokiri_tunic": "Kokiri Tunic",
 	"item.superslegend.kokiri_leggings": "Kokiri Leggings",
@@ -113,6 +116,10 @@
 	"item.superslegend.goron_tunic": "Goron Tunic",
 	"item.superslegend.goron_leggings": "Goron Leggings",
 	"item.superslegend.hover_boots": "Hover Boots",
+	
+	"item.superslegend.purple_cap": "Purple Cap",
+	"item.superslegend.purple_tunic": "Purple Tunic",
+	"item.superslegend.purple_leggings": "Purple Leggings",
 	
 	"item.superslegend.rocs_cape": "Roc's Cape'"
 }
