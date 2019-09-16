@@ -112,6 +112,7 @@ public class ItemList
 		public static Item mask_captainshat;
 		public static Item mask_giantsmask;
 		public static Item mask_fiercedeitysmask;
+		public static Item mask_majorasmask;
 		
 		
 	//armor
@@ -128,5 +129,8 @@ public class ItemList
 		public static ArmorGoronEffects goron_tunic;
 		public static ArmorGoronEffects goron_leggings;
 		public static ArmorGoronEffects hover_boots;
+		public static Item purple_cap;
+		public static Item purple_tunic;
+		public static Item purple_leggings;
 		public static RocsCapeEffects rocs_cape;
 }

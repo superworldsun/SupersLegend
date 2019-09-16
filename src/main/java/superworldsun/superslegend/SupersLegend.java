@@ -72,6 +72,7 @@ import superworldsun.superslegend.items.MagneticGlove;
 import superworldsun.superslegend.items.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.MaskBunnyhoodEffects;
 import superworldsun.superslegend.items.MaskDongerosmaskEffects;
+import superworldsun.superslegend.items.MaskMajorasmask;
 import superworldsun.superslegend.items.MaskStonemaskEffects;
 import superworldsun.superslegend.items.NayrusLove;
 import superworldsun.superslegend.items.RocsCapeEffects;
@@ -306,6 +307,7 @@ public class SupersLegend
 			ItemList.mask_captainshat = new ArmorItem(ArmourMaterialList.captainshat, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_captainshat"),
 			ItemList.mask_giantsmask = new ArmorItem(ArmourMaterialList.giantsmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_giantsmask"),
 			ItemList.mask_fiercedeitysmask = new ArmorItem(ArmourMaterialList.fiercedeitysmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_fiercedeitysmask"),
+			ItemList.mask_majorasmask = new MaskMajorasmask("mask_majorasmask",EquipmentSlotType.HEAD),
 			
 		//Armors
 			ItemList.kokiri_cap = new ArmorKokiriEffects("kokiri_cap",EquipmentSlotType.HEAD),
@@ -323,6 +325,10 @@ public class SupersLegend
 			ItemList.goron_tunic = new ArmorGoronEffects("goron_tunic", EquipmentSlotType.CHEST),
 			ItemList.goron_leggings = new ArmorGoronEffects("goron_leggings", EquipmentSlotType.LEGS),
 			ItemList.hover_boots = new ArmorGoronEffects("hover_boots", EquipmentSlotType.FEET),
+			
+			ItemList.purple_cap = new ArmorItem(ArmourMaterialList.purple, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("purple_cap"),
+			ItemList.purple_tunic = new ArmorItem(ArmourMaterialList.purple, EquipmentSlotType.CHEST, new Item.Properties().group(supers_legend)).setRegistryName("purple_tunic"),
+			ItemList.purple_leggings = new ArmorItem(ArmourMaterialList.purple, EquipmentSlotType.LEGS, new Item.Properties().group(supers_legend)).setRegistryName("purple_leggings"),
 			
 			ItemList.rocs_cape = new RocsCapeEffects("rocs_cape",EquipmentSlotType.CHEST)
 			);
