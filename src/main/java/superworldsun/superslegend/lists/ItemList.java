@@ -31,6 +31,7 @@ public class ItemList
 		public static Item triforce_power;
 		public static Item triforce_wisdom;
 		public static Item triforce_courage;
+		public static Item rupee_pouch;
 		
 	//Block Items
 		
