@@ -30,7 +30,7 @@ public class TriforcePower extends Item
 		ItemStack stack = player.getHeldItem(hand);
 		 {
 					player.addPotionEffect(new EffectInstance(Effect.get(20), 44, 0, false, false));
-					player.addPotionEffect(new EffectInstance(Effect.get(19), 200, 0, false, false));
+					player.addPotionEffect(new EffectInstance(Effect.get(19), 400, 0, false, false));
 					player.addPotionEffect(new EffectInstance(Effect.get(5), 600, 0, false, true));
 					player.addPotionEffect(new EffectInstance(Effect.get(3), 200, 0, false, false));
 		 }
