@@ -17,6 +17,8 @@ public enum ArmourMaterialList implements IArmorMaterial
 	purple("purple", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	flippers("flippers", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	rocscape("rocscape", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
+	hoverboots("hoverboots", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
+	ironboots("ironboots", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	//masks
 	postmanshat("postmanshat", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	allnightmask("allnightmask", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
