@@ -40,7 +40,7 @@ public class ArmorFlippersEffects extends ArmorItem {
                 	{
                 	if(player.isInWater()) 
                 	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 1, false, false));
+                		player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 2, false, false));
                 	}
                 }
         }
