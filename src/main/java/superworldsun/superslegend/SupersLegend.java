@@ -63,6 +63,8 @@ import superworldsun.superslegend.items.ArmorKokiriEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
 import superworldsun.superslegend.items.DinsFire;
 import superworldsun.superslegend.items.FaroresWind;
+import superworldsun.superslegend.items.HoverBoots;
+import superworldsun.superslegend.items.IronBoots;
 import superworldsun.superslegend.items.ItemCustomAxe;
 import superworldsun.superslegend.items.ItemCustomHoe;
 import superworldsun.superslegend.items.ItemCustomPickaxe;
@@ -72,11 +74,13 @@ import superworldsun.superslegend.items.MagneticGlove;
 import superworldsun.superslegend.items.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.MaskBunnyhoodEffects;
 import superworldsun.superslegend.items.MaskDongerosmaskEffects;
+import superworldsun.superslegend.items.MaskGiantsmask;
 import superworldsun.superslegend.items.MaskMajorasmask;
 import superworldsun.superslegend.items.MaskStonemaskEffects;
 import superworldsun.superslegend.items.NayrusLove;
 import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.RocsFeather;
+import superworldsun.superslegend.items.SilverScale;
 import superworldsun.superslegend.items.Triforce;
 import superworldsun.superslegend.items.TriforceCourage;
 import superworldsun.superslegend.items.TriforcePower;
@@ -230,6 +234,7 @@ public class SupersLegend
 			ItemList.triforce_wisdom = new TriforceWisdom(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_wisdom")),
 			ItemList.triforce_courage = new TriforceCourage(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_courage")),
 			ItemList.rupee_pouch = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rupee_pouch")),
+			ItemList.silver_scale = new SilverScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("silver_scale")),
 			
 		//Block Items
 			ItemList.rupee_block = new BlockItem(BlockList.rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.rupee_block.getRegistryName()),
@@ -306,7 +311,7 @@ public class SupersLegend
 			ItemList.mask_gibdomask = new ArmorItem(ArmourMaterialList.gibdomask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_gibdomask"),
 			ItemList.mask_garosmask = new ArmorItem(ArmourMaterialList.garosmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_garosmask"),
 			ItemList.mask_captainshat = new ArmorItem(ArmourMaterialList.captainshat, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_captainshat"),
-			ItemList.mask_giantsmask = new ArmorItem(ArmourMaterialList.giantsmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_giantsmask"),
+			ItemList.mask_giantsmask = new MaskGiantsmask("mask_giantsmask", EquipmentSlotType.HEAD),
 			ItemList.mask_fiercedeitysmask = new ArmorItem(ArmourMaterialList.fiercedeitysmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_fiercedeitysmask"),
 			ItemList.mask_majorasmask = new MaskMajorasmask("mask_majorasmask",EquipmentSlotType.HEAD),
 			
@@ -318,14 +323,14 @@ public class SupersLegend
 			ItemList.zora_cap = new ArmorZoraEffects("zora_cap", EquipmentSlotType.HEAD),
 			ItemList.zora_tunic = new ArmorZoraEffects("zora_tunic", EquipmentSlotType.CHEST),
 			ItemList.zora_leggings = new ArmorZoraEffects("zora_leggings", EquipmentSlotType.LEGS),
-			ItemList.iron_boots = new ArmorZoraEffects("iron_boots", EquipmentSlotType.FEET),
+			ItemList.iron_boots = new IronBoots("iron_boots", EquipmentSlotType.FEET),
 			
 			ItemList.zoras_flippers = new ArmorFlippersEffects("zoras_flippers", EquipmentSlotType.FEET),
 			
 			ItemList.goron_cap = new ArmorGoronEffects("goron_cap", EquipmentSlotType.HEAD),
 			ItemList.goron_tunic = new ArmorGoronEffects("goron_tunic", EquipmentSlotType.CHEST),
 			ItemList.goron_leggings = new ArmorGoronEffects("goron_leggings", EquipmentSlotType.LEGS),
-			ItemList.hover_boots = new ArmorGoronEffects("hover_boots", EquipmentSlotType.FEET),
+			ItemList.hover_boots = new HoverBoots("hover_boots", EquipmentSlotType.FEET),
 			
 			ItemList.purple_cap = new ArmorItem(ArmourMaterialList.purple, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("purple_cap"),
 			ItemList.purple_tunic = new ArmorItem(ArmourMaterialList.purple, EquipmentSlotType.CHEST, new Item.Properties().group(supers_legend)).setRegistryName("purple_tunic"),
