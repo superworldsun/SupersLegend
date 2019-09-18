@@ -2,7 +2,6 @@ package superworldsun.superslegend.items;
 
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.text.ITextComponent;
