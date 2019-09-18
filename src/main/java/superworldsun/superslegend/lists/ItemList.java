@@ -4,6 +4,8 @@ import net.minecraft.item.Item;
 import superworldsun.superslegend.items.ArmorFlippersEffects;
 import superworldsun.superslegend.items.ArmorGoronEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
+import superworldsun.superslegend.items.HoverBoots;
+import superworldsun.superslegend.items.IronBoots;
 import superworldsun.superslegend.items.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.MaskBunnyhoodEffects;
 import superworldsun.superslegend.items.MaskDongerosmaskEffects;
@@ -32,6 +34,7 @@ public class ItemList
 		public static Item triforce_wisdom;
 		public static Item triforce_courage;
 		public static Item rupee_pouch;
+		public static Item silver_scale;
 		
 	//Block Items
 		
@@ -125,11 +128,11 @@ public class ItemList
 		public static ArmorZoraEffects zora_cap;
 		public static ArmorZoraEffects zora_tunic;
 		public static ArmorZoraEffects zora_leggings;
-		public static ArmorZoraEffects iron_boots;
+		public static IronBoots iron_boots;
 		public static ArmorGoronEffects goron_cap;
 		public static ArmorGoronEffects goron_tunic;
 		public static ArmorGoronEffects goron_leggings;
-		public static ArmorGoronEffects hover_boots;
+		public static HoverBoots hover_boots;
 		public static Item purple_cap;
 		public static Item purple_tunic;
 		public static Item purple_leggings;
