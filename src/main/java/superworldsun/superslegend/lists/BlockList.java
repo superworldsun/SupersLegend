@@ -13,4 +13,5 @@ public class BlockList
 	public static Block bush_block;
 	public static Block chain_link_fence_block;
 	public static Block torch_tower_block;
+	public static Block deku_flower_block;
 }
