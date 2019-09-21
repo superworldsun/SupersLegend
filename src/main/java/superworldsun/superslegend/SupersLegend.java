@@ -266,7 +266,7 @@ public class SupersLegend
 			
 		//Shields
 			
-			ItemList.deku_shield = new ShieldItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("deku_shield")),
+			ItemList.hylian_shield = new ShieldItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("hylian_shield")),
 			
 		//Tools
 			

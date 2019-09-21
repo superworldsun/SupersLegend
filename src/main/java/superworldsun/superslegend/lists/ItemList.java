@@ -68,7 +68,7 @@ public class ItemList
 		
 	//shields
 		
-		public static Item deku_shield;
+		public static Item hylian_shield;
 		
 	//tools
 		public static Item rupee_pickaxe;
