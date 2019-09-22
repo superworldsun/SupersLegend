@@ -49,6 +49,8 @@ public class ItemList
 		public static Item chain_link_fence_block;
 		public static Item torch_tower_block;
 		public static Item deku_flower_block;
+		public static Item pot_block;
+		public static Item grate_block;
 		
 	//Liquids
 		public static Item poison;
