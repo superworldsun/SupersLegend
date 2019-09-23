@@ -1,13 +1,120 @@
 package superworldsun.superslegend.items;
 
-import net.minecraft.item.Item;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 
-public class MagicMirror extends Item
-{
+import java.util.List;
+import java.util.Random;
 
-	public MagicMirror(Properties properties) {
-		super(properties);
-		// TODO Auto-generated constructor stub
-	}
-	
-};
+public class MagicMirror extends Item {
+
+    private static int duration = 25;
+
+    public MagicMirror(Properties properties) {
+        super(properties);
+
+       
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getHeldItem(hand);
+        player.setActiveHand(hand);
+        return new ActionResult<ItemStack>(ActionResultType.SUCCESS, stack);
+    }
+
+    @Override
+    public void onUsingTick (ItemStack stack, LivingEntity entity,int count)
+    {
+
+        Random rand = entity.world.rand;
+        for (int i = 0; i < 45; i++)
+        {
+            entity.world.addParticle(ParticleTypes.DRAGON_BREATH,
+                    entity.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+                    entity.posY + rand.nextFloat() * 3 - 2,
+                    entity.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+                    0, 0.105D, 0);
+        }
+    }
+
+    @Override
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entity)
+    {
+        if (!world.isRemote)
+        {
+            PlayerEntity player = (PlayerEntity) entity;
+            BlockPos bedPos = player.getBedLocation(player.dimension);
+            BlockPos backPos = bedPos;
+            @SuppressWarnings("unused")
+			BlockPos currentPos = player.getPosition();
+
+            if(!world.dimension.isSurfaceWorld())
+            {
+                player.sendStatusMessage(new TranslationTextComponent("chat.magicmirror.power"), true);
+                
+                return stack;
+            }
+            if (bedPos == null)
+            {
+                player.sendStatusMessage(new TranslationTextComponent("chat.magicmirror.bednotfound"), true);
+                
+                return stack;
+            }
+
+            if (entity.getRidingEntity() != null)
+            {
+                entity.stopRiding();
+            }
+            entity.setPositionAndUpdate(
+                    backPos.getX() + 0.5f,
+                    backPos.getY() + 0.6f,
+                    backPos.getZ() + 0.5f);
+            entity.fallDistance = 0;
+
+            
+        }
+        return stack;
+    }
+
+    @Override
+    public UseAction getUseAction (ItemStack stack)
+    {
+        return UseAction.BOW;
+    }
+
+    @Override
+    public int getUseDuration(ItemStack stack)
+    {
+        return duration;
+    }
+
+
+    @Override
+    public Rarity getRarity(ItemStack stack) {
+        return Rarity.RARE;
+    }
+
+    @Override
+    public boolean hasEffect(ItemStack stack) {
+        return true;
+    }
+    
+    @Override
+	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	{
+		super.addInformation(stack, world, list, flag);				
+		list.add(new StringTextComponent(TextFormatting.AQUA + "When lost, use this mirror to return home"));
+	}   
+
+}
