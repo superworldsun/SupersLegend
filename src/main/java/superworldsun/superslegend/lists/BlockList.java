@@ -16,4 +16,5 @@ public class BlockList
 	public static Block deku_flower_block;
 	public static Block pot_block;
 	public static Block grate_block;
+	public static Block grass_patch_block;
 }

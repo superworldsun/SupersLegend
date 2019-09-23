@@ -56,6 +56,7 @@ import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
 import superworldsun.superslegend.blocks.ChainLinkFenceBlock;
 import superworldsun.superslegend.blocks.DekuFlowerBlock;
 import superworldsun.superslegend.blocks.GossipStoneBlock;
+import superworldsun.superslegend.blocks.GrassPatch;
 import superworldsun.superslegend.blocks.GrateBlock;
 import superworldsun.superslegend.blocks.PotBlock;
 import superworldsun.superslegend.blocks.SpikesBlock;
@@ -253,6 +254,7 @@ public class SupersLegend
 			ItemList.deku_flower_block = new BlockItem(BlockList.deku_flower_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.deku_flower_block.getRegistryName()),
 			ItemList.pot_block = new BlockItem(BlockList.pot_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.pot_block.getRegistryName()),
 			ItemList.grate_block = new BlockItem(BlockList.grate_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.grate_block.getRegistryName()),
+			ItemList.grass_patch_block = new BlockItem(BlockList.grass_patch_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.grass_patch_block.getRegistryName()),
 			
 		//Weapons
 			
@@ -368,7 +370,8 @@ public class SupersLegend
 					BlockList.torch_tower_block = new TorchTowerBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(1.0f, 1.0f).lightValue(15).sound(SoundType.STONE)).setRegistryName(location("torch_tower_block")),
 					BlockList.deku_flower_block = new DekuFlowerBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(0.4f, 0.4f).lightValue(0).sound(SoundType.CROP)).setRegistryName(location("deku_flower_block")),
 					BlockList.pot_block = new PotBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(0.1f, 0.1f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("pot_block")),
-					BlockList.grate_block = new GrateBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("grate_block"))
+					BlockList.grate_block = new GrateBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("grate_block")),
+					BlockList.grass_patch_block = new GrassPatch(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2f, 0.2f).lightValue(0).sound(SoundType.SWEET_BERRY_BUSH)).setRegistryName(location("grass_patch_block"))
 			);
 			Logger.info("Blocks registered.");
 		}

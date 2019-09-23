@@ -51,6 +51,7 @@ public class ItemList
 		public static Item deku_flower_block;
 		public static Item pot_block;
 		public static Item grate_block;
+		public static Item grass_patch_block;
 		
 	//Liquids
 		public static Item poison;
