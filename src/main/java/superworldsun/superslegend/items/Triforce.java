@@ -40,6 +40,11 @@ public class Triforce extends Item
 		        }
 				return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
 		}
+	
+	@Override
+    public boolean hasEffect(ItemStack stack) {
+        return true;
+    }
 			
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
