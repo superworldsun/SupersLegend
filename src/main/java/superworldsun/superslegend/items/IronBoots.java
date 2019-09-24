@@ -36,9 +36,7 @@ public class IronBoots extends ArmorItem {
     	
     	
     	if (!world.isRemote){
-            boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.zora_tunic);
             boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.iron_boots);
-            if(isChestplateOn) player.addPotionEffect(new EffectInstance(Effect.get(13), 10, 0, false, false));
             if(isBootsOn)
             	{
             	if(player.isInWater()) 
