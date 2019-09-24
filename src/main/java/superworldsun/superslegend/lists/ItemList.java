@@ -35,6 +35,7 @@ public class ItemList
 		public static Item triforce_courage;
 		public static Item rupee_pouch;
 		public static Item silver_scale;
+		public static Item golden_scale;
 		
 	//Block Items
 		

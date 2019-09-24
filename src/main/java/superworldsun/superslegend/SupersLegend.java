@@ -68,6 +68,7 @@ import superworldsun.superslegend.items.ArmorKokiriEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
 import superworldsun.superslegend.items.DinsFire;
 import superworldsun.superslegend.items.FaroresWind;
+import superworldsun.superslegend.items.GoldenScale;
 import superworldsun.superslegend.items.HoverBoots;
 import superworldsun.superslegend.items.IronBoots;
 import superworldsun.superslegend.items.ItemCustomAxe;
@@ -240,6 +241,7 @@ public class SupersLegend
 			ItemList.triforce_courage = new TriforceCourage(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_courage")),
 			ItemList.rupee_pouch = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rupee_pouch")),
 			ItemList.silver_scale = new SilverScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("silver_scale")),
+			ItemList.golden_scale = new GoldenScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("golden_scale")),
 			
 		//Block Items
 			ItemList.rupee_block = new BlockItem(BlockList.rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.rupee_block.getRegistryName()),
