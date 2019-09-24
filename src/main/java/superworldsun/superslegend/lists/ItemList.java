@@ -31,8 +31,11 @@ public class ItemList
 		public static Item magnetic_glove;
 		public static Item triforce;
 		public static Item triforce_power;
+		public static Item triforce_power_shard;
 		public static Item triforce_wisdom;
+		public static Item triforce_wisdom_shard;
 		public static Item triforce_courage;
+		public static Item triforce_courage_shard;
 		public static Item rupee_pouch;
 		public static Item silver_scale;
 		public static Item golden_scale;
