@@ -1,15 +1,18 @@
 package superworldsun.superslegend.items;
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
@@ -28,7 +31,13 @@ public class IronBoots extends ArmorItem {
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "sink or sink"));
 	}
-
+    
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT nbt) {
+    	stack.addEnchantment(Enchantment.getEnchantmentByID(8), 3);
+    	return null;
+    }
+    
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
@@ -51,5 +60,10 @@ public class IronBoots extends ArmorItem {
             	}
     	}
 
+    }
+    
+    @Override
+    public boolean hasEffect(ItemStack stack) {
+        return false;
     }
 }
