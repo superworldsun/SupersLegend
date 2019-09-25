@@ -23,6 +23,12 @@
 	"item.superslegend.rupee_pouch": "Rupee Pouch",
 	"item.superslegend.silver_scale": "Silver Scale",
 	"item.superslegend.golden_scale": "Golden Scale",
+	"item.superslegend.odolwas_remains": "Odolwas Remains",
+	"item.superslegend.gohts_remains": "Goht's Remains",
+	"item.superslegend.gyorgs_remains": "Gyorgs Remains",
+	"item.superslegend.twinmolds_remains": "Twinmold's Remains",
+	"item.superslegend.book_of_mudora": "Book of Mudora",
+	"item.superslegend.master_ore": "Master Ore",
 	
 	"block.superslegend.rupee_block": "Rupee Block",
 	"block.superslegend.blue_rupee_block": "Blue Rupee Block",
@@ -37,6 +43,7 @@
 	"block.superslegend.pot_block": "Pot",
 	"block.superslegend.grate_block": "Grate",
 	"block.superslegend.grass_patch_block": "Grass Patch",
+	"block.superslegend.master_ore_block": "Master Ore Block",
 	
 	
 	"item.superslegend.kokiri_sword": "Kokiri Sword",

@@ -39,6 +39,12 @@ public class ItemList
 		public static Item rupee_pouch;
 		public static Item silver_scale;
 		public static Item golden_scale;
+		public static Item odolwas_remains;
+		public static Item gohts_remains;
+		public static Item gyorgs_remains;
+		public static Item twinmolds_remains;
+		public static Item book_of_mudora;
+		public static Item master_ore;
 		
 	//Block Items
 		
@@ -56,6 +62,7 @@ public class ItemList
 		public static Item pot_block;
 		public static Item grate_block;
 		public static Item grass_patch_block;
+		public static Item master_ore_block;
 		
 	//Liquids
 		public static Item poison;

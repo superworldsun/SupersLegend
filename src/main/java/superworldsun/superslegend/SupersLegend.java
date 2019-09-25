@@ -95,6 +95,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.ToolMaterialList;
+import superworldsun.superslegend.world.gen.OreGeneration;
 
 @Mod("superslegend")
 public class SupersLegend 
@@ -203,6 +204,7 @@ public class SupersLegend
 	
 	private void setup(final FMLCommonSetupEvent event)
 	{
+		OreGeneration.setupOreWorldGen();
 		Logger.info("Setup method registered");
 	}
 	
@@ -239,12 +241,18 @@ public class SupersLegend
 			ItemList.triforce_power = new TriforcePower(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_power")),
 			ItemList.triforce_wisdom = new TriforceWisdom(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_wisdom")),
 			ItemList.triforce_courage = new TriforceCourage(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_courage")),
-			ItemList.triforce_power_shard = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_power_shard")),
-			ItemList.triforce_wisdom_shard = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_wisdom_shard")),
-			ItemList.triforce_courage_shard = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_courage_shard")),
+			ItemList.triforce_power_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_power_shard")),
+			ItemList.triforce_wisdom_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_wisdom_shard")),
+			ItemList.triforce_courage_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_courage_shard")),
 			ItemList.rupee_pouch = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rupee_pouch")),
 			ItemList.silver_scale = new SilverScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("silver_scale")),
 			ItemList.golden_scale = new GoldenScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("golden_scale")),
+			ItemList.odolwas_remains = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("odolwas_remains")),
+			ItemList.gohts_remains = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("gohts_remains")),
+			ItemList.gyorgs_remains = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("gyorgs_remains")),
+			ItemList.twinmolds_remains = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("twinmolds_remains")),
+			ItemList.book_of_mudora = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("book_of_mudora")),
+			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_ore")),
 			
 		//Block Items
 			ItemList.rupee_block = new BlockItem(BlockList.rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.rupee_block.getRegistryName()),
@@ -260,6 +268,7 @@ public class SupersLegend
 			ItemList.pot_block = new BlockItem(BlockList.pot_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.pot_block.getRegistryName()),
 			ItemList.grate_block = new BlockItem(BlockList.grate_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.grate_block.getRegistryName()),
 			ItemList.grass_patch_block = new BlockItem(BlockList.grass_patch_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.grass_patch_block.getRegistryName()),
+			ItemList.master_ore_block = new BlockItem(BlockList.master_ore_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.master_ore_block.getRegistryName()),
 			
 		//Weapons
 			
@@ -376,7 +385,8 @@ public class SupersLegend
 					BlockList.deku_flower_block = new DekuFlowerBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(0.4f, 0.4f).lightValue(0).sound(SoundType.CROP)).setRegistryName(location("deku_flower_block")),
 					BlockList.pot_block = new PotBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(0.1f, 0.1f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("pot_block")),
 					BlockList.grate_block = new GrateBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("grate_block")),
-					BlockList.grass_patch_block = new GrassPatch(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2f, 0.2f).lightValue(0).sound(SoundType.SWEET_BERRY_BUSH)).setRegistryName(location("grass_patch_block"))
+					BlockList.grass_patch_block = new GrassPatch(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2f, 0.2f).lightValue(0).sound(SoundType.SWEET_BERRY_BUSH)).setRegistryName(location("grass_patch_block")),
+					BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.2f, 0.2f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block"))
 			);
 			Logger.info("Blocks registered.");
 		}
