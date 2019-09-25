@@ -36,8 +36,8 @@ public class ArmorGoronEffects extends ArmorItem {
     	
     	
     	if (!world.isRemote){
-            boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.zora_tunic);
-            if(isChestplateOn) player.addPotionEffect(new EffectInstance(Effect.get(13), 10, 0, false, false));
+            boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.goron_tunic);
+            if(isChestplateOn) player.addPotionEffect(new EffectInstance(Effect.get(12), 10, 0, false, false));
             }
     }
 }
