@@ -45,6 +45,8 @@ public class ItemList
 		public static Item twinmolds_remains;
 		public static Item book_of_mudora;
 		public static Item master_ore;
+		public static Item master_sword_blade;
+		public static Item master_sword_hilt;
 		
 	//Block Items
 		
