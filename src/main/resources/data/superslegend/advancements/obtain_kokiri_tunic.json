@@ -1,0 +1,40 @@
+{
+    "display": {
+        "title": {
+            "text": "The Hero's wear",
+            "color": "dark_green",
+            "bold": false
+        },
+        "description": {
+            "text": "obtain the kokiri tunic",
+            "italic": false
+        },
+        "icon": {
+            "item": "superslegend:kokiri_tunic"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "be_alive": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "superslegend:kokiri_tunic"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "superslegend:kokiri_cap_recipe",
+            "superslegend:kokiri_leggings_recipe",
+            "superslegend:kokiri_boots_recipe"
+        ]
+    },
+    "parent": "superslegend:obtain_book_of_mudora"
+}

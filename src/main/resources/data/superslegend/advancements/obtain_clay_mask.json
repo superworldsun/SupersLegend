@@ -1,0 +1,58 @@
+{
+    "display": {
+        "title": {
+            "text": "The start of a collection",
+            "bold": false,
+            "italic": false,
+            "underlined": false,
+            "strikethrough": false
+        },
+        "description": {
+            "text": "Craft your first clay mask"
+        },
+        "icon": {
+            "item": "superslegend:mask_clay"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "be_alive": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "superslegend:mask_clay"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "mask_postmanshat_recipe",
+            "mask_allnightmask_recipe",
+            "mask_blastmask_recipe",
+            "mask_stonemask_recipe",
+            "mask_greatfairymask_recipe",
+            "mask_keatonmask_recipe",
+            "mask_bunnyhood_recipe",
+            "mask_dongerosmask_recipe",
+            "mask_romanismask_recipe",
+            "mask_troupeleadersmask_recipe",
+            "mask_kafeismask_recipe",
+            "mask_couplesmask_recipe",
+            "mask_maskoftruth_recipe",
+            "mask_kamarosmask_recipe",
+            "mask_gibdomask_recipe",
+            "mask_garosmaskt_recipe",
+            "mask_captainshat_recipe",
+            "mask_giantsmask_recipe",
+            "mask_fiercedeitysmask_recipe",
+            "mask_majorasmask_recipe"
+        ]
+    },
+    "parent": "superslegend:obtain_book_of_mudora"
+}
