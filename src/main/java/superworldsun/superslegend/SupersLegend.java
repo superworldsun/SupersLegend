@@ -253,6 +253,8 @@ public class SupersLegend
 			ItemList.twinmolds_remains = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("twinmolds_remains")),
 			ItemList.book_of_mudora = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("book_of_mudora")),
 			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_ore")),
+			ItemList.master_sword_blade = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_blade")),
+			ItemList.master_sword_hilt = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_hilt")),
 			
 		//Block Items
 			ItemList.rupee_block = new BlockItem(BlockList.rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.rupee_block.getRegistryName()),
