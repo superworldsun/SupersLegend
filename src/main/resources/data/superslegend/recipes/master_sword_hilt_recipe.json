@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#g#",
+        " # ",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:master_ore"
+        },
+        "g": {
+            "item": "superslegend:master_sword_hilt"
+        }
+    },
+    "result": {
+        "item": "superslegend:master_sword_hilt",
+        "count": 1
+    }
+}
