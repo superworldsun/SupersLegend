@@ -23,7 +23,7 @@ public class GrateBlock extends Block implements IWaterLoggable{
 public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
 public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.99D, 16.0D);
+protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 15.99D, 15.99D, 15.99D);
 
 public GrateBlock(Block.Properties properties) {
     super(properties);
