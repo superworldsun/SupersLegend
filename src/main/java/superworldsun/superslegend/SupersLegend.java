@@ -69,6 +69,7 @@ import superworldsun.superslegend.items.ArmorZoraEffects;
 import superworldsun.superslegend.items.DinsFire;
 import superworldsun.superslegend.items.FaroresWind;
 import superworldsun.superslegend.items.GoldenScale;
+import superworldsun.superslegend.items.HerosSecretStash;
 import superworldsun.superslegend.items.HoverBoots;
 import superworldsun.superslegend.items.IronBoots;
 import superworldsun.superslegend.items.ItemCustomAxe;
@@ -84,6 +85,7 @@ import superworldsun.superslegend.items.MaskFiercedeitysmask;
 import superworldsun.superslegend.items.MaskGiantsmask;
 import superworldsun.superslegend.items.MaskMajorasmask;
 import superworldsun.superslegend.items.MaskStonemaskEffects;
+import superworldsun.superslegend.items.MoonPearl;
 import superworldsun.superslegend.items.NayrusLove;
 import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.RocsFeather;
@@ -256,6 +258,8 @@ public class SupersLegend
 			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_ore")),
 			ItemList.master_sword_blade = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_blade")),
 			ItemList.master_sword_hilt = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_hilt")),
+			ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
+			ItemList.heros_secret_stash = new HerosSecretStash(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_secret_stash")),
 			
 		//Block Items
 			ItemList.rupee_block = new BlockItem(BlockList.rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.rupee_block.getRegistryName()),

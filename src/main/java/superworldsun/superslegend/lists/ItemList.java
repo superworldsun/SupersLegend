@@ -47,6 +47,8 @@ public class ItemList
 		public static Item master_ore;
 		public static Item master_sword_blade;
 		public static Item master_sword_hilt;
+		public static Item moon_pearl;
+		public static Item heros_secret_stash;
 		
 	//Block Items
 		
