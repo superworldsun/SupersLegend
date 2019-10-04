@@ -61,13 +61,13 @@ public class MagicMirror extends Item {
 
             if(!world.dimension.isSurfaceWorld())
             {
-                player.sendStatusMessage(new TranslationTextComponent("chat.magicmirror.power"), true);
+                player.sendStatusMessage(new TranslationTextComponent("Cannot be used right now"), true);
                 
                 return stack;
             }
             if (bedPos == null)
             {
-                player.sendStatusMessage(new TranslationTextComponent("chat.magicmirror.bednotfound"), true);
+                player.sendStatusMessage(new TranslationTextComponent("You have no Bed to return to"), true);
                 
                 return stack;
             }
@@ -97,12 +97,6 @@ public class MagicMirror extends Item {
     public int getUseDuration(ItemStack stack)
     {
         return duration;
-    }
-
-
-    @Override
-    public Rarity getRarity(ItemStack stack) {
-        return Rarity.RARE;
     }
 
     @Override
