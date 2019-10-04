@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class FaroresWind extends Item
@@ -35,18 +36,18 @@ public class FaroresWind extends Item
 		 BlockPos pos = context.getPos();
 		 PlayerEntity player = context.getPlayer();
 		 Direction direction = context.getFace();
-		 ItemStack stackRing = context.getPlayer().getHeldItemMainhand();
+		 ItemStack stackWind = context.getPlayer().getHeldItemMainhand();
 		 
-		 if(getPosition(stackRing) == null && player.isSneaking())
+		 if(getPosition(stackWind) == null && player.isSneaking())
 		 {
-			 setPosition(stackRing, world, pos.offset(direction), player);
-			 player.sendMessage(new StringTextComponent("Location set!"));
+			 setPosition(stackWind, world, pos.offset(direction), player);
+			 player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location set!"), true);
 			 return ActionResultType.SUCCESS;
 		 }
 	 
-		 if(getPosition(stackRing) != null)
+		 if(getPosition(stackWind) != null)
 		 {
-			 player.sendMessage(new StringTextComponent("Location already set."));
+			 player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location already set."), true);
 			 return ActionResultType.SUCCESS;
 		 }
 		 
@@ -61,6 +62,7 @@ public class FaroresWind extends Item
 		  
 		 if(getPosition(stack) != null && !player.isSneaking())
 	     {
+			 player.addExhaustion(24);
 			 teleport(player, world, stack);
 			 world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 	     }
@@ -68,7 +70,7 @@ public class FaroresWind extends Item
 		 if(getPosition(stack) != null && player.isSneaking())
 		 {
 			 setPosition(stack, world, null, player);
-			 player.sendMessage(new StringTextComponent("Location cleared!"));
+			 player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location cleared!"), true);
 		 }
 	 
 		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
@@ -90,7 +92,7 @@ public class FaroresWind extends Item
 		 }
 		 else
 		 {
-			 player.sendMessage(new StringTextComponent("You are not currently in the stored dimension")); 
+			 player.sendStatusMessage(new TranslationTextComponent(TextFormatting.DARK_GREEN + "You are not currently in the stored dimension"), true);
 		 } 
 	 }
 
@@ -161,7 +163,7 @@ public class FaroresWind extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.BLUE + "Allows player to teleport to saved location on right-click"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Allows player to teleport to saved location on right-click"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Does not work across dimensions"));
 		list.add(new StringTextComponent(TextFormatting.WHITE + "Set: " + TextFormatting.AQUA + "point at a block and sneak + right-click"));
 		list.add(new StringTextComponent(TextFormatting.WHITE + "Clear: " + TextFormatting.AQUA + "point in the air and sneak + right-click"));
