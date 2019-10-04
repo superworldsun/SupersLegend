@@ -21,6 +21,9 @@ public class CustomLootDrowned
             if(random.nextInt(16) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
+            if(random.nextInt(90) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_courage_shard,1));
+            
 	        }
 	    }
 	}

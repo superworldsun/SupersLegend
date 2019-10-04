@@ -21,6 +21,9 @@ public class CustomLootGuardian
             if(random.nextInt(17) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
+            if(random.nextInt(80) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_courage_shard,1));
+            
 	        }
 	    }
 	}

@@ -21,6 +21,9 @@ public class CustomLootPhantom
             if(random.nextInt(12) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
+            if(random.nextInt(90) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
+            
 	        }
 	    }
 	}

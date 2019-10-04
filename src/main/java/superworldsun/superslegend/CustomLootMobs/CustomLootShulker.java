@@ -21,6 +21,9 @@ public class CustomLootShulker
             if(random.nextInt(8) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
+            if(random.nextInt(30) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
+            
 	        }
 	    }
 	}

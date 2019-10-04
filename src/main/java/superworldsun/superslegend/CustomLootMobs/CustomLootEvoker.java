@@ -21,6 +21,9 @@ public class CustomLootEvoker
             if(random.nextInt(7) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
+            if(random.nextInt(25) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
+            
 	        }
 	    }
 	}

@@ -21,6 +21,9 @@ public class CustomLootPigZombie
             if(random.nextInt(16) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
+            if(random.nextInt(85) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
+            
 	        }
 	    }
 	}

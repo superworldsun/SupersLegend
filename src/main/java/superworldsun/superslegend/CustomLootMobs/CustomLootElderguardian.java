@@ -16,8 +16,11 @@ public class CustomLootElderguardian
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof ElderGuardianEntity) {
-            if(random.nextInt(17) == 0)
+            if(random.nextInt(2) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.red_rupee,3));
+            
+            if(random.nextInt(1) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_courage_shard,1));
             
 	        }
 	    }

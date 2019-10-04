@@ -19,6 +19,9 @@ public class CustomLootDragon
             if(random.nextInt(1) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.orange_rupee,3));
             
+            if(random.nextInt(1) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
+            
 	        }
 	    }
 	}

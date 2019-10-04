@@ -19,6 +19,9 @@ public class CustomLootWither
             if(random.nextInt(1) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.orange_rupee,1));
             
+            if(random.nextInt(1) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
+            
 	        }
 	    }
 	}
