@@ -38,9 +38,9 @@ public class ArmorFlippersEffects extends ArmorItem {
                 boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.zoras_flippers);
                 if(isBootsOn)
                 	{
-                	if(player.isInWater()) 
+                	if(player.isInWater()&&player.isSprinting()) 
                 	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 2, false, false));
+                		player.addPotionEffect(new EffectInstance(Effect.get(1), 4, 2, false, false));
                 	}
                 }
         }
