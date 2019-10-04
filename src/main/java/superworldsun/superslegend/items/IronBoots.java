@@ -62,6 +62,29 @@ public class IronBoots extends ArmorItem {
 
     }
     
+    /*public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
+	{		
+		if(entity instanceof PlayerEntity && !world.isRemote)
+		{
+			PlayerEntity player = (PlayerEntity)entity;
+			ItemStack equipped = player.getHeldItemMainhand();
+			if(!world.isRemote)
+			{
+				if(stack == equipped)
+		        {
+					
+					
+						stack.isEnchanted();
+					}
+					else
+					{
+						stack.addEnchantment(Enchantment.getEnchantmentByID(8), 3);
+					}
+				
+			}
+		}
+	}*/
+    
     @Override
     public boolean hasEffect(ItemStack stack) {
         return false;
