@@ -11,8 +11,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import superworldsun.superslegend.lists.BlockList;
 
 public class OreGeneration{
-	private static CountRangeConfig copper_ore_placement = new CountRangeConfig(10, 20, 0, 100);
-
+	private static CountRangeConfig copper_ore_placement = new CountRangeConfig(10, 20, 2, 16);
+	
+																				//max size,spawn rate, lowest point, highest point
 
 	public static void setupOreWorldGen() {
 		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
@@ -21,7 +22,7 @@ public class OreGeneration{
                 continue;
             }
 			
-			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.master_ore_block.getDefaultState(), 10), Placement.COUNT_RANGE, copper_ore_placement));
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.master_ore_block.getDefaultState(), 3), Placement.COUNT_RANGE, copper_ore_placement));
 			
 		}
 	}
