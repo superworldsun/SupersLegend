@@ -42,14 +42,6 @@ public class MoonPearl extends Item
 				entity.changeDimension(DimensionType.OVERWORLD);
 		    	return ActionResult.newResult(ActionResultType.SUCCESS, stack);
 			}
-			else if(((currentDim == 1)) && (!entity.isSneaking()))
-			{
-				entity.sendMessage(new StringTextComponent("Did you forget to hold sneak before right-click?"));
-			}
-			else
-			{
-				entity.sendMessage(new StringTextComponent("This device cannot help you here."));
-			}	
 		}
 	    
 	    return ActionResult.newResult(ActionResultType.FAIL, stack);		 
@@ -59,8 +51,8 @@ public class MoonPearl extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.BLUE + "Teleports the player to the Nether"));
+		list.add(new StringTextComponent(TextFormatting.RED + "Teleports the player to the Nether"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Sneak right-click in the Nether to Return to Portal"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "when used in the Nether it will Return player to Portal"));
 	}  
 }
