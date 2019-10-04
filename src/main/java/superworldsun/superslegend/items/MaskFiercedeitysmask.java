@@ -39,9 +39,9 @@ public class MaskFiercedeitysmask extends ArmorItem {
                 boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_fiercedeitysmask);
                 if(isHelmeton)
             	{
+                	player.addExhaustion(0.0175f);
             		player.addPotionEffect(new EffectInstance(Effect.get(5), 10, 1, false, false));
             		player.addPotionEffect(new EffectInstance(Effect.get(8), 10, 0, false, false));
-            		player.addPotionEffect(new EffectInstance(Effect.get(17), 10, 0, false, false));
             	}
             }
     }
