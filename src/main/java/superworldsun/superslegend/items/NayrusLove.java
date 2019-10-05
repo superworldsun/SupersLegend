@@ -3,51 +3,64 @@ package superworldsun.superslegend.items;
 import java.util.List;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class NayrusLove extends Item
 {
-	private static final boolean isInvulnerable = true;
+	
 	public NayrusLove(Properties properties)
 	{
 		super(properties);
 	}
 	
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
-	{		
-		if(entity instanceof PlayerEntity && !world.isRemote)
-		{
-			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
-			if(!world.isRemote)
-			{
-				if(stack == equipped)
-		        {
-					player.addPotionEffect(new EffectInstance(Effect.get(17), 15, 0, false, false));
-					player.addPotionEffect(new EffectInstance(Effect.get(24), 4, 0, false, false));
-					player.setInvulnerable(isInvulnerable);
-		        }
-            	else
-            	{
-            		player.setInvulnerable(false);;
-            	}
-			}	
+	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	 {
+		 @SuppressWarnings("unused")
+		ItemStack stack = player.getHeldItem(hand);
+		  
+		 if (player.isAlive()) 
+		 {
+	            @SuppressWarnings("unused")
+				ActionResult<ItemStack> success = new ActionResult<>(ActionResultType.SUCCESS, player.getHeldItem(hand));
+	            
+				player.addPotionEffect(new EffectInstance(Effect.get(24), 5, 0, true, false));
+				player.setInvulnerable(true);
+				player.addExhaustion(1);
+	            }
+	            else
+	            {
+	            	player.setInvulnerable(false);
+	            }
 
-		}
-	}
+		
+		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+	 }
+	
+	
+	
+	@SubscribeEvent
+	public void onPlayerStoppedUsing(PlayerEntity player) 
+	
+		{
+			player.setInvulnerable(false);
+	    }
+	
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.AQUA + "Holding this grants invinciblity"));
+		list.add(new StringTextComponent(TextFormatting.AQUA + "Grants invinciblity"));
 	}   
 }
