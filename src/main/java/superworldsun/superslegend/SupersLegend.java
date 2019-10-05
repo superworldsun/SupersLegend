@@ -394,7 +394,7 @@ public class SupersLegend
 					BlockList.pot_block = new PotBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(0.1f, 0.1f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("pot_block")),
 					BlockList.grate_block = new GrateBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("grate_block")),
 					BlockList.grass_patch_block = new GrassPatch(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2f, 0.2f).lightValue(0).sound(SoundType.SWEET_BERRY_BUSH)).setRegistryName(location("grass_patch_block")),
-					BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f, 2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block"))
+					BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(48.0f, 48.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block"))
 			);
 			Logger.info("Blocks registered.");
 		}
