@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        " S ",
+        "#C#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:jungle_wood"
+        },
+        "S": {
+            "item": "superslegend:deku_flower_block"
+        },
+        "C": {
+            "item": "superslegend:mask_clay"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_dekumask",
+        "count": 1
+    }
+}
