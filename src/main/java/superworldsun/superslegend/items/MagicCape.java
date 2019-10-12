@@ -19,10 +19,6 @@ import net.minecraft.world.World;
 public class MagicCape extends Item
 {
 
-	
-
-	private boolean isInvulnerable;
-
 	public MagicCape(Properties properties)
 	{
 		super(properties);
@@ -39,8 +35,10 @@ public class MagicCape extends Item
 				player.addPotionEffect(new EffectInstance(Effect.get(17), 5, 0, false, false));
 				player.addPotionEffect(new EffectInstance(Effect.get(15), 60, 0, false, false));
 				player.addPotionEffect(new EffectInstance(Effect.get(14), 5, 0, false, false));
-				player.setInvulnerable(isInvulnerable);
+				player.addPotionEffect(new EffectInstance(Effect.get(11), 5, 99, false, false));
+				player.isSneaking();
 				player.addExhaustion(1);
+				player.isInvisible();
 
 				
 	     }
@@ -48,11 +46,6 @@ public class MagicCape extends Item
 		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
 	 }
 	
-	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, PlayerEntity player, int timeLeft) 
-	
-		{
-			player.setInvulnerable(false);;
-	    }
 	
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
