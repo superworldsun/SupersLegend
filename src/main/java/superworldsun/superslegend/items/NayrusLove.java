@@ -15,7 +15,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class NayrusLove extends Item
 {
@@ -36,27 +35,13 @@ public class NayrusLove extends Item
 				ActionResult<ItemStack> success = new ActionResult<>(ActionResultType.SUCCESS, player.getHeldItem(hand));
 	            
 				player.addPotionEffect(new EffectInstance(Effect.get(24), 5, 0, true, false));
-				player.setInvulnerable(true);
-				player.addExhaustion(1);
-	            }
-	            else
-	            {
-	            	player.setInvulnerable(false);
-	            }
-
-		
+				player.addPotionEffect(new EffectInstance(Effect.get(11), 5, 99, false, false));
+				player.addExhaustion(0.6f);
+	      }
+		 
 		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
 	 }
-	
-	
-	
-	@SubscribeEvent
-	public void onPlayerStoppedUsing(PlayerEntity player) 
-	
-		{
-			player.setInvulnerable(false);
-	    }
-	
+
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
