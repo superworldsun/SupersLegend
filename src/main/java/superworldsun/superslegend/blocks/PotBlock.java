@@ -15,7 +15,7 @@ import net.minecraft.world.IWorldReader;
 public class PotBlock extends Block
 
 {
-	protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 10.0D, 8.0D, 10.0D);
+	protected static final VoxelShape SHAPE = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
 
 	   public PotBlock(Block.Properties properties) {
 	      super(properties);
