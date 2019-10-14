@@ -43,10 +43,7 @@ public class ArmorZoraEffects extends ArmorItem {
                 	{
                 		player.addPotionEffect(new EffectInstance(Effect.get(13), 10, 0, false, false, false));
                 	}
-                	else
-                	{
-                		player.removePotionEffect(Effect.get(13));
-                	}
+                	
                 }
         }
     }
