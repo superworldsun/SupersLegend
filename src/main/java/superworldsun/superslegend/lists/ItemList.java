@@ -49,6 +49,7 @@ public class ItemList
 		public static Item master_sword_hilt;
 		public static Item moon_pearl;
 		public static Item heros_secret_stash;
+		public static Item torch_tower;
 		
 	//Block Items
 		
@@ -61,7 +62,8 @@ public class ItemList
 		public static Item gossip_stone_block;
 		public static Item bush_block;
 		public static Item chain_link_fence_block;
-		public static Item torch_tower_block;
+		public static Item torch_tower_block_bottom;
+		public static Item torch_tower_block_top;
 		public static Item deku_flower_block;
 		public static Item pot_block;
 		public static Item grate_block;
