@@ -33,6 +33,7 @@
 	"item.superslegend.master_sword_hilt": "Master Sword Hilt",
 	"item.superslegend.moon_pearl": "Moon Pearl",
 	"item.superslegend.heros_secret_stash": "hero's secret stash",
+	"item.superslegend.torch_tower": "Torch Tower",
 	
 	
 	"block.superslegend.rupee_block": "Rupee Block",
@@ -43,7 +44,8 @@
 	"block.superslegend.gossip_stone_block": "Gossip Stone",
 	"block.superslegend.bush_block": "Bush",
 	"block.superslegend.chain_link_fence_block": "Chain link fence",
-	"block.superslegend.torch_tower_block": "Torch Tower",
+	"block.superslegend.torch_tower_block_bottom": "Torch Tower",
+	"block.superslegend.torch_tower_block_top": "Torch Tower",
 	"block.superslegend.deku_flower_block": "Deku Flower",
 	"block.superslegend.pot_block": "Pot",
 	"block.superslegend.grate_block": "Grate",
