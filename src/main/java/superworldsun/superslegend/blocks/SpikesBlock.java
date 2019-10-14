@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 public class SpikesBlock extends Block 
 
 	{
-	   protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
+	   protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 
 	   public SpikesBlock(Block.Properties properties) {
 	      super(properties);
@@ -28,7 +28,7 @@ public class SpikesBlock extends Block
 	   }
 
 	   public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-		  entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+		  entityIn.attackEntityFrom(DamageSource.CACTUS, 6.0F);
 	   }
 
 	   public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
