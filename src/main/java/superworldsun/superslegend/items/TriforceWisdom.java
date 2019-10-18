@@ -11,6 +11,9 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -29,6 +32,8 @@ public class TriforceWisdom extends Item
 		 @SuppressWarnings("unused")
 		ItemStack stack = player.getHeldItem(hand);
 		        {
+		   		 BlockPos currentPos = player.getPosition();
+				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
 					player.addPotionEffect(new EffectInstance(Effect.get(16), 1200, 0, false, true));
 					player.addPotionEffect(new EffectInstance(Effect.get(13), 1200, 0, false, true));
 		        }
