@@ -89,6 +89,7 @@ import superworldsun.superslegend.items.MaskMajorasmask;
 import superworldsun.superslegend.items.MaskStonemaskEffects;
 import superworldsun.superslegend.items.MoonPearl;
 import superworldsun.superslegend.items.NayrusLove;
+import superworldsun.superslegend.items.PegasusBoots;
 import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.RocsFeather;
 import superworldsun.superslegend.items.SilverScale;
@@ -369,7 +370,8 @@ public class SupersLegend
 			ItemList.purple_tunic = new ArmorItem(ArmourMaterialList.purple, EquipmentSlotType.CHEST, new Item.Properties().group(supers_legend)).setRegistryName("purple_tunic"),
 			ItemList.purple_leggings = new ArmorItem(ArmourMaterialList.purple, EquipmentSlotType.LEGS, new Item.Properties().group(supers_legend)).setRegistryName("purple_leggings"),
 			
-			ItemList.rocs_cape = new RocsCapeEffects("rocs_cape",EquipmentSlotType.CHEST)
+			ItemList.rocs_cape = new RocsCapeEffects("rocs_cape",EquipmentSlotType.CHEST),
+			ItemList.pegasus_boots = new PegasusBoots("pegasus_boots",EquipmentSlotType.FEET)
 			);
 			Logger.info("Items registered.");		
 		}
