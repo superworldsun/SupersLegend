@@ -40,7 +40,18 @@ public class MaskBunnyhoodEffects extends ArmorItem {
     	
         if (!world.isRemote){
                 boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_bunnyhood);
-                if(isHelmeton) player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 0, false, false));
-                }
-            }
-        }
+                
+                if(isHelmeton) {
+                	if(player.isInWater()) 
+                	{
+                		player.removePotionEffect(Effect.get(1));
+                	}
+                	else
+                	{
+                		player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 0, false, false));
+                	}
+                    
+                	}
+        		}
+    		}
+     }
