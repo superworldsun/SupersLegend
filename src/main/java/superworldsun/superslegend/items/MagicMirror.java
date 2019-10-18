@@ -61,12 +61,14 @@ public class MagicMirror extends Item {
 
             if(!world.dimension.isSurfaceWorld())
             {
+            	world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
                 player.sendStatusMessage(new TranslationTextComponent("Cannot be used right now"), true);
                 
                 return stack;
             }
             if (bedPos == null)
             {
+            	world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
                 player.sendStatusMessage(new TranslationTextComponent("You have no Bed to return to"), true);
                 
                 return stack;
@@ -82,7 +84,7 @@ public class MagicMirror extends Item {
                     backPos.getZ() + 0.5f);
             entity.fallDistance = 0;
 
-            
+            world.playSound(null, backPos.getX(), backPos.getY(), backPos.getZ(), SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
         }
         return stack;
     }
