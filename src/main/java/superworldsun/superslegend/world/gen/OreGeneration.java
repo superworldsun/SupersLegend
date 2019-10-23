@@ -11,9 +11,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import superworldsun.superslegend.lists.BlockList;
 
 public class OreGeneration{
-	private static CountRangeConfig copper_ore_placement = new CountRangeConfig(10, 20, 2, 16);
+	private static CountRangeConfig master_ore_placement = new CountRangeConfig(9, 1, 7, 25);
 	
-																				//max size,spawn rate, lowest point, highest point
+																				//how often ,lowest point, highest point, maximum
 
 	public static void setupOreWorldGen() {
 		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
@@ -22,8 +22,8 @@ public class OreGeneration{
                 continue;
             }
 			
-			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.master_ore_block.getDefaultState(), 3), Placement.COUNT_RANGE, copper_ore_placement));
-			
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.master_ore_block.getDefaultState(), 3), Placement.COUNT_RANGE, master_ore_placement));
+																																																	// how many in a vein, (minimum is 3)
 		}
 	}
 }
