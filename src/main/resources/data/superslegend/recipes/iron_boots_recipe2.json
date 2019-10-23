@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:iron_boots"
+        }
+    ],
+    "result": {
+        "item": "superslegend:iron_boots",
+        "count": 1
+    }
+}

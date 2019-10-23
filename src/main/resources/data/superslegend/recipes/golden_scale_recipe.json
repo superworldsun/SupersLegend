@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "#i#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:gold_block"
+        },
+        "i": {
+            "item": "superslegend:silver_scale"
+        }
+    },
+    "result": {
+        "item": "superslegend:golden_scale",
+        "count": 1
+    }
+}
