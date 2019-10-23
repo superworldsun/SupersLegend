@@ -1,12 +1,15 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "##",
-        "##"
+        "#",
+        "O"
     ],
     "key": {
         "#": {
-            "item": "minecraft:grass"
+            "item": "minecraft:oak_leaves"
+        },
+        "O": {
+            "item": "minecraft:oak_wood"
         }
     },
     "result": {
