@@ -42,12 +42,16 @@ public class FaroresWind extends Item
 		 {
 			 setPosition(stackWind, world, pos.offset(direction), player);
 			 player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location set!"), true);
+			 BlockPos currentPos = player.getPosition();
+			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 1f, 1f);
 			 return ActionResultType.SUCCESS;
 		 }
 	 
 		 if(getPosition(stackWind) != null)
 		 {
 			 player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location already set."), true);
+			 BlockPos currentPos = player.getPosition();
+			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1f, 1f);
 			 return ActionResultType.SUCCESS;
 		 }
 		 
