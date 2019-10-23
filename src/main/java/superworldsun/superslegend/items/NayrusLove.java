@@ -1,11 +1,13 @@
 package superworldsun.superslegend.items;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
@@ -50,6 +52,18 @@ public class NayrusLove extends Item
 	            player.addExhaustion(10f);
 	            player.addExhaustion(10f);
 	            player.addExhaustion(10f);
+	            
+	            Random rand = player.world.rand;
+		        for (int i = 0; i < 45; i++)
+		        {
+		        	player.world.addParticle(ParticleTypes.TOTEM_OF_UNDYING,
+		                    player.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+		                    player.posY + rand.nextFloat() * 3 - 2,
+		                    player.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+		                    0, 0.105D, 0);
+		        }
+	            
+	            
 				player.addPotionEffect(new EffectInstance(Effect.get(24), 300, 0, true, true));
 				player.addPotionEffect(new EffectInstance(Effect.get(11), 300, 99, false, false));
 	      }
