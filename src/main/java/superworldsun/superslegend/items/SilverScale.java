@@ -28,11 +28,8 @@ public class SilverScale extends Item
 		{
 			PlayerEntity player = (PlayerEntity)entity;
 
-			ItemStack equipped = player.getHeldItemMainhand();
-
 			if(!world.isRemote)
 			{
-				if(stack == equipped)
 		        {
 					if(player.isInWater()) 
 	            	{
@@ -40,7 +37,7 @@ public class SilverScale extends Item
 	            	}
 	            	else
 	            	{
-	            		player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 215, 0, false, false, true));
+	            		player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 215, 0, false, false, false));
 	            	}
 	                
 	            	}
@@ -53,6 +50,6 @@ public class SilverScale extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.BLUE + "Hold this before you dive to stay under longer"));
+		list.add(new StringTextComponent(TextFormatting.BLUE + "Allows you to stay underwater longer"));
 	}   
 }

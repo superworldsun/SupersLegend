@@ -28,11 +28,8 @@ public class GoldenScale extends Item
 		{
 			PlayerEntity player = (PlayerEntity)entity;
 
-			ItemStack equipped = player.getHeldItemMainhand();
-
 			if(!world.isRemote)
 			{
-				if(stack == equipped)
 		        {
 					if(player.isInWater()) 
 	            	{
@@ -40,7 +37,7 @@ public class GoldenScale extends Item
 	            	}
 	            	else
 	            	{
-	            		player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 415, 0, false, false, true));
+	            		player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 415, 0, false, false, false));
 	            	}
 	                
 	            	}
@@ -53,6 +50,6 @@ public class GoldenScale extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.GOLD + "Hold this to dive even longer"));
+		list.add(new StringTextComponent(TextFormatting.GOLD + "Allows you to dive even longer"));
 	}   
 }
