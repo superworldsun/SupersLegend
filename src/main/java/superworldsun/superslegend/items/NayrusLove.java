@@ -11,6 +11,9 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -34,9 +37,21 @@ public class NayrusLove extends Item
 	            @SuppressWarnings("unused")
 				ActionResult<ItemStack> success = new ActionResult<>(ActionResultType.SUCCESS, player.getHeldItem(hand));
 	            
-				player.addPotionEffect(new EffectInstance(Effect.get(24), 5, 0, true, false));
-				player.addPotionEffect(new EffectInstance(Effect.get(11), 5, 99, false, false));
-				player.addExhaustion(0.6f);
+	            
+	            BlockPos currentPos = player.getPosition();
+				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 1f, 1f);
+				 
+	            player.addExhaustion(10f);
+	            player.addExhaustion(10f);
+	            player.addExhaustion(10f);
+	            player.addExhaustion(10f);
+	            player.addExhaustion(10f);
+	            player.addExhaustion(10f);
+	            player.addExhaustion(10f);
+	            player.addExhaustion(10f);
+	            player.addExhaustion(10f);
+				player.addPotionEffect(new EffectInstance(Effect.get(24), 300, 0, true, true));
+				player.addPotionEffect(new EffectInstance(Effect.get(11), 300, 99, false, false));
 	      }
 		 
 		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
