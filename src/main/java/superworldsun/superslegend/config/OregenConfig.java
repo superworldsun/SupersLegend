@@ -1,6 +1,6 @@
 package superworldsun.superslegend.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+/*import net.minecraftforge.common.ForgeConfigSpec;
 
 public class OregenConfig 
 {
@@ -19,4 +19,4 @@ public class OregenConfig
 				.comment("Decide if you want Tutorial Mod ores to spawn in the overworld")
 				.define("oregen.generate_overworld", true);
 	}
-}
+}*/

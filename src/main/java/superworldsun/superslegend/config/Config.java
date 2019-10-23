@@ -1,6 +1,6 @@
 package superworldsun.superslegend.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+/*import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
@@ -19,4 +19,4 @@ public class Config
 		SERVER = SERVER_BUILDER.build();
 		CLIENT = CLIENT_BUILDER.build();
 	}
-}
+}*/
