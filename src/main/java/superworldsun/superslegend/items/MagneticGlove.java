@@ -33,9 +33,13 @@ public class MagneticGlove extends Item
 
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
 	{		
-		if(entity instanceof PlayerEntity && !world.isRemote && EnableUtil.isEnabled(stack))
+		if(entity instanceof PlayerEntity && !world.isRemote)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
+			ItemStack equipped = player.getHeldItemMainhand();
+			if(!world.isRemote)
+			{
+				if(stack == equipped) {
 			
 			boolean init = MagnetRange.getCurrentlySet(stack);
 			
@@ -91,8 +95,11 @@ public class MagneticGlove extends Item
 			{
 				isPulling = false;
 			}
+			
+			}
 		}
 	}
+}
 	
 	@Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
@@ -143,7 +150,6 @@ public class MagneticGlove extends Item
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.BLUE + "Draws dropped items toward the player"));
 		list.add(new StringTextComponent(TextFormatting.RED + "Attraction ability active: " + EnableUtil.isEnabled(stack)));
-		list.add(new StringTextComponent(TextFormatting.GOLD + "Works while in player inventory"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to toggle on/off, sneak + right-click to cycle through ranges"));
 	}   
 
