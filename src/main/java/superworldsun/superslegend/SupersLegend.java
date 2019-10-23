@@ -86,6 +86,7 @@ import superworldsun.superslegend.items.MaskDekumask;
 import superworldsun.superslegend.items.MaskDongerosmaskEffects;
 import superworldsun.superslegend.items.MaskFiercedeitysmask;
 import superworldsun.superslegend.items.MaskGiantsmask;
+import superworldsun.superslegend.items.MaskKeatonmask;
 import superworldsun.superslegend.items.MaskMajorasmask;
 import superworldsun.superslegend.items.MaskStonemaskEffects;
 import superworldsun.superslegend.items.MoonPearl;
@@ -331,7 +332,7 @@ public class SupersLegend
 			ItemList.mask_bremenmask = new ArmorItem(ArmourMaterialList.bremenmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_bremenmask"),
 			ItemList.mask_greatfairymask = new ArmorItem(ArmourMaterialList.greatfairymask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_greatfairymask"),
 			ItemList.mask_dekumask = new MaskDekumask("mask_dekumask", EquipmentSlotType.HEAD),
-			ItemList.mask_keatonmask = new ArmorItem(ArmourMaterialList.keatonmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_keatonmask"),
+			ItemList.mask_keatonmask = new MaskKeatonmask("mask_keatonmask", EquipmentSlotType.HEAD),
 			ItemList.mask_bunnyhood = new MaskBunnyhoodEffects("mask_bunnyhood", EquipmentSlotType.HEAD),
 			ItemList.mask_dongerosmask = new MaskDongerosmaskEffects("mask_dongerosmask", EquipmentSlotType.HEAD),
 			ItemList.mask_maskofscents = new ArmorItem(ArmourMaterialList.maskofscents, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_maskofscents"),
