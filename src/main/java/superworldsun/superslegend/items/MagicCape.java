@@ -31,7 +31,7 @@ public class MagicCape extends Item
 		  
 		 if(!world.isRemote)
 	     {
-			 player.addPotionEffect(new EffectInstance(Effect.get(18), 5, 3, false, false));
+			 player.addPotionEffect(new EffectInstance(Effect.get(18), 5, 99, false, false));
 				player.addPotionEffect(new EffectInstance(Effect.get(17), 5, 0, false, false));
 				player.addPotionEffect(new EffectInstance(Effect.get(15), 60, 0, false, false));
 				player.addPotionEffect(new EffectInstance(Effect.get(14), 5, 0, false, false));
