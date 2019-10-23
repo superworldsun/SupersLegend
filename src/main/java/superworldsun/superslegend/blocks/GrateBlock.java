@@ -27,6 +27,7 @@ protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D
 
 public GrateBlock(Block.Properties properties) {
     super(properties);
+    this.setDefaultState(getDefaultState().with(WATERLOGGED, false));
  }
 
 public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
