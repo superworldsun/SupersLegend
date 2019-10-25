@@ -16,12 +16,12 @@ public class CustomLootPillager {
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof PillagerEntity) {
-            if(random.nextInt(9) == 0)
+            if(random.nextInt(2) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(17) == 0)
+            if(random.nextInt(4) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
-            if(random.nextInt(90) == 0)
+            if(random.nextInt(80) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
             
 	        }

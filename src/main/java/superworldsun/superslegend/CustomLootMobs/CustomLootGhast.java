@@ -18,7 +18,7 @@ public class CustomLootGhast
         if(event.getEntityLiving() instanceof GhastEntity) {
             if(random.nextInt(2) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(4)));
-            if(random.nextInt(5) == 0)
+            if(random.nextInt(4) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
             if(random.nextInt(60) == 0)

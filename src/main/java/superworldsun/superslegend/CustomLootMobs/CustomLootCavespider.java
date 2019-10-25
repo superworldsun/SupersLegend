@@ -16,10 +16,13 @@ public class CustomLootCavespider
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof CaveSpiderEntity) {
-            if(random.nextInt(8) == 0)
+            if(random.nextInt(6) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(17) == 0)
+            if(random.nextInt(14) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+            
+            if(random.nextInt(50) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_courage_shard,1));
             
 	        }
 	    }

@@ -16,12 +16,12 @@ public class CustomLootSkeleton
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof SkeletonEntity) {
-            if(random.nextInt(8) == 0)
+            if(random.nextInt(5) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
             if(random.nextInt(16) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
-            if(random.nextInt(90) == 0)
+            if(random.nextInt(80) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
             
 	        }

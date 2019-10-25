@@ -16,9 +16,9 @@ public class CustomLootSpider
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof SpiderEntity) {
-            if(random.nextInt(9) == 0)
+            if(random.nextInt(6) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(17) == 0)
+            if(random.nextInt(10) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
 	        }

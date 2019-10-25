@@ -16,9 +16,9 @@ public class CustomLootEnderman
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof EndermanEntity) {
-            if(random.nextInt(5) == 0)
+            if(random.nextInt(3) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(4)));
-            if(random.nextInt(10) == 0)
+            if(random.nextInt(8) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
 	        }

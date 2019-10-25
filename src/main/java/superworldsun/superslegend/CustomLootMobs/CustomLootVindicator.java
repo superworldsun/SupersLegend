@@ -16,9 +16,9 @@ public class CustomLootVindicator {
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof VindicatorEntity) {
-            if(random.nextInt(9) == 0)
+            if(random.nextInt(2) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(17) == 0)
+            if(random.nextInt(5) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
 	        }

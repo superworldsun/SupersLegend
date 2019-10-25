@@ -16,9 +16,9 @@ public class CustomLootEndermite
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof EndermiteEntity) {
-            if(random.nextInt(3) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee,1));
-            if(random.nextInt(14) == 0)
+            if(random.nextInt(2) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee,2));
+            if(random.nextInt(7) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
 	        }

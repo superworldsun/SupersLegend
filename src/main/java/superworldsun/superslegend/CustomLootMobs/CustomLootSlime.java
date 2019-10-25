@@ -16,9 +16,9 @@ public class CustomLootSlime
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof SlimeEntity) {
-            if(random.nextInt(8) == 0)
+            if(random.nextInt(9) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(16) == 0)
+            if(random.nextInt(11) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
 	        }

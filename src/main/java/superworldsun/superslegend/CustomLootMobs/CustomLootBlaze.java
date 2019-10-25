@@ -16,12 +16,12 @@ public class CustomLootBlaze
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof BlazeEntity) {
-            if(random.nextInt(7) == 0)
+            if(random.nextInt(6) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(15) == 0)
+            if(random.nextInt(12) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
-            if(random.nextInt(90) == 0)
+            if(random.nextInt(60) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
             
 	        }

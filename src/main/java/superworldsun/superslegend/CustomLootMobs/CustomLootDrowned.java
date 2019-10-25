@@ -16,12 +16,12 @@ public class CustomLootDrowned
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof DrownedEntity) {
-            if(random.nextInt(7) == 0)
+            if(random.nextInt(6) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(16) == 0)
+            if(random.nextInt(14) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
-            if(random.nextInt(90) == 0)
+            if(random.nextInt(70) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_courage_shard,1));
             
 	        }

@@ -16,12 +16,12 @@ public class CustomLootPhantom
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof PhantomEntity) {
-            if(random.nextInt(6) == 0)
+            if(random.nextInt(5) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(4)));
-            if(random.nextInt(12) == 0)
+            if(random.nextInt(10) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
-            if(random.nextInt(90) == 0)
+            if(random.nextInt(65) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
             
 	        }

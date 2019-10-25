@@ -16,9 +16,9 @@ public class CustomLootGuardian
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof GuardianEntity) {
-            if(random.nextInt(10) == 0)
+            if(random.nextInt(4) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(17) == 0)
+            if(random.nextInt(6) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
             if(random.nextInt(80) == 0)

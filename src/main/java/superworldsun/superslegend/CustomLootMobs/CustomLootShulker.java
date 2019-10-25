@@ -16,12 +16,12 @@ public class CustomLootShulker
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof ShulkerEntity) {
-            if(random.nextInt(5) == 0)
+            if(random.nextInt(3) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(8) == 0)
+            if(random.nextInt(7) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
-            if(random.nextInt(30) == 0)
+            if(random.nextInt(25) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
             
 	        }

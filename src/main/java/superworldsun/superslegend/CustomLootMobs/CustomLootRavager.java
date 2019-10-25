@@ -16,12 +16,12 @@ public class CustomLootRavager {
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof RavagerEntity) {
-            if(random.nextInt(9) == 0)
+            if(random.nextInt(5) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(17) == 0)
+            if(random.nextInt(8) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
-            if(random.nextInt(90) == 0)
+            if(random.nextInt(70) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
             
 	        }

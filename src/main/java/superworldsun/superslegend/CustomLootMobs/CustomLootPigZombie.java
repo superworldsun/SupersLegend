@@ -16,12 +16,12 @@ public class CustomLootPigZombie
         Random random = new Random();
 
         if(event.getEntityLiving() instanceof ZombiePigmanEntity) {
-            if(random.nextInt(8) == 0)
+            if(random.nextInt(6) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
-            if(random.nextInt(16) == 0)
+            if(random.nextInt(13) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
-            if(random.nextInt(85) == 0)
+            if(random.nextInt(70) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
             
 	        }
