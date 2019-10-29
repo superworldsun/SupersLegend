@@ -21,7 +21,7 @@ public class CustomLootSkeleton
             if(random.nextInt(16) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
-            if(random.nextInt(80) == 0)
+            if(random.nextInt(75) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
             
 	        }

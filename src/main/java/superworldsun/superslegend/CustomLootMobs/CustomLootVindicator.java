@@ -21,6 +21,9 @@ public class CustomLootVindicator {
             if(random.nextInt(5) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
+            if(random.nextInt(25) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_courage_shard,1));
+            
 	        }
 	    }
 	}

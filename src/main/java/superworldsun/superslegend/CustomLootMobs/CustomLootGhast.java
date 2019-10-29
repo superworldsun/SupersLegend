@@ -21,7 +21,7 @@ public class CustomLootGhast
             if(random.nextInt(4) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
             
-            if(random.nextInt(60) == 0)
+            if(random.nextInt(35) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
             
 	        }
