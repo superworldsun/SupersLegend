@@ -35,9 +35,9 @@ public class TriforcePower extends Item
 			 BlockPos currentPos = player.getPosition();
 			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
 					player.addPotionEffect(new EffectInstance(Effect.get(20), 44, 0, false, false));
-					player.addPotionEffect(new EffectInstance(Effect.get(19), 400, 0, false, false));
+					player.addPotionEffect(new EffectInstance(Effect.get(19), 200, 0, false, false));
 					player.addPotionEffect(new EffectInstance(Effect.get(5), 600, 0, false, true));
-					player.addPotionEffect(new EffectInstance(Effect.get(3), 200, 0, false, false));
+					player.addPotionEffect(new EffectInstance(Effect.get(3), 400, 0, false, false));
 		 }
 	 			return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
 			
@@ -47,5 +47,6 @@ public class TriforcePower extends Item
 		{
 			super.addInformation(stack, world, list, flag);				
 			list.add(new StringTextComponent(TextFormatting.RED + "This gives the you Power, but at what cost?"));
+			list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 		}   
 }
