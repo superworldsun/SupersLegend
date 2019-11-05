@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:blue_rupee_block"
+        }
+    },
+    "result": {
+        "item": "superslegend:blue_rupee",
+        "count": 8
+    }
+}
