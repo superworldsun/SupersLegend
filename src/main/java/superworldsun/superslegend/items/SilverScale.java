@@ -51,5 +51,6 @@ public class SilverScale extends Item
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.BLUE + "Allows you to stay underwater longer"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Have this anywhere in your inventory"));
 	}   
 }

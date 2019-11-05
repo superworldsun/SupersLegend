@@ -51,5 +51,6 @@ public class GoldenScale extends Item
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GOLD + "Allows you to dive even longer"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Have this anywhere in your inventory"));
 	}   
 }
