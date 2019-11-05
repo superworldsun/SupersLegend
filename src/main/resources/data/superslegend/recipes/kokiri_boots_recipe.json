@@ -1,9 +1,8 @@
 {
     "type": "crafting_shaped",
     "pattern": [
-        "#R#",
-        "#L#",
-        "# #"
+        " R ",
+        "#L#"
     ],
     "key": {
         "#": {
