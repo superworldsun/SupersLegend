@@ -34,13 +34,11 @@ public class MagicCape extends Item
 			 player.addPotionEffect(new EffectInstance(Effect.get(18), 5, 99, false, false));
 				player.addPotionEffect(new EffectInstance(Effect.get(17), 5, 0, false, false));
 				player.addPotionEffect(new EffectInstance(Effect.get(15), 60, 0, false, false));
-				player.addPotionEffect(new EffectInstance(Effect.get(14), 5, 0, false, false));
+				player.addPotionEffect(new EffectInstance(Effect.get(14), 10, 0, false, false));
 				player.addPotionEffect(new EffectInstance(Effect.get(11), 5, 99, false, false));
 				player.isSneaking();
 				player.addExhaustion(1);
 				player.isInvisible();
-
-				
 	     }
 	 
 		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
@@ -51,7 +49,9 @@ public class MagicCape extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "Allows you to slip through many obsticals seamlessly"));
+		list.add(new StringTextComponent(TextFormatting.RED + "Allows you to slip through many obsticals seamlessly"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-click to use"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
 	}  
 	
 }
