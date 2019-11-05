@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import superworldsun.superslegend.lists.BlockList;
 
 public class OreGeneration{
-	private static CountRangeConfig master_ore_placement = new CountRangeConfig(9, 1, 7, 25);
+	private static CountRangeConfig master_ore_placement = new CountRangeConfig(3, 1, 7, 25);
 	
 																				//how often ,lowest point, highest point, maximum
 
