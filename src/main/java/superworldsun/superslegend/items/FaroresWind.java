@@ -1,6 +1,7 @@
 package superworldsun.superslegend.items;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -58,7 +60,6 @@ public class FaroresWind extends Item
 		 return ActionResultType.PASS;
 	}
 	
-
 	 
 	 public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
 	 {
@@ -66,6 +67,16 @@ public class FaroresWind extends Item
 		  
 		 if(getPosition(stack) != null && !player.isSneaking())
 	     {
+			 Random rand = player.world.rand;
+		        for (int i = 0; i < 45; i++)
+		        {
+		        	player.world.addParticle(ParticleTypes.CLOUD,
+		                    player.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+		                    player.posY + rand.nextFloat() * 3 - 2,
+		                    player.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+		                    0, 0.105D, 0);
+		        }
+			 
 			 player.addExhaustion(24);
 			 teleport(player, world, stack);
 			 world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
@@ -169,6 +180,7 @@ public class FaroresWind extends Item
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Allows player to teleport to saved location on right-click"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Does not work across dimensions"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
 		list.add(new StringTextComponent(TextFormatting.WHITE + "Set: " + TextFormatting.AQUA + "point at a block and sneak + right-click"));
 		list.add(new StringTextComponent(TextFormatting.WHITE + "Clear: " + TextFormatting.AQUA + "point in the air and sneak + right-click"));
 		
