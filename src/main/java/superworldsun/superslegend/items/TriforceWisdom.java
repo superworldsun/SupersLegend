@@ -46,5 +46,6 @@ public class TriforceWisdom extends Item
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.BLUE + "This will give you the Wisdom to explore with greater ease."));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 	}   
 }

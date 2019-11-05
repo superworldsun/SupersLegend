@@ -46,6 +46,7 @@ public class TriforceCourage extends Item
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GREEN + "This will give you the Courage to fight for what you beleive in."));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 	}   
 } 
 
