@@ -1,18 +1,15 @@
 package superworldsun.superslegend.items;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
@@ -29,31 +26,32 @@ public class IronBoots extends ArmorItem {
     public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "sink or sink"));
+		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "Sink or Sink"));
+		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "[WIP]"));
 	}
-    
-    @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT nbt) {
-    	stack.addEnchantment(Enchantment.getEnchantmentByID(8), 3);
-    	return null;
-    }
     
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-    	
-    	
-    	
     	if (!world.isRemote){
             boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.iron_boots);
             if(isBootsOn)
             	{
-            	if(player.isInWater()) 
+            	if(player.isInWater() && player.onGround) 
             	{
             		player.removePotionEffect(Effect.get(2));
+            		player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 3, false, false));
+            		
+            	}
+            	else if (player.isInWater())
+            	{
+            		player.removePotionEffect(Effect.get(2));
+            		player.removePotionEffect(Effect.get(1));
+
             	}
             	else
             	{
+            		
             		player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 1, false, false));
             	}
                 
@@ -85,8 +83,8 @@ public class IronBoots extends ArmorItem {
 		}
 	}*/
     
-    @Override
-    public boolean hasEffect(ItemStack stack) {
-        return false;
-    }
+    //@Override
+   // public boolean hasEffect(ItemStack stack) {
+        //return false;
+   // }
 }
