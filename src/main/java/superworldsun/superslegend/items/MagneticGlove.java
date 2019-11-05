@@ -148,9 +148,9 @@ public class MagneticGlove extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.BLUE + "Draws dropped items toward the player"));
-		list.add(new StringTextComponent(TextFormatting.RED + "Attraction ability active: " + EnableUtil.isEnabled(stack)));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to toggle on/off, sneak + right-click to cycle through ranges"));
+		list.add(new StringTextComponent(TextFormatting.BLUE + "Pulls items toward the player"));
+		list.add(new StringTextComponent(TextFormatting.RED + "Attraction active: " + EnableUtil.isEnabled(stack)));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to toggle on/off, sneak + Right-click to cycle ranges"));
 	}   
 
 }
