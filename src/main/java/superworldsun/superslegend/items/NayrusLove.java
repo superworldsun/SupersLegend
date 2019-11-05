@@ -44,14 +44,6 @@ public class NayrusLove extends Item
 				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 1f, 1f);
 				 
 	            player.addExhaustion(10f);
-	            player.addExhaustion(10f);
-	            player.addExhaustion(10f);
-	            player.addExhaustion(10f);
-	            player.addExhaustion(10f);
-	            player.addExhaustion(10f);
-	            player.addExhaustion(10f);
-	            player.addExhaustion(10f);
-	            player.addExhaustion(10f);
 	            
 	            Random rand = player.world.rand;
 		        for (int i = 0; i < 45; i++)
@@ -76,5 +68,7 @@ public class NayrusLove extends Item
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.AQUA + "Grants invinciblity"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
 	}   
 }
