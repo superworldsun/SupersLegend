@@ -29,7 +29,12 @@
             "superslegend:book_of_mudora_recipe",
             "superslegend:kokiri_sword_recipe",
             "superslegend:razor_sword_recipe",
-            "superslegend:gilded_sword_recipe"
+            "superslegend:gilded_sword_recipe",
+			"superslegend:mask_clay_recipe",
+			"superslegend:kokiri_cap_recipe",
+            "superslegend:kokiri_tunic_recipe",
+            "superslegend:kokiri_leggings_recipe",
+            "superslegend:kokiri_boots_recipe"
         ]
     }
 }

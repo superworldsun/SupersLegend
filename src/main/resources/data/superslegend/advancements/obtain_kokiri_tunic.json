@@ -31,9 +31,18 @@
     },
     "rewards": {
         "recipes": [
-            "superslegend:kokiri_cap_recipe",
-            "superslegend:kokiri_leggings_recipe",
-            "superslegend:kokiri_boots_recipe"
+			"superslegend:goron_tunic_recipe",
+			"superslegend:goron_cap_recipe",
+            "superslegend:goron_leggings_recipe",
+			"superslegend:zora_tunic_recipe",
+			"superslegend:zora_cap_recipe",
+            "superslegend:zora_leggings_recipe",
+			"superslegend:purple_tunic_recipe",
+			"superslegend:purple_cap_recipe",
+            "superslegend:purple_leggings_recipe",
+			"superslegend:iron_boots_recipe",
+			"superslegend:hover_boots_recipe",
+			"superslegend:pegasus_boots_recipe"
         ]
     },
     "parent": "superslegend:obtain_book_of_mudora"

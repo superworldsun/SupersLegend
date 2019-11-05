@@ -29,6 +29,14 @@
                 ]
             }
         }
+	},
+			"rewards": {
+        		"recipes": [
+            		"superslegend:master_sword_hilt_recipe",
+            		"superslegend:master_sword_blade_recipe",
+					"superslegend:hylian_shield_recipe",
+					"superslegend:master_sword_recipe"
+        ]
     },
     "parent": "superslegend:mine_master_ore"
 }
