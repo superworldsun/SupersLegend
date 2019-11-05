@@ -55,6 +55,7 @@ public class Triforce extends Item
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GOLD + "You feel a godly power holding this"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 	}   
 		
 	
