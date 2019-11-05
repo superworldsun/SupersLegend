@@ -26,6 +26,7 @@ public class PegasusBoots extends ArmorItem {
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "Provides Great Speed"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
 	}
 
     @Override
@@ -45,7 +46,7 @@ public class PegasusBoots extends ArmorItem {
                 	else if(player.onGround &&player.isSprinting()) 
                 	{
                 		player.addPotionEffect(new EffectInstance(Effect.get(1), 4, 1, false, false));
-                		player.addExhaustion(0.05f);
+                		player.addExhaustion(0.04f);
                 	}
                 }
         }
