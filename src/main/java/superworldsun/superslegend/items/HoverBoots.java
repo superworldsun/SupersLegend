@@ -5,7 +5,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -26,7 +25,13 @@ public class HoverBoots extends ArmorItem {
     public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.YELLOW + "Run off the road"));
+		list.add(new StringTextComponent(TextFormatting.YELLOW + "No road needed"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Sneak, To Hover over Gaps"));
+		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "Cannot use SlowFall when equiped"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
+		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "[WIP]"));
+		
+		
 	}
 
     @Override
@@ -38,13 +43,15 @@ public class HoverBoots extends ArmorItem {
         if (!world.isRemote){
                 boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots);
 
-                if(isBootsOn&&player.isSprinting())
+                if(isBootsOn&&player.isSneaking())
                 {
+                	player.removePotionEffect(Effect.get(28));
+                	player.addExhaustion(0.1f);
                 	player.setNoGravity(true);
-                	player.addPotionEffect(new EffectInstance(Effect.get(2), 3, 2, false, false));
                 }
     			else
     			{
+    				player.removePotionEffect(Effect.get(28));
     				player.setNoGravity(false);
     			}
                 }
