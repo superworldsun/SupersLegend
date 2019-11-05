@@ -40,10 +40,10 @@ public class MagicMirror extends Item {
         Random rand = entity.world.rand;
         for (int i = 0; i < 45; i++)
         {
-            entity.world.addParticle(ParticleTypes.DRAGON_BREATH,
-                    entity.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+            entity.world.addParticle(ParticleTypes.CLOUD,
+                    entity.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
                     entity.posY + rand.nextFloat() * 3 - 2,
-                    entity.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+                    entity.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
                     0, 0.105D, 0);
         }
     }
