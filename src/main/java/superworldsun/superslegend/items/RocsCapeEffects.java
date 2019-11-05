@@ -28,11 +28,23 @@ public class RocsCapeEffects extends ArmorItem {
     	
     	
     	
-        if (!world.isRemote){
-                boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.rocs_cape);
-                if(isChestplateOn) player.addPotionEffect(new EffectInstance(Effect.get(28), 10, 0, false, false));
-                }
-            }
+    	if (!world.isRemote){
+    		boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.rocs_cape);
+            if(isChestplateOn)
+            	{
+            	if(player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots)) 
+            	{
+            		player.removePotionEffect(Effect.get(28));
+            	}
+            	else
+            	{
+            		player.addPotionEffect(new EffectInstance(Effect.get(28), 2, 0, false, false));
+            	}
+                
+            	}
+    	}
+
+    }
         
 
 		    @Override
