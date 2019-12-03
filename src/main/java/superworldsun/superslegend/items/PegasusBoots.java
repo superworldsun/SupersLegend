@@ -45,7 +45,7 @@ public class PegasusBoots extends ArmorItem {
                 	}
                 	else if(player.onGround &&player.isSprinting()) 
                 	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(1), 4, 1, false, false));
+                		player.addPotionEffect(new EffectInstance(Effect.get(1), 8, 1, false, false));
                 		player.addExhaustion(0.04f);
                 	}
                 }
