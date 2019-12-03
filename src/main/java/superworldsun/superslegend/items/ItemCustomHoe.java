@@ -8,6 +8,6 @@ public class ItemCustomHoe extends HoeItem
 
 	public ItemCustomHoe(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder) 
 	{
-		super(tier, attackDamageIn, builder);
+		super(tier, attackDamageIn, attackSpeedIn, builder);
 	}
 }
