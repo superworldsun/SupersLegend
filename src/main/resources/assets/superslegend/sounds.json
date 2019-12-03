@@ -1,0 +1,9 @@
+{
+  "sound1": {
+    "category" : "player",
+    "sounds": [{
+        "name": "superslegend:jawa",
+        "stream": false
+      }
+    ]
+  }
