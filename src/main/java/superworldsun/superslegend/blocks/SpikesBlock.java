@@ -28,7 +28,7 @@ public class SpikesBlock extends Block
 	   }
 
 	   public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-		  entityIn.attackEntityFrom(DamageSource.CACTUS, 6.0F);
+		  entityIn.attackEntityFrom(DamageSource.generic, 6.0F);
 	   }
 
 	   public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
