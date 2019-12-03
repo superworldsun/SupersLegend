@@ -83,15 +83,28 @@ import superworldsun.superslegend.items.MagicMirror;
 import superworldsun.superslegend.items.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.MaskBlastmask;
 import superworldsun.superslegend.items.MaskBunnyhoodEffects;
+import superworldsun.superslegend.items.MaskCaptainshat;
+import superworldsun.superslegend.items.MaskCouplesmask;
 import superworldsun.superslegend.items.MaskDekumask;
 import superworldsun.superslegend.items.MaskDongerosmaskEffects;
 import superworldsun.superslegend.items.MaskFiercedeitysmask;
+import superworldsun.superslegend.items.MaskGarosmask;
 import superworldsun.superslegend.items.MaskGiantsmask;
+import superworldsun.superslegend.items.MaskGibdomask;
 import superworldsun.superslegend.items.MaskGoronmask;
+import superworldsun.superslegend.items.MaskGreatfairymask;
+import superworldsun.superslegend.items.MaskKafeismask;
+import superworldsun.superslegend.items.MaskKamarosmask;
 import superworldsun.superslegend.items.MaskKeatonmask;
 import superworldsun.superslegend.items.MaskMajorasmask;
+import superworldsun.superslegend.items.MaskMaskofTruth;
+import superworldsun.superslegend.items.MaskMaskofscents;
+import superworldsun.superslegend.items.MaskPostmanshat;
+import superworldsun.superslegend.items.MaskRomanismask;
 import superworldsun.superslegend.items.MaskStonemaskEffects;
+import superworldsun.superslegend.items.MaskTroupeleadersmask;
 import superworldsun.superslegend.items.MaskZoramask;
+import superworldsun.superslegend.items.MaskBremenmask;
 import superworldsun.superslegend.items.MoonPearl;
 import superworldsun.superslegend.items.NayrusLove;
 import superworldsun.superslegend.items.PegasusBoots;
@@ -307,15 +320,15 @@ public class SupersLegend
 			ItemList.red_rupee_pickaxe = new ItemCustomPickaxe(ToolMaterialList.red_rupee_pickaxe, 		(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_pickaxe")),
 			ItemList.orange_rupee_pickaxe = new ItemCustomPickaxe(ToolMaterialList.orange_rupee_pickaxe,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_pickaxe")),
 			
-			ItemList.rupee_axe = new ItemCustomAxe(ToolMaterialList.rupee_axe, 						(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_axe")),
-			ItemList.blue_rupee_axe = new ItemCustomAxe(ToolMaterialList.blue_rupee_axe, 			(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_axe")),
-			ItemList.red_rupee_axe = new ItemCustomAxe(ToolMaterialList.red_rupee_axe, 				(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_axe")),
-			ItemList.orange_rupee_axe = new ItemCustomAxe(ToolMaterialList.orange_rupee_axe, 		(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_axe")),
+			ItemList.rupee_axe = new ItemCustomAxe(ToolMaterialList.rupee_axe, 						(int) 0, -3.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_axe")),
+			ItemList.blue_rupee_axe = new ItemCustomAxe(ToolMaterialList.blue_rupee_axe, 			(int) 0, -3.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_axe")),
+			ItemList.red_rupee_axe = new ItemCustomAxe(ToolMaterialList.red_rupee_axe, 				(int) 0, -3.1f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_axe")),
+			ItemList.orange_rupee_axe = new ItemCustomAxe(ToolMaterialList.orange_rupee_axe, 		(int) 0, -3.1f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_axe")),
 			
-			ItemList.rupee_shovel = new ShovelItem(ToolMaterialList.rupee_shovel, 				(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_shovel")),
-			ItemList.blue_rupee_shovel = new ShovelItem(ToolMaterialList.blue_rupee_shovel, 		(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_shovel")),
-			ItemList.red_rupee_shovel = new ShovelItem(ToolMaterialList.red_rupee_shovel, 		(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_shovel")),
-			ItemList.orange_rupee_shovel = new ShovelItem(ToolMaterialList.orange_rupee_shovel,	(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_shovel")),
+			ItemList.rupee_shovel = new ShovelItem(ToolMaterialList.rupee_shovel, 				(int) 0, -2.8f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_shovel")),
+			ItemList.blue_rupee_shovel = new ShovelItem(ToolMaterialList.blue_rupee_shovel, 	(int) 0, -2.8f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_shovel")),
+			ItemList.red_rupee_shovel = new ShovelItem(ToolMaterialList.red_rupee_shovel, 		(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_shovel")),
+			ItemList.orange_rupee_shovel = new ShovelItem(ToolMaterialList.orange_rupee_shovel,	(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_shovel")),
 			
 			ItemList.rupee_hoe = new ItemCustomHoe(ToolMaterialList.rupee_hoe, 				(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_hoe")),
 			ItemList.blue_rupee_hoe = new ItemCustomHoe(ToolMaterialList.blue_rupee_hoe, 	(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_hoe")),
@@ -324,28 +337,28 @@ public class SupersLegend
 			
 		//Masks
 			ItemList.mask_clay = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("mask_clay")),
-			ItemList.mask_postmanshat = new ArmorItem(ArmourMaterialList.postmanshat, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_postmanshat"),
+			ItemList.mask_postmanshat = new MaskPostmanshat("mask_postmanshat", EquipmentSlotType.HEAD),
 			ItemList.mask_allnightmask = new MaskAllnightmaskEffects("mask_allnightmask", EquipmentSlotType.HEAD),
 			ItemList.mask_blastmask = new MaskBlastmask("mask_blastmask", EquipmentSlotType.HEAD),
 			ItemList.mask_stonemask = new MaskStonemaskEffects("mask_stonemask", EquipmentSlotType.HEAD),
-			ItemList.mask_bremenmask = new ArmorItem(ArmourMaterialList.bremenmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_bremenmask"),
-			ItemList.mask_greatfairymask = new ArmorItem(ArmourMaterialList.greatfairymask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_greatfairymask"),
+			ItemList.mask_bremenmask = new MaskBremenmask("mask_bremenmask", EquipmentSlotType.HEAD),
+			ItemList.mask_greatfairymask = new MaskGreatfairymask("mask_greatfairymask", EquipmentSlotType.HEAD),
 			ItemList.mask_dekumask = new MaskDekumask("mask_dekumask", EquipmentSlotType.HEAD),
 			ItemList.mask_keatonmask = new MaskKeatonmask("mask_keatonmask", EquipmentSlotType.HEAD),
 			ItemList.mask_bunnyhood = new MaskBunnyhoodEffects("mask_bunnyhood", EquipmentSlotType.HEAD),
 			ItemList.mask_dongerosmask = new MaskDongerosmaskEffects("mask_dongerosmask", EquipmentSlotType.HEAD),
-			ItemList.mask_maskofscents = new ArmorItem(ArmourMaterialList.maskofscents, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_maskofscents"),
+			ItemList.mask_maskofscents = new MaskMaskofscents("mask_maskofscents", EquipmentSlotType.HEAD),
 			ItemList.mask_goronmask = new MaskGoronmask("mask_goronmask", EquipmentSlotType.HEAD),
-			ItemList.mask_romanismask = new ArmorItem(ArmourMaterialList.romanismask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_romanismask"),
-			ItemList.mask_troupeleadersmask = new ArmorItem(ArmourMaterialList.troupeleadersmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_troupeleadersmask"),
-			ItemList.mask_kafeismask = new ArmorItem(ArmourMaterialList.kafeismask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_kafeismask"),
-			ItemList.mask_couplesmask = new ArmorItem(ArmourMaterialList.couplesmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_couplesmask"),
-			ItemList.mask_maskoftruth = new ArmorItem(ArmourMaterialList.maskoftruth, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_maskoftruth"),
+			ItemList.mask_romanismask = new MaskRomanismask("mask_romanismask", EquipmentSlotType.HEAD),
+			ItemList.mask_troupeleadersmask = new MaskTroupeleadersmask("mask_troupeleadersmask", EquipmentSlotType.HEAD),
+			ItemList.mask_kafeismask = new MaskKafeismask("mask_kafeismask", EquipmentSlotType.HEAD),
+			ItemList.mask_couplesmask = new MaskCouplesmask("mask_couplesmask", EquipmentSlotType.HEAD),
+			ItemList.mask_maskoftruth = new MaskMaskofTruth("mask_maskoftruth", EquipmentSlotType.HEAD),
 			ItemList.mask_zoramask = new MaskZoramask("mask_zoramask", EquipmentSlotType.HEAD),
-			ItemList.mask_kamarosmask = new ArmorItem(ArmourMaterialList.kamarosmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_kamarosmask"),
-			ItemList.mask_gibdomask = new ArmorItem(ArmourMaterialList.gibdomask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_gibdomask"),
-			ItemList.mask_garosmask = new ArmorItem(ArmourMaterialList.garosmask, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_garosmask"),
-			ItemList.mask_captainshat = new ArmorItem(ArmourMaterialList.captainshat, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("mask_captainshat"),
+			ItemList.mask_kamarosmask = new MaskKamarosmask("mask_kamarosmask", EquipmentSlotType.HEAD),
+			ItemList.mask_gibdomask = new MaskGibdomask("mask_gibdomask", EquipmentSlotType.HEAD),
+			ItemList.mask_garosmask = new MaskGarosmask("mask_garosmask", EquipmentSlotType.HEAD),
+			ItemList.mask_captainshat = new MaskCaptainshat("mask_captainshat", EquipmentSlotType.HEAD),
 			ItemList.mask_giantsmask = new MaskGiantsmask("mask_giantsmask", EquipmentSlotType.HEAD),
 			ItemList.mask_fiercedeitysmask = new MaskFiercedeitysmask("mask_fiercedeitysmask", EquipmentSlotType.HEAD),
 			ItemList.mask_majorasmask = new MaskMajorasmask("mask_majorasmask",EquipmentSlotType.HEAD),
