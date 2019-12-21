@@ -384,6 +384,11 @@ public class SupersLegend
 			ItemList.purple_cap = new ArmorItem(ArmourMaterialList.purple, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("purple_cap"),
 			ItemList.purple_tunic = new ArmorItem(ArmourMaterialList.purple, EquipmentSlotType.CHEST, new Item.Properties().group(supers_legend)).setRegistryName("purple_tunic"),
 			ItemList.purple_leggings = new ArmorItem(ArmourMaterialList.purple, EquipmentSlotType.LEGS, new Item.Properties().group(supers_legend)).setRegistryName("purple_leggings"),
+			
+			ItemList.dark_cap = new ArmorItem(ArmourMaterialList.dark, EquipmentSlotType.HEAD, new Item.Properties().group(supers_legend)).setRegistryName("dark_cap"),
+			ItemList.dark_tunic = new ArmorItem(ArmourMaterialList.dark, EquipmentSlotType.CHEST, new Item.Properties().group(supers_legend)).setRegistryName("dark_tunic"),
+			ItemList.dark_leggings = new ArmorItem(ArmourMaterialList.dark, EquipmentSlotType.LEGS, new Item.Properties().group(supers_legend)).setRegistryName("dark_leggings"),
+					
 			ItemList.pegasus_boots = new PegasusBoots("pegasus_boots",EquipmentSlotType.FEET)
 			);
 			Logger.info("Items registered.");		

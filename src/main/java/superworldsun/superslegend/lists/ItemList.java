@@ -157,6 +157,9 @@ public class ItemList
 		public static Item purple_cap;
 		public static Item purple_tunic;
 		public static Item purple_leggings;
+		public static Item dark_cap;
+		public static Item dark_tunic;
+		public static Item dark_leggings;
 		public static RocsCapeEffects rocs_cape;
 		public static Item pegasus_boots;
 }

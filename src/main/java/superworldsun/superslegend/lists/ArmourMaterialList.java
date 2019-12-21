@@ -15,6 +15,7 @@ public enum ArmourMaterialList implements IArmorMaterial
 	zora("zora", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	goron("goron", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	purple("purple", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
+	dark("dark", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	flippers("flippers", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	rocscape("rocscape", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	hoverboots("hoverboots", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
