@@ -149,6 +149,10 @@ public class ItemList
 		public static ArmorZoraEffects zora_cap;
 		public static ArmorZoraEffects zora_tunic;
 		public static ArmorZoraEffects zora_leggings;
+		public static Item zora_armor_cap;
+		public static Item zora_armor_tunic;
+		public static Item zora_armor_leggings;
+		public static Item zora_armor_flippers;
 		public static IronBoots iron_boots;
 		public static ArmorGoronEffects goron_cap;
 		public static ArmorGoronEffects goron_tunic;

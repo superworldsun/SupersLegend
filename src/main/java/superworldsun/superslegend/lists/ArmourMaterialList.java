@@ -10,17 +10,18 @@ import superworldsun.superslegend.SupersLegend;
 
 public enum ArmourMaterialList implements IArmorMaterial
 {
-	//armor
-	kokiri("kokiri", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	zora("zora", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	goron("goron", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	purple("purple", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	dark("dark", 0, new int[] {1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	flippers("flippers", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	rocscape("rocscape", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	hoverboots("hoverboots", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	ironboots("ironboots", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	pegasusboots("pegasusboots", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
+	//armor									helm, chest, legs, boots
+	kokiri		("kokiri", 0, new int[] 		{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
+	zora		("zora", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
+	goron		("goron", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
+	purple		("purple", 0, new int[] 		{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
+	dark		("dark", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
+	zoraarmor	("zoraarmor", 0, new int[] 		{1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
+	flippers	("flippers", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
+	rocscape	("rocscape", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
+	hoverboots	("hoverboots", 0, new int[] 	{0, 0, 0, 1}, 0, null, "item.armor.equip_leather", 0.0f),
+	ironboots	("ironboots", 0, new int[] 		{0, 0, 0, 2}, 0, null, "item.armor.equip_leather", 0.0f),
+	pegasusboots("pegasusboots", 0, new int[] 	{0, 0, 0, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	//masks
 	postmanshat("postmanshat", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	allnightmask("allnightmask", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
