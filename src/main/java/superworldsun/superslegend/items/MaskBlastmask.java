@@ -13,7 +13,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
 
-public class MaskBlastmask extends ArmorItem {
+public class MaskBlastmask extends MaskArmor {
     public MaskBlastmask(String name, EquipmentSlotType slot) 
 
     {
