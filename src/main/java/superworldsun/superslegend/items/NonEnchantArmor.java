@@ -5,9 +5,9 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 
-public class MaskArmor extends ArmorItem {
+public class NonEnchantArmor extends ArmorItem {
 
-	public MaskArmor(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
+	public NonEnchantArmor(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
 		super(materialIn, slot, builder);
 		// TODO Auto-generated constructor stub
 	}
