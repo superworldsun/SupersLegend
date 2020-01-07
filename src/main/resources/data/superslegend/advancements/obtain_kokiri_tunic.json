@@ -6,7 +6,7 @@
             "bold": false
         },
         "description": {
-            "text": "obtain the kokiri tunic",
+            "text": "Obtain the kokiri tunic",
             "italic": false
         },
         "icon": {
@@ -40,6 +40,18 @@
 			"superslegend:purple_tunic_recipe",
 			"superslegend:purple_cap_recipe",
             "superslegend:purple_leggings_recipe",
+			"superslegend:dark_cap_recipe",
+			"superslegend:dark_tunic_recipe",
+			"superslegend:dark_leggings_recipe",
+			"superslegend:dark_boots_recipe",
+			"superslegend:flamebreaker_helmet_recipe",
+			"superslegend:flamebreaker_tunic_recipe",
+			"superslegend:flamebreaker_leggings_recipe",
+			"superslegend:flamebreaker_boots_recipe",
+			"superslegend:zora_armor_cap_recipe",
+			"superslegend:zora_armor_tunic_recipe",
+			"superslegend:zora_armor_leggings_recipe",
+			"superslegend:zora_armor_flippers_recipe",
 			"superslegend:iron_boots_recipe",
 			"superslegend:hover_boots_recipe",
 			"superslegend:pegasus_boots_recipe"
