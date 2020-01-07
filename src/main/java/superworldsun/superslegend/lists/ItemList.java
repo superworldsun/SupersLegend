@@ -157,6 +157,10 @@ public class ItemList
 		public static ArmorGoronEffects goron_cap;
 		public static ArmorGoronEffects goron_tunic;
 		public static ArmorGoronEffects goron_leggings;
+		public static Item flamebreaker_helmet;
+		public static Item flamebreaker_tunic;
+		public static Item flamebreaker_leggings;
+		public static Item flamebreaker_boots;
 		public static HoverBoots hover_boots;
 		public static Item purple_cap;
 		public static Item purple_tunic;
@@ -164,6 +168,7 @@ public class ItemList
 		public static Item dark_cap;
 		public static Item dark_tunic;
 		public static Item dark_leggings;
+		public static Item dark_boots;
 		public static RocsCapeEffects rocs_cape;
 		public static Item pegasus_boots;
 }

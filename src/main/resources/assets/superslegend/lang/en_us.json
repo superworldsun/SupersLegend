@@ -91,7 +91,6 @@
 	"item.superslegend.mask_postmanshat": "Postman's Hat",
 		
 	"item.superslegend.mask_allnightmask": "All-Night Mask",
-	"superslegend.all_night_mask.description": "Cant sleep huh?",
 	
 	"item.superslegend.mask_blastmask": "Blast Mask",
 	
@@ -102,10 +101,8 @@
 	"item.superslegend.mask_bremenmask": "Bremen Mask",
 	
 	"item.superslegend.mask_bunnyhood": "Bunny Hood",
-	"superslegend.mask_bunnyhood.description": "I am Speed",
 	
 	"item.superslegend.mask_dongerosmask": "Don Gero's Mask",
-	"superslegend.mask_dongerosmask.description": "This Hood is Hoppin!",
 	
 	"item.superslegend.mask_maskofscents": "Mask of Scents",
 	"item.superslegend.mask_goronmask": "Goron Mask",
@@ -147,6 +144,12 @@
 	"item.superslegend.goron_leggings": "Goron Leggings",
 	"item.superslegend.hover_boots": "Hover Boots",
 	
+	
+	"item.superslegend.flamebreaker_helmet": "Flamebreaker Helmet",
+	"item.superslegend.flamebreaker_tunic": "Flamebreaker Tunic",
+	"item.superslegend.flamebreaker_leggings": "Flamebreaker Leggings",
+	"item.superslegend.flamebreaker_boots": "Flamebreaker Boots",
+	
 	"item.superslegend.purple_cap": "Purple Cap",
 	"item.superslegend.purple_tunic": "Purple Tunic",
 	"item.superslegend.purple_leggings": "Purple Leggings",
@@ -154,6 +157,7 @@
 	"item.superslegend.dark_cap": "Dark Cap",
 	"item.superslegend.dark_tunic": "Dark Tunic",
 	"item.superslegend.dark_leggings": "Dark Leggings",
+	"item.superslegend.dark_boots": "Dark Boots",
 	
 	"item.superslegend.rocs_cape": "Roc's Cape",
 	"item.superslegend.pegasus_boots": "Pegasus Boots"
