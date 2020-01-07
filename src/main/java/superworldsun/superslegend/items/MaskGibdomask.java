@@ -13,7 +13,7 @@ import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
-public class MaskGibdomask extends ArmorItem {
+public class MaskGibdomask extends NonEnchantArmor {
     public MaskGibdomask(String name, EquipmentSlotType slot) 
     
     {
@@ -26,4 +26,6 @@ public class MaskGibdomask extends ArmorItem {
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.WHITE + "A mask to die for"));
 	}
+    
+
 }

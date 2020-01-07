@@ -16,7 +16,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
-public class MaskStonemaskEffects extends ArmorItem {
+public class MaskStonemaskEffects extends NonEnchantArmor {
     public MaskStonemaskEffects(String name, EquipmentSlotType slot) 
     
     {

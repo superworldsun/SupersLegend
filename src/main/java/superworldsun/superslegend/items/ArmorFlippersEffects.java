@@ -14,7 +14,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 import net.minecraft.util.text.ITextComponent;
 
-public class ArmorFlippersEffects extends ArmorItem {
+public class ArmorFlippersEffects extends NonEnchantArmor {
     public ArmorFlippersEffects(String name, EquipmentSlotType slot) 
     
     {

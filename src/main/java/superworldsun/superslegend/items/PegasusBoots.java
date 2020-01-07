@@ -14,7 +14,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 import net.minecraft.util.text.ITextComponent;
 
-public class PegasusBoots extends ArmorItem {
+public class PegasusBoots extends NonEnchantArmor {
     public PegasusBoots(String name, EquipmentSlotType slot) 
     
     {

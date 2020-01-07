@@ -14,7 +14,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
 
-public class MaskGiantsmask extends ArmorItem {
+public class MaskGiantsmask extends NonEnchantArmor {
     public MaskGiantsmask(String name, EquipmentSlotType slot) 
 
     {

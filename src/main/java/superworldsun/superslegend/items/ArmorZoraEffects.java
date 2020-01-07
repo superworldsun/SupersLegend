@@ -15,7 +15,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
-public class ArmorZoraEffects extends ArmorItem {
+public class ArmorZoraEffects extends NonEnchantArmor {
     public ArmorZoraEffects(String name, EquipmentSlotType slot) 
     
     {

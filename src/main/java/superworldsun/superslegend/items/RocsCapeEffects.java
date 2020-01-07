@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
-public class RocsCapeEffects extends ArmorItem {
+public class RocsCapeEffects extends NonEnchantArmor {
     public RocsCapeEffects(String name, EquipmentSlotType slot) 
     
     {

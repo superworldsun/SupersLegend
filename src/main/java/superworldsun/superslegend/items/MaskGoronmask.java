@@ -13,7 +13,7 @@ import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
-public class MaskGoronmask extends ArmorItem {
+public class MaskGoronmask extends NonEnchantArmor {
     public MaskGoronmask(String name, EquipmentSlotType slot) 
     
     {

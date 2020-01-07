@@ -15,7 +15,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
-public class ArmorGoronEffects extends ArmorItem {
+public class ArmorGoronEffects extends NonEnchantArmor {
     public ArmorGoronEffects(String name, EquipmentSlotType slot) 
     
     {

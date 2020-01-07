@@ -16,7 +16,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
-public class MaskDekumask extends ArmorItem {
+public class MaskDekumask extends NonEnchantArmor {
     public MaskDekumask(String name, EquipmentSlotType slot) 
     
     {

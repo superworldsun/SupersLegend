@@ -15,7 +15,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
-public class MaskFiercedeitysmask extends ArmorItem {
+public class MaskFiercedeitysmask extends NonEnchantArmor {
     public MaskFiercedeitysmask(String name, EquipmentSlotType slot) 
     
     {

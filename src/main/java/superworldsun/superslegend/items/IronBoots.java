@@ -15,7 +15,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
-public class IronBoots extends ArmorItem {
+public class IronBoots extends NonEnchantArmor {
     public IronBoots(String name, EquipmentSlotType slot) 
     
     {

@@ -15,7 +15,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
-public class MaskDongerosmaskEffects extends ArmorItem {
+public class MaskDongerosmaskEffects extends NonEnchantArmor {
     public MaskDongerosmaskEffects(String name, EquipmentSlotType slot) 
     
     {

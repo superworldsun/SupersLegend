@@ -13,7 +13,7 @@ import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
-public class MaskKamarosmask extends ArmorItem {
+public class MaskKamarosmask extends NonEnchantArmor {
     public MaskKamarosmask(String name, EquipmentSlotType slot) 
     
     {

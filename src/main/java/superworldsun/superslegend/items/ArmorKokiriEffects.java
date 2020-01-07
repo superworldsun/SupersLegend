@@ -10,7 +10,7 @@ import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import net.minecraft.util.text.ITextComponent;
 
-public class ArmorKokiriEffects extends ArmorItem {
+public class ArmorKokiriEffects extends NonEnchantArmor {
     public ArmorKokiriEffects(String name, EquipmentSlotType slot) 
     
     {

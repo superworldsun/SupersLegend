@@ -16,7 +16,7 @@ import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
-public class MaskPostmanshat extends ArmorItem {
+public class MaskPostmanshat extends NonEnchantArmor {
     public MaskPostmanshat(String name, EquipmentSlotType slot) 
     
     {
