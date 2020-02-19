@@ -28,6 +28,16 @@ public class ItemList
 		public static Item farores_wind;
 		public static Item dins_fire;
 		public static Item nayrus_love;
+		public static Item deku_leaf;
+		public static Item red_jelly;
+		public static Item green_jelly;
+		public static Item blue_jelly;
+		public static Item red_potion_mix;
+		public static Item green_potion_mix;
+		public static Item blue_potion_mix;
+		public static Item red_potion;
+		public static Item green_potion;
+		public static Item blue_potion;
 		//public static Item magnetic_glove;
 		public static Item triforce;
 		public static Item triforce_power;
