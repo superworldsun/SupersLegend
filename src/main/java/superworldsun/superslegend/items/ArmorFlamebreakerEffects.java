@@ -27,6 +27,7 @@ public class ArmorFlamebreakerEffects extends NonEnchantArmor {
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.RED + "Armor of the Gorons"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Wearing full set grants fire restiance"));
 	}
 
     @Override
