@@ -37,22 +37,22 @@ public class IronBoots extends NonEnchantArmor {
             boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.iron_boots);
             if(isBootsOn)
             	{
-            	if(player.isInWater() && player.onGround) 
+            	if(player.isInWater() && player.onGround && !player.isSprinting()) 
             	{
-            		player.removePotionEffect(Effect.get(2));
-            		player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 3, false, false));
+            		player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 0, false, false));
+            		player.addPotionEffect(new EffectInstance(Effect.get(30), 3, 0, false, false));
             		
             	}
             	else if (player.isInWater())
             	{
-            		player.removePotionEffect(Effect.get(2));
-            		player.removePotionEffect(Effect.get(1));
+            		player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 1, false, false));
 
             	}
             	else
             	{
             		
             		player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 1, false, false));
+            		player.removePotionEffect(Effect.get(30));
             	}
                 
             	}
@@ -60,28 +60,7 @@ public class IronBoots extends NonEnchantArmor {
 
     }
     
-    /*public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
-	{		
-		if(entity instanceof PlayerEntity && !world.isRemote)
-		{
-			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
-			if(!world.isRemote)
-			{
-				if(stack == equipped)
-		        {
-					
-					
-						stack.isEnchanted();
-					}
-					else
-					{
-						stack.addEnchantment(Enchantment.getEnchantmentByID(8), 3);
-					}
-				
-			}
-		}
-	}*/
+    //player.getMotion().getX() != 0 && player.getMotion().getY() != 0
     
     //@Override
    // public boolean hasEffect(ItemStack stack) {
