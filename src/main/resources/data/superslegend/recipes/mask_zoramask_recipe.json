@@ -1,6 +1,7 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
+        "F#F",
         "#G#",
         "###"
     ],
@@ -10,8 +11,11 @@
         },
         "G": {
             "item": "superslegend:mask_clay"
-        }
-    },
+        },
+        "F": {
+            "item": "superslegend:zoras_flippers"
+    }
+},
     "result": {
         "item": "superslegend:mask_zoramask",
         "count": 1
