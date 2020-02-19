@@ -2,7 +2,9 @@ package superworldsun.superslegend.items;
 
 import java.util.List;
 
+//import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
+//import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -15,9 +17,10 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
+//import superworldsun.superslegend.models.armor.ModelBunnyHood;
 
 
-public class MaskBunnyhoodEffects extends ArmorItem {
+public class MaskBunnyhoodEffects extends NonEnchantArmor {
     public MaskBunnyhoodEffects(String name, EquipmentSlotType slot) 
     
     {
@@ -25,6 +28,21 @@ public class MaskBunnyhoodEffects extends ArmorItem {
         setRegistryName(SupersLegend.modid, name);
     }
 
+/*    @SuppressWarnings("unchecked")
+	@Override
+    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+    	ModelBunnyHood model = new ModelBunnyHood(toughness);
+
+        model.isChild = _default.isChild;
+        model.isSneak = _default.isSneak;
+        model.isSitting = _default.isSitting;
+        model.rightArmPose = _default.rightArmPose;
+        model.leftArmPose = _default.leftArmPose;
+
+        return (A) model;
+}*/
+
+    
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
@@ -50,5 +68,6 @@ public class MaskBunnyhoodEffects extends ArmorItem {
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "I am Speed"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants a boost of speed"));
 	}
 }
