@@ -36,10 +36,11 @@ public class RocsCapeEffects extends NonEnchantArmor {
             	{
             		player.removePotionEffect(Effect.get(28));
             	}
-            	else
-            	{
-            		player.addPotionEffect(new EffectInstance(Effect.get(28), 2, 0, false, false));
-            	}
+            	else if(player.onGround)
+		        {
+            		player.addPotionEffect(new EffectInstance(Effect.get(28), 24, 0, false, false));
+					player.addPotionEffect(new EffectInstance(Effect.get(8), 1, 3, false, false));
+		        }
                 
             	}
     	}
@@ -51,6 +52,6 @@ public class RocsCapeEffects extends NonEnchantArmor {
 			public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 			{
 				super.addInformation(stack, world, list, flag);				
-				list.add(new StringTextComponent(TextFormatting.WHITE + "Wearing this will slow your decent"));
+				list.add(new StringTextComponent(TextFormatting.WHITE + "Wearing this will grant better ground mobility"));
 			}   
 } 
