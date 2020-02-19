@@ -1,6 +1,5 @@
 package superworldsun.superslegend.items;
 
-import assets.superslegend.models.armor.ModelMajorasMask;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -16,6 +15,7 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
+import superworldsun.superslegend.models.armor.ModelMajorasMask;
 
 
 public class MaskMajorasmask extends NonEnchantArmor {
