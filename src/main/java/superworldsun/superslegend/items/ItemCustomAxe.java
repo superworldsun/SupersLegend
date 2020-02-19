@@ -15,7 +15,7 @@ public class ItemCustomAxe extends AxeItem
 	@Override
     public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
         // TODO Auto-generated method stub
-        return !super.isBookEnchantable(stack, book);
-	}
+		return false;
+		}
 	
 }
