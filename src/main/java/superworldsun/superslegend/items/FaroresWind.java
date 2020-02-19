@@ -65,7 +65,7 @@ public class FaroresWind extends Item
 	 {
 		 ItemStack stack = player.getHeldItem(hand);
 		  
-		 if(getPosition(stack) != null && !player.isSneaking())
+		 if(getPosition(stack) != null && !player.isSneaking() && player.getFoodStats().getFoodLevel()>= 4)
 	     {
 			 Random rand = player.world.rand;
 		        for (int i = 0; i < 45; i++)
@@ -77,7 +77,7 @@ public class FaroresWind extends Item
 		                    0, 0.105D, 0);
 		        }
 			 
-			 player.addExhaustion(24);
+			 player.addExhaustion(18);
 			 teleport(player, world, stack);
 			 world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 	     }
@@ -178,11 +178,11 @@ public class FaroresWind extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Allows player to teleport to saved location on right-click"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Allows you to teleport to a saved location on Right-click"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Does not work across dimensions"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
-		list.add(new StringTextComponent(TextFormatting.WHITE + "Set: " + TextFormatting.AQUA + "point at a block and sneak + right-click"));
-		list.add(new StringTextComponent(TextFormatting.WHITE + "Clear: " + TextFormatting.AQUA + "point in the air and sneak + right-click"));
+		list.add(new StringTextComponent(TextFormatting.WHITE + "Set: " + TextFormatting.AQUA + "Point at a block and sneak + Right-click"));
+		list.add(new StringTextComponent(TextFormatting.WHITE + "Clear: " + TextFormatting.AQUA + "Point in the air and sneak + Right-click"));
 		
 		 if(getPosition(stack) != null)
 		 {
