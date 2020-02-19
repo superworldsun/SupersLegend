@@ -39,5 +39,6 @@ public class MaskDongerosmaskEffects extends NonEnchantArmor {
  	{
  		super.addInformation(stack, world, list, flag);				
  		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "This Hood is Hoppin!"));
+ 		list.add(new StringTextComponent(TextFormatting.GRAY + "Grants a jump boost"));
  	}
 }
