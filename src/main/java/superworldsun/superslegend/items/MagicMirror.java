@@ -111,6 +111,7 @@ public class MagicMirror extends Item {
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.AQUA + "When lost, use this mirror to return home"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-click to return to bed"));
 	}   
 
 }
