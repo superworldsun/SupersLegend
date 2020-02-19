@@ -28,7 +28,7 @@ public class MaskDekumask extends NonEnchantArmor {
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "The face of a Deku"));
-		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "You are unable to be poisoned while worn"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Your wooden skin is unlikely to be poisoned"));
 	}
     
     @Override
