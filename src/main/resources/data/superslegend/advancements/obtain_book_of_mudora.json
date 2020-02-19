@@ -55,7 +55,15 @@
             "superslegend:dins_fire_recipe",
 			"superslegend:nayrus_love_recipe",
             "superslegend:magnetic_glove_recipe",
-			"superslegend:zoras_flippers_recipe"
+			"superslegend:zoras_flippers_recipe",
+			"superslegend:deku_leaf_recipe",
+			"superslegend:red_jelly_recipe",
+            "superslegend:green_jelly_recipe",
+			"superslegend:blue_jelly_recipe",
+			"superslegend:red_potion_mix_recipe",
+            "superslegend:green_potion_mix_recipe",
+			"superslegend:blue_potion_mix_recipe"
+			
 
         ]
     },
