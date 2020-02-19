@@ -1,4 +1,4 @@
-package assets.superslegend.models.armor;
+package superworldsun.superslegend.models.armor;
 
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
