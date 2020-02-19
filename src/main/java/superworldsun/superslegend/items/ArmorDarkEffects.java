@@ -27,6 +27,7 @@ public class ArmorDarkEffects extends NonEnchantArmor {
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.BLACK + "Armor of darkness"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Grants a boost of speed during night"));
 	}
 
     @Override
