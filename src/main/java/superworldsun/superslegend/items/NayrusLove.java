@@ -7,6 +7,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+//import net.minecraft.item.UseAction;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -23,6 +24,7 @@ import net.minecraft.world.World;
 
 public class NayrusLove extends Item
 {
+	//private static int duration = 25;
 	
 	public NayrusLove(Properties properties)
 	{
@@ -31,10 +33,11 @@ public class NayrusLove extends Item
 	
 	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
 	 {
-		 @SuppressWarnings("unused")
 		ItemStack stack = player.getHeldItem(hand);
+		 //player.setActiveHand(hand);
+	        
 		  
-		 if (player.isAlive()) 
+		 if (player.isAlive() && player.getFoodStats().getFoodLevel()>= 9) 
 		 {
 	            @SuppressWarnings("unused")
 				ActionResult<ItemStack> success = new ActionResult<>(ActionResultType.SUCCESS, player.getHeldItem(hand));
@@ -43,7 +46,7 @@ public class NayrusLove extends Item
 	            BlockPos currentPos = player.getPosition();
 				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 1f, 1f);
 				 
-	            player.addExhaustion(10f);
+	            player.addExhaustion(100f);
 	            
 	            Random rand = player.world.rand;
 		        for (int i = 0; i < 45; i++)
@@ -59,9 +62,22 @@ public class NayrusLove extends Item
 				player.addPotionEffect(new EffectInstance(Effect.get(24), 300, 0, true, true));
 				player.addPotionEffect(new EffectInstance(Effect.get(11), 300, 99, false, false));
 	      }
-		 
-		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+		 return new ActionResult<ItemStack>(ActionResultType.SUCCESS, stack);
+		 //return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
 	 }
+	
+	/*@Override
+    public UseAction getUseAction (ItemStack stack)
+    {
+        return UseAction.BOW;
+    }
+
+    @Override
+    public int getUseDuration(ItemStack stack)
+    {
+        return duration;
+    }*/
+	
 
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
