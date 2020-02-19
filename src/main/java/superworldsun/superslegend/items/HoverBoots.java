@@ -43,7 +43,7 @@ public class HoverBoots extends ArmorItem {
         if (!world.isRemote){
                 boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots);
 
-                if(isBootsOn&&player.isSneaking())
+                if(isBootsOn&&player.isSneaking() && player.getFoodStats().getFoodLevel()!= 0)
                 {
                 	player.removePotionEffect(Effect.get(28));
                 	player.addExhaustion(0.1f);
