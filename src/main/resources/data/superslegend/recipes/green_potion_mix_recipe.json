@@ -1,0 +1,18 @@
+{
+    "type": "crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:green_jelly"
+        },
+        {
+            "item": "minecraft:redstone"
+        },
+        {
+            "item": "minecraft:potion"
+        }
+    ],
+    "result": {
+        "item": "superslegend:green_potion_mix",
+        "count": 1
+    }
+}

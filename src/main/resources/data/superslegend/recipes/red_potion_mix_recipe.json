@@ -1,0 +1,22 @@
+{
+    "type": "crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:red_jelly"
+        },
+        {
+            "item": "minecraft:glistering_melon_slice"
+        },
+        {
+            "item": "minecraft:nether_wart"
+        },
+		{
+            "item": "minecraft:potion",
+			"data":0
+        }
+    ],
+    "result": {
+        "item": "superslegend:red_potion_mix",
+        "count": 1
+    }
+}

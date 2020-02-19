@@ -1,0 +1,24 @@
+{
+    "type": "crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:blue_jelly"
+        },
+        {
+            "item": "minecraft:glistering_melon_slice"
+        },
+        {
+            "item": "minecraft:nether_wart"
+        },
+        {
+            "item": "minecraft:redstone"
+        },
+        {
+            "item": "minecraft:potion"
+        }
+    ],
+    "result": {
+        "item": "superslegend:blue_potion_mix",
+        "count": 1
+    }
+}

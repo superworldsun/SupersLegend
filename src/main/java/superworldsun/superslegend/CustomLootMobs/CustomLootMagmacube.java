@@ -23,7 +23,10 @@ public class CustomLootMagmacube
             
             if(random.nextInt(90) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
-            
+            if(random.nextInt(20) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.red_jelly,1));
+            if(random.nextInt(60) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_jelly,1));
 	        }
 	    }
 	}

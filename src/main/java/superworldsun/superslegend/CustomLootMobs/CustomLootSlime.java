@@ -20,6 +20,11 @@ public class CustomLootSlime
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
             if(random.nextInt(11) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+            if(random.nextInt(14) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.green_jelly,1));
+            
+            if(random.nextInt(65) == 0)
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_jelly,1));
             
 	        }
 	    }

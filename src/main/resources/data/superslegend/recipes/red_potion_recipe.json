@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "superslegend:red_potion_mix"
+    },
+    "result": "superslegend:red_potion",
+    "experience": 0.5,
+    "cookingtime": 600
+}
