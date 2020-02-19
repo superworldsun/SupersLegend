@@ -28,6 +28,7 @@ public class MaskStonemaskEffects extends NonEnchantArmor {
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GRAY + "You wont be noticed, more than usual"));
+		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "Grants invisibility"));
 	}
     
     @Override
