@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.IForgeRegistry;
+//import net.minecraftforge.registries.IForgeRegistry;
 import superworldsun.superslegend.CustomLootMobs.CustomLootBlaze;
 import superworldsun.superslegend.CustomLootMobs.CustomLootCavespider;
 import superworldsun.superslegend.CustomLootMobs.CustomLootCreeper;
@@ -60,7 +60,7 @@ import superworldsun.superslegend.blocks.PotBlock;
 import superworldsun.superslegend.blocks.SpikesBlock;
 import superworldsun.superslegend.blocks.TorchTowerBlockBottom;
 import superworldsun.superslegend.blocks.TorchTowerBlockTop;
-import superworldsun.superslegend.fluids.FluidLiquid;
+//import superworldsun.superslegend.fluids.FluidLiquid;
 import superworldsun.superslegend.items.ArmorDarkEffects;
 import superworldsun.superslegend.items.ArmorFlamebreakerEffects;
 import superworldsun.superslegend.items.ArmorFlippersEffects;
@@ -69,9 +69,14 @@ import superworldsun.superslegend.items.ArmorKokiriEffects;
 import superworldsun.superslegend.items.ArmorPurpleEffects;
 import superworldsun.superslegend.items.ArmorZoraArmorEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
+import superworldsun.superslegend.items.BluePotion;
+import superworldsun.superslegend.items.BluePotionMix;
+import superworldsun.superslegend.items.DekuLeaf;
 import superworldsun.superslegend.items.DinsFire;
 import superworldsun.superslegend.items.FaroresWind;
 import superworldsun.superslegend.items.GoldenScale;
+import superworldsun.superslegend.items.GreenPotion;
+import superworldsun.superslegend.items.GreenPotionMix;
 import superworldsun.superslegend.items.HerosSecretStash;
 import superworldsun.superslegend.items.HoverBoots;
 import superworldsun.superslegend.items.IronBoots;
@@ -111,6 +116,8 @@ import superworldsun.superslegend.items.MaskBremenmask;
 import superworldsun.superslegend.items.MoonPearl;
 import superworldsun.superslegend.items.NayrusLove;
 import superworldsun.superslegend.items.PegasusBoots;
+import superworldsun.superslegend.items.RedPotion;
+import superworldsun.superslegend.items.RedPotionMix;
 import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.RocsFeather;
 import superworldsun.superslegend.items.SilverScale;
@@ -306,6 +313,16 @@ public class SupersLegend
 			ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
 			ItemList.dins_fire = new DinsFire(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
 			ItemList.nayrus_love = new NayrusLove(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("nayrus_love")),
+			ItemList.deku_leaf = new DekuLeaf(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("deku_leaf")),
+			ItemList.red_jelly = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("red_jelly")),
+			ItemList.green_jelly = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("green_jelly")),
+			ItemList.blue_jelly = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("blue_jelly")),
+			ItemList.red_potion_mix = new RedPotionMix(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("red_potion_mix")),
+			ItemList.green_potion_mix = new GreenPotionMix(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("green_potion_mix")),
+			ItemList.blue_potion_mix = new BluePotionMix(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("blue_potion_mix")),
+			ItemList.red_potion = new RedPotion(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("red_potion")),
+			ItemList.green_potion = new GreenPotion(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("green_potion")),
+			ItemList.blue_potion = new BluePotion(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("blue_potion")),
 			//ItemList.magnetic_glove = new MagneticGlove(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magnetic_glove")),
 			ItemList.triforce = new Triforce(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce")),
 			ItemList.triforce_power = new TriforcePower(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_power")),
@@ -443,9 +460,9 @@ public class SupersLegend
 		
 		 public void onFluidRegistry(final RegistryEvent.Register<Fluid> event) 
 		 {
-		        IForgeRegistry<Fluid> registry = event.getRegistry();
+		        //IForgeRegistry<Fluid> registry = event.getRegistry();
 
-		        FluidLiquid.register(registry);
+		        //FluidLiquid.register(registry);
 		 }
 	}
 }
