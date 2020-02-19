@@ -29,9 +29,10 @@ public class RocsFeather extends Item
 			ItemStack equipped = player.getHeldItemMainhand();
 			if(!world.isRemote)
 			{
-				if(stack == equipped)
+				if(stack == equipped && player.onGround)
 		        {
-					player.addPotionEffect(new EffectInstance(Effect.get(28), 2, 0, false, false));
+					player.addPotionEffect(new EffectInstance(Effect.get(28), 24, 0, false, false));
+					player.addPotionEffect(new EffectInstance(Effect.get(8), 1, 3, false, false));
 		        }
 			}	
 
@@ -41,6 +42,6 @@ public class RocsFeather extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.WHITE + "Holding this will slow your decent"));
+		list.add(new StringTextComponent(TextFormatting.WHITE + "Holding this will grant better ground mobility"));
 	}   
 }
