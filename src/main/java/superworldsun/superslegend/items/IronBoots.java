@@ -27,6 +27,7 @@ public class IronBoots extends NonEnchantArmor {
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "Sink or Sink"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Allows underwater ground movement"));
 		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "[WIP]"));
 	}
     
