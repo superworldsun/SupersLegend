@@ -2,6 +2,7 @@ package superworldsun.superslegend.CustomLootMobs;
 
 import java.util.Random;
 
+import net.minecraft.entity.monster.MagmaCubeEntity;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -15,7 +16,7 @@ public class CustomLootSlime
 
         Random random = new Random();
 
-        if(event.getEntityLiving() instanceof SlimeEntity) {
+        if(event.getEntityLiving() instanceof SlimeEntity && !(event.getEntityLiving() instanceof MagmaCubeEntity)) {
             if(random.nextInt(9) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
             if(random.nextInt(11) == 0)
