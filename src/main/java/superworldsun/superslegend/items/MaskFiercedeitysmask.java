@@ -27,6 +27,8 @@ public class MaskFiercedeitysmask extends NonEnchantArmor {
  	{
  		super.addInformation(stack, world, list, flag);				
  		list.add(new StringTextComponent(TextFormatting.RED + "Contains a dark, godlike power.."));
+ 		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants Strength and removes some negative effects"));
+ 		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses some stamina"));
  	}
 
     @Override
@@ -37,11 +39,17 @@ public class MaskFiercedeitysmask extends NonEnchantArmor {
     	
         if (!world.isRemote){
                 boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_fiercedeitysmask);
-                if(isHelmeton)
+                if(isHelmeton && player.getFoodStats().getFoodLevel()!= 0)
             	{
                 	player.addExhaustion(0.0175f);
             		player.addPotionEffect(new EffectInstance(Effect.get(5), 10, 1, false, false));
             		player.addPotionEffect(new EffectInstance(Effect.get(8), 10, 0, false, false));
+            		player.addPotionEffect(new EffectInstance(Effect.get(26), 10, 0, false, false));
+            		player.removePotionEffect(Effect.get(2));
+            		player.removePotionEffect(Effect.get(9));
+            		player.removePotionEffect(Effect.get(18));
+            		player.removePotionEffect(Effect.get(27));
+            		player.removePotionEffect(Effect.get(31));
             	}
             }
     }
