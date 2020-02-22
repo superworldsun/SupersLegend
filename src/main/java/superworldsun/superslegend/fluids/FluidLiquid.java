@@ -1,6 +1,6 @@
 package superworldsun.superslegend.fluids;
 
-import net.minecraft.util.ResourceLocation;
+/*import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -16,4 +16,4 @@ public class FluidLiquid extends Fluid
 	{	
 
 	}
-}
+}*/

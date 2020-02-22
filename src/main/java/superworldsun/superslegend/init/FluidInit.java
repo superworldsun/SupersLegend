@@ -1,7 +1,7 @@
 package superworldsun.superslegend.init;
 
 
-import superworldsun.superslegend.fluids.FluidLiquid;
+/*import superworldsun.superslegend.fluids.FluidLiquid;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 
@@ -19,4 +19,4 @@ public class FluidInit
 	{
 
 	}
-}
+}*/
