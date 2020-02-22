@@ -11,8 +11,7 @@
             "item": "minecraft:nether_wart"
         },
 		{
-            "item": "minecraft:potion",
-			"data":0
+            "type":"forge:nbt","item":"minecraft:potion","count":1,"nbt":"{Potion:\"minecraft:water\"}"
         }
     ],
     "result": {
