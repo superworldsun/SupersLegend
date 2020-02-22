@@ -1,6 +1,6 @@
 package superworldsun.superslegend.items;
 
-import java.util.List;
+/*import java.util.List;
 
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -153,4 +153,4 @@ public class MagneticGlove extends Item
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to toggle on/off, sneak + Right-click to cycle ranges"));
 	}   
 
-}
+}*/
