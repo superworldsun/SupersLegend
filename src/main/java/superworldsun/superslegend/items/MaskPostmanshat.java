@@ -3,8 +3,10 @@ package superworldsun.superslegend.items;
 import java.util.List;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
+//import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
+//import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.text.ITextComponent;
@@ -13,7 +15,10 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
+//import superworldsun.superslegend.models.armor.ModelPostmansHat;
 import superworldsun.superslegend.models.armor.ModelPostmansHat;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 
 public class MaskPostmanshat extends NonEnchantArmor {
@@ -24,19 +29,15 @@ public class MaskPostmanshat extends NonEnchantArmor {
         setRegistryName(SupersLegend.modid, name);
     }
     
-    @SuppressWarnings("unchecked")
-	@Override
-    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-    	ModelPostmansHat model = new ModelPostmansHat(toughness);
 
-        model.isChild = _default.isChild;
-        model.isSneak = _default.isSneak;
-        model.isSitting = _default.isSitting;
-        model.rightArmPose = _default.rightArmPose;
-        model.leftArmPose = _default.leftArmPose;
+    /*@SuppressWarnings("unchecked")
+	@OnlyIn(Dist.CLIENT)
+	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
+	{
+		return (A) new ModelPostmansHat<LivingEntity>();
+	}*/
 
-        return (A) model;
-}
+     
     
     @Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
