@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -42,7 +43,16 @@ public class MaskGoronmask extends NonEnchantArmor {
                 boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_goronmask);
                 if(isHelmeton) 
                 	
+                	if(player.getActivePotionEffect(Effects.WITHER) != null)
+                	{
+                	
                 	player.removePotionEffect(Effect.get(20));
+                	
+                	}
+                	else	
+                	{
+                		player.removePotionEffect(Effect.get(20));
+                	}
                 
                 }
             }
