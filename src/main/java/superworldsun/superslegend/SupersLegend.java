@@ -56,6 +56,7 @@ import superworldsun.superslegend.blocks.DekuFlowerBlock;
 import superworldsun.superslegend.blocks.GossipStoneBlock;
 import superworldsun.superslegend.blocks.GrassPatch;
 import superworldsun.superslegend.blocks.GrateBlock;
+import superworldsun.superslegend.blocks.JarBlock;
 import superworldsun.superslegend.blocks.PotBlock;
 import superworldsun.superslegend.blocks.SpikesBlock;
 import superworldsun.superslegend.blocks.TorchTowerBlockBottom;
@@ -66,17 +67,22 @@ import superworldsun.superslegend.items.ArmorFlamebreakerEffects;
 import superworldsun.superslegend.items.ArmorFlippersEffects;
 import superworldsun.superslegend.items.ArmorGoronEffects;
 import superworldsun.superslegend.items.ArmorKokiriEffects;
+import superworldsun.superslegend.items.ArmorMagicArmor;
 import superworldsun.superslegend.items.ArmorPurpleEffects;
 import superworldsun.superslegend.items.ArmorZoraArmorEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
+import superworldsun.superslegend.items.BlueCandle;
 import superworldsun.superslegend.items.BluePotion;
 import superworldsun.superslegend.items.BluePotionMix;
+import superworldsun.superslegend.items.BookOfMudora;
 import superworldsun.superslegend.items.DekuLeaf;
 import superworldsun.superslegend.items.DinsFire;
+import superworldsun.superslegend.items.FairyOcarina;
 import superworldsun.superslegend.items.FaroresWind;
 import superworldsun.superslegend.items.GoldenScale;
 import superworldsun.superslegend.items.GreenPotion;
 import superworldsun.superslegend.items.GreenPotionMix;
+import superworldsun.superslegend.items.Heart;
 import superworldsun.superslegend.items.HerosSecretStash;
 import superworldsun.superslegend.items.HoverBoots;
 import superworldsun.superslegend.items.IronBoots;
@@ -84,7 +90,9 @@ import superworldsun.superslegend.items.ItemCustomAxe;
 import superworldsun.superslegend.items.ItemCustomBow;
 import superworldsun.superslegend.items.ItemCustomHoe;
 import superworldsun.superslegend.items.ItemCustomPickaxe;
+import superworldsun.superslegend.items.ItemCustomShield;
 import superworldsun.superslegend.items.ItemCustomSword;
+import superworldsun.superslegend.items.LensOfTruth;
 import superworldsun.superslegend.items.MagicCape;
 import superworldsun.superslegend.items.MagicMirror;
 //import superworldsun.superslegend.items.MagneticGlove;
@@ -115,11 +123,13 @@ import superworldsun.superslegend.items.MaskZoramask;
 import superworldsun.superslegend.items.MaskBremenmask;
 import superworldsun.superslegend.items.MoonPearl;
 import superworldsun.superslegend.items.NayrusLove;
+import superworldsun.superslegend.items.OcarinaOfTime;
 import superworldsun.superslegend.items.PegasusBoots;
 import superworldsun.superslegend.items.RedPotion;
 import superworldsun.superslegend.items.RedPotionMix;
 import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.RocsFeather;
+import superworldsun.superslegend.items.Rupee;
 import superworldsun.superslegend.items.SilverScale;
 import superworldsun.superslegend.items.TorchTower;
 import superworldsun.superslegend.items.Triforce;
@@ -129,6 +139,7 @@ import superworldsun.superslegend.items.TriforceWisdom;
 import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.ToolMaterialList;
+import superworldsun.superslegend.util.handlers.SoundHandler;
 import superworldsun.superslegend.world.gen.OreGeneration;
 
 @Mod("superslegend")
@@ -136,7 +147,7 @@ public class SupersLegend
 {
 	public static SupersLegend istance;
 	public static final String modid = "superslegend";
-	private static final Logger Logger = LogManager.getLogger(modid);
+	private static final Logger Logger = LogManager.getLogger();
 	
 	public static final ItemGroup supers_legend = new SupersLegendItemGroup();
 	
@@ -259,10 +270,12 @@ public class SupersLegend
 			(	
 		//Items
 					
-			ItemList.rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("rupee")),
+			ItemList.rupee = new Rupee(new Item.Properties().group(supers_legend)).setRegistryName(location("rupee")),
 			ItemList.blue_rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee")),
 			ItemList.red_rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee")),
-			ItemList.orange_rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee")),
+			ItemList.silver_rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee")),
+			ItemList.gold_rupee = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee")),
+			ItemList.heart = new Heart(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heart")),
 			ItemList.triforce_power_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_power_shard")),
 			ItemList.triforce_wisdom_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_wisdom_shard")),
 			ItemList.triforce_courage_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_courage_shard")),
@@ -280,13 +293,15 @@ public class SupersLegend
 			ItemList.rupee_block = new BlockItem(BlockList.rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.rupee_block.getRegistryName()),
 			ItemList.blue_rupee_block = new BlockItem(BlockList.blue_rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.blue_rupee_block.getRegistryName()),
 			ItemList.red_rupee_block = new BlockItem(BlockList.red_rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.red_rupee_block.getRegistryName()),
-			ItemList.orange_rupee_block = new BlockItem(BlockList.orange_rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.orange_rupee_block.getRegistryName()),
+			ItemList.silver_rupee_block = new BlockItem(BlockList.silver_rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.silver_rupee_block.getRegistryName()),
+			ItemList.gold_rupee_block = new BlockItem(BlockList.gold_rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.gold_rupee_block.getRegistryName()),
 			ItemList.spikes_block = new BlockItem(BlockList.spikes_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.spikes_block.getRegistryName()),
 			ItemList.gossip_stone_block = new BlockItem(BlockList.gossip_stone_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.gossip_stone_block.getRegistryName()),
 			ItemList.bush_block = new BlockItem(BlockList.bush_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.bush_block.getRegistryName()),
 			ItemList.chain_link_fence_block = new BlockItem(BlockList.chain_link_fence_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.chain_link_fence_block.getRegistryName()),
 			ItemList.deku_flower_block = new BlockItem(BlockList.deku_flower_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.deku_flower_block.getRegistryName()),
 			ItemList.pot_block = new BlockItem(BlockList.pot_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.pot_block.getRegistryName()),
+			ItemList.jar_block = new BlockItem(BlockList.jar_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.jar_block.getRegistryName()),
 			ItemList.grate_block = new BlockItem(BlockList.grate_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.grate_block.getRegistryName()),
 			ItemList.grass_patch_block = new BlockItem(BlockList.grass_patch_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.grass_patch_block.getRegistryName()),
 			ItemList.torch_tower = new TorchTower(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("torch_tower")),
@@ -299,11 +314,13 @@ public class SupersLegend
 			ItemList.gilded_sword = new ItemCustomSword(ToolMaterialList.gilded_sword, 		(int) 2, -2.4f, new Item.Properties().group(supers_legend)).setRegistryName(location("gilded_sword")),
 			ItemList.master_sword = new ItemCustomSword(ToolMaterialList.master_sword,		(int) 2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
 			ItemList.heros_bow = new ItemCustomBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_bow")),
+			
+			ItemList.deku_shield = new ItemCustomShield(new Item.Properties().maxStackSize(1).maxDamage(337).group(supers_legend)).setRegistryName(location("deku_shield")),
 			ItemList.hylian_shield = new ShieldItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("hylian_shield")),
 			
 			ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
 			ItemList.heros_secret_stash = new HerosSecretStash(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_secret_stash")),
-			ItemList.book_of_mudora = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("book_of_mudora")),
+			ItemList.book_of_mudora = new BookOfMudora(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("book_of_mudora")),
 			ItemList.silver_scale = new SilverScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("silver_scale")),
 			ItemList.golden_scale = new GoldenScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("golden_scale")),
 			ItemList.rocs_feather = new RocsFeather(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rocs_feather")),
@@ -314,6 +331,10 @@ public class SupersLegend
 			ItemList.dins_fire = new DinsFire(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
 			ItemList.nayrus_love = new NayrusLove(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("nayrus_love")),
 			ItemList.deku_leaf = new DekuLeaf(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("deku_leaf")),
+			ItemList.blue_candle = new BlueCandle(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("blue_candle")),
+			ItemList.lens_of_truth = new LensOfTruth(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("lens_of_truth")),
+			ItemList.fairy_ocarina = new FairyOcarina(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("fairy_ocarina")),
+			ItemList.ocarina_of_time = new OcarinaOfTime(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ocarina_of_time")),
 			ItemList.red_jelly = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("red_jelly")),
 			ItemList.green_jelly = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("green_jelly")),
 			ItemList.blue_jelly = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("blue_jelly")),
@@ -332,27 +353,32 @@ public class SupersLegend
 			ItemList.rupee_sword = new ItemCustomSword(ToolMaterialList.rupee_sword, 				(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_sword")),
 			ItemList.blue_rupee_sword = new ItemCustomSword(ToolMaterialList.blue_rupee_sword, 	(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_sword")),
 			ItemList.red_rupee_sword = new ItemCustomSword(ToolMaterialList.red_rupee_sword, 		(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_sword")),
-			ItemList.orange_rupee_sword = new ItemCustomSword(ToolMaterialList.orange_rupee_sword,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_sword")),
+			ItemList.silver_rupee_sword = new ItemCustomSword(ToolMaterialList.silver_rupee_sword,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee_sword")),
+			ItemList.gold_rupee_sword = new ItemCustomSword(ToolMaterialList.gold_rupee_sword,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee_sword")),
 			
 			ItemList.rupee_pickaxe = new ItemCustomPickaxe(ToolMaterialList.rupee_pickaxe, 				(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_pickaxe")),
 			ItemList.blue_rupee_pickaxe = new ItemCustomPickaxe(ToolMaterialList.blue_rupee_pickaxe, 	(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_pickaxe")),
 			ItemList.red_rupee_pickaxe = new ItemCustomPickaxe(ToolMaterialList.red_rupee_pickaxe, 		(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_pickaxe")),
-			ItemList.orange_rupee_pickaxe = new ItemCustomPickaxe(ToolMaterialList.orange_rupee_pickaxe,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_pickaxe")),
+			ItemList.silver_rupee_pickaxe = new ItemCustomPickaxe(ToolMaterialList.silver_rupee_pickaxe,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee_pickaxe")),
+			ItemList.gold_rupee_pickaxe = new ItemCustomPickaxe(ToolMaterialList.gold_rupee_pickaxe,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee_pickaxe")),
 			
 			ItemList.rupee_axe = new ItemCustomAxe(ToolMaterialList.rupee_axe, 						(int) 0, -3.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_axe")),
 			ItemList.blue_rupee_axe = new ItemCustomAxe(ToolMaterialList.blue_rupee_axe, 			(int) 0, -3.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_axe")),
 			ItemList.red_rupee_axe = new ItemCustomAxe(ToolMaterialList.red_rupee_axe, 				(int) 0, -3.1f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_axe")),
-			ItemList.orange_rupee_axe = new ItemCustomAxe(ToolMaterialList.orange_rupee_axe, 		(int) 0, -3.1f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_axe")),
+			ItemList.silver_rupee_axe = new ItemCustomAxe(ToolMaterialList.silver_rupee_axe, 		(int) 0, -3.1f, new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee_axe")),
+			ItemList.gold_rupee_axe = new ItemCustomAxe(ToolMaterialList.gold_rupee_axe, 		(int) 0, -3.1f, new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee_axe")),
 			
 			ItemList.rupee_shovel = new ShovelItem(ToolMaterialList.rupee_shovel, 				(int) 0, -2.8f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_shovel")),
 			ItemList.blue_rupee_shovel = new ShovelItem(ToolMaterialList.blue_rupee_shovel, 	(int) 0, -2.8f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_shovel")),
 			ItemList.red_rupee_shovel = new ShovelItem(ToolMaterialList.red_rupee_shovel, 		(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_shovel")),
-			ItemList.orange_rupee_shovel = new ShovelItem(ToolMaterialList.orange_rupee_shovel,	(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_shovel")),
+			ItemList.silver_rupee_shovel = new ShovelItem(ToolMaterialList.silver_rupee_shovel,	(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee_shovel")),
+			ItemList.gold_rupee_shovel = new ShovelItem(ToolMaterialList.gold_rupee_shovel,	(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee_shovel")),
 			
 			ItemList.rupee_hoe = new ItemCustomHoe(ToolMaterialList.rupee_hoe, 				(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_hoe")),
 			ItemList.blue_rupee_hoe = new ItemCustomHoe(ToolMaterialList.blue_rupee_hoe, 	(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_hoe")),
 			ItemList.red_rupee_hoe = new ItemCustomHoe(ToolMaterialList.red_rupee_hoe, 		(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_hoe")),
-			ItemList.orange_rupee_hoe = new ItemCustomHoe(ToolMaterialList.orange_rupee_hoe,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("orange_rupee_hoe")),
+			ItemList.silver_rupee_hoe = new ItemCustomHoe(ToolMaterialList.silver_rupee_hoe,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee_hoe")),
+			ItemList.gold_rupee_hoe = new ItemCustomHoe(ToolMaterialList.gold_rupee_hoe,(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee_hoe")),
 			
 		//Masks
 			ItemList.mask_clay = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("mask_clay")),
@@ -405,6 +431,11 @@ public class SupersLegend
 			ItemList.purple_leggings = new ArmorPurpleEffects("purple_leggings",EquipmentSlotType.LEGS),
 			ItemList.pegasus_boots = new PegasusBoots("pegasus_boots",EquipmentSlotType.FEET),
 			
+			ItemList.magic_armor_cap = new ArmorMagicArmor("magic_armor_cap",EquipmentSlotType.HEAD),
+			ItemList.magic_armor_tunic = new ArmorMagicArmor("magic_armor_tunic",EquipmentSlotType.CHEST),
+			ItemList.magic_armor_leggings = new ArmorMagicArmor("magic_armor_leggings",EquipmentSlotType.LEGS),
+			ItemList.magic_armor_boots = new ArmorMagicArmor("magic_armor_boots",EquipmentSlotType.FEET),
+			
 			ItemList.dark_cap = new ArmorDarkEffects("dark_cap",EquipmentSlotType.HEAD),
 			ItemList.dark_tunic = new ArmorDarkEffects("dark_tunic",EquipmentSlotType.CHEST),
 			ItemList.dark_leggings = new ArmorDarkEffects("dark_leggings",EquipmentSlotType.LEGS),
@@ -437,7 +468,8 @@ public class SupersLegend
 					BlockList.rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("rupee_block")),
 					BlockList.blue_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("blue_rupee_block")),
 					BlockList.red_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("red_rupee_block")),
-					BlockList.orange_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("orange_rupee_block")),
+					BlockList.silver_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("silver_rupee_block")),
+					BlockList.gold_rupee_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("gold_rupee_block")),
 					BlockList.spikes_block = new SpikesBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(13.0f, 13.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("spikes_block")),
 					BlockList.gossip_stone_block = new GossipStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("gossip_stone_block")),
 					BlockList.bush_block = new BushBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0f, 0.0f).lightValue(0).sound(SoundType.CROP)).setRegistryName(location("bush_block")),
@@ -446,6 +478,7 @@ public class SupersLegend
 					BlockList.torch_tower_block_top = new TorchTowerBlockTop(Block.Properties.create(Material.WOOD).hardnessAndResistance(0.8f, 0.8f).lightValue(15).sound(SoundType.WOOD)).setRegistryName(location("torch_tower_block_top")),
 					BlockList.deku_flower_block = new DekuFlowerBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(0.4f, 0.4f).lightValue(0).sound(SoundType.CROP)).setRegistryName(location("deku_flower_block")),
 					BlockList.pot_block = new PotBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(0.1f, 0.1f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("pot_block")),
+					BlockList.jar_block = new JarBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(0.1f, 0.1f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("jar_block")),
 					BlockList.grate_block = new GrateBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("grate_block")),
 					BlockList.grass_patch_block = new GrassPatch(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2f, 0.2f).lightValue(0).sound(SoundType.SWEET_BERRY_BUSH)).setRegistryName(location("grass_patch_block")),
 					BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(100.0f, 400.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block"))
@@ -464,5 +497,11 @@ public class SupersLegend
 
 		        //FluidLiquid.register(registry);
 		 }
+		 
+		 @SubscribeEvent
+		    public void clientSetup(final FMLClientSetupEvent event)
+		    {
+		        MinecraftForge.EVENT_BUS.register(SoundHandler.class);
+		    }
 	}
 }
