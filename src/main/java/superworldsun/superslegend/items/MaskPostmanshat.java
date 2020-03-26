@@ -30,12 +30,12 @@ public class MaskPostmanshat extends NonEnchantArmor {
     }
     
 
-    /*@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
 	@OnlyIn(Dist.CLIENT)
 	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
 	{
 		return (A) new ModelPostmansHat<LivingEntity>();
-	}*/
+	}
 
      
     
