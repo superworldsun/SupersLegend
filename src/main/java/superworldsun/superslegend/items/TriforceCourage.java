@@ -36,7 +36,7 @@ public class TriforceCourage extends Item
 		 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
 					player.addPotionEffect(new EffectInstance(Effect.get(1), 600, 0, false, true));
 					player.addPotionEffect(new EffectInstance(Effect.get(11), 600, 0, false, false));
-		        
+					player.getCooldownTracker().setCooldown(this, 10);
 				
 	return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
 		

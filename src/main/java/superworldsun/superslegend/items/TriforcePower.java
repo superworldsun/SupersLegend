@@ -38,6 +38,7 @@ public class TriforcePower extends Item
 					player.addPotionEffect(new EffectInstance(Effect.get(19), 200, 0, false, false));
 					player.addPotionEffect(new EffectInstance(Effect.get(5), 600, 0, false, true));
 					player.addPotionEffect(new EffectInstance(Effect.get(3), 400, 0, false, false));
+					player.getCooldownTracker().setCooldown(this, 10);
 		 }
 	 			return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
 			
