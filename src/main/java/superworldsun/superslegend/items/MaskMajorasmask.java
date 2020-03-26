@@ -1,8 +1,8 @@
 package superworldsun.superslegend.items;
 
-import net.minecraft.client.renderer.entity.model.BipedModel;
+//import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
+//import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
-import superworldsun.superslegend.models.armor.ModelMajorasMask;
+//import superworldsun.superslegend.models.armor.ModelMajorasMask;
 
 
 public class MaskMajorasmask extends NonEnchantArmor {
@@ -26,7 +26,7 @@ public class MaskMajorasmask extends NonEnchantArmor {
         setRegistryName(SupersLegend.modid, name);
     }
     
-    @SuppressWarnings("unchecked")
+/*    @SuppressWarnings("unchecked")
 	@Override
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
     	ModelMajorasMask model = new ModelMajorasMask(toughness);
@@ -38,7 +38,7 @@ public class MaskMajorasmask extends NonEnchantArmor {
         model.leftArmPose = _default.leftArmPose;
 
         return (A) model;
-}
+}*/
     
     public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
  	{
