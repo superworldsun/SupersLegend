@@ -15,12 +15,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import superworldsun.superslegend.init.SoundInit;
 
 public class NayrusLove extends Item
 {
@@ -44,7 +44,7 @@ public class NayrusLove extends Item
 	            
 	            
 	            BlockPos currentPos = player.getPosition();
-				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 1f, 1f);
+				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.NAYRUS_LOVE_CAST, SoundCategory.PLAYERS, 1f, 1f);
 				 
 	            player.addExhaustion(100f);
 	            
@@ -61,7 +61,14 @@ public class NayrusLove extends Item
 	            
 				player.addPotionEffect(new EffectInstance(Effect.get(24), 300, 0, true, true));
 				player.addPotionEffect(new EffectInstance(Effect.get(11), 300, 99, false, false));
-	      }
+				player.getCooldownTracker().setCooldown(this, 100);
+		 		}
+		 		else if(player.getFoodStats().getFoodLevel()<= 8)
+		 		{
+		 			BlockPos currentPos = player.getPosition();
+					 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
+				
+		 		}
 		 return new ActionResult<ItemStack>(ActionResultType.SUCCESS, stack);
 		 //return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
 	 }
