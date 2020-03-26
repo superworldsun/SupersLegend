@@ -1,9 +1,37 @@
 {
-  "sound1": {
-    "category" : "player",
-    "sounds": [{
-        "name": "superslegend:jawa",
-        "stream": false
-      }
-    ]
-  }
+  "jawa": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.jawa",
+    "sounds": [ "superslegend:jawa" ]
+  },
+"suns_song": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.suns_song",
+    "sounds": [ "superslegend:suns_song" ]
+  },
+"nayrus_love_cast": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.nayrus_love_cast",
+    "sounds": [ "superslegend:nayrus_love_cast" ]
+	},
+"zelda_error": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.zelda_error",
+    "sounds": [ "superslegend:zelda_error" ]
+	},
+"dash": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.dash",
+    "sounds": [ "superslegend:dash" ]
+	},
+"magic_cape_off": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.magic_cape_off",
+    "sounds": [ "superslegend:magic_cape_off" ]
+	},
+"magic_cape_on": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.magic_cape_on",
+    "sounds": [ "superslegend:magic_cape_on" ]
+	}
+}
