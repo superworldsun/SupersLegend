@@ -20,7 +20,9 @@ public class ItemList
 		public static Item rupee;
 		public static Item blue_rupee;
 		public static Item red_rupee;
-		public static Item orange_rupee;
+		public static Item silver_rupee;
+		public static Item gold_rupee;
+		public static Item heart;
 		public static Item rocs_feather;
 		public static Item magic_mirror;
 		public static Item magic_cape;
@@ -29,6 +31,10 @@ public class ItemList
 		public static Item dins_fire;
 		public static Item nayrus_love;
 		public static Item deku_leaf;
+		public static Item blue_candle;
+		public static Item lens_of_truth;
+		public static Item fairy_ocarina;
+		public static Item ocarina_of_time;
 		public static Item red_jelly;
 		public static Item green_jelly;
 		public static Item blue_jelly;
@@ -67,7 +73,8 @@ public class ItemList
 		public static Item rupee_block;
 		public static Item blue_rupee_block;
 		public static Item red_rupee_block;
-		public static Item orange_rupee_block;
+		public static Item silver_rupee_block;
+		public static Item gold_rupee_block;
 		public static Item spikes_block;
 		public static Item gossip_stone_block;
 		public static Item bush_block;
@@ -76,6 +83,7 @@ public class ItemList
 		public static Item torch_tower_block_top;
 		public static Item deku_flower_block;
 		public static Item pot_block;
+		public static Item jar_block;
 		public static Item grate_block;
 		public static Item grass_patch_block;
 		public static Item master_ore_block;
@@ -92,34 +100,40 @@ public class ItemList
 		public static Item rupee_sword;
 		public static Item blue_rupee_sword;
 		public static Item red_rupee_sword;
-		public static Item orange_rupee_sword;
+		public static Item silver_rupee_sword;
+		public static Item gold_rupee_sword;
 		
 		public static Item heros_bow;
 		
 	//shields
 		
+		public static Item deku_shield;
 		public static Item hylian_shield;
 		
 	//tools
 		public static Item rupee_pickaxe;
 		public static Item blue_rupee_pickaxe;
 		public static Item red_rupee_pickaxe;
-		public static Item orange_rupee_pickaxe;
+		public static Item silver_rupee_pickaxe;
+		public static Item gold_rupee_pickaxe;
 		
 		public static Item rupee_axe;
 		public static Item blue_rupee_axe;
 		public static Item red_rupee_axe;
-		public static Item orange_rupee_axe;
+		public static Item silver_rupee_axe;
+		public static Item gold_rupee_axe;
 		
 		public static Item rupee_hoe;
 		public static Item blue_rupee_hoe;
 		public static Item red_rupee_hoe;
-		public static Item orange_rupee_hoe;
+		public static Item silver_rupee_hoe;
+		public static Item gold_rupee_hoe;
 		
 		public static Item rupee_shovel;
 		public static Item blue_rupee_shovel;
 		public static Item red_rupee_shovel;
-		public static Item orange_rupee_shovel;
+		public static Item silver_rupee_shovel;
+		public static Item gold_rupee_shovel;
 		
 		//masks
 		public static Item mask_clay;
@@ -172,6 +186,10 @@ public class ItemList
 		public static Item flamebreaker_leggings;
 		public static Item flamebreaker_boots;
 		public static HoverBoots hover_boots;
+		public static Item magic_armor_cap;
+		public static Item magic_armor_tunic;
+		public static Item magic_armor_leggings;
+		public static Item magic_armor_boots;
 		public static Item purple_cap;
 		public static Item purple_tunic;
 		public static Item purple_leggings;
