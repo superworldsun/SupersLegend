@@ -1,5 +1,6 @@
 package superworldsun.superslegend;
 
+import net.minecraft.item.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,11 +9,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ShieldItem;
-import net.minecraft.item.ShovelItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -62,16 +58,15 @@ import superworldsun.superslegend.blocks.SpikesBlock;
 import superworldsun.superslegend.blocks.TorchTowerBlockBottom;
 import superworldsun.superslegend.blocks.TorchTowerBlockTop;
 //import superworldsun.superslegend.fluids.FluidLiquid;
-import superworldsun.superslegend.items.ArmorDarkEffects;
-import superworldsun.superslegend.items.ArmorFlamebreakerEffects;
-import superworldsun.superslegend.items.ArmorFlippersEffects;
-import superworldsun.superslegend.items.ArmorGoronEffects;
-import superworldsun.superslegend.items.ArmorKokiriEffects;
-import superworldsun.superslegend.items.ArmorMagicArmor;
-import superworldsun.superslegend.items.ArmorPurpleEffects;
-import superworldsun.superslegend.items.ArmorZoraArmorEffects;
-import superworldsun.superslegend.items.ArmorZoraEffects;
-import superworldsun.superslegend.items.BlueCandle;
+import superworldsun.superslegend.items.armors.ArmorDarkEffects;
+import superworldsun.superslegend.items.armors.ArmorFlamebreakerEffects;
+import superworldsun.superslegend.items.armors.ArmorFlippersEffects;
+import superworldsun.superslegend.items.armors.ArmorGoronEffects;
+import superworldsun.superslegend.items.armors.ArmorKokiriEffects;
+import superworldsun.superslegend.items.armors.ArmorMagicArmor;
+import superworldsun.superslegend.items.armors.ArmorPurpleEffects;
+import superworldsun.superslegend.items.armors.ArmorZoraArmorEffects;
+import superworldsun.superslegend.items.armors.ArmorZoraEffects;
 import superworldsun.superslegend.items.BluePotion;
 import superworldsun.superslegend.items.BluePotionMix;
 import superworldsun.superslegend.items.BookOfMudora;
@@ -136,6 +131,8 @@ import superworldsun.superslegend.items.Triforce;
 import superworldsun.superslegend.items.TriforceCourage;
 import superworldsun.superslegend.items.TriforcePower;
 import superworldsun.superslegend.items.TriforceWisdom;
+import superworldsun.superslegend.items.arrows.ArrowBomb;
+import superworldsun.superslegend.items.bows.BowLynelSavage;
 import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.ToolMaterialList;
@@ -313,11 +310,16 @@ public class SupersLegend
 			ItemList.razor_sword = new ItemCustomSword(ToolMaterialList.razor_sword, 			(int) 2, -2.5f, new Item.Properties().group(supers_legend)).setRegistryName(location("razor_sword")),
 			ItemList.gilded_sword = new ItemCustomSword(ToolMaterialList.gilded_sword, 		(int) 2, -2.4f, new Item.Properties().group(supers_legend)).setRegistryName(location("gilded_sword")),
 			ItemList.master_sword = new ItemCustomSword(ToolMaterialList.master_sword,		(int) 2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
+
 			ItemList.heros_bow = new ItemCustomBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_bow")),
-			
+			ItemList.lynel_bow_x3 = new BowLynelSavage(1, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x3")),
+			ItemList.lynel_bow_x5 = new BowLynelSavage(2, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x5")),
+
 			ItemList.deku_shield = new ItemCustomShield(new Item.Properties().maxStackSize(1).maxDamage(337).group(supers_legend)).setRegistryName(location("deku_shield")),
 			ItemList.hylian_shield = new ShieldItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("hylian_shield")),
-			
+
+			ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
+
 			ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
 			ItemList.heros_secret_stash = new HerosSecretStash(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_secret_stash")),
 			ItemList.book_of_mudora = new BookOfMudora(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("book_of_mudora")),
@@ -331,7 +333,6 @@ public class SupersLegend
 			ItemList.dins_fire = new DinsFire(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
 			ItemList.nayrus_love = new NayrusLove(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("nayrus_love")),
 			ItemList.deku_leaf = new DekuLeaf(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("deku_leaf")),
-			ItemList.blue_candle = new BlueCandle(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("blue_candle")),
 			ItemList.lens_of_truth = new LensOfTruth(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("lens_of_truth")),
 			ItemList.fairy_ocarina = new FairyOcarina(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("fairy_ocarina")),
 			ItemList.ocarina_of_time = new OcarinaOfTime(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ocarina_of_time")),

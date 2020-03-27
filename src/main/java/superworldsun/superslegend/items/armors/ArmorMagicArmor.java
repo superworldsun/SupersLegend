@@ -1,4 +1,4 @@
-package superworldsun.superslegend.items;
+package superworldsun.superslegend.items.armors;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,11 +12,13 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
+import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
-public class ArmorMagicArmor extends NonEnchantArmor {
+public class ArmorMagicArmor extends NonEnchantArmor
+{
     public ArmorMagicArmor(String name, EquipmentSlotType slot) 
     
     {
