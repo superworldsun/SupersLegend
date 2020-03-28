@@ -104,6 +104,7 @@ public class ItemList
 		public static Item gold_rupee_sword;
 		
 		public static Item heros_bow;
+		public static Item bit_bow;
 		
 	//shields
 		

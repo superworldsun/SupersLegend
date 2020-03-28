@@ -71,6 +71,7 @@ import superworldsun.superslegend.items.ArmorMagicArmor;
 import superworldsun.superslegend.items.ArmorPurpleEffects;
 import superworldsun.superslegend.items.ArmorZoraArmorEffects;
 import superworldsun.superslegend.items.ArmorZoraEffects;
+import superworldsun.superslegend.items.BitBow;
 import superworldsun.superslegend.items.BlueCandle;
 import superworldsun.superslegend.items.BluePotion;
 import superworldsun.superslegend.items.BluePotionMix;
@@ -314,6 +315,7 @@ public class SupersLegend
 			ItemList.gilded_sword = new ItemCustomSword(ToolMaterialList.gilded_sword, 		(int) 2, -2.4f, new Item.Properties().group(supers_legend)).setRegistryName(location("gilded_sword")),
 			ItemList.master_sword = new ItemCustomSword(ToolMaterialList.master_sword,		(int) 2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
 			ItemList.heros_bow = new ItemCustomBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_bow")),
+			ItemList.bit_bow = new BitBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bit_bow")),
 			
 			ItemList.deku_shield = new ItemCustomShield(new Item.Properties().maxStackSize(1).maxDamage(337).group(supers_legend)).setRegistryName(location("deku_shield")),
 			ItemList.hylian_shield = new ShieldItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("hylian_shield")),
