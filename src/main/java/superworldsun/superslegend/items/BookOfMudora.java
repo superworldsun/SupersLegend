@@ -9,10 +9,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import superworldsun.superslegend.SupersLegend;
 
 public class BookOfMudora extends Item{
 
@@ -27,7 +29,7 @@ public class BookOfMudora extends Item{
 		ItemStack stack = player.getHeldItem(hand);
 
 		        
-					//player.unlockRecipes(p_193102_1_);
+		player.unlockRecipes(new ResourceLocation[] {new ResourceLocation(SupersLegend.modid + "superslegend:master_sword")});
 					
 		        
 	return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
