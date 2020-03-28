@@ -48,7 +48,7 @@ public class TestCodeAndPastes
     //entity.setDead();
 	
 	
-	
+	//entity.changeDimension(DimensionType.THE_NETHER);
 	
 	//player.posY += 10.0D;
 	
