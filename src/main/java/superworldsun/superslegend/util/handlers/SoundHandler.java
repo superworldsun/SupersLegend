@@ -18,6 +18,7 @@ import static superworldsun.superslegend.init.SoundInit.ZELDA_ERROR;
 import static superworldsun.superslegend.init.SoundInit.DASH;
 import static superworldsun.superslegend.init.SoundInit.MAGIC_CAPE_OFF;
 import static superworldsun.superslegend.init.SoundInit.MAGIC_CAPE_ON;
+import static superworldsun.superslegend.init.SoundInit.LENS_OF_TRUTH_ON;
 
 //MANUALLY IMPORT EACH SOUND EFFECT HERE <<<<<<>>>>>>
 
@@ -41,6 +42,7 @@ public class SoundHandler
     	DASH = registerSound("dash");
     	MAGIC_CAPE_OFF = registerSound("magic_cape_off");
     	MAGIC_CAPE_ON = registerSound("magic_cape_on");
+    	LENS_OF_TRUTH_ON = registerSound("lens_of_truth_on");
     	
     	
     	SUNS_SONG = registerSound("suns_song");
