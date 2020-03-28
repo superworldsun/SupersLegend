@@ -1,9 +1,9 @@
 package superworldsun.superslegend.lists;
 
 import net.minecraft.item.Item;
-import superworldsun.superslegend.items.ArmorFlippersEffects;
-import superworldsun.superslegend.items.ArmorGoronEffects;
-import superworldsun.superslegend.items.ArmorZoraEffects;
+import superworldsun.superslegend.items.armors.ArmorFlippersEffects;
+import superworldsun.superslegend.items.armors.ArmorGoronEffects;
+import superworldsun.superslegend.items.armors.ArmorZoraEffects;
 import superworldsun.superslegend.items.HoverBoots;
 import superworldsun.superslegend.items.IronBoots;
 import superworldsun.superslegend.items.MaskAllnightmaskEffects;
@@ -105,6 +105,10 @@ public class ItemList
 		
 		public static Item heros_bow;
 		public static Item bit_bow;
+		public static Item lynel_bow_x3;
+		public static Item lynel_bow_x5;
+
+		public static Item bomb_arrow;
 		
 	//shields
 		

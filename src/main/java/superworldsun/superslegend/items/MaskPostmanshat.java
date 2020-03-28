@@ -28,14 +28,19 @@ public class MaskPostmanshat extends NonEnchantArmor {
         super(ArmourMaterialList.postmanshat, slot, new Item.Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
-    
+
 
     @SuppressWarnings("unchecked")
-	@OnlyIn(Dist.CLIENT)
-	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
-	{
-		return (A) new ModelPostmansHat<LivingEntity>();
-	}
+    @Override
+    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+        ModelPostmansHat model = new ModelPostmansHat();
+
+        model.isChild = _default.isChild;
+        model.isSneak = _default.isSneak;
+        model.isSitting = _default.isSitting;
+
+        return (A) model;
+    }
 
      
     
