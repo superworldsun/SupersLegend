@@ -1,4 +1,4 @@
-package superworldsun.superslegend.items;
+package superworldsun.superslegend.items.bows;
 
 import java.util.List;
 import java.util.Random;
