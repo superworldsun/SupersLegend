@@ -1,4 +1,4 @@
-package superworldsun.superslegend.items;
+package superworldsun.superslegend.items.masks;
 
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -12,6 +12,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import superworldsun.superslegend.SupersLegend;
+import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 

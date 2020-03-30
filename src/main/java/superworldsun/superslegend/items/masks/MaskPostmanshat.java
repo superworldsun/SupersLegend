@@ -1,4 +1,4 @@
-package superworldsun.superslegend.items;
+package superworldsun.superslegend.items.masks;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
+import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 //import superworldsun.superslegend.models.armor.ModelPostmansHat;
 import superworldsun.superslegend.models.armor.ModelPostmansHat;

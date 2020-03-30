@@ -1,4 +1,4 @@
-package superworldsun.superslegend.items;
+package superworldsun.superslegend.items.masks;
 
 import java.util.List;
 
@@ -10,20 +10,21 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
+import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
-public class MaskKafeismask extends NonEnchantArmor {
-    public MaskKafeismask(String name, EquipmentSlotType slot) 
+public class MaskBremenmask extends NonEnchantArmor {
+    public MaskBremenmask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.kafeismask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.bremenmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "It resembles the face of Kafei"));
+		list.add(new StringTextComponent(TextFormatting.WHITE + "A mask animals would love!"));
 	}
 }

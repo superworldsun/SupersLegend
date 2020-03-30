@@ -1,4 +1,4 @@
-package superworldsun.superslegend.items;
+package superworldsun.superslegend.items.masks;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.SupersLegend;
+import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
