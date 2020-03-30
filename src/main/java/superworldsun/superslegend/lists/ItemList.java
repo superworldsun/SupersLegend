@@ -4,12 +4,12 @@ import net.minecraft.item.Item;
 import superworldsun.superslegend.items.armors.ArmorFlippersEffects;
 import superworldsun.superslegend.items.armors.ArmorGoronEffects;
 import superworldsun.superslegend.items.armors.ArmorZoraEffects;
-import superworldsun.superslegend.items.HoverBoots;
-import superworldsun.superslegend.items.IronBoots;
-import superworldsun.superslegend.items.MaskAllnightmaskEffects;
-import superworldsun.superslegend.items.MaskBunnyhoodEffects;
-import superworldsun.superslegend.items.MaskDongerosmaskEffects;
-import superworldsun.superslegend.items.MaskStonemaskEffects;
+import superworldsun.superslegend.items.armors.HoverBoots;
+import superworldsun.superslegend.items.armors.IronBoots;
+import superworldsun.superslegend.items.masks.MaskAllnightmaskEffects;
+import superworldsun.superslegend.items.masks.MaskBunnyhoodEffects;
+import superworldsun.superslegend.items.masks.MaskDongerosmaskEffects;
+import superworldsun.superslegend.items.masks.MaskStonemaskEffects;
 import superworldsun.superslegend.items.RocsCapeEffects;
 
 
