@@ -22,7 +22,7 @@ public class ArmorMagicArmor extends NonEnchantArmor
     public ArmorMagicArmor(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.ironboots, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.magic, slot, new Item.Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     
