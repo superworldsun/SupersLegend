@@ -3,6 +3,8 @@ package superworldsun.superslegend.models.armor;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -11,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * Created using Tabula 7.1.0
  */
 @OnlyIn(Dist.CLIENT)
-public class ModelPostmansHat extends BipedModel
+public class ModelPostmansHat<T extends LivingEntity> extends BipedModel<T>
 {
     public RendererModel shape1;
     public RendererModel shape2;
@@ -100,21 +102,12 @@ public class ModelPostmansHat extends BipedModel
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        this.shape11.render(f5);
-        this.shape5.render(f5);
-        this.shape13.render(f5);
-        this.shape8.render(f5);
-        this.shape10.render(f5);
-        this.shape3.render(f5);
-        this.shape4.render(f5);
-        this.shape9.render(f5);
-        this.shape12.render(f5);
-        this.shape14.render(f5);
-        this.shape2.render(f5);
-        this.shape1.render(f5);
-        this.shape6.render(f5);
-        this.shape7.render(f5);
+    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        if (entity instanceof ArmorStandEntity) {
+            f3 = 0;
+        }
+
+        super.render(entity, f, f1, f2, f3, f4, f5);
     }
 
     /**

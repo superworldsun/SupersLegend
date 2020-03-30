@@ -106,6 +106,7 @@ import superworldsun.superslegend.items.TriforcePower;
 import superworldsun.superslegend.items.TriforceWisdom;
 import superworldsun.superslegend.items.arrows.ArrowBomb;
 import superworldsun.superslegend.items.bows.BitBow;
+//import superworldsun.superslegend.items.arrows.ArrowFire;
 import superworldsun.superslegend.items.bows.BowLynelSavage;
 import superworldsun.superslegend.items.masks.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.masks.MaskBlastmask;
@@ -320,8 +321,9 @@ public class SupersLegend
 			ItemList.hylian_shield = new ShieldItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("hylian_shield")),
 
 			ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
+			//ItemList.fire_arrow = new ArrowFire(new Item.Properties().group(supers_legend)).setRegistryName(location("fire_arrow")),
 
-			ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
+					ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
 			ItemList.heros_secret_stash = new HerosSecretStash(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_secret_stash")),
 			ItemList.book_of_mudora = new BookOfMudora(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("book_of_mudora")),
 			ItemList.silver_scale = new SilverScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("silver_scale")),
