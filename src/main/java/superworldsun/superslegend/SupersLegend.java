@@ -58,6 +58,7 @@ import superworldsun.superslegend.blocks.SpikesBlock;
 import superworldsun.superslegend.blocks.TorchTowerBlockBottom;
 import superworldsun.superslegend.blocks.TorchTowerBlockTop;
 //import superworldsun.superslegend.fluids.FluidLiquid;
+import superworldsun.superslegend.items.BitBow;
 import superworldsun.superslegend.items.armors.ArmorDarkEffects;
 import superworldsun.superslegend.items.armors.ArmorFlamebreakerEffects;
 import superworldsun.superslegend.items.armors.ArmorFlippersEffects;
@@ -312,6 +313,8 @@ public class SupersLegend
 			ItemList.master_sword = new ItemCustomSword(ToolMaterialList.master_sword,		(int) 2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
 
 			ItemList.heros_bow = new ItemCustomBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_bow")),
+			ItemList.bit_bow = new BitBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bit_bow")),
+			
 			ItemList.lynel_bow_x3 = new BowLynelSavage(1, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x3")),
 			ItemList.lynel_bow_x5 = new BowLynelSavage(2, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x5")),
 

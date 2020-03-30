@@ -33,5 +33,10 @@
     "category": "player",
     "subtitle": "superslegend.subtitle.magic_cape_on",
     "sounds": [ "superslegend:magic_cape_on" ]
+	},
+"lens_of_truth_on": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.lens_of_truth_on",
+    "sounds": [ "superslegend:lens_of_truth_on" ]
 	}
 }
