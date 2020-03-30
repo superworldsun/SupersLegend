@@ -1,6 +1,7 @@
 {
   "replace": "false",
   "values": [
-	"superslegend:bomb_arrow"
+	"superslegend:bomb_arrow",
+	"superslegend:fire_arrow"
   ]
 }

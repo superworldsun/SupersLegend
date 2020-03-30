@@ -109,7 +109,9 @@ public class ItemList
 		public static Item lynel_bow_x5;
 
 		public static Item bomb_arrow;
-		
+		public static Item fire_arrow;
+
+
 	//shields
 		
 		public static Item deku_shield;
