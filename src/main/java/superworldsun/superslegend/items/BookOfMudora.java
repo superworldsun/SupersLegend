@@ -25,15 +25,9 @@ public class BookOfMudora extends Item{
 	
 	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
 	 {
-		 @SuppressWarnings("unused")
-		ItemStack stack = player.getHeldItem(hand);
+		player.unlockRecipes(new ResourceLocation[] {new ResourceLocation("superslegend:master_sword_recipe")});
 
-		        
-		player.unlockRecipes(new ResourceLocation[] {new ResourceLocation(SupersLegend.modid + "superslegend:master_sword")});
-					
-		        
-	return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
-		
+		return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
 	}
 	
 	
@@ -41,6 +35,6 @@ public class BookOfMudora extends Item{
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.GREEN + "knowledge is power"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Knowledge is power"));
 	}   
 } 

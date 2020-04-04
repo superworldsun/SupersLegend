@@ -3,7 +3,6 @@ package superworldsun.superslegend.entities.projectiles.arrows;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import superworldsun.superslegend.lists.ItemList;
 
