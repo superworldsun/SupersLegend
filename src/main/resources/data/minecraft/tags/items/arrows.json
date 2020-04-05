@@ -2,6 +2,9 @@
   "replace": "false",
   "values": [
 	"superslegend:bomb_arrow",
-	"superslegend:fire_arrow"
+	"superslegend:fire_arrow",
+	"superslegend:ice_arrow",
+	"superslegend:shock_arrow",
+	"superslegend:ancient_arrow"
   ]
 }

@@ -110,7 +110,9 @@ public class ItemList
 
 		public static Item bomb_arrow;
 		public static Item fire_arrow;
-
+		public static Item shock_arrow;
+		public static Item ice_arrow;
+		public static Item ancient_arrow;
 
 	//shields
 		
