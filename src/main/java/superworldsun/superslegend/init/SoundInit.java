@@ -17,5 +17,9 @@ public class SoundInit
     public static SoundEvent MAGIC_CAPE_OFF;
     public static SoundEvent MAGIC_CAPE_ON;
     public static SoundEvent LENS_OF_TRUTH_ON;
+    public static SoundEvent RUPEE_GREEN;
+    public static SoundEvent RUPEE_BLUE;
+    public static SoundEvent RUPEE_RED;
+    public static SoundEvent RUPEE_SILVER;
     
 }

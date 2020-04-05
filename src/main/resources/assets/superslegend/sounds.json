@@ -38,5 +38,25 @@
     "category": "player",
     "subtitle": "superslegend.subtitle.lens_of_truth_on",
     "sounds": [ "superslegend:lens_of_truth_on" ]
+	},
+"rupee_green": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.rupee_green",
+    "sounds": [ "superslegend:rupee_green" ]
+	},
+"rupee_blue": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.rupee_blue",
+    "sounds": [ "superslegend:rupee_blue" ]
+	},
+"rupee_red": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.rupee_red",
+    "sounds": [ "superslegend:rupee_red" ]
+	},
+"rupee_silver": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.rupee_silver",
+    "sounds": [ "superslegend:rupee_silver" ]
 	}
 }
