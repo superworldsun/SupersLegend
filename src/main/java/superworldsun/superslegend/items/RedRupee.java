@@ -18,9 +18,9 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.init.SoundInit;
 import superworldsun.superslegend.lists.ItemList;
 
-public class Rupee extends Item{
+public class RedRupee extends Item{
 
-	public Rupee(Properties properties)
+	public RedRupee(Properties properties)
 	{
 		super(properties);
 	}
@@ -34,10 +34,10 @@ public class Rupee extends Item{
 			
 			 stack.shrink(5);
 			
-			 player.addItemStackToInventory(new ItemStack(ItemList.blue_rupee));
+			 player.addItemStackToInventory(new ItemStack(ItemList.silver_rupee));
 			 
 			 BlockPos currentPos = player.getPosition();
- 	         player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_GREEN, SoundCategory.PLAYERS, 1f, 1f);
+ 	         player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_RED, SoundCategory.PLAYERS, 1f, 1f);
 		 }
 		        
 	return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
@@ -49,6 +49,6 @@ public class Rupee extends Item{
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.GREEN + "1 rupee"));
+		list.add(new StringTextComponent(TextFormatting.RED + "20 rupee"));
 	}   
 } 

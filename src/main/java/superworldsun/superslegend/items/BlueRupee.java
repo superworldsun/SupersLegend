@@ -18,9 +18,9 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.init.SoundInit;
 import superworldsun.superslegend.lists.ItemList;
 
-public class Rupee extends Item{
+public class BlueRupee extends Item{
 
-	public Rupee(Properties properties)
+	public BlueRupee(Properties properties)
 	{
 		super(properties);
 	}
@@ -29,15 +29,15 @@ public class Rupee extends Item{
 	 {
 		ItemStack stack = player.getHeldItem(hand);
 		
-		if(stack.getCount() >= 5)
+		if(stack.getCount() >= 4)
 		 {
 			
-			 stack.shrink(5);
+			 stack.shrink(4);
 			
-			 player.addItemStackToInventory(new ItemStack(ItemList.blue_rupee));
+			 player.addItemStackToInventory(new ItemStack(ItemList.red_rupee));
 			 
 			 BlockPos currentPos = player.getPosition();
- 	         player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_GREEN, SoundCategory.PLAYERS, 1f, 1f);
+ 	         player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_BLUE, SoundCategory.PLAYERS, 1f, 1f);
 		 }
 		        
 	return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
@@ -49,6 +49,6 @@ public class Rupee extends Item{
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.GREEN + "1 rupee"));
+		list.add(new StringTextComponent(TextFormatting.BLUE + "5 rupee"));
 	}   
 } 
