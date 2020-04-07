@@ -21,5 +21,8 @@ public class SoundInit
     public static SoundEvent RUPEE_BLUE;
     public static SoundEvent RUPEE_RED;
     public static SoundEvent RUPEE_SILVER;
+    public static SoundEvent BOOK_OF_MUDORA;
+    public static SoundEvent ARROW_HIT_FIRE;
+    public static SoundEvent ARROW_HIT_ICE;
     
 }

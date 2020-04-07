@@ -58,5 +58,20 @@
     "category": "player",
     "subtitle": "superslegend.subtitle.rupee_silver",
     "sounds": [ "superslegend:rupee_silver" ]
+	},
+"book_of_mudora": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.book_of_mudora",
+    "sounds": [ "superslegend:book_of_mudora" ]
+	},
+"arrow_hit_fire": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.arrow_hit_fire",
+    "sounds": [ "superslegend:arrow_hit_fire" ]
+	},
+"arrow_hit_ice": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.arrow_hit_ice",
+    "sounds": [ "superslegend:arrow_hit_ice" ]
 	}
 }

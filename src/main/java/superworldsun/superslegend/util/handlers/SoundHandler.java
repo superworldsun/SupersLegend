@@ -23,6 +23,9 @@ import static superworldsun.superslegend.init.SoundInit.RUPEE_GREEN;
 import static superworldsun.superslegend.init.SoundInit.RUPEE_BLUE;
 import static superworldsun.superslegend.init.SoundInit.RUPEE_RED;
 import static superworldsun.superslegend.init.SoundInit.RUPEE_SILVER;
+import static superworldsun.superslegend.init.SoundInit.BOOK_OF_MUDORA;
+import static superworldsun.superslegend.init.SoundInit.ARROW_HIT_FIRE;
+import static superworldsun.superslegend.init.SoundInit.ARROW_HIT_ICE;
 
 //MANUALLY IMPORT EACH SOUND EFFECT HERE <<<<<<>>>>>>
 
@@ -51,6 +54,9 @@ public class SoundHandler
     	RUPEE_BLUE = registerSound("rupee_blue");
     	RUPEE_RED = registerSound("rupee_red");
     	RUPEE_SILVER = registerSound("rupee_silver");
+    	BOOK_OF_MUDORA = registerSound("book_of_mudora");
+    	ARROW_HIT_FIRE = registerSound("arrow_hit_fire");
+    	ARROW_HIT_ICE = registerSound("arrow_hit_ice");
     	
     	
     	SUNS_SONG = registerSound("suns_song");
