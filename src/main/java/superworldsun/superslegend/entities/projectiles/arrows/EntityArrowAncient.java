@@ -27,9 +27,12 @@ public class EntityArrowAncient extends ArrowEntity
 
         int i = this.getColor();
 
-        double d0 = (double)(i >> 16 & 255) / 255.0D;
-        double d1 = (double)(i >> 8 & 255) / 255.0D;
-        double d2 = (double)(i >> 0 & 255) / 255.0D;
+        @SuppressWarnings("unused")
+		double d0 = (double)(i >> 16 & 255) / 255.0D;
+        @SuppressWarnings("unused")
+		double d1 = (double)(i >> 8 & 255) / 255.0D;
+        @SuppressWarnings("unused")
+		double d2 = (double)(i >> 0 & 255) / 255.0D;
 
         super.arrowHit(entity);
         if(entity.isNonBoss()){
