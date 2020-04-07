@@ -27,45 +27,5 @@
             }
         }
     },
-    "rewards": {
-        "recipes": [
-        	"superslegend:rupee_block_recipe",
-            "superslegend:blue_rupee_block_recipe",
-			"superslegend:red_rupee_block_recipe",
-            "superslegend:orange_rupee_block_recipe",
-			"superslegend:spikes_block_recipe",
-            "superslegend:gossip_stone_block_recipe",
-			"superslegend:bush_block_recipe",
-            "superslegend:chain_link_fence_block_recipe",
-			"superslegend:deku_flower_block_recipe",
-            "superslegend:pot_block_recipe",
-			"superslegend:grate_block_recipe",
-            "superslegend:grass_patch_block_recipe",
-			"superslegend:torch_tower_recipe",
-            "superslegend:heros_bow_recipe",
-			"superslegend:moon_pearl_recipe",
-            "superslegend:silver_scale_stash_recipe",
-			"superslegend:golden_scale_recipe",
-            "superslegend:rocs_feather_recipe",
-			"superslegend:rocs_cape_recipe",
-            "superslegend:magic_mirror_recipe",
-			"superslegend:magic_cape_recipe",
-            "superslegend:empty_container_recipe",
-			"superslegend:farores_wind_recipe",
-            "superslegend:dins_fire_recipe",
-			"superslegend:nayrus_love_recipe",
-            "superslegend:magnetic_glove_recipe",
-			"superslegend:zoras_flippers_recipe",
-			"superslegend:deku_leaf_recipe",
-			"superslegend:red_jelly_recipe",
-            "superslegend:green_jelly_recipe",
-			"superslegend:blue_jelly_recipe",
-			"superslegend:red_potion_mix_recipe",
-            "superslegend:green_potion_mix_recipe",
-			"superslegend:blue_potion_mix_recipe"
-			
-
-        ]
-    },
     "parent": "superslegend:root"
 }
