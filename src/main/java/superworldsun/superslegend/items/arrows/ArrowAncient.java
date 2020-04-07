@@ -6,7 +6,6 @@ import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowAncient;
-import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowBomb;
 
 public class ArrowAncient extends ArrowItem
 {
