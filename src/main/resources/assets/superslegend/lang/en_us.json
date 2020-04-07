@@ -47,6 +47,17 @@
 	"item.superslegend.master_ore": "Master Ore",
 	"item.superslegend.master_sword_blade": "Master Sword Blade",
 	"item.superslegend.master_sword_hilt": "Master Sword Hilt",
+	
+	"item.superslegend.kokiri_set": "Kokiri Set",
+	"item.superslegend.goron_set": "Goron Set",
+	"item.superslegend.zora_set": "Zora Set",
+	"item.superslegend.purple_set": "Purple Set",
+	"item.superslegend.zora_armor_set": "Zora Armor Set",
+	"item.superslegend.flamebreaker_set": "Flamebreaker Set",
+	"item.superslegend.dark_set": "Dark Set",
+	"item.superslegend.magic_armor_set": "Magic Armor Set",
+	
+	
 	"item.superslegend.moon_pearl": "Moon Pearl",
 	"item.superslegend.heros_secret_stash": "Hero's Secret Stash",
 	"item.superslegend.torch_tower": "Torch Tower",

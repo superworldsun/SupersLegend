@@ -66,6 +66,14 @@ public class ItemList
 		public static Item moon_pearl;
 		public static Item heros_secret_stash;
 		public static Item torch_tower;
+		public static Item kokiri_set;
+		public static Item goron_set;
+		public static Item zora_set;
+		public static Item purple_set;
+		public static Item zora_armor_set;
+		public static Item flamebreaker_set;
+		public static Item dark_set;
+		public static Item magic_armor_set;
 		
 	//Block Items
 		

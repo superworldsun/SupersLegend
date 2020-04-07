@@ -88,6 +88,7 @@ import superworldsun.superslegend.items.ItemCustomHoe;
 import superworldsun.superslegend.items.ItemCustomPickaxe;
 import superworldsun.superslegend.items.ItemCustomShield;
 import superworldsun.superslegend.items.ItemCustomSword;
+import superworldsun.superslegend.items.KokiriSet;
 import superworldsun.superslegend.items.LensOfTruth;
 import superworldsun.superslegend.items.MagicCape;
 import superworldsun.superslegend.items.MagicMirror;
@@ -109,7 +110,7 @@ import superworldsun.superslegend.items.TriforceCourage;
 import superworldsun.superslegend.items.TriforcePower;
 import superworldsun.superslegend.items.TriforceWisdom;
 import superworldsun.superslegend.items.arrows.ArrowBomb;
-//import superworldsun.superslegend.items.bows.BitBow;
+import superworldsun.superslegend.items.bows.BitBow;
 import superworldsun.superslegend.items.arrows.ArrowFire;
 import superworldsun.superslegend.items.arrows.*;
 //import superworldsun.superslegend.items.arrows.ArrowFire;
@@ -292,6 +293,15 @@ public class SupersLegend
 			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("master_ore")),
 			ItemList.master_sword_blade = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_blade")),
 			ItemList.master_sword_hilt = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_hilt")),
+			ItemList.kokiri_set = new KokiriSet(new Item.Properties().group(supers_legend)).setRegistryName(location("kokiri_set")),
+			ItemList.goron_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("goron_set")),
+			ItemList.zora_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("zora_set")),
+			ItemList.purple_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("purple_set")),
+			ItemList.zora_armor_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("zora_armor_set")),
+			ItemList.flamebreaker_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("flamebreaker_set")),
+			ItemList.dark_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("dark_set")),
+			ItemList.magic_armor_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("magic_armor_set")),
+
 			
 		//Block Items
 			
@@ -320,7 +330,7 @@ public class SupersLegend
 			ItemList.master_sword = new ItemCustomSword(ToolMaterialList.master_sword,		(int) 2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
 
 			ItemList.heros_bow = new ItemCustomBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_bow")),
-			//ItemList.bit_bow = new BitBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bit_bow")),
+			ItemList.bit_bow = new BitBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bit_bow")),
 			
 			ItemList.lynel_bow_x3 = new BowLynelSavage(1, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x3")),
 			ItemList.lynel_bow_x5 = new BowLynelSavage(2, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x5")),
