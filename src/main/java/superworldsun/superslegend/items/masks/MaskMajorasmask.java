@@ -1,7 +1,9 @@
 package superworldsun.superslegend.items.masks;
 
+import net.minecraft.client.renderer.entity.model.BipedModel;
 //import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 //import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -12,11 +14,15 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
+import superworldsun.superslegend.models.armor.ModelMajorasMask;
 //import superworldsun.superslegend.models.armor.ModelMajorasMask;
+import superworldsun.superslegend.models.armor.ModelPostmansHat;
 
 
 public class MaskMajorasmask extends NonEnchantArmor {
@@ -27,19 +33,18 @@ public class MaskMajorasmask extends NonEnchantArmor {
         setRegistryName(SupersLegend.modid, name);
     }
     
-/*    @SuppressWarnings("unchecked")
-	@Override
+    @SuppressWarnings("unchecked")
+    @Override
+    @OnlyIn(Dist.CLIENT)
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-    	ModelMajorasMask model = new ModelMajorasMask(toughness);
+    	ModelMajorasMask model = new ModelMajorasMask();
 
         model.isChild = _default.isChild;
         model.isSneak = _default.isSneak;
         model.isSitting = _default.isSitting;
-        model.rightArmPose = _default.rightArmPose;
-        model.leftArmPose = _default.leftArmPose;
 
         return (A) model;
-}*/
+    }
     
     public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
  	{
