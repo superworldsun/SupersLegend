@@ -1,8 +1,9 @@
 package superworldsun.superslegend.models.armor;
 
-import net.minecraft.client.renderer.entity.model.PlayerModel;
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -11,10 +12,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * Created using Tabula 7.1.0
  */
 
-@SuppressWarnings("rawtypes")
 @OnlyIn(Dist.CLIENT)
-public class ModelMajorasMask extends PlayerModel {
-	
+public class ModelMajorasMask<T extends LivingEntity> extends BipedModel<T>
+{
     public RendererModel shape1;
     public RendererModel shape2;
     public RendererModel shape3;
@@ -36,8 +36,7 @@ public class ModelMajorasMask extends PlayerModel {
     public RendererModel shape19;
     public RendererModel shape20;
 
-    public ModelMajorasMask(float modelSize) {
-        super(modelSize, false);
+    public ModelMajorasMask() {
         this.textureWidth = 128;
         this.textureHeight = 128;
         this.shape5 = new RendererModel(this, 63, 121);
@@ -131,38 +130,23 @@ public class ModelMajorasMask extends PlayerModel {
         this.bipedHead.addChild(shape18);
         this.bipedHead.addChild(shape19);
         this.bipedHead.addChild(shape20);
-        
     }
 
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        this.shape5.render(f5);
-        this.shape20.render(f5);
-        this.shape18.render(f5);
-        this.shape13.render(f5);
-        this.shape12.render(f5);
-        this.shape3.render(f5);
-        this.shape7.render(f5);
-        this.shape11.render(f5);
-        this.shape9.render(f5);
-        this.shape10.render(f5);
-        this.shape8.render(f5);
-        this.shape6.render(f5);
-        this.shape2.render(f5);
-        this.shape17.render(f5);
-        this.shape4.render(f5);
-        this.shape14.render(f5);
-        this.shape16.render(f5);
-        this.shape1.render(f5);
-        this.shape15.render(f5);
-        this.shape19.render(f5);
+    @Override
+    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        if (entity instanceof ArmorStandEntity) {
+            f3 = 0;
+        }
+
+        super.render(entity, f, f1, f2, f3, f4, f5);
     }
 
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
-    public void setRotateAngle(RendererModel RendererModel, float x, float y, float z) {
-        RendererModel.rotateAngleX = x;
-        RendererModel.rotateAngleY = y;
-        RendererModel.rotateAngleZ = z;
+    public void setRotateAngle(RendererModel modelRenderer, float x, float y, float z) {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
     }
 }
