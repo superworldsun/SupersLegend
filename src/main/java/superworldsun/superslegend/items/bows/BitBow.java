@@ -45,12 +45,12 @@ public class BitBow extends BowItem
 
 			if (!itemstack.isEmpty() || flag) {
 				if (itemstack.isEmpty()) {
-					itemstack = new ItemStack(Items.ARROW);
+					itemstack = new ItemStack(ItemList.rupee);
 				}
 
 				float f = getArrowVelocity(i);
 				if (!((double)f < 0.1D)) {
-					boolean flag1 = playerentity.abilities.isCreativeMode || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, stack, playerentity));
+					boolean flag1 = playerentity.abilities.isCreativeMode || (itemstack.getItem() instanceof Rupee && ((Rupee)itemstack.getItem()).isInfinite(itemstack, stack, playerentity));
 					if (!worldIn.isRemote) {
 						Rupee rupee = (Rupee)(itemstack.getItem() instanceof Rupee ? itemstack.getItem() : ItemList.rupee);
 						AbstractArrowEntity abstractarrowentity = rupee.createArrow(worldIn, itemstack, playerentity);
@@ -77,9 +77,6 @@ public class BitBow extends BowItem
 						stack.damageItem(1, playerentity, (p_220009_1_) -> {
 							p_220009_1_.sendBreakAnimation(playerentity.getActiveHand());
 						});
-						if (flag1 || playerentity.abilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)) {
-							abstractarrowentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
-						}
 
 						worldIn.addEntity(abstractarrowentity);
 					}
