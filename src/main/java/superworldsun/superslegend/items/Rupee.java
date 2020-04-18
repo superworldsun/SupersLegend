@@ -3,7 +3,11 @@ package superworldsun.superslegend.items;
 import java.util.List;
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -43,8 +47,18 @@ public class Rupee extends Item{
 	return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
 		
 	}
-	
-	
+
+	public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
+		ArrowEntity arrowentity = new ArrowEntity(worldIn, shooter);
+		arrowentity.setPotionEffect(stack);
+		return arrowentity;
+	}
+
+	public boolean isInfinite(ItemStack stack, ItemStack bow, net.minecraft.entity.player.PlayerEntity player) {
+		int enchant = net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel(net.minecraft.enchantment.Enchantments.INFINITY, bow);
+		return enchant <= 0 ? false : this.getClass() == Rupee.class;
+	}
+
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
