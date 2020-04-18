@@ -2,12 +2,19 @@ package superworldsun.superslegend.items.masks;
 
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import superworldsun.superslegend.Keybinds;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
@@ -15,41 +22,27 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
 public class MaskBlastmask extends NonEnchantArmor {
-    public MaskBlastmask(String name, EquipmentSlotType slot) 
-
+    public MaskBlastmask(String name, EquipmentSlotType slot)
     {
         super(ArmourMaterialList.blastmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
-   /* protected void applyCustomModifiers(ItemStack stack, PlayerEntity player) {}
+    @OnlyIn(Dist.CLIENT)
+    private int bombCoolDown = 0;
 
-	
-	public void removeModifiers(ItemStack stack, PlayerEntity player) {}
+    @Override
+    public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
+    {
+        if(bombCoolDown>0){
+            bombCoolDown--;
+        }
+        if(Keybinds.bombMask.isPressed() && bombCoolDown <= 0) {
+            world.createExplosion((Entity)null, player.posX, player.posY, player.posZ, 4.5f, Explosion.Mode.DESTROY);
+            bombCoolDown = 100;
+        }
+    }
 
-	
-	public void explode1(PlayerEntity player, ItemStack stack, World world, double x, double y, double z) {}
-
-
-
-		public void explode(PlayerEntity player, ItemStack stack, World world, double x, double y, double z) {
-			if (player.capabilities.isCreativeMode || !isCooling(world, stack)) {
-				CustomExplosion.createExplosion(new EntityBomb(world), world, x, y, z, 3.0F, 10.0F, false);
-				setNextUse(world, stack, 40);
-			} else {
-				world.playSoundEffect(x, y, z, Sounds.CLICK, 0.3F, 0.6F);
-			}
-	
-		private boolean isCooling(World world, ItemStack stack) {
-			return (stack.hasTagCompound() && world.getTotalWorldTime() < stack.getTagCompound().getInteger("nextUse"));
-		
-		private void setNextUse(World world, ItemStack stack, int time) {
-			if (!stack.hasTagCompound()) { stack.setTagCompound(new NBTTagCompound()); }
-			stack.getTagCompound().setLong("nextUse", world.getTotalWorldTime() + time);
-		}*/
-	
-	
-    
     public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				

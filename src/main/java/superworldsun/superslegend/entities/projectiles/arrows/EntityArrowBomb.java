@@ -41,7 +41,7 @@ public class EntityArrowBomb extends ArrowEntity
         super.tick();
         if(this.inGround){
             if(!world.isRaining() && !world.isThundering()){
-                world.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 3.0f , Explosion.Mode.NONE);
+                world.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 4.5f , Explosion.Mode.NONE);
                 this.remove();
             }else{
                 this.remove();
