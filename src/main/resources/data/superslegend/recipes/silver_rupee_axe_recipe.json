@@ -1,20 +1,20 @@
 {
     "type": "crafting_shaped",
     "pattern": [
-        "##",
-        " /",
-        " /"
+        "## ",
+        "#/ ",
+        " / "
     ],
     "key": {
         "#": {
-            "item": "superslegend:orange_rupee"
+            "item": "superslegend:silver_rupee"
         },
         "/": {
             "item": "minecraft:stick"
         }
     },
     "result": {
-        "item": "superslegend:orange_rupee_hoe",
+        "item": "superslegend:silver_rupee_axe",
         "count": 1
     }
 }

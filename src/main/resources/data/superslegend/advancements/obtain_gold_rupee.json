@@ -4,12 +4,12 @@
             "text": "It's a secret to everybody..."
         },
         "description": {
-            "text": "Obtain an Orange Rupee",
+            "text": "Obtain an Gold Rupee",
             "color": "gold",
             "bold": false
         },
         "icon": {
-            "item": "superslegend:orange_rupee"
+            "item": "superslegend:gold_rupee"
         },
         "frame": "task",
         "show_toast": true,
@@ -22,7 +22,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "superslegend:orange_rupee"
+                        "item": "superslegend:gold_rupee"
                     }
                 ]
             }
