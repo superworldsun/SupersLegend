@@ -31,7 +31,7 @@ public class MaskPostmanshat extends NonEnchantArmor {
     }
 
 
-    @SuppressWarnings("unchecked")
+    /*@SuppressWarnings("unchecked")
     @Override
     @OnlyIn(Dist.CLIENT)
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
@@ -42,7 +42,7 @@ public class MaskPostmanshat extends NonEnchantArmor {
         model.isSitting = _default.isSitting;
 
         return (A) model;
-    }
+    }*/
 
      
     
