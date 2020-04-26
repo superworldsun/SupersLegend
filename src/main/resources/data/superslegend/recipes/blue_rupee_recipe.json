@@ -1,24 +1,22 @@
 {
-    "type": "crafting_shapeless",
-    "ingredients": [
-        {
-            "item": "superslegend:rupee"
-        },
-        {
-            "item": "superslegend:rupee"
-        },
-        {
-            "item": "superslegend:rupee"
-        },
-        {
-            "item": "superslegend:rupee"
-        },
-        {
-            "item": "superslegend:rupee"
-        }
-    ],
-    "result": {
-        "item": "superslegend:blue_rupee",
-        "count": 1
-    }
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"R"
+	],
+	
+	"key":
+	{
+		"R":
+		{
+			"item": "superslegend:blue_rupee_block"
+		}
+	},
+	
+	"result":
+	{
+		"item": "superslegend:blue_rupee",
+		"count": 9
+	}
 }
