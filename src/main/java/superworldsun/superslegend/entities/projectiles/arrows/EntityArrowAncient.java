@@ -3,7 +3,10 @@ package superworldsun.superslegend.entities.projectiles.arrows;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import superworldsun.superslegend.init.SoundInit;
 import superworldsun.superslegend.lists.ItemList;
 
 public class EntityArrowAncient extends ArrowEntity
@@ -36,9 +39,13 @@ public class EntityArrowAncient extends ArrowEntity
 
         super.arrowHit(entity);
         if(entity.isNonBoss()){
+        	BlockPos currentPos = entity.getPosition();
+            entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ANCIENT, SoundCategory.PLAYERS, 1f, 1f);
             entity.setHealth(0);
         }else {
-            entity.setHealth(entity.getHealth()-75);
+        	BlockPos currentPos = entity.getPosition();
+            entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ANCIENT, SoundCategory.PLAYERS, 1f, 1f);
+            entity.setHealth(entity.getHealth()-45);
         }
     }
 }

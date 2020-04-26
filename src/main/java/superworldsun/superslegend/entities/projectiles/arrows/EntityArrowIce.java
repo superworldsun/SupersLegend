@@ -35,8 +35,8 @@ public class EntityArrowIce extends ArrowEntity
     protected void arrowHit(LivingEntity entity) {
         super.arrowHit(entity);
         entity.setLastAttackedEntity(null);
-        entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 200, 255, false, false));
-        entity.addPotionEffect(new EffectInstance(Effects.BLINDNESS, 200, 255, false, false));
+        entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 50, 255, false, false));
+        entity.addPotionEffect(new EffectInstance(Effects.BLINDNESS, 50, 255, false, false));
         
         BlockPos currentPos = entity.getPosition();
         entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ICE, SoundCategory.PLAYERS, 1f, 1f);
@@ -47,8 +47,9 @@ public class EntityArrowIce extends ArrowEntity
     public void tick() {
         super.tick();
         if(this.inGround){
-            if(!world.isRaining() && !world.isThundering()){
+        		if (world.isAirBlock(this.getPosition()))
                 world.setBlockState(this.getPosition(), Blocks.SNOW.getDefaultState(), 11);
+                
                 
                 BlockPos currentPos = this.getPosition();
                 this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ICE, SoundCategory.PLAYERS, 1f, 1f);
@@ -56,10 +57,10 @@ public class EntityArrowIce extends ArrowEntity
                 this.remove();
             }
 
-        }
+        
         if(this.isInWater())
         {
-        	world.setBlockState(this.getPosition(), Blocks.ICE.getDefaultState(), 11);
+        	world.setBlockState(this.getPosition(), Blocks.FROSTED_ICE.getDefaultState(), 11);
         	
         	BlockPos currentPos = this.getPosition();
             this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ICE, SoundCategory.PLAYERS, 1f, 1f);

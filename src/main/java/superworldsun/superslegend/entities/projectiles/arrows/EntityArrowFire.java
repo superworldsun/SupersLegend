@@ -6,6 +6,7 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import superworldsun.superslegend.init.SoundInit;
@@ -45,7 +46,7 @@ public class EntityArrowFire extends ArrowEntity
         super.tick();
         if(this.inGround){
             if(!world.isRaining() && !world.isThundering() && !this.isInWater()){
-            	
+        		if (world.isAirBlock(this.getPosition()))
                 world.setBlockState(this.getPosition(), Blocks.FIRE.getDefaultState(), 11);
                 
                 BlockPos currentPos = this.getPosition();
@@ -58,11 +59,13 @@ public class EntityArrowFire extends ArrowEntity
         if (this.isAirBorne) 
         {
         	
-        	this.setFire(99);
+        	this.setFire(999);
         	
         }
         if(this.isInWater())
         {
+        	BlockPos currentPos = this.getPosition();
+   		 	this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
         	this.remove();
         }
     }

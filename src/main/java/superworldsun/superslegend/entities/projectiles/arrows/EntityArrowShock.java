@@ -18,7 +18,7 @@ import superworldsun.superslegend.lists.ItemList;
 public class EntityArrowShock extends ArrowEntity
 {
 
-    public static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation("zeldamod:textures/entity/arrows/shock_arrow.png");
+    public static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation("superslegend:textures/models/arrow/shock_arrow.png");
 
     public EntityArrowShock(World worldIn, double x, double y, double z){
         super(worldIn, x, y, z);
@@ -50,10 +50,10 @@ public class EntityArrowShock extends ArrowEntity
         
         
         BlockPos currentPos = entity.getPosition();
-        entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.JAWA, SoundCategory.PLAYERS, 1f, 1f);
+        entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_SHOCK, SoundCategory.PLAYERS, 1f, 1f);
         
         
-        entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 40, 255, false, false));
+        entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 255, false, false));
 
     }
 
