@@ -59,7 +59,7 @@ public class EntityArrowFire extends ArrowEntity
         if (this.isAirBorne) 
         {
         	
-        	this.setFire(999);
+        	this.setFire(99);
         	
         }
         if(this.isInWater())
