@@ -143,7 +143,7 @@ import superworldsun.superslegend.items.masks.MaskZoramask;
 import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.ToolMaterialList;
-import superworldsun.superslegend.util.HealthHandler;
+//import superworldsun.superslegend.util.HealthHandler;
 import superworldsun.superslegend.util.handlers.SoundHandler;
 import superworldsun.superslegend.world.gen.OreGeneration;
 
@@ -255,7 +255,7 @@ public class SupersLegend
 	private void setup(final FMLCommonSetupEvent event)
 	{
 		OreGeneration.setupOreWorldGen();
-		MinecraftForge.EVENT_BUS.register(HealthHandler.class);
+		//MinecraftForge.EVENT_BUS.register(HealthHandler.class);
 		Logger.info("Setup method registered");
 	}
 	
@@ -281,7 +281,7 @@ public class SupersLegend
 			ItemList.red_rupee = new RedRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee")),
 			ItemList.silver_rupee = new SilverRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee")),
 			ItemList.gold_rupee = new GoldRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee")),
-			ItemList.heart = new Heart(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heart")),
+			//ItemList.heart = new Heart(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heart")),
 			ItemList.triforce_power_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_power_shard")),
 			ItemList.triforce_wisdom_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_wisdom_shard")),
 			ItemList.triforce_courage_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_courage_shard")),
@@ -293,14 +293,14 @@ public class SupersLegend
 			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("master_ore")),
 			ItemList.master_sword_blade = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_blade")),
 			ItemList.master_sword_hilt = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_hilt")),
-			ItemList.kokiri_set = new KokiriSet(new Item.Properties().group(supers_legend)).setRegistryName(location("kokiri_set")),
-			ItemList.goron_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("goron_set")),
-			ItemList.zora_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("zora_set")),
-			ItemList.purple_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("purple_set")),
-			ItemList.zora_armor_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("zora_armor_set")),
-			ItemList.flamebreaker_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("flamebreaker_set")),
-			ItemList.dark_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("dark_set")),
-			ItemList.magic_armor_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("magic_armor_set")),
+			//ItemList.kokiri_set = new KokiriSet(new Item.Properties().group(supers_legend)).setRegistryName(location("kokiri_set")),
+			//ItemList.goron_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("goron_set")),
+			//ItemList.zora_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("zora_set")),
+			//ItemList.purple_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("purple_set")),
+			//ItemList.zora_armor_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("zora_armor_set")),
+			//ItemList.flamebreaker_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("flamebreaker_set")),
+			//ItemList.dark_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("dark_set")),
+			//ItemList.magic_armor_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("magic_armor_set")),
 
 			
 		//Block Items
@@ -330,18 +330,18 @@ public class SupersLegend
 			ItemList.master_sword = new ItemCustomSword(ToolMaterialList.master_sword,		(int) 2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
 
 			ItemList.heros_bow = new ItemCustomBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_bow")),
-			ItemList.bit_bow = new BitBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bit_bow")),
+			//ItemList.bit_bow = new BitBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bit_bow")),
 			
 			ItemList.lynel_bow_x3 = new BowLynelSavage(1, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x3")),
 			ItemList.lynel_bow_x5 = new BowLynelSavage(2, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x5")),
 
-			ItemList.deku_shield = new ItemCustomShield(new Item.Properties().maxStackSize(1).maxDamage(337).group(supers_legend)).setRegistryName(location("deku_shield")),
+			ItemList.deku_shield = new ItemCustomShield(new Item.Properties().maxStackSize(1).maxDamage(500).group(supers_legend)).setRegistryName(location("deku_shield")),
 			ItemList.hylian_shield = new ShieldItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("hylian_shield")),
-
-			ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
+	
 			ItemList.fire_arrow = new ArrowFire(new Item.Properties().group(supers_legend)).setRegistryName(location("fire_arrow")),
-			ItemList.shock_arrow = new ArrowShock(new Item.Properties().group(supers_legend)).setRegistryName(location("shock_arrow")),
 			ItemList.ice_arrow = new ArrowIce(new Item.Properties().group(supers_legend)).setRegistryName(location("ice_arrow")),
+			ItemList.shock_arrow = new ArrowShock(new Item.Properties().group(supers_legend)).setRegistryName(location("shock_arrow")),
+			ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
 			ItemList.ancient_arrow = new ArrowAncient(new Item.Properties().group(supers_legend)).setRegistryName(location("ancient_arrow")),
 
 			ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
