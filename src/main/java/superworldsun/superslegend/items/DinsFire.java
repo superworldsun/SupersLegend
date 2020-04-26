@@ -8,7 +8,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.FireBlock;
 import net.minecraft.block.NetherPortalBlock;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
@@ -39,10 +38,12 @@ public class DinsFire extends Item {
       IWorld iworld = context.getWorld();
       BlockPos blockpos = context.getPos();
       BlockPos blockpos1 = blockpos.offset(context.getFace());
-      if (func_219996_a(iworld.getBlockState(blockpos1), iworld, blockpos1)) {
+      if (func_219996_a(iworld.getBlockState(blockpos1), iworld, blockpos1) && playerentity.getFoodStats().getFoodLevel()>= 1) {
          iworld.playSound(playerentity, blockpos1, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
          BlockState blockstate1 = ((FireBlock)Blocks.FIRE).getStateForPlacement(iworld, blockpos1);
          iworld.setBlockState(blockpos1, blockstate1, 11);
+		playerentity.addExhaustion(4f);
+
          ItemStack itemstack = context.getItem();
          if (playerentity instanceof ServerPlayerEntity) {
             CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)playerentity, blockpos1, itemstack);
@@ -90,23 +91,7 @@ public static boolean func_219996_a(BlockState p_219996_0_, IWorld p_219996_1_, 
 
       return p_219996_0_.isAir() && (blockstate.isValidPosition(p_219996_1_, p_219996_2_) || flag);
    }
-   
-   public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
-	{		
-		if(entity instanceof PlayerEntity && !world.isRemote)
-		{
-			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
-			if(!world.isRemote)
-			{
-				if(stack == equipped)
-		        {
-					player.addExhaustion(0.4f);
-		        }
-			}	
 
-		}
-	}
 
    @Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
@@ -114,6 +99,6 @@ public static boolean func_219996_a(BlockState p_219996_0_, IWorld p_219996_1_, 
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.RED + "Through Din, you can set the world ablaze"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina when Held"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
 	}   
 } 
