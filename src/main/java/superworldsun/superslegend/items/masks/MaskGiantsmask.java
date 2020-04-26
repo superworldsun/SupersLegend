@@ -27,7 +27,7 @@ public class MaskGiantsmask extends NonEnchantArmor {
     }
 
     
-    @Override
+    /*@Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
         {
@@ -79,7 +79,7 @@ public class MaskGiantsmask extends NonEnchantArmor {
     			player.stepHeight = 0.5f;
     		}
     	}
-    }
+    }*/
         
     
     
