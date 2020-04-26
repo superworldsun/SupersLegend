@@ -73,5 +73,15 @@
     "category": "player",
     "subtitle": "superslegend.subtitle.arrow_hit_ice",
     "sounds": [ "superslegend:arrow_hit_ice" ]
+	},
+"arrow_hit_shock": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.arrow_hit_shock",
+    "sounds": [ "superslegend:arrow_hit_shock" ]
+	},
+"arrow_hit_ancient": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.arrow_hit_ancient",
+    "sounds": [ "superslegend:arrow_hit_ancient" ]
 	}
 }
