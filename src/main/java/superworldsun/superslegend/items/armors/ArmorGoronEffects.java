@@ -40,6 +40,8 @@ public class ArmorGoronEffects extends NonEnchantArmor
     	if (!world.isRemote){
             boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.goron_tunic);
             if(isChestplateOn) player.addPotionEffect(new EffectInstance(Effect.get(12), 10, 0, false, false));
+            
+            player.extinguish();
             }
     }
 }

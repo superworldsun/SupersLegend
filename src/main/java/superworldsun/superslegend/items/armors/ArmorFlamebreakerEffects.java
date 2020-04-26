@@ -46,6 +46,7 @@ public class ArmorFlamebreakerEffects extends NonEnchantArmor
                 if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn)
                 	{
                 		player.addPotionEffect(new EffectInstance(Effect.get(12), 10, 0, false, false, false));
+                		player.extinguish();
                 	}
                 	
                 }
