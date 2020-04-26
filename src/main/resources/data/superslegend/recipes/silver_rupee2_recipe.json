@@ -10,13 +10,13 @@
 	{
 		"R":
 		{
-			"item": "superslegend:red_rupee_block"
+			"item": "superslegend:silver_rupee_block"
 		}
 	},
 	
 	"result":
 	{
-		"item": "superslegend:red_rupee",
+		"item": "superslegend:silver_rupee",
 		"count": 9
 	}
 }

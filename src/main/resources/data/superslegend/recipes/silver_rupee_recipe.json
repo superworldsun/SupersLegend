@@ -10,13 +10,13 @@
 	{
 		"O":
 		{
-			"item": "superslegend:silver_rupee"
+			"item": "superslegend:gold_rupee"
 		}
 	},
 	
 	"result":
 	{
-		"item": "superslegend:red_rupee",
-		"count": 5
+		"item": "superslegend:silver_rupee",
+		"count": 3
 	}
 }

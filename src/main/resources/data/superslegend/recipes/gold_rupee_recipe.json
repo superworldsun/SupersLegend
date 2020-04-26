@@ -3,20 +3,20 @@
 	
 	"pattern":
 	[
-		"O"
+		"R"
 	],
 	
 	"key":
 	{
-		"O":
+		"R":
 		{
-			"item": "superslegend:silver_rupee"
+			"item": "superslegend:gold_rupee_block"
 		}
 	},
 	
 	"result":
 	{
-		"item": "superslegend:red_rupee",
-		"count": 5
+		"item": "superslegend:gold_rupee",
+		"count": 9
 	}
 }

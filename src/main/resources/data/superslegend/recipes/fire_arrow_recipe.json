@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#F",
+        "A#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:gold_nugget"
+        },
+        "F": {
+            "item": "minecraft:fire_charge"
+        },
+        "A": {
+            "item": "minecraft:arrow"
+        }
+    },
+    "result": {
+        "item": "superslegend:fire_arrow",
+        "count": 4
+    }
+}

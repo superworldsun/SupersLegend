@@ -1,17 +1,19 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "rrr",
-        "rrr",
-        "rrr"
+        "#",
+        "G"
     ],
     "key": {
-        "r": {
+        "#": {
             "item": "superslegend:rupee"
+        },
+        "G": {
+            "item": "minecraft:golden_helmet"
         }
     },
     "result": {
-        "item": "superslegend:rupee_block",
+        "item": "superslegend:magic_armor_cap",
         "count": 1
     }
 }

@@ -7,11 +7,11 @@
     ],
     "key": {
         "r": {
-            "item": "superslegend:red_rupee"
+            "item": "superslegend:gold_rupee"
         }
     },
     "result": {
-        "item": "superslegend:red_rupee_block",
+        "item": "superslegend:gold_rupee_block",
         "count": 1
     }
 }

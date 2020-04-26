@@ -1,13 +1,16 @@
 {
-    "type": "crafting_shaped",
+    "type": "minecraft:crafting_shaped",
     "pattern": [
-        "#L#",
-        "###",
-        "###"
+        "#R#",
+        "RLR",
+        " R "
     ],
     "key": {
         "#": {
-            "item": "superslegend:red_rupee"
+            "item": "superslegend:silver_rupee"
+        },
+        "R": {
+            "item": "minecraft:red_dye"
         },
         "L": {
             "item": "superslegend:kokiri_tunic"

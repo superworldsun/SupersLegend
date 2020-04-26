@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#  ",
+        "#S#",
+        "## "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:clay_ball"
+        },
+        "S": {
+            "item": "minecraft:sugar_cane"
+        }
+    },
+    "result": {
+        "item": "superslegend:fairy_ocarina",
+        "count": 1
+    }
+}
