@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
-@Mod.EventBusSubscriber
+/*@Mod.EventBusSubscriber
 public class HealthHandler {
     protected static final Random rand = new Random();
     public static int playerHealth;
@@ -247,5 +247,4 @@ public class HealthHandler {
             ForgeIngameGui.left_height = ArmorPosY;
         }
     }
-}
-
+}*/
