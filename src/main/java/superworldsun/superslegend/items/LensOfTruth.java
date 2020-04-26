@@ -6,7 +6,6 @@ import java.util.Random;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.EnderPearlEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.Item;
@@ -15,7 +14,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -48,7 +46,7 @@ public class LensOfTruth extends Item
 		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
 	 }*/
 	
-	@Override
+	/*@Override
 	 public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) { ItemStack stack = playerIn.getHeldItem(handIn);
 	 
 	 ArrowEntity ent = new ArrowEntity(worldIn, playerIn); ent.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
@@ -58,7 +56,7 @@ public class LensOfTruth extends Item
 	 worldIn.addEntity(ent); playerIn.getCooldownTracker().setCooldown(stack.getItem(), 30);
 	     
 	     return super.onItemRightClick(worldIn, playerIn, handIn);
-	     }
+	     }*/
 	
 	
 	@Override
@@ -119,6 +117,7 @@ public class LensOfTruth extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
+		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Left click the hidden to reveal"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
 	}  
 	
