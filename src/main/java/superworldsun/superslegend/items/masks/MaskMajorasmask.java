@@ -33,7 +33,7 @@ public class MaskMajorasmask extends NonEnchantArmor {
         setRegistryName(SupersLegend.modid, name);
     }
     
-    @SuppressWarnings("unchecked")
+    /*@SuppressWarnings("unchecked")
     @Override
     @OnlyIn(Dist.CLIENT)
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
@@ -44,7 +44,7 @@ public class MaskMajorasmask extends NonEnchantArmor {
         model.isSitting = _default.isSitting;
 
         return (A) model;
-    }
+    }*/
     
     public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
  	{
