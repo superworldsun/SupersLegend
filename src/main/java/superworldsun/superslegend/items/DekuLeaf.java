@@ -61,7 +61,7 @@ public class DekuLeaf extends Item
 			player.getCooldownTracker().setCooldown(this, 9);
 			
 			BlockPos currentPos = player.getPosition();
-			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
+	         player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
        }
 				return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
 		}
