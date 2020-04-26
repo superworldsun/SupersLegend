@@ -7,6 +7,7 @@ import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowFire;
+import superworldsun.superslegend.lists.ItemList;
 
 public class ArrowFire extends ArrowItem
 {
@@ -21,4 +22,10 @@ public class ArrowFire extends ArrowItem
         EntityArrowFire entityFireArrow = new EntityArrowFire(worldIn, shooter);
         return entityFireArrow;
     }
+    
+    /*public boolean isInfinite(ItemStack stack, ItemStack bow, net.minecraft.entity.player.PlayerEntity player) {
+        @SuppressWarnings("unused")
+		ItemStack itemStack = (new ItemStack(ItemList.heros_bow));
+        return true;
+     }*/
 }
