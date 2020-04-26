@@ -75,7 +75,7 @@ public class OcarinaOfTime extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.GOLD + "A standard Ocarina"));
+		list.add(new StringTextComponent(TextFormatting.BLUE + "A Ocarina to control time"));
 	}   
 	//world.setDayTime(0);
 	
