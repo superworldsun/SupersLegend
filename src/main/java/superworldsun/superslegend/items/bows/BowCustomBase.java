@@ -24,14 +24,13 @@ public class BowCustomBase extends BowItem
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
-            boolean flag = playerentity.abilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
             ItemStack itemstack = playerentity.findAmmo(stack);
 
             int i = this.getUseDuration(stack) - timeLeft;
-            i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, i, !itemstack.isEmpty() || flag);
+            i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, i, !itemstack.isEmpty());
             if (i < 0) return;
 
-            if (!itemstack.isEmpty() || flag) {
+            if (!itemstack.isEmpty()) {
                 if (itemstack.isEmpty()) {
                     itemstack = new ItemStack(Items.ARROW);
                 }
@@ -48,19 +47,7 @@ public class BowCustomBase extends BowItem
                             abstractarrowentity.setIsCritical(true);
                         }
 
-                        int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-                        if (j > 0) {
-                            abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)j * 0.5D + 0.5D);
-                        }
 
-                        int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-                        if (k > 0) {
-                            abstractarrowentity.setKnockbackStrength(k);
-                        }
-
-                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                            abstractarrowentity.setFire(100);
-                        }
 
                         stack.damageItem(1, playerentity, (p_220009_1_) -> {
                             p_220009_1_.sendBreakAnimation(playerentity.getActiveHand());
@@ -85,5 +72,11 @@ public class BowCustomBase extends BowItem
             }
         }
     }
+    
+    @Override
+    public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+        // TODO Auto-generated method stub
+        return false;
+	}
 
 }

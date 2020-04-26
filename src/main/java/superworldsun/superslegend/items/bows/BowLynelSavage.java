@@ -40,14 +40,12 @@ public class BowLynelSavage extends BowCustomBase{
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
-            boolean flag = playerentity.abilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
             ItemStack itemstack = playerentity.findAmmo(stack);
 
             int i = this.getUseDuration(stack) - timeLeft;
-            i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, i, !itemstack.isEmpty() || flag);
+            i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, i, !itemstack.isEmpty());
             if (i < 0) return;
 
-            if (!itemstack.isEmpty() || flag) {
                 if (itemstack.isEmpty()) {
                     itemstack = new ItemStack(Items.ARROW);
                 }
@@ -66,19 +64,7 @@ public class BowLynelSavage extends BowCustomBase{
                                 abstractarrowentity.setIsCritical(true);
                             }
 
-                            int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-                            if (j > 0) {
-                                abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)j * 0.5D + 0.5D);
-                            }
 
-                            int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-                            if (k > 0) {
-                                abstractarrowentity.setKnockbackStrength(k);
-                            }
-
-                            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                                abstractarrowentity.setFire(100);
-                            }
 
                             stack.damageItem(1, playerentity, (p_220009_1_) -> {
                                 p_220009_1_.sendBreakAnimation(playerentity.getActiveHand());
@@ -99,19 +85,7 @@ public class BowLynelSavage extends BowCustomBase{
                                 abstractarrowentity.setIsCritical(true);
                             }
 
-                            int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-                            if (j > 0) {
-                                abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)j * 0.5D + 0.5D);
-                            }
 
-                            int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-                            if (k > 0) {
-                                abstractarrowentity.setKnockbackStrength(k);
-                            }
-
-                            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                                abstractarrowentity.setFire(100);
-                            }
 
                             stack.damageItem(1, playerentity, (p_220009_1_) -> {
                                 p_220009_1_.sendBreakAnimation(playerentity.getActiveHand());
@@ -132,19 +106,7 @@ public class BowLynelSavage extends BowCustomBase{
                                 abstractarrowentity.setIsCritical(true);
                             }
 
-                            int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-                            if (j > 0) {
-                                abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)j * 0.5D + 0.5D);
-                            }
 
-                            int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-                            if (k > 0) {
-                                abstractarrowentity.setKnockbackStrength(k);
-                            }
-
-                            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                                abstractarrowentity.setFire(100);
-                            }
 
                             stack.damageItem(1, playerentity, (p_220009_1_) -> {
                                 p_220009_1_.sendBreakAnimation(playerentity.getActiveHand());
@@ -165,19 +127,7 @@ public class BowLynelSavage extends BowCustomBase{
                                 abstractarrowentity.setIsCritical(true);
                             }
 
-                            int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-                            if (j > 0) {
-                                abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)j * 0.5D + 0.5D);
-                            }
 
-                            int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-                            if (k > 0) {
-                                abstractarrowentity.setKnockbackStrength(k);
-                            }
-
-                            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                                abstractarrowentity.setFire(100);
-                            }
 
                             stack.damageItem(1, playerentity, (p_220009_1_) -> {
                                 p_220009_1_.sendBreakAnimation(playerentity.getActiveHand());
@@ -198,19 +148,7 @@ public class BowLynelSavage extends BowCustomBase{
                                 abstractarrowentity.setIsCritical(true);
                             }
 
-                            int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-                            if (j > 0) {
-                                abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)j * 0.5D + 0.5D);
-                            }
 
-                            int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-                            if (k > 0) {
-                                abstractarrowentity.setKnockbackStrength(k);
-                            }
-
-                            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                                abstractarrowentity.setFire(100);
-                            }
 
                             stack.damageItem(1, playerentity, (p_220009_1_) -> {
                                 p_220009_1_.sendBreakAnimation(playerentity.getActiveHand());
@@ -231,19 +169,7 @@ public class BowLynelSavage extends BowCustomBase{
                                 abstractarrowentity.setIsCritical(true);
                             }
 
-                            int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-                            if (j > 0) {
-                                abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)j * 0.5D + 0.5D);
-                            }
 
-                            int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-                            if (k > 0) {
-                                abstractarrowentity.setKnockbackStrength(k);
-                            }
-
-                            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                                abstractarrowentity.setFire(100);
-                            }
 
                             stack.damageItem(1, playerentity, (p_220009_1_) -> {
                                 p_220009_1_.sendBreakAnimation(playerentity.getActiveHand());
@@ -264,19 +190,7 @@ public class BowLynelSavage extends BowCustomBase{
                                 abstractarrowentity.setIsCritical(true);
                             }
 
-                            int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-                            if (j > 0) {
-                                abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)j * 0.5D + 0.5D);
-                            }
 
-                            int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-                            if (k > 0) {
-                                abstractarrowentity.setKnockbackStrength(k);
-                            }
-
-                            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                                abstractarrowentity.setFire(100);
-                            }
 
                             stack.damageItem(1, playerentity, (p_220009_1_) -> {
                                 p_220009_1_.sendBreakAnimation(playerentity.getActiveHand());
@@ -297,19 +211,7 @@ public class BowLynelSavage extends BowCustomBase{
                                 abstractarrowentity.setIsCritical(true);
                             }
 
-                            int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-                            if (j > 0) {
-                                abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)j * 0.5D + 0.5D);
-                            }
 
-                            int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-                            if (k > 0) {
-                                abstractarrowentity.setKnockbackStrength(k);
-                            }
-
-                            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-                                abstractarrowentity.setFire(100);
-                            }
 
                             stack.damageItem(1, playerentity, (p_220009_1_) -> {
                                 p_220009_1_.sendBreakAnimation(playerentity.getActiveHand());
@@ -334,7 +236,7 @@ public class BowLynelSavage extends BowCustomBase{
                 }
             }
         }
-    }
+    
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
@@ -345,6 +247,12 @@ public class BowLynelSavage extends BowCustomBase{
             tooltip.add(new StringTextComponent(TextFormatting.BLUE + "x5 Arrows"));
         }
     }
+    
+    @Override
+    public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+        // TODO Auto-generated method stub
+        return false;
+	}
 
     @Override
     public void onCreated(ItemStack itemStack, World world, PlayerEntity player) {
