@@ -87,6 +87,7 @@ import superworldsun.superslegend.items.ItemCustomBow;
 import superworldsun.superslegend.items.ItemCustomHoe;
 import superworldsun.superslegend.items.ItemCustomPickaxe;
 import superworldsun.superslegend.items.ItemCustomShield;
+import superworldsun.superslegend.items.ItemCustomShovel;
 import superworldsun.superslegend.items.ItemCustomSword;
 import superworldsun.superslegend.items.KokiriSet;
 import superworldsun.superslegend.items.LensOfTruth;
@@ -393,11 +394,11 @@ public class SupersLegend
 			ItemList.silver_rupee_axe = new ItemCustomAxe(ToolMaterialList.silver_rupee_axe, 		(int) 0, -3.1f, new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee_axe")),
 			ItemList.gold_rupee_axe = new ItemCustomAxe(ToolMaterialList.gold_rupee_axe, 		(int) 0, -3.1f, new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee_axe")),
 			
-			ItemList.rupee_shovel = new ShovelItem(ToolMaterialList.rupee_shovel, 				(int) 0, -2.8f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_shovel")),
-			ItemList.blue_rupee_shovel = new ShovelItem(ToolMaterialList.blue_rupee_shovel, 	(int) 0, -2.8f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_shovel")),
-			ItemList.red_rupee_shovel = new ShovelItem(ToolMaterialList.red_rupee_shovel, 		(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_shovel")),
-			ItemList.silver_rupee_shovel = new ShovelItem(ToolMaterialList.silver_rupee_shovel,	(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee_shovel")),
-			ItemList.gold_rupee_shovel = new ShovelItem(ToolMaterialList.gold_rupee_shovel,	(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee_shovel")),
+			ItemList.rupee_shovel = new ItemCustomShovel(ToolMaterialList.rupee_shovel, 				(int) 0, -2.8f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_shovel")),
+			ItemList.blue_rupee_shovel = new ItemCustomShovel(ToolMaterialList.blue_rupee_shovel, 	(int) 0, -2.8f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_shovel")),
+			ItemList.red_rupee_shovel = new ItemCustomShovel(ToolMaterialList.red_rupee_shovel, 		(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee_shovel")),
+			ItemList.silver_rupee_shovel = new ItemCustomShovel(ToolMaterialList.silver_rupee_shovel,	(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee_shovel")),
+			ItemList.gold_rupee_shovel = new ItemCustomShovel(ToolMaterialList.gold_rupee_shovel,	(int) 0, -2.6f, new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee_shovel")),
 			
 			ItemList.rupee_hoe = new ItemCustomHoe(ToolMaterialList.rupee_hoe, 				(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("rupee_hoe")),
 			ItemList.blue_rupee_hoe = new ItemCustomHoe(ToolMaterialList.blue_rupee_hoe, 	(int) 0, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee_hoe")),
