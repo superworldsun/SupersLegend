@@ -31,8 +31,7 @@ public class FairyOcarina extends Item
 	 {
 		 @SuppressWarnings("unused")
 		ItemStack stack = player.getHeldItem(hand);
-		  
-		 if(world.isDaytime())
+
 	     {
 			 BlockPos currentPos = player.getPosition();
 			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.BLOCK_NOTE_BLOCK_FLUTE, SoundCategory.PLAYERS, 1f, 1f);
