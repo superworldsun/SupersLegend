@@ -17,7 +17,7 @@ public class CustomLootDragon
 
         if(event.getEntityLiving() instanceof EnderDragonEntity) {
             if(random.nextInt(1) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.silver_rupee,2));
+                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.silver_rupee,1));
             
             if(random.nextInt(1) == 0)
                 event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
