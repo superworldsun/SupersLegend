@@ -1,0 +1,33 @@
+{
+    "display": {
+        "title": {
+            "text": "Made of money",
+            "color": "yellow",
+            "bold": false,
+            "italic": true
+        },
+        "description": {
+            "text": "Obtain the Magic Armor Tunic"
+        },
+        "icon": {
+            "item": "superslegend:magic_armor_tunic"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": true
+    },
+    "criteria": {
+        "be_alive": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "superslegend:magic_armor_tunic"
+                    }
+                ]
+            }
+        }
+    },
+    "parent": "superslegend:obtain_gold_rupee"
+}
