@@ -13,6 +13,7 @@ import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
+import superworldsun.superslegend.lists.PotionList;
 import net.minecraft.util.text.ITextComponent;
 
 public class ArmorFlippersEffects extends NonEnchantArmor
@@ -42,7 +43,11 @@ public class ArmorFlippersEffects extends NonEnchantArmor
                 	{
                 	if(player.isInWater()&&player.isSprinting()) 
                 	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(1), 4, 2, false, false));
+                		player.addPotionEffect(new EffectInstance(PotionList.zoras_grace_effect, 8, 0, false, false));
+                	}
+                	if(!player.isSprinting()) 
+                	{
+                		player.removePotionEffect(PotionList.zoras_grace_effect);
                 	}
                 }
         }
