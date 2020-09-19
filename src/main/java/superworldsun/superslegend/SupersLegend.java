@@ -1,14 +1,24 @@
 package superworldsun.superslegend;
 
-import net.minecraft.item.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ShieldItem;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectType;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -58,17 +68,6 @@ import superworldsun.superslegend.blocks.PotBlock;
 import superworldsun.superslegend.blocks.SpikesBlock;
 import superworldsun.superslegend.blocks.TorchTowerBlockBottom;
 import superworldsun.superslegend.blocks.TorchTowerBlockTop;
-import superworldsun.superslegend.items.armors.ArmorDarkEffects;
-import superworldsun.superslegend.items.armors.ArmorFlamebreakerEffects;
-import superworldsun.superslegend.items.armors.ArmorFlippersEffects;
-import superworldsun.superslegend.items.armors.ArmorGoronEffects;
-import superworldsun.superslegend.items.armors.ArmorKokiriEffects;
-import superworldsun.superslegend.items.armors.ArmorMagicArmor;
-import superworldsun.superslegend.items.armors.ArmorPurpleEffects;
-import superworldsun.superslegend.items.armors.ArmorZoraArmorEffects;
-import superworldsun.superslegend.items.armors.ArmorZoraEffects;
-import superworldsun.superslegend.items.armors.HoverBoots;
-import superworldsun.superslegend.items.armors.IronBoots;
 import superworldsun.superslegend.items.BluePotion;
 import superworldsun.superslegend.items.BluePotionMix;
 import superworldsun.superslegend.items.BlueRupee;
@@ -81,7 +80,6 @@ import superworldsun.superslegend.items.GoldRupee;
 import superworldsun.superslegend.items.GoldenScale;
 import superworldsun.superslegend.items.GreenPotion;
 import superworldsun.superslegend.items.GreenPotionMix;
-import superworldsun.superslegend.items.Heart;
 import superworldsun.superslegend.items.HerosSecretStash;
 import superworldsun.superslegend.items.ItemCustomAxe;
 import superworldsun.superslegend.items.ItemCustomBow;
@@ -90,7 +88,6 @@ import superworldsun.superslegend.items.ItemCustomPickaxe;
 import superworldsun.superslegend.items.ItemCustomShield;
 import superworldsun.superslegend.items.ItemCustomShovel;
 import superworldsun.superslegend.items.ItemCustomSword;
-import superworldsun.superslegend.items.KokiriSet;
 import superworldsun.superslegend.items.LensOfTruth;
 import superworldsun.superslegend.items.MagicCape;
 import superworldsun.superslegend.items.MagicMirror;
@@ -111,10 +108,23 @@ import superworldsun.superslegend.items.Triforce;
 import superworldsun.superslegend.items.TriforceCourage;
 import superworldsun.superslegend.items.TriforcePower;
 import superworldsun.superslegend.items.TriforceWisdom;
+import superworldsun.superslegend.items.armors.ArmorDarkEffects;
+import superworldsun.superslegend.items.armors.ArmorFlamebreakerEffects;
+import superworldsun.superslegend.items.armors.ArmorFlippersEffects;
+import superworldsun.superslegend.items.armors.ArmorGoronEffects;
+import superworldsun.superslegend.items.armors.ArmorKokiriEffects;
+import superworldsun.superslegend.items.armors.ArmorMagicArmor;
+import superworldsun.superslegend.items.armors.ArmorPurpleEffects;
+import superworldsun.superslegend.items.armors.ArmorZoraArmorEffects;
+import superworldsun.superslegend.items.armors.ArmorZoraEffects;
+import superworldsun.superslegend.items.armors.HoverBoots;
+import superworldsun.superslegend.items.armors.IronBoots;
+import superworldsun.superslegend.items.arrows.ArrowAncient;
 import superworldsun.superslegend.items.arrows.ArrowBomb;
-import superworldsun.superslegend.items.bows.BitBow;
 import superworldsun.superslegend.items.arrows.ArrowFire;
-import superworldsun.superslegend.items.arrows.*;
+import superworldsun.superslegend.items.arrows.ArrowIce;
+import superworldsun.superslegend.items.arrows.ArrowShock;
+import superworldsun.superslegend.items.bows.BitBow;
 //import superworldsun.superslegend.items.arrows.ArrowFire;
 import superworldsun.superslegend.items.bows.BowLynelSavage;
 import superworldsun.superslegend.items.masks.MaskAllnightmaskEffects;
@@ -144,6 +154,7 @@ import superworldsun.superslegend.items.masks.MaskTroupeleadersmask;
 import superworldsun.superslegend.items.masks.MaskZoramask;
 import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
+import superworldsun.superslegend.lists.PotionList;
 import superworldsun.superslegend.lists.ToolMaterialList;
 //import superworldsun.superslegend.util.HealthHandler;
 import superworldsun.superslegend.util.handlers.SoundHandler;
@@ -162,6 +173,9 @@ public class SupersLegend
 	public SupersLegend() 
 	{
 		istance = this;
+		
+		PotionList.EFFECTS.register(MinecraftForge.EVENT_BUS);
+		PotionList.POTIONS.register(MinecraftForge.EVENT_BUS);
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
@@ -533,5 +547,34 @@ public class SupersLegend
 		    {
 		        MinecraftForge.EVENT_BUS.register(SoundHandler.class);
 		    }
+		 
+		 @SubscribeEvent
+			public static void registerPotions(final RegistryEvent.Register<Potion> event)
+			{
+				
+				event.getRegistry().registerAll
+				(
+						PotionList.more_health_potion = new Potion(new EffectInstance(PotionList.more_health_effect, 3600)).setRegistryName(location("more_health"))
+						//PotionList.size_potion = new Potion(new EffectInstance(PotionList.size_effect, 3600)).setRegistryName(location("size"))
+
+				);
+				
+			}
+			
+			
+			@SubscribeEvent
+			public static void registerEffects(final RegistryEvent.Register<Effect> event)
+			{
+				
+				event.getRegistry().registerAll
+				
+				(
+						PotionList.more_health_effect = new PotionList.MoreHealthEffect(EffectType.BENEFICIAL, 0xd4FF00).addAttributesModifier(SharedMonsterAttributes.MAX_HEALTH, "55FCED67-E92A-486E-9800-B47F202C4386", (double)0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("more_health")),
+						PotionList.iron_boots_effect = new PotionList.IronBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.SWIM_SPEED, "55FCED67-E92A-486E-9800-B47F202C4386", (double)2.0f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("iron_boots")),
+						PotionList.hover_boots_effect = new PotionList.HoverBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.ENTITY_GRAVITY, "55FCED67-E92A-486E-9800-B47F202C4386", 0.0f, AttributeModifier.Operation.ADDITION).setRegistryName(location("hover_boots")),
+						PotionList.zoras_grace_effect = new PotionList.ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.SWIM_SPEED, "55FCED67-E92A-486E-9800-B47F202C4386", (double)0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("zoras_grace"))
+				);
+				
+			}
 	}
 }

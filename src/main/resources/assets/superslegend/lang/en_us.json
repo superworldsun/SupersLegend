@@ -211,5 +211,17 @@
 	"item.superslegend.dark_boots": "Dark Boots",
 	
 	"item.superslegend.rocs_cape": "Roc's Cape",
-	"item.superslegend.pegasus_boots": "Pegasus Boots"
+	"item.superslegend.pegasus_boots": "Pegasus Boots",
+	
+	"item.minecraft.potion.effect.more_health": "Potion of More Health",
+	"item.minecraft.splash_potion.effect.more_health": "Splash Potion of More Health",
+	"item.minecraft.tipped_arrow.effect.more_health": "Arrow of More Health",
+	"item.minecraft.lingering_potion.effect.more_health": "Lingering Potion of More Health",
+	"effect.superslegend.more_health": "More Health",
+	
+	"effect.superslegend.iron_boots": "Iron Boots",
+	"effect.superslegend.hover_boots": "Hover Boots",
+	"effect.superslegend.zoras_grace": "Zora's Grace"
+
+	
 }
