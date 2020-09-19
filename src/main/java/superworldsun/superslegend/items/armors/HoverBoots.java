@@ -5,6 +5,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -12,6 +15,7 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
+import superworldsun.superslegend.lists.PotionList;
 
 
 public class HoverBoots extends ArmorItem {
@@ -26,10 +30,7 @@ public class HoverBoots extends ArmorItem {
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "No road needed"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Sneak, To Hover over Gaps"));
-		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "Cannot use SlowFall when equiped"));
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
-		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "[WIP]"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Sprint To Hover over Gaps"));
 		
 		
 	}
@@ -37,23 +38,35 @@ public class HoverBoots extends ArmorItem {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-    	
-    	
-    	
-        if (!world.isRemote){
+
+
                 boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots);
 
-                if(isBootsOn&&player.isSneaking() && player.getFoodStats().getFoodLevel()!= 0)
-                {
-                	player.removePotionEffect(Effect.get(28));
-                	player.addExhaustion(0.1f);
-                	player.setNoGravity(true);
-                }
-    			else
-    			{
-    				player.removePotionEffect(Effect.get(28));
-    				player.setNoGravity(false);
-    			}
-                }
-            }
-        }
+                if(isBootsOn && player.isSprinting() && player.onGround)
+            	{
+            	
+            	player.addPotionEffect(new EffectInstance(PotionList.hover_boots_effect, 19, 0, true, false));
+            	
+            	}
+            	if(player.isSprinting() && !player.onGround)
+            	{
+            		EffectInstance effect = player.getActivePotionEffect(PotionList.hover_boots_effect);
+                	if (effect != null) 
+            	 
+                	{
+            		Vec3d v = player.getMotion();
+					player.setMotion(v.x, v.y * -0.1D, v.z);
+                	}
+          		
+          		  }
+            	if(isBootsOn && !player.isSprinting())
+            	{
+            	
+            	player.removePotionEffect(PotionList.hover_boots_effect);
+            	
+            	}
+                
+     }
+}
+            
+        
