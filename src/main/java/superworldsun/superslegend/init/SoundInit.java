@@ -26,6 +26,7 @@ public class SoundInit
     public static SoundEvent ARROW_HIT_ICE;
     public static SoundEvent ARROW_HIT_SHOCK;
     public static SoundEvent ARROW_HIT_ANCIENT;
+    public static SoundEvent HOVER_BOOTS;
     
     
 }
