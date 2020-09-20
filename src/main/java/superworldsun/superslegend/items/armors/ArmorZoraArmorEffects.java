@@ -14,6 +14,7 @@ import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
+import superworldsun.superslegend.lists.PotionList;
 
 
 public class ArmorZoraArmorEffects extends NonEnchantArmor
@@ -48,6 +49,16 @@ public class ArmorZoraArmorEffects extends NonEnchantArmor
                 	if(player.isInWater()) 
                 	{
                 		player.addPotionEffect(new EffectInstance(Effect.get(13), 10, 0, false, false, false));
+                		player.addPotionEffect(new EffectInstance(PotionList.zoras_grace_effect, 10, 0, false, false, false));
+                	}
+                	if(player.isInWater() && player.isSprinting()) 
+                	{
+                		player.addPotionEffect(new EffectInstance(Effect.get(13), 10, 0, false, false, false));
+                		player.addPotionEffect(new EffectInstance(PotionList.zoras_grace_effect, 10, 0, false, false, false));
+                	}
+                	if(!player.isSprinting()) 
+                	{
+                		player.removePotionEffect(PotionList.zoras_grace_effect);
                 	}
                 	
                 }
