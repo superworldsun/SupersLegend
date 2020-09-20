@@ -83,5 +83,10 @@
     "category": "player",
     "subtitle": "superslegend.subtitle.arrow_hit_ancient",
     "sounds": [ "superslegend:arrow_hit_ancient" ]
+	},
+"hover_boots": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.hover_boots",
+    "sounds": [ "superslegend:hover_boots" ]
 	}
 }
