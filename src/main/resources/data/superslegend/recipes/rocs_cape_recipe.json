@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#g#",
+        "F#F",
+        " F "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:white_wool"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "F": {
+            "item": "superslegend:rocs_feather"
+        }
+    },
+    "result": {
+        "item": "superslegend:rocs_cape",
+        "count": 1
+    }
+}

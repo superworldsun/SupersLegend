@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "JJJ",
+        " L "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:pink_dye"
+        },
+        "J": {
+            "item": "minecraft:jungle_leaves"
+        },
+        "L": {
+            "item": "minecraft:jungle_wood"
+        }
+    },
+    "result": {
+        "item": "superslegend:deku_flower_block",
+        "count": 1
+    }
+}

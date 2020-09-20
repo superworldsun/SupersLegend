@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "superslegend:block/chain_link_fence_block"
+    }
+}

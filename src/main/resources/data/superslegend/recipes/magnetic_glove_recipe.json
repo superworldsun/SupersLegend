@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##I",
+        "#GI",
+        "IIL"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:redstone"
+        },
+        "I": {
+            "item": "minecraft:iron_block"
+        },
+        "G": {
+            "item": "minecraft:gold_block"
+        },
+        "L": {
+            "item": "minecraft:leather"
+        }
+    },
+    "result": {
+        "item": "superslegend:magnetic_glove",
+        "count": 1
+    }
+}

@@ -1,0 +1,10 @@
+[14Aug2019 04:41:44.527] [Client thread/ERROR] [net.minecraft.client.resources.ResourceIndex/]: Can't find the resource index file: assets\indexes\1.14.json
+[14Aug2019 04:41:44.591] [Client thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Player178
+[14Aug2019 04:41:47.259] [Client thread/INFO] [net.minecraft.client.Minecraft/]: LWJGL Version: 3.2.2 build 10
+[14Aug2019 04:41:48.387] [Client thread/ERROR] [net.minecraft.client.Minecraft/]: Couldn't set icon
+java.io.FileNotFoundException: icons/icon_16x16.png
+	at net.minecraft.resources.VanillaPack.getResourceStream(VanillaPack.java:90) ~[forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?]
+	at net.minecraft.client.Minecraft.init(Minecraft.java:436) [forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:365) [forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:155) [forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?]
+	at mcp.client.Start.main(Start.java:17) [forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?]

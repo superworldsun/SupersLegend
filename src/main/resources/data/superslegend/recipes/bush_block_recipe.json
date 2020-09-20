@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "O"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:oak_leaves"
+        },
+        "O": {
+            "item": "minecraft:oak_wood"
+        }
+    },
+    "result": {
+        "item": "superslegend:bush_block",
+        "count": 2
+    }
+}

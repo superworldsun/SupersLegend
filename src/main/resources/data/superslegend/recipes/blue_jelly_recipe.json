@@ -1,0 +1,15 @@
+{
+    "type": "crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:red_jelly"
+        },
+        {
+            "item": "superslegend:green_jelly"
+        }
+    ],
+    "result": {
+        "item": "superslegend:blue_jelly",
+        "count": 1
+    }
+}

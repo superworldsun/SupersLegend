@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "ILI",
+        "R R"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:daylight_detector"
+        },
+        "I": {
+            "item": "minecraft:ink_sac"
+        },
+        "L": {
+            "item": "superslegend:kokiri_boots"
+        },
+        "R": {
+            "item": "minecraft:redstone_block"
+        }
+    },
+    "result": {
+        "item": "superslegend:dark_boots",
+        "count": 1
+    }
+}

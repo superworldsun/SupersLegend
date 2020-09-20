@@ -1,0 +1,20 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        " # ",
+        "#L#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:red_dye"
+        },
+        "L": {
+            "item": "superslegend:kokiri_cap"
+        }
+    },
+    "result": {
+        "item": "superslegend:goron_cap",
+        "count": 1
+    }
+}

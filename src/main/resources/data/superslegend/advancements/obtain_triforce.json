@@ -1,0 +1,37 @@
+{
+    "display": {
+        "title": {
+            "text": "The Gift of the Goddesses",
+            "color": "gold",
+            "bold": true
+        },
+        "description": {
+            "text": "Obtain The completed Triforce",
+            "color": "yellow",
+            "bold": false,
+            "underlined": false,
+            "strikethrough": false,
+            "obfuscated": false
+        },
+        "icon": {
+            "item": "superslegend:triforce"
+        },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "be_alive": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "superslegend:triforce"
+                    }
+                ]
+            }
+        }
+    },
+    "parent": "superslegend:obtain_triforce_power"
+}

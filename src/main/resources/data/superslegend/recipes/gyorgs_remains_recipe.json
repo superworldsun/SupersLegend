@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:mask_romanismask"
+        },
+        {
+            "item": "superslegend:mask_troupeleadersmask"
+        },
+        {
+            "item": "superslegend:mask_kafeismask"
+        },
+        {
+            "item": "superslegend:mask_couplesmask"
+        },
+        {
+            "item": "superslegend:mask_maskoftruth"
+        }
+    ],
+    "result": {
+        "item": "superslegend:gyorgs_remains",
+        "count": 1
+    }
+}

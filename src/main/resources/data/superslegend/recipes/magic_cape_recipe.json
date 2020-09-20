@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "D#D",
+        " E "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:red_wool"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        },
+        "E": {
+            "item": "minecraft:ender_eye"
+        }
+    },
+    "result": {
+        "item": "superslegend:magic_cape",
+        "count": 1
+    }
+}

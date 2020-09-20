@@ -1,0 +1,92 @@
+{
+  "jawa": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.jawa",
+    "sounds": [ "superslegend:jawa" ]
+  },
+"suns_song": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.suns_song",
+    "sounds": [ "superslegend:suns_song" ]
+  },
+"nayrus_love_cast": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.nayrus_love_cast",
+    "sounds": [ "superslegend:nayrus_love_cast" ]
+	},
+"zelda_error": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.zelda_error",
+    "sounds": [ "superslegend:zelda_error" ]
+	},
+"dash": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.dash",
+    "sounds": [ "superslegend:dash" ]
+	},
+"magic_cape_off": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.magic_cape_off",
+    "sounds": [ "superslegend:magic_cape_off" ]
+	},
+"magic_cape_on": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.magic_cape_on",
+    "sounds": [ "superslegend:magic_cape_on" ]
+	},
+"lens_of_truth_on": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.lens_of_truth_on",
+    "sounds": [ "superslegend:lens_of_truth_on" ]
+	},
+"rupee_green": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.rupee_green",
+    "sounds": [ "superslegend:rupee_green" ]
+	},
+"rupee_blue": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.rupee_blue",
+    "sounds": [ "superslegend:rupee_blue" ]
+	},
+"rupee_red": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.rupee_red",
+    "sounds": [ "superslegend:rupee_red" ]
+	},
+"rupee_silver": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.rupee_silver",
+    "sounds": [ "superslegend:rupee_silver" ]
+	},
+"book_of_mudora": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.book_of_mudora",
+    "sounds": [ "superslegend:book_of_mudora" ]
+	},
+"arrow_hit_fire": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.arrow_hit_fire",
+    "sounds": [ "superslegend:arrow_hit_fire" ]
+	},
+"arrow_hit_ice": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.arrow_hit_ice",
+    "sounds": [ "superslegend:arrow_hit_ice" ]
+	},
+"arrow_hit_shock": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.arrow_hit_shock",
+    "sounds": [ "superslegend:arrow_hit_shock" ]
+	},
+"arrow_hit_ancient": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.arrow_hit_ancient",
+    "sounds": [ "superslegend:arrow_hit_ancient" ]
+	},
+"hover_boots": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.hover_boots",
+    "sounds": [ "superslegend:hover_boots" ]
+	}
+}

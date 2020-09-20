@@ -1,0 +1,32 @@
+package superworldsun.superslegend.init;
+
+import net.minecraft.util.SoundEvent;
+
+public class SoundInit
+{
+	
+	//songs
+    public static SoundEvent JAWA;
+    public static SoundEvent SUNS_SONG;
+    
+    
+    //items
+    public static SoundEvent ZELDA_ERROR;
+    public static SoundEvent NAYRUS_LOVE_CAST;
+    public static SoundEvent DASH;
+    public static SoundEvent MAGIC_CAPE_OFF;
+    public static SoundEvent MAGIC_CAPE_ON;
+    public static SoundEvent LENS_OF_TRUTH_ON;
+    public static SoundEvent RUPEE_GREEN;
+    public static SoundEvent RUPEE_BLUE;
+    public static SoundEvent RUPEE_RED;
+    public static SoundEvent RUPEE_SILVER;
+    public static SoundEvent BOOK_OF_MUDORA;
+    public static SoundEvent ARROW_HIT_FIRE;
+    public static SoundEvent ARROW_HIT_ICE;
+    public static SoundEvent ARROW_HIT_SHOCK;
+    public static SoundEvent ARROW_HIT_ANCIENT;
+    public static SoundEvent HOVER_BOOTS;
+    
+    
+}

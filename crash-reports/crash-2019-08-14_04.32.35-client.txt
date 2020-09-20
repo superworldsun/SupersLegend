@@ -1,0 +1,63 @@
+---- Minecraft Crash Report ----
+// Don't do that.
+
+Time: 8/14/19 4:32 AM
+Description: Initializing game
+
+java.lang.NullPointerException: Initializing game
+	at net.minecraftforge.fml.ModLoader.<init>(ModLoader.java:114) ~[forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?] {}
+	at net.minecraftforge.fml.ModLoader.get(ModLoader.java:143) ~[forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?] {}
+	at net.minecraftforge.fml.client.ClientModLoader.lambda$begin$2(ClientModLoader.java:79) ~[forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?] {}
+	at net.minecraftforge.fml.client.ClientModLoader.lambda$createRunnableWithCatch$5(ClientModLoader.java:95) ~[forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?] {}
+	at net.minecraftforge.fml.client.ClientModLoader.begin(ClientModLoader.java:79) ~[forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?] {}
+	at net.minecraft.client.Minecraft.init(Minecraft.java:453) [forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?] {}
+	at net.minecraft.client.Minecraft.run(Minecraft.java:365) [forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?] {}
+	at net.minecraft.client.main.Main.main(SourceFile:155) [forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?] {}
+	at mcp.client.Start.main(Start.java:17) [forge-1.14.4-28.0.45_mapped_snapshot_20190719-1.14.3.jar:?] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at net.minecraftforge.fml.ModLoader.<init>(ModLoader.java:114)
+	at net.minecraftforge.fml.ModLoader.get(ModLoader.java:143)
+	at net.minecraftforge.fml.client.ClientModLoader.lambda$begin$2(ClientModLoader.java:79)
+	at net.minecraftforge.fml.client.ClientModLoader.lambda$createRunnableWithCatch$5(ClientModLoader.java:95)
+	at net.minecraftforge.fml.client.ClientModLoader.begin(ClientModLoader.java:79)
+	at net.minecraft.client.Minecraft.init(Minecraft.java:453)
+
+-- Initialization --
+Details:
+Stacktrace:
+	at net.minecraft.client.Minecraft.run(Minecraft.java:365)
+	at net.minecraft.client.main.Main.main(SourceFile:155)
+	at mcp.client.Start.main(Start.java:17)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.14.4
+	Minecraft Version ID: 1.14.4
+	Operating System: Windows 8.1 (amd64) version 6.3
+	Java Version: 1.8.0_212, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 914958704 bytes (872 MB) / 1257242624 bytes (1199 MB) up to 3817865216 bytes (3641 MB)
+	CPUs: 8
+	JVM Flags: 1 total; -Xmx4096m
+	Launched Version: mcp
+	LWJGL: 3.2.2 build 10
+	OpenGL: GeForce GTX 1080/PCIe/SSE2 GL version 4.6.0 NVIDIA 417.35, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'forge'
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: ~~ERROR~~ NullPointerException: null
+	CPU: 8x Intel(R) Core(TM) i7-4790K CPU @ 4.00GHz

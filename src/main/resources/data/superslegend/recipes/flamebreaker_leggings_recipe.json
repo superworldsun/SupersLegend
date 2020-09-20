@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iBi",
+        "RLR",
+        "R R"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "B": {
+            "item": "minecraft:blaze_powder"
+        },
+        "R": {
+            "item": "minecraft:red_wool"
+        },
+        "L": {
+            "item": "superslegend:goron_leggings"
+        }
+    },
+    "result": {
+        "item": "superslegend:flamebreaker_leggings",
+        "count": 1
+    }
+}
