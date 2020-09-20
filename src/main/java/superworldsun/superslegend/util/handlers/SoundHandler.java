@@ -28,6 +28,7 @@ import static superworldsun.superslegend.init.SoundInit.ARROW_HIT_FIRE;
 import static superworldsun.superslegend.init.SoundInit.ARROW_HIT_ICE;
 import static superworldsun.superslegend.init.SoundInit.ARROW_HIT_SHOCK;
 import static superworldsun.superslegend.init.SoundInit.ARROW_HIT_ANCIENT;
+import static superworldsun.superslegend.init.SoundInit.HOVER_BOOTS;
 
 //MANUALLY IMPORT EACH SOUND EFFECT HERE <<<<<<>>>>>>
 
@@ -61,6 +62,7 @@ public class SoundHandler
     	ARROW_HIT_ICE = registerSound("arrow_hit_ice");
     	ARROW_HIT_SHOCK = registerSound("arrow_hit_shock");
     	ARROW_HIT_ANCIENT = registerSound("arrow_hit_ancient");
+    	HOVER_BOOTS = registerSound("hover_boots");
     	
     	
     	SUNS_SONG = registerSound("suns_song");
