@@ -1,6 +1,7 @@
 package superworldsun.superslegend.lists;
 
 import net.minecraft.item.Item;
+import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.armors.ArmorFlippersEffects;
 import superworldsun.superslegend.items.armors.ArmorGoronEffects;
 import superworldsun.superslegend.items.armors.ArmorZoraEffects;
@@ -10,7 +11,6 @@ import superworldsun.superslegend.items.masks.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.masks.MaskBunnyhoodEffects;
 import superworldsun.superslegend.items.masks.MaskDongerosmaskEffects;
 import superworldsun.superslegend.items.masks.MaskStonemaskEffects;
-import superworldsun.superslegend.items.RocsCapeEffects;
 
 
 
@@ -74,6 +74,10 @@ public class ItemList
 		public static Item flamebreaker_set;
 		public static Item dark_set;
 		public static Item magic_armor_set;
+		
+	//liquids
+		
+		public static Item poison_bucket;
 		
 	//Block Items
 		

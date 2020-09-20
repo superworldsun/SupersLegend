@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -12,6 +13,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ShieldItem;
@@ -153,9 +155,13 @@ import superworldsun.superslegend.items.masks.MaskStonemaskEffects;
 import superworldsun.superslegend.items.masks.MaskTroupeleadersmask;
 import superworldsun.superslegend.items.masks.MaskZoramask;
 import superworldsun.superslegend.lists.BlockList;
+import superworldsun.superslegend.lists.FluidList;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.PotionList;
 import superworldsun.superslegend.lists.ToolMaterialList;
+import superworldsun.superslegend.objects.fluids.FluidPoison;
+import superworldsun.superslegend.objects.fluids.FluidPoison.Flowing;
+import superworldsun.superslegend.objects.fluids.FluidPoison.Source;
 //import superworldsun.superslegend.util.HealthHandler;
 import superworldsun.superslegend.util.handlers.SoundHandler;
 import superworldsun.superslegend.world.gen.OreGeneration;
@@ -318,6 +324,10 @@ public class SupersLegend
 			//ItemList.dark_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("dark_set")),
 			//ItemList.magic_armor_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("magic_armor_set")),
 
+			
+		//Liquids
+			
+			ItemList.poison_bucket = new BucketItem(() -> FluidList.poison, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)).setRegistryName("poison_bucket"),
 			
 		//Block Items
 			
@@ -525,21 +535,28 @@ public class SupersLegend
 					BlockList.grate_block = new GrateBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("grate_block")),
 					BlockList.grass_patch_block = new GrassPatch(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2f, 0.2f).lightValue(0).sound(SoundType.SWEET_BERRY_BUSH)).setRegistryName(location("grass_patch_block")),
 					BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(100.0f, 400.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block")),
-					BlockList.false_stone_block = new FalseStoneBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("false_stone_block"))
+					BlockList.false_stone_block = new FalseStoneBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("false_stone_block")),
+					
+					BlockList.poison = new FlowingFluidBlock(() -> FluidList.poison, Block.Properties.create(Material.WATER).doesNotBlockMovement().noDrops()).setRegistryName(location("poison"))
 			);
 			Logger.info("Blocks registered.");
 		}
 		
-		private static ResourceLocation location(String name)
+		public static ResourceLocation location(String name)
 		{
 			return new ResourceLocation(modid, name);
 		}
 		
-		 public void onFluidRegistry(final RegistryEvent.Register<Fluid> event) 
+		@SubscribeEvent
+		 public static void registerFluids(final RegistryEvent.Register<Fluid> event)
 		 {
-		        //IForgeRegistry<Fluid> registry = event.getRegistry();
-
-		        //FluidLiquid.register(registry);
+				
+				event.getRegistry().registerAll
+				(
+						FluidList.flowing_poison = (Flowing) new FluidPoison.Flowing().setRegistryName(location("flowing_poison")),
+			        	FluidList.poison = (Source) new FluidPoison.Source().setRegistryName(location("poison"))
+				);
+				
 		 }
 		 
 		 @SubscribeEvent
@@ -549,8 +566,8 @@ public class SupersLegend
 		    }
 		 
 		 @SubscribeEvent
-			public static void registerPotions(final RegistryEvent.Register<Potion> event)
-			{
+		 public static void registerPotions(final RegistryEvent.Register<Potion> event)
+		 {
 				
 				event.getRegistry().registerAll
 				(
@@ -559,7 +576,7 @@ public class SupersLegend
 
 				);
 				
-			}
+		 }
 			
 			
 			@SubscribeEvent
