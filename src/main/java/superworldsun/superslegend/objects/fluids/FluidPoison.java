@@ -61,7 +61,7 @@ public abstract class FluidPoison extends FlowingFluid{
 	}
 
 	@Override
-	protected boolean func_215665_a(IFluidState state, IBlockReader world, BlockPos pos,Fluid fluid, Direction direction) {
+	public boolean func_215665_a(IFluidState state, IBlockReader world, BlockPos pos,Fluid fluid, Direction direction) {
 		return direction == Direction.DOWN && !fluid.isIn(FluidList.Tags.POISON);
 	}
 
