@@ -4,10 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
@@ -18,7 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
@@ -29,7 +26,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-//import net.minecraftforge.registries.IForgeRegistry;
 import superworldsun.superslegend.CustomLootMobs.CustomLootBlaze;
 import superworldsun.superslegend.CustomLootMobs.CustomLootCavespider;
 import superworldsun.superslegend.CustomLootMobs.CustomLootCreeper;
@@ -61,7 +57,6 @@ import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
 import superworldsun.superslegend.blocks.BushBlock;
 import superworldsun.superslegend.blocks.ChainLinkFenceBlock;
 import superworldsun.superslegend.blocks.DekuFlowerBlock;
-import superworldsun.superslegend.blocks.FalseStoneBlock;
 import superworldsun.superslegend.blocks.GossipStoneBlock;
 import superworldsun.superslegend.blocks.GrassPatch;
 import superworldsun.superslegend.blocks.GrateBlock;
@@ -127,7 +122,6 @@ import superworldsun.superslegend.items.arrows.ArrowFire;
 import superworldsun.superslegend.items.arrows.ArrowIce;
 import superworldsun.superslegend.items.arrows.ArrowShock;
 import superworldsun.superslegend.items.bows.BitBow;
-//import superworldsun.superslegend.items.arrows.ArrowFire;
 import superworldsun.superslegend.items.bows.BowLynelSavage;
 import superworldsun.superslegend.items.masks.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.masks.MaskBlastmask;
@@ -159,10 +153,6 @@ import superworldsun.superslegend.lists.FluidList;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.PotionList;
 import superworldsun.superslegend.lists.ToolMaterialList;
-import superworldsun.superslegend.objects.fluids.FluidPoison;
-import superworldsun.superslegend.objects.fluids.FluidPoison.Flowing;
-import superworldsun.superslegend.objects.fluids.FluidPoison.Source;
-//import superworldsun.superslegend.util.HealthHandler;
 import superworldsun.superslegend.util.handlers.SoundHandler;
 import superworldsun.superslegend.world.gen.OreGeneration;
 
@@ -327,7 +317,7 @@ public class SupersLegend
 			
 		//Liquids
 			
-			ItemList.poison_bucket = new BucketItem(() -> FluidList.poison, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)).setRegistryName("poison_bucket"),
+			//ItemList.poison_bucket = new BucketItem(() -> FluidList.poison, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)).setRegistryName("poison_bucket"),
 			
 		//Block Items
 			
@@ -347,7 +337,7 @@ public class SupersLegend
 			ItemList.grass_patch_block = new BlockItem(BlockList.grass_patch_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.grass_patch_block.getRegistryName()),
 			ItemList.torch_tower = new TorchTower(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("torch_tower")),
 			ItemList.master_ore_block = new BlockItem(BlockList.master_ore_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.master_ore_block.getRegistryName()),
-			ItemList.false_stone_block = new BlockItem(BlockList.false_stone_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.false_stone_block.getRegistryName()),
+			//ItemList.false_stone_block = new BlockItem(BlockList.false_stone_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.false_stone_block.getRegistryName()),
 			
 			
 		//Weapons
@@ -534,10 +524,10 @@ public class SupersLegend
 					BlockList.jar_block = new JarBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(0.1f, 0.1f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("jar_block")),
 					BlockList.grate_block = new GrateBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("grate_block")),
 					BlockList.grass_patch_block = new GrassPatch(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2f, 0.2f).lightValue(0).sound(SoundType.SWEET_BERRY_BUSH)).setRegistryName(location("grass_patch_block")),
-					BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(100.0f, 400.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block")),
-					BlockList.false_stone_block = new FalseStoneBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("false_stone_block")),
+					BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(100.0f, 400.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block"))
+					//BlockList.false_stone_block = new FalseStoneBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("false_stone_block")),
 					
-					BlockList.poison = new FlowingFluidBlock(() -> FluidList.poison, Block.Properties.create(Material.WATER).doesNotBlockMovement().noDrops()).setRegistryName(location("poison"))
+					//BlockList.poison = new FlowingFluidBlock(() -> FluidList.poison, Block.Properties.create(Material.WATER).doesNotBlockMovement().noDrops()).setRegistryName(location("poison"))
 			);
 			Logger.info("Blocks registered.");
 		}
@@ -553,8 +543,8 @@ public class SupersLegend
 				
 				event.getRegistry().registerAll
 				(
-						FluidList.flowing_poison = (Flowing) new FluidPoison.Flowing().setRegistryName(location("flowing_poison")),
-			        	FluidList.poison = (Source) new FluidPoison.Source().setRegistryName(location("poison"))
+						//FluidList.flowing_poison = (Flowing) new FluidPoison.Flowing().setRegistryName(location("flowing_poison")),
+			        	//FluidList.poison = (Source) new FluidPoison.Source().setRegistryName(location("poison"))
 				);
 				
 		 }
@@ -571,7 +561,7 @@ public class SupersLegend
 				
 				event.getRegistry().registerAll
 				(
-						PotionList.more_health_potion = new Potion(new EffectInstance(PotionList.more_health_effect, 3600)).setRegistryName(location("more_health"))
+						//PotionList.more_health_potion = new Potion(new EffectInstance(PotionList.more_health_effect, 3600)).setRegistryName(location("more_health"))
 						//PotionList.size_potion = new Potion(new EffectInstance(PotionList.size_effect, 3600)).setRegistryName(location("size"))
 
 				);
@@ -586,7 +576,7 @@ public class SupersLegend
 				event.getRegistry().registerAll
 				
 				(
-						PotionList.more_health_effect = new PotionList.MoreHealthEffect(EffectType.BENEFICIAL, 0xd4FF00).addAttributesModifier(SharedMonsterAttributes.MAX_HEALTH, "55FCED67-E92A-486E-9800-B47F202C4386", (double)0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("more_health")),
+						//PotionList.more_health_effect = new PotionList.MoreHealthEffect(EffectType.BENEFICIAL, 0xd4FF00).addAttributesModifier(SharedMonsterAttributes.MAX_HEALTH, "55FCED67-E92A-486E-9800-B47F202C4386", (double)0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("more_health")),
 						PotionList.iron_boots_effect = new PotionList.IronBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.SWIM_SPEED, "55FCED67-E92A-486E-9800-B47F202C4386", (double)2.0f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("iron_boots")),
 						PotionList.hover_boots_effect = new PotionList.HoverBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.ENTITY_GRAVITY, "55FCED67-E92A-486E-9800-B47F202C4386", 0.0f, AttributeModifier.Operation.ADDITION).setRegistryName(location("hover_boots")),
 						PotionList.zoras_grace_effect = new PotionList.ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.SWIM_SPEED, "55FCED67-E92A-486E-9800-B47F202C4386", (double)0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("zoras_grace"))
