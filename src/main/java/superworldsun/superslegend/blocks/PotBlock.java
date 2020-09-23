@@ -3,7 +3,7 @@ package superworldsun.superslegend.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.BlockRenderLayer;
+//import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -35,8 +35,8 @@ public class PotBlock extends Block
 		   }
 	   
 	   
-	   public BlockRenderLayer getRenderLayer() {
+	   /*public BlockRenderLayer getRenderLayer() {
 		    return BlockRenderLayer.CUTOUT;
-	   }
+	   }*/
 }
 	

@@ -24,7 +24,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
-public class FaroresWind extends Item
+/*public class FaroresWind extends Item
 {
 
 	public FaroresWind(Properties properties)
@@ -40,7 +40,7 @@ public class FaroresWind extends Item
 		 Direction direction = context.getFace();
 		 ItemStack stackWind = context.getPlayer().getHeldItemMainhand();
 		 
-		 if(getPosition(stackWind) == null && player.isSneaking())
+		 if(getPosition(stackWind) == null && player.isCrouching())
 		 {
 			 setPosition(stackWind, world, pos.offset(direction), player);
 			 player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location set!"), true);
@@ -60,12 +60,12 @@ public class FaroresWind extends Item
 		 return ActionResultType.PASS;
 	}
 	
-	 
+
 	 public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
 	 {
 		 ItemStack stack = player.getHeldItem(hand);
 		  
-		 if(getPosition(stack) != null && !player.isSneaking() && player.getFoodStats().getFoodLevel()>= 4)
+		 if(getPosition(stack) != null && !player.isCrouching() && player.getFoodStats().getFoodLevel()>= 4)
 	     {
 			 Random rand = player.world.rand;
 		        for (int i = 0; i < 45; i++)
@@ -82,7 +82,7 @@ public class FaroresWind extends Item
 			 world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 	     }
 		 
-		 if(getPosition(stack) != null && player.isSneaking())
+		 if(getPosition(stack) != null && player.isCrouching())
 		 {
 			 setPosition(stack, world, null, player);
 			 player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location cleared!"), true);
@@ -172,9 +172,9 @@ public class FaroresWind extends Item
 			 return tags.getInt("dim");
 		 }	
 		 return Integer.MAX_VALUE;
-	 }
+	 }*/
 
-	@Override
+	/*@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
@@ -195,5 +195,4 @@ public class FaroresWind extends Item
 	 
 	 
 	 
-	 
-}
+*/

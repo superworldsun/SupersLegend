@@ -11,7 +11,6 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.SlabType;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -59,8 +58,8 @@ public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos,
 		   
 		   
 	   
-	   public BlockRenderLayer getRenderLayer() {
+	   /*public BlockRenderLayer getRenderLayer() {
 		    return BlockRenderLayer.CUTOUT;
-	   }
+	   }*/
 }
 	

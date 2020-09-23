@@ -39,7 +39,7 @@ public class MaskAllnightmaskEffects extends NonEnchantArmor {
                 }
         if(player.isSleeping())
         {
-        	player.wakeUpPlayer(true, false, false);
+        	player.wakeUp();
         	player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GRAY + "You feel restless"), true);
         }
             }

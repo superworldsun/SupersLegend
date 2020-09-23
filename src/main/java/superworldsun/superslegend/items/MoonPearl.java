@@ -20,7 +20,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 
-public class MoonPearl extends Item
+/*public class MoonPearl extends Item
 {
 
 	public MoonPearl(Properties properties)
@@ -54,7 +54,7 @@ public class MoonPearl extends Item
 				entity.changeDimension(DimensionType.THE_NETHER);
 		    	return ActionResult.newResult(ActionResultType.SUCCESS, stack);
 			}
-			else if(((currentDim == 1)) && (entity.isSneaking()))
+			else if(((currentDim == 1)) && (entity.isCrouching()))
 			{
 				Random rand = entity.world.rand;
 		        for (int i = 0; i < 45; i++)
@@ -83,5 +83,4 @@ public class MoonPearl extends Item
 		list.add(new StringTextComponent(TextFormatting.RED + "Teleports the player to the Nether"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "When used in the Nether it will Return player to Portal"));
-	}  
-}
+	} */

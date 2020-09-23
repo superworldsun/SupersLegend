@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -25,7 +24,7 @@ public class FalseStoneBlock extends Block
 		      return SHAPE;
 		   }
     
-    public BlockRenderLayer getRenderLayer() {
+    /*public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
-     }
+     }*/
 }

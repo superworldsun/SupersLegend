@@ -36,7 +36,7 @@ public class FairyOcarina extends Item
 			 BlockPos currentPos = player.getPosition();
 			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.BLOCK_NOTE_BLOCK_FLUTE, SoundCategory.PLAYERS, 1f, 1f);
 			 
-			 Random rand = player.world.rand;
+			 /*Random rand = player.world.rand;
 		        for (int i = 0; i < 45; i++)
 		        {
 		        	player.world.addParticle(ParticleTypes.NOTE,
@@ -44,7 +44,7 @@ public class FairyOcarina extends Item
 		                    player.posY + rand.nextFloat() * 3 - 2,
 		                    player.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
 		                    0, 0.105D, 0);
-		        }
+		        }*/
 		      player.getCooldownTracker().setCooldown(this, 8);
 		 }
 	 

@@ -1,5 +1,6 @@
 package superworldsun.superslegend;
 
+import net.minecraft.client.renderer.RenderTypeLookup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -72,7 +73,7 @@ import superworldsun.superslegend.items.BookOfMudora;
 import superworldsun.superslegend.items.DekuLeaf;
 import superworldsun.superslegend.items.DinsFire;
 import superworldsun.superslegend.items.FairyOcarina;
-import superworldsun.superslegend.items.FaroresWind;
+//import superworldsun.superslegend.items.FaroresWind;
 import superworldsun.superslegend.items.GoldRupee;
 import superworldsun.superslegend.items.GoldenScale;
 import superworldsun.superslegend.items.GreenPotion;
@@ -88,7 +89,7 @@ import superworldsun.superslegend.items.ItemCustomSword;
 import superworldsun.superslegend.items.LensOfTruth;
 import superworldsun.superslegend.items.MagicCape;
 import superworldsun.superslegend.items.MagicMirror;
-import superworldsun.superslegend.items.MoonPearl;
+//import superworldsun.superslegend.items.MoonPearl;
 import superworldsun.superslegend.items.NayrusLove;
 import superworldsun.superslegend.items.OcarinaOfTime;
 import superworldsun.superslegend.items.PegasusBoots;
@@ -117,7 +118,7 @@ import superworldsun.superslegend.items.armors.ArmorZoraEffects;
 import superworldsun.superslegend.items.armors.HoverBoots;
 import superworldsun.superslegend.items.armors.IronBoots;
 import superworldsun.superslegend.items.arrows.ArrowAncient;
-import superworldsun.superslegend.items.arrows.ArrowBomb;
+//import superworldsun.superslegend.items.arrows.ArrowBomb;
 import superworldsun.superslegend.items.arrows.ArrowFire;
 import superworldsun.superslegend.items.arrows.ArrowIce;
 import superworldsun.superslegend.items.arrows.ArrowShock;
@@ -163,8 +164,8 @@ public class SupersLegend
 	private static final Logger Logger = LogManager.getLogger();
 	
 	public static final ItemGroup supers_legend = new SupersLegendItemGroup();
-	
-	
+
+
 	public SupersLegend() 
 	{
 		istance = this;
@@ -265,7 +266,7 @@ public class SupersLegend
 	
 	private void setup(final FMLCommonSetupEvent event)
 	{
-		OreGeneration.setupOreWorldGen();
+		//OreGeneration.setupOreWorldGen();
 		//MinecraftForge.EVENT_BUS.register(HealthHandler.class);
 		Logger.info("Setup method registered");
 	}
@@ -358,10 +359,10 @@ public class SupersLegend
 			ItemList.fire_arrow = new ArrowFire(new Item.Properties().group(supers_legend)).setRegistryName(location("fire_arrow")),
 			ItemList.ice_arrow = new ArrowIce(new Item.Properties().group(supers_legend)).setRegistryName(location("ice_arrow")),
 			ItemList.shock_arrow = new ArrowShock(new Item.Properties().group(supers_legend)).setRegistryName(location("shock_arrow")),
-			ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
+			//ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
 			ItemList.ancient_arrow = new ArrowAncient(new Item.Properties().group(supers_legend)).setRegistryName(location("ancient_arrow")),
 
-			ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
+			//ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
 			ItemList.heros_secret_stash = new HerosSecretStash(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_secret_stash")),
 			ItemList.book_of_mudora = new BookOfMudora(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("book_of_mudora")),
 			ItemList.silver_scale = new SilverScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("silver_scale")),
@@ -370,7 +371,7 @@ public class SupersLegend
 			ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
 			ItemList.magic_cape = new MagicCape(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_cape")),
 			ItemList.empty_container = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("empty_container")),
-			ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
+			//ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
 			ItemList.dins_fire = new DinsFire(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
 			ItemList.nayrus_love = new NayrusLove(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("nayrus_love")),
 			ItemList.deku_leaf = new DekuLeaf(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("deku_leaf")),

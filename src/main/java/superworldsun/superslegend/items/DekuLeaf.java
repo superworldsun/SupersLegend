@@ -43,7 +43,7 @@ public class DekuLeaf extends Item
 			player.addPotionEffect(new EffectInstance(Effect.get(28), 11, 10, false, false));
 			player.addExhaustion(1f);
 			
-			Random rand = player.world.rand;
+			/*Random rand = player.world.rand;
 	        for (int i = 0; i < 45; i++)
 	        {
 	        	player.world.addParticle(ParticleTypes.CLOUD,
@@ -51,7 +51,7 @@ public class DekuLeaf extends Item
 	                    player.posY + rand.nextFloat() * 1 - 2,
 	                    player.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
 	                    0, 0.105D, 0);
-	        }
+	        }*/
 			
 			player.getCooldownTracker().setCooldown(this, 9);
 		        }

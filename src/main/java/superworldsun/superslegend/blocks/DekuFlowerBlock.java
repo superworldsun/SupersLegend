@@ -3,7 +3,6 @@ package superworldsun.superslegend.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -33,10 +32,12 @@ public class DekuFlowerBlock extends Block
 		   public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
 		      return func_220055_a(worldIn, pos.down(), Direction.UP);
 		   }
+
+
+
 	   
-	   
-	   public BlockRenderLayer getRenderLayer() {
+	   /*public BlockRenderLayer getRenderLayer() {
 		    return BlockRenderLayer.CUTOUT;
-	   }
+	   }*/
 }
 	

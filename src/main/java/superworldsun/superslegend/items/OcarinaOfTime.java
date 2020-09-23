@@ -37,7 +37,7 @@ public class OcarinaOfTime extends Item
 			 BlockPos currentPos = player.getPosition();
 			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.SUNS_SONG, SoundCategory.PLAYERS, 1f, 1f);
 			 
-			 Random rand = player.world.rand;
+			 /*Random rand = player.world.rand;
 		        for (int i = 0; i < 45; i++)
 		        {
 		        	player.world.addParticle(ParticleTypes.NOTE,
@@ -45,7 +45,7 @@ public class OcarinaOfTime extends Item
 		                    player.posY + rand.nextFloat() * 3 - 2,
 		                    player.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
 		                    0, 0.105D, 0);
-		        }
+		        }*/
 		        world.setDayTime(13000);
 		      player.getCooldownTracker().setCooldown(this, 5 * 10);
 		        
@@ -55,7 +55,7 @@ public class OcarinaOfTime extends Item
 			 BlockPos currentPos = player.getPosition();
 			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.SUNS_SONG, SoundCategory.PLAYERS, 1f, 1f);
 			 
-			 Random rand = player.world.rand;
+			 /*Random rand = player.world.rand;
 		        for (int i = 0; i < 45; i++)
 		        {
 		        	player.world.addParticle(ParticleTypes.NOTE,
@@ -63,7 +63,7 @@ public class OcarinaOfTime extends Item
 		                    player.posY + rand.nextFloat() * 3 - 2,
 		                    player.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
 		                    0, 0.105D, 0);
-		        }
+		        }*/
 		        world.setDayTime(0);
 		      player.getCooldownTracker().setCooldown(this, 5 * 10);
 		 }

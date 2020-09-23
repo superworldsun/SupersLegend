@@ -7,7 +7,6 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.Item;
 import net.minecraft.state.StateContainer.Builder;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
@@ -50,10 +49,7 @@ public abstract class FluidPoison extends FlowingFluid{
 		return 8;
 	}
 
-	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return null;
-	}
+
 
 	@Override
 	public Item getFilledBucket() {

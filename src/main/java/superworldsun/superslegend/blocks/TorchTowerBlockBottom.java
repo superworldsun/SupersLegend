@@ -3,7 +3,6 @@ package superworldsun.superslegend.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
@@ -35,9 +34,9 @@ public class TorchTowerBlockBottom extends Block
 			      return func_220055_a(worldIn, pos.up(), Direction.DOWN);
 			   }
 	   
-	   public BlockRenderLayer getRenderLayer() {
+	   /*public BlockRenderLayer getRenderLayer() {
 		    return BlockRenderLayer.CUTOUT;
-	   }
+	   }*/
 	   
 	   public enum EnumTorchTowerBlock implements IStringSerializable {
 	        UPPER,

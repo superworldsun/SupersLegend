@@ -15,7 +15,7 @@ public class OreGeneration{
 	
 																				//how often ,lowest point, highest point, maximum
 
-	public static void setupOreWorldGen() {
+	/*public static void setupOreWorldGen() {
 		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
 			if (  biome.getCategory() == Biome.Category.THEEND || biome.getCategory() == Biome.Category.NETHER)
             {
@@ -25,5 +25,5 @@ public class OreGeneration{
 			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.master_ore_block.getDefaultState(), 3), Placement.COUNT_RANGE, master_ore_placement));
 																																																	// how many in a vein, (minimum is 3)
 		}
-	}
+	}*/
 }

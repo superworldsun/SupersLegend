@@ -17,7 +17,7 @@ import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 //import superworldsun.superslegend.models.armor.ModelPostmansHat;
-import superworldsun.superslegend.models.armor.ModelPostmansHat;
+//import superworldsun.superslegend.models.armor.ModelPostmansHat;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

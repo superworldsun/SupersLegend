@@ -9,7 +9,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import superworldsun.superslegend.lists.ItemList;
 
-public class EntityArrowBomb extends ArrowEntity
+/*public class EntityArrowBomb extends ArrowEntity
 {
 
     public static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation("zeldamod:textures/entity/arrows/arrow.png");
@@ -50,5 +50,5 @@ public class EntityArrowBomb extends ArrowEntity
                 this.remove();
             }
         }
-    }
-}
+    }*/
+
