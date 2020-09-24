@@ -48,15 +48,15 @@ public class NayrusLove extends Item
 				 
 	            player.addExhaustion(100f);
 	            
-	            /*Random rand = player.world.rand;
+	            Random rand = player.world.rand;
 		        for (int i = 0; i < 45; i++)
 		        {
 		        	player.world.addParticle(ParticleTypes.TOTEM_OF_UNDYING,
-		                    player.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
-		                    player.posY + rand.nextFloat() * 3 - 2,
-		                    player.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+		                    player.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+		                    player.prevPosY + rand.nextFloat() * 3 - 2,
+		                    player.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
 		                    0, 0.105D, 0);
-		        }*/
+		        }
 	            
 	            
 				player.addPotionEffect(new EffectInstance(Effect.get(24), 300, 0, true, true));
