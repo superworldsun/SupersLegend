@@ -9,16 +9,18 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import superworldsun.superslegend.lists.ItemList;
 
-/*public class EntityArrowBomb extends ArrowEntity
-{
+public class EntityArrowBomb extends ArrowEntity {
 
     public static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation("zeldamod:textures/entity/arrows/arrow.png");
+    private double X;
+    private double Y;
+    private double Z;
 
-    public EntityArrowBomb(World worldIn, double x, double y, double z){
+    public EntityArrowBomb(World worldIn, double x, double y, double z) {
         super(worldIn, x, y, z);
     }
 
-    public EntityArrowBomb(World worldIn, LivingEntity shooter){
+    public EntityArrowBomb(World worldIn, LivingEntity shooter) {
         super(worldIn, shooter);
     }
 
@@ -30,25 +32,22 @@ import superworldsun.superslegend.lists.ItemList;
     @Override
     protected void arrowHit(LivingEntity entity) {
         super.arrowHit(entity);
-        if(!world.isRaining() && !world.isThundering())
-        {
-            world.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 4.5f, Explosion.Mode.NONE);
+        if (!world.isRaining() && !world.isThundering()) {
+            world.createExplosion((Entity) null, this.X, this.Y, this.Z, 4.5f, Explosion.Mode.NONE);
         }
     }
 
     @Override
     public void tick() {
         super.tick();
-        if(this.inGround){
-            if(!world.isRaining() && !world.isThundering() && !this.isInWater())
-            {
-                world.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 3.0f , Explosion.Mode.NONE);
+        if (this.inGround) {
+            if (!world.isRaining() && !world.isThundering() && !this.isInWater()) {
+                world.createExplosion((Entity) null, this.X, this.Y, this.Z, 3.0f, Explosion.Mode.NONE);
                 this.remove();
-            }
-            else
-            {
+            } else {
                 this.remove();
             }
         }
-    }*/
+    }
+}
 

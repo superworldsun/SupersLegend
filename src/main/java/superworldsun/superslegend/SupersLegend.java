@@ -118,7 +118,7 @@ import superworldsun.superslegend.items.armors.ArmorZoraEffects;
 import superworldsun.superslegend.items.armors.HoverBoots;
 import superworldsun.superslegend.items.armors.IronBoots;
 import superworldsun.superslegend.items.arrows.ArrowAncient;
-//import superworldsun.superslegend.items.arrows.ArrowBomb;
+import superworldsun.superslegend.items.arrows.ArrowBomb;
 import superworldsun.superslegend.items.arrows.ArrowFire;
 import superworldsun.superslegend.items.arrows.ArrowIce;
 import superworldsun.superslegend.items.arrows.ArrowShock;
@@ -359,7 +359,7 @@ public class SupersLegend
 			ItemList.fire_arrow = new ArrowFire(new Item.Properties().group(supers_legend)).setRegistryName(location("fire_arrow")),
 			ItemList.ice_arrow = new ArrowIce(new Item.Properties().group(supers_legend)).setRegistryName(location("ice_arrow")),
 			ItemList.shock_arrow = new ArrowShock(new Item.Properties().group(supers_legend)).setRegistryName(location("shock_arrow")),
-			//ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
+			ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
 			ItemList.ancient_arrow = new ArrowAncient(new Item.Properties().group(supers_legend)).setRegistryName(location("ancient_arrow")),
 
 			//ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
