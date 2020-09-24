@@ -73,7 +73,7 @@ import superworldsun.superslegend.items.BookOfMudora;
 import superworldsun.superslegend.items.DekuLeaf;
 import superworldsun.superslegend.items.DinsFire;
 import superworldsun.superslegend.items.FairyOcarina;
-//import superworldsun.superslegend.items.FaroresWind;
+import superworldsun.superslegend.items.FaroresWind;
 import superworldsun.superslegend.items.GoldRupee;
 import superworldsun.superslegend.items.GoldenScale;
 import superworldsun.superslegend.items.GreenPotion;
@@ -371,7 +371,7 @@ public class SupersLegend
 			ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
 			ItemList.magic_cape = new MagicCape(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_cape")),
 			ItemList.empty_container = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("empty_container")),
-			//ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
+			ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
 			ItemList.dins_fire = new DinsFire(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
 			ItemList.nayrus_love = new NayrusLove(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("nayrus_love")),
 			ItemList.deku_leaf = new DekuLeaf(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("deku_leaf")),
