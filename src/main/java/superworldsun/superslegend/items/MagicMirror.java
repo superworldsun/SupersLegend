@@ -37,15 +37,15 @@ public class MagicMirror extends Item {
     public void onUsingTick (ItemStack stack, LivingEntity entity,int count)
     {
 
-        /*Random rand = entity.world.rand;
+        Random rand = entity.world.rand;
         for (int i = 0; i < 45; i++)
         {
             entity.world.addParticle(ParticleTypes.CLOUD,
-                    entity.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
-                    entity.posY + rand.nextFloat() * 3 - 2,
-                    entity.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+                    entity.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+                    entity.prevPosY + rand.nextFloat() * 3 - 2,
+                    entity.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
                     0, 0.105D, 0);
-        }*/
+        }
     }
 
     @Override
