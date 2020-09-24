@@ -12,9 +12,6 @@ import superworldsun.superslegend.lists.ItemList;
 public class EntityArrowBomb extends ArrowEntity {
 
     public static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation("zeldamod:textures/entity/arrows/arrow.png");
-    private double X;
-    private double Y;
-    private double Z;
 
     public EntityArrowBomb(World worldIn, double x, double y, double z) {
         super(worldIn, x, y, z);
@@ -33,7 +30,7 @@ public class EntityArrowBomb extends ArrowEntity {
     protected void arrowHit(LivingEntity entity) {
         super.arrowHit(entity);
         if (!world.isRaining() && !world.isThundering()) {
-            world.createExplosion((Entity) null, this.X, this.Y, this.Z, 4.5f, Explosion.Mode.NONE);
+            world.createExplosion((Entity) null, this.prevPosX, this.prevPosY, this.prevPosZ, 4.5f, Explosion.Mode.NONE);
         }
     }
 
@@ -42,7 +39,7 @@ public class EntityArrowBomb extends ArrowEntity {
         super.tick();
         if (this.inGround) {
             if (!world.isRaining() && !world.isThundering() && !this.isInWater()) {
-                world.createExplosion((Entity) null, this.X, this.Y, this.Z, 3.0f, Explosion.Mode.NONE);
+                world.createExplosion((Entity) null, this.prevPosX, this.prevPosY, this.prevPosZ, 3.0f, Explosion.Mode.NONE);
                 this.remove();
             } else {
                 this.remove();
