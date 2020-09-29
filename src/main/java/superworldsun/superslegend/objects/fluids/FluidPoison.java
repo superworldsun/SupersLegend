@@ -15,10 +15,10 @@ import net.minecraft.world.IWorldReader;
 import net.minecraftforge.fluids.FluidAttributes;
 import superworldsun.superslegend.SupersLegend.RegistryEvents;
 import superworldsun.superslegend.lists.BlockList;
-import superworldsun.superslegend.lists.FluidList;
+//import superworldsun.superslegend.lists.FluidList;
 import superworldsun.superslegend.lists.ItemList;
 
-public abstract class FluidPoison extends FlowingFluid{
+/*public abstract class FluidPoison extends FlowingFluid{
 
 	@Override
 	public Fluid getFlowingFluid() {
@@ -127,4 +127,4 @@ public abstract class FluidPoison extends FlowingFluid{
 		
 	}
 	
-}
+}*/
