@@ -10,12 +10,13 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.registries.ForgeRegistries;
 import superworldsun.superslegend.lists.BlockList;
 
+
 public class OreGeneration{
-	private static CountRangeConfig master_ore_placement = new CountRangeConfig(3, 1, 7, 25);
+	/*private static CountRangeConfig master_ore_placement = new CountRangeConfig(3, 1, 7, 25);
 	
 																				//how often ,lowest point, highest point, maximum
 
-	/*public static void setupOreWorldGen() {
+	public static void setupOreWorldGen() {
 		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
 			if (  biome.getCategory() == Biome.Category.THEEND || biome.getCategory() == Biome.Category.NETHER)
             {
@@ -26,4 +27,21 @@ public class OreGeneration{
 																																																	// how many in a vein, (minimum is 3)
 		}
 	}*/
+
+	private static void setupOreGeneration() {
+		for (Biome biome : ForgeRegistries.BIOMES) {
+			biome.addFeature(Decoration.UNDERGROUND_ORES,
+					Feature.ORE
+							.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+									BlockList.master_ore_block.getBlock().getDefaultState(), 3))
+							.withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(3, 1, 7, 25))));
+		}
+	}
+
+	public static void generate() {
+		setupOreGeneration();
+	}
+
+
+
 }
