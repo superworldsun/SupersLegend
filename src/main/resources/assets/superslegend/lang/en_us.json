@@ -73,7 +73,15 @@
 	"block.superslegend.spikes_block": "Spikes",
 	"block.superslegend.gossip_stone_block": "Gossip Stone",
 	"block.superslegend.bush_block": "Bush",
+
+
+
+	"items.superslegend.chain_link_fence_item": "Chain link fence",
 	"block.superslegend.chain_link_fence_block": "Chain link fence",
+
+
+
+
 	"block.superslegend.torch_tower_block_bottom": "Torch Tower",
 	"block.superslegend.torch_tower_block_top": "Torch Tower",
 	"block.superslegend.deku_flower_block": "Deku Flower",
