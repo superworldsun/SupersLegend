@@ -1,5 +1,6 @@
 package superworldsun.superslegend;
 
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -89,7 +90,7 @@ import superworldsun.superslegend.items.ItemCustomSword;
 import superworldsun.superslegend.items.LensOfTruth;
 import superworldsun.superslegend.items.MagicCape;
 import superworldsun.superslegend.items.MagicMirror;
-//import superworldsun.superslegend.items.MoonPearl;
+import superworldsun.superslegend.items.MoonPearl;
 import superworldsun.superslegend.items.NayrusLove;
 import superworldsun.superslegend.items.OcarinaOfTime;
 import superworldsun.superslegend.items.PegasusBoots;
@@ -269,6 +270,7 @@ public class SupersLegend
 		//OreGeneration.setupOreWorldGen();
 		//MinecraftForge.EVENT_BUS.register(HealthHandler.class);
 		Logger.info("Setup method registered");
+		OreGeneration.generate();
 	}
 	
 	private void clientRegistries(final FMLClientSetupEvent event)
@@ -281,6 +283,17 @@ public class SupersLegend
 	@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 	public static class RegistryEvents
 	{
+
+		@SubscribeEvent
+		public void clientSetup(final FMLClientSetupEvent event)
+		{
+			MinecraftForge.EVENT_BUS.register(SoundHandler.class);
+
+			RenderTypeLookup.setRenderLayer(BlockList.chain_link_fence_block, RenderType.getCutout());
+		}
+
+
+
 		@SubscribeEvent
 		public static void registerItems(final RegistryEvent.Register<Item> event)
 		{
@@ -362,7 +375,7 @@ public class SupersLegend
 			ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
 			ItemList.ancient_arrow = new ArrowAncient(new Item.Properties().group(supers_legend)).setRegistryName(location("ancient_arrow")),
 
-			//ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
+			ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
 			ItemList.heros_secret_stash = new HerosSecretStash(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_secret_stash")),
 			ItemList.book_of_mudora = new BookOfMudora(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("book_of_mudora")),
 			ItemList.silver_scale = new SilverScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("silver_scale")),
@@ -548,13 +561,7 @@ public class SupersLegend
 				);
 				
 		 }
-		 
-		 @SubscribeEvent
-		    public void clientSetup(final FMLClientSetupEvent event)
-		    {
-		        MinecraftForge.EVENT_BUS.register(SoundHandler.class);
-		    }
-		 
+
 		 @SubscribeEvent
 		 public static void registerPotions(final RegistryEvent.Register<Potion> event)
 		 {
