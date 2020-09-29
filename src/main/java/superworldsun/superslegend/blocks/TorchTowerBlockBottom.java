@@ -30,9 +30,13 @@ public class TorchTowerBlockBottom extends Block
 			      return facing == Direction.UP && !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 			   }
 
-			   public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+			   /*public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
 			      return func_220055_a(worldIn, pos.up(), Direction.DOWN);
-			   }
+			   }*/
+
+	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		return !worldIn.isAirBlock(pos.up());
+	}
 	   
 	   /*public BlockRenderLayer getRenderLayer() {
 		    return BlockRenderLayer.CUTOUT;
