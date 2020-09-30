@@ -48,13 +48,13 @@ public class MagicMirror extends Item {
         }
     }
 
-    @Override
+    /*@Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entity)
     {
         if (!world.isRemote)
         {
             PlayerEntity player = (PlayerEntity) entity;
-            BlockPos bedPos = player.getBedPosition(player.);
+            BlockPos bedPos = player.getBedLocation(player.dimension);
             BlockPos backPos = bedPos;
             @SuppressWarnings("unused")
 			BlockPos currentPos = player.getPosition();
@@ -112,6 +112,6 @@ public class MagicMirror extends Item {
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.AQUA + "When lost, use this mirror to return home"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-click to return to bed"));
-	}
+	}*/
 
 }
