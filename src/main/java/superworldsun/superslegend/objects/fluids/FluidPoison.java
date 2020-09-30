@@ -4,7 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.IFluidState;
+//import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.Item;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.util.Direction;
