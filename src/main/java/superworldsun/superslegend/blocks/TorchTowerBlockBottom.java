@@ -54,6 +54,11 @@ public class TorchTowerBlockBottom extends Block
 	        public String getName() {
 	            return this.name().toLowerCase();
 	        }
-	    }
+
+		   @Override
+		   public String getString() {
+			   return null;
+		   }
+	   }
 }
 	
