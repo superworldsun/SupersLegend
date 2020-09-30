@@ -5,7 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
+//import net.minecraft.fluid.IFluidState;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -37,14 +37,14 @@ public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos,
 		      builder.add(TYPE, WATERLOGGED);
 		   }
 	   
-	   @SuppressWarnings("deprecation")
+	/*   @SuppressWarnings("deprecation")
 	public IFluidState getFluidState(BlockState state) {
 		      return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
 		   }
 
 		   public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
 		      return state.get(TYPE) != SlabType.DOUBLE ? IWaterLoggable.super.receiveFluid(worldIn, pos, state, fluidStateIn) : false;
-		   }
+		   }*/
 
 	   
 		   @SuppressWarnings("deprecation")

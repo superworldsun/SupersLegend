@@ -37,7 +37,7 @@ public class BowLynelSavage extends BowCustomBase{
         this.shotType = shotType;
     }
 
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+    /*public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
             ItemStack itemstack = playerentity.findAmmo(stack);
@@ -264,5 +264,5 @@ public class BowLynelSavage extends BowCustomBase{
             shotType = 2;
         }
 
-    }
+    }*/
 }

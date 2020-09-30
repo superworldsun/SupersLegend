@@ -21,7 +21,7 @@ public class BowCustomBase extends BowItem
         super(builder);
     }
 
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+    /*public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
             ItemStack itemstack = playerentity.findAmmo(stack);
@@ -71,7 +71,7 @@ public class BowCustomBase extends BowItem
                 }
             }
         }
-    }
+    }*/
     
     @Override
     public boolean isBookEnchantable(ItemStack stack, ItemStack book) {

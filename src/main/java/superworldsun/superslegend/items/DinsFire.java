@@ -33,7 +33,7 @@ public class DinsFire extends Item {
    /**
     * Called when this item is used when targetting a Block
     */
-   public ActionResultType onItemUse(ItemUseContext context) {
+   /*public ActionResultType onItemUse(ItemUseContext context) {
       PlayerEntity playerentity = context.getPlayer();
       IWorld iworld = context.getWorld();
       BlockPos blockpos = context.getPos();
@@ -74,7 +74,7 @@ public class DinsFire extends Item {
    /**
     * Checks the passed blockstate for a campfire block, if it is not waterlogged and not lit.
     */
-   public static boolean isUnlitCampfire(BlockState state) {
+   /*public static boolean isUnlitCampfire(BlockState state) {
       return state.getBlock() == Blocks.CAMPFIRE && !state.get(BlockStateProperties.WATERLOGGED) && !state.get(BlockStateProperties.LIT);
    }
 
@@ -100,5 +100,5 @@ public static boolean func_219996_a(BlockState p_219996_0_, IWorld p_219996_1_, 
 		list.add(new StringTextComponent(TextFormatting.RED + "Through Din, you can set the world ablaze"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
-	}   
+	}   */
 } 

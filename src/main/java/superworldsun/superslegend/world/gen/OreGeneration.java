@@ -5,7 +5,7 @@ import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
-import net.minecraft.world.gen.placement.CountRangeConfig;
+//import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.registries.ForgeRegistries;
 import superworldsun.superslegend.lists.BlockList;
@@ -28,7 +28,7 @@ public class OreGeneration{
 		}
 	}*/
 
-	private static void setupOreGeneration() {
+	/*private static void setupOreGeneration() {
 		for (Biome biome : ForgeRegistries.BIOMES) {
 			biome.addFeature(Decoration.UNDERGROUND_ORES,
 					Feature.ORE
@@ -40,7 +40,7 @@ public class OreGeneration{
 
 	public static void generate() {
 		setupOreGeneration();
-	}
+	}*/
 
 
 

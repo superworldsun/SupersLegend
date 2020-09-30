@@ -46,7 +46,7 @@ public class OcarinaOfTime extends Item
 		                    player.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
 		                    0, 0.105D, 0);
 		        }*/
-		        world.setDayTime(13000);
+		        //world.setDayTime(13000);
 		      player.getCooldownTracker().setCooldown(this, 5 * 10);
 		        
 	     }
@@ -64,7 +64,7 @@ public class OcarinaOfTime extends Item
 		                    player.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
 		                    0, 0.105D, 0);
 		        }
-		        world.setDayTime(0);
+		        //world.setDayTime(0);
 		      player.getCooldownTracker().setCooldown(this, 5 * 10);
 		 }
 	 

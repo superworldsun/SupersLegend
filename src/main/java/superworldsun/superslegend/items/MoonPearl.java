@@ -18,7 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
+//import net.minecraft.world.dimension.DimensionType;
 
 public class MoonPearl extends Item {
 
@@ -26,7 +26,7 @@ public class MoonPearl extends Item {
         super(properties);
     }
 
-    @Override
+    /*@Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity entity, Hand hand) {
         ItemStack stack = entity.getHeldItem(hand);
 
@@ -73,5 +73,5 @@ public class MoonPearl extends Item {
         list.add(new StringTextComponent(TextFormatting.RED + "Teleports the player to the Nether"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "When used in the Nether it will Return player to Portal"));
-    }
+    }*/
 }

@@ -172,8 +172,8 @@ public class SupersLegend
 	{
 		istance = this;
 		
-		PotionList.EFFECTS.register(MinecraftForge.EVENT_BUS);
-		PotionList.POTIONS.register(MinecraftForge.EVENT_BUS);
+		//PotionList.EFFECTS.register(MinecraftForge.EVENT_BUS);
+		//PotionList.POTIONS.register(MinecraftForge.EVENT_BUS);
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
@@ -271,7 +271,7 @@ public class SupersLegend
 		//OreGeneration.setupOreWorldGen();
 		//MinecraftForge.EVENT_BUS.register(HealthHandler.class);
 		Logger.info("Setup method registered");
-		OreGeneration.generate();
+		//OreGeneration.generate();
 	}
 	
 	private void clientRegistries(final FMLClientSetupEvent event)
@@ -527,23 +527,23 @@ public class SupersLegend
 			(	
 				//Blocks
 					
-					BlockList.rupee_block = new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("rupee_block")),
-					BlockList.blue_rupee_block = new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("blue_rupee_block")),
-					BlockList.red_rupee_block = new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("red_rupee_block")),
-					BlockList.silver_rupee_block = new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("silver_rupee_block")),
-					BlockList.gold_rupee_block = new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("gold_rupee_block")),
-					BlockList.spikes_block = new SpikesBlock(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(13.0f, 13.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("spikes_block")),
-					BlockList.gossip_stone_block = new GossipStoneBlock(Block.Properties.create(Material.ROCK).harvestLevel(1).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("gossip_stone_block")),
-					BlockList.bush_block = new BushBlock(Block.Properties.create(Material.PLANTS).notSolid().hardnessAndResistance(0.0f, 0.0f).lightValue(0).sound(SoundType.CROP)).setRegistryName(location("bush_block")),
-					BlockList.chain_link_fence_block = new ChainLinkFenceBlock(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(2.0f, 2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("chain_link_fence_block")),
-					BlockList.torch_tower_block_bottom = new TorchTowerBlockBottom(Block.Properties.create(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).hardnessAndResistance(0.8f, 0.8f).lightValue(0).sound(SoundType.WOOD)).setRegistryName(location("torch_tower_block_bottom")),
-					BlockList.torch_tower_block_top = new TorchTowerBlockTop(Block.Properties.create(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).hardnessAndResistance(0.8f, 0.8f).lightValue(15).sound(SoundType.WOOD)).setRegistryName(location("torch_tower_block_top")),
-					BlockList.deku_flower_block = new DekuFlowerBlock(Block.Properties.create(Material.WOOD).notSolid().hardnessAndResistance(0.4f, 0.4f).lightValue(0).sound(SoundType.CROP)).setRegistryName(location("deku_flower_block")),
-					BlockList.pot_block = new PotBlock(Block.Properties.create(Material.CLAY).notSolid().hardnessAndResistance(0.1f, 0.1f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("pot_block")),
-					BlockList.jar_block = new JarBlock(Block.Properties.create(Material.CLAY).notSolid().hardnessAndResistance(0.1f, 0.1f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("jar_block")),
-					BlockList.grate_block = new GrateBlock(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("grate_block")),
-					BlockList.grass_patch_block = new GrassPatch(Block.Properties.create(Material.LEAVES).notSolid().hardnessAndResistance(0.2f, 0.2f).lightValue(0).sound(SoundType.SWEET_BERRY_BUSH)).setRegistryName(location("grass_patch_block")),
-					BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(100.0f, 400.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block"))
+					BlockList.rupee_block = new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("rupee_block")),
+					BlockList.blue_rupee_block = new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("blue_rupee_block")),
+					BlockList.red_rupee_block = new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("red_rupee_block")),
+					BlockList.silver_rupee_block = new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("silver_rupee_block")),
+					BlockList.gold_rupee_block = new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("gold_rupee_block")),
+					BlockList.spikes_block = new SpikesBlock(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(13.0f, 13.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("spikes_block")),
+					BlockList.gossip_stone_block = new GossipStoneBlock(Block.Properties.create(Material.ROCK).harvestLevel(1).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("gossip_stone_block")),
+					BlockList.bush_block = new BushBlock(Block.Properties.create(Material.PLANTS).notSolid().hardnessAndResistance(0.0f, 0.0f).setLightLevel(value -> 0).sound(SoundType.CROP)).setRegistryName(location("bush_block")),
+					BlockList.chain_link_fence_block = new ChainLinkFenceBlock(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(2.0f, 2.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("chain_link_fence_block")),
+					BlockList.torch_tower_block_bottom = new TorchTowerBlockBottom(Block.Properties.create(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).hardnessAndResistance(0.8f, 0.8f).setLightLevel(value -> 0).sound(SoundType.WOOD)).setRegistryName(location("torch_tower_block_bottom")),
+					BlockList.torch_tower_block_top = new TorchTowerBlockTop(Block.Properties.create(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).hardnessAndResistance(0.8f, 0.8f).setLightLevel(value -> 15).sound(SoundType.WOOD)).setRegistryName(location("torch_tower_block_top")),
+					BlockList.deku_flower_block = new DekuFlowerBlock(Block.Properties.create(Material.WOOD).notSolid().hardnessAndResistance(0.4f, 0.4f).setLightLevel(value -> 0).sound(SoundType.CROP)).setRegistryName(location("deku_flower_block")),
+					BlockList.pot_block = new PotBlock(Block.Properties.create(Material.CLAY).notSolid().hardnessAndResistance(0.1f, 0.1f).setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("pot_block")),
+					BlockList.jar_block = new JarBlock(Block.Properties.create(Material.CLAY).notSolid().hardnessAndResistance(0.1f, 0.1f).setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("jar_block")),
+					BlockList.grate_block = new GrateBlock(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(3.0f, 3.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("grate_block")),
+					BlockList.grass_patch_block = new GrassPatch(Block.Properties.create(Material.LEAVES).notSolid().hardnessAndResistance(0.2f, 0.2f).setLightLevel(value -> 0).sound(SoundType.SWEET_BERRY_BUSH)).setRegistryName(location("grass_patch_block")),
+					BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(100.0f, 400.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block"))
 					//BlockList.false_stone_block = new FalseStoneBlock(Block.Properties.create(Material.CLAY).hardnessAndResistance(1.0f, 1.0f).lightValue(0).sound(SoundType.GLASS)).setRegistryName(location("false_stone_block")),
 					
 					//BlockList.poison = new FlowingFluidBlock(() -> FluidList.poison, Block.Properties.create(Material.WATER).doesNotBlockMovement().noDrops()).setRegistryName(location("poison"))
@@ -590,9 +590,12 @@ public class SupersLegend
 				
 				(
 						//PotionList.more_health_effect = new PotionList.MoreHealthEffect(EffectType.BENEFICIAL, 0xd4FF00).addAttributesModifier(SharedMonsterAttributes.MAX_HEALTH, "55FCED67-E92A-486E-9800-B47F202C4386", (double)0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("more_health")),
-						PotionList.iron_boots_effect = new PotionList.IronBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.SWIM_SPEED, "55FCED67-E92A-486E-9800-B47F202C4386", (double)2.0f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("iron_boots")),
-						PotionList.hover_boots_effect = new PotionList.HoverBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.ENTITY_GRAVITY, "55FCED67-E92A-486E-9800-B47F202C4386", 0.0f, AttributeModifier.Operation.ADDITION).setRegistryName(location("hover_boots")),
-						PotionList.zoras_grace_effect = new PotionList.ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.SWIM_SPEED, "55FCED67-E92A-486E-9800-B47F202C4386", (double)0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("zoras_grace"))
+						//PotionList.iron_boots_effect = new PotionList.IronBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.SWIM_SPEED, "55FCED67-E92A-486E-9800-B47F202C4386", (double)2.0f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("iron_boots")),
+						//PotionList.hover_boots_effect = new PotionList.HoverBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.ENTITY_GRAVITY, "55FCED67-E92A-486E-9800-B47F202C4386", 0.0f, AttributeModifier.Operation.ADDITION).setRegistryName(location("hover_boots")),
+						//PotionList.zoras_grace_effect = new PotionList.ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier()
+
+
+						//PotionList.zoras_grace_effect = new PotionList.ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(PlayerEntity.SWIM_SPEED, "55FCED67-E92A-486E-9800-B47F202C4386", (double)0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("zoras_grace"))
 				);
 				
 			}

@@ -110,5 +110,10 @@ public enum ArmourMaterialList implements IArmorMaterial
 	{
 		return this.toughness;
 	}
-	
+
+	@Override
+	public float getKnockbackResistance() {
+		return 0;
+	}
+
 }

@@ -30,7 +30,7 @@ public class FaroresWind extends Item {
         super(properties);
     }
 
-    public ActionResultType onItemUse(ItemUseContext context) {
+    /*public ActionResultType onItemUse(ItemUseContext context) {
         World world = context.getWorld();
         BlockPos pos = context.getPos();
         PlayerEntity player = context.getPlayer();
@@ -161,5 +161,5 @@ public class FaroresWind extends Item {
             list.add(new StringTextComponent(TextFormatting.GOLD + "Location Stored:"));
             list.add(new StringTextComponent(TextFormatting.YELLOW + "Dim: " + getDimension(stack) + "  X: " + pos.getX() + "  Y: " + pos.getY() + "  Z: " + pos.getZ()));
         }
-    }
+    }*/
 }
