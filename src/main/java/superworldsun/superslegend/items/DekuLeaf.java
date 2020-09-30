@@ -35,7 +35,7 @@ public class DekuLeaf extends Item
 		 @SuppressWarnings("unused")
 		ItemStack stack = player.getHeldItem(hand);
 
-		if(!player.isElytraFlying() &&!player.onGround && !player.isInWater() && player.getFoodStats().getFoodLevel()>= 1)
+		if(!player.isElytraFlying() &&!player.isOnGround() && !player.isInWater() && player.getFoodStats().getFoodLevel()>= 1)
 		        {
 			player.fallDistance *= 0.5F;
 			player.addVelocity(0f, 0.235f, 0f );

@@ -6,8 +6,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potion;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -40,7 +38,7 @@ public class IronBoots extends NonEnchantArmor {
             boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.iron_boots);
             if(isBootsOn)
             	{
-            	if(player.isInWater() && !player.onGround) 
+            	if(player.isInWater() && !player.isOnGround())
             	{
             		//player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 0, false, false));
             		//player.addPotionEffect(new EffectInstance(Effect.get(30), 3, 0, false, false));
@@ -55,7 +53,7 @@ public class IronBoots extends NonEnchantArmor {
 					//player.setMotion(v.x, v.y * 2.0D, v.z);
             		
             	}
-            	else if (player.isInWater() && player.onGround && !player.isSprinting())
+            	else if (player.isInWater() && player.isOnGround() && !player.isSprinting())
             	{
             		//Vec3d v = player.getMotion();
 					//player.setMotion(v.x, v.y * 2.0D, v.z);
