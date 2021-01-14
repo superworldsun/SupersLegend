@@ -37,7 +37,7 @@ public class BowLynelSavage extends BowCustomBase{
         this.shotType = shotType;
     }
 
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+    /*public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
             ItemStack itemstack = playerentity.findAmmo(stack);
@@ -224,7 +224,7 @@ public class BowLynelSavage extends BowCustomBase{
                         }
                     }
 
-                    worldIn.playSound((PlayerEntity)null, playerentity.posX, playerentity.posY, playerentity.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    worldIn.playSound((PlayerEntity)null, playerentity.prevPosX, playerentity.prevPosY, playerentity.prevPosZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
                     if (!flag1 && !playerentity.abilities.isCreativeMode) {
                         itemstack.shrink(1);
                         if (itemstack.isEmpty()) {
@@ -264,5 +264,5 @@ public class BowLynelSavage extends BowCustomBase{
             shotType = 2;
         }
 
-    }
+    }*/
 }

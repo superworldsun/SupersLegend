@@ -3,7 +3,6 @@ package superworldsun.superslegend.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -30,17 +29,21 @@ public class GrassPatch extends Block
 		      return facing == Direction.DOWN && !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		   }
 
-		   public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		   /*public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
 		      return func_220055_a(worldIn, pos.down(), Direction.UP);
-		   }
+		   }*/
+
+	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		return !worldIn.isAirBlock(pos.down());
+	}
 	   
 
 		   public BlockState getPlant(IBlockReader world, BlockPos pos) {
 		      return getDefaultState();
 		   }
 	   
-	   public BlockRenderLayer getRenderLayer() {
+	   /*public BlockRenderLayer getRenderLayer() {
 		    return BlockRenderLayer.CUTOUT;
-	   }
+	   }*/
 }
 	

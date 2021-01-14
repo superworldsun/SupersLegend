@@ -43,7 +43,7 @@ public class MaskZoramask extends NonEnchantArmor {
                 boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_zoramask);
                 if(isHelmetOn)
                 	{
-                	if(player.isInWater() && player.isSprinting() && !player.onGround && player.getFoodStats().getFoodLevel()!= 0) 
+                	if(player.isInWater() && player.isSprinting() && !player.isOnGround() && player.getFoodStats().getFoodLevel()!= 0)
                 	{
                 		player.addPotionEffect(new EffectInstance(Effect.get(30), 4, 0, false, false, false));
                 		player.addExhaustion(0.09f);

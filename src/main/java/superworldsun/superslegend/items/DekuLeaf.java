@@ -35,7 +35,7 @@ public class DekuLeaf extends Item
 		 @SuppressWarnings("unused")
 		ItemStack stack = player.getHeldItem(hand);
 
-		if(!player.isElytraFlying() &&!player.onGround && !player.isInWater() && !player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots) && player.getFoodStats().getFoodLevel()>= 1)
+		if(!player.isElytraFlying() &&!player.isOnGround() && !player.isInWater() && player.getFoodStats().getFoodLevel()>= 1)
 		        {
 			player.fallDistance *= 0.5F;
 			player.addVelocity(0f, 0.235f, 0f );
@@ -47,9 +47,9 @@ public class DekuLeaf extends Item
 	        for (int i = 0; i < 45; i++)
 	        {
 	        	player.world.addParticle(ParticleTypes.CLOUD,
-	                    player.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
-	                    player.posY + rand.nextFloat() * 1 - 2,
-	                    player.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
+	                    player.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
+	                    player.prevPosY + rand.nextFloat() * 1 - 2,
+	                    player.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
 	                    0, 0.105D, 0);
 	        }
 			

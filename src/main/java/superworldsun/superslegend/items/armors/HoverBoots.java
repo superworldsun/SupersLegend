@@ -13,7 +13,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+//import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -42,20 +42,20 @@ public class HoverBoots extends ArmorItem {
 		
 	}
 
-    @Override
+    /*@Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
 
 
                 boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots);
 
-                if(isBootsOn && player.isSprinting() && player.onGround)
+                if(isBootsOn && player.isSprinting() && player.isOnGround())
             	{
             	
             	player.addPotionEffect(new EffectInstance(PotionList.hover_boots_effect, 19, 0, true, false));
             	
             	}
-            	if(player.isSprinting() && !player.onGround)
+            	if(player.isSprinting() && !player.isOnGround())
             	{
             		EffectInstance effect = player.getActivePotionEffect(PotionList.hover_boots_effect);
                 	if (effect != null) 
@@ -77,17 +77,17 @@ public class HoverBoots extends ArmorItem {
 				                    0, 0, 0);
 				        }*/
 					 
-                	}
+                	//}
           		
-          		  }
-            	if(isBootsOn && !player.isSprinting())
-            	{
+          		  //}
+            	//if(isBootsOn && !player.isSprinting())
+            	//{
             	
-            	player.removePotionEffect(PotionList.hover_boots_effect);
-            	
-            	}
+            	//player.removePotionEffect(PotionList.hover_boots_effect);
+
+            	//}
                 
-     }
+     //}
 }
             
         

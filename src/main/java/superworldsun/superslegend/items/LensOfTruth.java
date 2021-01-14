@@ -74,9 +74,9 @@ public class LensOfTruth extends Item
             	        for (int i = 0; i < 45; i++)
             	        {
             	        	entity.world.addParticle(ParticleTypes.CLOUD,
-            	        			entity.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
-            	        			entity.posY + rand.nextFloat() * 3 - 2,
-            	        			entity.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
+            	        			entity.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
+            	        			entity.prevPosY + rand.nextFloat() * 3 - 2,
+            	        			entity.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
             	                    0, 0.105D, 0);
             	        }
             	        
@@ -88,7 +88,7 @@ public class LensOfTruth extends Item
             	        entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.LENS_OF_TRUTH_ON, SoundCategory.PLAYERS, 1f, 1f);
             	        
                     }
-                    else if(entity.isInvisible() && entity.isGlowing())
+                    else if(entity.isInvisible())
                     {
                     	player.sendStatusMessage(new TranslationTextComponent(TextFormatting.DARK_PURPLE + "They are already visible"), true);
                     	

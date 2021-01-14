@@ -29,7 +29,7 @@ public class BitBow extends BowItem
 		super(properties);
 	}
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+    /*public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
     {
         ItemStack stack = player.getHeldItem(hand);
 
@@ -63,6 +63,6 @@ public class BitBow extends BowItem
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "Uses Green Rupee as ammo"));
-	}  
+	}*/
 	
 }

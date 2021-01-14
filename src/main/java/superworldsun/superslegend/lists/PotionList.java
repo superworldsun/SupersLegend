@@ -29,7 +29,7 @@ public class PotionList {
 	 * constructor. (DeferredRegister.create(), instead of a new DeferredRegister()).
 	 */
 	
-	public static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, SupersLegend.modid);
+	/*public static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, SupersLegend.modid);
 	
 	public static final RegistryObject<Effect> MORE_HEALTH_EFFECT = EFFECTS.register("more_health", () -> new MoreHealthEffect(EffectType.BENEFICIAL, 0xd4ff00));
 	
@@ -75,5 +75,5 @@ public class PotionList {
 		public ZorasGraceEffect(EffectType typeIn, int liquidColorIn) {
 			super(typeIn, liquidColorIn);
 		}
-	}
+	}*/
 }

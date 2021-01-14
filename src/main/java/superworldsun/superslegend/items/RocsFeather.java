@@ -29,7 +29,7 @@ public class RocsFeather extends Item
 			ItemStack equipped = player.getHeldItemMainhand();
 			if(!world.isRemote)
 			{
-				if(stack == equipped && player.onGround)
+				if(stack == equipped && player.isOnGround())
 		        {
 					player.addPotionEffect(new EffectInstance(Effect.get(28), 24, 0, false, false));
 					player.addPotionEffect(new EffectInstance(Effect.get(8), 1, 3, false, false));

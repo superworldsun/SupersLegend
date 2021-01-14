@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
@@ -46,13 +45,17 @@ public class TorchTowerBlockTop extends Block
 		      return facing == Direction.DOWN && !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		   }
 
-		   public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		   /*public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
 		      return func_220055_a(worldIn, pos.down(), Direction.UP);
-		   }
+		   }*/
+
+	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		return !worldIn.isAirBlock(pos.down());
+	}
 	   
-	   public BlockRenderLayer getRenderLayer() {
+	   /*public BlockRenderLayer getRenderLayer() {
 		    return BlockRenderLayer.CUTOUT;
-	   }
+	   }*/
 	   
 	   public enum EnumTorchTowerBlock implements IStringSerializable {
 	        UPPER,
@@ -66,6 +69,11 @@ public class TorchTowerBlockTop extends Block
 	        public String getName() {
 	            return this.name().toLowerCase();
 	        }
-	    }
+
+		   @Override
+		   public String getString() {
+			   return null;
+		   }
+	   }
 }
 	

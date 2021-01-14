@@ -6,7 +6,6 @@ import net.minecraftforge.common.ForgeConfigSpec.Builder;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.config.ModConfig.ConfigReloading;
 
 import static net.minecraftforge.fml.Logging.CORE;
 import static net.minecraftforge.fml.loading.LogMarkers.FORGEMOD;
@@ -42,8 +41,8 @@ public class Config
         Ref.LOGGER.debug(FORGEMOD, "Loaded {} config file {}", Ref.MODID, configEvent.getConfig().getFileName());
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void onFileChange(final ConfigReloading configEvent) {
         Ref.LOGGER.fatal(CORE, "{} config just got changed on the file system!", Ref.MODID);
-    }
+    }*/
 }

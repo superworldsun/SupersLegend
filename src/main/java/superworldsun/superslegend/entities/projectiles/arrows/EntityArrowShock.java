@@ -37,16 +37,7 @@ public class EntityArrowShock extends ArrowEntity
     protected void arrowHit(LivingEntity entity) {
 
     	System.out.println("Client:" + entity.world.isRemote);
-    	
-    	Random rand = entity.world.rand;
-        for (int i = 0; i < 45; i++)
-        {
-        	entity.world.addParticle(ParticleTypes.CLOUD,
-        			entity.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
-        			entity.posY + rand.nextFloat() * 3 - 2,
-        			entity.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
-                    0, 0.105D, 0);
-        }
+
         
         
         BlockPos currentPos = entity.getPosition();

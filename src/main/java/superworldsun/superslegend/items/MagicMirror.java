@@ -41,14 +41,14 @@ public class MagicMirror extends Item {
         for (int i = 0; i < 45; i++)
         {
             entity.world.addParticle(ParticleTypes.CLOUD,
-                    entity.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
-                    entity.posY + rand.nextFloat() * 3 - 2,
-                    entity.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+                    entity.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+                    entity.prevPosY + rand.nextFloat() * 3 - 2,
+                    entity.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
                     0, 0.105D, 0);
         }
     }
 
-    @Override
+    /*@Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entity)
     {
         if (!world.isRemote)
@@ -112,6 +112,6 @@ public class MagicMirror extends Item {
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.AQUA + "When lost, use this mirror to return home"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-click to return to bed"));
-	}   
+	}*/
 
 }
