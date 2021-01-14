@@ -29,8 +29,8 @@ public class PotionList {
 	 * constructor. (DeferredRegister.create(), instead of a new DeferredRegister()).
 	 */
 	
-	/*public static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, SupersLegend.modid);
-	
+	public static final DeferredRegister<Effect> EFFECTS = DeferredRegister.create(ForgeRegistries.POTIONS, SupersLegend.modid);
+
 	public static final RegistryObject<Effect> MORE_HEALTH_EFFECT = EFFECTS.register("more_health", () -> new MoreHealthEffect(EffectType.BENEFICIAL, 0xd4ff00));
 	
 	public static final RegistryObject<Effect> IRON_BOOTS_EFFECT = EFFECTS.register("iron_boots", () -> new IronBootsEffect(EffectType.BENEFICIAL, 0xd4ff10));
@@ -41,13 +41,12 @@ public class PotionList {
 
 	
 	
-	public static final DeferredRegister<Potion> POTIONS = new DeferredRegister<>(ForgeRegistries.POTION_TYPES, SupersLegend.modid);
+	public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTION_TYPES, SupersLegend.modid);
 	
 	public static final RegistryObject<Potion> MORE_HEALTH_POTION = POTIONS.register("more_health", () -> new Potion(new EffectInstance(MORE_HEALTH_EFFECT.get(), 3600)));
 	
 	//public static final RegistryObject<Potion> SIZE_POTION = POTIONS.register("size", () -> new Potion(new EffectInstance(SIZE_EFFECT.get(), 3600)));
 
-	
 	public static class MoreHealthEffect extends Effect {
 
 		public MoreHealthEffect(EffectType typeIn, int liquidColorIn) {
@@ -75,5 +74,5 @@ public class PotionList {
 		public ZorasGraceEffect(EffectType typeIn, int liquidColorIn) {
 			super(typeIn, liquidColorIn);
 		}
-	}*/
+	}
 }
