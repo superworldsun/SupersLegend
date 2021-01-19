@@ -90,7 +90,9 @@
 	"block.superslegend.grate_block": "Grate",
 	"block.superslegend.grass_patch_block": "Grass Patch",
 	"block.superslegend.master_ore_block": "Master Ore Block",
-	"block.superslegend.false_stone_block": "False Stone Block",
+	"block.superslegend.shadow_block": "Shadow Block",
+	"block.superslegend.false_shadow_block": "False Shadow Block",
+	"block.superslegend.hidden_shadow_block": "Hidden Shadow Block",
 	
 	
 	"item.superslegend.kokiri_sword": "Kokiri Sword",

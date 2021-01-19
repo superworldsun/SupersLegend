@@ -1,6 +1,7 @@
 package superworldsun.superslegend.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -11,20 +12,14 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 
-public class FalseStoneBlock extends Block
+public class HiddenShadowBlock extends Block
 
 {
-	protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
-
-	   public FalseStoneBlock(Block.Properties properties) {
+	   public HiddenShadowBlock(Block.Properties properties) {
 	      super(properties);
 	   }
 
-	   public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		      return SHAPE;
-		   }
-    
-    /*public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-     }*/
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.INVISIBLE;
+	}
 }

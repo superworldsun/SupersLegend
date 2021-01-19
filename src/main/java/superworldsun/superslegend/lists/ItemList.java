@@ -99,7 +99,9 @@ public class ItemList
 		public static Item grate_block;
 		public static Item grass_patch_block;
 		public static Item master_ore_block;
-		public static Item false_stone_block;
+		public static Item shadow_block;
+		public static Item false_shadow_block;
+		public static Item hidden_shadow_block;
 		
 	//Liquids
 		public static Item poison;
