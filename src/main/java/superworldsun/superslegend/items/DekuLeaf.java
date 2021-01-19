@@ -1,11 +1,7 @@
 package superworldsun.superslegend.items;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
@@ -21,7 +17,12 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import superworldsun.superslegend.init.SoundInit;
-import superworldsun.superslegend.lists.ItemList;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 public class DekuLeaf extends Item
 {
@@ -29,7 +30,9 @@ public class DekuLeaf extends Item
 	{
 		super(properties);
 	}
-	
+
+	@Nonnull
+	@ParametersAreNonnullByDefault
 	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
 	 {
 		 @SuppressWarnings("unused")
@@ -40,7 +43,7 @@ public class DekuLeaf extends Item
 			player.fallDistance *= 0.5F;
 			player.addVelocity(0f, 0.235f, 0f );
 			
-			player.addPotionEffect(new EffectInstance(Effect.get(28), 11, 10, false, false));
+			player.addPotionEffect(new EffectInstance(Objects.requireNonNull(Effect.get(28)), 11, 10, false, false));
 			player.addExhaustion(1f);
 			
 			Random rand = player.world.rand;
@@ -64,52 +67,9 @@ public class DekuLeaf extends Item
 	         player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
        }
 				return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
-		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
-	 {
-		 @SuppressWarnings("unused")
-		ItemStack stack = player.getHeldItem(hand);
+	 }
 
-		if(player.onGround && player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots) && player.getFoodStats().getFoodLevel()!= 0) 
-         	{
-         		player.removePotionEffect(Effect.get(28));
-         	}
-		else if(!player.onGround && !player.isInWater() && player.getFoodStats().getFoodLevel()>= 1)
-		        {
-					player.addExhaustion(0.2f);
-					player.addPotionEffect(new EffectInstance(Effect.get(28), 5, 10, false, false));
-		        }
-		else if(!player.onGround && player.isInWater() && player.getFoodStats().getFoodLevel()< 1)
-        {
-			
-			player.getCooldownTracker().setCooldown(this, 10);
-			
-			BlockPos currentPos = player.getPosition();
-			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
-        }
-				return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
-		}*/
-	
-	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void addInformation(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-Click in the air, this will slow your decent"));
