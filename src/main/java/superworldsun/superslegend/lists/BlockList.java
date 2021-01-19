@@ -21,7 +21,10 @@ public class BlockList
 	public static Block grate_block;
 	public static Block grass_patch_block;
 	public static Block master_ore_block;
-	public static Block false_stone_block;
+	public static Block shadow_block;
+	public static Block false_shadow_block;
+	public static Block hidden_shadow_block;
+
 	
 	public static Block poison;
 }

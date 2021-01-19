@@ -27,67 +27,63 @@ import java.util.Vector;
 
 
 public class HoverBoots extends ArmorItem {
-    public HoverBoots(String name, EquipmentSlotType slot) 
-    
-    {
-        super(ArmourMaterialList.hoverboots, slot, new Item.Properties().group(SupersLegend.supers_legend));
-        setRegistryName(SupersLegend.modid, name);
-    }
-    
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
-	{
-		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.YELLOW + "No road needed"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Sprint To Hover over Gaps"));
-		
-		
+	public HoverBoots(String name, EquipmentSlotType slot) {
+		super(ArmourMaterialList.hoverboots, slot, new Item.Properties().group(SupersLegend.supers_legend));
+		setRegistryName(SupersLegend.modid, name);
 	}
 
-    @Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
-    {
+	public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
+		super.addInformation(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.YELLOW + "No road needed"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Sprint To Hover over Gaps"));
 
 
-                boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots);
+	}
 
-            	if(isBootsOn && player.isSprinting() && !player.isOnGround())
-            	{
-					player.addPotionEffect(new EffectInstance(PotionList.hover_boots_effect, 10, 0, true, false));
-
-                	{
-                		// Work in progress
-                		//Add possible more ice effect, work on better checks and balances to the way players should properly hover.
+	@Override
+	public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
+	{
 
 
-                		//player.addVelocity(0, 0.01f, 0);
-						//player.setVelocity(0, 0.1f, 0);
-						Vector3d v = player.getMotion();
-						player.setMotion(v.x, v.y * -0.1D, v.z);
+		boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots);
 
-						BlockPos currentPos = player.getPosition();
-						world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOVER_BOOTS, SoundCategory.PLAYERS, 1f, 1f);
-						Random rand = player.world.rand;
+		if(isBootsOn && player.isSprinting() && player.isOnGround())
+		{
 
-						for (int i = 0; i < 45; i++)
-				        {
-				        	player.world.addParticle(ParticleTypes.CLOUD,
-				                    player.getPosX() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 0,
-				                    player.getPosY() + rand.nextFloat() * 0 - 0,
-				                    player.getPosZ() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 0,
-				                    0, 0, 0);
-				        }
-					 
-                	}
-          		
-          		  }
+			player.addPotionEffect(new EffectInstance(PotionList.hover_boots_effect, 19, 0, true, false));
 
-            	if(isBootsOn && !player.isSprinting())
-            	{
-            		player.removePotionEffect(PotionList.hover_boots_effect);
+		}
+		if(player.isSprinting() && !player.isOnGround())
+		{
+			EffectInstance effect = player.getActivePotionEffect(PotionList.hover_boots_effect);
+			if (effect != null)
 
-            	}
-                
-     }
+			{
+				Vector3d v = player.getMotion();
+				player.setMotion(v.x, v.y * -0.1D, v.z);
+
+				BlockPos currentPos = player.getPosition();
+				world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOVER_BOOTS, SoundCategory.PLAYERS, 1f, 1f);
+				Random rand = player.world.rand;
+
+				for (int i = 0; i < 45; i++) {
+					player.world.addParticle(ParticleTypes.CLOUD,
+							player.getPosX() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 0,
+							player.getPosY() + rand.nextFloat() * 0 - 0,
+							player.getPosZ() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 0,
+							0, 0, 0);
+				}
+
+			}
+
+		}
+		if(isBootsOn && !player.isSprinting())
+		{
+
+			player.removePotionEffect(PotionList.hover_boots_effect);
+
+		}
+
+	}
 }
-            
         
