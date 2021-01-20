@@ -3,10 +3,13 @@ package superworldsun.superslegend.util;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IngameGui;
+import net.minecraft.client.renderer.OverlayRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 //import net.minecraft.entity.SharedMonsterAttributes;
 //import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.ai.attributes.AttributeModifierManager;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.FoodStats;
@@ -16,12 +19,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 //import net.minecraftforge.client.ForgeIngameGui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
-/*@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber
 public class HealthHandler {
     protected static final Random rand = new Random();
     public static int playerHealth;
@@ -42,7 +46,7 @@ public class HealthHandler {
         Minecraft minecraft = Minecraft.getInstance();
         IngameGui ingameGUI=minecraft.ingameGUI;
         if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
-            MainWindow scaledRes = minecraft.mainWindow;
+            MainWindow scaledRes = minecraft.getMainWindow();
             if (!event.isCanceled()) {
                 event.setCanceled(true);
             }
@@ -72,8 +76,8 @@ public class HealthHandler {
                 int widthright = scaledRes.getScaledWidth() / 2 + 91;
                 int height = scaledRes.getScaledHeight() - 39;
 
-                IAttributeInstance iattributeinstance = entityplayer.getAttribute(SharedMonsterAttributes.MAX_HEALTH);
-                float maxHealth =(float) iattributeinstance.getValue();
+                //ModifiableAttributeInstance iattributeinstance = entityplayer.getAttribute(playerHealth);
+                float maxHealth =(float) health;
                 int absorption = MathHelper.ceil(entityplayer.getAbsorptionAmount());
                 int rows = Math.max(MathHelper.ceil((maxHealth + (float) absorption) / 4.0F / 10.0F), 1);
                 int rows1 = Math.max(10 - (rows - 2), 3);
@@ -95,15 +99,15 @@ public class HealthHandler {
                         int armorPosX = widthleft + i * 8;
 
                         if (i * 2 + 1 < armorValue) {
-                            ingameGUI.blit(armorPosX, armorPosY, 34, 9, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), armorPosX, armorPosY, 34, 9, 9, 9);
                         }
 
                         if (i * 2 + 1 == armorValue) {
-                            ingameGUI.blit(armorPosX, armorPosY, 25, 9, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), armorPosX, armorPosY, 25, 9, 9, 9);
                         }
 
                         if (i * 2 + 1 > armorValue) {
-                            ingameGUI.blit(armorPosX, armorPosY, 16, 9, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), armorPosX, armorPosY, 16, 9, 9, 9);
                         }
                     }
                 }
@@ -143,56 +147,56 @@ public class HealthHandler {
                         hardcore = 1;
                     }
 
-                    ingameGUI.blit(posX, posY, textureXOffset * 9, 18 * hardcore, 9, 9);
+                    ingameGUI.blit(event.getMatrixStack(), posX, posY, textureXOffset * 9, 18 * hardcore, 9, 9);
 
                     if (flag) {
                         if (heartsToDraw * 4 + 3 < lastHealth) {
-                            ingameGUI.blit(posX, posY, textureX + 36, 18 * hardcore, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 36, 18 * hardcore, 9, 9);
                         }
                         if (heartsToDraw * 4 + 2 < lastHealth) {
-                            ingameGUI.blit(posX, posY, textureX + 45, 18 * hardcore, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 45, 18 * hardcore, 9, 9);
                         }
                         if (heartsToDraw * 4 + 1 < lastHealth) {
-                            ingameGUI.blit(posX, posY, textureX + 54, 18 * hardcore, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 54, 18 * hardcore, 9, 9);
                         }
                         if (heartsToDraw * 4 + 1 == lastHealth) {
-                            ingameGUI.blit(posX, posY, textureX + 63, 18 * hardcore, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 63, 18 * hardcore, 9, 9);
                         }
                     }
 
                     if (absorption1 > 0) {
                         if (absorption1 % 4 == 0) {
-                            ingameGUI.blit(posX, posY, textureX, 18 * hardcore + 9, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX, 18 * hardcore + 9, 9, 9);
                             absorption1 = absorption1 - 4;
                         } else if (absorption1 == absorption && (absorption1 - 3) % 4 == 0) {
-                            ingameGUI.blit(posX, posY, textureX + 9, 18 * hardcore + 9, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 9, 18 * hardcore + 9, 9, 9);
                             absorption1 = absorption1 - 3;
                         } else if (absorption1 == absorption && (absorption1 - 2) % 4 == 0) {
-                            ingameGUI.blit(posX, posY, textureX + 18, 12 * hardcore + 9, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 18, 12 * hardcore + 9, 9, 9);
                             absorption1 = absorption1 - 2;
                         } else if (absorption1 == absorption && (absorption1 - 1) % 4 == 0) {
-                            ingameGUI.blit(posX, posY, textureX + 27, 9 * hardcore + 9, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 27, 9 * hardcore + 9, 9, 9);
                             absorption1--;
                         }
                     } else {
                         if (heartsToDraw * 4 + 3 < health) {
-                            ingameGUI.blit(posX, posY, textureX + 36, 18 * hardcore, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 36, 18 * hardcore, 9, 9);
                         }
                         if (heartsToDraw * 4 + 2 < health) {
-                            ingameGUI.blit(posX, posY, textureX + 45, 18 * hardcore, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 45, 18 * hardcore, 9, 9);
                         }
                         if (heartsToDraw * 4 + 1 < health) {
-                            ingameGUI.blit(posX, posY, textureX + 54, 18 * hardcore, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 54, 18 * hardcore, 9, 9);
                         }
                         if (heartsToDraw * 4 + 1 == health) {
-                            ingameGUI.blit(posX, posY, textureX + 63, 18 * hardcore, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), posX, posY, textureX + 63, 18 * hardcore, 9, 9);
                         }
                     }
                 }
 
                 Entity entity = entityplayer.getRidingEntity();
 
-                if (entity == null || !(entity instanceof LivingEntity)) {
+                if (!(entity instanceof LivingEntity)) {
                     minecraft.getProfiler().endStartSection("food");
                     minecraft.getTextureManager().bindTexture(new ResourceLocation("minecraft:textures/gui/icons.png"));
 
@@ -211,14 +215,14 @@ public class HealthHandler {
                         }
 
                         int l7 = widthright - foodToDraw * 8 - 9;
-                        ingameGUI.blit(l7, j6, 16 + j7 * 9, 27, 9, 9);
+                        ingameGUI.blit(event.getMatrixStack(), l7, j6, 16 + j7 * 9, 27, 9, 9);
 
                         if (foodToDraw * 2 + 1 < foodLevel) {
-                            ingameGUI.blit(l7, j6, l6 + 36, 27, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), l7, j6, l6 + 36, 27, 9, 9);
                         }
 
                         if (foodToDraw * 2 + 1 == foodLevel) {
-                            ingameGUI.blit(l7, j6, l6 + 45, 27, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), l7, j6, l6 + 45, 27, 9, 9);
                         }
                     }
                 }
@@ -232,9 +236,9 @@ public class HealthHandler {
 
                     for (int k7 = 0; k7 < k6 + i7; ++k7) {
                         if (k7 < k6) {
-                            ingameGUI.blit(widthright - k7 * 8 - 9, airPosY, 16, 18, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), widthright - k7 * 8 - 9, airPosY, 16, 18, 9, 9);
                         } else {
-                            ingameGUI.blit(widthright - k7 * 8 - 9, airPosY, 25, 18, 9, 9);
+                            ingameGUI.blit(event.getMatrixStack(), widthright - k7 * 8 - 9, airPosY, 25, 18, 9, 9);
                         }
                     }
                 }
@@ -247,4 +251,4 @@ public class HealthHandler {
             ForgeIngameGui.left_height = ArmorPosY;
         }
     }
-}*/
+}
