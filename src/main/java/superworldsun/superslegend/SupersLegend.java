@@ -57,46 +57,7 @@ import superworldsun.superslegend.CustomLootMobs.CustomLootWitherskeleton;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombie;
 import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
 import superworldsun.superslegend.blocks.*;
-import superworldsun.superslegend.items.BluePotion;
-import superworldsun.superslegend.items.BluePotionMix;
-import superworldsun.superslegend.items.BlueRupee;
-import superworldsun.superslegend.items.BookOfMudora;
-import superworldsun.superslegend.items.DekuLeaf;
-import superworldsun.superslegend.items.DinsFire;
-import superworldsun.superslegend.items.FairyOcarina;
-import superworldsun.superslegend.items.FaroresWind;
-import superworldsun.superslegend.items.GoldRupee;
-import superworldsun.superslegend.items.GoldenScale;
-import superworldsun.superslegend.items.GreenPotion;
-import superworldsun.superslegend.items.GreenPotionMix;
-import superworldsun.superslegend.items.HerosSecretStash;
-import superworldsun.superslegend.items.ItemCustomAxe;
-import superworldsun.superslegend.items.ItemCustomBow;
-import superworldsun.superslegend.items.ItemCustomHoe;
-import superworldsun.superslegend.items.ItemCustomPickaxe;
-import superworldsun.superslegend.items.ItemCustomShield;
-import superworldsun.superslegend.items.ItemCustomShovel;
-import superworldsun.superslegend.items.ItemCustomSword;
-import superworldsun.superslegend.items.LensOfTruth;
-import superworldsun.superslegend.items.MagicCape;
-import superworldsun.superslegend.items.MagicMirror;
-import superworldsun.superslegend.items.MoonPearl;
-import superworldsun.superslegend.items.NayrusLove;
-import superworldsun.superslegend.items.OcarinaOfTime;
-import superworldsun.superslegend.items.PegasusBoots;
-import superworldsun.superslegend.items.RedPotion;
-import superworldsun.superslegend.items.RedPotionMix;
-import superworldsun.superslegend.items.RedRupee;
-import superworldsun.superslegend.items.RocsCapeEffects;
-import superworldsun.superslegend.items.RocsFeather;
-import superworldsun.superslegend.items.Rupee;
-import superworldsun.superslegend.items.SilverRupee;
-import superworldsun.superslegend.items.SilverScale;
-import superworldsun.superslegend.items.TorchTower;
-import superworldsun.superslegend.items.Triforce;
-import superworldsun.superslegend.items.TriforceCourage;
-import superworldsun.superslegend.items.TriforcePower;
-import superworldsun.superslegend.items.TriforceWisdom;
+import superworldsun.superslegend.items.*;
 import superworldsun.superslegend.items.armors.ArmorDarkEffects;
 import superworldsun.superslegend.items.armors.ArmorFlamebreakerEffects;
 import superworldsun.superslegend.items.armors.ArmorFlippersEffects;
@@ -113,6 +74,7 @@ import superworldsun.superslegend.items.arrows.ArrowBomb;
 import superworldsun.superslegend.items.arrows.ArrowFire;
 import superworldsun.superslegend.items.arrows.ArrowIce;
 import superworldsun.superslegend.items.arrows.ArrowShock;
+import superworldsun.superslegend.items.bows.BitBow;
 import superworldsun.superslegend.items.bows.BowLynelSavage;
 import superworldsun.superslegend.items.masks.MaskAllnightmaskEffects;
 import superworldsun.superslegend.items.masks.MaskBlastmask;
@@ -301,7 +263,7 @@ public class SupersLegend
 			ItemList.red_rupee = new RedRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee")),
 			ItemList.silver_rupee = new SilverRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee")),
 			ItemList.gold_rupee = new GoldRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee")),
-			//ItemList.heart = new Heart(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heart")),
+			ItemList.heart = new Heart(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heart")),
 			ItemList.triforce_power_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_power_shard")),
 			ItemList.triforce_wisdom_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_wisdom_shard")),
 			ItemList.triforce_courage_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_courage_shard")),
@@ -310,6 +272,13 @@ public class SupersLegend
 			ItemList.gohts_remains = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("gohts_remains")),
 			ItemList.gyorgs_remains = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("gyorgs_remains")),
 			ItemList.twinmolds_remains = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("twinmolds_remains")),
+
+			ItemList.ancient_core = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_core")),
+			ItemList.ancient_core_giant = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_core_giant")),
+			ItemList.ancient_screw = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_screw")),
+			ItemList.ancient_shaft = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_shaft")),
+			ItemList.ancient_spring = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_spring")),
+
 			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("master_ore")),
 			ItemList.master_sword_blade = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_blade")),
 			ItemList.master_sword_hilt = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_hilt")),
@@ -356,8 +325,10 @@ public class SupersLegend
 			ItemList.gilded_sword = new ItemCustomSword(ToolMaterialList.gilded_sword,2, -2.4f, new Item.Properties().group(supers_legend)).setRegistryName(location("gilded_sword")),
 			ItemList.master_sword = new ItemCustomSword(ToolMaterialList.master_sword,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
 
+			ItemList.gaurdian_sword = new ItemCustomSword(ToolMaterialList.gaurdian_sword, 2, -2.5f, new Item.Properties().group(supers_legend)).setRegistryName(location("gaurdian_sword")),
+
 			ItemList.heros_bow = new ItemCustomBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_bow")),
-			//ItemList.bit_bow = new BitBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bit_bow")),
+			ItemList.bit_bow = new BitBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bit_bow")),
 			
 			ItemList.lynel_bow_x3 = new BowLynelSavage(1, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x3")),
 			ItemList.lynel_bow_x5 = new BowLynelSavage(2, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x5")),
