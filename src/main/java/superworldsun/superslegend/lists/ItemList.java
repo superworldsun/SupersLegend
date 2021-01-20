@@ -59,6 +59,13 @@ public class ItemList
 		public static Item gohts_remains;
 		public static Item gyorgs_remains;
 		public static Item twinmolds_remains;
+
+		public static Item ancient_core;
+		public static Item ancient_core_giant;
+		public static Item ancient_screw;
+		public static Item ancient_shaft;
+		public static Item ancient_spring;
+
 		public static Item book_of_mudora;
 		public static Item master_ore;
 		public static Item master_sword_blade;
@@ -111,6 +118,8 @@ public class ItemList
 		public static Item razor_sword;
 		public static Item gilded_sword;
 		public static Item master_sword;
+
+		public static Item gaurdian_sword;
 		
 		public static Item rupee_sword;
 		public static Item blue_rupee_sword;

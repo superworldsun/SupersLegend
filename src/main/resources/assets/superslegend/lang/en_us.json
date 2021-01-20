@@ -43,6 +43,13 @@
 	"item.superslegend.gohts_remains": "Goht's Remains",
 	"item.superslegend.gyorgs_remains": "Gyorgs Remains",
 	"item.superslegend.twinmolds_remains": "Twinmold's Remains",
+
+	"item.superslegend.ancient_core": "Ancient Core",
+	"item.superslegend.ancient_core_giant": "Giant Ancient Core",
+	"item.superslegend.ancient_screw": "Ancient Screw",
+	"item.superslegend.ancient_shaft": "Ancient Shaft",
+	"item.superslegend.ancient_spring": "Ancient Spring",
+
 	"item.superslegend.book_of_mudora": "Book of Mudora",
 	"item.superslegend.master_ore": "Master Ore",
 	"item.superslegend.master_sword_blade": "Master Sword Blade",
@@ -99,6 +106,8 @@
 	"item.superslegend.razor_sword": "Razor Sword",
 	"item.superslegend.gilded_sword": "Gilded Sword",
 	"item.superslegend.master_sword": "Master Sword",
+
+	"item.superslegend.gaurdian_sword": "Gaurdian Sword",
 	
 	"item.superslegend.rupee_sword": "Rupee Sword",
 	"item.superslegend.blue_rupee_sword": "Blue Rupee Sword",
