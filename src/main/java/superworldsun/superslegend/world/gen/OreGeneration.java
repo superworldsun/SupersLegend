@@ -33,11 +33,11 @@ public class OreGeneration {
 		overworldOres.add(register("master_ore_block", Feature.ORE.withConfiguration(new OreFeatureConfig(
 				OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, BlockList.master_ore_block.getDefaultState(), 4)) //Vein Size
 				.range(19).square() //Spawn height start
-				.func_242731_b(25))); //Chunk spawn frequency
+				.func_242731_b(3))); //Chunk spawn frequency
 		overworldOres.add(register("earthy_deposit", Feature.ORE.withConfiguration(new OreFeatureConfig(
 				new BlockMatchRuleTest(Blocks.DIRT), BlockList.master_ore_block.getDefaultState(), 4)) //Vein Size
 				.range(19).square() //Spawn height start
-				.func_242731_b(25))); //Chunk spawn frequency
+				.func_242731_b(3))); //Chunk spawn frequency
 	}
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
