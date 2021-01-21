@@ -75,10 +75,10 @@ public class FaroresWind extends Item
             for (int i = 0; i < 45; i++)
             {
                 player.world.addParticle(ParticleTypes.CLOUD,
-                        player.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+                        player.prevPosX + (rand.nextBoolean() ? 2 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
                         player.prevPosY + rand.nextFloat() * 3 - 2,
-                        player.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
-                        0, 0.105D, 0);
+                        player.prevPosZ + (rand.nextBoolean() ? 2 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+                        0.3, 0.105D, 0.3);
             }
 
             player.addExhaustion(18);
