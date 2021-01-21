@@ -407,8 +407,8 @@ public class SupersLegend
 			ItemList.mask_fiercedeitysmask = new MaskFiercedeitysmask("mask_fiercedeitysmask", EquipmentSlotType.HEAD),
 			ItemList.mask_majorasmask = new MaskMajorasmask("mask_majorasmask",EquipmentSlotType.HEAD),
 			ItemList.mask_hawkeyemask = new MaskHawkeyemask("mask_hawkeyemask",EquipmentSlotType.HEAD),
-			ItemList.mask_moonmask = new MaskMajorasmask("mask_moonmask",EquipmentSlotType.HEAD),
-			ItemList.mask_sunmask = new MaskMajorasmask("mask_sunmask",EquipmentSlotType.HEAD),
+			ItemList.mask_moonmask = new MaskMoonmask("mask_moonmask",EquipmentSlotType.HEAD),
+			ItemList.mask_sunmask = new MaskSunmask("mask_sunmask",EquipmentSlotType.HEAD),
 
 			
 		//Armors
