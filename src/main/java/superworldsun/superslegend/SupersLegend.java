@@ -76,31 +76,7 @@ import superworldsun.superslegend.items.arrows.ArrowIce;
 import superworldsun.superslegend.items.arrows.ArrowShock;
 import superworldsun.superslegend.items.bows.BitBow;
 import superworldsun.superslegend.items.bows.BowLynelSavage;
-import superworldsun.superslegend.items.masks.MaskAllnightmaskEffects;
-import superworldsun.superslegend.items.masks.MaskBlastmask;
-import superworldsun.superslegend.items.masks.MaskBremenmask;
-import superworldsun.superslegend.items.masks.MaskBunnyhoodEffects;
-import superworldsun.superslegend.items.masks.MaskCaptainshat;
-import superworldsun.superslegend.items.masks.MaskCouplesmask;
-import superworldsun.superslegend.items.masks.MaskDekumask;
-import superworldsun.superslegend.items.masks.MaskDongerosmaskEffects;
-import superworldsun.superslegend.items.masks.MaskFiercedeitysmask;
-import superworldsun.superslegend.items.masks.MaskGarosmask;
-import superworldsun.superslegend.items.masks.MaskGiantsmask;
-import superworldsun.superslegend.items.masks.MaskGibdomask;
-import superworldsun.superslegend.items.masks.MaskGoronmask;
-import superworldsun.superslegend.items.masks.MaskGreatfairymask;
-import superworldsun.superslegend.items.masks.MaskKafeismask;
-import superworldsun.superslegend.items.masks.MaskKamarosmask;
-import superworldsun.superslegend.items.masks.MaskKeatonmask;
-import superworldsun.superslegend.items.masks.MaskMajorasmask;
-import superworldsun.superslegend.items.masks.MaskMaskofTruth;
-import superworldsun.superslegend.items.masks.MaskMaskofscents;
-import superworldsun.superslegend.items.masks.MaskPostmanshat;
-import superworldsun.superslegend.items.masks.MaskRomanismask;
-import superworldsun.superslegend.items.masks.MaskStonemaskEffects;
-import superworldsun.superslegend.items.masks.MaskTroupeleadersmask;
-import superworldsun.superslegend.items.masks.MaskZoramask;
+import superworldsun.superslegend.items.masks.*;
 import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.PotionList;
@@ -282,7 +258,7 @@ public class SupersLegend
 			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("master_ore")),
 			ItemList.master_sword_blade = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_blade")),
 			ItemList.master_sword_hilt = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_hilt")),
-			//ItemList.kokiri_set = new KokiriSet(new Item.Properties().group(supers_legend)).setRegistryName(location("kokiri_set")),
+			ItemList.kokiri_set = new KokiriSet(new Item.Properties().group(supers_legend)).setRegistryName(location("kokiri_set")),
 			//ItemList.goron_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("goron_set")),
 			//ItemList.zora_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("zora_set")),
 			//ItemList.purple_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("purple_set")),
@@ -430,6 +406,10 @@ public class SupersLegend
 			ItemList.mask_giantsmask = new MaskGiantsmask("mask_giantsmask", EquipmentSlotType.HEAD),
 			ItemList.mask_fiercedeitysmask = new MaskFiercedeitysmask("mask_fiercedeitysmask", EquipmentSlotType.HEAD),
 			ItemList.mask_majorasmask = new MaskMajorasmask("mask_majorasmask",EquipmentSlotType.HEAD),
+			ItemList.mask_hawkeyemask = new MaskHawkeyemask("mask_hawkeyemask",EquipmentSlotType.HEAD),
+			ItemList.mask_moonmask = new MaskMajorasmask("mask_moonmask",EquipmentSlotType.HEAD),
+			ItemList.mask_sunmask = new MaskMajorasmask("mask_sunmask",EquipmentSlotType.HEAD),
+
 			
 		//Armors
 			ItemList.rocs_cape = new RocsCapeEffects("rocs_cape",EquipmentSlotType.CHEST),
