@@ -1,6 +1,5 @@
 {
 	"itemGroup.supers_legend": "Supers Legend",
-	
 	"item.superslegend.rupee": "Rupee",
 	"item.superslegend.blue_rupee": "Blue Rupee",
 	"item.superslegend.red_rupee": "Red Rupee",
@@ -43,21 +42,17 @@
 	"item.superslegend.gohts_remains": "Goht's Remains",
 	"item.superslegend.gyorgs_remains": "Gyorgs Remains",
 	"item.superslegend.twinmolds_remains": "Twinmold's Remains",
-
 	"item.superslegend.ancient_core": "Ancient Core",
 	"item.superslegend.ancient_core_giant": "Giant Ancient Core",
 	"item.superslegend.ancient_screw": "Ancient Screw",
 	"item.superslegend.ancient_shaft": "Ancient Shaft",
 	"item.superslegend.ancient_spring": "Ancient Spring",
-
 	"item.superslegend.book_of_mudora": "Book of Mudora",
 	"item.superslegend.master_ore": "Master Ore",
 	"item.superslegend.master_sword_blade": "Master Sword Blade",
 	"item.superslegend.master_sword_hilt": "Master Sword Hilt",
-	
 	"item.superslegend.poison_bucket": "Poison Bucket",
 	"block.superslegend.poison": "Poison",
-	
 	"item.superslegend.kokiri_set": "Kokiri Set",
 	"item.superslegend.goron_set": "Goron Set",
 	"item.superslegend.zora_set": "Zora Set",
@@ -66,12 +61,9 @@
 	"item.superslegend.flamebreaker_set": "Flamebreaker Set",
 	"item.superslegend.dark_set": "Dark Set",
 	"item.superslegend.magic_armor_set": "Magic Armor Set",
-	
-	
 	"item.superslegend.moon_pearl": "Moon Pearl",
 	"item.superslegend.heros_secret_stash": "Hero's Secret Stash",
 	"item.superslegend.torch_tower": "Torch Tower",
-
 	"block.superslegend.rupee_block": "Rupee Block",
 	"block.superslegend.blue_rupee_block": "Blue Rupee Block",
 	"block.superslegend.red_rupee_block": "Red Rupee Block",
@@ -80,15 +72,8 @@
 	"block.superslegend.spikes_block": "Spikes",
 	"block.superslegend.gossip_stone_block": "Gossip Stone",
 	"block.superslegend.bush_block": "Bush",
-
-
-
 	"items.superslegend.chain_link_fence_item": "Chain link fence",
 	"block.superslegend.chain_link_fence_block": "Chain link fence",
-
-
-
-
 	"block.superslegend.torch_tower_block_bottom": "Torch Tower",
 	"block.superslegend.torch_tower_block_top": "Torch Tower",
 	"block.superslegend.deku_flower_block": "Deku Flower",
@@ -100,78 +85,58 @@
 	"block.superslegend.shadow_block": "Shadow Block",
 	"block.superslegend.false_shadow_block": "False Shadow Block",
 	"block.superslegend.hidden_shadow_block": "Hidden Shadow Block",
-	
-	
 	"item.superslegend.kokiri_sword": "Kokiri Sword",
 	"item.superslegend.razor_sword": "Razor Sword",
 	"item.superslegend.gilded_sword": "Gilded Sword",
 	"item.superslegend.master_sword": "Master Sword",
-
 	"item.superslegend.gaurdian_sword": "Gaurdian Sword",
-	
 	"item.superslegend.rupee_sword": "Rupee Sword",
 	"item.superslegend.blue_rupee_sword": "Blue Rupee Sword",
 	"item.superslegend.red_rupee_sword": "Red Rupee Sword",
 	"item.superslegend.silver_rupee_sword": "Silver Rupee Sword",
-	"item.superslegend.gold_rupee_sword": "Gold Rupee Sword",	
-	
+	"item.superslegend.gold_rupee_sword": "Gold Rupee Sword",
 	"item.superslegend.heros_bow": "Hero's Bow",
 	"item.superslegend.bit_bow": "8-bit Bow",
-
   	"item.superslegend.lynel_bow_x3": "Lynels Savage Bow",
  	"item.superslegend.lynel_bow_x5": "Lynels Savage Bow",
-
   	"item.superslegend.bomb_arrow": "Bomb Arrow",
 	"item.superslegend.fire_arrow": "Fire Arrow",
   	"item.superslegend.ice_arrow": "Ice Arrow",
   	"item.superslegend.shock_arrow": "Shock Arrow",
   	"item.superslegend.ancient_arrow": "Ancient Arrow",
-
-
   	"item.superslegend.deku_shield": "Deku Shield",
 	"item.superslegend.hylian_shield": "Hylian Shield",
-	
 	"item.superslegend.rupee_pickaxe": "Rupee Pickaxe",
 	"item.superslegend.blue_rupee_pickaxe": "Blue Rupee Pickaxe",
 	"item.superslegend.red_rupee_pickaxe": "Red Rupee Pickaxe",
 	"item.superslegend.silver_rupee_pickaxe": "Silver Rupee Pickaxe",
 	"item.superslegend.gold_rupee_pickaxe": "Gold Rupee Pickaxe",
-	
 	"item.superslegend.rupee_axe": "Rupee Axe",
 	"item.superslegend.blue_rupee_axe": "Blue Rupee Axe",
 	"item.superslegend.red_rupee_axe": "Red Rupee Axe",
 	"item.superslegend.silver_rupee_axe": "Silver Rupee Axe",
 	"item.superslegend.gold_rupee_axe": "Gold Rupee Axe",
-	
 	"item.superslegend.rupee_hoe": "Rupee Hoe",
 	"item.superslegend.blue_rupee_hoe": "Blue Rupee Hoe",
 	"item.superslegend.red_rupee_hoe": "Red Rupee Hoe",
 	"item.superslegend.silver_rupee_hoe": "Silver Rupee Hoe",
 	"item.superslegend.gold_rupee_hoe": "Gold Rupee Hoe",
-	
 	"item.superslegend.rupee_shovel": "Rupee Shovel",
 	"item.superslegend.blue_rupee_shovel": "Blue Rupee Shovel",
 	"item.superslegend.red_rupee_shovel": "Red Rupee Shovel",
 	"item.superslegend.silver_rupee_shovel": "Silver Rupee Shovel",
 	"item.superslegend.gold_rupee_shovel": "Gold Rupee Shovel",
-
 	"item.superslegend.mask_clay": "Clay Mask",
 	"item.superslegend.mask_postmanshat": "Postman's Hat",
-		
 	"item.superslegend.mask_allnightmask": "All-Night Mask",
-	
 	"item.superslegend.mask_blastmask": "Blast Mask",
-	
 	"item.superslegend.mask_stonemask": "Stone Mask",	
 	"item.superslegend.mask_greatfairymask": "Great Fairy Mask",
 	"item.superslegend.mask_dekumask": "Deku Mask",
 	"item.superslegend.mask_keatonmask": "Keaton Mask",
 	"item.superslegend.mask_bremenmask": "Bremen Mask",
-	
 	"item.superslegend.mask_bunnyhood": "Bunny Hood",
-	
 	"item.superslegend.mask_dongerosmask": "Don Gero's Mask",
-	
 	"item.superslegend.mask_maskofscents": "Mask of Scents",
 	"item.superslegend.mask_goronmask": "Goron Mask",
 	"item.superslegend.mask_romanismask": "Romani's Mask",
@@ -187,63 +152,46 @@
 	"item.superslegend.mask_giantsmask": "Giant's Mask",
 	"item.superslegend.mask_fiercedeitysmask": "Fierce Deity's Mask",
 	"item.superslegend.mask_majorasmask": "Majora's Mask'",
-	
-	
 	"item.superslegend.kokiri_cap": "Kokiri Cap",
 	"item.superslegend.kokiri_tunic": "Kokiri Tunic",
 	"item.superslegend.kokiri_leggings": "Kokiri Leggings",
 	"item.superslegend.kokiri_boots": "Kokiri Boots",
-	
 	"item.superslegend.zora_cap": "Zora Cap",
 	"item.superslegend.zora_tunic": "Zora Tunic",
 	"item.superslegend.zora_leggings": "Zora Leggings",
-	
 	"item.superslegend.zora_armor_cap": "Zora Armor Cap",
 	"item.superslegend.zora_armor_tunic": "Zora Armor Tunic",
 	"item.superslegend.zora_armor_leggings": "Zora Armor Leggings",
 	"item.superslegend.zora_armor_flippers": "Zora Armor Flippers",
-	
 	"item.superslegend.iron_boots": "Iron Boots",
 	"item.superslegend.zoras_flippers": "Zora's Flippers",
-	
-	
 	"item.superslegend.goron_cap": "Goron Cap",
 	"item.superslegend.goron_tunic": "Goron Tunic",
 	"item.superslegend.goron_leggings": "Goron Leggings",
 	"item.superslegend.hover_boots": "Hover Boots",
-	
 	"item.superslegend.magic_armor_cap": "Magic Armor Cap",
 	"item.superslegend.magic_armor_tunic": "Magic Armor Tunic",
 	"item.superslegend.magic_armor_leggings": "Magic Armor Leggings",
 	"item.superslegend.magic_armor_boots": "Magic Armor Boots",
-	
-	
 	"item.superslegend.flamebreaker_helmet": "Flamebreaker Helmet",
 	"item.superslegend.flamebreaker_tunic": "Flamebreaker Tunic",
 	"item.superslegend.flamebreaker_leggings": "Flamebreaker Leggings",
 	"item.superslegend.flamebreaker_boots": "Flamebreaker Boots",
-	
 	"item.superslegend.purple_cap": "Purple Cap",
 	"item.superslegend.purple_tunic": "Purple Tunic",
 	"item.superslegend.purple_leggings": "Purple Leggings",
-	
 	"item.superslegend.dark_cap": "Dark Cap",
 	"item.superslegend.dark_tunic": "Dark Tunic",
 	"item.superslegend.dark_leggings": "Dark Leggings",
 	"item.superslegend.dark_boots": "Dark Boots",
-	
 	"item.superslegend.rocs_cape": "Roc's Cape",
 	"item.superslegend.pegasus_boots": "Pegasus Boots",
-	
 	"item.minecraft.potion.effect.more_health": "Potion of More Health",
 	"item.minecraft.splash_potion.effect.more_health": "Splash Potion of More Health",
 	"item.minecraft.tipped_arrow.effect.more_health": "Arrow of More Health",
 	"item.minecraft.lingering_potion.effect.more_health": "Lingering Potion of More Health",
 	"effect.superslegend.more_health": "More Health",
-	
 	"effect.superslegend.iron_boots": "Iron Boots",
 	"effect.superslegend.hover_boots": "Hover Boots",
 	"effect.superslegend.zoras_grace": "Zora's Grace"
-
-	
 }
