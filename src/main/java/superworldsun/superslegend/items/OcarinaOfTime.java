@@ -57,7 +57,7 @@ public class OcarinaOfTime extends Item
 			 //noinspection SpellCheckingInspection
 			 for(ServerWorld playerworld : source.getServer().getWorlds()) {
 			 	// Set the time to Night
-				 playerworld.setDayTime(13000)/*13000 is == to Night time*/;
+				 playerworld.setDayTime(13000L)/*13000 is == to Night time*/;
 			 }
 		        
 	     }
