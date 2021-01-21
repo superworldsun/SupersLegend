@@ -182,9 +182,9 @@ public class FaroresWind extends Item
 
         CompoundNBT tags = stack.getTag();
 
-        if (tags.contains("dim"))
+        if (tags.contains("Dim"))
         {
-            return tags.getInt("dim");
+            return tags.getInt("Dim");
         }
         return Integer.MAX_VALUE;
     }
