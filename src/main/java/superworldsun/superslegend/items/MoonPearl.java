@@ -35,7 +35,13 @@ public class MoonPearl extends Item {
         super(properties.maxStackSize(16));
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity playerIn, Hand hand) {
+    // Huge issue with player teleporting across dimensions.
+    // We can get them in the dimensions, but were failing to position the player in a safe place.
+
+
+
+
+    /*public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity playerIn, Hand hand) {
 
         ItemStack stack = playerIn.getHeldItem(hand);
 
@@ -104,7 +110,7 @@ public class MoonPearl extends Item {
         }
 
         return new ActionResult<>(ActionResultType.SUCCESS, playerIn.getHeldItem(hand));
-    }
+    }*/
 
 
     @Override

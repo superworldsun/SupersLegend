@@ -3,6 +3,7 @@ package superworldsun.superslegend.items;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.*;
@@ -48,44 +49,41 @@ public class MagicMirror extends Item {
         }
     }
 
-    /*@Override
+    @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entity)
     {
         if (!world.isRemote)
         {
-            PlayerEntity player = (PlayerEntity) entity;
-            BlockPos bedPos = player.getBedLocation(player.dimension);
-            BlockPos backPos = bedPos;
-            @SuppressWarnings("unused")
-			BlockPos currentPos = player.getPosition();
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
 
-            if(!world.dimension.isSurfaceWorld())
+            if(world.getDimensionKey().equals(World.OVERWORLD)) //if dimension is Overworld
             {
-            	world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
-                player.sendStatusMessage(new TranslationTextComponent("Cannot be used right now"), true);
-                
-                return stack;
-            }
-            if (bedPos == null)
-            {
-            	world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
-                player.sendStatusMessage(new TranslationTextComponent("You have no Bed to return to"), true);
-                
-                return stack;
-            }
+                if(player.func_241140_K_() != null) //player bed location not null
+                {
+                    BlockPos bedLoc = player.func_241140_K_(); //get player bed position
+                    BlockPos currentPos = player.getPosition();
 
-            if (entity.getRidingEntity() != null)
-            {
-                entity.stopRiding();
-            }
-            entity.setPositionAndUpdate(
-                    backPos.getX() + 0.5f,
-                    backPos.getY() + 0.6f,
-                    backPos.getZ() + 0.5f);
-            entity.fallDistance = 0;
+                    if (player.isPassenger())
+                    {
+                        player.stopRiding();
+                    }
 
-            world.playSound(null, backPos.getX(), backPos.getY(), backPos.getZ(), SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
+                    setPositionAndUpdate(entity, world, bedLoc);
+                    world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
+                    player.sendStatusMessage(new TranslationTextComponent("Returned to bed"), true);
+                }
+                else
+                {
+                    player.sendStatusMessage(new TranslationTextComponent("No Bed to return to"), true);
+                    return stack;
+                }
+            }
+            else
+            {
+                player.sendStatusMessage(new TranslationTextComponent("Can only use in OverWorld"), true);
+            }
         }
+
         return stack;
     }
 
@@ -101,6 +99,12 @@ public class MagicMirror extends Item {
         return duration;
     }
 
+    public void setPositionAndUpdate(LivingEntity entity, World world, BlockPos bedLoc)
+    {
+        entity.setPositionAndUpdate(bedLoc.getX() + 0.5F, bedLoc.getY() + 0.6F, bedLoc.getZ() + 0.5F);
+        entity.fallDistance = 0;
+    }
+
     @Override
     public boolean hasEffect(ItemStack stack) {
         return true;
@@ -112,6 +116,6 @@ public class MagicMirror extends Item {
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.AQUA + "When lost, use this mirror to return home"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-click to return to bed"));
-	}*/
+	}
 
 }

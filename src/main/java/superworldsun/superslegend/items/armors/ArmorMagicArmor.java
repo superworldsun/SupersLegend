@@ -56,22 +56,18 @@ public class ArmorMagicArmor extends NonEnchantArmor
           		  ItemStack armorStack = player.inventory.getStackInSlot(i);
           		  if (armorStack .getItem() == ItemList.rupee) 
           		  {
-          		    armorStack .shrink(stack.getMaxStackSize());
-          		    
-          		  player.addPotionEffect(new EffectInstance(Effect.get(11), 10, 100, false, false));
-          		
+          		    armorStack.shrink(stack.getMaxStackSize());
+          		    player.addPotionEffect(new EffectInstance(Effect.get(11), 10, 100, false, false));
+          		    break;
           		  }
-            	//else
-            	//{
-            	//	player.addPotionEffect(new EffectInstance(Effect.get(2), 0, 3, false, false));
-            	//}
-            	
-                
+          		  else
+          		  	{
+          		  		player.addPotionEffect(new EffectInstance(Effect.get(2), 0, 3, false, false));
+          		  	}
             	}
-    						
             	}
-    }
-    }
+            	}
+    	}
     }
 
     //EffectInstance effect = player.getActivePotionEffect(Effects.RESISTANCE);
