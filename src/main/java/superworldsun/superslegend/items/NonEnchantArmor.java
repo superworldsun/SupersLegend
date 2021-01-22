@@ -9,7 +9,6 @@ public class NonEnchantArmor extends ArmorItem {
 
 	public NonEnchantArmor(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
 		super(materialIn, slot, builder);
-		// TODO Auto-generated constructor stub
 	}
 
 	
@@ -17,7 +16,6 @@ public class NonEnchantArmor extends ArmorItem {
 	
 	@Override
     public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-        // TODO Auto-generated method stub
         return false;
 	}
 	

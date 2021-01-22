@@ -17,7 +17,6 @@ public class ItemCustomHoe extends HoeItem
 	
 	@Override
     public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-        // TODO Auto-generated method stub
 		return false;
 	}
 	
