@@ -26,7 +26,7 @@ public class MaskGiantsmask extends NonEnchantArmor {
         setRegistryName(SupersLegend.modid, name);
     }
 
-    
+    // TODO When wearing mask, Step height is doubled.
     /*@Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
@@ -86,7 +86,7 @@ public class MaskGiantsmask extends NonEnchantArmor {
     /*public void applyCustomModifiers(ItemStack stack, PlayerEntity player) {
 		
     	
-		// TODO
+
     	PlayerEntity.setSize(player, player.getWidth() * 3.0F, player.getHeight() * 3.0F);
 		if (player.world.isRemote) {
 			player.stepHeight += 1.0F;
