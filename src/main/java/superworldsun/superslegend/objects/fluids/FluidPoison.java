@@ -4,10 +4,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.IFluidState;
+//import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.Item;
 import net.minecraft.state.StateContainer.Builder;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
@@ -16,10 +15,10 @@ import net.minecraft.world.IWorldReader;
 import net.minecraftforge.fluids.FluidAttributes;
 import superworldsun.superslegend.SupersLegend.RegistryEvents;
 import superworldsun.superslegend.lists.BlockList;
-import superworldsun.superslegend.lists.FluidList;
+//import superworldsun.superslegend.lists.FluidList;
 import superworldsun.superslegend.lists.ItemList;
 
-public abstract class FluidPoison extends FlowingFluid{
+/*public abstract class FluidPoison extends FlowingFluid{
 
 	@Override
 	public Fluid getFlowingFluid() {
@@ -50,10 +49,7 @@ public abstract class FluidPoison extends FlowingFluid{
 		return 8;
 	}
 
-	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return null;
-	}
+
 
 	@Override
 	public Item getFilledBucket() {
@@ -131,4 +127,4 @@ public abstract class FluidPoison extends FlowingFluid{
 		
 	}
 	
-}
+}*/

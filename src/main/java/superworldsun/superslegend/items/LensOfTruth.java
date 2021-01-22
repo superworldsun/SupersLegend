@@ -6,6 +6,8 @@ import java.util.Random;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.monster.BlazeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.Item;
@@ -17,6 +19,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -32,34 +35,161 @@ public class LensOfTruth extends Item
 	{
 		super(properties);
 	}
-	
-	/*public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
-	 {
-		 @SuppressWarnings("unused")
-		ItemStack stack = player.getHeldItem(hand);
-		  
-		 if(!world.isRemote)
-	     {
-				
-	     }
-	 
-		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
-	 }*/
+
+	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
+	{
+		if(entity instanceof PlayerEntity && !world.isRemote)
+		{
+			PlayerEntity player = (PlayerEntity)entity;
+
+			ItemStack equipped = player.getHeldItemMainhand();
+
+			if(!world.isRemote)
+			{
+				if(stack == equipped)
+				{
+					double x = player.getPosX();
+					double y = player.getPosY();
+					double z = player.getPosZ();
+
+					//How Far away
+					double d0 = 30.0D;
+					//How Far Up/Down
+					double d1 = 20.0D;
+
+					Entity mobEntity = scanForHostileMobs(world, x, y, z, d0, d1);
+
+					if(entity != null && entity.isInvisible())
+					{
+						if (!world.isRemote)
+						{
+							((PlayerEntity) entity).addPotionEffect(new EffectInstance(Effect.get(24), 2, 0, false, false));
+						}
+					}
+				}
+			}
+		}
+		if(entity instanceof PlayerEntity && !world.isRemote)
+		{
+			PlayerEntity player = (PlayerEntity)entity;
+
+			ItemStack equipped = player.getHeldItemMainhand();
+
+			if(!world.isRemote)
+			{
+				if(stack == equipped)
+				{
+					double x = player.getPosX();
+					double y = player.getPosY();
+					double z = player.getPosZ();
+
+					//How Far away
+					double d0 = 30.0D;
+					//How Far Up/Down
+					double d1 = 20.0D;
+
+					Entity mobEntity = scanForHostileMobs(world, x, y, z, d0, d1);
+
+					if(entity != null && entity.isInvisible())
+					{
+						if (!world.isRemote)
+						{
+							((PlayerEntity) entity).addPotionEffect(new EffectInstance(Effect.get(24), 2, 0, false, false));
+						}
+					}
+				}
+			}
+		}
+		if(entity instanceof PlayerEntity && !world.isRemote)
+		{
+			PlayerEntity player = (PlayerEntity)entity;
+
+			ItemStack equipped = player.getHeldItemMainhand();
+
+			if(!world.isRemote)
+			{
+				if(stack == equipped)
+				{
+					double x = player.getPosX();
+					double y = player.getPosY();
+					double z = player.getPosZ();
+
+					//How Far away
+					double d0 = 30.0D;
+					//How Far Up/Down
+					double d1 = 20.0D;
+
+					MobEntity hostileMob = scanForHostileMobs(world, x, y, z, d0, d1);
+
+
+					if(hostileMob != null && hostileMob.isInvisible())
+					{
+						if (!world.isRemote)
+						{
+							hostileMob.addPotionEffect(new EffectInstance(Effect.get(24), 2, 0, false, false));
+						}
+					}
+				}
+			}
+		}
+		if(entity instanceof PlayerEntity && !world.isRemote)
+		{
+			PlayerEntity player = (PlayerEntity)entity;
+
+			ItemStack equipped = player.getHeldItemOffhand();
+
+			if(!world.isRemote)
+			{
+				if(stack == equipped)
+				{
+					double x = player.getPosX();
+					double y = player.getPosY();
+					double z = player.getPosZ();
+
+					//How Far away
+					double d0 = 30.0D;
+					//How Far Up/Down
+					double d1 = 20.0D;
+
+					MobEntity hostileMob = scanForHostileMobs(world, x, y, z, d0, d1);
+
+					if(hostileMob != null && hostileMob.isInvisible())
+					{
+						if (!world.isRemote)
+						{
+							hostileMob.addPotionEffect(new EffectInstance(Effect.get(24), 2, 0, false, false));
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private MobEntity scanForHostileMobs(World world, double xpos, double ypos, double zpos, double d0, double d1)
+	{
+		List<MobEntity> list = world.<MobEntity>getEntitiesWithinAABB(MobEntity.class, new AxisAlignedBB
+				((double) xpos - d0,
+						(double) ypos - d1,
+						(double) zpos - d0,
+						(double) xpos + d0, ypos + d1,
+						(double) zpos + d0));
+
+		MobEntity closestMob = null;
+
+		for (MobEntity entitymob : list)
+		{
+			//Mobs being Picked
+			if (entitymob instanceof Entity)
+			{
+				closestMob = entitymob;
+				return closestMob;
+			}
+		}
+		return null;
+	}
+
 	
 	/*@Override
-	 public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) { ItemStack stack = playerIn.getHeldItem(handIn);
-	 
-	 ArrowEntity ent = new ArrowEntity(worldIn, playerIn); ent.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-	 
-	 worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 0.3F, 1);
-	 
-	 worldIn.addEntity(ent); playerIn.getCooldownTracker().setCooldown(stack.getItem(), 30);
-	     
-	     return super.onItemRightClick(worldIn, playerIn, handIn);
-	     }*/
-	
-	
-	@Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         
             if(entity.isAlive())
@@ -74,9 +204,9 @@ public class LensOfTruth extends Item
             	        for (int i = 0; i < 45; i++)
             	        {
             	        	entity.world.addParticle(ParticleTypes.CLOUD,
-            	        			entity.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
-            	        			entity.posY + rand.nextFloat() * 3 - 2,
-            	        			entity.posZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
+            	        			entity.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
+            	        			entity.prevPosY + rand.nextFloat() * 3 - 2,
+            	        			entity.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
             	                    0, 0.105D, 0);
             	        }
             	        
@@ -88,7 +218,7 @@ public class LensOfTruth extends Item
             	        entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.LENS_OF_TRUTH_ON, SoundCategory.PLAYERS, 1f, 1f);
             	        
                     }
-                    else if(entity.isInvisible() && entity.isGlowing())
+                    else if(entity.isInvisible())
                     {
                     	player.sendStatusMessage(new TranslationTextComponent(TextFormatting.DARK_PURPLE + "They are already visible"), true);
                     	
@@ -110,15 +240,15 @@ public class LensOfTruth extends Item
                     	
         return false;
         
-    }
-	
-	
+    }*/
+
+
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Left click the hidden to reveal"));
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
-	}  
-	
+		super.addInformation(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Hold in Hands the hidden to reveal"));
+		//list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
+	}
+
 }

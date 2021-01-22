@@ -1,29 +1,55 @@
 package superworldsun.superslegend.world.gen;
 
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage.Decoration;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
-import net.minecraft.world.gen.placement.CountRangeConfig;
-import net.minecraft.world.gen.placement.Placement;
-import net.minecraftforge.registries.ForgeRegistries;
+import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.BlockList;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
+import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import java.util.ArrayList;
 
-public class OreGeneration{
-	private static CountRangeConfig master_ore_placement = new CountRangeConfig(3, 1, 7, 25);
-	
-																				//how often ,lowest point, highest point, maximum
 
-	public static void setupOreWorldGen() {
-		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
-			if (  biome.getCategory() == Biome.Category.THEEND || biome.getCategory() == Biome.Category.NETHER)
-            {
-                continue;
-            }
-			
-			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.master_ore_block.getDefaultState(), 3), Placement.COUNT_RANGE, master_ore_placement));
-																																																	// how many in a vein, (minimum is 3)
+
+@Mod.EventBusSubscriber
+public class OreGeneration {
+
+	private static final ArrayList<ConfiguredFeature<?, ?>> overworldOres = new ArrayList<>();
+
+	public static void registerOres(){
+
+		//Overworld Ore Register
+		overworldOres.add(register("master_ore_block", Feature.ORE.withConfiguration(new OreFeatureConfig(
+				OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, BlockList.master_ore_block.getDefaultState(), 4)) //Vein Size
+				.range(19).square() //Spawn height start
+				.func_242731_b(3))); //Chunk spawn frequency
+		overworldOres.add(register("earthy_deposit", Feature.ORE.withConfiguration(new OreFeatureConfig(
+				new BlockMatchRuleTest(Blocks.DIRT), BlockList.master_ore_block.getDefaultState(), 4)) //Vein Size
+				.range(19).square() //Spawn height start
+				.func_242731_b(3))); //Chunk spawn frequency
+	}
+
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public static void gen(BiomeLoadingEvent event) {
+		BiomeGenerationSettingsBuilder generation = event.getGeneration();
+		for(ConfiguredFeature<?, ?> ore : overworldOres){
+			if (ore != null) generation.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
 		}
 	}
+
+	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
+		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, SupersLegend.modid + ":" + name, configuredFeature);
+	}
+
 }

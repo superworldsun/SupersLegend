@@ -1,7 +1,7 @@
 package superworldsun.superslegend.models.armor;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.renderer.entity.model.RendererModel;
+//import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * ModelBunnyHood - superworldsun
  * Created using Tabula 7.1.0
  */
-@OnlyIn(Dist.CLIENT)
+/*@OnlyIn(Dist.CLIENT)
 public class ModelPostmansHat<T extends LivingEntity> extends BipedModel<T>
 {
     public RendererModel shape1;
@@ -113,9 +113,9 @@ public class ModelPostmansHat<T extends LivingEntity> extends BipedModel<T>
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
-    public void setRotateAngle(RendererModel modelRenderer, float x, float y, float z) {
+    /*public void setRotateAngle(RendererModel modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
-    }
-}
+    }*/
+

@@ -43,7 +43,7 @@ public class PegasusBoots extends NonEnchantArmor {
                 	{
                 		player.removePotionEffect(Effect.get(1));
                 	}
-                	else if(player.onGround &&player.isSprinting() && player.getFoodStats().getFoodLevel()!= 0) 
+                	else if(player.isOnGround() &&player.isSprinting() && player.getFoodStats().getFoodLevel()!= 0)
                 	{
                 		player.addPotionEffect(new EffectInstance(Effect.get(1), 9, 1, false, false));
                 		player.addExhaustion(0.04f);

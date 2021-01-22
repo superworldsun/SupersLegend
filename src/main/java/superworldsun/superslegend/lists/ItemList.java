@@ -7,14 +7,10 @@ import superworldsun.superslegend.items.armors.ArmorGoronEffects;
 import superworldsun.superslegend.items.armors.ArmorZoraEffects;
 import superworldsun.superslegend.items.armors.HoverBoots;
 import superworldsun.superslegend.items.armors.IronBoots;
-import superworldsun.superslegend.items.masks.MaskAllnightmaskEffects;
-import superworldsun.superslegend.items.masks.MaskBunnyhoodEffects;
-import superworldsun.superslegend.items.masks.MaskDongerosmaskEffects;
-import superworldsun.superslegend.items.masks.MaskStonemaskEffects;
+import superworldsun.superslegend.items.masks.*;
 
 
-
-public class ItemList 
+public class ItemList
 {
 	//items
 		public static Item rupee;
@@ -59,6 +55,13 @@ public class ItemList
 		public static Item gohts_remains;
 		public static Item gyorgs_remains;
 		public static Item twinmolds_remains;
+
+		public static Item ancient_core;
+		public static Item ancient_core_giant;
+		public static Item ancient_screw;
+		public static Item ancient_shaft;
+		public static Item ancient_spring;
+
 		public static Item book_of_mudora;
 		public static Item master_ore;
 		public static Item master_sword_blade;
@@ -99,7 +102,9 @@ public class ItemList
 		public static Item grate_block;
 		public static Item grass_patch_block;
 		public static Item master_ore_block;
-		public static Item false_stone_block;
+		public static Item shadow_block;
+		public static Item false_shadow_block;
+		public static Item hidden_shadow_block;
 		
 	//Liquids
 		public static Item poison;
@@ -109,6 +114,8 @@ public class ItemList
 		public static Item razor_sword;
 		public static Item gilded_sword;
 		public static Item master_sword;
+
+		public static Item gaurdian_sword;
 		
 		public static Item rupee_sword;
 		public static Item blue_rupee_sword;
@@ -184,6 +191,9 @@ public class ItemList
 		public static Item mask_giantsmask;
 		public static Item mask_fiercedeitysmask;
 		public static Item mask_majorasmask;
+		public static Item mask_hawkeyemask;
+		public static Item mask_moonmask;
+		public static Item mask_sunmask;
 		
 		
 	//armor

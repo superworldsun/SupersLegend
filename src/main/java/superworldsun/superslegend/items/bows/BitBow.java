@@ -1,25 +1,22 @@
 package superworldsun.superslegend.items.bows;
 
-import java.util.List;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.item.*;
-import net.minecraft.stats.Stats;
+import net.minecraft.item.ArrowItem;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import superworldsun.superslegend.items.Rupee;
 import superworldsun.superslegend.lists.ItemList;
+
+import java.util.List;
 
 public class BitBow extends BowItem
 {
@@ -29,40 +26,48 @@ public class BitBow extends BowItem
 		super(properties);
 	}
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
-    {
-        ItemStack stack = player.getHeldItem(hand);
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+	{
+		ItemStack stack = playerIn.getHeldItem(handIn);
+		if (!worldIn.isRemote && !playerIn.isCreative() && playerIn.inventory.hasItemStack(new ItemStack(ItemList.rupee)))
+		{
+			playerIn.getCooldownTracker().setCooldown(this, 20);
 
-        if (player.inventory.hasItemStack(new ItemStack(ItemList.rupee)))
-        {
-            ArrowEntity ent = new ArrowEntity(world, player); ent.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+			ArrowItem itemarrow = (ArrowItem)Items.ARROW;
+			AbstractArrowEntity entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
+			float arrowVelocity = 2.0F;
+			entityarrow.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
+			entityarrow.setDamage(1);
+			worldIn.addEntity(entityarrow);
+			entityarrow.pickupStatus = AbstractArrowEntity.PickupStatus.DISALLOWED;
 
-			 world.addEntity(ent);
-
-
-            for (int i = 0; i < player.inventory.getSizeInventory(); i++)
-            {
-                ItemStack itemStack = player.inventory.getStackInSlot(i);
-                if (itemStack .getItem() == ItemList.rupee)
-                {
-                    itemStack .shrink(stack.getMaxStackSize());
-                }
-            }
-
-            player.getCooldownTracker().setCooldown(this, 30);
-
-
-            return super.onItemRightClick(world, player, hand);
-        }else{
-            return null;
-        }
-    }
+			for (int i = 0; i < playerIn.inventory.getSizeInventory(); ++i)
+			{
+				ItemStack stackslot = playerIn.inventory.getStackInSlot(i);
+				if (stackslot.getItem() == ItemList.rupee)
+				{
+					stackslot.shrink(1);
+					break;
+				}
+			}
+		}
+		else if (!worldIn.isRemote && playerIn.isCreative()) {
+			ArrowItem itemarrow = (ArrowItem)Items.ARROW;
+			AbstractArrowEntity entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
+			float arrowVelocity = 2.0F;
+			entityarrow.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
+			entityarrow.setDamage(1);
+			worldIn.addEntity(entityarrow);
+			entityarrow.pickupStatus = AbstractArrowEntity.PickupStatus.DISALLOWED;
+		}
+		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
+	}
 
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.addInformation(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "Uses Green Rupee as ammo"));
-	}  
-	
+	}
+
 }
