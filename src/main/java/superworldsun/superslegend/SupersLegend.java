@@ -372,11 +372,13 @@ public class SupersLegend
 			ItemList.mask_giantsmask = new MaskGiantsmask("mask_giantsmask", EquipmentSlotType.HEAD),
 			ItemList.mask_fiercedeitysmask = new MaskFiercedeitysmask("mask_fiercedeitysmask", EquipmentSlotType.HEAD),
 			ItemList.mask_majorasmask = new MaskMajorasmask("mask_majorasmask",EquipmentSlotType.HEAD),
+			ItemList.mask_hawkeyemask = new MaskHawkeyemask("mask_hawkeyemask",EquipmentSlotType.HEAD),
+			ItemList.mask_moonmask = new MaskMoonmask("mask_moonmask",EquipmentSlotType.HEAD),
+			ItemList.mask_sunmask = new MaskSunmask("mask_sunmask",EquipmentSlotType.HEAD),
 
 
 
 	//ARMORS
-
 			ItemList.rocs_cape = new RocsCapeEffects("rocs_cape",EquipmentSlotType.CHEST),
 			ItemList.kokiri_cap = new ArmorKokiriEffects("kokiri_cap",EquipmentSlotType.HEAD),
 			ItemList.kokiri_tunic = new ArmorKokiriEffects("kokiri_tunic",EquipmentSlotType.CHEST),

@@ -7,14 +7,10 @@ import superworldsun.superslegend.items.armors.ArmorGoronEffects;
 import superworldsun.superslegend.items.armors.ArmorZoraEffects;
 import superworldsun.superslegend.items.armors.HoverBoots;
 import superworldsun.superslegend.items.armors.IronBoots;
-import superworldsun.superslegend.items.masks.MaskAllnightmaskEffects;
-import superworldsun.superslegend.items.masks.MaskBunnyhoodEffects;
-import superworldsun.superslegend.items.masks.MaskDongerosmaskEffects;
-import superworldsun.superslegend.items.masks.MaskStonemaskEffects;
+import superworldsun.superslegend.items.masks.*;
 
 
-
-public class ItemList 
+public class ItemList
 {
 	//items
 		public static Item rupee;
@@ -195,6 +191,9 @@ public class ItemList
 		public static Item mask_giantsmask;
 		public static Item mask_fiercedeitysmask;
 		public static Item mask_majorasmask;
+		public static Item mask_hawkeyemask;
+		public static Item mask_moonmask;
+		public static Item mask_sunmask;
 		
 		
 	//armor
