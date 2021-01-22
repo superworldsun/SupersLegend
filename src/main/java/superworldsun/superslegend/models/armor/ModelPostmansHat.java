@@ -1,7 +1,11 @@
 package superworldsun.superslegend.models.armor;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.BipedModel;
-//import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.client.renderer.entity.model.EntityModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
@@ -12,110 +16,81 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * ModelBunnyHood - superworldsun
  * Created using Tabula 7.1.0
  */
-/*@OnlyIn(Dist.CLIENT)
-public class ModelPostmansHat<T extends LivingEntity> extends BipedModel<T>
-{
-    public RendererModel shape1;
-    public RendererModel shape2;
-    public RendererModel shape3;
-    public RendererModel shape4;
-    public RendererModel shape5;
-    public RendererModel shape6;
-    public RendererModel shape7;
-    public RendererModel shape8;
-    public RendererModel shape9;
-    public RendererModel shape10;
-    public RendererModel shape11;
-    public RendererModel shape12;
-    public RendererModel shape13;
-    public RendererModel shape14;
+public class ModelPostmansHat extends EntityModel<Entity> {
+    private final ModelRenderer MaskPostmansHat;
+    private final ModelRenderer cube_r1;
+    private final ModelRenderer cube_r2;
+    private final ModelRenderer cube_r3;
+    private final ModelRenderer cube_r4;
+    private final ModelRenderer cube_r5;
+
+    public MaskPostmansHat() {
+        textureWidth = 64;
+        textureHeight = 64;
+
+        MaskPostmansHat = new ModelRenderer(this);
+        MaskPostmansHat.setRotationPoint(0.0F, 22.0F, 0.0F);
+        MaskPostmansHat.setTextureOffset(0, 0).addBox(-5.0F, -12.0F, -3.0F, 10.0F, 1.0F, 8.0F, 0.0F, false);
+        MaskPostmansHat.setTextureOffset(0, 9).addBox(-4.5F, -8.475F, -5.05F, 5.0F, 1.0F, 10.0F, 0.0F, false);
+        MaskPostmansHat.setTextureOffset(0, 20).addBox(0.5F, -8.475F, -5.075F, 4.0F, 1.0F, 10.0F, 0.0F, false);
+        MaskPostmansHat.setTextureOffset(40, 18).addBox(4.0F, -11.0F, -3.5F, 1.0F, 3.0F, 8.0F, 0.0F, false);
+        MaskPostmansHat.setTextureOffset(0, 4).addBox(4.0F, -9.5F, -4.5F, 1.0F, 2.0F, 2.0F, 0.0F, false);
+        MaskPostmansHat.setTextureOffset(0, 0).addBox(-5.0F, -9.5F, -4.5F, 1.0F, 2.0F, 2.0F, 0.0F, false);
+        MaskPostmansHat.setTextureOffset(4, 0).addBox(4.0F, -10.5F, -3.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+        MaskPostmansHat.setTextureOffset(4, 4).addBox(-5.0F, -10.5F, -3.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+        MaskPostmansHat.setTextureOffset(38, 1).addBox(4.5F, -8.0F, -5.0F, 1.0F, 1.0F, 10.0F, 0.0F, false);
+        MaskPostmansHat.setTextureOffset(0, 31).addBox(-5.5F, -8.0F, -5.0F, 1.0F, 1.0F, 10.0F, 0.0F, false);
+        MaskPostmansHat.setTextureOffset(14, 39).addBox(-5.0F, -11.0F, -3.5F, 1.0F, 3.0F, 8.0F, 0.0F, false);
+
+        cube_r1 = new ModelRenderer(this);
+        cube_r1.setRotationPoint(1.0F, -7.0F, 5.0F);
+        MaskPostmansHat.addChild(cube_r1);
+        setRotationAngle(cube_r1, 0.0F, -1.5708F, 0.0F);
+        cube_r1.setTextureOffset(18, 26).addBox(-1.0F, -4.0F, -4.0F, 1.0F, 3.0F, 10.0F, 0.0F, false);
+
+        cube_r2 = new ModelRenderer(this);
+        cube_r2.setRotationPoint(0.0F, -6.0F, -5.35F);
+        MaskPostmansHat.addChild(cube_r2);
+        setRotationAngle(cube_r2, 0.0F, 1.5708F, 0.0F);
+        cube_r2.setTextureOffset(26, 0).addBox(-1.0F, -2.0F, -5.0F, 1.0F, 1.0F, 10.0F, 0.0F, false);
+
+        cube_r3 = new ModelRenderer(this);
+        cube_r3.setRotationPoint(0.0F, -6.0F, 4.5F);
+        MaskPostmansHat.addChild(cube_r3);
+        setRotationAngle(cube_r3, 0.0F, 1.5708F, 0.0F);
+        cube_r3.setTextureOffset(30, 30).addBox(-1.0F, -2.0F, -5.0F, 1.0F, 1.0F, 10.0F, 0.0F, false);
+
+        cube_r4 = new ModelRenderer(this);
+        cube_r4.setRotationPoint(0.0F, -6.3391F, -6.9656F);
+        MaskPostmansHat.addChild(cube_r4);
+        setRotationAngle(cube_r4, 0.5716F, 0.0F, 0.0F);
+        cube_r4.setTextureOffset(20, 13).addBox(-3.0F, -0.4983F, -0.9982F, 6.0F, 1.0F, 2.0F, 0.0F, false);
+        cube_r4.setTextureOffset(0, 9).addBox(-2.0F, -0.4958F, -1.9799F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+        cube_r4.setTextureOffset(20, 11).addBox(-4.0F, -0.5059F, 0.9781F, 8.0F, 1.0F, 1.0F, 0.0F, false);
+
+        cube_r5 = new ModelRenderer(this);
+        cube_r5.setRotationPoint(0.0F, -9.1995F, -4.2144F);
+        MaskPostmansHat.addChild(cube_r5);
+        setRotationAngle(cube_r5, 0.9992F, 0.0F, 0.0F);
+        cube_r5.setTextureOffset(18, 20).addBox(-5.0F, -0.5F, -2.0F, 10.0F, 1.0F, 5.0F, 0.0F, false);
+    }
 
     public ModelPostmansHat() {
-        this.textureWidth = 128;
-        this.textureHeight = 128;
-        this.shape11 = new RendererModel(this, 62, 94);
-        this.shape11.setRotationPoint(-4.6F, -6.700000000000004F, -6.4F);
-        this.shape11.addBox(0.0F, 0.0F, 0.0F, 9, 1, 1, 0.0F);
-        this.setRotateAngle(shape11, 0.6373942428283291F, 0.0F, 0.0F);
-        this.shape5 = new RendererModel(this, 45, 120);
-        this.shape5.setRotationPoint(-5.0F, -7.0000000000000036F, -5.0F);
-        this.shape5.addBox(0.0F, 0.0F, 0.0F, 10, 1, 1, 0.0F);
-        this.shape13 = new RendererModel(this, 57, 85);
-        this.shape13.setRotationPoint(-5.12F, -7.300000000000004F, -4.7F);
-        this.shape13.addBox(0.0F, 0.0F, 0.0F, 10, 2, 2, 0.0F);
-        this.setRotateAngle(shape13, 0.9560913642424937F, 0.0F, 0.0F);
-        this.shape8 = new RendererModel(this, 3, 87);
-        this.shape8.setRotationPoint(3.8F, -6.5000000000000036F, -6.1F);
-        this.shape8.addBox(0.0F, 0.0F, 0.0F, 1, 1, 2, 0.0F);
-        this.setRotateAngle(shape8, 0.6373942428283291F, 0.0F, 0.0F);
-        this.shape10 = new RendererModel(this, 81, 105);
-        this.shape10.setRotationPoint(-5.12F, -7.100000000000003F, -5.5F);
-        this.shape10.addBox(0.0F, 0.0F, 0.0F, 10, 1, 6, 0.0F);
-        this.setRotateAngle(shape10, 0.9560913642424937F, 0.0F, 0.0F);
-        this.shape3 = new RendererModel(this, 17, 113);
-        this.shape3.setRotationPoint(4.0F, -7.0F, -5.0F);
-        this.shape3.addBox(0.0F, 0.0F, 0.0F, 2, 1, 11, 0.0F);
-        this.shape4 = new RendererModel(this, 42, 109);
-        this.shape4.setRotationPoint(-5.12F, -7.0F, 4.6F);
-        this.shape4.addBox(0.0F, 0.0F, 0.0F, 10, 1, 2, 0.0F);
-        this.shape9 = new RendererModel(this, 90, 89);
-        this.shape9.setRotationPoint(-5.12F, -12.000000000000004F, -2.0F);
-        this.shape9.addBox(0.0F, 0.0F, 0.0F, 10, 5, 8, 0.0F);
-        this.shape12 = new RendererModel(this, 94, 61);
-        this.shape12.setRotationPoint(-5.12F, -6.900000000000004F, -5.0F);
-        this.shape12.addBox(0.0F, 0.0F, 0.0F, 10, 1, 6, 0.0F);
-        this.setRotateAngle(shape12, 0.9560913642424937F, 0.0F, 0.0F);
-        this.shape14 = new RendererModel(this, 65, 118);
-        this.shape14.setRotationPoint(-5.12F, -7.300000000000004F, -3.6F);
-        this.shape14.addBox(0.0F, 0.0F, 0.0F, 10, 2, 5, 0.0F);
-        this.setRotateAngle(shape14, 0.9560913642424937F, 0.0F, 0.0F);
-        this.shape2 = new RendererModel(this, 1, 115);
-        this.shape2.setRotationPoint(-6.0F, -7.0F, -5.0F);
-        this.shape2.addBox(0.0F, 0.0F, 0.0F, 2, 1, 11, 0.0F);
-        this.shape1 = new RendererModel(this, 103, 116);
-        this.shape1.setRotationPoint(-4.0F, -5.300000000000003F, -7.7F);
-        this.shape1.addBox(0.0F, 0.0F, 0.0F, 8, 1, 4, 0.0F);
-        this.setRotateAngle(shape1, 0.6373942428283291F, 0.0F, 0.0F);
-        this.shape6 = new RendererModel(this, 72, 115);
-        this.shape6.setRotationPoint(-3.0F, -4.700000000000004F, -8.5F);
-        this.shape6.addBox(0.0F, 0.0F, 0.0F, 6, 1, 1, 0.0F);
-        this.setRotateAngle(shape6, 0.6373942428283291F, 0.0F, 0.0F);
-        this.shape7 = new RendererModel(this, 18, 88);
-        this.shape7.setRotationPoint(-4.9F, -6.5000000000000036F, -6.1F);
-        this.shape7.addBox(0.0F, 0.0F, 0.0F, 1, 1, 2, 0.0F);
-        this.setRotateAngle(shape7, 0.6373942428283291F, 0.0F, 0.0F);
-
-        this.bipedHead.addChild(shape1);
-        this.bipedHead.addChild(shape2);
-        this.bipedHead.addChild(shape3);
-        this.bipedHead.addChild(shape4);
-        this.bipedHead.addChild(shape5);
-        this.bipedHead.addChild(shape6);
-        this.bipedHead.addChild(shape7);
-        this.bipedHead.addChild(shape8);
-        this.bipedHead.addChild(shape9);
-        this.bipedHead.addChild(shape10);
-        this.bipedHead.addChild(shape11);
-        this.bipedHead.addChild(shape12);
-        this.bipedHead.addChild(shape13);
-        this.bipedHead.addChild(shape14);
     }
 
     @Override
-    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        if (entity instanceof ArmorStandEntity) {
-            f3 = 0;
-        }
-
-        super.render(entity, f, f1, f2, f3, f4, f5);
+    public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
+        //previously the render function, render code was moved to a method below
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    /*public void setRotateAngle(RendererModel modelRenderer, float x, float y, float z) {
+    @Override
+    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+        MaskPostmansHat.render(matrixStack, buffer, packedLight, packedOverlay);
+    }
+
+    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
-    }*/
-
+    }
+}
