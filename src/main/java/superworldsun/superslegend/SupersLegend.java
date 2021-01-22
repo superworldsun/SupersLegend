@@ -44,6 +44,8 @@ import superworldsun.superslegend.lists.ToolMaterialList;
 import superworldsun.superslegend.util.handlers.SoundHandler;
 import superworldsun.superslegend.world.gen.OreGeneration;
 
+import javax.annotation.Nonnull;
+
 import static net.minecraft.item.ItemModelsProperties.registerProperty;
 
 @Mod("superslegend")
