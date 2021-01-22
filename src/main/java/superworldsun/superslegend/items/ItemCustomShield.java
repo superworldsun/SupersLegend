@@ -21,7 +21,6 @@ public class ItemCustomShield extends ShieldItem
 	      
 	@Override
 	public boolean isShield(ItemStack stack, LivingEntity entity) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	
@@ -73,7 +72,6 @@ public class ItemCustomShield extends ShieldItem
 	
 	      @Override
 	      public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-	          // TODO Auto-generated method stub
 	    	  return false;	
 	
 	}

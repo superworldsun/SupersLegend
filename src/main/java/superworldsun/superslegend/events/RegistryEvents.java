@@ -13,7 +13,7 @@ import superworldsun.superslegend.lists.PotionList;
 public class RegistryEvents {
 
 	
-	
+	// TODO , Unsure what this is, Need to attend to this when possible.
 	/*@SubscribeEvent
 	public static void registerPotions(final RegistryEvent.Register<Potion> event)
 	{
@@ -40,7 +40,6 @@ public class RegistryEvents {
 
 
 	private static String Location(String string) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
