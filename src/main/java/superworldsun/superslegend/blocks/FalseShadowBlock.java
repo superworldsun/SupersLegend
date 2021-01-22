@@ -30,7 +30,12 @@ public class FalseShadowBlock extends Block
 		return getDefaultState();
 	}
 
-	   /*public BlockRenderLayer getRenderLayer() {
+	@Override
+	public boolean isTransparent(BlockState state) {
+		return true;
+	}
+
+	/*public BlockRenderLayer getRenderLayer() {
 		    return BlockRenderLayer.CUTOUT;
 	   }*/
 }
