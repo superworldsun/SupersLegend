@@ -9,11 +9,10 @@ public class ItemCustomBow extends BowItem
 	public ItemCustomBow(Item.Properties builder) {
 	      super(builder);
 	}
-	      
+
 	      @Override
 	      public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-	          // TODO Auto-generated method stub
-	    	  return false;	
-	
+	    	  return false;
+
 	}
 }
