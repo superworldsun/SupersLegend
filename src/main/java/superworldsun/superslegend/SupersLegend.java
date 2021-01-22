@@ -1,15 +1,10 @@
 package superworldsun.superslegend;
 
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.ToolType;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -21,59 +16,22 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import superworldsun.superslegend.CustomLootMobs.CustomLootBlaze;
-import superworldsun.superslegend.CustomLootMobs.CustomLootCavespider;
-import superworldsun.superslegend.CustomLootMobs.CustomLootCreeper;
-import superworldsun.superslegend.CustomLootMobs.CustomLootDragon;
-import superworldsun.superslegend.CustomLootMobs.CustomLootDrowned;
-import superworldsun.superslegend.CustomLootMobs.CustomLootElderguardian;
-import superworldsun.superslegend.CustomLootMobs.CustomLootEnderman;
-import superworldsun.superslegend.CustomLootMobs.CustomLootEndermite;
-import superworldsun.superslegend.CustomLootMobs.CustomLootEvoker;
-import superworldsun.superslegend.CustomLootMobs.CustomLootGhast;
-import superworldsun.superslegend.CustomLootMobs.CustomLootGuardian;
-import superworldsun.superslegend.CustomLootMobs.CustomLootHusk;
-import superworldsun.superslegend.CustomLootMobs.CustomLootMagmacube;
-import superworldsun.superslegend.CustomLootMobs.CustomLootPhantom;
-import superworldsun.superslegend.CustomLootMobs.CustomLootPillager;
-import superworldsun.superslegend.CustomLootMobs.CustomLootRavager;
-import superworldsun.superslegend.CustomLootMobs.CustomLootShulker;
-import superworldsun.superslegend.CustomLootMobs.CustomLootSilverfish;
-import superworldsun.superslegend.CustomLootMobs.CustomLootSkeleton;
-import superworldsun.superslegend.CustomLootMobs.CustomLootSlime;
-import superworldsun.superslegend.CustomLootMobs.CustomLootSpider;
-import superworldsun.superslegend.CustomLootMobs.CustomLootStray;
-import superworldsun.superslegend.CustomLootMobs.CustomLootVindicator;
-import superworldsun.superslegend.CustomLootMobs.CustomLootWitch;
-import superworldsun.superslegend.CustomLootMobs.CustomLootWither;
-import superworldsun.superslegend.CustomLootMobs.CustomLootWitherskeleton;
-import superworldsun.superslegend.CustomLootMobs.CustomLootZombie;
-import superworldsun.superslegend.CustomLootMobs.CustomLootZombievillager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import superworldsun.superslegend.CustomLootMobs.*;
 import superworldsun.superslegend.blocks.*;
 import superworldsun.superslegend.items.*;
-import superworldsun.superslegend.items.armors.ArmorDarkEffects;
-import superworldsun.superslegend.items.armors.ArmorFlamebreakerEffects;
-import superworldsun.superslegend.items.armors.ArmorFlippersEffects;
-import superworldsun.superslegend.items.armors.ArmorGoronEffects;
-import superworldsun.superslegend.items.armors.ArmorKokiriEffects;
-import superworldsun.superslegend.items.armors.ArmorMagicArmor;
-import superworldsun.superslegend.items.armors.ArmorPurpleEffects;
-import superworldsun.superslegend.items.armors.ArmorZoraArmorEffects;
-import superworldsun.superslegend.items.armors.ArmorZoraEffects;
-import superworldsun.superslegend.items.armors.HoverBoots;
-import superworldsun.superslegend.items.armors.IronBoots;
-import superworldsun.superslegend.items.arrows.ArrowAncient;
-import superworldsun.superslegend.items.arrows.ArrowBomb;
-import superworldsun.superslegend.items.arrows.ArrowFire;
-import superworldsun.superslegend.items.arrows.ArrowIce;
-import superworldsun.superslegend.items.arrows.ArrowShock;
+import superworldsun.superslegend.items.armors.*;
+import superworldsun.superslegend.items.arrows.*;
 import superworldsun.superslegend.items.bows.BitBow;
 import superworldsun.superslegend.items.bows.BowLynelSavage;
 import superworldsun.superslegend.items.masks.*;
@@ -83,6 +41,8 @@ import superworldsun.superslegend.lists.PotionList;
 import superworldsun.superslegend.lists.ToolMaterialList;
 import superworldsun.superslegend.util.handlers.SoundHandler;
 import superworldsun.superslegend.world.gen.OreGeneration;
+
+import static net.minecraft.item.ItemModelsProperties.registerProperty;
 
 @Mod("superslegend")
 public class SupersLegend 
@@ -234,7 +194,7 @@ public class SupersLegend
 			(	
 		//Items
 					
-			ItemList.rupee = new Rupee(new Item.Properties().group(supers_legend)).setRegistryName(location("rupee")),
+			ItemList.rupee = new Rupee(new Item.Properties().maxStackSize(10000).group(supers_legend)).setRegistryName(location("rupee")),
 			ItemList.blue_rupee = new BlueRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee")),
 			ItemList.red_rupee = new RedRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee")),
 			ItemList.silver_rupee = new SilverRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee")),
@@ -511,7 +471,7 @@ public class SupersLegend
 				
 		 }
 
-		 @SubscribeEvent
+		@SubscribeEvent
 		 public static void registerPotions(final RegistryEvent.Register<Potion> event)
 		 {
 				
@@ -523,22 +483,52 @@ public class SupersLegend
 				);
 				
 		 }
-			
-			
-			@SubscribeEvent
-			public static void registerEffects(final RegistryEvent.Register<Effect> event)
-			{
-				
-				event.getRegistry().registerAll
-				
-				(
-						//PotionList.more_health_effect = new PotionList.MoreHealthEffect(EffectType.BENEFICIAL, 0xd4FF00).addAttributesModifier(SharedMonsterAttributes.MAX_HEALTH, "55FCED67-E92A-486E-9800-B47F202C4386", 0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("more_health")),
-						PotionList.iron_boots_effect = new PotionList.IronBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.SWIM_SPEED.get(),"55FCED67-E92A-486E-9800-B47F202C4386", 2.0f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("iron_boots")),
-						PotionList.hover_boots_effect = new PotionList.HoverBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.ENTITY_GRAVITY.get(), "55FCED67-E92A-486E-9800-B47F202C4386", 0.0f, AttributeModifier.Operation.ADDITION).setRegistryName(location("hover_boots")),
-						PotionList.zoras_grace_effect = new PotionList.ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.SWIM_SPEED.get(), "55FCED67-E92A-486E-9800-B47F202C4386", 0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("zoras_grace"))
 
-				);
-				
-			}
+		@SubscribeEvent
+		 public static void registerEffects(final RegistryEvent.Register<Effect> event)
+		 {
+		 	event.getRegistry().registerAll
+					(
+							//PotionList.more_health_effect = new PotionList.MoreHealthEffect(EffectType.BENEFICIAL, 0xd4FF00).addAttributesModifier(SharedMonsterAttributes.MAX_HEALTH, "55FCED67-E92A-486E-9800-B47F202C4386", 0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("more_health")),
+							PotionList.iron_boots_effect = new PotionList.IronBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.SWIM_SPEED.get(),"55FCED67-E92A-486E-9800-B47F202C4386", 2.0f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("iron_boots")),
+							PotionList.hover_boots_effect = new PotionList.HoverBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.ENTITY_GRAVITY.get(), "55FCED67-E92A-486E-9800-B47F202C4386", 0.0f, AttributeModifier.Operation.ADDITION).setRegistryName(location("hover_boots")),
+							PotionList.zoras_grace_effect = new PotionList.ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.SWIM_SPEED.get(), "55FCED67-E92A-486E-9800-B47F202C4386", 0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("zoras_grace"))
+					);
+		 }
+
+
+		@SubscribeEvent
+		public static void setModelProperties(FMLClientSetupEvent event) {
+			registerProperty(ItemList.heros_bow, new ResourceLocation("pull"), (p_239429_0_, p_239429_1_, p_239429_2_) -> {
+				if (p_239429_2_ == null) {
+					return 0.0F;
+				} else {
+					return p_239429_2_.getActiveItemStack() != p_239429_0_ ? 0.0F : (float)(p_239429_0_.getUseDuration() - p_239429_2_.getItemInUseCount()) / 20.0F;
+				}
+			});
+			registerProperty(ItemList.heros_bow, new ResourceLocation("pulling"), (p_239428_0_, p_239428_1_, p_239428_2_) -> p_239428_2_ != null && p_239428_2_.isHandActive() && p_239428_2_.getActiveItemStack() == p_239428_0_ ? 1.0F : 0.0F);
+
+			registerProperty(ItemList.lynel_bow_x3, new ResourceLocation("pull"), (p_239429_0_, p_239429_1_, p_239429_2_) -> {
+				if (p_239429_2_ == null) {
+					return 0.0F;
+				} else {
+					return p_239429_2_.getActiveItemStack() != p_239429_0_ ? 0.0F : (float)(p_239429_0_.getUseDuration() - p_239429_2_.getItemInUseCount()) / 20.0F;
+				}
+			});
+			registerProperty(ItemList.lynel_bow_x3, new ResourceLocation("pulling"), (p_239428_0_, p_239428_1_, p_239428_2_) -> p_239428_2_ != null && p_239428_2_.isHandActive() && p_239428_2_.getActiveItemStack() == p_239428_0_ ? 1.0F : 0.0F);
+
+			registerProperty(ItemList.lynel_bow_x5, new ResourceLocation("pull"), (p_239429_0_, p_239429_1_, p_239429_2_) -> {
+				if (p_239429_2_ == null) {
+					return 0.0F;
+				} else {
+					return p_239429_2_.getActiveItemStack() != p_239429_0_ ? 0.0F : (float)(p_239429_0_.getUseDuration() - p_239429_2_.getItemInUseCount()) / 20.0F;
+				}
+			});
+			registerProperty(ItemList.lynel_bow_x5, new ResourceLocation("pulling"), (p_239428_0_, p_239428_1_, p_239428_2_) -> p_239428_2_ != null && p_239428_2_.isHandActive() && p_239428_2_.getActiveItemStack() == p_239428_0_ ? 1.0F : 0.0F);
+
+			registerProperty(ItemList.deku_shield, new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_, p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isHandActive() && p_239421_2_.getActiveItemStack() == p_239421_0_ ? 1.0F : 0.0F);
+
+			registerProperty(ItemList.hylian_shield, new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_, p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isHandActive() && p_239421_2_.getActiveItemStack() == p_239421_0_ ? 1.0F : 0.0F);
+		}
 	}
 }
