@@ -194,7 +194,7 @@ public class SupersLegend
 			(	
 		//Items
 					
-			ItemList.rupee = new Rupee(new Item.Properties().maxStackSize(10000).group(supers_legend)).setRegistryName(location("rupee")),
+			ItemList.rupee = new Rupee(new Item.Properties().group(supers_legend)).setRegistryName(location("rupee")),
 			ItemList.blue_rupee = new BlueRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee")),
 			ItemList.red_rupee = new RedRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee")),
 			ItemList.silver_rupee = new SilverRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee")),
