@@ -1,33 +1,23 @@
 package superworldsun.superslegend.items;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.*;
 import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.util.ITeleporter;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.WorldEvent;
 
-import java.net.ServerSocket;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
-import java.util.function.Function;
 
 public class MoonPearl extends Item {
 
@@ -65,12 +55,13 @@ public class MoonPearl extends Item {
 
                 //BlockPos destinationPos = player.getPosition();
                 BlockPos destinationPos = new BlockPos(currentPos.getX(), currentPos.getY(), currentPos.getZ());
-
                 ServerWorld targetWorld = world.getServer().getWorld(world.THE_NETHER);
+                BlockPos heightpos = world.getHeight(Heightmap.Type.WORLD_SURFACE, destinationPos);
                 targetWorld.getServer().enqueue(new TickDelayedTask(1, () -> {
+                    targetWorld.getHeight(Heightmap.Type.WORLD_SURFACE, currentPos).down();
                     targetWorld.getChunk(destinationPos.getX(), destinationPos.getZ());
                     //Teleporting the player to the Nether and updating position
-                    player.teleport(targetWorld, destinationPos.getX(), destinationPos.getY(), destinationPos.getZ(), player.rotationYaw, player.prevRotationPitch);
+                    player.teleport(targetWorld, heightpos.getX() >> 4, heightpos.getY(), heightpos.getZ() >> 4, player.rotationYaw, player.prevRotationPitch);
                 }));
 
                 //playerIn.changeDimension(targetWorld, new ITeleporter() {}).setPositionAndUpdate(targetVec.getX(), targetVec.getY(), targetVec.getZ());
@@ -110,7 +101,7 @@ public class MoonPearl extends Item {
         }
 
         return new ActionResult<>(ActionResultType.SUCCESS, playerIn.getHeldItem(hand));
-    }*/
+    }
 
 
     @Override
@@ -119,5 +110,5 @@ public class MoonPearl extends Item {
         list.add(new StringTextComponent(TextFormatting.RED + "Teleports the player to the Nether"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "When used in the Nether it will Return player to Portal"));
-    }
+    }*/
 }
