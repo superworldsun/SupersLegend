@@ -24,20 +24,21 @@ import superworldsun.superslegend.models.armor.ModelPostmansHat;
 
 
 public class MaskPostmanshat extends NonEnchantArmor {
-    public MaskPostmanshat(String name, EquipmentSlotType slot) 
+    public MaskPostmanshat(String name, EquipmentSlotType slot)
+
     
     {
         super(ArmourMaterialList.postmanshat, slot, new Item.Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
-
     @SuppressWarnings("unchecked")
     @Override
     @OnlyIn(Dist.CLIENT)
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-        ModelPostmansHat model = new ModelPostmansHat();
+        ModelPostmansHat model = new ModelPostmansHat( 1.0f);
 
+        model.bipedHead = _default.bipedHeadwear;
         model.isChild = _default.isChild;
         model.isSneak = _default.isSneak;
         model.isSitting = _default.isSitting;
