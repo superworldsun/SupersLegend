@@ -4,9 +4,11 @@ import java.util.List;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 //import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 //import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.text.ITextComponent;
@@ -33,21 +35,15 @@ public class MaskPostmanshat extends NonEnchantArmor {
     }
 
     @SuppressWarnings("unchecked")
-    @Override
     @OnlyIn(Dist.CLIENT)
-    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-        ModelPostmansHat model = new ModelPostmansHat( 1.0f);
-
-        model.bipedHead = _default.bipedHeadwear;
-        model.isChild = _default.isChild;
-        model.isSneak = _default.isSneak;
-        model.isSitting = _default.isSitting;
-
-        return (A) model;
+    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
+    {
+        return (A) new ModelPostmansHat<PlayerEntity>();
     }
 
-     
-    
+
+
+
     @Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
