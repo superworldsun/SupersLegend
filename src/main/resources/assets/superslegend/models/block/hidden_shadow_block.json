@@ -1,5 +1,8 @@
 {
     "parent": "block/cube_all",
+    "ambientocclusion": false,
+    "ambient_lighting": false,
+    "shade": false,
     "textures": {
         "all": "superslegend:block/shadow_block"
     }

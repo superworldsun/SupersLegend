@@ -412,7 +412,11 @@ public class SupersLegend
 			ItemList.flamebreaker_helmet = new ArmorFlamebreakerEffects("flamebreaker_helmet",EquipmentSlotType.HEAD),
 			ItemList.flamebreaker_tunic = new ArmorFlamebreakerEffects("flamebreaker_tunic",EquipmentSlotType.CHEST),
 			ItemList.flamebreaker_leggings = new ArmorFlamebreakerEffects("flamebreaker_leggings",EquipmentSlotType.LEGS),
-			ItemList.flamebreaker_boots = new ArmorFlamebreakerEffects("flamebreaker_boots",EquipmentSlotType.FEET)
+			ItemList.flamebreaker_boots = new ArmorFlamebreakerEffects("flamebreaker_boots",EquipmentSlotType.FEET),
+			ItemList.ancient_helmet = new ArmorAncientEffects("ancient_helmet",EquipmentSlotType.HEAD),
+			ItemList.ancient_cuirass = new ArmorAncientEffects("ancient_cuirass",EquipmentSlotType.CHEST),
+			ItemList.ancient_greaves = new ArmorAncientEffects("ancient_greaves",EquipmentSlotType.LEGS),
+			ItemList.ancient_boots = new ArmorAncientEffects("ancient_boots",EquipmentSlotType.FEET)
 			);
 			Logger.info("Items registered.");		
 		}

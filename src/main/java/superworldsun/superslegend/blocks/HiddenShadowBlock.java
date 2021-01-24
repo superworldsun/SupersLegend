@@ -22,4 +22,14 @@ public class HiddenShadowBlock extends Block
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.INVISIBLE;
 	}
+
+	@Override
+	public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
+		return 1F;
+	}
+
+	@Override
+	public boolean isTransparent(BlockState state) {
+		return true;
+	}
 }
