@@ -2,7 +2,9 @@ package superworldsun.superslegend.items.masks;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -13,10 +15,13 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
+import superworldsun.superslegend.models.armor.ModelAllnightmask;
 
 
 public class MaskAllnightmaskEffects extends NonEnchantArmor {
@@ -25,6 +30,20 @@ public class MaskAllnightmaskEffects extends NonEnchantArmor {
     {
         super(ArmourMaterialList.allnightmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+        ModelAllnightmask model = new ModelAllnightmask( 2.0f);
+
+        model.bipedHead = _default.bipedHeadwear;
+        model.isChild = _default.isChild;
+        model.isSneak = _default.isSneak;
+        model.isSitting = _default.isSitting;
+
+        return (A) model;
     }
 
     @Override
