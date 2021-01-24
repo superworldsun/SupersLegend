@@ -18,6 +18,7 @@ public class ItemList
 		public static Item rocs_feather;
 		public static Item magic_mirror;
 		public static Item magic_cape;
+		public static Item bomb;
 		public static Item empty_container;
 		public static Item farores_wind;
 		public static Item dins_fire;
@@ -217,6 +218,10 @@ public class ItemList
 		public static Item ancient_cuirass;
 		public static Item ancient_greaves;
 		public static Item ancient_boots;
+		public static Item barbarian_helmet;
+		public static Item barbarian_armor;
+		public static Item barbarian_leg_wraps;
+		public static Item barbarian_boots;
 		public static HoverBoots hover_boots;
 		public static Item magic_armor_cap;
 		public static Item magic_armor_tunic;
