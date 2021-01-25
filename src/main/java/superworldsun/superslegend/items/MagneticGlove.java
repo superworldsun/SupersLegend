@@ -4,10 +4,10 @@ package superworldsun.superslegend.items;
 
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.arrows.Entity;
+import net.minecraft.arrows.item.ExperienceOrbEntity;
+import net.minecraft.arrows.item.ItemEntity;
+import net.minecraft.arrows.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -31,11 +31,11 @@ public class MagneticGlove extends Item
 	
 	int range;
 
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
+	public void inventoryTick(ItemStack stack, World world, Entity arrows, int itemSlot, boolean isSelected)
 	{		
-		if(entity instanceof PlayerEntity && !world.isRemote)
+		if(arrows instanceof PlayerEntity && !world.isRemote)
 		{
-			PlayerEntity player = (PlayerEntity)entity;
+			PlayerEntity player = (PlayerEntity)arrows;
 			ItemStack equipped = player.getHeldItemMainhand();
 			if(!world.isRemote)
 			{
@@ -60,7 +60,7 @@ public class MagneticGlove extends Item
 			boolean isPulling;
 			
 			//Scan for and collect items
-			List<ItemEntity> items = entity.world.getEntitiesWithinAABB(ItemEntity.class, new AxisAlignedBB(x - range, y - range, z - range, x + range, y + range, z + range));
+			List<ItemEntity> items = arrows.world.getEntitiesWithinAABB(ItemEntity.class, new AxisAlignedBB(x - range, y - range, z - range, x + range, y + range, z + range));
 			for(ItemEntity e: items)
 			{
 				if(!player.isSneaking() && !e.getEntityData().getBoolean("PreventRemoteMovement"))
@@ -77,7 +77,7 @@ public class MagneticGlove extends Item
 			}
 			
 			//Scan for and collect XP Orbs
-			List<ExperienceOrbEntity> xp = entity.world.getEntitiesWithinAABB(ExperienceOrbEntity.class, new AxisAlignedBB(x - range, y - range, z - range, x + range, y + range, z + range));
+			List<ExperienceOrbEntity> xp = arrows.world.getEntitiesWithinAABB(ExperienceOrbEntity.class, new AxisAlignedBB(x - range, y - range, z - range, x + range, y + range, z + range));
 			for(ExperienceOrbEntity orb: xp)
 			{
 				if(!player.isSneaking())

@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
@@ -21,6 +22,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -48,8 +50,8 @@ import javax.annotation.Nonnull;
 
 import static net.minecraft.item.ItemModelsProperties.registerProperty;
 
-@Mod("superslegend")
-public class SupersLegend 
+@Mod(SupersLegend.modid)
+public class SupersLegend
 {
 	public static SupersLegend instance;
 	public static final String modid = "superslegend";
@@ -163,7 +165,7 @@ public class SupersLegend
 		Logger.info("Setup method registered");
 		//OreGeneration.generate();
 	}
-	
+
 	private void clientRegistries(final FMLClientSetupEvent event)
 	{
 		Logger.info("ClientRegistries method registered");
