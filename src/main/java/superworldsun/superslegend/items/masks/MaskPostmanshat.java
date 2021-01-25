@@ -22,6 +22,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 //import superworldsun.superslegend.models.armor.ModelPostmansHat;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import superworldsun.superslegend.models.armor.ModelAllnightmask;
 import superworldsun.superslegend.models.armor.ModelPostmansHat;
 
 
@@ -38,7 +39,7 @@ public class MaskPostmanshat extends NonEnchantArmor {
     @OnlyIn(Dist.CLIENT)
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
     {
-        return (A) new ModelPostmansHat<PlayerEntity>();
+        return (A) new ModelPostmansHat(0);
     }
 
 
