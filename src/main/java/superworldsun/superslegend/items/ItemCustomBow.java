@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 public class ItemCustomBow extends BowItem
 {
-	public ItemCustomBow(Item.Properties builder) {
+	public ItemCustomBow(Properties builder) {
 	      super(builder);
 	}
 

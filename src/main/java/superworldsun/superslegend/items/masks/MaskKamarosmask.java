@@ -18,7 +18,7 @@ public class MaskKamarosmask extends NonEnchantArmor {
     public MaskKamarosmask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.kamarosmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.kamarosmask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override

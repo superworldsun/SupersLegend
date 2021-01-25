@@ -21,7 +21,7 @@ public class ArmorFlamebreakerEffects extends NonEnchantArmor
     public ArmorFlamebreakerEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.flamebreaker, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.flamebreaker, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
         

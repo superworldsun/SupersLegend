@@ -20,7 +20,7 @@ public class MaskDongerosmaskEffects extends NonEnchantArmor {
     public MaskDongerosmaskEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.dongerosmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.dongerosmask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 

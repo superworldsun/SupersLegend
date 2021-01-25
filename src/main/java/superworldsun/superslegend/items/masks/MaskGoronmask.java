@@ -22,7 +22,7 @@ public class MaskGoronmask extends NonEnchantArmor {
     public MaskGoronmask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.goronmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.goronmask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override

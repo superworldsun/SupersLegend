@@ -16,7 +16,7 @@ public class ArmorKokiriEffects extends NonEnchantArmor
     public ArmorKokiriEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.kokiri, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.kokiri, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     

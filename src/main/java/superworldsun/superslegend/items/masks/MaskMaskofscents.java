@@ -18,7 +18,7 @@ public class MaskMaskofscents extends NonEnchantArmor {
     public MaskMaskofscents(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.maskofscents, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.maskofscents, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override

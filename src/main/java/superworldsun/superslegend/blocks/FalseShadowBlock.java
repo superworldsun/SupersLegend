@@ -17,7 +17,7 @@ public class FalseShadowBlock extends Block
 {
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 
-	public FalseShadowBlock(Block.Properties properties) {
+	public FalseShadowBlock(Properties properties) {
 		super(properties);
 	}
 

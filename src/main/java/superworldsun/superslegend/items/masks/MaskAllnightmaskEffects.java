@@ -34,7 +34,7 @@ public class MaskAllnightmaskEffects extends NonEnchantArmor {
     public MaskAllnightmaskEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.allnightmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.allnightmask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 

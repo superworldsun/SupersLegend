@@ -21,7 +21,7 @@ public class ArmorFlippersEffects extends NonEnchantArmor
     public ArmorFlippersEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.flippers, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.flippers, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     

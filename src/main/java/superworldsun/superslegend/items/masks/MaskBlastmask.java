@@ -25,7 +25,7 @@ public class MaskBlastmask extends NonEnchantArmor {
     public MaskBlastmask(String name, EquipmentSlotType slot) 
 
     {
-        super(ArmourMaterialList.blastmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.blastmask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     

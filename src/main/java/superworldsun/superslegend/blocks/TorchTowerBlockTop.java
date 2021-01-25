@@ -23,7 +23,7 @@ public class TorchTowerBlockTop extends Block
 {
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 13.0D, 9.0D, 13.0D);
 
-	   public TorchTowerBlockTop(Block.Properties properties) {
+	   public TorchTowerBlockTop(Properties properties) {
 	      super(properties);
 	   }
 

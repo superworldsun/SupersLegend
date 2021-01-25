@@ -16,7 +16,7 @@ public class JarBlock extends Block
 {
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 10.0D, 13.0D);
 
-	   public JarBlock(Block.Properties properties) {
+	   public JarBlock(Properties properties) {
 	      super(properties);
 	   }
 

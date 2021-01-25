@@ -20,7 +20,7 @@ public class MaskFiercedeitysmask extends NonEnchantArmor {
     public MaskFiercedeitysmask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.fiercedeitysmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.fiercedeitysmask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     

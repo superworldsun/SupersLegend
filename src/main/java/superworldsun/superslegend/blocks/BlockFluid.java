@@ -1,4 +1,4 @@
-/*package superworldsun.superslegend.blocks;
+package superworldsun.superslegend.blocks;/*package superworldsun.superslegend.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;

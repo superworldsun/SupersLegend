@@ -18,7 +18,7 @@ public class PegasusBoots extends NonEnchantArmor {
     public PegasusBoots(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.pegasusboots, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.pegasusboots, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     

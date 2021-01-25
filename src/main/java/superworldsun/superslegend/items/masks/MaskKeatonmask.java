@@ -18,7 +18,7 @@ public class MaskKeatonmask extends NonEnchantArmor {
     public MaskKeatonmask(String name, EquipmentSlotType slot) 
 
     {
-        super(ArmourMaterialList.keatonmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.keatonmask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 

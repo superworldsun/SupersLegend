@@ -54,7 +54,7 @@ public class Rupee extends Item{
 		return arrowentity;
 	}
 
-	public boolean isInfinite(ItemStack stack, ItemStack bow, net.minecraft.entity.player.PlayerEntity player) {
+	public boolean isInfinite(ItemStack stack, ItemStack bow, PlayerEntity player) {
 		int enchant = net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel(net.minecraft.enchantment.Enchantments.INFINITY, bow);
 		return enchant <= 0 ? false : this.getClass() == Rupee.class;
 	}

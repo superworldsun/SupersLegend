@@ -24,7 +24,7 @@ public class IronBoots extends NonEnchantArmor {
     public IronBoots(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.ironboots, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.ironboots, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     

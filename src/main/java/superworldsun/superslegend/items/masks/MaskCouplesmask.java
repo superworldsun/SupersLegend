@@ -18,7 +18,7 @@ public class MaskCouplesmask extends NonEnchantArmor {
     public MaskCouplesmask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.couplesmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.couplesmask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override

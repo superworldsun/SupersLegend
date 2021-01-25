@@ -42,8 +42,8 @@ public class FairyEntityModel extends EntityModel<FairyEntity> {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-        fairy.render(matrixStack, buffer, packedLight, packedOverlay);
+    public void render(MatrixStack matrixStack, IVertexBuilder IVertexBuilder, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+        fairy.render(matrixStack, IVertexBuilder, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
