@@ -3,10 +3,10 @@ package superworldsun.superslegend.items.masks;
 import java.util.List;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
-//import net.minecraft.client.renderer.entity.model.BipedModel;
+//import net.minecraft.client.renderer.arrows.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
-//import net.minecraft.entity.LivingEntity;
+//import net.minecraft.arrows.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.text.ITextComponent;

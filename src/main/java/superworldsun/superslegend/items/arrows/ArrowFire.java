@@ -23,7 +23,7 @@ public class ArrowFire extends ArrowItem
         return entityFireArrow;
     }
     
-    /*public boolean isInfinite(ItemStack stack, ItemStack bow, net.minecraft.entity.player.PlayerEntity player) {
+    /*public boolean isInfinite(ItemStack stack, ItemStack bow, net.minecraft.arrows.player.PlayerEntity player) {
         @SuppressWarnings("unused")
 		ItemStack itemStack = (new ItemStack(ItemList.heros_bow));
         return true;

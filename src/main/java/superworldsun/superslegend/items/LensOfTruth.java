@@ -190,23 +190,23 @@ public class LensOfTruth extends Item
 
 	
 	/*@Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
+    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity arrows) {
         
-            if(entity.isAlive())
-                if(entity instanceof Entity)
-                    if(entity.isInvisible() && player.getFoodStats().getFoodLevel()>= 2)
+            if(arrows.isAlive())
+                if(arrows instanceof Entity)
+                    if(arrows.isInvisible() && player.getFoodStats().getFoodLevel()>= 2)
                     {
-                    	((LivingEntity) entity).addPotionEffect(new EffectInstance(Effect.get(24), 400, 10, false, false));
-                    	//entity.setInvisible(false);
-                        //entity.setGlowing(true);
+                    	((LivingEntity) arrows).addPotionEffect(new EffectInstance(Effect.get(24), 400, 10, false, false));
+                    	//arrows.setInvisible(false);
+                        //arrows.setGlowing(true);
                     	
-                    	Random rand = entity.world.rand;
+                    	Random rand = arrows.world.rand;
             	        for (int i = 0; i < 45; i++)
             	        {
-            	        	entity.world.addParticle(ParticleTypes.CLOUD,
-            	        			entity.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
-            	        			entity.prevPosY + rand.nextFloat() * 3 - 2,
-            	        			entity.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
+            	        	arrows.world.addParticle(ParticleTypes.CLOUD,
+            	        			arrows.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
+            	        			arrows.prevPosY + rand.nextFloat() * 3 - 2,
+            	        			arrows.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
             	                    0, 0.105D, 0);
             	        }
             	        
@@ -215,27 +215,27 @@ public class LensOfTruth extends Item
             	        player.addExhaustion(2f);
             	        
             	        BlockPos currentPos = player.getPosition();
-            	        entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.LENS_OF_TRUTH_ON, SoundCategory.PLAYERS, 1f, 1f);
+            	        arrows.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.LENS_OF_TRUTH_ON, SoundCategory.PLAYERS, 1f, 1f);
             	        
                     }
-                    else if(entity.isInvisible())
+                    else if(arrows.isInvisible())
                     {
                     	player.sendStatusMessage(new TranslationTextComponent(TextFormatting.DARK_PURPLE + "They are already visible"), true);
                     	
                     	BlockPos currentPos = player.getPosition();
-            	        entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
+            	        arrows.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
                     }
-                    else if (!entity.isInvisible())
+                    else if (!arrows.isInvisible())
                     {
                     	player.sendStatusMessage(new TranslationTextComponent(TextFormatting.DARK_PURPLE + "They are already visible"), true);
                     	
                     	BlockPos currentPos = player.getPosition();
-            	        entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
+            	        arrows.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
                     }
                     else if (player.getFoodStats().getFoodLevel()<= 1)
                     {
                     	BlockPos currentPos = player.getPosition();
-            	        entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
+            	        arrows.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
                     }
                     	
         return false;
