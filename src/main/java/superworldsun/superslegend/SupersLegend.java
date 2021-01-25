@@ -169,7 +169,6 @@ public class SupersLegend
 		OreGeneration.registerOres();
 		//MinecraftForge.EVENT_BUS.register(HealthHandler.class);
 		Logger.info("Setup method registered");
-		//OreGeneration.generate();
 
 		event.enqueueWork(() -> {
 			GlobalEntityTypeAttributes.put(EntityInit.FAIRYENTITY.get(), FairyEntity.prepareAttributes().create());
