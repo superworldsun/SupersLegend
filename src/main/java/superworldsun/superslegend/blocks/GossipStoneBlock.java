@@ -14,7 +14,7 @@ public class GossipStoneBlock extends AbstractGossipStoneBlock
 
     public TileEntity createNewTileEntity(IBlockReader worldIn) {
         
-        //Eventually where you would reference your tile entity class (unless you dont need one)
+        //Eventually where you would reference your tile arrows class (unless you dont need one)
         return null;
         
     }

@@ -11,7 +11,7 @@ import superworldsun.superslegend.lists.ItemList;
 
 public class EntityArrowBomb extends ArrowEntity {
 
-    public static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation("zeldamod:textures/entity/arrows/arrow.png");
+    public static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation("zeldamod:textures/item/bomb_arrow.png");
 
     public EntityArrowBomb(World worldIn, double x, double y, double z) {
         super(worldIn, x, y, z);

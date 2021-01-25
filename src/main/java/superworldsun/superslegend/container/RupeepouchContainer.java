@@ -4,7 +4,7 @@ package superworldsun.superslegend.container;
 import info.u_team.useful_backpacks.init.UsefulBackpacksContainers;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
-import net.minecraft.entity.player.*;
+import net.minecraft.arrows.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;

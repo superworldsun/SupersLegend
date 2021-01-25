@@ -43,9 +43,9 @@ public class MaskGiantsmask extends NonEnchantArmor {
     }
     
     
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
-        if (entity instanceof PlayerEntity) {
-            PlayerEntity livingEntity = (PlayerEntity) entity;
+    public void inventoryTick(ItemStack stack, World world, Entity arrows, int itemSlot, boolean isSelected) {
+        if (arrows instanceof PlayerEntity) {
+            PlayerEntity livingEntity = (PlayerEntity) arrows;
             if (!(livingEntity.inventory.armorInventory.get(0).getItem().equals(ItemList.mask_giantsmask))) {
             	{
                     livingEntity.stepHeight = 0.5f;

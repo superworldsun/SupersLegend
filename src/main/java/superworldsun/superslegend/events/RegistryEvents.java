@@ -1,6 +1,6 @@
 package superworldsun.superslegend.events;
 
-//import net.minecraft.entity.SharedMonsterAttributes;
+//import net.minecraft.arrows.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;

@@ -1,6 +1,6 @@
 package superworldsun.superslegend.items;
 
-/*import net.minecraft.entity.player.*;
+/*import net.minecraft.arrows.player.*;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
