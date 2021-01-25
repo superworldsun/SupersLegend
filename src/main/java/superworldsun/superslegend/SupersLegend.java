@@ -23,6 +23,7 @@ import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -32,6 +33,7 @@ import org.apache.logging.log4j.Logger;
 import superworldsun.superslegend.CustomLootMobs.*;
 import superworldsun.superslegend.blocks.*;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
+import superworldsun.superslegend.entities.mobs.fairy.FairyEntityRenderer;
 import superworldsun.superslegend.init.EntityInit;
 import superworldsun.superslegend.items.*;
 import superworldsun.superslegend.items.armors.*;
@@ -167,7 +169,6 @@ public class SupersLegend
 		OreGeneration.registerOres();
 		//MinecraftForge.EVENT_BUS.register(HealthHandler.class);
 		Logger.info("Setup method registered");
-		//OreGeneration.generate();
 
 		event.enqueueWork(() -> {
 			GlobalEntityTypeAttributes.put(EntityInit.FAIRYENTITY.get(), FairyEntity.prepareAttributes().create());

@@ -1,0 +1,45 @@
+{
+	"format_version": "1.8.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "superlegend:fairyentity"
+		}
+	},
+	"animations": {
+		"animation.fairy_model.fly": {
+			"loop": true,
+			"animation_length": 0.88,
+			"bones": {
+				"TopLeftWing": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.4": [0, 7.5, 0],
+						"0.84": [0, 0, 0]
+					}
+				},
+				"TopRightWing": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.4": [0, -10, 0],
+						"0.84": [0, 0, 0]
+					}
+				},
+				"BottomRightWing": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.4": [0, -15, 0],
+						"0.84": [0, 0, 0]
+					}
+				},
+				"BottomLeftWing": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.4": [0, 15, 0],
+						"0.84": [0, 0, 0]
+					}
+				}
+			},
+			"particle_effects": {}
+		}
+	}
+}
