@@ -1,4 +1,4 @@
-package superworldsun.superslegend.models.armor;
+package superworldsun.superslegend.models.masks;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;

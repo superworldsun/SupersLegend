@@ -4,11 +4,9 @@ import java.util.List;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 //import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 //import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.text.ITextComponent;
@@ -18,12 +16,11 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
-//import superworldsun.superslegend.models.armor.ModelPostmansHat;
-//import superworldsun.superslegend.models.armor.ModelPostmansHat;
+//import ModelPostmansHat;
+//import ModelPostmansHat;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superworldsun.superslegend.models.armor.ModelAllnightmask;
-import superworldsun.superslegend.models.armor.ModelPostmansHat;
+import superworldsun.superslegend.models.masks.ModelPostmansHat;
 
 
 public class MaskPostmanshat extends NonEnchantArmor {

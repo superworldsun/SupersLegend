@@ -22,7 +22,7 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 //import superworldsun.superslegend.models.armor.ModelMajorasMask;
 //import superworldsun.superslegend.models.armor.ModelMajorasMask;
-//import superworldsun.superslegend.models.armor.ModelPostmansHat;
+//import ModelPostmansHat;
 
 
 public class MaskMajorasmask extends NonEnchantArmor {
