@@ -196,6 +196,8 @@ public class SupersLegend
 			RenderTypeLookup.setRenderLayer(BlockList.spikes_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.grass_patch_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.hidden_shadow_block, RenderType.getTranslucent());
+			
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FAIRYENTITY.get(), FairyEntityRenderer::new);
 
 		}
 
