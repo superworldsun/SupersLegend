@@ -5,6 +5,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.fluid.Fluid;
@@ -23,6 +24,7 @@ import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -32,6 +34,7 @@ import org.apache.logging.log4j.Logger;
 import superworldsun.superslegend.CustomLootMobs.*;
 import superworldsun.superslegend.blocks.*;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
+import superworldsun.superslegend.entities.mobs.fairy.FairyEntityRenderer;
 import superworldsun.superslegend.init.EntityInit;
 import superworldsun.superslegend.items.*;
 import superworldsun.superslegend.items.armors.*;
@@ -196,6 +199,8 @@ public class SupersLegend
 			RenderTypeLookup.setRenderLayer(BlockList.spikes_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.grass_patch_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.hidden_shadow_block, RenderType.getTranslucent());
+
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FAIRYENTITY.get(), FairyEntityRenderer::new);
 
 		}
 
@@ -545,6 +550,9 @@ public class SupersLegend
 			registerProperty(ItemList.deku_shield, new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_, p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isHandActive() && p_239421_2_.getActiveItemStack() == p_239421_0_ ? 1.0F : 0.0F);
 
 			registerProperty(ItemList.hylian_shield, new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_, p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isHandActive() && p_239421_2_.getActiveItemStack() == p_239421_0_ ? 1.0F : 0.0F);
+
+
+
 		}
 	}
 }
