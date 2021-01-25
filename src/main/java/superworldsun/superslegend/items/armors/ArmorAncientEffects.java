@@ -23,6 +23,6 @@ public class ArmorAncientEffects extends NonEnchantArmor
     public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.YELLOW + "A armor "));
+		list.add(new StringTextComponent(TextFormatting.YELLOW + "Armor made from Ancient technology"));
 	}
 }

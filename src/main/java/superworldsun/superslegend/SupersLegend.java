@@ -281,7 +281,7 @@ public class SupersLegend
 			ItemList.shock_arrow = new ArrowShock(new Item.Properties().group(supers_legend)).setRegistryName(location("shock_arrow")),
 			ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
 			ItemList.ancient_arrow = new ArrowAncient(new Item.Properties().group(supers_legend)).setRegistryName(location("ancient_arrow")),
-			ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
+			//ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
 			ItemList.heros_secret_stash = new HerosSecretStash(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_secret_stash")),
 			ItemList.book_of_mudora = new BookOfMudora(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("book_of_mudora")),
 			ItemList.silver_scale = new SilverScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("silver_scale")),
@@ -289,6 +289,7 @@ public class SupersLegend
 			ItemList.rocs_feather = new RocsFeather(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rocs_feather")),
 			ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
 			ItemList.magic_cape = new MagicCape(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_cape")),
+			ItemList.bomb = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bomb")),
 			ItemList.empty_container = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("empty_container")),
 			ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
 			ItemList.dins_fire = new DinsFire(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
@@ -416,7 +417,11 @@ public class SupersLegend
 			ItemList.ancient_helmet = new ArmorAncientEffects("ancient_helmet",EquipmentSlotType.HEAD),
 			ItemList.ancient_cuirass = new ArmorAncientEffects("ancient_cuirass",EquipmentSlotType.CHEST),
 			ItemList.ancient_greaves = new ArmorAncientEffects("ancient_greaves",EquipmentSlotType.LEGS),
-			ItemList.ancient_boots = new ArmorAncientEffects("ancient_boots",EquipmentSlotType.FEET)
+			ItemList.ancient_boots = new ArmorAncientEffects("ancient_boots",EquipmentSlotType.FEET),
+			ItemList.barbarian_helmet = new ArmorAncientEffects("barbarian_helmet",EquipmentSlotType.HEAD),
+			ItemList.barbarian_armor = new ArmorAncientEffects("barbarian_armor",EquipmentSlotType.CHEST),
+			ItemList.barbarian_leg_wraps = new ArmorAncientEffects("barbarian_leg_wraps",EquipmentSlotType.LEGS),
+			ItemList.barbarian_boots = new ArmorAncientEffects("barbarian_boots",EquipmentSlotType.FEET)
 			);
 			Logger.info("Items registered.");		
 		}
