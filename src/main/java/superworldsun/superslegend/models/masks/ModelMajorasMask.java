@@ -132,12 +132,12 @@ public class ModelMajorasMask<T extends LivingEntity> extends BipedModel<T>
     }*/
 
     /*@Override
-    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        if (entity instanceof ArmorStandEntity) {
+    public void render(T arrows, float f, float f1, float f2, float f3, float f4, float f5) {
+        if (arrows instanceof ArmorStandEntity) {
             f3 = 0;
         }
 
-        super.render(entity, f, f1, f2, f3, f4, f5);
+        super.render(arrows, f, f1, f2, f3, f4, f5);
     }
 
     /**

@@ -20,14 +20,14 @@ public class EntityInit {
     //Arrows
     public static final RegistryObject<EntityType<EntityArrowFire>> FIRE_ARROW = ENTITIES.register("shock_arrow",
             () -> EntityType.Builder.<EntityArrowFire>create(EntityArrowFire::new, EntityClassification.MISC).size(0.5F, 0.5F)
-                    .build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+                    .build(new ResourceLocation(SupersLegend.modid, "textures/arrows/arrows").toString()));
     public static final RegistryObject<EntityType<EntityArrowIce>> ICE_ARROW = ENTITIES.register("ice_arrow",
             () -> EntityType.Builder.<EntityArrowIce>create(EntityArrowIce::new, EntityClassification.MISC).size(0.5F, 0.5F)
-                    .build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+                    .build(new ResourceLocation(SupersLegend.modid, "textures/arrows/arrows").toString()));
     public static final RegistryObject<EntityType<EntityArrowShock>> SHOCK_ARROW = ENTITIES.register("shock_arrow",
             () -> EntityType.Builder.<EntityArrowShock>create(EntityArrowShock::new, EntityClassification.MISC).size(0.5F, 0.5F)
-                    .build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+                    .build(new ResourceLocation(SupersLegend.modid, "textures/arrows/arrows").toString()));
     public static final RegistryObject<EntityType<EntityArrowBomb>> BOMB_ARROW = ENTITIES.register("bomb_arrow",
             () -> EntityType.Builder.<EntityArrowBomb>create(EntityArrowBomb::new, EntityClassification.MISC).size(0.5F, 0.5F)
-                    .build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));*/
+                    .build(new ResourceLocation(SupersLegend.modid, "textures/arrows/arrows").toString()));*/
 }
