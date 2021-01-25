@@ -1,4 +1,4 @@
-package superworldsun.superslegend.models.armor;
+package superworldsun.superslegend.models.masks;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;

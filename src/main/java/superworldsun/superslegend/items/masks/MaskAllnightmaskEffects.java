@@ -25,7 +25,7 @@ import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
-import superworldsun.superslegend.models.armor.ModelAllnightmask;
+import superworldsun.superslegend.models.masks.ModelAllnightmask;
 
 import javax.annotation.Nonnull;
 
