@@ -31,6 +31,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import superworldsun.superslegend.CustomLootMobs.*;
 import superworldsun.superslegend.blocks.*;
+import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
+import superworldsun.superslegend.init.EntityInit;
 import superworldsun.superslegend.items.*;
 import superworldsun.superslegend.items.armors.*;
 import superworldsun.superslegend.items.arrows.*;
@@ -69,6 +71,8 @@ public class SupersLegend
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
+
+		EntityInit.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 		
 		MinecraftForge.EVENT_BUS.register(this);
 		//Custom Loot Drops
@@ -164,6 +168,10 @@ public class SupersLegend
 		//MinecraftForge.EVENT_BUS.register(HealthHandler.class);
 		Logger.info("Setup method registered");
 		//OreGeneration.generate();
+
+		event.enqueueWork(() -> {
+			GlobalEntityTypeAttributes.put(EntityInit.FAIRYENTITY.get(), FairyEntity.prepareAttributes().create());
+		});
 	}
 
 	private void clientRegistries(final FMLClientSetupEvent event)
