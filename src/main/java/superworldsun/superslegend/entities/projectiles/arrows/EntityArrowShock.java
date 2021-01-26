@@ -34,11 +34,11 @@ public class EntityArrowShock extends ArrowEntity
 
     protected void arrowHit(LivingEntity entity) {
         BlockPos currentPos = entity.getPosition();
-    	System.out.println("Client:" + entity.world.isRemote);
+    	//System.out.println("Client:" + entity.world.isRemote);
 
-    	LightningBoltEntity l1 = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, entity.world);
-    	l1.setLocationAndAngles(entity.getPosX(), entity.getPosY(), entity.getPosZ(), 0, 0);
-    	entity.world.addEntity(l1);
+    	//LightningBoltEntity l1 = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, entity.world);
+    	//l1.setLocationAndAngles(entity.getPosX(), entity.getPosY(), entity.getPosZ(), 0, 0);
+    	//entity.world.addEntity(l1);
 
         entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_SHOCK, SoundCategory.PLAYERS, 1f, 1f);
 

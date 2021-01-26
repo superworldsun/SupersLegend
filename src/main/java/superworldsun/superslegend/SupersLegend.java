@@ -73,9 +73,10 @@ public class SupersLegend
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
+		MinecraftForge.EVENT_BUS.register(RegistryEvents.class);
 
 		EntityInit.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		
+
 		MinecraftForge.EVENT_BUS.register(this);
 		//Custom Loot Drops
 				CustomLootZombie customLootZombie = new CustomLootZombie();
@@ -220,6 +221,7 @@ public class SupersLegend
 			ItemList.silver_rupee = new SilverRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee")),
 			ItemList.gold_rupee = new GoldRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee")),
 			ItemList.heart = new Heart(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heart")),
+			ItemList.fairy_bottle = new FairyBottle(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("fairy_bottle")),
 			ItemList.triforce_power_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_power_shard")),
 			ItemList.triforce_wisdom_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_wisdom_shard")),
 			ItemList.triforce_courage_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_courage_shard")),

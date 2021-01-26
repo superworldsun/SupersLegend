@@ -15,6 +15,7 @@ public class ItemList
 		public static Item silver_rupee;
 		public static Item gold_rupee;
 		public static Item heart;
+		public static Item fairy_bottle;
 		public static Item rocs_feather;
 		public static Item magic_mirror;
 		public static Item magic_cape;
