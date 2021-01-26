@@ -196,7 +196,6 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
 
         super.livingTick();
     }
-    public void func_70030_z() {}
 
     public void baseTick() {
         super.baseTick();
