@@ -27,7 +27,7 @@ public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGG
 
 protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 15.99D, 15.99D, 15.99D);
 
-	public GrateBlock(Block.Properties properties) {
+	public GrateBlock(Properties properties) {
     super(properties);
     this.setDefaultState(getDefaultState().with(WATERLOGGED, false));
  }

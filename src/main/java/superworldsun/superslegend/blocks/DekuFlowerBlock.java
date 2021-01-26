@@ -16,7 +16,7 @@ public class DekuFlowerBlock extends Block
 {
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 7.0D, 14.0D);
 
-	   public DekuFlowerBlock(Block.Properties properties) {
+	   public DekuFlowerBlock(Properties properties) {
 	      super(properties);
 	   }
 

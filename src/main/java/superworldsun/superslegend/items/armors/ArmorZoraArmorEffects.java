@@ -22,7 +22,7 @@ public class ArmorZoraArmorEffects extends NonEnchantArmor
     public ArmorZoraArmorEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.zoraarmor, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.zoraarmor, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
         

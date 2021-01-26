@@ -16,7 +16,7 @@ public class GrassPatch extends Block
 {
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 
-	   public GrassPatch(Block.Properties properties) {
+	   public GrassPatch(Properties properties) {
 	      super(properties);
 	   }
 

@@ -22,7 +22,7 @@ public class MaskGiantsmask extends NonEnchantArmor {
     public MaskGiantsmask(String name, EquipmentSlotType slot) 
 
     {
-        super(ArmourMaterialList.giantsmask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.giantsmask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 

@@ -21,7 +21,7 @@ public class MaskStonemaskEffects extends NonEnchantArmor {
     public MaskStonemaskEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.stonemask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.stonemask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     

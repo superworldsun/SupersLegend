@@ -18,7 +18,7 @@ public class MaskGibdomask extends NonEnchantArmor {
     public MaskGibdomask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.gibdomask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.gibdomask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override

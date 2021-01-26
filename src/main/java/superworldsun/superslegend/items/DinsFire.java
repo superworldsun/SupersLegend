@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class DinsFire extends Item {
-   public DinsFire(Item.Properties builder) {
+   public DinsFire(Properties builder) {
       super(builder);
    }
 

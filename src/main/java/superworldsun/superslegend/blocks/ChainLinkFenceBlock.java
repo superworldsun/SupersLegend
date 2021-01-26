@@ -8,7 +8,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IWorldReader;
 
 public class ChainLinkFenceBlock extends Block {
-public ChainLinkFenceBlock(Block.Properties properties) {
+public ChainLinkFenceBlock(Properties properties) {
     super(properties);
  }
 

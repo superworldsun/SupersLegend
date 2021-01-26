@@ -28,7 +28,7 @@ import java.util.Vector;
 
 public class HoverBoots extends ArmorItem {
 	public HoverBoots(String name, EquipmentSlotType slot) {
-		super(ArmourMaterialList.hoverboots, slot, new Item.Properties().group(SupersLegend.supers_legend));
+		super(ArmourMaterialList.hoverboots, slot, new Properties().group(SupersLegend.supers_legend));
 		setRegistryName(SupersLegend.modid, name);
 	}
 

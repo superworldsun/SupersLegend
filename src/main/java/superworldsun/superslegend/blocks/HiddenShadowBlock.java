@@ -15,7 +15,7 @@ import net.minecraft.world.IBlockReader;
 public class HiddenShadowBlock extends Block
 
 {
-	   public HiddenShadowBlock(Block.Properties properties) {
+	   public HiddenShadowBlock(Properties properties) {
 	      super(properties);
 	   }
 

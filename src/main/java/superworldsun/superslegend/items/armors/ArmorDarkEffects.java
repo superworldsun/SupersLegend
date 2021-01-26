@@ -21,7 +21,7 @@ public class ArmorDarkEffects extends NonEnchantArmor
     public ArmorDarkEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.dark, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.dark, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
         

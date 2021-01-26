@@ -24,7 +24,7 @@ public class LynelBowX3 extends BowItem {
     public float inaccuracy = 1f;
     public int shotType;
 
-    public LynelBowX3(int shotType, Item.Properties builder) {
+    public LynelBowX3(int shotType, Properties builder) {
         super(builder);
 
         this.shotType = shotType;

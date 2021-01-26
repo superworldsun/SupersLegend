@@ -19,7 +19,7 @@ public class RocsCapeEffects extends NonEnchantArmor {
     public RocsCapeEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.rocscape, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.rocscape, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override

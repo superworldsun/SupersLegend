@@ -18,7 +18,7 @@ public class MaskGreatfairymask extends NonEnchantArmor {
     public MaskGreatfairymask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.greatfairymask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.greatfairymask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override
