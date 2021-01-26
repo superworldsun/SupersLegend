@@ -76,6 +76,7 @@ public class SupersLegend
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 		MinecraftForge.EVENT_BUS.register(RegistryEvents.class);
 
+
 		EntityInit.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
 		MinecraftForge.EVENT_BUS.register(this);
