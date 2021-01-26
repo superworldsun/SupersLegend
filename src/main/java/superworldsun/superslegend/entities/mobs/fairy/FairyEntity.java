@@ -24,6 +24,7 @@ import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.*;
+import net.minecraft.util.datafix.fixes.EntityHealth;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -33,11 +34,24 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.registries.EntityInit;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
 
 public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
+
+    /**
+     * randomly selected ChunkCoordinates in a 7x6x7 box around the bat (y offset -2 to 4) towards which it will fly.
+     * upon getting close a new target will be selected
+     */
+    protected BlockPos currentFlightTarget;
+
+    /** Home coordinates where this fairy spawned; will not wander too far from here */
+    protected BlockPos home = null;
+
+    /** Fairies released from bottles into the wild set this to false so they cannot be recaptured */
+    protected boolean canBeBottled = true;
 
 
     public FairyEntity(EntityType<? extends AnimalEntity> type, World world) {
@@ -54,7 +68,8 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
     }
 
     public static AttributeModifierMap.MutableAttribute prepareAttributes() {
-        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D)
+        return MonsterEntity.func_234295_eP_()
+                .createMutableAttribute(Attributes.MAX_HEALTH, 20.0D)
                 .createMutableAttribute(Attributes.FLYING_SPEED, 0.8F)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 1.0D)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F);
@@ -72,20 +87,41 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
     }
 
+    @Override
+    public void setHomePosAndDistance(BlockPos pos, int distance) {
+        setPositionAndUpdate(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D);
+        home = pos;
+    }
+
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP;
     }
 
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_BAT_DEATH;
-    }
 
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_BAT_HURT;
+    @Override
+    protected void collideWithEntity(Entity entityIn) {
+        if (entityIn instanceof PlayerEntity) {
+            ((PlayerEntity) entityIn).getHealth();
+            PlayerEntity playerin = (PlayerEntity) entityIn;
+            if (playerin.getHealth() < 18) {
+                playerin.heal(1.0F);
+                setDead();
+            }
+        }
     }
 
     protected boolean isDespawnPeaceful() {
         return false;
+    }
+
+    @Override
+    public boolean canBePushed() {
+        return false;
+    }
+
+    @Override
+    public boolean isInvulnerable() {
+        return true;
     }
 
     public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
@@ -101,7 +137,8 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
         }
     }
 
-    protected PathNavigator createNavigator(World worldIn) {
+    @Nonnull
+    protected PathNavigator createNavigator(@Nonnull World worldIn) {
         FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, worldIn) {
             public boolean canEntityStandOnPos(BlockPos pos) {
                 return !this.world.getBlockState(pos.down()).isAir();
@@ -113,7 +150,7 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
         return flyingpathnavigator;
     }
 
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(@Nonnull Pose poseIn,@Nonnull EntitySize sizeIn) {
         return this.isChild() ? sizeIn.height * 0.5F : sizeIn.height * 0.5F;
     }
 
@@ -128,11 +165,13 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
         return true;
     }
 
+    @Override
+    @Nonnull
     public CreatureAttribute getCreatureAttribute() {
         return CreatureAttribute.ARTHROPOD;
     }
 
-    protected void handleFluidJump(ITag<Fluid> fluidTag) {
+    protected void handleFluidJump(@Nonnull ITag<Fluid> fluidTag) {
         this.setMotion(this.getMotion().add(0.0D, 0.5D, 0.0D));
     }
 
@@ -149,7 +188,7 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
         if (this.world.isRemote) {
             if (this.rand.nextInt(28) == 0 && !this.isSilent()) {
                 this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, this.getSoundCategory(), 0.2F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
-                this.world.addParticle(ParticleTypes.POOF, this.getPosXRandom(0.1D), this.getPosYRandom(), this.getPosZRandom(0.1D), 0.0D, 0.0D, 0.0D);
+                this.world.addParticle(ParticleTypes.POOF, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D, 0.0D);
             }
 
 
@@ -157,6 +196,7 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
 
         super.livingTick();
     }
+    public void func_70030_z() {}
 
     public void baseTick() {
         super.baseTick();
@@ -220,10 +260,10 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
 
         @Nullable
         private Vector3d getRandomLocation() {
-            Vector3d vector3d = FairyEntity.this.getLook(0.0F);
+            Vector3d vector3d = FairyEntity.this.getLook(0.3F);
             int i = 8;
             Vector3d vector3d2 = RandomPositionGenerator.findAirTarget(FairyEntity.this, 3, 3, vector3d, ((float) Math.PI / 2F), 1, 1);
-            return vector3d2 != null ? vector3d2 : RandomPositionGenerator.findGroundTarget(FairyEntity.this, 3, 3, -3, vector3d, (float) Math.PI / 2F);
+            return vector3d2 != null ? vector3d2 : RandomPositionGenerator.findGroundTarget(FairyEntity.this, 6, 6, -3, vector3d, (float) Math.PI / 2F);
         }
     }
 
