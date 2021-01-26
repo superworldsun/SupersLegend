@@ -189,15 +189,18 @@ public class SupersLegend
 		@SubscribeEvent
 		static void clientSetup(final FMLClientSetupEvent event)
 		{
+			// REGISTER SOUNDS
 			MinecraftForge.EVENT_BUS.register(SoundHandler.class);
 
+			// REGISTER BLOCK RENDERS
 			RenderTypeLookup.setRenderLayer(BlockList.chain_link_fence_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.deku_flower_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.grate_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.spikes_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.grass_patch_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.hidden_shadow_block, RenderType.getTranslucent());
-			
+
+			// REGISTER MOBS/ENTITY RENDERS
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FAIRYENTITY.get(), FairyEntityRenderer::new);
 
 		}
