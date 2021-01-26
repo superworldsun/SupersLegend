@@ -74,9 +74,10 @@ public class SupersLegend
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
+		MinecraftForge.EVENT_BUS.register(RegistryEvents.class);
 
 		EntityInit.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		
+
 		MinecraftForge.EVENT_BUS.register(this);
 		//Custom Loot Drops
 				CustomLootZombie customLootZombie = new CustomLootZombie();
@@ -170,7 +171,6 @@ public class SupersLegend
 		OreGeneration.registerOres();
 		//MinecraftForge.EVENT_BUS.register(HealthHandler.class);
 		Logger.info("Setup method registered");
-		//OreGeneration.generate();
 
 		event.enqueueWork(() -> {
 			GlobalEntityTypeAttributes.put(EntityInit.FAIRYENTITY.get(), FairyEntity.prepareAttributes().create());
@@ -191,14 +191,17 @@ public class SupersLegend
 		@SubscribeEvent
 		static void clientSetup(final FMLClientSetupEvent event)
 		{
+			// REGISTER SOUNDS
 			MinecraftForge.EVENT_BUS.register(SoundHandler.class);
 
+			// REGISTER BLOCK RENDERS
 			RenderTypeLookup.setRenderLayer(BlockList.chain_link_fence_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.deku_flower_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.grate_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.spikes_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.grass_patch_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.hidden_shadow_block, RenderType.getTranslucent());
+
 
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FAIRYENTITY.get(), FairyEntityRenderer::new);
 
@@ -219,6 +222,7 @@ public class SupersLegend
 			ItemList.silver_rupee = new SilverRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("silver_rupee")),
 			ItemList.gold_rupee = new GoldRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("gold_rupee")),
 			ItemList.heart = new Heart(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heart")),
+			ItemList.fairy_bottle = new FairyBottle(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("fairy_bottle")),
 			ItemList.triforce_power_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_power_shard")),
 			ItemList.triforce_wisdom_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_wisdom_shard")),
 			ItemList.triforce_courage_shard = new Item(new Item.Properties().maxStackSize(7).group(supers_legend)).setRegistryName(location("triforce_courage_shard")),
