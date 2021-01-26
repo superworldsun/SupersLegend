@@ -101,10 +101,6 @@ public class FairyEntityModel extends AdvancedEntityModel<FairyEntity> {
         return ImmutableList.of(root);
     }
 
-    @Override
-    public Iterable<AdvancedModelBox> getAllParts() {
-        return ImmutableList.of(root, body, TopLeftWing_r1, BottomLeftWing_r1, TopRightWing_r1, BottomRightWing_r1);
-    }
 
     public void setRotationAngle(AdvancedModelBox advancedModelBox, float x, float y, float z) {
         advancedModelBox.rotateAngleX = x;

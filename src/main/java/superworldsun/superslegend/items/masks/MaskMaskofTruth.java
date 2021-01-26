@@ -18,7 +18,7 @@ public class MaskMaskofTruth extends NonEnchantArmor {
     public MaskMaskofTruth(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.maskoftruth, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.maskoftruth, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override

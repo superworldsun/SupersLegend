@@ -17,7 +17,7 @@ public class PotBlock extends Block
 {
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
 
-	   public PotBlock(Block.Properties properties) {
+	   public PotBlock(Properties properties) {
 	      super(properties);
 	   }
 

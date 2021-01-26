@@ -16,7 +16,7 @@ public class ArmorPurpleEffects extends NonEnchantArmor
     public ArmorPurpleEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.purple, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.purple, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     

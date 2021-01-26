@@ -16,7 +16,7 @@ public class BushBlock extends Block
 {
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
 
-	   public BushBlock(Block.Properties properties) {
+	   public BushBlock(Properties properties) {
 	      super(properties);
 	   }
 

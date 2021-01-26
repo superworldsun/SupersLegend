@@ -28,7 +28,7 @@ public class MaskPostmanshat extends NonEnchantArmor {
 
     
     {
-        super(ArmourMaterialList.postmanshat, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.postmanshat, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 

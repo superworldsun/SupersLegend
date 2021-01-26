@@ -18,7 +18,7 @@ public class MaskKafeismask extends NonEnchantArmor {
     public MaskKafeismask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.kafeismask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.kafeismask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override

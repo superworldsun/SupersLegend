@@ -18,7 +18,7 @@ public class MaskRomanismask extends NonEnchantArmor {
     public MaskRomanismask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.romanismask, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.romanismask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override

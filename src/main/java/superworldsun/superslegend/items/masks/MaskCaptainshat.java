@@ -18,7 +18,7 @@ public class MaskCaptainshat extends NonEnchantArmor {
     public MaskCaptainshat(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.captainshat, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.captainshat, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override

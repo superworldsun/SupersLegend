@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class ItemCustomShield extends ShieldItem
 {
-	public ItemCustomShield(Item.Properties builder) {
+	public ItemCustomShield(Properties builder) {
 	      super(builder);
 	}
 	      

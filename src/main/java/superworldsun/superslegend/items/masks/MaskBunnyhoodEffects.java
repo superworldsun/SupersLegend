@@ -25,7 +25,7 @@ public class MaskBunnyhoodEffects extends NonEnchantArmor {
     public MaskBunnyhoodEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.bunnyhood, slot, new Item.Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.bunnyhood, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
