@@ -1,20 +1,15 @@
 package superworldsun.superslegend.entities.mobs.fairy;
 
-import com.google.common.cache.RemovalNotification;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.IFlyingAnimal;
-import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
@@ -24,7 +19,6 @@ import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.*;
-import net.minecraft.util.datafix.fixes.EntityHealth;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -32,19 +26,14 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.lists.ItemList;
-import superworldsun.superslegend.registries.EntityInit;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
 
-public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
+public class FairyEntity extends AnimalEntity implements IFlyingAnimal{
 
-    /**
-     * randomly selected ChunkCoordinates in a 7x6x7 box around the bat (y offset -2 to 4) towards which it will fly.
-     * upon getting close a new target will be selected
-     */
     protected BlockPos currentFlightTarget;
 
     /** Home coordinates where this fairy spawned; will not wander too far from here */
@@ -150,7 +139,7 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
         return flyingpathnavigator;
     }
 
-    protected float getStandingEyeHeight(@Nonnull Pose poseIn,@Nonnull EntitySize sizeIn) {
+    protected float getStandingEyeHeight(@Nonnull Pose poseIn, @Nonnull EntitySize sizeIn) {
         return this.isChild() ? sizeIn.height * 0.5F : sizeIn.height * 0.5F;
     }
 
@@ -265,6 +254,5 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
             return vector3d2 != null ? vector3d2 : RandomPositionGenerator.findGroundTarget(FairyEntity.this, 6, 6, -3, vector3d, (float) Math.PI / 2F);
         }
     }
-
 
 }
