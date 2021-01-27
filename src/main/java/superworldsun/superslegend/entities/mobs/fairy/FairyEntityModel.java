@@ -1,15 +1,9 @@
 package superworldsun.superslegend.entities.mobs.fairy;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.ResourceLocation;
 import superworldsun.superslegend.ModelingAPI.helpers.AdvancedEntityModel;
 import superworldsun.superslegend.ModelingAPI.helpers.AdvancedModelBox;
-import superworldsun.superslegend.SupersLegend;
 
 public class FairyEntityModel extends AdvancedEntityModel<FairyEntity> {
     // ROOT meaning base for whole model
@@ -66,14 +60,6 @@ public class FairyEntityModel extends AdvancedEntityModel<FairyEntity> {
         this.updateDefaultPose();
     }
 
-    //@Override
-    //public void setRotationAngles(FairyEntity weirdMobEntity, float v, float v1, float v2, float v3, float v4) {
-
-    //}
-
-
-
-
     @Override
     public void setRotationAngles(FairyEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.resetToDefaultPose();
@@ -96,11 +82,16 @@ public class FairyEntityModel extends AdvancedEntityModel<FairyEntity> {
         }
     }
 
+
     @Override
     public Iterable<ModelRenderer> getParts() {
         return ImmutableList.of(root);
     }
 
+    @Override
+    public Iterable<AdvancedModelBox> getAllParts() {
+        return ImmutableList.of(root, body, TopLeftWing_r1, BottomLeftWing_r1, TopRightWing_r1, BottomRightWing_r1);
+    }
 
     public void setRotationAngle(AdvancedModelBox advancedModelBox, float x, float y, float z) {
         advancedModelBox.rotateAngleX = x;
