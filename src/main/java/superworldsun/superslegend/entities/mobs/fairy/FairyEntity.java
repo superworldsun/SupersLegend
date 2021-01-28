@@ -1,30 +1,23 @@
 package superworldsun.superslegend.entities.mobs.fairy;
 
-import com.google.common.cache.RemovalNotification;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.IFlyingAnimal;
-import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.*;
-import net.minecraft.util.datafix.fixes.EntityHealth;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -32,39 +25,24 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.lists.ItemList;
-import superworldsun.superslegend.registries.EntityInit;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
+import static superworldsun.superslegend.init.SoundInit.FAIRY_HEAL_ON_TOUCH;
+import static superworldsun.superslegend.init.SoundInit.FAIRY_TWINKLE;
+
 
 public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
 
-    /**
-     * randomly selected ChunkCoordinates in a 7x6x7 box around the bat (y offset -2 to 4) towards which it will fly.
-     * upon getting close a new target will be selected
-     */
-    protected BlockPos currentFlightTarget;
-
     /** Home coordinates where this fairy spawned; will not wander too far from here */
     protected BlockPos home = null;
-
-    /** Fairies released from bottles into the wild set this to false so they cannot be recaptured */
-    protected boolean canBeBottled = true;
 
 
     public FairyEntity(EntityType<? extends AnimalEntity> type, World world) {
         super(type,world);
         this.moveController = new FlyingMovementController(this, 20, true);
-    }
-
-    public int getMaxSpawnedInChunk() {
-        return 10;
-    }
-
-    public boolean isMaxGroupSize(int sizeIn) {
-        return false;
     }
 
     public static AttributeModifierMap.MutableAttribute prepareAttributes() {
@@ -78,24 +56,19 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
     @Override
     protected void registerGoals()
     {
-        this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
-        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, PlayerEntity.class, 10.0F, 0.5D, 0.5D));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PlayerEntity.class, 10.0F, 0.5D, 0.5D));
         this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 10.0F, 0.2F));
         this.goalSelector.addGoal(3, new RandomWalkingGoal(this, 0.6d));
-        this.goalSelector.addGoal(5, new WanderGoal());
+        this.goalSelector.addGoal(4, new WanderGoal());
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
     }
 
     @Override
     public void setHomePosAndDistance(BlockPos pos, int distance) {
-        setPositionAndUpdate(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D);
+        setPositionAndUpdate(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D);
         home = pos;
     }
 
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP;
-    }
 
 
     @Override
@@ -103,8 +76,11 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
         if (entityIn instanceof PlayerEntity) {
             ((PlayerEntity) entityIn).getHealth();
             PlayerEntity playerin = (PlayerEntity) entityIn;
-            if (playerin.getHealth() < 18) {
-                playerin.heal(1.0F);
+            if (!playerin.isCreative() && playerin.getHealth() < 20) {
+                playerin.heal(20);
+                this.playSound(FAIRY_HEAL_ON_TOUCH, 0.01f, 0.8f + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
+
+
                 setDead();
             }
         }
@@ -161,7 +137,15 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
     protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
     }
 
+    private long lastPlayed;
+    @Override
     protected boolean makeFlySound() {
+        long soundLength = 7000;
+        if (System.currentTimeMillis() - lastPlayed > soundLength) {
+            // PLAY SOUND
+            lastPlayed = System.currentTimeMillis();
+            this.playSound(FAIRY_TWINKLE, 0.01f, 0.1f + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
+        }
         return true;
     }
 
@@ -178,20 +162,11 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
 
     public void livingTick() {
         if (this.onGround) {
-            this.setMotion(this.getMotion().mul(1.0D, 1.0D, 1.0D));
+            this.setMotion(this.getMotion().mul(1.0D, 0.5D, 1.0D));
         }
 
         if (this.inWater) {
-            this.setMotion(this.getMotion().mul(1.0D, 1.0D, 1.0D));
-        }
-
-        if (this.world.isRemote) {
-            if (this.rand.nextInt(28) == 0 && !this.isSilent()) {
-                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, this.getSoundCategory(), 0.2F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
-                this.world.addParticle(ParticleTypes.POOF, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D, 0.0D);
-            }
-
-
+            this.setMotion(this.getMotion().mul(1.0D, 0.5D, 1.0D));
         }
 
         super.livingTick();

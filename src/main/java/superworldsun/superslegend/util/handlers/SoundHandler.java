@@ -29,12 +29,8 @@ import static superworldsun.superslegend.init.SoundInit.ARROW_HIT_ICE;
 import static superworldsun.superslegend.init.SoundInit.ARROW_HIT_SHOCK;
 import static superworldsun.superslegend.init.SoundInit.ARROW_HIT_ANCIENT;
 import static superworldsun.superslegend.init.SoundInit.HOVER_BOOTS;
-
-//MANUALLY IMPORT EACH SOUND EFFECT HERE <<<<<<>>>>>>
-
-//MANUALLY IMPORT EACH SOUND EFFECT HERE <<<<<<>>>>>>
-
-//MANUALLY IMPORT EACH SOUND EFFECT HERE <<<<<<>>>>>>
+import static superworldsun.superslegend.init.SoundInit.FAIRY_HEAL_ON_TOUCH;
+import static superworldsun.superslegend.init.SoundInit.FAIRY_TWINKLE;
 
 //MANUALLY IMPORT EACH SOUND EFFECT HERE <<<<<<>>>>>>
 
@@ -63,6 +59,8 @@ public class SoundHandler
     	ARROW_HIT_SHOCK = registerSound("arrow_hit_shock");
     	ARROW_HIT_ANCIENT = registerSound("arrow_hit_ancient");
     	HOVER_BOOTS = registerSound("hover_boots");
+    	FAIRY_HEAL_ON_TOUCH = registerSound("fairy_heal_on_touch");
+		FAIRY_TWINKLE = registerSound("fairy_twinkle");
     	
     	
     	SUNS_SONG = registerSound("suns_song");

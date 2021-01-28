@@ -88,5 +88,15 @@
     "category": "player",
     "subtitle": "superslegend.subtitle.hover_boots",
     "sounds": [ "superslegend:hover_boots" ]
-	}
+	},
+  "fairy_heal_on_touch": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.fairy_heal_on_touch",
+    "sounds": [ "superslegend:fairy_heal_on_touch" ]
+  },
+  "fairy_twinkle": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.fairy_twinkle",
+    "sounds": [ "superslegend:fairy_twinkle" ]
+  }
 }

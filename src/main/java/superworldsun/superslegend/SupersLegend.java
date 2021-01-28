@@ -3,9 +3,9 @@ package superworldsun.superslegend;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.fluid.Fluid;
@@ -18,12 +18,12 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -36,6 +36,7 @@ import superworldsun.superslegend.blocks.*;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntityRenderer;
 import superworldsun.superslegend.init.EntityInit;
+import superworldsun.superslegend.init.ParticleInit;
 import superworldsun.superslegend.items.*;
 import superworldsun.superslegend.items.armors.*;
 import superworldsun.superslegend.items.arrows.*;
@@ -48,10 +49,9 @@ import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.PotionList;
 import superworldsun.superslegend.lists.ToolMaterialList;
+import superworldsun.superslegend.particles.fairy.FairyParticle;
 import superworldsun.superslegend.util.handlers.SoundHandler;
 import superworldsun.superslegend.world.gen.OreGeneration;
-
-import javax.annotation.Nonnull;
 
 import static net.minecraft.item.ItemModelsProperties.registerProperty;
 
@@ -75,6 +75,8 @@ public class SupersLegend
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 		MinecraftForge.EVENT_BUS.register(RegistryEvents.class);
+
+		ParticleInit.subscribe(FMLJavaModLoadingContext.get().getModEventBus());
 
 		EntityInit.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
@@ -202,11 +204,10 @@ public class SupersLegend
 			RenderTypeLookup.setRenderLayer(BlockList.grass_patch_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.hidden_shadow_block, RenderType.getTranslucent());
 
-
+			// REGISTER ENTITY/MOB RENDERS
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FAIRYENTITY.get(), FairyEntityRenderer::new);
 
 		}
-
 
 
 		@SubscribeEvent
@@ -521,6 +522,13 @@ public class SupersLegend
 							PotionList.zoras_grace_effect = new PotionList.ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.SWIM_SPEED.get(), "55FCED67-E92A-486E-9800-B47F202C4386", 0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("zoras_grace"))
 					);
 		 }
+
+		@SubscribeEvent
+		public static void registerParticleFactories(ParticleFactoryRegisterEvent event) {
+			// REGISTER PARTICLE FACTORIES
+			Minecraft.getInstance().particles.registerFactory(ParticleInit.FAIRY.get(), FairyParticle.FairyFactory::new);
+		}
+
 
 		@SubscribeEvent
 		public static void setModelProperties(FMLClientSetupEvent event) {
