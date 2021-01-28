@@ -14,6 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.lwjgl.system.CallbackI;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
+import superworldsun.superslegend.entities.mobs.poe.PoeEntity;
 
 import java.util.Random;
 
@@ -23,6 +24,7 @@ public class EntityInit {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, SupersLegend.modid);
 
 	public static final RegistryObject<EntityType<FairyEntity>> FAIRYENTITY = ENTITY_TYPES.register("fairyentity", () -> EntityType.Builder.create(FairyEntity::new, EntityClassification.CREATURE).size(.5f, .5f).setShouldReceiveVelocityUpdates(false).build("fairyentity"));
+	public static final RegistryObject<EntityType<PoeEntity>> POEENTITY = ENTITY_TYPES.register("poeentity", () -> EntityType.Builder.create(PoeEntity::new, EntityClassification.MONSTER).size(.5f, .5f).setShouldReceiveVelocityUpdates(false).build("poeentity"));
 
 
 

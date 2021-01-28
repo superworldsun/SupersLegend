@@ -35,6 +35,8 @@ import superworldsun.superslegend.CustomLootMobs.*;
 import superworldsun.superslegend.blocks.*;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntityRenderer;
+import superworldsun.superslegend.entities.mobs.poe.PoeEntity;
+import superworldsun.superslegend.entities.mobs.poe.PoeEntityRenderer;
 import superworldsun.superslegend.init.EntityInit;
 import superworldsun.superslegend.init.ParticleInit;
 import superworldsun.superslegend.items.*;
@@ -176,6 +178,7 @@ public class SupersLegend
 
 		event.enqueueWork(() -> {
 			GlobalEntityTypeAttributes.put(EntityInit.FAIRYENTITY.get(), FairyEntity.prepareAttributes().create());
+			GlobalEntityTypeAttributes.put(EntityInit.POEENTITY.get(), PoeEntity.prepareAttributes().create());
 		});
 	}
 
@@ -206,7 +209,7 @@ public class SupersLegend
 
 			// REGISTER ENTITY/MOB RENDERS
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FAIRYENTITY.get(), FairyEntityRenderer::new);
-
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.POEENTITY.get(), PoeEntityRenderer::new);
 		}
 
 
