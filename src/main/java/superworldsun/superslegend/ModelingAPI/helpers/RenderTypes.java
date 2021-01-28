@@ -60,7 +60,7 @@ public class RenderTypes extends RenderType {
 
     public static RenderType getGhost(ResourceLocation p_228652_0_) {
         TextureState lvt_1_1_ = new TextureState(p_228652_0_, false, false);
-        return makeType("ghost_am", DefaultVertexFormats.ENTITY, 7, 262144, false, true, RenderType.State.getBuilder().texture(lvt_1_1_).writeMask(COLOR_DEPTH_WRITE).depthTest(DEPTH_LEQUAL).alpha(DEFAULT_ALPHA).diffuseLighting(RenderState.DIFFUSE_LIGHTING_DISABLED).lightmap(LIGHTMAP_ENABLED).overlay(OVERLAY_ENABLED).transparency(GHOST_TRANSPARANCY).cull(RenderState.CULL_DISABLED).build(true));
+        return makeType("ghost_am", DefaultVertexFormats.ENTITY, 7, 262144, false, true, RenderType.State.getBuilder().texture(lvt_1_1_).writeMask(COLOR_DEPTH_WRITE).depthTest(DEPTH_LEQUAL).alpha(DEFAULT_ALPHA).diffuseLighting(RenderState.DIFFUSE_LIGHTING_DISABLED).lightmap(LIGHTMAP_ENABLED).overlay(OVERLAY_ENABLED).transparency(GHOST_TRANSPARANCY).cull(RenderState.CULL_ENABLED).build(true));
     }
 
 
