@@ -112,6 +112,9 @@ public class ItemList
 		public static Item razor_sword;
 		public static Item gilded_sword;
 		public static Item master_sword;
+		public static Item giants_knife;
+		public static Item broken_giants_knife;
+		public static Item biggorons_sword;
 
 		public static Item gaurdian_sword;
 		
@@ -237,4 +240,7 @@ public class ItemList
 		public static Item dark_boots;
 		public static RocsCapeEffects rocs_cape;
 		public static Item pegasus_boots;
+
+		//Eggs
+    	public static Item poe_egg;
 }
