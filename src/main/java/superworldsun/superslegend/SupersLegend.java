@@ -6,14 +6,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ShieldItem;
+import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Potion;
@@ -67,13 +65,13 @@ public class SupersLegend
 	public static final ItemGroup supers_legend = new SupersLegendItemGroup();
 
 
-	public SupersLegend() 
+	public SupersLegend()
 	{
 		instance = this;
-		
+
 		//PotionList.EFFECTS.register(MinecraftForge.EVENT_BUS);
 		//PotionList.POTIONS.register(MinecraftForge.EVENT_BUS);
-		
+
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 		MinecraftForge.EVENT_BUS.register(RegistryEvents.class);
@@ -169,7 +167,7 @@ public class SupersLegend
 				MinecraftForge.EVENT_BUS.register(CustomLootVindicator);
 		
 	}
-	
+
 	private void setup(final FMLCommonSetupEvent event)
 	{
 		OreGeneration.registerOres();

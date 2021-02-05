@@ -1,6 +1,7 @@
 package superworldsun.superslegend.lists;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.SpawnEggItem;
 import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.armors.*;
 import superworldsun.superslegend.items.masks.*;
@@ -237,4 +238,8 @@ public class ItemList
 		public static Item dark_boots;
 		public static RocsCapeEffects rocs_cape;
 		public static Item pegasus_boots;
+
+
+		// Spawn Eggs
+		public static SpawnEggItem poe_spawn_egg;
 }

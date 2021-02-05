@@ -31,6 +31,8 @@ import static superworldsun.superslegend.init.SoundInit.ARROW_HIT_ANCIENT;
 import static superworldsun.superslegend.init.SoundInit.HOVER_BOOTS;
 import static superworldsun.superslegend.init.SoundInit.FAIRY_HEAL_ON_TOUCH;
 import static superworldsun.superslegend.init.SoundInit.FAIRY_TWINKLE;
+import static superworldsun.superslegend.init.SoundInit.POE_LAUGH;
+
 
 //MANUALLY IMPORT EACH SOUND EFFECT HERE <<<<<<>>>>>>
 
@@ -61,6 +63,7 @@ public class SoundHandler
     	HOVER_BOOTS = registerSound("hover_boots");
     	FAIRY_HEAL_ON_TOUCH = registerSound("fairy_heal_on_touch");
 		FAIRY_TWINKLE = registerSound("fairy_twinkle");
+		POE_LAUGH = registerSound("poe_laugh");
     	
     	
     	SUNS_SONG = registerSound("suns_song");

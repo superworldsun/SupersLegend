@@ -27,8 +27,11 @@ public class SoundInit
     public static SoundEvent ARROW_HIT_SHOCK;
     public static SoundEvent ARROW_HIT_ANCIENT;
     public static SoundEvent HOVER_BOOTS;
+
+    // Entities Mobs
     public static SoundEvent FAIRY_HEAL_ON_TOUCH;
     public static SoundEvent FAIRY_TWINKLE;
+    public static SoundEvent POE_LAUGH;
 
 
 }
