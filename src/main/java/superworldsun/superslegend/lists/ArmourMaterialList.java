@@ -10,7 +10,7 @@ import superworldsun.superslegend.SupersLegend;
 
 public enum ArmourMaterialList implements IArmorMaterial
 {
-	//armor													helm, chest, legs, boots
+	//armor													boots, legs, chest, helm
 	kokiri		("kokiri", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	zora		("zora", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	goron		("goron", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
@@ -19,7 +19,7 @@ public enum ArmourMaterialList implements IArmorMaterial
 	dark		("dark", 0, new int[] 			{1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	zoraarmor	("zoraarmor", 0, new int[] 		{1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	flamebreaker("flamebreaker", 0, new int[] 	{1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	ancient		("ancient", 0, new int[] 			{3, 8, 6, 3}, 0, null, "item.armor.equip_leather", 0.0f),
+	ancient		("ancient", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	barbarian	("barbarian", 0, new int[] 		{1, 1, 2, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	flippers	("flippers", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	rocscape	("rocscape", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
