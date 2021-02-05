@@ -9,19 +9,29 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import superworldsun.superslegend.SupersLegend;
+import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
 import superworldsun.superslegend.init.SoundInit;
 import superworldsun.superslegend.lists.ItemList;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 
 // TODO Remove Fire from lightning strike
 public class EntityArrowShock extends ArrowEntity
 {
 
+    public static final ResourceLocation ARROW = new ResourceLocation(SupersLegend.modid, "textures/entity/arrows/shock_arrow.png");
+
+    @ParametersAreNonnullByDefault
+    public ResourceLocation getEntityTexture(EntityArrowShock entity) {
+        return ARROW;
+    }
 
     public EntityArrowShock(World worldIn, LivingEntity shooter){
         super(worldIn, shooter);
