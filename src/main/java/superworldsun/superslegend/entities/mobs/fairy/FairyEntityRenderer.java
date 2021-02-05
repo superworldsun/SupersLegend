@@ -41,7 +41,7 @@ public class FairyEntityRenderer extends MobRenderer<FairyEntity, FairyEntityMod
         float r = 255;
         float g = 153;
         float b = 255;
-        float scale = 0.9f;
+        float scale = 0.5f;
         entityIn.world.addParticle(new FairyParticleData(r, g, b, scale),
                 entityIn.getPosX(),
                 entityIn.getPosY() + 0.2,

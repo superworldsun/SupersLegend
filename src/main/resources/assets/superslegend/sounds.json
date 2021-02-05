@@ -90,13 +90,18 @@
     "sounds": [ "superslegend:hover_boots" ]
 	},
   "fairy_heal_on_touch": {
-    "category": "player",
+    "category": "entity",
     "subtitle": "superslegend.subtitle.fairy_heal_on_touch",
     "sounds": [ "superslegend:fairy_heal_on_touch" ]
   },
   "fairy_twinkle": {
-    "category": "player",
+    "category": "entity",
     "subtitle": "superslegend.subtitle.fairy_twinkle",
     "sounds": [ "superslegend:fairy_twinkle" ]
+  },
+  "poe_laugh": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.poe_laughing",
+    "sounds": [ "superslegend:poe_laugh" ]
   }
 }

@@ -1,194 +1,228 @@
-package superworldsun.superslegend.entities.mobs.poe;
+package superworldsun.superslegend.entities.mobs.poe;// Made with Blockbench 3.7.5
+// Exported for Minecraft version 1.15
+// Paste this class into your mod and generate all required imports
 
+
+import com.github.alexthe666.citadel.animation.IAnimatedEntity;
+import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
+import com.github.alexthe666.citadel.client.model.AdvancedModelBox;
+import com.github.alexthe666.citadel.client.model.ModelAnimator;
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import superworldsun.superslegend.ModelingAPI.helpers.AdvancedEntityModel;
-import superworldsun.superslegend.ModelingAPI.helpers.AdvancedModelBox;
 
 public class PoeEntityModel extends AdvancedEntityModel<PoeEntity> {
+	public AdvancedModelBox Body;
+	public AdvancedModelBox LeftArm;
+	public AdvancedModelBox LeftShoulder;
+	public AdvancedModelBox LeftLowerArm;
+	public AdvancedModelBox LeftLowerArmCube_r1;
+	public AdvancedModelBox RightArm;
+	public AdvancedModelBox RightShoulder;
+	public AdvancedModelBox RightShoulderCube_r1;
+	public AdvancedModelBox RightLowerArm;
+	public AdvancedModelBox RightLowerArmCube_r1;
+	public AdvancedModelBox Lantern;
+	public AdvancedModelBox Head;
+	public AdvancedModelBox LeftEye_r1;
+	public AdvancedModelBox RightEye_r1;
+	public AdvancedModelBox nose_r1;
+	public AdvancedModelBox Hood;
+	private final ModelAnimator animator;
 
-    private final AdvancedModelBox WholeBody;
-    private final AdvancedModelBox Head;
-    private final AdvancedModelBox LeftEye_r1;
-    private final AdvancedModelBox RightEye_r1;
-    private final AdvancedModelBox nose_r1;
-    private final AdvancedModelBox Hood;
-    private final AdvancedModelBox cloak;
-    private final AdvancedModelBox LeftArm;
-    private final AdvancedModelBox LeftInnerArm;
-    private final AdvancedModelBox LeftOuterArm;
-    private final AdvancedModelBox LeftHand;
-    private final AdvancedModelBox thirdfinger_r1;
-    private final AdvancedModelBox firstfinger_r1;
-    private final AdvancedModelBox RightArm;
-    private final AdvancedModelBox RightInnerArm;
-    private final AdvancedModelBox RightOuterArm;
-    private final AdvancedModelBox RightHand;
-    private final AdvancedModelBox firstfinger_r2;
-    private final AdvancedModelBox thirdfinger_r2;
-    private final AdvancedModelBox Lantern;
+	public PoeEntityModel() {
+		this.textureWidth = 64;
+		this.textureHeight = 64;
 
+		this.Body = new AdvancedModelBox(this);
+		this.Body.setRotationPoint(0.15F, 4.0F, 0.0F);
+		this.Body.setTextureOffset(0, 26).addBox(-3.15F, 0.0F, -3.0F, 6.0F, 12.0F, 6.0F, 0.0F, false);
 
-    public AdvancedModelBox body;
+		this.LeftArm = new AdvancedModelBox(this);
+		this.LeftArm.setRotationPoint(1.85F, 2.0F, 1.0F);
+		this.Body.addChild(LeftArm);
 
-    public PoeEntityModel() {
-        body = new AdvancedModelBox(this, 0, 0);
-        body.addBox(-10, 22, -10, 20, 20, 20);
+		this.LeftShoulder = new AdvancedModelBox(this);
+		this.LeftShoulder.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.LeftArm.addChild(LeftShoulder);
+		this.setRotationAngle(LeftShoulder, 0.0F, 0.0F, 0.8727F);
+		this.LeftShoulder.setTextureOffset(22, 43).addBox(0.0F, -1.3572F, -1.25F, 6.0F, 2.0F, 2.0F, 0.0F, false);
 
-        textureWidth = 64;
-        textureHeight = 64;
+		this.LeftLowerArm = new AdvancedModelBox(this);
+		this.LeftLowerArm.setRotationPoint(4.6499F, -0.5031F, 0.196F);
+		this.LeftShoulder.addChild(LeftLowerArm);
+		this.setRotationAngle(LeftLowerArm, 0.0F, 0.48F, 0.8727F);
 
-        WholeBody = new AdvancedModelBox(this);
-        WholeBody.setRotationPoint(0.0F, 24.0F, 0.0F);
+		this.LeftLowerArmCube_r1 = new AdvancedModelBox(this);
+		this.LeftLowerArmCube_r1.setRotationPoint(0.2633F, 0.1836F, 0.0676F);
+		this.LeftLowerArm.addChild(LeftLowerArmCube_r1);
+		this.setRotationAngle(LeftLowerArmCube_r1, 0.3491F, 0.0436F, -0.829F);
+		this.LeftLowerArmCube_r1.setTextureOffset(42, 29).addBox(0.9955F, -1.1567F, -0.9507F, 4.0F, 2.0F, 2.0F, 0.0F, false);
 
-
-        Head = new AdvancedModelBox(this);
-        Head.setRotationPoint(0.0F, -17.0F, 0.0F);
-        WholeBody.addChild(Head);
-        Head.setTextureOffset(0, 10).addBox(-4.0F, -4.025F, -4.25F, 8.0F, 8.0F, 8.0F, 0.0F, false);
-        Head.setTextureOffset(16, 10).addBox(-4.0F, 4.0F, -4.0F, 8.0F, 0.0F, 8.0F, 0.0F, false);
-
-        LeftEye_r1 = new AdvancedModelBox(this);
-        LeftEye_r1.setRotationPoint(1.75F, -0.225F, -4.275F);
-        Head.addChild(LeftEye_r1);
-        setRotationAngle(LeftEye_r1, 0.0F, 0.0F, -0.3927F);
-        LeftEye_r1.setTextureOffset(0, 44).addBox(-1.0F, -0.5F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
-
-        RightEye_r1 = new AdvancedModelBox(this);
-        RightEye_r1.setRotationPoint(-1.75F, -0.225F, -4.275F);
-        Head.addChild(RightEye_r1);
-        setRotationAngle(RightEye_r1, 0.0F, 0.0F, 0.3927F);
-        RightEye_r1.setTextureOffset(6, 44).addBox(-1.0F, -0.5F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
-
-        nose_r1 = new AdvancedModelBox(this);
-        nose_r1.setRotationPoint(0.0F, 1.6869F, -4.2036F);
-        Head.addChild(nose_r1);
-        setRotationAngle(nose_r1, -0.3927F, 0.0F, 0.0F);
-        nose_r1.setTextureOffset(16, 35).addBox(-0.5F, -0.5381F, -0.3087F, 1.0F, 2.0F, 1.0F, 0.0F, false);
-
-        Hood = new AdvancedModelBox(this);
-        Hood.setRotationPoint(0.0F, -17.1875F, -0.125F);
-        WholeBody.addChild(Hood);
-        Hood.setTextureOffset(20, 27).addBox(-4.5F, 2.1875F, -5.125F, 9.0F, 2.0F, 0.0F, 0.0F, false);
-        Hood.setTextureOffset(12, 42).addBox(3.5F, -2.8125F, -5.125F, 1.0F, 5.0F, 0.0F, 0.0F, false);
-        Hood.setTextureOffset(20, 20).addBox(4.5F, -4.8125F, -5.125F, 0.0F, 9.0F, 10.0F, 0.0F, false);
-        Hood.setTextureOffset(38, 27).addBox(-4.5F, -4.8125F, -5.125F, 9.0F, 2.0F, 0.0F, 0.0F, false);
-        Hood.setTextureOffset(14, 42).addBox(-4.5F, -2.8125F, -5.125F, 1.0F, 5.0F, 0.0F, 0.0F, false);
-        Hood.setTextureOffset(28, 0).addBox(-4.5F, -4.8125F, 4.875F, 9.0F, 9.0F, 0.0F, 0.0F, false);
-        Hood.setTextureOffset(0, 0).addBox(-4.5F, -4.8125F, -5.125F, 9.0F, 0.0F, 10.0F, 0.0F, false);
-        Hood.setTextureOffset(0, 16).addBox(-4.5F, -4.8125F, -5.125F, 0.0F, 9.0F, 10.0F, 0.0F, false);
-
-        cloak = new AdvancedModelBox(this);
-        cloak.setRotationPoint(-0.85F, -9.0F, 8.0F);
-        WholeBody.addChild(cloak);
-        cloak.setTextureOffset(16, 32).addBox(5.0F, -4.0F, -11.95F, 0.0F, 7.0F, 8.0F, 0.0F, false);
-        cloak.setTextureOffset(16, 32).addBox(-3.0F, -4.0F, -12.0F, 0.0F, 7.0F, 8.0F, 0.0F, false);
-        cloak.setTextureOffset(40, 9).addBox(-3.0F, -4.0F, -11.975F, 8.0F, 7.0F, 0.0F, 0.0F, false);
-        cloak.setTextureOffset(32, 39).addBox(-3.0F, -4.0F, -4.0F, 8.0F, 7.0F, 0.0F, 0.0F, false);
-
-        LeftArm = new AdvancedModelBox(this);
-        LeftArm.setRotationPoint(3.75F, -12.5F, 0.25F);
-        WholeBody.addChild(LeftArm);
+		this.RightArm = new AdvancedModelBox(this);
+		this.RightArm.setRotationPoint(-2.15F, 2.0F, 0.25F);
+		this.Body.addChild(RightArm);
+		this.setRotationAngle(RightArm, 0.0F, 0.1309F, 1.4399F);
 
 
-        LeftInnerArm = new AdvancedModelBox(this);
-        LeftInnerArm.setRotationPoint(0.25F, 0.0F, -0.25F);
-        LeftArm.addChild(LeftInnerArm);
-        LeftInnerArm.setTextureOffset(0, 6).addBox(-0.25F, -0.5F, -0.25F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		this.RightShoulder = new AdvancedModelBox(this);
+		this.RightShoulder.setRotationPoint(-0.1218F, 0.9055F, 0.155F);
+		this.RightArm.addChild(RightShoulder);
+		this.setRotationAngle(RightShoulder, 0.0F, 0.0F, 0.8727F);
 
-        LeftOuterArm = new AdvancedModelBox(this);
-        LeftOuterArm.setRotationPoint(3.875F, 0.0F, 0.125F);
-        LeftInnerArm.addChild(LeftOuterArm);
-        LeftOuterArm.setTextureOffset(0, 4).addBox(-0.125F, -0.5F, -0.375F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		this.RightShoulderCube_r1 = new AdvancedModelBox(this);
+		this.RightShoulderCube_r1.setRotationPoint(2.4728F, -0.205F, 1.0295F);
+		this.RightShoulder.addChild(RightShoulderCube_r1);
+		this.setRotationAngle(RightShoulderCube_r1, -0.1309F, -0.0873F, 0.0436F);
+		this.RightShoulderCube_r1.setTextureOffset(42, 42).addBox(-3.0F, -1.0F, -1.0F, 6.0F, 2.0F, 2.0F, 0.0F, false);
 
-        LeftHand = new AdvancedModelBox(this);
-        LeftHand.setRotationPoint(3.375F, 0.25F, 0.125F);
-        LeftOuterArm.addChild(LeftHand);
-        LeftHand.setTextureOffset(6, 42).addBox(0.25F, -0.25F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+		this.RightLowerArm = new AdvancedModelBox(this);
+		this.RightLowerArm.setRotationPoint(4.691F, 0.4491F, 1.5291F);
+		this.RightShoulder.addChild(RightLowerArm);
+		this.setRotationAngle(RightLowerArm, 0.0F, 0.48F, 0.8727F);
 
-        thirdfinger_r1 = new AdvancedModelBox(this);
-        thirdfinger_r1.setRotationPoint(0.75F, 0.25F, 0.75F);
-        LeftHand.addChild(thirdfinger_r1);
-        setRotationAngle(thirdfinger_r1, 0.0F, -0.6545F, 0.0F);
-        thirdfinger_r1.setTextureOffset(0, 42).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+		this.RightLowerArmCube_r1 = new AdvancedModelBox(this);
+		this.RightLowerArmCube_r1.setRotationPoint(0.0265F, -0.913F, 0.0012F);
+		this.RightLowerArm.addChild(RightLowerArmCube_r1);
+		this.setRotationAngle(RightLowerArmCube_r1, 0.2182F, 0.0436F, -0.829F);
+		this.RightLowerArmCube_r1.setTextureOffset(42, 29).addBox(-0.2943F, -0.9386F, -1.2946F, 4.0F, 2.0F, 2.0F, 0.0F, false);
 
-        firstfinger_r1 = new AdvancedModelBox(this);
-        firstfinger_r1.setRotationPoint(1.5F, 0.25F, -1.35F);
-        LeftHand.addChild(firstfinger_r1);
-        setRotationAngle(firstfinger_r1, 0.0F, 0.7854F, 0.0F);
-        firstfinger_r1.setTextureOffset(40, 37).addBox(-2.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+		this.Lantern = new AdvancedModelBox(this);
+		this.Lantern.setRotationPoint(1.428F, -6.9193F, -0.5592F);
+		this.RightLowerArm.addChild(Lantern);
+		this.setRotationAngle(Lantern, 3.098F, -0.48F, -0.0436F);
+		this.Lantern.setTextureOffset(28, 22).addBox(-1.1813F, -1.4583F, -2.0F, 4.0F, 5.0F, 4.0F, 0.0F, false);
+		this.Lantern.setTextureOffset(0, 44).addBox(-0.6813F, -1.9583F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		this.Lantern.setTextureOffset(43, 6).addBox(-0.6813F, 2.7917F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		this.Lantern.setTextureOffset(0, 0).addBox(-0.1813F, 3.0417F, -1.0F, 2.0F, 1.0F, 2.0F, 0.0F, false);
+		this.Lantern.setTextureOffset(6, 6).addBox(0.3187F, -3.4583F, -0.5F, 1.0F, 2.0F, 1.0F, 0.0F, false);
+		this.Lantern.setTextureOffset(0, 3).addBox(-0.6813F, -4.4583F, -0.5F, 3.0F, 1.0F, 1.0F, 0.0F, false);
 
-        RightArm = new AdvancedModelBox(this);
-        RightArm.setRotationPoint(-3.25F, -12.575F, 0.0F);
-        WholeBody.addChild(RightArm);
-        setRotationAngle(RightArm, 0.0F, 3.1416F, 0.0F);
+		this.Head = new AdvancedModelBox(this);
+		this.Head.setRotationPoint(-0.15F, 0.0F, 0.0F);
+		this.Body.addChild(Head);
+		this.Head.setTextureOffset(0, 10).addBox(-4.0F, -8.025F, -4.0F, 8.0F, 8.0F, 8.0F, 0.0F, false);
 
+		this.LeftEye_r1 = new AdvancedModelBox(this);
+		this.LeftEye_r1.setRotationPoint(1.75F, -4.225F, -4.0F);
+		this.Head.addChild(LeftEye_r1);
+		this.setRotationAngle(LeftEye_r1, 0.0F, 0.0F, -0.3927F);
+		this.LeftEye_r1.setTextureOffset(0, 7).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 
-        RightInnerArm = new AdvancedModelBox(this);
-        RightInnerArm.setRotationPoint(0.0F, 0.0375F, 0.0F);
-        RightArm.addChild(RightInnerArm);
-        RightInnerArm.setTextureOffset(0, 2).addBox(0.25F, -0.5375F, -0.5F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		this.RightEye_r1 = new AdvancedModelBox(this);
+		this.RightEye_r1.setRotationPoint(-1.75F, -4.225F, -4.0F);
+		this.Head.addChild(RightEye_r1);
+		this.setRotationAngle(RightEye_r1, 0.0F, 0.0F, 0.3927F);
+		this.RightEye_r1.setTextureOffset(0, 5).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 
-        RightOuterArm = new AdvancedModelBox(this);
-        RightOuterArm.setRotationPoint(4.25F, 0.0F, 0.0F);
-        RightInnerArm.addChild(RightOuterArm);
-        RightOuterArm.setTextureOffset(0, 0).addBox(0.0F, -0.5375F, -0.5F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		this.nose_r1 = new AdvancedModelBox(this);
+		this.nose_r1.setRotationPoint(0.0F, -1.8512F, -4.0123F);
+		this.Head.addChild(nose_r1);
+		this.setRotationAngle(nose_r1, -0.3927F, 0.0F, 0.0F);
+		this.nose_r1.setTextureOffset(2, 9).addBox(-0.5F, -1.0F, -0.5F, 1.0F, 2.0F, 1.0F, 0.0F, false);
 
-        RightHand = new AdvancedModelBox(this);
-        RightHand.setRotationPoint(3.5F, 0.2125F, 0.0F);
-        RightOuterArm.addChild(RightHand);
-        RightHand.setTextureOffset(0, 15).addBox(0.25F, -0.25F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+		this.Hood = new AdvancedModelBox(this);
+		this.Hood.setRotationPoint(0.0F, -0.0625F, -0.125F);
+		this.Head.addChild(Hood);
+		this.Hood.setTextureOffset(40, 23).addBox(-4.5F, -1.9375F, -5.125F, 9.0F, 2.0F, 0.0F, 0.0F, false);
+		this.Hood.setTextureOffset(0, 9).addBox(3.5F, -6.9375F, -5.125F, 1.0F, 5.0F, 0.0F, 0.0F, false);
+		this.Hood.setTextureOffset(32, 0).addBox(4.5F, -8.9375F, -5.125F, 0.0F, 9.0F, 10.0F, 0.0F, false);
+		this.Hood.setTextureOffset(24, 31).addBox(-4.5F, -8.9375F, -5.125F, 9.0F, 2.0F, 0.0F, 0.0F, false);
+		this.Hood.setTextureOffset(8, 0).addBox(-4.5F, -6.9375F, -5.125F, 1.0F, 5.0F, 0.0F, 0.0F, false);
+		this.Hood.setTextureOffset(28, 0).addBox(-4.5F, -8.9375F, 4.875F, 9.0F, 9.0F, 0.0F, 0.0F, false);
+		this.Hood.setTextureOffset(0, 0).addBox(-4.5F, -8.9375F, -5.125F, 9.0F, 0.0F, 10.0F, 0.0F, false);
+		this.Hood.setTextureOffset(24, 24).addBox(-4.5F, -8.9375F, -5.125F, 0.0F, 9.0F, 10.0F, 0.0F, false);
 
-        firstfinger_r2 = new AdvancedModelBox(this);
-        firstfinger_r2.setRotationPoint(1.0F, 0.25F, 0.5F);
-        RightHand.addChild(firstfinger_r2);
-        setRotationAngle(firstfinger_r2, 0.0F, -0.6545F, 0.0F);
-        firstfinger_r2.setTextureOffset(0, 13).addBox(-1.0461F, -0.5F, -0.1495F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+		animator = ModelAnimator.create();
+		this.updateDefaultPose();
 
-        thirdfinger_r2 = new AdvancedModelBox(this);
-        thirdfinger_r2.setRotationPoint(1.75F, 0.25F, -1.6F);
-        RightHand.addChild(thirdfinger_r2);
-        setRotationAngle(thirdfinger_r2, 0.0F, 0.7854F, 0.0F);
-        thirdfinger_r2.setTextureOffset(40, 16).addBox(-2.3536F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+	}
 
-        Lantern = new AdvancedModelBox(this);
-        Lantern.setRotationPoint(-8.0F, 12.4583F, -5.0F);
-        Lantern.setTextureOffset(32, 18).addBox(-2.0F, 2.5417F, -2.0F, 4.0F, 5.0F, 4.0F, 0.0F, false);
-        Lantern.setTextureOffset(40, 33).addBox(-1.5F, 2.0417F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
-        Lantern.setTextureOffset(40, 29).addBox(-1.5F, 6.7917F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
-        Lantern.setTextureOffset(0, 8).addBox(-1.0F, 7.0417F, -1.0F, 2.0F, 1.0F, 2.0F, 0.0F, false);
-        Lantern.setTextureOffset(32, 18).addBox(-0.5F, 0.5417F, -0.5F, 1.0F, 2.0F, 1.0F, 0.0F, false);
-        Lantern.setTextureOffset(0, 11).addBox(-1.5F, -0.4583F, -0.5F, 3.0F, 1.0F, 1.0F, 0.0F, false);
-    }
-    @Override
-    public Iterable<AdvancedModelBox> getAllParts() {
-        return ImmutableList.of(body, WholeBody, Head, LeftEye_r1, RightEye_r1, nose_r1, Hood, cloak, LeftArm, LeftInnerArm, LeftOuterArm, LeftHand, thirdfinger_r1, firstfinger_r1, RightArm, RightInnerArm, RightOuterArm, RightHand, firstfinger_r2, thirdfinger_r2, Lantern);
-    }
+	@Override
+	public Iterable<AdvancedModelBox> getAllParts() {
+		return ImmutableList.of(
+		this.Body,
+		this.LeftArm,
+		this.LeftShoulder,
+		this.LeftLowerArm,
+		this.LeftLowerArmCube_r1,
+		this.RightArm,
+		this.RightShoulder,
+		this.RightShoulderCube_r1,
+		this.RightLowerArm,
+		this.RightLowerArmCube_r1,
+		this.Lantern,
+		this.Head,
+		this.LeftEye_r1,
+		this.RightEye_r1,
+		this.nose_r1,
+		this.Hood
+		);
+	}
 
+	@Override
+	public Iterable<ModelRenderer> getParts() {
+		return ImmutableList.of(this.Body);
+	}
 
-    @Override
-    public void setRotationAngles(PoeEntity poeEntity, float v, float v1, float v2, float v3, float v4) {
+	public void setRotationAngles(PoeEntity entity, float f, float f1, float f2, float f3, float f4) {
+		animate(entity, f, f1, f2, f3, f4, 1);
+		this.faceTarget(f3, f4, 1, this.Head);
+		float speed_walk = 0.6F;
+		float speed_idle = 0.05F;
+		float degree_walk = 1F;
+		float degree_idle = 0.25F;
 
-    }
+		float f12 = (float) Math.toRadians(-1.29f) + f1;
+		if (f12 < 0.0F) {
+			f12 = 0.0F;
+		}
+		if (f12 > Math.toRadians(20)) {
+			f12 = (float) Math.toRadians(20);
+		}
+		this.Body.rotateAngleX = f12;
+		this.Head.rotateAngleX = this.Head.rotateAngleX - f12;
+		this.RightArm.rotateAngleX = this.RightArm.rotateAngleX - f12;
+		this.LeftArm.rotateAngleX = this.LeftArm.rotateAngleX - f12;
 
+		this.walk(RightArm, speed_idle * 1.5F, degree_idle * 0.4F, false, 2, 0.0F, f2, 1);
+		this.walk(LeftArm, speed_idle * 1.5F, degree_idle * 0.4F, true, 2, 0.0F, f2, 1);
 
-    @Override
-    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-        WholeBody.render(matrixStack, buffer, packedLight, packedOverlay);
-        Lantern.render(matrixStack, buffer, packedLight, packedOverlay);
-    }
+		this.flap(RightArm, speed_idle * 1.5F, degree_idle * 0.2F, false, 2, 0.2F, f2, 1);
+		this.flap(RightArm, speed_idle * 1.5F, degree_idle * 0.2F, true, 2, 0.2F, f2, 1);
 
-    @Override
-    public Iterable<ModelRenderer> getParts() {
-        return ImmutableList.of(body);
-    }
+		this.flap(Body, speed_idle * 1.1F, degree_idle * 0.1F, true, 3, 0, f2, 1);
+		this.bob(Body, speed_idle * 0.5F, degree_idle * 4.1F, false,  f2, 1);
+		this.bob(Body, speed_walk * 0.75F, degree_walk * 2.1F, false,  f, f1);
+		if (entity.isCharging()) {
+			this.RightArm.rotateAngleZ = 2.5F;
+			this.RightArm.rotateAngleX = -1F;
+			this.RightArm.rotateAngleY = 0.5F;
+			this.RightEye_r1.rotateAngleX = 0.2F;
+			this.LeftEye_r1.rotateAngleX = -0.2F;
+			this.swing(Lantern, 1F, 3, true, 1, 1, 1, 1);
+			this.LeftArm.rotateAngleX = 1F;
+		}
 
-    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
+	}
+
+	public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+		this.resetToDefaultPose();
+		animator.update(entity);
+		animator.setAnimation(PoeEntity.ANIMATION_HIT);
+		animator.startKeyframe(5);
+		animator.move(Head, 0, -1, 0);
+		this.rotateMinus(animator, Body, 0, 0F, 0F);
+		this.rotateMinus(animator, Head, 0, 1F, 0F);
+		this.rotateMinus(animator, RightArm, -180F, 1F, 25);
+		this.rotateMinus(animator, LeftArm, 1F, 0.1F, 0);
+		this.rotateMinus(animator, Lantern, -0.5F, 1F, 0);
+		animator.endKeyframe();
+		animator.resetKeyframe(5);
+	}
+
+	public void setRotationAngle(AdvancedModelBox AdvancedModelBox, float x, float y, float z) {
+		AdvancedModelBox.rotateAngleX = x;
+		AdvancedModelBox.rotateAngleY = y;
+		AdvancedModelBox.rotateAngleZ = z;
+	}
 }
