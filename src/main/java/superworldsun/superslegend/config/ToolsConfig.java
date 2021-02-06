@@ -22,33 +22,56 @@ public final class ToolsConfig {
     }
 
     public static class Common {
+        //Boomerang on off option
+        public final ForgeConfigSpec.BooleanValue boomerangsEnabled;
+
+        // Boomerang Functions
         public final ForgeConfigSpec.BooleanValue turnAroundItem;
         public final ForgeConfigSpec.BooleanValue turnAroundMob;
-        public final ForgeConfigSpec.BooleanValue breaksTorches;
-        public final ForgeConfigSpec.BooleanValue breaksPlants;
-        public final ForgeConfigSpec.BooleanValue hitsButtons;
         public final ForgeConfigSpec.BooleanValue turnAroundButton;
         public final ForgeConfigSpec.IntValue RegularBoomerangRange;
         public final ForgeConfigSpec.IntValue RegularBoomerangDamage;
         public final ForgeConfigSpec.BooleanValue RegularBoomerangFollows;
-        public final ForgeConfigSpec.BooleanValue boomerangsEnabled;
+
+        // Boomerang Break Capabilities
+        public final ForgeConfigSpec.BooleanValue breaksTorches;
+        public final ForgeConfigSpec.BooleanValue breaksFlowers;
+        public final ForgeConfigSpec.BooleanValue breaksGrass;
+        public final ForgeConfigSpec.BooleanValue breaksTallGrass;
+
+        // Boomerang Activate/Redstone Capabilities
+        public final ForgeConfigSpec.BooleanValue activatesLevers;
+        public final ForgeConfigSpec.BooleanValue activatesButtons;
+        public final ForgeConfigSpec.BooleanValue activatesPressurePlates;
+        public final ForgeConfigSpec.BooleanValue activatesTripWire;
 
         public Common(ForgeConfigSpec.Builder builder) {
-            builder.push("Parts");
+
+            //Boomerang on off option
+            builder.push("Regular Boomerang Config Options");
             boomerangsEnabled = builder.comment("Set this to true if you would like boomerangs to be craftable and found in the creative tab.").define("boomerangsEnabled", true);
-            builder.pop();
 
-            builder.push("Boomerangs");
-            turnAroundItem = builder.comment("Set this to true if you would like boomerangs to turn around after they have picked up items.").define("turnAroundItem", true);
-            turnAroundMob = builder.comment("Set this to true if you would like boomerangs to turn around after they have hit a mob.").define("turnAroundMob", true);
-            turnAroundButton = builder.comment("Set this to false if you would like boomerangs to not turn around after they have hit a button or a lever.").define("turnAroundButton", true);
-            breaksTorches = builder.comment("Set this to true if you would like boomerangs to be able to break torches.").define("breaksTorches", false);
-            breaksPlants = builder.comment("Set this to true if you would like boomerangs to be able to break plants.").define("breaksPlants", true);
-            hitsButtons = builder.comment("Set this to false if you would like boomerangs to not be able to hit buttons or levers.").define("hitsButtons", true);
+            // Boomerang Functions
+            turnAroundItem = builder.comment("Comes back to the player after picking up items.").define("turnAroundItem", true);
+            turnAroundMob = builder.comment("Comes back to the player after hitting a mob.").define("turnAroundMob", true);
+            turnAroundButton = builder.comment("Comes back to player after hitting a button.").define("turnAroundButton", true);
+            RegularBoomerangRange = builder.comment("The maximum range of travel before returning to player.").defineInRange("RegularBoomerangRange", 30, 1, 200);
+            RegularBoomerangDamage = builder.comment("The amount of damage that is done when hitting any living entity.").defineInRange("RegularBoomerangDamage", 5, 1, 500);
+            RegularBoomerangFollows = builder.comment("The Regular Boomerang will follow your mouse till it hits it's range limit.").define("RegularBoomerangFollows", true);
 
-            RegularBoomerangRange = builder.comment("The maximum range away from the player the boomerang plus will travel before turning around.").defineInRange("BoomerangPlusRange", 30, 1, 200);
-            RegularBoomerangDamage = builder.comment("The amount of damage the boomerang plus does to mobs.").defineInRange("boomerangPlusDamage", 5, 1, 500);
-            RegularBoomerangFollows = builder.comment("Set to true if you would like the boomerang plus to follow where the player is looking.").define("boomerangPlusFollows", true);
+            // Boomerang Break Capabilities
+            breaksTorches = builder.comment("Can boomerang break torches.").define("breaksTorches", true);
+            breaksFlowers = builder.comment("Can boomerang break Flowers.").define("breaksFlowers", true);
+            breaksGrass = builder.comment("Can boomerang break Glass.").define("breaksGrass", true);
+            breaksTallGrass = builder.comment("Can boomerang break Tall Grass.").define("breaksTallGrass", true);
+
+            // Boomerang Activate/Redstone Capabilities
+            activatesLevers = builder.comment("Can boomerang switch levers on and off.").define("activatesLevers", true);
+            activatesButtons = builder.comment("Can boomerang activate/push buttons.").define("activatesButtons", true);
+            activatesPressurePlates = builder.comment("Can boomerang activate regular and lightweight pressure plates.").define("activatesPressurePlates", true);
+            activatesTripWire = builder.comment("Can boomerang activate/trigger tripwire(s).").define("activatesTripWire", true);
+
+
             builder.pop();
         }
     }
