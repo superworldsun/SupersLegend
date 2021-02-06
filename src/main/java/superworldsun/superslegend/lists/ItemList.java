@@ -1,6 +1,7 @@
 package superworldsun.superslegend.lists;
 
 import net.minecraft.item.Item;
+import superworldsun.superslegend.items.BoomerangItem;
 import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.armors.*;
 import superworldsun.superslegend.items.masks.*;
@@ -68,6 +69,7 @@ public class ItemList
 		public static Item heros_secret_stash;
 		public static Item torch_tower;
 		public static Item kokiri_set;
+		public static Item regular_boomerang;
 		public static Item goron_set;
 		public static Item zora_set;
 		public static Item purple_set;

@@ -25,8 +25,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -34,10 +36,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import superworldsun.superslegend.CustomLootMobs.*;
 import superworldsun.superslegend.blocks.*;
+import superworldsun.superslegend.config.ToolsConfig;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntityRenderer;
 import superworldsun.superslegend.entities.mobs.poe.PoeEntity;
 import superworldsun.superslegend.entities.mobs.poe.PoeEntityRenderer;
+import superworldsun.superslegend.entities.projectiles.boomerang.BoomerangRender;
 import superworldsun.superslegend.init.EntityInit;
 import superworldsun.superslegend.init.ParticleInit;
 import superworldsun.superslegend.items.*;
@@ -79,9 +83,11 @@ public class SupersLegend
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 		MinecraftForge.EVENT_BUS.register(RegistryEvents.class);
 
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ToolsConfig.COMMON_SPEC);
+
 		ParticleInit.subscribe(FMLJavaModLoadingContext.get().getModEventBus());
 
-		EntityInit.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+		EntityInit.ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
 		MinecraftForge.EVENT_BUS.register(this);
 		//Custom Loot Drops
@@ -208,9 +214,10 @@ public class SupersLegend
 			RenderTypeLookup.setRenderLayer(BlockList.grass_patch_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.hidden_shadow_block, RenderType.getTranslucent());
 
-			// REGISTER ENTITY/MOB RENDERS
+			// REGISTER ENTITIES "Currently Item and Mob entities"
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FAIRYENTITY.get(), FairyEntityRenderer::new);
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.POEENTITY.get(), PoeEntityRenderer::new);
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.REGULAR_BOOMERANG.get(), new BoomerangRender.Factory());
 		}
 
 
@@ -242,6 +249,8 @@ public class SupersLegend
 			ItemList.ancient_screw = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_screw")),
 			ItemList.ancient_shaft = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_shaft")),
 			ItemList.ancient_spring = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_spring")),
+			ItemList.regular_boomerang = new BoomerangItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("regular_boomerang")),
+
 
 			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("master_ore")),
 			ItemList.master_sword_blade = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_blade")),
