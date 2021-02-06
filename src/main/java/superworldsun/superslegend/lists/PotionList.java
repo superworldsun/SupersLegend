@@ -18,6 +18,7 @@ public class PotionList {
 	public static Effect iron_boots_effect = null;
 	public static Effect hover_boots_effect = null;
 	public static Effect zoras_grace_effect = null;
+	public static Effect extended_reach_effect = null;
 
 	
 	/* Create a new Deferred Registry for all our potions and effects to register to
@@ -39,13 +40,15 @@ public class PotionList {
 	
 	public static final RegistryObject<Effect> ZORAS_GRACE_EFFECT = EFFECTS.register("zoras_grace", () -> new ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4ff10));
 
+	public static final RegistryObject<Effect> EXTENDED_REACH_EFFECT = EFFECTS.register("extended_reach", () -> new ExtendedReachEffect(EffectType.BENEFICIAL, 0xd4ff10));
+
 	
 	
 	public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTION_TYPES, SupersLegend.modid);
 	
 	public static final RegistryObject<Potion> MORE_HEALTH_POTION = POTIONS.register("more_health", () -> new Potion(new EffectInstance(MORE_HEALTH_EFFECT.get(), 3600)));
-	
-	//public static final RegistryObject<Potion> SIZE_POTION = POTIONS.register("size", () -> new Potion(new EffectInstance(SIZE_EFFECT.get(), 3600)));
+
+    //public static final RegistryObject<Potion> SIZE_POTION = POTIONS.register("size", () -> new Potion(new EffectInstance(SIZE_EFFECT.get(), 3600)));
 
 	public static class MoreHealthEffect extends Effect {
 
@@ -72,6 +75,13 @@ public class PotionList {
 	public static class ZorasGraceEffect extends Effect {
 
 		public ZorasGraceEffect(EffectType typeIn, int liquidColorIn) {
+			super(typeIn, liquidColorIn);
+		}
+	}
+
+	public static class ExtendedReachEffect extends Effect {
+
+		public ExtendedReachEffect(EffectType typeIn, int liquidColorIn) {
 			super(typeIn, liquidColorIn);
 		}
 	}

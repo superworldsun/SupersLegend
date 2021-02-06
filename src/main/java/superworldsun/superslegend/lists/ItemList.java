@@ -1,6 +1,7 @@
 package superworldsun.superslegend.lists;
 
 import net.minecraft.item.Item;
+import superworldsun.superslegend.items.BoomerangItem;
 import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.armors.*;
 import superworldsun.superslegend.items.masks.*;
@@ -68,6 +69,7 @@ public class ItemList
 		public static Item heros_secret_stash;
 		public static Item torch_tower;
 		public static Item kokiri_set;
+		public static Item regular_boomerang;
 		public static Item goron_set;
 		public static Item zora_set;
 		public static Item purple_set;
@@ -112,6 +114,9 @@ public class ItemList
 		public static Item razor_sword;
 		public static Item gilded_sword;
 		public static Item master_sword;
+		public static Item giants_knife;
+		public static Item broken_giants_knife;
+		public static Item biggorons_sword;
 
 		public static Item gaurdian_sword;
 		
@@ -237,4 +242,7 @@ public class ItemList
 		public static Item dark_boots;
 		public static RocsCapeEffects rocs_cape;
 		public static Item pegasus_boots;
+
+		//Eggs
+    	public static Item poe_egg;
 }

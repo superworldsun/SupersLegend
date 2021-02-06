@@ -3,29 +3,32 @@ package superworldsun.superslegend;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ShieldItem;
+import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -33,11 +36,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import superworldsun.superslegend.CustomLootMobs.*;
 import superworldsun.superslegend.blocks.*;
+import superworldsun.superslegend.config.ToolsConfig;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntityRenderer;
 import superworldsun.superslegend.entities.mobs.poe.PoeEntity;
 import superworldsun.superslegend.entities.mobs.poe.PoeEntityRenderer;
+import superworldsun.superslegend.entities.projectiles.boomerang.BoomerangRender;
 import superworldsun.superslegend.init.EntityInit;
+import superworldsun.superslegend.init.ParticleInit;
 import superworldsun.superslegend.items.*;
 import superworldsun.superslegend.items.armors.*;
 import superworldsun.superslegend.items.arrows.*;
@@ -50,10 +56,9 @@ import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.PotionList;
 import superworldsun.superslegend.lists.ToolMaterialList;
+import superworldsun.superslegend.particles.fairy.FairyParticle;
 import superworldsun.superslegend.util.handlers.SoundHandler;
 import superworldsun.superslegend.world.gen.OreGeneration;
-
-import javax.annotation.Nonnull;
 
 import static net.minecraft.item.ItemModelsProperties.registerProperty;
 
@@ -78,7 +83,11 @@ public class SupersLegend
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 		MinecraftForge.EVENT_BUS.register(RegistryEvents.class);
 
-		EntityInit.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ToolsConfig.COMMON_SPEC);
+
+		ParticleInit.subscribe(FMLJavaModLoadingContext.get().getModEventBus());
+
+		EntityInit.ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
 		MinecraftForge.EVENT_BUS.register(this);
 		//Custom Loot Drops
@@ -205,11 +214,11 @@ public class SupersLegend
 			RenderTypeLookup.setRenderLayer(BlockList.grass_patch_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.hidden_shadow_block, RenderType.getTranslucent());
 
-
+			// REGISTER ENTITIES "Currently Item and Mob entities"
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FAIRYENTITY.get(), FairyEntityRenderer::new);
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.POEENTITY.get(), PoeEntityRenderer::new);
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.REGULAR_BOOMERANG.get(), new BoomerangRender.Factory());
 		}
-
 
 
 		@SubscribeEvent
@@ -218,7 +227,7 @@ public class SupersLegend
 			event.getRegistry().registerAll
 			(	
 		//Items
-					
+
 			ItemList.rupee = new Rupee(new Item.Properties().group(supers_legend)).setRegistryName(location("rupee")),
 			ItemList.blue_rupee = new BlueRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("blue_rupee")),
 			ItemList.red_rupee = new RedRupee(new Item.Properties().group(supers_legend)).setRegistryName(location("red_rupee")),
@@ -240,6 +249,8 @@ public class SupersLegend
 			ItemList.ancient_screw = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_screw")),
 			ItemList.ancient_shaft = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_shaft")),
 			ItemList.ancient_spring = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_spring")),
+			ItemList.regular_boomerang = new BoomerangItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("regular_boomerang")),
+
 
 			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("master_ore")),
 			ItemList.master_sword_blade = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("master_sword_blade")),
@@ -291,7 +302,10 @@ public class SupersLegend
 			ItemList.razor_sword = new ItemCustomSword(ToolMaterialList.razor_sword, 2, -2.5f, new Item.Properties().group(supers_legend)).setRegistryName(location("razor_sword")),
 			ItemList.gilded_sword = new ItemCustomSword(ToolMaterialList.gilded_sword,2, -2.4f, new Item.Properties().group(supers_legend)).setRegistryName(location("gilded_sword")),
 			ItemList.master_sword = new ItemCustomSword(ToolMaterialList.master_sword,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
-			ItemList.gaurdian_sword = new ItemCustomSword(ToolMaterialList.gaurdian_sword, 2, -2.5f, new Item.Properties().group(supers_legend)).setRegistryName(location("gaurdian_sword")),
+			ItemList.giants_knife = new GiantsKnife(ToolMaterialList.giants_knife,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("giants_knife")),
+			ItemList.broken_giants_knife = new BiggornsSword(ToolMaterialList.broken_giants_knife,2, -2.7f, new Item.Properties().group(supers_legend)).setRegistryName(location("broken_giants_knife")),
+			ItemList.biggorons_sword = new BiggornsSword(ToolMaterialList.biggorons_sword,2, -2.5f, new Item.Properties().group(supers_legend)).setRegistryName(location("biggorons_sword")),
+			ItemList.gaurdian_sword = new ItemCustomSword(ToolMaterialList.gaurdian_sword, 2, -2.7f, new Item.Properties().group(supers_legend)).setRegistryName(location("gaurdian_sword")),
 			ItemList.heros_bow = new HerosBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_bow")),
 			ItemList.bit_bow = new BitBow(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bit_bow")),
 			ItemList.lynel_bow_x3 = new LynelBowX3(1, new Item.Properties().maxStackSize(1).maxDamage(45).group(supers_legend)).setRegistryName(location("lynel_bow_x3")),
@@ -311,7 +325,7 @@ public class SupersLegend
 			ItemList.rocs_feather = new RocsFeather(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rocs_feather")),
 			ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
 			ItemList.magic_cape = new MagicCape(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_cape")),
-			ItemList.bomb = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bomb")),
+			ItemList.bomb = new Bomb(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bomb")),
 			ItemList.empty_container = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("empty_container")),
 			ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
 			ItemList.dins_fire = new DinsFire(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
@@ -440,10 +454,17 @@ public class SupersLegend
 			ItemList.ancient_cuirass = new ArmorAncientEffects("ancient_cuirass",EquipmentSlotType.CHEST),
 			ItemList.ancient_greaves = new ArmorAncientEffects("ancient_greaves",EquipmentSlotType.LEGS),
 			ItemList.ancient_boots = new ArmorAncientEffects("ancient_boots",EquipmentSlotType.FEET),
-			ItemList.barbarian_helmet = new ArmorAncientEffects("barbarian_helmet",EquipmentSlotType.HEAD),
-			ItemList.barbarian_armor = new ArmorAncientEffects("barbarian_armor",EquipmentSlotType.CHEST),
-			ItemList.barbarian_leg_wraps = new ArmorAncientEffects("barbarian_leg_wraps",EquipmentSlotType.LEGS),
-			ItemList.barbarian_boots = new ArmorAncientEffects("barbarian_boots",EquipmentSlotType.FEET)
+			ItemList.barbarian_helmet = new ArmorBarbarianEffects("barbarian_helmet",EquipmentSlotType.HEAD),
+			ItemList.barbarian_armor = new ArmorBarbarianEffects("barbarian_armor",EquipmentSlotType.CHEST),
+			ItemList.barbarian_leg_wraps = new ArmorBarbarianEffects("barbarian_leg_wraps",EquipmentSlotType.LEGS),
+			ItemList.barbarian_boots = new ArmorBarbarianEffects("barbarian_boots",EquipmentSlotType.FEET)
+
+
+			///Eggs
+			//ItemList.poe_egg = new SpawnEggItem(EntityInit.POEENTITY.get(), 13, 84, new Item.Properties()).setRegistryName("poe_egg")
+
+
+
 			);
 			Logger.info("Items registered.");		
 		}
@@ -521,9 +542,17 @@ public class SupersLegend
 							//PotionList.more_health_effect = new PotionList.MoreHealthEffect(EffectType.BENEFICIAL, 0xd4FF00).addAttributesModifier(SharedMonsterAttributes.MAX_HEALTH, "55FCED67-E92A-486E-9800-B47F202C4386", 0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("more_health")),
 							PotionList.iron_boots_effect = new PotionList.IronBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.SWIM_SPEED.get(),"55FCED67-E92A-486E-9800-B47F202C4386", 2.0f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("iron_boots")),
 							PotionList.hover_boots_effect = new PotionList.HoverBootsEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.ENTITY_GRAVITY.get(), "55FCED67-E92A-486E-9800-B47F202C4386", 0.0f, AttributeModifier.Operation.ADDITION).setRegistryName(location("hover_boots")),
-							PotionList.zoras_grace_effect = new PotionList.ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.SWIM_SPEED.get(), "55FCED67-E92A-486E-9800-B47F202C4386", 0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("zoras_grace"))
+							PotionList.zoras_grace_effect = new PotionList.ZorasGraceEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.SWIM_SPEED.get(), "55FCED67-E92A-486E-9800-B47F202C4386", 0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("zoras_grace")),
+							PotionList.extended_reach_effect = new PotionList.ExtendedReachEffect(EffectType.BENEFICIAL, 0xd4FF10).addAttributesModifier(ForgeMod.REACH_DISTANCE.get(), "55FCED67-E92A-486E-9800-B47F202C4386", 2.0f, AttributeModifier.Operation.MULTIPLY_TOTAL).setRegistryName(location("extended_reach"))
 					);
 		 }
+
+		@SubscribeEvent
+		public static void registerParticleFactories(ParticleFactoryRegisterEvent event) {
+			// REGISTER PARTICLE FACTORIES
+			Minecraft.getInstance().particles.registerFactory(ParticleInit.FAIRY.get(), FairyParticle.FairyFactory::new);
+		}
+
 
 		@SubscribeEvent
 		public static void setModelProperties(FMLClientSetupEvent event) {
