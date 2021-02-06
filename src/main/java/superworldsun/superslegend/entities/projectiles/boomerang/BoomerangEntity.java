@@ -1,9 +1,8 @@
 package superworldsun.superslegend.entities.projectiles.boomerang;
 
-import net.minecraft.block.AbstractButtonBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LeverBlock;
+import com.mojang.serialization.Lifecycle;
+import it.unimi.dsi.fastutil.doubles.Double2ObjectRBTreeMap;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -12,12 +11,18 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.TallBlockItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.DoorHingeSide;
+import net.minecraft.state.properties.DoubleBlockHalf;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +36,9 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.network.NetworkHooks;
+import superworldsun.superslegend.blocks.TorchTowerBlockBottom;
 import superworldsun.superslegend.config.ToolsConfig;
+import superworldsun.superslegend.items.TorchTower;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -71,9 +78,9 @@ public abstract class BoomerangEntity extends Entity {
         double motionZ = +0.5D * z * (double) MathHelper.cos((entity.rotationPitch / 180F) * 3.141593F);
         this.setMotion(new Vector3d(+motionX, motionY, +motionZ));
         setPosition(entity.getPosX(), this.getReturnEntityY(entity), entity.getPosZ());
-        prevPosX = +getPosX();
+        prevPosX = getPosX();
         prevPosY = getPosY();
-        prevPosZ = +getPosZ();
+        prevPosZ = getPosZ();
         this.isBouncing = false;
         this.turningAround = false;
         this.hand = hand;
@@ -85,6 +92,7 @@ public abstract class BoomerangEntity extends Entity {
     }
 
     @Override
+    @Deprecated
     public void tick() {
         PlayerEntity player = this.getReturnTo();
 
@@ -97,11 +105,46 @@ public abstract class BoomerangEntity extends Entity {
                 BlockPos pos = new BlockPos(raytraceresult.getHitVec());
                 BlockState state = world.getBlockState(pos);
 
-                if (state.getMaterial() == Material.PLANTS && ToolsConfig.COMMON.breaksPlants.get() || state.getBlock() == Blocks.TORCH && ToolsConfig.COMMON.breaksTorches.get()) {
+                if (state.getMaterial() == Material.PLANTS && ToolsConfig.COMMON.breaksFlowers.get()) {
                     world.destroyBlock(pos, true);
                 }
-
-                if ((state.getBlock() instanceof LeverBlock || state.getBlock() instanceof AbstractButtonBlock) && ToolsConfig.COMMON.hitsButtons.get()) {
+                if ((state.getBlock() instanceof GrassBlock) && ToolsConfig.COMMON.breaksGrass.get()) {
+                    world.destroyBlock(pos, true);
+                }
+                if ((state.getMaterial() == Material.TALL_PLANTS) && ToolsConfig.COMMON.breaksTallGrass.get()) {
+                    world.destroyBlock(pos, true);
+                }
+                if ((state.getBlock() instanceof TorchBlock) && ToolsConfig.COMMON.breaksTorches.get()) {
+                    world.destroyBlock(pos, true);
+                }
+                if ((state.getBlock() instanceof LeverBlock) && ToolsConfig.COMMON.activatesLevers.get()) {
+                    if (timeBeforeTurnAround > 0 && ToolsConfig.COMMON.turnAroundButton.get()) {
+                        timeBeforeTurnAround = 0;
+                    }
+                    if (activatedPos == null || !activatedPos.equals(pos)) {
+                        activatedPos = pos;
+                        state.getBlock().onBlockActivated(state, world, pos, player, Hand.MAIN_HAND, (BlockRayTraceResult) raytraceresult.hitInfo);
+                    }
+                }
+                if ((state.getBlock() instanceof AbstractButtonBlock) && ToolsConfig.COMMON.activatesButtons.get()) {
+                    if (timeBeforeTurnAround > 0 && ToolsConfig.COMMON.turnAroundButton.get()) {
+                        timeBeforeTurnAround = 0;
+                    }
+                    if (activatedPos == null || !activatedPos.equals(pos)) {
+                        activatedPos = pos;
+                        state.getBlock().onBlockActivated(state, world, pos, player, Hand.MAIN_HAND, (BlockRayTraceResult) raytraceresult.hitInfo);
+                    }
+                }
+                if ((state.getBlock() instanceof PressurePlateBlock) && ToolsConfig.COMMON.activatesPressurePlates.get()) {
+                    if (timeBeforeTurnAround > 0 && ToolsConfig.COMMON.turnAroundButton.get()) {
+                        timeBeforeTurnAround = 0;
+                    }
+                    if (activatedPos == null || !activatedPos.equals(pos)) {
+                        activatedPos = pos;
+                        state.getBlock().onBlockActivated(state, world, pos, player, Hand.MAIN_HAND, (BlockRayTraceResult) raytraceresult.hitInfo);
+                    }
+                }
+                if ((state.getBlock() instanceof TripWireBlock) && ToolsConfig.COMMON.activatesTripWire.get()) {
                     if (timeBeforeTurnAround > 0 && ToolsConfig.COMMON.turnAroundButton.get()) {
                         timeBeforeTurnAround = 0;
                     }
@@ -124,15 +167,15 @@ public abstract class BoomerangEntity extends Entity {
 
             boolean flag = false;
             if (motionAfter.x != motionBefore.x) {
-                newX = +motionBefore.x;
+                newX = -motionBefore.x;
                 flag = true;
             }
             if (motionAfter.y != motionBefore.y) {
-                newY = +motionBefore.y;
+                newY = -motionBefore.y;
                 flag = true;
             }
             if (motionAfter.z != motionBefore.z) {
-                newZ = +motionBefore.z;
+                newZ = -motionBefore.z;
                 flag = true;
             }
             if (flag) {
