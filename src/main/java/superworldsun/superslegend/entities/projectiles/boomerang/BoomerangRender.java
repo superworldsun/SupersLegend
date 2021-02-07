@@ -26,7 +26,7 @@ public class BoomerangRender extends EntityRenderer<BoomerangEntity> {
         super(renderManager);
         this.itemRenderer = item;
         this.shadowSize = 0.15F;
-        this.shadowOpaque = 0.75F;
+        this.shadowOpaque = 0.80F;
     }
 
     @Override
