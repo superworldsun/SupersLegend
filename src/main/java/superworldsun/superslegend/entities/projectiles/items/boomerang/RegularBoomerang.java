@@ -1,4 +1,4 @@
-package superworldsun.superslegend.entities.projectiles.boomerang;
+package superworldsun.superslegend.entities.projectiles.items.boomerang;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -9,25 +9,25 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import superworldsun.superslegend.config.ToolsConfig;
+import superworldsun.superslegend.config.SupersLegendConfig;
 import superworldsun.superslegend.init.EntityInit;
 
 public class RegularBoomerang extends BoomerangEntity {
 
     public RegularBoomerang(EntityType<BoomerangEntity> type, World world) {
         super(type, world);
-        this.timeBeforeTurnAround = ToolsConfig.COMMON.RegularBoomerangRange.get() <= 0 ? 20 : ToolsConfig.COMMON.RegularBoomerangRange.get();
+        this.timeBeforeTurnAround = SupersLegendConfig.COMMON.RegularBoomerangRange.get() <= 0 ? 20 : SupersLegendConfig.COMMON.RegularBoomerangRange.get();
     }
 
     public RegularBoomerang(World worldIn, PlayerEntity entity, ItemStack itemstack, Hand hand) {
         super(EntityInit.REGULAR_BOOMERANG.get(), worldIn, entity, itemstack, hand);
-        this.timeBeforeTurnAround = ToolsConfig.COMMON.RegularBoomerangRange.get() <= 0 ? 20 : ToolsConfig.COMMON.RegularBoomerangRange.get();
+        this.timeBeforeTurnAround = SupersLegendConfig.COMMON.RegularBoomerangRange.get() <= 0 ? 20 : SupersLegendConfig.COMMON.RegularBoomerangRange.get();
     }
 
     @Override
     protected int getDamage(Entity hitEntity, PlayerEntity player) {
-        if (ToolsConfig.COMMON.RegularBoomerangDamage.get() > 0) {
-            return ToolsConfig.COMMON.RegularBoomerangDamage.get();
+        if (SupersLegendConfig.COMMON.RegularBoomerangDamage.get() > 0) {
+            return SupersLegendConfig.COMMON.RegularBoomerangDamage.get();
         }
 
         return 0;
@@ -42,7 +42,7 @@ public class RegularBoomerang extends BoomerangEntity {
     public void beforeTurnAround(PlayerEntity player) {
         // Following is diamond boomerang only
         // Follows where the entity is looking
-        if (!isBouncing && ToolsConfig.COMMON.RegularBoomerangFollows.get()) {
+        if (!isBouncing && SupersLegendConfig.COMMON.RegularBoomerangFollows.get()) {
             double x = -MathHelper.sin((player.rotationYaw * 3.141593F) / 180F);
             double z = MathHelper.cos((player.rotationYaw * 3.141593F) / 180F);
 

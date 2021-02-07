@@ -1,55 +1,162 @@
 package superworldsun.superslegend.items;
 
-import net.minecraft.client.util.ITooltipFlag;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.IVanishable;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MoverType;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SnowballEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.TridentEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.*;
+import net.minecraft.pathfinding.PathType;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import superworldsun.superslegend.entities.projectiles.items.EntityBomb;
-import superworldsun.superslegend.init.SoundInit;
-import superworldsun.superslegend.lists.ItemList;
+import superworldsun.superslegend.config.SupersLegendConfig;
+import superworldsun.superslegend.entities.projectiles.items.bomb.BombEntity;
+import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangEntity;
+import superworldsun.superslegend.entities.projectiles.items.boomerang.RegularBoomerang;
+import superworldsun.superslegend.lists.BlockList;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
-public class Bomb extends Item
-{
+public class Bomb extends Item implements IVanishable {
 
-	public Bomb(Properties properties)
-	{
+
+	private Object LivingEntity;
+
+	public Bomb(Properties properties) {
 		super(properties);
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-		if (!worldIn.isRemote) {
-			EntityBomb entityBomb = new EntityBomb(worldIn, playerIn);
-			//Use this when Bomb is Implemented
-			//EntityBomb entityBomb = new EntityBomb(EntityInit.BOMBENTITY.get(), worldIn);
-			entityBomb.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-			worldIn.addEntity(entityBomb);
-		}
-
-		playerIn.addStat(Stats.ITEM_USED.get(this));
-		if (!playerIn.abilities.isCreativeMode) {
-			itemstack.shrink(1);
-		}
-
-		return ActionResult.func_233538_a_(itemstack, worldIn.isRemote());
+	@Override
+	protected boolean isInGroup(ItemGroup group) {
+		return SupersLegendConfig.COMMON.BombEnabled.get() && super.isInGroup(group);
 	}
 
-	public void addInformation(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
-	{
-		super.addInformation(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.BLUE + "Ole reliable"));
-	}  
-	
+	public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
+		return !player.isCreative();
+	}
+
+	/**
+	 * returns the action that specifies what animation to play when the items is being used
+	 */
+	public UseAction getUseAction(ItemStack stack) {
+		return UseAction.SPEAR;
+	}
+
+	/**
+	 * How long it takes to use or consume an item
+	 */
+	public int getUseDuration(ItemStack stack) {
+		return 52000;
+	}
+
+	/**
+	 * Called when the player stops using an Item (stops holding the right mouse button).
+	 */
+	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+		if (entityLiving instanceof PlayerEntity) {
+			PlayerEntity playerentity = (PlayerEntity) entityLiving;
+			int i = this.getUseDuration(stack) - timeLeft;
+			if (i >= 10) {
+
+				BombEntity Bomb = new BombEntity(worldIn, playerentity, stack);
+				Bomb.pickupStatus = AbstractArrowEntity.PickupStatus.DISALLOWED;
+				Bomb.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.5F, 0.5F, 0.5F);
+				if (playerentity.abilities.isCreativeMode) {
+					worldIn.addEntity(Bomb);
+				}
+
+				//worldIn.addEntity(Bomb);
+				//worldIn.playMovingSound((PlayerEntity) null, Bomb, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				if (!playerentity.abilities.isCreativeMode) {
+					worldIn.addEntity(Bomb);
+					playerentity.inventory.deleteStack(stack);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
+	 * {@link #onItemUse}.
+	 */
+	@Override
+	public ActionResult<ItemStack> onItemRightClick( World worldIn, PlayerEntity playerIn, Hand handIn) {
+		ItemStack itemstack = playerIn.getHeldItem(handIn);
+
+		playerIn.setActiveHand(handIn);
+		//return ActionResult.resultConsume(itemstack);
+		return new ActionResult<ItemStack>(ActionResultType.SUCCESS, itemstack);
+	}
+
+	@Override
+	@Deprecated
+	public ActionResultType onItemUse(ItemUseContext context) {
+
+		World world = context.getWorld();
+		BlockPos blockpos = context.getPos();
+		ItemStack item = context.getItem();
+		BlockPos pos1 = blockpos.up();
+
+		world.playSound(null, pos1.getX(), pos1.getY(), pos1.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.PLAYERS, 1f, 1f);
+
+		if(world.getBlockState(pos1).isAir() && !world.getBlockState(blockpos).isAir())
+		{
+
+
+					world.setBlockState(pos1, BlockList.bomb_block.getDefaultState());
+
+					//world.setBlockState(pos1, BlockList.bomb_block.getDefaultState());
+
+					item.shrink(1);
+
+		}
+		return ActionResultType.PASS;
+
+	}
+
+	/**
+	 * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
+	 * the damage on the stack.
+	 */
+	@Override
+	public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+		stack.damageItem(1, attacker, (entity) -> {
+			entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+		});
+		return true;
+	}
+
+	/**
+	 * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
+	 */
+	public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+		if ((double)state.getBlockHardness(worldIn, pos) != 0.0D) {
+			stack.damageItem(2, entityLiving, (entity) -> {
+				entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+			});
+		}
+
+		return true;
+	}
 }

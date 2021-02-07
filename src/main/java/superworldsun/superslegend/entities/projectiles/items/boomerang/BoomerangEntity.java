@@ -1,7 +1,5 @@
-package superworldsun.superslegend.entities.projectiles.boomerang;
+package superworldsun.superslegend.entities.projectiles.items.boomerang;
 
-import com.mojang.serialization.Lifecycle;
-import it.unimi.dsi.fastutil.doubles.Double2ObjectRBTreeMap;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -11,18 +9,12 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.TallBlockItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.DoorHingeSide;
-import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -36,9 +28,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.network.NetworkHooks;
-import superworldsun.superslegend.blocks.TorchTowerBlockBottom;
-import superworldsun.superslegend.config.ToolsConfig;
-import superworldsun.superslegend.items.TorchTower;
+import superworldsun.superslegend.config.SupersLegendConfig;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -105,20 +95,20 @@ public abstract class BoomerangEntity extends Entity {
                 BlockPos pos = new BlockPos(raytraceresult.getHitVec());
                 BlockState state = world.getBlockState(pos);
 
-                if (state.getMaterial() == Material.PLANTS && ToolsConfig.COMMON.breaksFlowers.get()) {
+                if (state.getMaterial() == Material.PLANTS && SupersLegendConfig.COMMON.breaksFlowers.get()) {
                     world.destroyBlock(pos, true);
                 }
-                if ((state.getBlock() instanceof GrassBlock) && ToolsConfig.COMMON.breaksGrass.get()) {
+                if ((state.getBlock() instanceof GrassBlock) && SupersLegendConfig.COMMON.breaksGrass.get()) {
                     world.destroyBlock(pos, true);
                 }
-                if ((state.getMaterial() == Material.TALL_PLANTS) && ToolsConfig.COMMON.breaksTallGrass.get()) {
+                if ((state.getMaterial() == Material.TALL_PLANTS) && SupersLegendConfig.COMMON.breaksTallGrass.get()) {
                     world.destroyBlock(pos, true);
                 }
-                if ((state.getBlock() instanceof TorchBlock) && ToolsConfig.COMMON.breaksTorches.get()) {
+                if ((state.getBlock() instanceof TorchBlock) && SupersLegendConfig.COMMON.breaksTorches.get()) {
                     world.destroyBlock(pos, true);
                 }
-                if ((state.getBlock() instanceof LeverBlock) && ToolsConfig.COMMON.activatesLevers.get()) {
-                    if (timeBeforeTurnAround > 0 && ToolsConfig.COMMON.turnAroundButton.get()) {
+                if ((state.getBlock() instanceof LeverBlock) && SupersLegendConfig.COMMON.activatesLevers.get()) {
+                    if (timeBeforeTurnAround > 0 && SupersLegendConfig.COMMON.turnAroundButton.get()) {
                         timeBeforeTurnAround = 0;
                     }
                     if (activatedPos == null || !activatedPos.equals(pos)) {
@@ -126,8 +116,8 @@ public abstract class BoomerangEntity extends Entity {
                         state.getBlock().onBlockActivated(state, world, pos, player, Hand.MAIN_HAND, (BlockRayTraceResult) raytraceresult.hitInfo);
                     }
                 }
-                if ((state.getBlock() instanceof AbstractButtonBlock) && ToolsConfig.COMMON.activatesButtons.get()) {
-                    if (timeBeforeTurnAround > 0 && ToolsConfig.COMMON.turnAroundButton.get()) {
+                if ((state.getBlock() instanceof AbstractButtonBlock) && SupersLegendConfig.COMMON.activatesButtons.get()) {
+                    if (timeBeforeTurnAround > 0 && SupersLegendConfig.COMMON.turnAroundButton.get()) {
                         timeBeforeTurnAround = 0;
                     }
                     if (activatedPos == null || !activatedPos.equals(pos)) {
@@ -135,8 +125,8 @@ public abstract class BoomerangEntity extends Entity {
                         state.getBlock().onBlockActivated(state, world, pos, player, Hand.MAIN_HAND, (BlockRayTraceResult) raytraceresult.hitInfo);
                     }
                 }
-                if ((state.getBlock() instanceof PressurePlateBlock) && ToolsConfig.COMMON.activatesPressurePlates.get()) {
-                    if (timeBeforeTurnAround > 0 && ToolsConfig.COMMON.turnAroundButton.get()) {
+                if ((state.getBlock() instanceof PressurePlateBlock) && SupersLegendConfig.COMMON.activatesPressurePlates.get()) {
+                    if (timeBeforeTurnAround > 0 && SupersLegendConfig.COMMON.turnAroundButton.get()) {
                         timeBeforeTurnAround = 0;
                     }
                     if (activatedPos == null || !activatedPos.equals(pos)) {
@@ -144,8 +134,8 @@ public abstract class BoomerangEntity extends Entity {
                         state.getBlock().onBlockActivated(state, world, pos, player, Hand.MAIN_HAND, (BlockRayTraceResult) raytraceresult.hitInfo);
                     }
                 }
-                if ((state.getBlock() instanceof TripWireBlock) && ToolsConfig.COMMON.activatesTripWire.get()) {
-                    if (timeBeforeTurnAround > 0 && ToolsConfig.COMMON.turnAroundButton.get()) {
+                if ((state.getBlock() instanceof TripWireBlock) && SupersLegendConfig.COMMON.activatesTripWire.get()) {
+                    if (timeBeforeTurnAround > 0 && SupersLegendConfig.COMMON.turnAroundButton.get()) {
                         timeBeforeTurnAround = 0;
                     }
                     if (activatedPos == null || !activatedPos.equals(pos)) {
@@ -209,7 +199,7 @@ public abstract class BoomerangEntity extends Entity {
             Entity entity = list.get(i);
             if (entity instanceof ItemEntity) {
                 itemsPickedUp.add((ItemEntity) entity);
-                if (timeBeforeTurnAround > 0 && ToolsConfig.COMMON.turnAroundItem.get()) {
+                if (timeBeforeTurnAround > 0 && SupersLegendConfig.COMMON.turnAroundItem.get()) {
                     timeBeforeTurnAround = 0;
                 }
                 continue;
@@ -220,7 +210,7 @@ public abstract class BoomerangEntity extends Entity {
 
             this.onEntityHit(entity, player);
 
-            if (timeBeforeTurnAround > 0 && ToolsConfig.COMMON.turnAroundMob.get()) {
+            if (timeBeforeTurnAround > 0 && SupersLegendConfig.COMMON.turnAroundMob.get()) {
                 timeBeforeTurnAround = 0;
             }
         }
