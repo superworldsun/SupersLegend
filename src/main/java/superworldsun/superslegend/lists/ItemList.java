@@ -1,5 +1,6 @@
 package superworldsun.superslegend.lists;
 
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import superworldsun.superslegend.items.BoomerangItem;
 import superworldsun.superslegend.items.RocsCapeEffects;

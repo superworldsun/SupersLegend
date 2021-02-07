@@ -1,4 +1,4 @@
-package superworldsun.superslegend.entities.projectiles.boomerang;
+package superworldsun.superslegend.entities.projectiles.items.boomerang;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;

@@ -9,8 +9,11 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.SupersLegend;
 
+@OnlyIn(Dist.CLIENT)
 public class FairyEntityModel extends AdvancedEntityModel<FairyEntity> {
     // ROOT meaning base for whole model
     private final AdvancedModelBox root;

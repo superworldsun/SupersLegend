@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import superworldsun.superslegend.config.ToolsConfig;
-import superworldsun.superslegend.entities.projectiles.boomerang.RegularBoomerang;
-import superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
+import superworldsun.superslegend.config.SupersLegendConfig;
+import superworldsun.superslegend.entities.projectiles.items.boomerang.RegularBoomerang;
+import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangEntity;
 
 public class BoomerangItem extends Item {
 
@@ -19,7 +19,7 @@ public class BoomerangItem extends Item {
 
     @Override
     protected boolean isInGroup(ItemGroup group) {
-        return ToolsConfig.COMMON.boomerangsEnabled.get() && super.isInGroup(group);
+        return SupersLegendConfig.COMMON.boomerangsEnabled.get() && super.isInGroup(group);
     }
 
     @Override

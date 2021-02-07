@@ -1,11 +1,12 @@
 {
+  "parent": "block/cube_all",
   "textures": {
-    "0": "superslegend:item/bomb",
-    "particle": "superslegend:item/bomb"
+    "0": "superslegend:block/bomb_block",
+    "particle": "superslegend:block/bomb_block"
   },
   "elements": [
     {
-      "name": "Bomb",
+
       "from": [-2.9, 2.6, -2.5],
       "to": [-1.9, 6.6, 2.5],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -20,7 +21,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-3.1, 2.35, -2.25],
       "to": [-2.1, 6.35, 1.75],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -35,7 +36,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-3.1, 2.35, -1.75],
       "to": [-2.1, 6.35, 2.25],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -50,7 +51,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-3.1, 2.2, -2.25],
       "to": [-2.1, 6.2, 1.75],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -65,7 +66,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-3.1, 2.2, -1.75],
       "to": [-2.1, 6.2, 2.25],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -80,7 +81,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.9, 2, -2.5],
       "to": [-1.9, 6, 2.5],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -95,7 +96,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [1.9, 2.6, -2.5],
       "to": [2.9, 6.6, 2.5],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -110,7 +111,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [2.1, 2.35, -2.25],
       "to": [3.1, 6.35, 1.75],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -125,7 +126,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [2.1, 2.2, -1.75],
       "to": [3.1, 6.2, 2.25],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -140,7 +141,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [2.1, 2.35, -1.75],
       "to": [3.1, 6.35, 2.25],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -155,7 +156,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [2.1, 2.2, -2.25],
       "to": [3.1, 6.2, 1.75],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -170,7 +171,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [1.9, 2, -2.5],
       "to": [2.9, 6, 2.5],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -185,7 +186,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.5, 1.6, -2.5],
       "to": [2.5, 6.6, 2.5],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -200,7 +201,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.25, 1.4, -2.25],
       "to": [1.75, 6.4, 1.75],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -215,7 +216,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.75, 1.4, -2.25],
       "to": [2.25, 6.4, 1.75],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -230,7 +231,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.75, 1.4, -1.75],
       "to": [2.25, 6.4, 2.25],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -245,7 +246,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.25, 1.4, -1.75],
       "to": [1.75, 6.4, 2.25],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -260,7 +261,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.5, 6, -2.5],
       "to": [2.5, 7, 2.5],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -275,7 +276,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.3, 6.25, -2.3],
       "to": [1.7, 7.25, 1.7],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -290,7 +291,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.4, 6.15, -1.6],
       "to": [1.6, 7.15, 2.4],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -305,7 +306,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.6, 6.15, -1.6],
       "to": [2.4, 7.15, 2.4],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -320,7 +321,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.6, 6.15, -2.4],
       "to": [2.4, 7.15, 1.6],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -335,7 +336,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.4, 6.15, -2.4],
       "to": [1.6, 7.15, 1.6],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -350,7 +351,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.7, 6.25, -1.7],
       "to": [2.3, 7.25, 2.3],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -365,7 +366,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.7, 6.25, -1.7],
       "to": [2.3, 7.25, 2.3],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -380,7 +381,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.5, 2, -2.9],
       "to": [2.5, 6, -1.9],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -395,7 +396,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.75, 2.2, -3.1],
       "to": [2.25, 6.2, -2.1],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -410,7 +411,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.75, 2.2, -3.1],
       "to": [2.25, 6.2, -2.1],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -425,7 +426,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.75, 2.35, -3.1],
       "to": [2.25, 6.35, -2.1],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -440,7 +441,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.25, 2.35, -3.1],
       "to": [1.75, 6.35, -2.1],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -455,7 +456,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.25, 2.2, -3.1],
       "to": [1.75, 6.2, -2.1],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -470,7 +471,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.5, 2.6, -2.9],
       "to": [2.5, 6.6, -1.9],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -485,7 +486,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2, 2, 1.9],
       "to": [2, 6, 2.9],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -500,7 +501,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.5, 2, 1.9],
       "to": [2.5, 6, 2.9],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -515,7 +516,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2, 2.6, 1.9],
       "to": [2, 6.6, 2.9],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -530,7 +531,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.75, 2.15, 2.1],
       "to": [2.25, 6.15, 3.1],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -545,7 +546,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.25, 2.15, 2.1],
       "to": [1.75, 6.15, 3.1],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -560,7 +561,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.25, 2.4, 2.1],
       "to": [1.75, 6.4, 3.1],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -575,7 +576,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.75, 2.4, 2.1],
       "to": [2.25, 6.4, 3.1],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -590,7 +591,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-1.5, 2.6, 1.9],
       "to": [2.5, 6.6, 2.9],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -605,7 +606,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.5, 2.6, 1.9],
       "to": [1.5, 6.6, 2.9],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -620,7 +621,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.5, 2, 1.9],
       "to": [1.5, 6, 2.9],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -635,7 +636,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.7, 1.8, -2.7],
       "to": [2.3, 6.8, -1.7],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -650,7 +651,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [1.7, 1.8, -2.7],
       "to": [2.7, 6.8, 2.3],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -665,7 +666,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.7, 1.8, -2.3],
       "to": [-1.7, 6.8, 2.7],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -680,7 +681,7 @@
       }
     },
     {
-      "name": "Bomb",
+
       "from": [-2.3, 1.8, 1.7],
       "to": [2.7, 6.8, 2.7],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -695,7 +696,7 @@
       }
     },
     {
-      "name": "Stem",
+
       "from": [-1.5, 6.5, -1.5],
       "to": [1.5, 7.5, 1.5],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -710,7 +711,7 @@
       }
     },
     {
-      "name": "Stem",
+
       "from": [-0.5, 7, -0.5],
       "to": [0.5, 8, 0.5],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
@@ -725,7 +726,7 @@
       }
     },
     {
-      "name": "wickmiddle_r1",
+
       "from": [-0.5, 7.7706, -0.34672],
       "to": [0.5, 8.7706, 0.65328],
       "rotation": {"angle": 22.5, "axis": "x", "origin": [0, 8.2706, 0.15328]},
@@ -740,7 +741,7 @@
       }
     },
     {
-      "name": "wicktop_r1",
+
       "from": [-0.5, 8.42388, 0.08979],
       "to": [0.5, 9.42388, 1.08979],
       "rotation": {"angle": 45, "axis": "x", "origin": [0, 8.92388, 0.58979]},
@@ -755,64 +756,5 @@
       }
     }
   ],
-  "display": {
-    "thirdperson_righthand": {
-      "rotation": [39.5, 40.25, 0],
-      "translation": [8, 2, 2.75],
-      "scale": [0.69531, 0.71875, 0.76172]
-    },
-    "thirdperson_lefthand": {
-      "rotation": [45.75, -363.5, -355],
-      "translation": [-8.25, -2, 7.75]
-    },
-    "firstperson_righthand": {
-      "rotation": [-7, -8.25, -1],
-      "translation": [9.25, 3.5, 6.25]
-    },
-    "firstperson_lefthand": {
-      "translation": [0, 2.5, 4.75]
-    },
-    "ground": {
-      "rotation": [25.5, 0, 12.75],
-      "translation": [8, 4.5, 7.75]
-    },
-    "gui": {
-      "rotation": [0, -43.5, 0],
-      "translation": [-0.25, 4, 0],
-      "scale": [1.22852, 1.32031, 1.35938]
-    },
-    "head": {
-      "translation": [24.5, 10.25, 22.25],
-      "scale": [2.96484, 2.61523, 2.83008]
-    },
-    "fixed": {
-      "rotation": [-33.5, 0, 0],
-      "translation": [10, 9, 3.75],
-      "scale": [1.23047, 1.31445, 1.11523]
-    }
-  },
-  "groups": [
-    {
-      "name": "Bomb",
-      "origin": [-0.5, 6, -0.5],
-      "children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45,
-        {
-          "name": "Stem",
-          "origin": [-1, 4.4568, 1.0227],
-          "children": [46, 47,
-            {
-              "name": "wickmiddle_r1",
-              "origin": [-1, 4.4568, 1.0227],
-              "children": [48]
-            },
-            {
-              "name": "wicktop_r1",
-              "origin": [-1, 4.4568, 1.0227],
-              "children": [49]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+  "display": {}
+  }

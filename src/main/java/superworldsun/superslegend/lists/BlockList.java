@@ -24,7 +24,7 @@ public class BlockList
 	public static Block shadow_block;
 	public static Block false_shadow_block;
 	public static Block hidden_shadow_block;
-
+	public static Block bomb_block;
 	
 	public static Block poison;
 }

@@ -6,12 +6,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -36,12 +32,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import superworldsun.superslegend.CustomLootMobs.*;
 import superworldsun.superslegend.blocks.*;
-import superworldsun.superslegend.config.ToolsConfig;
+import superworldsun.superslegend.config.SupersLegendConfig;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntityRenderer;
 import superworldsun.superslegend.entities.mobs.poe.PoeEntity;
 import superworldsun.superslegend.entities.mobs.poe.PoeEntityRenderer;
-import superworldsun.superslegend.entities.projectiles.boomerang.BoomerangRender;
+import superworldsun.superslegend.entities.projectiles.items.bomb.BombRenderer;
+import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangRender;
 import superworldsun.superslegend.init.EntityInit;
 import superworldsun.superslegend.init.ParticleInit;
 import superworldsun.superslegend.items.*;
@@ -80,7 +77,7 @@ public class SupersLegend
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 		MinecraftForge.EVENT_BUS.register(RegistryEvents.class);
 
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ToolsConfig.COMMON_SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupersLegendConfig.COMMON_SPEC);
 
 		ParticleInit.subscribe(FMLJavaModLoadingContext.get().getModEventBus());
 
@@ -215,6 +212,7 @@ public class SupersLegend
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FAIRYENTITY.get(), FairyEntityRenderer::new);
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.POEENTITY.get(), PoeEntityRenderer::new);
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.REGULAR_BOOMERANG.get(), new BoomerangRender.Factory());
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.BOMBENTITY.get(), BombRenderer::new);
 		}
 
 
@@ -289,7 +287,6 @@ public class SupersLegend
 			ItemList.shadow_block = new BlockItem(BlockList.shadow_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.shadow_block.getRegistryName()),
 			ItemList.false_shadow_block = new BlockItem(BlockList.false_shadow_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.false_shadow_block.getRegistryName()),
 			ItemList.hidden_shadow_block = new BlockItem(BlockList.hidden_shadow_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.hidden_shadow_block.getRegistryName()),
-
 
 
 	//WEAPONS
@@ -497,8 +494,10 @@ public class SupersLegend
 					BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(100.0f, 400.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block")),
 					BlockList.shadow_block = new Block(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(1.0f, 1.0f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("shadow_block")),
 					BlockList.false_shadow_block = new FalseShadowBlock(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(1.0f, 1.0f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("false_shadow_block")),
-					BlockList.hidden_shadow_block = new HiddenShadowBlock(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(1.0f, 1.0f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("hidden_shadow_block"))
-					
+					BlockList.hidden_shadow_block = new HiddenShadowBlock(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(1.0f, 1.0f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("hidden_shadow_block")),
+					BlockList.bomb_block = new BombBlock(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.8f, 0.8f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName("bomb_block")
+
+
 					//BlockList.poison = new FlowingFluidBlock(() -> FluidList.poison, Block.Properties.create(Material.WATER).doesNotBlockMovement().noDrops()).setRegistryName(location("poison"))
 			);
 			Logger.info("Blocks registered.");
