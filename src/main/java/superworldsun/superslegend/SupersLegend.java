@@ -44,10 +44,7 @@ import superworldsun.superslegend.init.ParticleInit;
 import superworldsun.superslegend.items.*;
 import superworldsun.superslegend.items.armors.*;
 import superworldsun.superslegend.items.arrows.*;
-import superworldsun.superslegend.items.bows.BitBow;
-import superworldsun.superslegend.items.bows.HerosBow;
-import superworldsun.superslegend.items.bows.LynelBowX3;
-import superworldsun.superslegend.items.bows.LynelBowX5;
+import superworldsun.superslegend.items.bows.*;
 import superworldsun.superslegend.items.masks.*;
 import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
@@ -247,7 +244,6 @@ public class SupersLegend
 			ItemList.ancient_screw = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_screw")),
 			ItemList.ancient_shaft = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_shaft")),
 			ItemList.ancient_spring = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_spring")),
-			ItemList.regular_boomerang = new BoomerangItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("regular_boomerang")),
 
 
 			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("master_ore")),
@@ -322,7 +318,11 @@ public class SupersLegend
 			ItemList.rocs_feather = new RocsFeather(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rocs_feather")),
 			ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
 			ItemList.magic_cape = new MagicCape(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_cape")),
+			ItemList.sling_shot = new SlingShot(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("sling_shot")),
+			ItemList.regular_boomerang = new BoomerangItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("regular_boomerang")),
 			ItemList.bomb = new Bomb(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bomb")),
+			ItemList.fire_rod = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("fire_rod")),
+			ItemList.ice_rod = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ice_rod")),
 			ItemList.empty_container = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("empty_container")),
 			ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
 			ItemList.dins_fire = new DinsFire(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),

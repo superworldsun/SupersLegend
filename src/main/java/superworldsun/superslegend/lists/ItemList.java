@@ -21,7 +21,11 @@ public class ItemList
 		public static Item rocs_feather;
 		public static Item magic_mirror;
 		public static Item magic_cape;
+		public static Item sling_shot;
+		public static Item regular_boomerang;
 		public static Item bomb;
+		public static Item fire_rod;
+		public static Item ice_rod;
 		public static Item empty_container;
 		public static Item farores_wind;
 		public static Item dins_fire;
@@ -70,7 +74,6 @@ public class ItemList
 		public static Item heros_secret_stash;
 		public static Item torch_tower;
 		public static Item kokiri_set;
-		public static Item regular_boomerang;
 		public static Item goron_set;
 		public static Item zora_set;
 		public static Item purple_set;
