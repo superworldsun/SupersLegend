@@ -109,6 +109,7 @@ public class ItemList
 		public static Item shadow_block;
 		public static Item false_shadow_block;
 		public static Item hidden_shadow_block;
+		public static Item tombstone_block;
 		
 	//Liquids
 		public static Item poison;
