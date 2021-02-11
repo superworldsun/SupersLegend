@@ -1,5 +1,7 @@
 package superworldsun.superslegend.entities.projectiles.items.bomb;
 
+import net.minecraft.block.TNTBlock;
+import net.minecraft.client.renderer.entity.TNTRenderer;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.TNTEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,7 +31,7 @@ import javax.annotation.Nullable;
 
 
 public class BombEntity extends AbstractArrowEntity  {
-    private static final DataParameter<Integer> FUSE = EntityDataManager.createKey(TNTEntity.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> FUSE = EntityDataManager.createKey(BombEntity.class, DataSerializers.VARINT);
     public static final DataParameter<Boolean> field_226571_aq_ = EntityDataManager.createKey(BombEntity.class, DataSerializers.BOOLEAN);
     public ItemStack thrownStack = new ItemStack(ItemList.bomb);
     private boolean dealtDamage;
@@ -83,7 +85,7 @@ public class BombEntity extends AbstractArrowEntity  {
         }
 
         this.move(MoverType.SELF, this.getMotion());
-        this.setMotion(this.getMotion().scale(0.98D));
+        this.setMotion(this.getMotion().scale(1.0D));
         if (this.onGround) {
             this.setMotion(this.getMotion().mul(0.7D, -0.5D, 0.7D));
         }
@@ -97,7 +99,9 @@ public class BombEntity extends AbstractArrowEntity  {
         } else {
             this.func_233566_aG_();
             if (this.world.isRemote) {
-                this.world.addParticle(ParticleTypes.SMOKE, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), 0.0D, 0.0D, 0.0D);
+                this.world.addParticle(ParticleTypes.SMOKE, this.getPosX(), this.getPosY() + 0.6D, this.getPosZ(), 0.0D, 0.1D, 0.0D);
+                this.world.addParticle(ParticleTypes.SMOKE, this.getPosX(), this.getPosY() + 0.6D, this.getPosZ(), 0.0D, 0.1D, 0.0D);
+                this.world.addParticle(ParticleTypes.SMOKE, this.getPosX(), this.getPosY() + 0.6D, this.getPosZ(), 0.0D, 0.1D, 0.0D);
             }
         }
 
@@ -105,7 +109,7 @@ public class BombEntity extends AbstractArrowEntity  {
 
     protected void explode() {
         float f = 4.0F;
-        this.world.createExplosion(this, this.getPosX(), this.getPosYHeight(0.0625D), this.getPosZ(), 4.0F, Explosion.Mode.NONE);
+        this.world.createExplosion(this, this.getPosX(), this.getPosYHeight(0.1f), this.getPosZ(), 4.0F, Explosion.Mode.NONE);
     }
 
     protected ItemStack getArrowStack() {
@@ -204,8 +208,9 @@ public class BombEntity extends AbstractArrowEntity  {
         return 0.99F;
     }
 
+    @Override
     public IPacket<?> createSpawnPacket() {
-        return new SSpawnObjectPacket(this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @OnlyIn(Dist.CLIENT)
