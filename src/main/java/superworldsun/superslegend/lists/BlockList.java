@@ -25,6 +25,8 @@ public class BlockList
 	public static Block false_shadow_block;
 	public static Block hidden_shadow_block;
 	public static Block tombstone_block;
+	public static Block stone_path_block;
+	public static Block stone_tile_block;
 	public static Block bomb_block;
 	
 	public static Block poison;

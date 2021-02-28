@@ -17,6 +17,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
@@ -29,6 +30,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.network.NetworkHooks;
 import superworldsun.superslegend.config.SupersLegendConfig;
+import superworldsun.superslegend.init.SoundInit;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -85,6 +87,15 @@ public abstract class BoomerangEntity extends Entity {
     @Deprecated
     public void tick() {
         PlayerEntity player = this.getReturnTo();
+
+        //BlockPos currentPos = this.getPosition();
+        //this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOOMERANG_FLY_LOOP, SoundCategory.PLAYERS, 1f, 1f);
+
+        if(this.ticksExisted % 11 == 0)
+        {
+            BlockPos currentPos = this.getPosition();
+            this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOOMERANG_FLY_LOOP, SoundCategory.PLAYERS, 0.4f, 1.0f);
+        }
 
         Vector3d vec3d1 = this.getPositionVec();
         Vector3d vec3d = this.getPositionVec().add(this.getMotion());

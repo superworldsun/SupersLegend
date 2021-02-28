@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+            { "model": "superslegend:block/stone_path_block"           },
+            { "model": "superslegend:block/stone_path_block", "y": 90  },
+            { "model": "superslegend:block/stone_path_block", "y": 180 },
+            { "model": "superslegend:block/stone_path_block", "y": 270 }
+        ]
+    }
+}

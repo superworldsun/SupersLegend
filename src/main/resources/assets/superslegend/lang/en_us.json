@@ -92,6 +92,8 @@
 	"block.superslegend.false_shadow_block": "False Shadow Block",
 	"block.superslegend.hidden_shadow_block": "Hidden Shadow Block",
 	"block.superslegend.tombstone_block": "Tombstone Block",
+	"block.superslegend.stone_path_block": "Stone Path Block",
+	"block.superslegend.stone_tile_block": "Stone Tile Block",
 	"item.superslegend.kokiri_sword": "Kokiri Sword",
 	"item.superslegend.razor_sword": "Razor Sword",
 	"item.superslegend.gilded_sword": "Gilded Sword",
