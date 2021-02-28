@@ -208,9 +208,9 @@ public class SupersLegend
 			RenderTypeLookup.setRenderLayer(BlockList.spikes_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.grass_patch_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.hidden_shadow_block, RenderType.getTranslucent());
-			RenderTypeLookup.setRenderLayer(BlockList.tombstone_block, RenderType.getCutout());
-			RenderTypeLookup.setRenderLayer(BlockList.stone_path_block, RenderType.getCutout());
-			RenderTypeLookup.setRenderLayer(BlockList.stone_tile_block, RenderType.getCutout());
+      RenderTypeLookup.setRenderLayer(BlockList.tombstone_block, RenderType.getCutout());
+      RenderTypeLookup.setRenderLayer(BlockList.stone_path_block, RenderType.getCutout());
+      RenderTypeLookup.setRenderLayer(BlockList.stone_tile_block, RenderType.getCutout());
 
 			// REGISTER ENTITIES "Currently Item and Mob entities"
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FAIRYENTITY.get(), FairyEntityRenderer::new);
@@ -253,6 +253,7 @@ public class SupersLegend
 			ItemList.ancient_screw = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_screw")),
 			ItemList.ancient_shaft = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_shaft")),
 			ItemList.ancient_spring = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ancient_spring")),
+			ItemList.regular_boomerang = new BoomerangItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("regular_boomerang")),
 
 
 			ItemList.master_ore = new Item(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("master_ore")),
@@ -296,7 +297,7 @@ public class SupersLegend
 			ItemList.shadow_block = new BlockItem(BlockList.shadow_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.shadow_block.getRegistryName()),
 			ItemList.false_shadow_block = new BlockItem(BlockList.false_shadow_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.false_shadow_block.getRegistryName()),
 			ItemList.hidden_shadow_block = new BlockItem(BlockList.hidden_shadow_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.hidden_shadow_block.getRegistryName()),
-			ItemList.tombstone_block = new BlockItem(BlockList.tombstone_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.tombstone_block.getRegistryName()),
+      ItemList.tombstone_block = new BlockItem(BlockList.tombstone_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.tombstone_block.getRegistryName()),
 			ItemList.stone_path_block = new BlockItem(BlockList.stone_path_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.stone_path_block.getRegistryName()),
 			ItemList.stone_tile_block = new BlockItem(BlockList.stone_tile_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.stone_tile_block.getRegistryName()),
 
@@ -330,11 +331,7 @@ public class SupersLegend
 			ItemList.rocs_feather = new RocsFeather(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rocs_feather")),
 			ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
 			ItemList.magic_cape = new MagicCape(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_cape")),
-			ItemList.sling_shot = new SlingShot(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("sling_shot")),
-			ItemList.regular_boomerang = new BoomerangItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("regular_boomerang")),
 			ItemList.bomb = new Bomb(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bomb")),
-			ItemList.fire_rod = new FireRod(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("fire_rod")),
-			ItemList.ice_rod = new IceRod(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ice_rod")),
 			ItemList.empty_container = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("empty_container")),
 			ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
 			ItemList.dins_fire = new DinsFire(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
@@ -507,9 +504,10 @@ public class SupersLegend
 					BlockList.shadow_block = new Block(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(1.0f, 1.0f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("shadow_block")),
 					BlockList.false_shadow_block = new FalseShadowBlock(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(1.0f, 1.0f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("false_shadow_block")),
 					BlockList.hidden_shadow_block = new HiddenShadowBlock(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(1.0f, 1.0f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("hidden_shadow_block")),
-					BlockList.tombstone_block = new TombstoneBlock(Block.Properties.create(Material.ROCK).variableOpacity().hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("tombstone_block")),
+        	BlockList.tombstone_block = new TombstoneBlock(Block.Properties.create(Material.ROCK).variableOpacity().hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("tombstone_block")),
 					BlockList.stone_path_block = new StonePathBlock(Block.Properties.create(Material.ROCK).variableOpacity().hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("stone_path_block")),
 					BlockList.stone_tile_block = new StoneTileBlock(Block.Properties.create(Material.ROCK).variableOpacity().hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("stone_tile_block")),
+
 					BlockList.bomb_block = new BombBlock(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.8f, 0.8f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName("bomb_block")
 
 

@@ -13,12 +13,15 @@ import superworldsun.superslegend.SupersLegend;
 
 @OnlyIn(Dist.CLIENT)
 public class BombModel extends Model {
-    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(SupersLegend.modid, "textures/entity/projectiles/bomb.png");
-    private final ModelRenderer Bomb = new ModelRenderer(128, 128, 0, 0);
+    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(SupersLegend.modid, "textures/item/bomb.png");
+    private final ModelRenderer Bomb;
 
     public BombModel() {
         super(RenderType::getEntitySolid);
+        textureWidth = 128;
+        textureHeight = 128;
 
+        Bomb = new ModelRenderer(this);
         this.Bomb.setRotationPoint(0.5F, 18.0F, -0.5F);
         this.Bomb.setTextureOffset(0, 39).addBox(1.4F, -0.6F, -2.0F, 1.0F, 4.0F, 5.0F, 0.0F, false);
         this.Bomb.setTextureOffset(40, 24).addBox(1.6F, -0.35F, -1.75F, 1.0F, 4.0F, 4.0F, 0.0F, false);

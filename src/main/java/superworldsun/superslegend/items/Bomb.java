@@ -1,42 +1,22 @@
 package superworldsun.superslegend.items;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.IVanishable;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import superworldsun.superslegend.config.SupersLegendConfig;
 import superworldsun.superslegend.entities.projectiles.items.bomb.BombEntity;
-import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangEntity;
-import superworldsun.superslegend.entities.projectiles.items.boomerang.RegularBoomerang;
-import superworldsun.superslegend.lists.BlockList;
-
-import javax.annotation.Nonnull;
 
 public class Bomb extends Item implements IVanishable {
 
@@ -105,34 +85,7 @@ public class Bomb extends Item implements IVanishable {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 
 		playerIn.setActiveHand(handIn);
-		//return ActionResult.resultConsume(itemstack);
 		return new ActionResult<ItemStack>(ActionResultType.SUCCESS, itemstack);
-	}
-
-	@Override
-	@Deprecated
-	public ActionResultType onItemUse(ItemUseContext context) {
-
-		World world = context.getWorld();
-		BlockPos blockpos = context.getPos();
-		ItemStack item = context.getItem();
-		BlockPos pos1 = blockpos.up();
-
-		world.playSound(null, pos1.getX(), pos1.getY(), pos1.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.PLAYERS, 1f, 1f);
-
-		if(world.getBlockState(pos1).isAir() && !world.getBlockState(blockpos).isAir())
-		{
-
-
-					world.setBlockState(pos1, BlockList.bomb_block.getDefaultState());
-
-					//world.setBlockState(pos1, BlockList.bomb_block.getDefaultState());
-
-					item.shrink(1);
-
-		}
-		return ActionResultType.PASS;
-
 	}
 
 	/**
