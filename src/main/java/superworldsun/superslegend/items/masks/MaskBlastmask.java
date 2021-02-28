@@ -75,7 +75,7 @@ public void Event(LivingAttackEvent event) {
 
 		public void explode(PlayerEntity player, ItemStack stack, World world, double x, double y, double z) {
 			if (player.capabilities.isCreativeMode || !isCooling(world, stack)) {
-				CustomExplosion.createExplosion(new EntityBomb(world), world, x, y, z, 3.0F, 10.0F, false);
+				CustomExplosion.createExplosion(new BombEntity(world), world, x, y, z, 3.0F, 10.0F, false);
 				setNextUse(world, stack, 40);
 			} else {
 				world.playSoundEffect(x, y, z, Sounds.CLICK, 0.3F, 0.6F);

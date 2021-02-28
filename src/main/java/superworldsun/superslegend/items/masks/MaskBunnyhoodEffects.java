@@ -3,8 +3,10 @@ package superworldsun.superslegend.items.masks;
 import java.util.List;
 
 //import net.minecraft.client.renderer.arrows.model.BipedModel;
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
 //import net.minecraft.arrows.LivingEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -14,10 +16,14 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
+import superworldsun.superslegend.models.masks.ModelAllnightmask;
+import superworldsun.superslegend.models.masks.ModelBunnyhoodMask;
 //import superworldsun.superslegend.models.armor.ModelBunnyHood;
 
 
@@ -29,19 +35,12 @@ public class MaskBunnyhoodEffects extends NonEnchantArmor {
         setRegistryName(SupersLegend.modid, name);
     }
 
-/*    @SuppressWarnings("unchecked")
-	@Override
-    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-    	ModelBunnyHood model = new ModelBunnyHood(toughness);
-
-        model.isChild = _default.isChild;
-        model.isSneak = _default.isSneak;
-        model.isSitting = _default.isSitting;
-        model.rightArmPose = _default.rightArmPose;
-        model.leftArmPose = _default.leftArmPose;
-
-        return (A) model;
-}*/
+	@SuppressWarnings("unchecked")
+	@OnlyIn(Dist.CLIENT)
+	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
+	{
+		return (A) new ModelBunnyhoodMask(0);
+	}
 
     
     @Override

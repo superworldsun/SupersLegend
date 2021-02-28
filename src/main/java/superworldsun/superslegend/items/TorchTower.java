@@ -26,7 +26,7 @@ public class TorchTower extends Item
 		super(properties);
 	}
 	
-	@SuppressWarnings({ "deprecation" })
+
 	@Nonnull
     public ActionResultType onItemUse(ItemUseContext context) 
 	{
