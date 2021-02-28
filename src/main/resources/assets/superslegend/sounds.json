@@ -89,17 +89,27 @@
     "subtitle": "superslegend.subtitle.hover_boots",
     "sounds": [ "superslegend:hover_boots" ]
 	},
-  "fairy_heal_on_touch": {
+"boomerang_fly_loop": {
+    "category": "entity",
+    "subtitle": "superslegend.subtitle.boomerang_fly_loop",
+    "sounds": [ "superslegend:boomerang_fly_loop" ]
+  },
+"boomerang_throw": {
+        "category": "entity",
+        "subtitle": "superslegend.subtitle.boomerang_throw",
+        "sounds": [ "superslegend:boomerang_throw" ]
+    },
+"fairy_heal_on_touch": {
     "category": "entity",
     "subtitle": "superslegend.subtitle.fairy_heal_on_touch",
     "sounds": [ "superslegend:fairy_heal_on_touch" ]
   },
-  "fairy_twinkle": {
+"fairy_twinkle": {
     "category": "entity",
     "subtitle": "superslegend.subtitle.fairy_twinkle",
     "sounds": [ "superslegend:fairy_twinkle" ]
   },
-  "poe_laugh": {
+"poe_laugh": {
     "category": "player",
     "subtitle": "superslegend.subtitle.poe_laughing",
     "sounds": [ "superslegend:poe_laugh" ]
