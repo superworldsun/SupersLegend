@@ -1,5 +1,7 @@
 package superworldsun.superslegend;
 
+import com.google.common.collect.ImmutableMap;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,16 +16,34 @@ import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.FlatChunkGenerator;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -32,6 +52,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import superworldsun.superslegend.CustomLootMobs.*;
 import superworldsun.superslegend.blocks.*;
+import superworldsun.superslegend.config.Config;
 import superworldsun.superslegend.config.SupersLegendConfig;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
 import superworldsun.superslegend.entities.mobs.fairy.FairyEntityRenderer;
@@ -39,7 +60,9 @@ import superworldsun.superslegend.entities.mobs.poe.PoeEntity;
 import superworldsun.superslegend.entities.mobs.poe.PoeEntityRenderer;
 import superworldsun.superslegend.entities.projectiles.items.bomb.BombRenderer;
 import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangRender;
+import superworldsun.superslegend.init.ConfiguredStructures;
 import superworldsun.superslegend.init.EntityInit;
+import superworldsun.superslegend.init.FeatureInit;
 import superworldsun.superslegend.init.ParticleInit;
 import superworldsun.superslegend.items.*;
 import superworldsun.superslegend.items.armors.*;
@@ -54,6 +77,11 @@ import superworldsun.superslegend.particles.fairy.FairyParticle;
 import superworldsun.superslegend.util.handlers.SoundHandler;
 import superworldsun.superslegend.world.gen.OreGeneration;
 
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 import static net.minecraft.item.ItemModelsProperties.registerProperty;
 
 @Mod(SupersLegend.modid)
@@ -61,7 +89,7 @@ public class SupersLegend
 {
 	public static SupersLegend instance;
 	public static final String modid = "superslegend";
-	private static final Logger Logger = LogManager.getLogger();
+	public static final Logger Logger = LogManager.getLogger();
 	
 	public static final ItemGroup supers_legend = new SupersLegendItemGroup();
 
@@ -72,8 +100,18 @@ public class SupersLegend
 
 		//PotionList.EFFECTS.register(MinecraftForge.EVENT_BUS);
 		//PotionList.POTIONS.register(MinecraftForge.EVENT_BUS);
-		
+
+		FeatureInit.DEFERRED_REGISTRY_STRUCTURE.register(FMLJavaModLoadingContext.get().getModEventBus());
+
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+
+		forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
+
+
+		forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
+
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 		MinecraftForge.EVENT_BUS.register(RegistryEvents.class);
 
@@ -180,6 +218,11 @@ public class SupersLegend
 		event.enqueueWork(() -> {
 			GlobalEntityTypeAttributes.put(EntityInit.FAIRYENTITY.get(), FairyEntity.prepareAttributes().create());
 			GlobalEntityTypeAttributes.put(EntityInit.POEENTITY.get(), PoeEntity.prepareAttributes().create());
+		});
+
+		event.enqueueWork(() -> {
+			FeatureInit.setupStructures();
+			ConfiguredStructures.registerConfiguredStructures();
 		});
 	}
 
@@ -506,13 +549,13 @@ public class SupersLegend
 					BlockList.hidden_shadow_block = new HiddenShadowBlock(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(1.0f, 1.0f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("hidden_shadow_block")),
         	BlockList.tombstone_block = new TombstoneBlock(Block.Properties.create(Material.ROCK).variableOpacity().hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("tombstone_block")),
 					BlockList.stone_path_block = new StonePathBlock(Block.Properties.create(Material.ROCK).variableOpacity().hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("stone_path_block")),
-					BlockList.stone_tile_block = new StoneTileBlock(Block.Properties.create(Material.ROCK).variableOpacity().hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("stone_tile_block")),
+					BlockList.stone_tile_block = new StoneTileBlock(Block.Properties.create(Material.ROCK).variableOpacity().hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("stone_tile_block")));
 
-					BlockList.bomb_block = new BombBlock(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.8f, 0.8f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName("bomb_block")
+
 
 
 					//BlockList.poison = new FlowingFluidBlock(() -> FluidList.poison, Block.Properties.create(Material.WATER).doesNotBlockMovement().noDrops()).setRegistryName(location("poison"))
-			);
+
 			Logger.info("Blocks registered.");
 		}
 		
@@ -599,8 +642,34 @@ public class SupersLegend
 
 			registerProperty(ItemList.hylian_shield, new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_, p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isHandActive() && p_239421_2_.getActiveItemStack() == p_239421_0_ ? 1.0F : 0.0F);
 
+		}
+	}
+
+	public void biomeModification(final BiomeLoadingEvent event) {
+		RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
+
+		Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
+
+		 if(types.contains(BiomeDictionary.Type.OVERWORLD) && (event.getName().equals(Biomes.DARK_FOREST.getLocation()))) {
+			event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_GRAVEYARD);
+		}
+	}
 
 
+
+	public void addDimensionalSpacing(final WorldEvent.Load event) {
+		if(event.getWorld() instanceof ServerWorld){
+			ServerWorld serverWorld = (ServerWorld)event.getWorld();
+
+			if(serverWorld.getChunkProvider().getChunkGenerator() instanceof FlatChunkGenerator &&
+					serverWorld.getDimensionKey().equals(World.OVERWORLD)){
+				return;
+			}
+
+			Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
+
+			tempMap.putIfAbsent(FeatureInit.GRAVEYARD.get(), DimensionStructuresSettings.field_236191_b_.get(FeatureInit.GRAVEYARD.get()));
+			serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
 		}
 	}
 }
