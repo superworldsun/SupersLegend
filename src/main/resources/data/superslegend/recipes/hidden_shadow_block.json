@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "## ",
+        "GG#",
+        "GG#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:quartz"
+        },
+        "G": {
+            "item": "superslegend:shadow_block"
+        }
+    },
+    "result": {
+        "item": "superslegend:hidden_shadow_block",
+        "count": 4
+    }
+}

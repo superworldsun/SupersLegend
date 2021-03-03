@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#AS",
+        "AES",
+        "#AS"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:tripwire_hook"
+        },
+        "A": {
+            "item": "minecraft:acacia_planks"
+        },
+        "S": {
+            "item": "minecraft:string"
+        },
+        "E": {
+            "item": "superslegend:rupee"
+        }
+    },
+    "result": {
+        "item": "superslegend:bit_bow",
+        "count": 1
+    }
+}
