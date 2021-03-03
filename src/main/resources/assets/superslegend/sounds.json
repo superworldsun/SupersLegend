@@ -84,6 +84,11 @@
     "subtitle": "superslegend.subtitle.arrow_hit_ancient",
     "sounds": [ "superslegend:arrow_hit_ancient" ]
 	},
+"bitbow_arrow": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.bitbow_arrow",
+    "sounds": [ "superslegend:bitbow_arrow" ]
+  },
 "hover_boots": {
     "category": "player",
     "subtitle": "superslegend.subtitle.hover_boots",
@@ -98,6 +103,16 @@
         "category": "entity",
         "subtitle": "superslegend.subtitle.boomerang_throw",
         "sounds": [ "superslegend:boomerang_throw" ]
+    },
+"bomb_fuse": {
+        "category": "entity",
+        "subtitle": "superslegend.subtitle.bomb_fuse",
+        "sounds": [ "superslegend:bomb_fuse" ]
+    },
+"bomb_defuse": {
+        "category": "entity",
+        "subtitle": "superslegend.subtitle.bomb_defuse",
+        "sounds": [ "superslegend:bomb_defuse" ]
     },
 "fairy_heal_on_touch": {
     "category": "entity",
