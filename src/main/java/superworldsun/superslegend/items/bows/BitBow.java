@@ -10,10 +10,13 @@ import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import superworldsun.superslegend.init.SoundInit;
 import superworldsun.superslegend.lists.ItemList;
 
 import java.util.List;
@@ -31,11 +34,14 @@ public class BitBow extends BowItem
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		if (!worldIn.isRemote && !playerIn.isCreative() && playerIn.inventory.hasItemStack(new ItemStack(ItemList.rupee)))
 		{
-			playerIn.getCooldownTracker().setCooldown(this, 20);
+			playerIn.getCooldownTracker().setCooldown(this, 15);
+
+			BlockPos currentPos = playerIn.getPosition();
+			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW, SoundCategory.PLAYERS, 3f, 1f);
 
 			ArrowItem itemarrow = (ArrowItem)Items.ARROW;
 			AbstractArrowEntity entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
-			float arrowVelocity = 2.0F;
+			float arrowVelocity = 3.0F;
 			entityarrow.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
 			entityarrow.setDamage(1);
 			worldIn.addEntity(entityarrow);
@@ -52,9 +58,14 @@ public class BitBow extends BowItem
 			}
 		}
 		else if (!worldIn.isRemote && playerIn.isCreative()) {
+			playerIn.getCooldownTracker().setCooldown(this, 15);
+
+			BlockPos currentPos = playerIn.getPosition();
+			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW, SoundCategory.PLAYERS, 3f, 1f);
+
 			ArrowItem itemarrow = (ArrowItem)Items.ARROW;
 			AbstractArrowEntity entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
-			float arrowVelocity = 2.0F;
+			float arrowVelocity = 3.0F;
 			entityarrow.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
 			entityarrow.setDamage(1);
 			worldIn.addEntity(entityarrow);
