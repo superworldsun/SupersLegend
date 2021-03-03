@@ -15,8 +15,10 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SSpawnObjectPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
@@ -25,6 +27,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 import superworldsun.superslegend.init.EntityInit;
+import superworldsun.superslegend.init.SoundInit;
 import superworldsun.superslegend.lists.ItemList;
 
 import javax.annotation.Nullable;
@@ -80,6 +83,20 @@ public class BombEntity extends AbstractArrowEntity  {
      * Called to update the entity's position/logic.
      */
     public void tick() {
+
+        if(this.ticksExisted % 22 == 0)
+        {
+            BlockPos currentPos = this.getPosition();
+            this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_FUSE, SoundCategory.PLAYERS, 1.0f, 1.0f);
+        }
+
+        if(this.isInWater())
+        {
+            BlockPos currentPos = this.getPosition();
+            this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_DEFUSE, SoundCategory.PLAYERS, 1.0f, 1.0f);
+            this.remove();
+        }
+
         if (!this.hasNoGravity()) {
             this.setMotion(this.getMotion().add(0.0D, -0.04D, 0.0D));
         }
