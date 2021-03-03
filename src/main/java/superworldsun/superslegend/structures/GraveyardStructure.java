@@ -47,9 +47,9 @@ public class GraveyardStructure extends Structure<NoFeatureConfig> {
 
 
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
-            new MobSpawnInfo.Spawners(EntityType.SKELETON, 100, 20, 510),
-            new MobSpawnInfo.Spawners(EntityType.ZOMBIE, 100, 20, 510),
-            new MobSpawnInfo.Spawners(EntityInit.POEENTITY.get(), 100, 20, 510)
+            new MobSpawnInfo.Spawners(EntityType.SKELETON, 50, 3, 8),
+            new MobSpawnInfo.Spawners(EntityType.ZOMBIE, 50, 2, 7),
+            new MobSpawnInfo.Spawners(EntityInit.POEENTITY.get(), 50, 3, 5)
     );
 
     @Override
@@ -58,7 +58,7 @@ public class GraveyardStructure extends Structure<NoFeatureConfig> {
     }
 
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of(
-            new MobSpawnInfo.Spawners(EntityType.BAT, 30, 10, 15)
+            new MobSpawnInfo.Spawners(EntityType.BAT, 50, 4, 10)
     );
     @Override
     public List<MobSpawnInfo.Spawners> getDefaultCreatureSpawnList() {
