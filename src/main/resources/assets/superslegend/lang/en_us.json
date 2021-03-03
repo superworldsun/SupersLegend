@@ -196,6 +196,10 @@
 	"item.superslegend.ancient_cuirass": "Ancient Cuirass",
 	"item.superslegend.ancient_greaves": "Ancient Greaves",
 	"item.superslegend.ancient_boots": "Ancient Boots",
+	"item.superslegend.barbarian_helmet": "Barbarian Helmet",
+	"item.superslegend.barbarian_armor": "Barbarian Armor",
+	"item.superslegend.barbarian_leg_wraps": "Barbarian Leg Wraps",
+	"item.superslegend.barbarian_boots": "Barbarian Boots",
 	"item.superslegend.purple_cap": "Purple Cap",
 	"item.superslegend.purple_tunic": "Purple Tunic",
 	"item.superslegend.purple_leggings": "Purple Leggings",
@@ -213,5 +217,5 @@
 	"effect.superslegend.iron_boots": "Iron Boots",
 	"effect.superslegend.hover_boots": "Hover Boots",
 	"effect.superslegend.zoras_grace": "Zora's Grace",
-	"item.superslegend.regular_boomerang": "Regular Boomerang"
+	"item.superslegend.regular_boomerang": "Boomerang"
 }
