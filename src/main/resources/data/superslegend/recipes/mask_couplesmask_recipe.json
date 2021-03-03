@@ -1,24 +1,13 @@
 {
-    "type": "crafting_shaped",
-    "pattern": [
-        "# E",
-        "BCB",
-        " B "
-    ],
-    "key": {
-        "#": {
-            "item": "minecraft:sunflower"
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:mask_sunmask"
         },
-        "E": {
-            "item": "minecraft:ender_pearl"
-        },
-        "B": {
-            "item": "minecraft:bone_meal"
-        },
-        "C": {
-            "item": "superslegend:mask_clay"
+        {
+            "item": "superslegend:mask_moonmask"
         }
-    },
+    ],
     "result": {
         "item": "superslegend:mask_couplesmask",
         "count": 1
