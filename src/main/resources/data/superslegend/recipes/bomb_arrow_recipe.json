@@ -10,7 +10,7 @@
             "item": "minecraft:paper"
         },
         "T": {
-            "item": "minecraft:tnt"
+            "item": "superslegend:bomb"
         },
         "A": {
             "item": "minecraft:arrow"
@@ -21,6 +21,6 @@
     },
     "result": {
         "item": "superslegend:bomb_arrow",
-        "count": 2
+        "count": 1
     }
 }

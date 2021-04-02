@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "## ",
+        "GG#",
+        "GG#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:glass_pane"
+        },
+        "G": {
+            "item": "superslegend:shadow_block"
+        }
+    },
+    "result": {
+        "item": "superslegend:false_shadow_block",
+        "count": 4
+    }
+}

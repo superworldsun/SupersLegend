@@ -1,29 +1,29 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "#iD",
-        " Ai",
-        "  S"
+        "#I#",
+        "DLD",
+        "H H"
     ],
     "key": {
         "#": {
-            "item": "minecraft:redstone"
+            "item": "superslegend:ancient_gear"
         },
-        "i": {
+        "I": {
             "item": "superslegend:ancient_screw"
         },
         "D": {
             "item": "superslegend:ancient_core"
         },
-        "A": {
-            "item": "minecraft:arrow"
+        "L": {
+            "item": "minecraft:iron_chestplate"
         },
-        "S": {
-            "item": "minecraft:string"
+        "H": {
+            "item": "superslegend:ancient_shaft"
         }
     },
     "result": {
-        "item": "superslegend:ancient_arrow",
+        "item": "superslegend:ancient_greaves",
         "count": 1
     }
 }

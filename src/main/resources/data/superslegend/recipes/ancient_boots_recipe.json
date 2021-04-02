@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#I#",
+        "i i"
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:ancient_core"
+        },
+        "I": {
+            "item": "minecraft:iron_boots"
+        },
+        "i": {
+            "item": "superslegend:ancient_spring"
+        }
+    },
+    "result": {
+        "item": "superslegend:ancient_boots",
+        "count": 1
+    }
+}

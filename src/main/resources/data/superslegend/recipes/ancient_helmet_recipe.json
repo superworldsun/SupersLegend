@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#I#",
+        "VXV"
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:ancient_core"
+        },
+        "I": {
+            "item": "superslegend:ancient_shaft"
+        },
+        "V": {
+            "item": "superslegend:ancient_screw"
+        },
+        "X": {
+            "item": "minecraft:iron_helmet"
+        }
+    },
+    "result": {
+        "item": "superslegend:ancient_helmet",
+        "count": 1
+    }
+}

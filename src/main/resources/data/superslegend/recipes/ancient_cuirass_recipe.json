@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#D#",
+        "IZI",
+        "DYD"
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:ancient_gear"
+        },
+        "D": {
+            "item": "superslegend:ancient_core"
+        },
+        "I": {
+            "item": "superslegend:ancient_shaft"
+        },
+        "Z": {
+            "item": "minecraft:iron_chestplate"
+        },
+        "Y": {
+            "item": "superslegend:ancient_core_giant"
+        }
+    },
+    "result": {
+        "item": "superslegend:ancient_cuirass",
+        "count": 1
+    }
+}

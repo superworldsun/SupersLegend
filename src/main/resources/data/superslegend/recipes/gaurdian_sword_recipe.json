@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " #",
+        " #",
+        "i/"
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:ancient_core"
+        },
+        "i": {
+            "item": "superslegend:ancient_screw"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "superslegend:gaurdian_sword",
+        "count": 1
+    }
+}

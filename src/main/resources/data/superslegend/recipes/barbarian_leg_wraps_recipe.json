@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#g#",
+        " L "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:blaze_powder"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "L": {
+            "item": "minecraft:leather_leggings"
+        }
+    },
+    "result": {
+        "item": "superslegend:barbarian_leg_wraps",
+        "count": 1
+    }
+}
