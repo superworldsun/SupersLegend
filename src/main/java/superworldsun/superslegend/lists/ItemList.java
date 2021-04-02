@@ -1,8 +1,6 @@
 package superworldsun.superslegend.lists;
 
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import superworldsun.superslegend.items.BoomerangItem;
 import superworldsun.superslegend.items.RocsCapeEffects;
 import superworldsun.superslegend.items.armors.*;
 import superworldsun.superslegend.items.masks.*;
@@ -16,11 +14,18 @@ public class ItemList
 		public static Item red_rupee;
 		public static Item silver_rupee;
 		public static Item gold_rupee;
+		public static Item arrow_bundle;
+		public static Item fire_arrow_bundle;
+		public static Item ice_arrow_bundle;
+		public static Item shock_arrow_bundle;
+		public static Item bomb_arrow_bundle;
+		public static Item ancient_arrow_bundle;
 		public static Item heart;
 		public static Item fairy_bottle;
 		public static Item rocs_feather;
 		public static Item magic_mirror;
 		public static Item magic_cape;
+		public static Item magnetic_glove;
 		public static Item sling_shot;
 		public static Item regular_boomerang;
 		public static Item bomb;
@@ -44,7 +49,6 @@ public class ItemList
 		public static Item red_potion;
 		public static Item green_potion;
 		public static Item blue_potion;
-		//public static Item magnetic_glove;
 		public static Item triforce;
 		public static Item triforce_power;
 		public static Item triforce_power_shard;
@@ -62,6 +66,7 @@ public class ItemList
 
 		public static Item ancient_core;
 		public static Item ancient_core_giant;
+		public static Item ancient_gear;
 		public static Item ancient_screw;
 		public static Item ancient_shaft;
 		public static Item ancient_spring;
@@ -235,6 +240,10 @@ public class ItemList
 		public static Item barbarian_armor;
 		public static Item barbarian_leg_wraps;
 		public static Item barbarian_boots;
+		public static Item climbers_bandanna;
+		public static Item climbing_gear;
+		public static Item climbing_pants;
+		public static Item climbing_boots;
 		public static HoverBoots hover_boots;
 		public static Item magic_armor_cap;
 		public static Item magic_armor_tunic;
@@ -251,5 +260,5 @@ public class ItemList
 		public static Item pegasus_boots;
 
 		//Eggs
-    	public static Item poe_egg;
+    	//public static Item poe_egg;
 }

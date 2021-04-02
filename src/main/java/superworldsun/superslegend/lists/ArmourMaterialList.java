@@ -21,6 +21,7 @@ public enum ArmourMaterialList implements IArmorMaterial
 	flamebreaker("flamebreaker", 0, new int[] 	{1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	ancient		("ancient", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	barbarian	("barbarian", 0, new int[] 		{1, 1, 2, 1}, 0, null, "item.armor.equip_leather", 0.0f),
+	climbing	("climbing", 0, new int[] 		{1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
 	flippers	("flippers", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	rocscape	("rocscape", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	hoverboots	("hoverboots", 0, new int[] 		{0, 0, 0, 1}, 0, null, "item.armor.equip_leather", 0.0f),
