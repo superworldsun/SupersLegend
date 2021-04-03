@@ -4,36 +4,48 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.IPacket;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
+import superworldsun.superslegend.init.EntityInit;
 import superworldsun.superslegend.init.SoundInit;
 import superworldsun.superslegend.lists.ItemList;
 
-public class EntityArrowIce extends ArrowEntity
+public class EntityArrowIce extends AbstractArrowEntity
 {
 
-    //public static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation("superslegend:textures/entity/arrows/arrow.png");
-
-    public EntityArrowIce(World worldIn, double x, double y, double z){
-        super(worldIn, x, y, z);
+    public EntityArrowIce(EntityType<? extends EntityArrowIce> type, World world) {
+        super(type, world);
     }
 
     public EntityArrowIce(World worldIn, LivingEntity shooter) {
-        super(worldIn, shooter);
+        super(EntityInit.ICE_ARROW.get(), shooter, worldIn);
         this.setDamage(this.getDamage() + 2.0F);
     }
 
+    public EntityArrowIce(World worldIn, double x, double y, double z) {
+        super(EntityInit.ICE_ARROW.get(), x, y, z, worldIn);
+    }
 
     @Override
     protected ItemStack getArrowStack() {
         return new ItemStack(ItemList.ice_arrow);
     }
+
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
 
     @Override
     protected void arrowHit(LivingEntity living) {
@@ -66,6 +78,15 @@ public class EntityArrowIce extends ArrowEntity
 
                 this.remove();
             }
+
+        if (!this.inGround)
+        {
+            this.world.addParticle(ParticleTypes.ITEM_SNOWBALL, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D,
+                    0.0D);
+            this.world.addParticle(ParticleTypes.SPIT, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D,
+                    0.0D);
+        }
+
 
         if(this.isInWater())
         {
