@@ -40,7 +40,7 @@ public class HealthHandler {
     public HealthHandler() {
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public static void renderPlayerHealth(RenderGameOverlayEvent.Pre event) {
         Minecraft minecraft = Minecraft.getInstance();
@@ -250,5 +250,5 @@ public class HealthHandler {
             event.setCanceled(true);
             ForgeIngameGui.left_height = ArmorPosY;
         }
-    }
+    }*/
 }
