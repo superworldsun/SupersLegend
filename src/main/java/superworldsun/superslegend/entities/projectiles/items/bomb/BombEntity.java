@@ -70,14 +70,14 @@ public class BombEntity extends AbstractArrowEntity  {
         this.dataManager.register(field_226571_aq_, false);
         this.dataManager.register(FUSE, 80);
     }
-
     protected boolean canTriggerWalking() {
         return false;
     }
 
-    public boolean canBeCollidedWith() {
+    //Was Causing Crash
+    /*public boolean canBeCollidedWith() {
         return !this.removed;
-    }
+    }*/
 
     /**
      * Called to update the entity's position/logic.
@@ -94,6 +94,19 @@ public class BombEntity extends AbstractArrowEntity  {
         {
             BlockPos currentPos = this.getPosition();
             this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_DEFUSE, SoundCategory.PLAYERS, 1.0f, 1.0f);
+            this.remove();
+        }
+
+        if(this.isBurning())
+        {
+            this.explode();
+            this.remove();
+        }
+
+        if(this.isInLava())
+        {
+            this.isBurning();
+            this.explode();
             this.remove();
         }
 
