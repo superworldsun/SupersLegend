@@ -50,18 +50,13 @@ public class MaskBunnyhoodEffects extends NonEnchantArmor {
                 boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_bunnyhood);
                 
                 if(isHelmeton) {
-                	if(player.isInWater()) 
+                	if(!player.isInWater())
                 	{
-                		player.removePotionEffect(Effect.get(1));
+						player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 0, false, false));
                 	}
-                	else
-                	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 0, false, false));
-                	}
-                    
-                	}
-        		}
-    		}
+                }
+        }
+    }
     
     @Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
