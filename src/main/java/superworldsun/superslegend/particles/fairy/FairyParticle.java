@@ -11,7 +11,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class FairyParticle extends SpriteTexturedParticle {
+/*public class FairyParticle extends SpriteTexturedParticle {
     private final IAnimatedSprite spriteSet;
     public static final IParticleRenderType TERRAIN_SHEET = new IParticleRenderType() {
         @SuppressWarnings("deprecation")
@@ -75,5 +75,4 @@ public class FairyParticle extends SpriteTexturedParticle {
         public Particle makeParticle(FairyParticleData type, ClientWorld world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new FairyParticle(world, x, y, z, xSpeed, ySpeed, zSpeed, type, spriteSet);
         }
-    }
-}
+    }*/

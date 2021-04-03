@@ -10,12 +10,12 @@ import net.minecraft.particles.ParticleType;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import superworldsun.superslegend.init.ParticleInit;
+//import superworldsun.superslegend.init.ParticleInit;
 
 import javax.annotation.Nonnull;
 import java.util.Locale;
 
-public class FairyParticleData implements IParticleData {
+/*public class FairyParticleData implements IParticleData {
     public static final Codec<FairyParticleData> CODEC = RecordCodecBuilder.create((group) -> {
         return group.group(Codec.FLOAT.fieldOf("r").forGetter(FairyParticleData::getRed),
                 Codec.FLOAT.fieldOf("g").forGetter(FairyParticleData::getGreen),
@@ -91,5 +91,6 @@ public class FairyParticleData implements IParticleData {
     public float getScale() {
         return this.scale;
     }
-
 }
+}
+ }*/

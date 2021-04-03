@@ -9,11 +9,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.SupersLegend;
-import superworldsun.superslegend.particles.fairy.FairyParticleData;
+//import superworldsun.superslegend.particles.fairy.FairyParticleData;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@OnlyIn(Dist.CLIENT)
+/*@OnlyIn(Dist.CLIENT)
 public class FairyEntityRenderer extends MobRenderer<FairyEntity, FairyEntityModel> {
 
     public static final ResourceLocation WINGS = new ResourceLocation(SupersLegend.modid, "textures/entity/mobs/fairyentity/fairyentity_wings.png");
@@ -56,4 +56,4 @@ public class FairyEntityRenderer extends MobRenderer<FairyEntity, FairyEntityMod
         return WINGS;
     }
 
-}
+}*/

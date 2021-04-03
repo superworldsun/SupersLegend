@@ -137,6 +137,7 @@ public class FairyEntity extends AnimalEntity implements IFlyingAnimal {
     protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
     }
 
+    //TODO Add this to bomb entity code
     private long lastPlayed;
     @Override
     protected boolean makeFlySound() {

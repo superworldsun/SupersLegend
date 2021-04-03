@@ -1,15 +1,15 @@
 package superworldsun.superslegend.entities.mobs.poe;
 
-import com.github.alexthe666.citadel.animation.IAnimatedEntity;
-import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
-import com.github.alexthe666.citadel.client.model.AdvancedModelBox;
-import com.github.alexthe666.citadel.client.model.ModelAnimator;
+//import com.github.alexthe666.citadel.animation.IAnimatedEntity;
+//import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
+//import com.github.alexthe666.citadel.client.model.AdvancedModelBox;
+//import com.github.alexthe666.citadel.client.model.ModelAnimator;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+/*@OnlyIn(Dist.CLIENT)
 public class PoeEntityModel extends AdvancedEntityModel<PoeEntity> {
 	public AdvancedModelBox Body;
 	public AdvancedModelBox LeftArm;
@@ -226,3 +226,4 @@ public class PoeEntityModel extends AdvancedEntityModel<PoeEntity> {
 		AdvancedModelBox.rotateAngleZ = z;
 	}
 }
+*/

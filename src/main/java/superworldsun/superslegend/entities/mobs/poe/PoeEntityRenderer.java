@@ -18,9 +18,9 @@ import superworldsun.superslegend.util.RenderTypes;
 import superworldsun.superslegend.SupersLegend;
 
 
-public class PoeEntityRenderer extends MobRenderer<PoeEntity, PoeEntityModel> {
+//public class PoeEntityRenderer extends MobRenderer<PoeEntity, PoeEntityModel> {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegend.modid, "textures/entity/mobs/poeentity/poeentity_body.png");
+    /*public static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegend.modid, "textures/entity/mobs/poeentity/poeentity_body.png");
     private PlayerEntity PlayerIn;
 
     public PoeEntityRenderer(EntityRendererManager renderManagerIn) {
@@ -138,5 +138,4 @@ public class PoeEntityRenderer extends MobRenderer<PoeEntity, PoeEntityModel> {
     public ResourceLocation getEntityTexture(PoeEntity entity) {
         return TEXTURE;
     }
-
-}
+*/

@@ -1,8 +1,8 @@
 package superworldsun.superslegend.entities.mobs.poe;
 
-import com.github.alexthe666.citadel.animation.Animation;
-import com.github.alexthe666.citadel.animation.AnimationHandler;
-import com.github.alexthe666.citadel.animation.IAnimatedEntity;
+//import com.github.alexthe666.citadel.animation.Animation;
+//import com.github.alexthe666.citadel.animation.AnimationHandler;
+//import com.github.alexthe666.citadel.animation.IAnimatedEntity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -34,15 +34,18 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.entities.Interfaces.IAnimalFear;
 import superworldsun.superslegend.entities.Interfaces.IHumanoid;
 import superworldsun.superslegend.entities.Interfaces.IVillagerFear;
-import superworldsun.superslegend.entities.ai.PoeChargeAttack;
+//import superworldsun.superslegend.entities.ai.PoeChargeAttack;
 import superworldsun.superslegend.entities.ai.PoePathNavigator;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-public class PoeEntity extends MonsterEntity implements IAnimatedEntity, IVillagerFear, IAnimalFear, IHumanoid {
+public class PoeEntity extends MonsterEntity {
+    protected PoeEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
+        super(type, worldIn);
+    }
 
-    private static final DataParameter<Boolean> CHARGING = EntityDataManager.createKey(PoeEntity.class, DataSerializers.BOOLEAN);
+    /*private static final DataParameter<Boolean> CHARGING = EntityDataManager.createKey(PoeEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> IS_DAYTIME_MODE = EntityDataManager.createKey(PoeEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> DAYTIME_COUNTER = EntityDataManager.createKey(PoeEntity.class, DataSerializers.VARINT);
     public static Animation ANIMATION_HIT;
@@ -120,7 +123,7 @@ public class PoeEntity extends MonsterEntity implements IAnimatedEntity, IVillag
         return new PoePathNavigator(this, worldIn);
     }
 
-    public boolean isCharging() {
+    /*public boolean isCharging() {
         return this.dataManager.get(CHARGING);
     }
 
@@ -163,7 +166,7 @@ public class PoeEntity extends MonsterEntity implements IAnimatedEntity, IVillag
         // Same concept as RestrictSunGoal, however our entity uses these goals to disappear/sleep during the day.
         this.goalSelector.addGoal(3, new FleeSunGoal(this, 1.0D));
         // This is how the Poe attacks, the mix of code causes it to circle, sway, pivot, and charge at the target.
-        this.goalSelector.addGoal(3, new PoeChargeAttack(this));
+        //this.goalSelector.addGoal(3, new PoeChargeAttack(this));
         // The LookAtGoal is here to help the Poe look at it's target, unless you're creative.
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F, 1.0F) {
             public boolean shouldContinueExecuting() {
@@ -193,7 +196,7 @@ public class PoeEntity extends MonsterEntity implements IAnimatedEntity, IVillag
      * General or Main Ticking event that goes on no matter what else is going on, this helps as to check that the
      * AI and Entity are functioning as wanted.
      */
-    public void livingTick() {
+    /*public void livingTick() {
         super.livingTick();
         this.noClip = true;
         this.setNoGravity(true);
@@ -229,14 +232,14 @@ public class PoeEntity extends MonsterEntity implements IAnimatedEntity, IVillag
     /**
      * AI of the Poe disables during the day to make it a night grave crawling creature/mob.
      */
-    public boolean isAIDisabled() {
+   /* public boolean isAIDisabled() {
         return this.isDaytimeMode();
     }
 
     /**
      * Is silent during the day as the poe is dormant/sleeping during the day.
      */
-    public boolean isSilent() {
+    /*public boolean isSilent() {
         return this.isDaytimeMode();
     }
 
@@ -265,7 +268,7 @@ public class PoeEntity extends MonsterEntity implements IAnimatedEntity, IVillag
      * Poe stops all movement when it's day.
      * AKA setting the Vector3d to ZERO "0"
      */
-    @Override
+    /*@Override
     public void travel(Vector3d vec) {
         if (this.isDaytimeMode()) {
             super.travel(Vector3d.ZERO);
@@ -282,7 +285,7 @@ public class PoeEntity extends MonsterEntity implements IAnimatedEntity, IVillag
     }
 
 
-    @Override
+    /*@Override
     protected void registerData() {
         super.registerData();
         this.getDataManager().register(CHARGING, false);
@@ -310,9 +313,9 @@ public class PoeEntity extends MonsterEntity implements IAnimatedEntity, IVillag
         compound.putBoolean("DaytimeMode", this.isDaytimeMode());
         compound.putInt("DaytimeCounter", this.getDaytimeCounter());
         super.writeAdditional(compound);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public int getAnimationTick() {
         return animationTick;
     }
@@ -341,7 +344,7 @@ public class PoeEntity extends MonsterEntity implements IAnimatedEntity, IVillag
     @Override
     public boolean shouldAnimalsFear(Entity entity) {
         return false;
-    }
+    }*/
 
     class MoveHelperController extends MovementController {
         public MoveHelperController(PoeEntity poe) {

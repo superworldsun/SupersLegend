@@ -1,6 +1,6 @@
 package superworldsun.superslegend.entities.ai;
 
-import com.github.alexthe666.citadel.animation.IAnimatedEntity;
+//import com.github.alexthe666.citadel.animation.IAnimatedEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.SoundEvents;
@@ -13,7 +13,7 @@ import superworldsun.superslegend.util.BlockViewUtil;
 import java.util.EnumSet;
 
 
-public class PoeChargeAttack extends Goal {
+/*public class PoeChargeAttack extends Goal {
     private PoeEntity poe;
     public boolean firstPhase = true;
     public Vector3d moveToPos = null;
@@ -24,7 +24,7 @@ public class PoeChargeAttack extends Goal {
         this.poe = poe;
     }
 
-    public boolean shouldExecute() {
+    /*public boolean shouldExecute() {
         return poe.getAttackTarget() != null && !poe.isCharging();
     }
 
@@ -71,5 +71,4 @@ public class PoeChargeAttack extends Goal {
                 }
             }
         }
-    }
-}
+    }*/

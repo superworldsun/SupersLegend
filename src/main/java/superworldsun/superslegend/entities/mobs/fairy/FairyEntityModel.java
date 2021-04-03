@@ -1,7 +1,7 @@
 package superworldsun.superslegend.entities.mobs.fairy;
 
-import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
-import com.github.alexthe666.citadel.client.model.AdvancedModelBox;
+//import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
+//import com.github.alexthe666.citadel.client.model.AdvancedModelBox;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.SupersLegend;
 
-@OnlyIn(Dist.CLIENT)
+/*@OnlyIn(Dist.CLIENT)
 public class FairyEntityModel extends AdvancedEntityModel<FairyEntity> {
     // ROOT meaning base for whole model
     private final AdvancedModelBox root;
@@ -108,4 +108,4 @@ public class FairyEntityModel extends AdvancedEntityModel<FairyEntity> {
         advancedModelBox.rotateAngleY = y;
         advancedModelBox.rotateAngleZ = z;
     }
-}
+}*/
