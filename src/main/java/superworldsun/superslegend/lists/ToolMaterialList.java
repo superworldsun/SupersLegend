@@ -15,7 +15,7 @@ public enum ToolMaterialList implements IItemTier
 		broken_giants_knife	(4, -2f, 0, 1, 0, ItemList.broken_giants_knife),
 		biggorons_sword		(10, -2f, 0, 2, 0, ItemList.biggorons_sword),
 
-		gaurdian_sword		(9, -2f, 1000, 3, 0, ItemList.gaurdian_sword),
+		gaurdian_sword		(5, -2f, 1200, 3, 0, ItemList.gaurdian_sword),
 		
 		rupee_sword			(2, -2f, 64, 0, 0, ItemList.rupee_sword),
 		blue_rupee_sword	(3, -2f, 122, 1, 0, ItemList.blue_rupee_sword),
