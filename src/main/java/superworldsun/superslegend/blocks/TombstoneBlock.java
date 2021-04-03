@@ -11,12 +11,15 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
+import superworldsun.superslegend.lists.BlockList;
 
 public class TombstoneBlock extends Block implements IWaterLoggable
 
@@ -56,7 +59,13 @@ public class TombstoneBlock extends Block implements IWaterLoggable
 		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
 	}
 
+	/*public BlockState rotate(BlockState state, Rotation rot) {
+		return BlockList.tombstone_block.rotate(state, rot);
+	}
 
+	public BlockState mirror(BlockState state, Mirror mirrorIn) {
+		return BlockList.tombstone_block.mirror(state, mirrorIn);
+	}*/
 
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING, TYPE, WATERLOGGED);

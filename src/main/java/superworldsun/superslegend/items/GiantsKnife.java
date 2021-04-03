@@ -6,10 +6,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import superworldsun.superslegend.lists.ItemList;
 
 import java.util.List;
 
@@ -26,6 +30,15 @@ public class GiantsKnife extends ItemCustomSword
 		super.addInformation(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.GRAY + "A Large Sword that requires two hands to wield"));
 	}
+
+	/*@Override
+	public int getDamage(ItemStack stack) {
+		if (stack.getDamage() <= 2)
+		{
+
+		}
+		return 0;
+	}*/
 
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
 	{		

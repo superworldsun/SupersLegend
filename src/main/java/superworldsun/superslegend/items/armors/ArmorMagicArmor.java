@@ -7,12 +7,16 @@ import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.concurrent.TickDelayedTask;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import superworldsun.superslegend.SupersLegend;
+import superworldsun.superslegend.init.SoundInit;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
@@ -29,6 +33,8 @@ public class ArmorMagicArmor extends NonEnchantArmor {
 		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "magic armor"));
 		list.add(new StringTextComponent(TextFormatting.RED + "grants invicibility from rupee"));
 	}
+
+
 
 	@Override
 	public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
@@ -55,10 +61,25 @@ public class ArmorMagicArmor extends NonEnchantArmor {
 			}
 			if (isHelmetOn && isChestplateOn && isLeggingsOn && isBootsOn) {
 				EffectInstance effect = player.getActivePotionEffect(Effects.RESISTANCE);
-				if (effect == null){
+				if (effect == null) {
 					player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 4, false, false));
 				}
 			}
+			/*if (isHelmetOn && isChestplateOn && isLeggingsOn && isBootsOn) {
+				if (player.attackEntityFrom(DamageSource.GENERIC, 1) ) {
+
+					BlockPos currentPos = player.getPosition();
+					world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.JAWA, SoundCategory.PLAYERS, 1f, 1f);
+
+					for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+						ItemStack armorStack = player.inventory.getStackInSlot(i);
+						if (armorStack.getItem() == ItemList.rupee) {
+							armorStack.shrink(12);
+							break;
+						}
+					}
+				}
+			}*/
 		}
 	}
 }
