@@ -5,6 +5,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResult;
@@ -17,6 +18,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import superworldsun.superslegend.config.SupersLegendConfig;
 import superworldsun.superslegend.init.SoundInit;
 
 import javax.annotation.Nonnull;
@@ -30,6 +32,11 @@ public class OcarinaOfTime extends Item
 	{
 		super(properties);
 	}
+
+	/*@Override
+	protected boolean isInGroup(ItemGroup group) {
+		return SupersLegendConfig.COMMON.OcarinaOfTimeEnabled.get() && super.isInGroup(group);
+	}*/
 
 	@Nonnull
 	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,@Nonnull Hand hand)
@@ -87,7 +94,7 @@ public class OcarinaOfTime extends Item
 			 }
 
 		        // Setting Item cool down
-			 player.getCooldownTracker().setCooldown(this, 5 * 10);
+			 player.getCooldownTracker().setCooldown(this, 5 * 20);
 		 }
 	 
 		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
