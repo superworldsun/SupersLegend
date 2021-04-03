@@ -109,9 +109,9 @@ public abstract class BoomerangEntity extends Entity {
                 if (state.getMaterial() == Material.PLANTS && SupersLegendConfig.COMMON.breaksFlowers.get()) {
                     world.destroyBlock(pos, true);
                 }
-                if ((state.getBlock() instanceof GrassBlock) && SupersLegendConfig.COMMON.breaksGrass.get()) {
+                /*if ((state.getBlock() instanceof GrassBlock) && SupersLegendConfig.COMMON.breaksGrass.get()) {
                     world.destroyBlock(pos, true);
-                }
+                }*/
                 if ((state.getMaterial() == Material.TALL_PLANTS) && SupersLegendConfig.COMMON.breaksTallGrass.get()) {
                     world.destroyBlock(pos, true);
                 }
