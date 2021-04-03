@@ -52,6 +52,22 @@
 			"superslegend:zora_armor_tunic_recipe",
 			"superslegend:zora_armor_leggings_recipe",
 			"superslegend:zora_armor_flippers_recipe",
+
+            "superslegend:barbarian_helmet_recipe",
+            "superslegend:barbarian_armor_recipe",
+            "superslegend:barbarian_leg_wraps_recipe",
+            "superslegend:barbarian_boots_recipe",
+
+            "superslegend:ancient_helmet_recipe",
+            "superslegend:ancient_cuirass_recipe",
+            "superslegend:ancient_greaves_recipe",
+            "superslegend:ancient_boots_recipe",
+
+          "superslegend:climbers_bandanna_recipe",
+          "superslegend:climbing_gear_recipe",
+          "superslegend:climbing_pants_recipe",
+          "superslegend:climbing_boots_recipe",
+
 			"superslegend:iron_boots_recipe",
 			"superslegend:hover_boots_recipe",
 			"superslegend:pegasus_boots_recipe"
