@@ -10,6 +10,7 @@ import com.google.common.collect.Maps;
 
 import net.minecraft.item.ItemTier;
 import net.minecraftforge.common.ForgeConfigSpec;
+import superworldsun.superslegend.items.OcarinaOfTime;
 
 public final class SupersLegendConfig {
 
@@ -23,7 +24,7 @@ public final class SupersLegendConfig {
 
     public static class Common {
         // Regular Boomerang Public Finals
-        public final ForgeConfigSpec.BooleanValue boomerangsEnabled;
+        //public final ForgeConfigSpec.BooleanValue boomerangsEnabled;
         public final ForgeConfigSpec.BooleanValue turnAroundItem;
         public final ForgeConfigSpec.BooleanValue turnAroundMob;
         public final ForgeConfigSpec.BooleanValue turnAroundButton;
@@ -32,7 +33,7 @@ public final class SupersLegendConfig {
         public final ForgeConfigSpec.BooleanValue RegularBoomerangFollows;
         public final ForgeConfigSpec.BooleanValue breaksTorches;
         public final ForgeConfigSpec.BooleanValue breaksFlowers;
-        public final ForgeConfigSpec.BooleanValue breaksGrass;
+        //public final ForgeConfigSpec.BooleanValue breaksGrass;
         public final ForgeConfigSpec.BooleanValue breaksTallGrass;
         public final ForgeConfigSpec.BooleanValue activatesLevers;
         public final ForgeConfigSpec.BooleanValue activatesButtons;
@@ -40,14 +41,15 @@ public final class SupersLegendConfig {
         public final ForgeConfigSpec.BooleanValue activatesTripWire;
 
         // Bomb Public Finals
-        public final ForgeConfigSpec.BooleanValue BombEnabled;
+        //public final ForgeConfigSpec.BooleanValue BombEnabled;
+        //public final ForgeConfigSpec.BooleanValue OcarinaOfTimeEnabled;
 
 
         public Common(ForgeConfigSpec.Builder builder) {
 
             //Boomerang Configuration options
             builder.push("Regular Boomerang Config Options");
-            boomerangsEnabled = builder.comment("Set this to true if you would like boomerangs to be craftable and found in the creative tab.").define("boomerangsEnabled", true);
+            //boomerangsEnabled = builder.comment("Set this to true if you would like boomerangs to be craftable and found in the creative tab.").define("boomerangsEnabled", true);
 
             // Boomerang Functions
             turnAroundItem = builder.comment("Comes back to the player after picking up items.").define("turnAroundItem", true);
@@ -66,7 +68,7 @@ public final class SupersLegendConfig {
 
             breaksFlowers = builder.comment("Can boomerang break Flowers.").define("breaksFlowers", true);
 
-            breaksGrass = builder.comment("Can boomerang break Glass.").define("breaksGrass", true);
+            //breaksGrass = builder.comment("Can boomerang break Glass.").define("breaksGrass", true);
 
             breaksTallGrass = builder.comment("Can boomerang break Tall Grass.").define("breaksTallGrass", true);
             // Boomerang Activate/Redstone Capabilities
@@ -82,9 +84,12 @@ public final class SupersLegendConfig {
             builder.pop();
 
             //Boomerang Configuration options
-            builder.push("Bomb Options");
+            /*builder.push("Bomb Options");
             BombEnabled = builder.comment("Enable or Disable the Bomb. 'True'=Enabled, 'False'=Disabled").define("BombEnabled", true);
 
+            builder.push("OcarinaOfTime Options");
+            OcarinaOfTimeEnabled = builder.comment("Set this to true if you would like OcarinaOfTime to be craftable and found in the creative tab.").define("OcarinaOfTimeEnabled", true);
+*/
         }
     }
 }
