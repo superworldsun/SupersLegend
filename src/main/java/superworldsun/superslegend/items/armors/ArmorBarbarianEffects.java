@@ -29,36 +29,30 @@ public class ArmorBarbarianEffects extends NonEnchantArmor
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.RED + "Armor once worn by warriors from the Faron region"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Wearing full set grants strength"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Wearing the set grants strength"));
 	}
 
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-        if (!world.isRemote){
-            boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.barbarian_helmet);
-            boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.barbarian_armor);
-            boolean isLeggingsOn = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.barbarian_leg_wraps);
-            boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.barbarian_boots);
+        boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.barbarian_helmet);
+        boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.barbarian_armor);
+        boolean isLeggingsOn = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.barbarian_leg_wraps);
+        boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.barbarian_boots);
+        if (!world.isRemote)
+        {
             if(isHelmetOn&isChestplateOn || isHelmetOn&isLeggingsOn || isHelmetOn&isBootsOn ||
                isChestplateOn&isLeggingsOn || isChestplateOn&isBootsOn || isLeggingsOn&isBootsOn)
             {
                 player.addPotionEffect(new EffectInstance(Effect.get(5), 3, 0, false, false, false));
             }
-
         }
-    	
-    	
-        if (!world.isRemote){
-        		boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.barbarian_helmet);
-                boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.barbarian_armor);
-                boolean isLeggingsOn = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.barbarian_leg_wraps);
-                boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.barbarian_boots);
+        if (!world.isRemote)
+        {
                 if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn)
                 	{
                 		player.addPotionEffect(new EffectInstance(Effect.get(5), 3, 1, false, false, false));
                 	}
-                	
-                }
+        }
     }
 }
