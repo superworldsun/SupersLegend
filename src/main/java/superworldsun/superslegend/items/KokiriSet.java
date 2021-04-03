@@ -25,30 +25,33 @@ public class KokiriSet extends Item{
 	{
 		super(properties);
 	}
-	
+
 	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
 	 {
-		ItemStack stack = player.getHeldItem(hand);
-		 {
-			 //if(player.inventory.)
-			 stack.shrink(1);
-			
-			 
-			 
-			 player.addItemStackToInventory(new ItemStack(ItemList.kokiri_cap));
-			 player.addItemStackToInventory(new ItemStack(ItemList.kokiri_tunic));
-			 player.addItemStackToInventory(new ItemStack(ItemList.kokiri_leggings));
-			 
-			 
-			 BlockPos currentPos = player.getPosition();
- 	         player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.JAWA, SoundCategory.PLAYERS, 1f, 1f);
+
+		 if(player.inventory.getFirstEmptyStack() != -1) {
+
+			 ItemStack stack = player.getHeldItem(hand);
+			 {
+				 //if(player.inventory.)
+				 stack.shrink(1);
+
+
+				 player.addItemStackToInventory(new ItemStack(ItemList.kokiri_cap));
+				 player.addItemStackToInventory(new ItemStack(ItemList.kokiri_tunic));
+				 player.addItemStackToInventory(new ItemStack(ItemList.kokiri_leggings));
+
+
+				 BlockPos currentPos = player.getPosition();
+				 player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.JAWA, SoundCategory.PLAYERS, 1f, 1f);
+			 }
 		 }
-		        
+
 	return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
-		
+
 	}
-	
-	
+
+
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
