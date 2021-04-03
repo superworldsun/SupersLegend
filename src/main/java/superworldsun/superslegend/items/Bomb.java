@@ -27,10 +27,10 @@ public class Bomb extends Item implements IVanishable {
 		super(properties);
 	}
 
-	@Override
+	/*@Override
 	protected boolean isInGroup(ItemGroup group) {
 		return SupersLegendConfig.COMMON.BombEnabled.get() && super.isInGroup(group);
-	}
+	}*/
 
 	public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
 		return !player.isCreative();
