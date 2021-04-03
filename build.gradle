@@ -9,13 +9,6 @@ buildscript {
     }
 }
 
-repositories{
-    maven {
-        name = "CurseForge"
-        url = "https://minecraft.curseforge.com/api/maven/"
-    }
-}
-
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
@@ -95,8 +88,6 @@ minecraft {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.3-34.1.42'
-    compile 'citadel:citadel:1.5.3:deobf'
-
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
