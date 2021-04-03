@@ -25,7 +25,7 @@ import superworldsun.superslegend.init.EntityInit;
 
 import java.util.List;
 
-public class GraveyardStructure extends Structure<NoFeatureConfig> {
+/*public class GraveyardStructure extends Structure<NoFeatureConfig> {
 
     public GraveyardStructure(Codec<NoFeatureConfig> codec) {
         super(codec);
@@ -48,8 +48,8 @@ public class GraveyardStructure extends Structure<NoFeatureConfig> {
 
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
             new MobSpawnInfo.Spawners(EntityType.SKELETON, 50, 3, 8),
-            new MobSpawnInfo.Spawners(EntityType.ZOMBIE, 50, 2, 7),
-            new MobSpawnInfo.Spawners(EntityInit.POEENTITY.get(), 50, 3, 5)
+            new MobSpawnInfo.Spawners(EntityType.ZOMBIE, 50, 2, 7)
+            //new MobSpawnInfo.Spawners(EntityInit.POEENTITY.get(), 50, 3, 5)
     );
 
     @Override
@@ -117,4 +117,4 @@ public class GraveyardStructure extends Structure<NoFeatureConfig> {
         }
 
     }
-}
+}*/
