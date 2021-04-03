@@ -31,18 +31,17 @@ public class BluePotion extends Item
 	 {
 		ItemStack stack = player.getHeldItem(hand);
 		  
-		 if(!world.isRemote && player.getFoodStats().needFood() && !player.isCreative())
+		 if(!world.isRemote &&  !player.isCreative() && player.getFoodStats().needFood() && player.shouldHeal())
 	     {
-			 
 			 BlockPos currentPos = player.getPosition();
 			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
 			 
-			 	player.addPotionEffect(new EffectInstance(Objects.requireNonNull(Effect.get(10)), 60, 4, false, false));
-			 	player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() + 20);
-				stack.shrink(1);
-				player.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+			 player.addPotionEffect(new EffectInstance(Objects.requireNonNull(Effect.get(10)), 60, 4, false, false));
+			 player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() + 20);
+			 stack.shrink(1);
+			 player.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
 	     }
-		 else if(!world.isRemote && !player.getFoodStats().needFood() && !player.isCreative())
+		 if(!world.isRemote && !player.isCreative() && !player.getFoodStats().needFood() && player.shouldHeal())
 		 {
 			 BlockPos currentPos = player.getPosition();
 			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
@@ -51,16 +50,27 @@ public class BluePotion extends Item
 			 stack.shrink(1);
 			 player.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
 		 }
-		 else if(player.isCreative() && player.getFoodStats().needFood())
+		 if(!world.isRemote && !player.isCreative() && player.getFoodStats().needFood() && !player.shouldHeal())
+		 {
+			 BlockPos currentPos = player.getPosition();
+			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
+
+			 player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() + 20);
+			 stack.shrink(1);
+			 player.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+		 }
+
+
+
+		 if(player.isCreative() && player.getFoodStats().needFood())
 		 {
 			 BlockPos currentPos = player.getPosition();
 			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
 			 
 			 player.addPotionEffect(new EffectInstance(Objects.requireNonNull(Effect.get(10)), 60, 4, false, false));
 			 player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() + 20);
-			 
 		 }
-		 else if(player.isCreative() && !player.getFoodStats().needFood())
+		 if(player.isCreative() && !player.getFoodStats().needFood())
 		 {
 			 BlockPos currentPos = player.getPosition();
 			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
