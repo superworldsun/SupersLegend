@@ -114,6 +114,11 @@
         "subtitle": "superslegend.subtitle.bomb_defuse",
         "sounds": [ "superslegend:bomb_defuse" ]
     },
+"fairy_bottle_use": {
+    "category": "entity",
+    "subtitle": "superslegend.subtitle.fairy_bottle_use",
+    "sounds": [ "superslegend:fairy_bottle_use" ]
+  },
 "fairy_heal_on_touch": {
     "category": "entity",
     "subtitle": "superslegend.subtitle.fairy_heal_on_touch",

@@ -32,6 +32,7 @@ public class SoundInit
     public static SoundEvent BOOMERANG_THROW;
     public static SoundEvent BOMB_FUSE;
     public static SoundEvent BOMB_DEFUSE;
+    public static SoundEvent FAIRY_BOTTLE_USE;
 
     // Entities Mobs
     public static SoundEvent FAIRY_HEAL_ON_TOUCH;

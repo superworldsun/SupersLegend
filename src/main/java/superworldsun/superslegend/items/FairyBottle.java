@@ -15,7 +15,10 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import superworldsun.superslegend.init.EntityInit;
+import superworldsun.superslegend.init.SoundInit;
 
 import java.util.List;
 
@@ -32,20 +35,10 @@ public class FairyBottle extends Item
 		if(entity instanceof PlayerEntity && !world.isRemote)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-
-			if(!world.isRemote)
-			{
-		        {
 					if(player.getShouldBeDead())
 	            	{
-	            		player.setHealth(1);
+	            		player.setHealth(20);
 	            	}
-
-	                
-	            	}
-
-			}	
-			
 		}
 	}
 
@@ -55,22 +48,10 @@ public class FairyBottle extends Item
 
 		if(!world.isRemote && !player.isCreative())
 		{
-
 			BlockPos currentPos = player.getPosition();
-			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_HONEY_BOTTLE_DRINK, SoundCategory.PLAYERS, 1f, 1f);
+			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.FAIRY_BOTTLE_USE, SoundCategory.PLAYERS, 1f, 1f);
 
 			player.addPotionEffect(new EffectInstance(Effect.get(10), 60, 4, false, false));
-			stack.shrink(1);
-			player.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
-		}
-
-		if(!world.isRemote && player.isCrouching())
-		{
-
-			BlockPos currentPos = player.getPosition();
-			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.PLAYERS, 1f, 1f);
-
-
 			stack.shrink(1);
 			player.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
 		}
@@ -78,7 +59,7 @@ public class FairyBottle extends Item
 		else if (!world.isRemote && player.isCreative())
 		{
 			BlockPos currentPos = player.getPosition();
-			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
+			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.FAIRY_BOTTLE_USE, SoundCategory.PLAYERS, 1f, 1f);
 
 			player.addPotionEffect(new EffectInstance(Effect.get(10), 60, 4, true, true));
 		}
