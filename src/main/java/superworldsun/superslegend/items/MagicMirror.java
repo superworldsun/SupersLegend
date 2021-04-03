@@ -70,7 +70,7 @@ public class MagicMirror extends Item {
 
                     setPositionAndUpdate(entity, world, bedLoc);
                     world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
-                    player.sendStatusMessage(new TranslationTextComponent("Returned to bed"), true);
+                    //player.sendStatusMessage(new TranslationTextComponent("Returned to bed"), true);
                 }
                 else
                 {
