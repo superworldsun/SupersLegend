@@ -11,14 +11,14 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superworldsun.superslegend.SupersLegend;
-import superworldsun.superslegend.particles.fairy.FairyParticleData;
+//import superworldsun.superslegend.particles.fairy.FairyParticleData;
 
 import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
-public class ParticleInit {
+//public class ParticleInit {
 
-    private static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, SupersLegend.modid);
+    /*private static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, SupersLegend.modid);
 
     public static final RegistryObject<ParticleType<FairyParticleData>> FAIRY = r("fairy", () -> new ParticleType<FairyParticleData>(false, FairyParticleData.DESERIALIZER) {
         @Override
@@ -37,4 +37,4 @@ public class ParticleInit {
         PARTICLES.register(modEventBus);
     }
 
-}
+}*/
