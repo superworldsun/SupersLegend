@@ -40,7 +40,7 @@ public class DinsFire extends Item {
       BlockPos blockpos = context.getPos();
       BlockState blockstate = world.getBlockState(blockpos);
       if (CampfireBlock.canBeLit(blockstate) && Objects.requireNonNull(playerentity).getFoodStats().getFoodLevel()>= 1) {
-         world.playSound(playerentity, blockpos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
+         world.playSound(playerentity, blockpos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
          world.setBlockState(blockpos, blockstate.with(BlockStateProperties.LIT, Boolean.TRUE), 11);
          context.getItem().damageItem(1, playerentity, (p_219999_1_) -> p_219999_1_.sendBreakAnimation(context.getHand()));
 
@@ -49,7 +49,7 @@ public class DinsFire extends Item {
          //noinspection SpellCheckingInspection
          BlockPos blockpos1 = blockpos.offset(context.getFace());
          if (AbstractFireBlock.canLightBlock(world, blockpos1, context.getPlacementHorizontalFacing() ) && Objects.requireNonNull(playerentity).getFoodStats().getFoodLevel()>= 1) {
-            world.playSound(playerentity, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
+            world.playSound(playerentity, blockpos1, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
             //noinspection SpellCheckingInspection
             BlockState blockstate1 = AbstractFireBlock.getFireForPlacement(world, blockpos1);
             playerentity.addExhaustion(4f);
