@@ -30,7 +30,7 @@ public class RedPotionMix extends Item
 	 {
 		ItemStack stack = player.getHeldItem(hand);
 		  
-		 if(!world.isRemote && !player.isCreative())
+		 if(!world.isRemote && !player.isCreative() && player.shouldHeal())
 	     {
 			 
 			 BlockPos currentPos = player.getPosition();
