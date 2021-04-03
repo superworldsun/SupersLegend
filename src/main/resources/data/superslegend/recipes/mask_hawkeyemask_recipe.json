@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#g#",
+        "GWG",
+        "WBW"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:feather"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "G": {
+            "item": "minecraft:glass_pane"
+        },
+        "W": {
+            "item": "minecraft:white_wool"
+        },
+        "B": {
+            "item": "minecraft:brown_wool"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_hawkeyemask",
+        "count": 1
+    }
+}
