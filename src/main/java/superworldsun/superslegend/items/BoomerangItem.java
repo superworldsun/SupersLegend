@@ -20,10 +20,10 @@ public class BoomerangItem extends Item {
         super(properties);
     }
 
-    @Override
+    /*@Override
     protected boolean isInGroup(ItemGroup group) {
         return SupersLegendConfig.COMMON.boomerangsEnabled.get() && super.isInGroup(group);
-    }
+    }*/
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
