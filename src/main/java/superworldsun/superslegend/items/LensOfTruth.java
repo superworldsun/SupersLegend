@@ -41,9 +41,7 @@ public class LensOfTruth extends Item
 		if(entity instanceof PlayerEntity && !world.isRemote)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-
 			ItemStack equipped = player.getHeldItemMainhand();
-
 			if(!world.isRemote)
 			{
 				if(stack == equipped)
@@ -72,9 +70,7 @@ public class LensOfTruth extends Item
 		if(entity instanceof PlayerEntity && !world.isRemote)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-
 			ItemStack equipped = player.getHeldItemMainhand();
-
 			if(!world.isRemote)
 			{
 				if(stack == equipped)
@@ -103,9 +99,7 @@ public class LensOfTruth extends Item
 		if(entity instanceof PlayerEntity && !world.isRemote)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-
 			ItemStack equipped = player.getHeldItemMainhand();
-
 			if(!world.isRemote)
 			{
 				if(stack == equipped)
@@ -247,7 +241,7 @@ public class LensOfTruth extends Item
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Hold in Hands the hidden to reveal"));
+		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Hold in Hands to reveal a hidden target"));
 		//list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
 	}
 
