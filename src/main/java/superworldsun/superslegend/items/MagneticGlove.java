@@ -1,25 +1,23 @@
 package superworldsun.superslegend.items;
 
-/*import java.util.List;
+import java.util.List;
 
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.arrows.Entity;
-import net.minecraft.arrows.item.ExperienceOrbEntity;
-import net.minecraft.arrows.item.ItemEntity;
-import net.minecraft.arrows.player.PlayerEntity;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import superworldsun.superslegend.util.EnableUtil;
-import superworldsun.superslegend.util.MagnetRange;
 
 public class MagneticGlove extends Item
 {
@@ -28,120 +26,37 @@ public class MagneticGlove extends Item
 	{
 		super(properties);
 	}
-	
-	int range;
 
-	public void inventoryTick(ItemStack stack, World world, Entity arrows, int itemSlot, boolean isSelected)
-	{		
-		if(arrows instanceof PlayerEntity && !world.isRemote)
-		{
-			PlayerEntity player = (PlayerEntity)arrows;
-			ItemStack equipped = player.getHeldItemMainhand();
-			if(!world.isRemote)
-			{
-				if(stack == equipped) {
-			
-			boolean init = MagnetRange.getCurrentlySet(stack);
-			
-			if(!init)
-			{
-				range = 0;
-			}
-			else
-			{
-				range = MagnetRange.getCurrentRange(stack);
-			}			
-			
-			double x = player.posX;
-			double y = player.posY + 1.5;
-			double z = player.posZ;
+    public static int getCooldown(ItemStack stack) {
+        return stack.getOrCreateTag().getInt("Cooldown");
+    }
 
-			@SuppressWarnings("unused")
-			boolean isPulling;
-			
-			//Scan for and collect items
-			List<ItemEntity> items = arrows.world.getEntitiesWithinAABB(ItemEntity.class, new AxisAlignedBB(x - range, y - range, z - range, x + range, y + range, z + range));
-			for(ItemEntity e: items)
-			{
-				if(!player.isSneaking() && !e.getEntityData().getBoolean("PreventRemoteMovement"))
-				{
-					isPulling = true;							
-					double factor = 0.02;
-					e.addVelocity((x - e.posX) * factor, (y - e.posY) * factor, (z - e.posZ) * factor);
-				}
-			}
-			
-			if(items.isEmpty())
-			{
-				isPulling = false;
-			}
-			
-			//Scan for and collect XP Orbs
-			List<ExperienceOrbEntity> xp = arrows.world.getEntitiesWithinAABB(ExperienceOrbEntity.class, new AxisAlignedBB(x - range, y - range, z - range, x + range, y + range, z + range));
-			for(ExperienceOrbEntity orb: xp)
-			{
-				if(!player.isSneaking())
-				{
-					isPulling = true;							
-					double factor = 0.02;
-					orb.addVelocity((x - orb.posX) * factor, (y - orb.posY) * factor, (z - orb.posZ) * factor);
-                    player.onItemPickup(orb, 1);
-                    player.giveExperiencePoints(orb.xpValue);
-                    orb.remove();
-				}
-			}
-			
-			if(items.isEmpty())
-			{
-				isPulling = false;
-			}
-			
-			}
-		}
-	}
-}
-	
-	@Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
-    {
-		ItemStack stack = player.getHeldItem(hand);	
-		
-		if(!world.isRemote && !(player.isSneaking()))
-        {
-            EnableUtil.changeEnabled(player, hand);
-            player.sendMessage(new StringTextComponent("Attraction ability active: " + EnableUtil.isEnabled(stack)));
-            return new ActionResult<ItemStack>(ActionResultType.SUCCESS, player.getHeldItem(hand));
-        }		
-		
-        if(!world.isRemote && player.isSneaking())
-        {
-			if(range == 0)
-			{
-				range = 4;
-				MagnetRange.setCurrentRange(stack, range);
-				player.sendMessage(new StringTextComponent("Attraction range set to: " + MagnetRange.getCurrentRange(stack)));
-			}
-			else if(range == 4)
-			{
-				range = 8;
-				MagnetRange.setCurrentRange(stack, range);
-				player.sendMessage(new StringTextComponent("Attraction range set to: " + MagnetRange.getCurrentRange(stack)));
-			}
-			else if(range == 8)
-			{
-				range = 12;
-				MagnetRange.setCurrentRange(stack, range);
-				player.sendMessage(new StringTextComponent("Attraction range set to: " + MagnetRange.getCurrentRange(stack)));
-			}
-			else if(range == 12)
-			{
-				range = 0;
-				MagnetRange.setCurrentRange(stack, range);
-				player.sendMessage(new StringTextComponent("Attraction range set to: " + MagnetRange.getCurrentRange(stack)));
-			}
+    public static void setCooldown(ItemStack stack, int cooldown) {
+        stack.getOrCreateTag().putInt("Cooldown", cooldown);
+    }
+
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+
+        Vector3d playerPos = player.getPositionVec().add(0, 0.75, 0);
+
+        int range = 15;
+        List<ItemEntity> items = player.world.getEntitiesWithinAABB(ItemEntity.class, new AxisAlignedBB(playerPos.x - range, playerPos.y - range, playerPos.z - range, playerPos.x + range, playerPos.y + range, playerPos.z + range));
+        int pulled = 0;
+        for (ItemEntity item : items) {
+            if (item.isAlive() && !item.cannotPickup() && !item.getPersistentData().getBoolean("PreventRemoteMovement")) {
+                if (pulled++ > 200) {
+                    break;
+                }
+
+                Vector3d motion = playerPos.subtract(item.getPositionVec().add(0, item.getHeight() / 2, 0));
+                if (Math.sqrt(motion.x * motion.x + motion.y * motion.y + motion.z * motion.z) > 1) {
+                    motion = motion.normalize();
+                }
+                item.setMotion(motion.scale(0.7));
+            }
         }
-        
-        return super.onItemRightClick(world, player, hand);
+
+        return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
     }
     
     @Override
@@ -149,8 +64,7 @@ public class MagneticGlove extends Item
 	{
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.BLUE + "Pulls items toward the player"));
-		list.add(new StringTextComponent(TextFormatting.RED + "Attraction active: " + EnableUtil.isEnabled(stack)));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to toggle on/off, sneak + Right-click to cycle ranges"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-click to Pull items"));
 	}   
 
-}*/
+}
