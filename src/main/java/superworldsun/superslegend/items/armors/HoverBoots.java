@@ -62,16 +62,21 @@ public class HoverBoots extends ArmorItem {
 				Vector3d v = player.getMotion();
 				player.setMotion(v.x, v.y * -0.1D, v.z);
 
-				BlockPos currentPos = player.getPosition();
-				world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOVER_BOOTS, SoundCategory.PLAYERS, 1f, 1f);
-				Random rand = player.world.rand;
+				if(player.ticksExisted % 2 == 0) {
+					BlockPos currentPos = player.getPosition();
+					world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOVER_BOOTS, SoundCategory.PLAYERS, 1f, 1f);
+				}
 
+
+				if(player.ticksExisted % 4 == 0){
+				Random rand = player.world.rand;
 				for (int i = 0; i < 45; i++) {
 					player.world.addParticle(ParticleTypes.CLOUD,
-							player.getPosX() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 0,
+							player.getPosX() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 0,
 							player.getPosY() + rand.nextFloat() * 0 - 0,
-							player.getPosZ() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 0,
+							player.getPosZ() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 0,
 							0, 0, 0);
+					}
 				}
 
 			}
