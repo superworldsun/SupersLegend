@@ -31,6 +31,7 @@ public class ArmorZoraArmorEffects extends NonEnchantArmor
 		super.addInformation(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.BLUE + "Armor of the Zoras"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Wearing full set grants water breathing"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "and the ability to swim like a Zora"));
 	}
 
     @Override
