@@ -30,8 +30,9 @@ public class ArmorMagicArmor extends NonEnchantArmor {
 
 	public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
 		super.addInformation(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "magic armor"));
-		list.add(new StringTextComponent(TextFormatting.RED + "grants invicibility from rupee"));
+		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "Magic Armor"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants invicibility from rupee"));
+		list.add(new StringTextComponent(TextFormatting.RED + "Slows user when rupee are depleted"));
 	}
 
 
@@ -62,7 +63,7 @@ public class ArmorMagicArmor extends NonEnchantArmor {
 			if (isHelmetOn && isChestplateOn && isLeggingsOn && isBootsOn) {
 				EffectInstance effect = player.getActivePotionEffect(Effects.RESISTANCE);
 				if (effect == null) {
-					player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 4, false, false));
+					player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 3, false, false));
 				}
 			}
 			/*if (isHelmetOn && isChestplateOn && isLeggingsOn && isBootsOn) {
