@@ -76,7 +76,7 @@ public class IronBoots extends NonEnchantArmor {
             		//Vec3d v = player.getMotion();
 					//player.setMotion(v.x, v.y * -1.0D, v.z);
             		
-            		player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 10, 1, false, false));
+            		player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 10, 2, false, false));
             		
             		player.removePotionEffect(PotionList.iron_boots_effect);
             		//player.removePotionEffect(Effect.get(30));
