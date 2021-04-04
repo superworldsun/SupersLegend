@@ -66,7 +66,7 @@ public class OcarinaOfTime extends Item
 			 	// Set the time to Night
 				 playerworld.setDayTime(13000L)/*13000 is == to Night time*/;
 			 }
-		        
+			 player.getCooldownTracker().setCooldown(this, 5 * 22);
 	     }
 		 else if(!world.isDaytime() && player instanceof ServerPlayerEntity && world instanceof ServerWorld)
 		 {
@@ -94,7 +94,7 @@ public class OcarinaOfTime extends Item
 			 }
 
 		        // Setting Item cool down
-			 player.getCooldownTracker().setCooldown(this, 5 * 20);
+			 player.getCooldownTracker().setCooldown(this, 5 * 22);
 		 }
 	 
 		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
