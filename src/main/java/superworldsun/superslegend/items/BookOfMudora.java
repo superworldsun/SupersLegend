@@ -99,7 +99,7 @@ public class BookOfMudora extends Item{
 		 	player.unlockRecipes(new ResourceLocation[] {new ResourceLocation("superslegend:magnetic_glove")});
 		 	player.unlockRecipes(new ResourceLocation[] {new ResourceLocation("superslegend:bit_bow_recipe")});
 		 	player.unlockRecipes(new ResourceLocation[] {new ResourceLocation("superslegend:regular_boomerang_recipe")});
-		 	player.unlockRecipes(new ResourceLocation[] {new ResourceLocation("superslegend:gaurdian_sword_recipe")});
+		 	player.unlockRecipes(new ResourceLocation[] {new ResourceLocation("superslegend:guardian_sword_recipe")});
 		 	player.unlockRecipes(new ResourceLocation[] {new ResourceLocation("superslegend:giants_knife_recipe")});
 		 	player.unlockRecipes(new ResourceLocation[] {new ResourceLocation("superslegend:biggorons_sword_recipe")});
 

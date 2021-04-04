@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "superslegend:item/gaurdian_sword"
+        "layer0": "superslegend:item/guardian_sword"
     }
 }

@@ -16,9 +16,9 @@ import superworldsun.superslegend.lists.ItemList;
 
 import java.util.List;
 
-public class GaurdianSword extends ItemCustomSword
+public class GuardianSword extends ItemCustomSword
 {
-	public GaurdianSword(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder)
+	public GuardianSword(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder)
 	{
 		super(tier, attackDamageIn, attackSpeedIn, builder);
 	}

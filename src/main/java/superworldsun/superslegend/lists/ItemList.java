@@ -130,7 +130,7 @@ public class ItemList
 		public static Item broken_giants_knife;
 		public static Item biggorons_sword;
 
-		public static Item gaurdian_sword;
+		public static Item guardian_sword;
 		
 		public static Item rupee_sword;
 		public static Item blue_rupee_sword;
