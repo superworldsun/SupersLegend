@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -233,6 +234,7 @@ public class SupersLegend
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.SHOCK_ARROW.get(), EntityArrowShockRender::new);
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.BOMB_ARROW.get(), EntityArrowBombRender::new);
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.ANCIENT_ARROW.get(), EntityArrowAncientRender::new);
+			//RenderingRegistry.registerEntityRenderingHandler(EntityInit.ICE_BEAM.get(), EntityIceBeamRender::new);
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.REGULAR_BOOMERANG.get(), new BoomerangRender.Factory());
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.BOMBENTITY.get(), BombRenderer::new);
 		}
@@ -327,12 +329,12 @@ public class SupersLegend
 							ItemList.stone_tile_block = new BlockItem(BlockList.stone_tile_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.stone_tile_block.getRegistryName()),
 
 
-							//WEAPONS
+							//WEAPONS & TOOLS
 
 							ItemList.kokiri_sword = new ItemCustomSword(ToolMaterialList.kokiri_sword,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("kokiri_sword")),
 							ItemList.razor_sword = new ItemCustomSword(ToolMaterialList.razor_sword, 2, -2.5f, new Item.Properties().group(supers_legend)).setRegistryName(location("razor_sword")),
 							ItemList.gilded_sword = new ItemCustomSword(ToolMaterialList.gilded_sword,2, -2.4f, new Item.Properties().group(supers_legend)).setRegistryName(location("gilded_sword")),
-							ItemList.master_sword = new ItemCustomSword(ToolMaterialList.master_sword,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
+							ItemList.master_sword = new MasterSword(ToolMaterialList.master_sword,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
 							ItemList.giants_knife = new GiantsKnife(ToolMaterialList.giants_knife,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("giants_knife")),
 							//ItemList.broken_giants_knife = new BiggornsSword(ToolMaterialList.broken_giants_knife,2, -2.7f, new Item.Properties().group(supers_legend)).setRegistryName(location("broken_giants_knife")),
 							ItemList.biggorons_sword = new BiggornsSword(ToolMaterialList.biggorons_sword,2, -2.5f, new Item.Properties().group(supers_legend)).setRegistryName(location("biggorons_sword")),
@@ -354,10 +356,14 @@ public class SupersLegend
 							ItemList.silver_scale = new SilverScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("silver_scale")),
 							ItemList.golden_scale = new GoldenScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("golden_scale")),
 							ItemList.rocs_feather = new RocsFeather(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("rocs_feather")),
+							ItemList.fishing_rod = new FishingRod(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("fishing_rod")),
+							ItemList.bug_net = new BugNet(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bug_net")),
 							ItemList.magic_mirror = new MagicMirror(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_mirror")),
 							ItemList.magic_cape = new MagicCape(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magic_cape")),
 							ItemList.regular_boomerang = new BoomerangItem(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("regular_boomerang")),
 							ItemList.bomb = new Bomb(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bomb")),
+							ItemList.fire_rod = new FireRod(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("fire_rod")),
+							ItemList.ice_rod = new IceRod(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("ice_rod")),
 							ItemList.empty_container = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("empty_container")),
 							ItemList.dins_fire = new DinsFire(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("dins_fire")),
 							ItemList.farores_wind = new FaroresWind(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("farores_wind")),
@@ -375,6 +381,10 @@ public class SupersLegend
 							ItemList.red_potion = new RedPotion(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("red_potion")),
 							ItemList.green_potion = new GreenPotion(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("green_potion")),
 							ItemList.blue_potion = new BluePotion(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("blue_potion")),
+							//ItemList.fairy_bottle = new FairyBottle(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("fairy_bottle")),
+							ItemList.bottled_bee = new BottledBee(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bottled_bee")),
+							ItemList.bottled_silverfish = new BottledSilverfish(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bottled_silverfish")),
+							ItemList.bottled_endermite = new BottledEndermite(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("bottled_endermite")),
 							ItemList.magnetic_glove = new MagneticGlove(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("magnetic_glove")),
 							ItemList.triforce = new Triforce(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce")),
 							ItemList.triforce_power = new TriforcePower(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("triforce_power")),
@@ -628,6 +638,20 @@ public class SupersLegend
 			registerProperty(ItemList.deku_shield, new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_, p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isHandActive() && p_239421_2_.getActiveItemStack() == p_239421_0_ ? 1.0F : 0.0F);
 
 			registerProperty(ItemList.hylian_shield, new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_, p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isHandActive() && p_239421_2_.getActiveItemStack() == p_239421_0_ ? 1.0F : 0.0F);
+
+			registerProperty(ItemList.fishing_rod, new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) -> {
+				if (p_239422_2_ == null) {
+					return 0.0F;
+				} else {
+					boolean flag = p_239422_2_.getHeldItemMainhand() == p_239422_0_;
+					boolean flag1 = p_239422_2_.getHeldItemOffhand() == p_239422_0_;
+					if (p_239422_2_.getHeldItemMainhand().getItem() instanceof FishingRodItem) {
+						flag1 = false;
+					}
+
+					return (flag || flag1) && p_239422_2_ instanceof PlayerEntity && ((PlayerEntity)p_239422_2_).fishingBobber != null ? 1.0F : 0.0F;
+				}
+			});
 
 		}
 	}
