@@ -23,6 +23,8 @@ public class ItemList
 		public static Item heart;
 		public static Item fairy_bottle;
 		public static Item rocs_feather;
+		public static Item fishing_rod;
+		public static Item bug_net;
 		public static Item magic_mirror;
 		public static Item magic_cape;
 		public static Item magnetic_glove;
@@ -49,6 +51,9 @@ public class ItemList
 		public static Item red_potion;
 		public static Item green_potion;
 		public static Item blue_potion;
+		public static Item bottled_bee;
+		public static Item bottled_silverfish;
+		public static Item bottled_endermite;
 		public static Item triforce;
 		public static Item triforce_power;
 		public static Item triforce_power_shard;
@@ -259,6 +264,6 @@ public class ItemList
 		public static RocsCapeEffects rocs_cape;
 		public static Item pegasus_boots;
 
-		//Eggs
+    //Eggs
     	//public static Item poe_egg;
 }
