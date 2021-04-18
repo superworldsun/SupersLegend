@@ -114,6 +114,11 @@
         "subtitle": "superslegend.subtitle.bomb_defuse",
         "sounds": [ "superslegend:bomb_defuse" ]
     },
+"bottle_pop": {
+    "category": "player",
+    "subtitle": "superslegend.subtitle.bottle_pop",
+    "sounds": [ "superslegend:bottle_pop" ]
+  },
 "fairy_bottle_use": {
     "category": "entity",
     "subtitle": "superslegend.subtitle.fairy_bottle_use",

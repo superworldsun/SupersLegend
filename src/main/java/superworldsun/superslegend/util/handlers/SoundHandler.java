@@ -34,6 +34,7 @@ import static superworldsun.superslegend.init.SoundInit.BOOMERANG_FLY_LOOP;
 import static superworldsun.superslegend.init.SoundInit.BOOMERANG_THROW;
 import static superworldsun.superslegend.init.SoundInit.BOMB_FUSE;
 import static superworldsun.superslegend.init.SoundInit.BOMB_DEFUSE;
+import static superworldsun.superslegend.init.SoundInit.BOTTLE_POP;
 import static superworldsun.superslegend.init.SoundInit.FAIRY_BOTTLE_USE;
 import static superworldsun.superslegend.init.SoundInit.FAIRY_HEAL_ON_TOUCH;
 import static superworldsun.superslegend.init.SoundInit.FAIRY_TWINKLE;
@@ -72,6 +73,7 @@ public class SoundHandler
 		BOOMERANG_THROW = registerSound("boomerang_throw");
 		BOMB_FUSE = registerSound("bomb_fuse");
 		BOMB_DEFUSE = registerSound("bomb_defuse");
+		BOTTLE_POP = registerSound("bottle_pop");
 		FAIRY_BOTTLE_USE = registerSound("fairy_bottle_use");
     	FAIRY_HEAL_ON_TOUCH = registerSound("fairy_heal_on_touch");
 		FAIRY_TWINKLE = registerSound("fairy_twinkle");
