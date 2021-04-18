@@ -2,6 +2,8 @@ package superworldsun.superslegend.items.masks;
 
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -31,13 +33,20 @@ public class MaskStonemaskEffects extends NonEnchantArmor {
 		list.add(new StringTextComponent(TextFormatting.GRAY + "You wont be noticed, more than usual"));
 		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "Grants invisibility"));
 	}
-    
+
+    @Override
+    public boolean isEnderMask(ItemStack stack, PlayerEntity player, EndermanEntity endermanEntity) {
+        return true;
+    }
+
+    @Override
+    public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
+        return true;
+    }
+
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-    	
-    	
-    	
         if (!world.isRemote){
                 boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_stonemask);
                 if(isHelmeton) player.addPotionEffect(new EffectInstance(Effect.get(14), 10, 0, false, false));
