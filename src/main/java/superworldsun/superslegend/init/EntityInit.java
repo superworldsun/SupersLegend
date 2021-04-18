@@ -46,11 +46,16 @@ public class EntityInit {
 			() -> EntityType.Builder.<EntityArrowAncient>create(EntityArrowAncient::new, EntityClassification.MISC).size(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
 
+	//public static final RegistryObject<EntityType<EntityIceBeam>> ICE_BEAM = ENTITIES.register("ice_beam",
+	//		() -> EntityType.Builder.<EntityIceBeam>create(EntityIceBeam::new, EntityClassification.MISC).size(0.5F, 0.5F)
+	//				.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
 
 	//public static final EntityType<FairyEntity> TYPE_FAIRYENTITY = EntityType.Builder.create(FairyEntity::new, EntityClassification.CREATURE).size(0.9F, 1.3F).build("superslegend:fairyentity");
 
 	//public static final RegistryObject<EntityType<FairyEntity>> FAIRYENTITY = ENTITIES.register("fairyentity", () -> EntityType.Builder.<FairyEntity>create(FairyEntity::new, EntityClassification.CREATURE).size(0.9f, 1.3f).build(new ResourceLocation(SupersLegend.modid, "fairyentity").toString()));
 	//public static final RegistryObject<EntityType<PoeEntity>> POEENTITY = ENTITIES.register("poeentity", () -> EntityType.Builder.<PoeEntity>create(PoeEntity::new, EntityClassification.MONSTER).size(.5f, .5f).build(new ResourceLocation(SupersLegend.modid, "poeentity").toString()));
+
+	//public static final RegistryObject<EntityType<EntityIceBeam>> ICE_BEAM =  ENTITIES.register("ice_beam", () -> EntityType.Builder.<BoomerangEntity>create(EntityIceBeam::new, EntityClassification.MISC).size(0.5f, 0.5f).setTrackingRange(4).build("ice_beam"));
 
 	public static final RegistryObject<EntityType<BombEntity>> BOMBENTITY = ENTITIES.register("bombentity", () -> EntityType.Builder.<BombEntity>create(BombEntity::new, EntityClassification.MISC).size(.5f, .5f).trackingRange(4).func_233608_b_(5).build("bombentity"));
 	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG =  ENTITIES.register("regular_boomerang", () -> EntityType.Builder.<BoomerangEntity>create(RegularBoomerang::new, EntityClassification.MISC).size(0.5f, 0.5f).setTrackingRange(32).setUpdateInterval(1).setShouldReceiveVelocityUpdates(true).build("regular_boomerang"));

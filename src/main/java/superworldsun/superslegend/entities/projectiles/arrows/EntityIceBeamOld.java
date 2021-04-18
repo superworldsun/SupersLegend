@@ -1,54 +1,36 @@
 package superworldsun.superslegend.entities.projectiles.arrows;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-import superworldsun.superslegend.config.SupersLegendConfig;
-import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangEntity;
 import superworldsun.superslegend.init.EntityInit;
 import superworldsun.superslegend.init.SoundInit;
-import superworldsun.superslegend.lists.ItemList;
 
-import java.util.ArrayList;
-
-/*public class EntityIceBeam extends Entity
+public class EntityIceBeamOld extends AbstractArrowEntity
 {
 
-
-    public EntityIceBeam(EntityType<BoomerangEntity> boomerangEntityEntityType, World world) {
+    public EntityIceBeamOld(EntityType<? extends EntityIceBeamOld> type, World world) {
+        super(type, world);
     }
+
+    //public EntityIceBeamOld(World worldIn, LivingEntity shooter) {
+        //super(EntityInit.ICE_BEAM.get(), shooter, worldIn);
+        //this.setDamage(this.getDamage() + 2.0F);
+    //}
 
     public boolean canBeCollidedWith() {
         return !this.removed;
-    }
-
-    @Override
-    protected void readAdditional(CompoundNBT compound) {
-
-    }
-
-    @Override
-    protected void writeAdditional(CompoundNBT compound) {
-
     }
 
     @Override
@@ -58,6 +40,27 @@ import java.util.ArrayList;
 
     private int fuse = 90;
 
+
+    @Override
+    protected void arrowHit(LivingEntity living) {
+        living.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 30, 255));
+        BlockPos currentPos = living.getPosition();
+        living.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ICE, SoundCategory.PLAYERS, 1f, 1f);
+        if(living.equals(EntityType.BLAZE)||living.equals(EntityType.MAGMA_CUBE)||living.equals(EntityType.HUSK))
+        {
+            this.setDamage(this.getDamage()*2);
+        }
+        if(living.equals(EntityType.POLAR_BEAR)||living.equals(EntityType.STRAY))
+        {
+            this.setDamage(this.getDamage()/2);
+        }
+        super.arrowHit(living);
+    }
+
+    @Override
+    protected ItemStack getArrowStack() {
+        return null;
+    }
 
     //Bomb Code
     /*public void tick() {
@@ -114,11 +117,6 @@ import java.util.ArrayList;
 
     }*/
 
-    /*@Override
-    protected void registerData() {
-
-    }
-
     //Arrow Code
     @Override
     public void tick() {
@@ -139,8 +137,9 @@ import java.util.ArrayList;
             this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ICE, SoundCategory.PLAYERS, 1f, 1f);
             this.remove();
         }
-        if(!this.onGround)
+        if(!this.inGround)
         {
+            this.setVelocity(-1f,0f,-1f);
             this.setNoGravity(true);
             //this.setNoGravity(true);
             //BlockPos currentPos = this.getPosition();
@@ -173,9 +172,6 @@ import java.util.ArrayList;
         }
     }
 
-    //public void func_234612_a_(PlayerEntity player, float rotationPitch, float rotationYaw, float v, float v1, float v2) {
-    //}
-
     //Removes Block Beneath it sometimes instead of just the fire
     /*@Override
     protected void onInsideBlock(BlockState state) {
@@ -192,4 +188,4 @@ import java.util.ArrayList;
 
 
 
-//}
+}
