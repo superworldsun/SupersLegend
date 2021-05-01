@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:fishing",
+	"pools": [
+		{
+			"rolls": 1.0,
+			"entries": [
+
+				{
+					"type": "minecraft:item",
+					"weight": 60,
+					"name": "superslegend:hyrule_bass"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 10,
+					"name": "superslegend:hylian_loach"
+				}
+			]
+		}
+	]
+}
