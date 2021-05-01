@@ -1,4 +1,4 @@
-package superworldsun.superslegend.entities.projectiles.arrows;
+package superworldsun.superslegend.entities.projectiles.beam;
 
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -7,11 +7,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.SupersLegend;
+import superworldsun.superslegend.entities.projectiles.arrows.EntityIceBeam;
 
-//@OnlyIn(Dist.CLIENT)
-//public class EntityIceBeamRender extends EntityRenderer<EntityIceBeam> {
+@OnlyIn(Dist.CLIENT)
+public class EntityIceBeamRender extends ArrowRenderer<EntityIceBeam> {
 
-    /*protected static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegend.modid, "textures/entity/projectiles/arrows/ice_beam.png");
+    protected static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegend.modid, "textures/entity/projectiles/arrows/ice_beam.png");
 
     public EntityIceBeamRender(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);
@@ -20,7 +21,6 @@ import superworldsun.superslegend.SupersLegend;
     @Override
     public ResourceLocation getEntityTexture(EntityIceBeam entity) {
         return TEXTURE;
-    }*/
+    }
 
-
-//}
+}
