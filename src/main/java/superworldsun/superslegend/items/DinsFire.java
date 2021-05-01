@@ -6,20 +6,28 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.DepthStriderEnchantment;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.item.*;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import superworldsun.superslegend.entities.projectiles.beam.EntityFireBeam;
+import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangEntity;
+import superworldsun.superslegend.entities.projectiles.items.boomerang.RegularBoomerang;
+import superworldsun.superslegend.entities.projectiles.items.dinsfire.EntityDinsFire;
+import superworldsun.superslegend.init.EntityInit;
+import superworldsun.superslegend.init.SoundInit;
+import superworldsun.superslegend.lists.ItemList;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -30,49 +38,27 @@ public class DinsFire extends Item {
       super(builder);
    }
 
-   /**
-    * Called when this item is used when targeting a Block
-    */
-   @Nonnull
-   public ActionResultType onItemUse(ItemUseContext context) {
-      PlayerEntity playerentity = context.getPlayer();
-      World world = context.getWorld();
-      BlockPos blockpos = context.getPos();
-      BlockState blockstate = world.getBlockState(blockpos);
-      if (CampfireBlock.canBeLit(blockstate) && Objects.requireNonNull(playerentity).getFoodStats().getFoodLevel()>= 1) {
-         world.playSound(playerentity, blockpos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-         world.setBlockState(blockpos, blockstate.with(BlockStateProperties.LIT, Boolean.TRUE), 11);
-         context.getItem().damageItem(1, playerentity, (p_219999_1_) -> p_219999_1_.sendBreakAnimation(context.getHand()));
 
-         return ActionResultType.func_233537_a_(world.isRemote());
-      } else {
-         //noinspection SpellCheckingInspection
-         BlockPos blockpos1 = blockpos.offset(context.getFace());
-         if (AbstractFireBlock.canLightBlock(world, blockpos1, context.getPlacementHorizontalFacing() ) && Objects.requireNonNull(playerentity).getFoodStats().getFoodLevel()>= 1) {
-            world.playSound(playerentity, blockpos1, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-            //noinspection SpellCheckingInspection
-            BlockState blockstate1 = AbstractFireBlock.getFireForPlacement(world, blockpos1);
-            playerentity.addExhaustion(4f);
-            world.setBlockState(blockpos1, blockstate1, 11);
-            ItemStack itemstack = context.getItem();
-            if (playerentity instanceof ServerPlayerEntity) {
-               CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)playerentity, blockpos1, itemstack);
-               itemstack.damageItem(1, playerentity, (p_219998_1_) -> p_219998_1_.sendBreakAnimation(context.getHand()));
-            }
 
-            return ActionResultType.func_233537_a_(world.isRemote());
-         } else {
-            return ActionResultType.FAIL;
+   @Override
+   public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+      ItemStack stack = playerIn.getHeldItem(handIn);
+      //acts as a cooldown.
+      if (playerIn.getFoodStats().getFoodLevel()!= 0)
+      {
+         if (playerIn.isSwingInProgress) {
+            return new ActionResult<>(ActionResultType.PASS, stack);
+         }
+         playerIn.addExhaustion(1f);
+         playerIn.swingArm(handIn);
+         worldIn.playSound(null, playerIn.getPosition(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+         if (!playerIn.world.isRemote) {
+
+
+
          }
       }
-   }
-
-   /**
-    * Checks the passed block state for a campfire block, if it is not waterlogged and not lit.
-    */
-   @SuppressWarnings("unused")
-   public static boolean isUnlitCampfire(BlockState state) {
-      return state.getBlock() == Blocks.CAMPFIRE && !state.get(BlockStateProperties.WATERLOGGED) && !state.get(BlockStateProperties.LIT);
+      return super.onItemRightClick(worldIn, playerIn, handIn);
    }
 
 	public void addInformation(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
