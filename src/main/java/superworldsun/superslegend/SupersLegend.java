@@ -6,17 +6,22 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.merchant.villager.VillagerProfession;
+import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -34,8 +39,13 @@ import superworldsun.superslegend.config.SupersLegendConfig;
 //import superworldsun.superslegend.entities.mobs.fairy.FairyEntityRenderer;
 //import superworldsun.superslegend.entities.mobs.poe.PoeEntityRenderer;
 import superworldsun.superslegend.entities.projectiles.arrows.*;
+import superworldsun.superslegend.entities.projectiles.beam.EntityFireBeamRender;
+import superworldsun.superslegend.entities.projectiles.beam.EntityIceBeamRender;
+import superworldsun.superslegend.entities.projectiles.beam.EntitySwordBeamRender;
 import superworldsun.superslegend.entities.projectiles.items.bomb.BombRenderer;
 import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangRender;
+import superworldsun.superslegend.entities.projectiles.items.dinsfire.EntityDinsFireRender;
+import superworldsun.superslegend.events.EventHandler;
 import superworldsun.superslegend.init.ConfiguredStructures;
 import superworldsun.superslegend.init.EntityInit;
 import superworldsun.superslegend.init.FeatureInit;
@@ -44,11 +54,14 @@ import superworldsun.superslegend.items.*;
 import superworldsun.superslegend.items.armors.*;
 import superworldsun.superslegend.items.arrows.*;
 import superworldsun.superslegend.items.bows.*;
+import superworldsun.superslegend.items.food.HylianLoach;
+import superworldsun.superslegend.items.food.HylianLoachCooked;
+import superworldsun.superslegend.items.food.HyruleBass;
+import superworldsun.superslegend.items.food.HyruleBassCooked;
 import superworldsun.superslegend.items.masks.*;
-import superworldsun.superslegend.lists.BlockList;
-import superworldsun.superslegend.lists.ItemList;
-import superworldsun.superslegend.lists.PotionList;
-import superworldsun.superslegend.lists.ToolMaterialList;
+import superworldsun.superslegend.items.BiggornsSword;
+import superworldsun.superslegend.items.BoomerangItem;
+import superworldsun.superslegend.lists.*;
 //import superworldsun.superslegend.particles.fairy.FairyParticle;
 import superworldsun.superslegend.world.gen.OreGeneration;
 
@@ -68,12 +81,17 @@ public class SupersLegend
 	{
 		instance = this;
 
-		//PotionList.EFFECTS.register(MinecraftForge.EVENT_BUS);
-		//PotionList.POTIONS.register(MinecraftForge.EVENT_BUS);
+		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		ModLoadingContext context = ModLoadingContext.get();
+		//Our listener for setup, it will pick up on anything put into setup and notify Forge
+		modEventBus.addListener(this::setup);
+
+		//MinecraftForge.EVENT_BUS.addListener(this::villagerTrades);
+		MinecraftForge.EVENT_BUS.register(new EventHandler());
 
 		FeatureInit.DEFERRED_REGISTRY_STRUCTURE.register(FMLJavaModLoadingContext.get().getModEventBus());
 
-		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		//final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 
@@ -85,7 +103,6 @@ public class SupersLegend
 		//forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
-		MinecraftForge.EVENT_BUS.register(RegistryEvents.class);
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupersLegendConfig.COMMON_SPEC);
 
@@ -182,6 +199,9 @@ public class SupersLegend
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
+	public SupersLegend(ItemStack stack, ItemStack stack1, int i, int i1, float v) {
+	}
+
 	private void setup(final FMLCommonSetupEvent event)
 	{
 		OreGeneration.registerOres();
@@ -224,6 +244,10 @@ public class SupersLegend
 			RenderTypeLookup.setRenderLayer(BlockList.tombstone_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.stone_path_block, RenderType.getCutout());
 			RenderTypeLookup.setRenderLayer(BlockList.stone_tile_block, RenderType.getCutout());
+			RenderTypeLookup.setRenderLayer(BlockList.dins_flame, RenderType.getCutout());
+			RenderTypeLookup.setRenderLayer(BlockList.farores_flame, RenderType.getCutout());
+			RenderTypeLookup.setRenderLayer(BlockList.nayrus_flame, RenderType.getCutout());
+			RenderTypeLookup.setRenderLayer(BlockList.lantern_light_block, RenderType.getTranslucent());
 
 			// REGISTER ENTITIES "Currently Item and Mob entities"
 
@@ -234,9 +258,13 @@ public class SupersLegend
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.SHOCK_ARROW.get(), EntityArrowShockRender::new);
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.BOMB_ARROW.get(), EntityArrowBombRender::new);
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.ANCIENT_ARROW.get(), EntityArrowAncientRender::new);
-			//RenderingRegistry.registerEntityRenderingHandler(EntityInit.ICE_BEAM.get(), EntityIceBeamRender::new);
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.SILVER_ARROW.get(), EntityArrowSilverRender::new);
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.ICE_BEAM.get(), EntityIceBeamRender::new);
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.FIRE_BEAM.get(), EntityFireBeamRender::new);
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.SWORD_BEAM.get(), EntitySwordBeamRender::new);
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.REGULAR_BOOMERANG.get(), new BoomerangRender.Factory());
 			RenderingRegistry.registerEntityRenderingHandler(EntityInit.BOMBENTITY.get(), BombRenderer::new);
+			RenderingRegistry.registerEntityRenderingHandler(EntityInit.DINS_FIRE.get(), EntityDinsFireRender::new);
 		}
 
 		@SubscribeEvent
@@ -295,6 +323,12 @@ public class SupersLegend
 							//ItemList.dark_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("dark_set")),
 							//ItemList.magic_armor_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("magic_armor_set")),
 
+							//Food
+							ItemList.hyrule_bass = new HyruleBass(new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(location("hyrule_bass")),
+							ItemList.cooked_hyrule_bass = new HyruleBassCooked(new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(location("cooked_hyrule_bass")),
+							ItemList.hylian_loach = new HylianLoach(new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(location("hylian_loach")),
+							ItemList.cooked_hylian_loach = new HylianLoachCooked(new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(location("cooked_hylian_loach")),
+
 
 							//LIQUID REGISTERS
 
@@ -311,6 +345,8 @@ public class SupersLegend
 							ItemList.silver_rupee_block = new BlockItem(BlockList.silver_rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.silver_rupee_block.getRegistryName()),
 							ItemList.gold_rupee_block = new BlockItem(BlockList.gold_rupee_block, new Item.Properties().maxStackSize(5).group(supers_legend)).setRegistryName(BlockList.gold_rupee_block.getRegistryName()),
 							ItemList.spikes_block = new BlockItem(BlockList.spikes_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.spikes_block.getRegistryName()),
+							//ItemList.pedestal = new BlockItem(BlockList.pedestal, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.pedestal.getRegistryName()),
+							//ItemList.fan_block = new BlockItem(BlockList.fan_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.fan_block.getRegistryName()),
 							ItemList.gossip_stone_block = new BlockItem(BlockList.gossip_stone_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.gossip_stone_block.getRegistryName()),
 							ItemList.bush_block = new BlockItem(BlockList.bush_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.bush_block.getRegistryName()),
 							ItemList.chain_link_fence_block = new BlockItem(BlockList.chain_link_fence_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.chain_link_fence_block.getRegistryName()),
@@ -320,6 +356,7 @@ public class SupersLegend
 							ItemList.grate_block = new BlockItem(BlockList.grate_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.grate_block.getRegistryName()),
 							ItemList.grass_patch_block = new BlockItem(BlockList.grass_patch_block, new Item.Properties().group(supers_legend)).setRegistryName(BlockList.grass_patch_block.getRegistryName()),
 							ItemList.torch_tower = new TorchTower(new Item.Properties().maxStackSize(16).group(supers_legend)).setRegistryName(location("torch_tower")),
+							ItemList.silver_ore = new BlockItem(BlockList.silver_ore, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.silver_ore.getRegistryName()),
 							ItemList.master_ore_block = new BlockItem(BlockList.master_ore_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.master_ore_block.getRegistryName()),
 							ItemList.shadow_block = new BlockItem(BlockList.shadow_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.shadow_block.getRegistryName()),
 							ItemList.false_shadow_block = new BlockItem(BlockList.false_shadow_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.false_shadow_block.getRegistryName()),
@@ -327,6 +364,18 @@ public class SupersLegend
 							ItemList.tombstone_block = new BlockItem(BlockList.tombstone_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.tombstone_block.getRegistryName()),
 							ItemList.stone_path_block = new BlockItem(BlockList.stone_path_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.stone_path_block.getRegistryName()),
 							ItemList.stone_tile_block = new BlockItem(BlockList.stone_tile_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.stone_tile_block.getRegistryName()),
+							ItemList.dins_flame = new BlockItem(BlockList.dins_flame, new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(BlockList.dins_flame.getRegistryName()),
+							ItemList.farores_flame = new BlockItem(BlockList.farores_flame, new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(BlockList.farores_flame.getRegistryName()),
+							ItemList.nayrus_flame = new BlockItem(BlockList.nayrus_flame, new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(BlockList.nayrus_flame.getRegistryName()),
+							//ItemList.lantern_light_block = new BlockItem(BlockList.lantern_light_block, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.lantern_light_block.getRegistryName()),
+
+							//Plant Blocks
+
+							//ItemList.deku_sapling = new BlockItem(BlockList.deku_sapling, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.deku_sapling.getRegistryName()),
+							//ItemList.deku_wood = new BlockItem(BlockList.deku_wood, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.deku_wood.getRegistryName()),
+							//ItemList.deku_leaves = new BlockItem(BlockList.deku_leaves, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.deku_leaves.getRegistryName()),
+							//ItemList.deku_log = new BlockItem(BlockList.deku_log, new Item.Properties().maxStackSize(64).group(supers_legend)).setRegistryName(BlockList.deku_log.getRegistryName()),
+
 
 
 							//WEAPONS & TOOLS
@@ -334,7 +383,19 @@ public class SupersLegend
 							ItemList.kokiri_sword = new ItemCustomSword(ToolMaterialList.kokiri_sword,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("kokiri_sword")),
 							ItemList.razor_sword = new ItemCustomSword(ToolMaterialList.razor_sword, 2, -2.5f, new Item.Properties().group(supers_legend)).setRegistryName(location("razor_sword")),
 							ItemList.gilded_sword = new ItemCustomSword(ToolMaterialList.gilded_sword,2, -2.4f, new Item.Properties().group(supers_legend)).setRegistryName(location("gilded_sword")),
-							ItemList.master_sword = new MasterSword(ToolMaterialList.master_sword,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
+
+
+							ItemList.master_sword = new MasterSword(ToolMaterialList.master_sword,2, -2.4f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword")),
+								ItemList.master_sword_v2 = new MasterSwordV2(ToolMaterialList.master_sword_v2,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("master_sword_v2")),
+								ItemList.master_sword_d = new MasterSwordD(ToolMaterialList.master_sword_d,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_d")),
+								ItemList.master_sword_n = new MasterSwordN(ToolMaterialList.master_sword_n,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_n")),
+								ItemList.master_sword_f = new MasterSwordF(ToolMaterialList.master_sword_f,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_f")),
+								ItemList.master_sword_dn = new MasterSwordDN(ToolMaterialList.master_sword_dn,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_dn")),
+								ItemList.master_sword_nf = new MasterSwordNF(ToolMaterialList.master_sword_nf,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_nf")),
+								ItemList.master_sword_fd = new MasterSwordFD(ToolMaterialList.master_sword_fd,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_fd")),
+							ItemList.true_master_sword = new TrueMasterSword(ToolMaterialList.true_master_sword,2, -2.2f, new Item.Properties().group(supers_legend)).setRegistryName(location("true_master_sword")),
+
+
 							ItemList.giants_knife = new GiantsKnife(ToolMaterialList.giants_knife,2, -2.3f, new Item.Properties().group(supers_legend)).setRegistryName(location("giants_knife")),
 							//ItemList.broken_giants_knife = new BiggornsSword(ToolMaterialList.broken_giants_knife,2, -2.7f, new Item.Properties().group(supers_legend)).setRegistryName(location("broken_giants_knife")),
 							ItemList.biggorons_sword = new BiggornsSword(ToolMaterialList.biggorons_sword,2, -2.5f, new Item.Properties().group(supers_legend)).setRegistryName(location("biggorons_sword")),
@@ -350,7 +411,11 @@ public class SupersLegend
 							ItemList.shock_arrow = new ArrowShock(new Item.Properties().group(supers_legend)).setRegistryName(location("shock_arrow")),
 							ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().group(supers_legend)).setRegistryName(location("bomb_arrow")),
 							ItemList.ancient_arrow = new ArrowAncient(new Item.Properties().group(supers_legend)).setRegistryName(location("ancient_arrow")),
+							ItemList.silver_arrow = new ArrowSilver(new Item.Properties().group(supers_legend)).setRegistryName(location("silver_arrow")),
 							//ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
+							ItemList.lantern = new Item(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("lantern")),
+							ItemList.blue_candle = new BlueCandle(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("blue_candle")),
+							ItemList.red_candle = new RedCandle(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("red_candle")),
 							ItemList.heros_secret_stash = new HerosSecretStash(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("heros_secret_stash")),
 							ItemList.book_of_mudora = new BookOfMudora(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("book_of_mudora")),
 							ItemList.silver_scale = new SilverScale(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("silver_scale")),
@@ -530,6 +595,8 @@ public class SupersLegend
 							BlockList.silver_rupee_block = new Block(Block.Properties.create(Material.IRON).setRequiresTool().harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("silver_rupee_block")),
 							BlockList.gold_rupee_block = new Block(Block.Properties.create(Material.IRON).setRequiresTool().harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("gold_rupee_block")),
 							BlockList.spikes_block = new SpikesBlock(Block.Properties.create(Material.IRON).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(13.0f, 13.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("spikes_block")),
+							//BlockList.pedestal = new SwordDisplayBlock(Block.Properties.create(Material.IRON).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(13.0f, 13.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("pedestal")),
+							//BlockList.fan_block = new FanBlock(Block.Properties.create(Material.IRON).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(13.0f, 13.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("fan_block")),
 							BlockList.gossip_stone_block = new GossipStoneBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(1).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(1.0f, 1.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("gossip_stone_block")),
 							BlockList.bush_block = new BushBlock(Block.Properties.create(Material.PLANTS).setRequiresTool().notSolid().hardnessAndResistance(0.0f, 0.0f).setLightLevel(value -> 0).sound(SoundType.CROP)).setRegistryName(location("bush_block")),
 							BlockList.chain_link_fence_block = new ChainLinkFenceBlock(Block.Properties.create(Material.IRON).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(2.0f, 2.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("chain_link_fence_block")),
@@ -540,13 +607,25 @@ public class SupersLegend
 							BlockList.jar_block = new JarBlock(Block.Properties.create(Material.CLAY).notSolid().hardnessAndResistance(0.1f, 0.1f).setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("jar_block")),
 							BlockList.grate_block = new GrateBlock(Block.Properties.create(Material.IRON).setRequiresTool().harvestLevel(2).harvestTool(ToolType.PICKAXE).notSolid().hardnessAndResistance(3.0f, 3.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("grate_block")),
 							BlockList.grass_patch_block = new GrassPatch(Block.Properties.create(Material.LEAVES).notSolid().hardnessAndResistance(0.2f, 0.2f).setLightLevel(value -> 0).sound(SoundType.SWEET_BERRY_BUSH)).setRegistryName(location("grass_patch_block")),
+							BlockList.silver_ore = new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(2).hardnessAndResistance(2.0f, 2.0f).harvestTool(ToolType.PICKAXE).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("silver_ore")),
 							BlockList.master_ore_block = new Block(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(4).hardnessAndResistance(100.0f, 400.0f).harvestTool(ToolType.PICKAXE).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("master_ore_block")),
 							BlockList.shadow_block = new Block(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(0.5f, 0.5f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("shadow_block")),
 							BlockList.false_shadow_block = new FalseShadowBlock(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(0.5f, 0.5f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("false_shadow_block")),
 							BlockList.hidden_shadow_block = new HiddenShadowBlock(Block.Properties.create(Material.CLAY).variableOpacity().hardnessAndResistance(0.5f, 0.5f).notSolid().setLightLevel(value -> 0).sound(SoundType.GLASS)).setRegistryName(location("hidden_shadow_block")),
 							BlockList.tombstone_block = new TombstoneBlock(Block.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(1).harvestTool(ToolType.PICKAXE).variableOpacity().hardnessAndResistance(3.0f, 3.0f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("tombstone_block")),
 							BlockList.stone_path_block = new StonePathBlock(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).variableOpacity().hardnessAndResistance(0.7f, 0.7f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("stone_path_block")),
-							BlockList.stone_tile_block = new StoneTileBlock(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).variableOpacity().hardnessAndResistance(0.7f, 0.7f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("stone_tile_block")));
+							BlockList.stone_tile_block = new StoneTileBlock(Block.Properties.create(Material.ROCK).harvestLevel(0).harvestTool(ToolType.PICKAXE).variableOpacity().hardnessAndResistance(0.7f, 0.7f).setLightLevel(value -> 0).sound(SoundType.STONE)).setRegistryName(location("stone_tile_block")),
+							BlockList.dins_flame = new DinsFlame(Block.Properties.create(Material.FIRE).harvestLevel(10).notSolid().variableOpacity().hardnessAndResistance(9999f, 9999f).setLightLevel(value -> 13).sound(SoundType.GLASS)).setRegistryName(location("dins_flame")),
+							BlockList.farores_flame = new FaroresFlame(Block.Properties.create(Material.FIRE).harvestLevel(10).notSolid().variableOpacity().hardnessAndResistance(9999f, 9999f).setLightLevel(value -> 13).sound(SoundType.GLASS)).setRegistryName(location("farores_flame")),
+							BlockList.nayrus_flame = new NayrusFlame(Block.Properties.create(Material.FIRE).harvestLevel(10).notSolid().variableOpacity().hardnessAndResistance(9999f, 9999f).setLightLevel(value -> 13).sound(SoundType.GLASS)).setRegistryName(location("nayrus_flame")),
+
+							//BlockList.deku_sapling = new DekuSapling(Block.Properties.create(Material.PLANTS).harvestLevel(0).notSolid().variableOpacity().hardnessAndResistance(1f, 1f).sound(SoundType.GLASS)).setRegistryName(location("deku_sapling")),
+							//BlockList.deku_wood = new Block(Block.Properties.create(Material.WOOD).harvestLevel(0).notSolid().variableOpacity().hardnessAndResistance(1f, 1f).sound(SoundType.GLASS)).setRegistryName(location("deku_wood")),
+							//BlockList.deku_leaves = new Block(Block.Properties.create(Material.LEAVES).harvestLevel(0).notSolid().variableOpacity().hardnessAndResistance(1f, 1f).sound(SoundType.GLASS)).setRegistryName(location("deku_leaves")),
+							//BlockList.deku_log = new DekuLog(Block.Properties.create(Material.WOOD).harvestLevel(0).notSolid().variableOpacity().hardnessAndResistance(1f, 1f).sound(SoundType.GLASS)).setRegistryName(location("deku_log")),
+							
+							
+							BlockList.lantern_light_block = new LanternLightBlock(Block.Properties.create(Material.AIR).harvestLevel(0).doesNotBlockMovement().notSolid().variableOpacity().hardnessAndResistance(0.7f, 0.7f).setLightLevel(value -> 7).sound(SoundType.GLASS)).setRegistryName(location("lantern_light_block")));
 
 
 
@@ -561,6 +640,32 @@ public class SupersLegend
 			return new ResourceLocation(modid, name);
 		}
 
+
+		/*private void villagerTrades(VillagerTradesEvent event)
+		{
+			if(event.getType() == VillagerProfession.FLETCHER)
+			{
+				event.getTrades().get(1).add((VillagerTrades.ITrade) new SupersLegend(new ItemStack(ItemList.rupee, 8),
+						new ItemStack(ItemList.fire_arrow, 10), 999999999, 25, 0.05F));
+
+				event.getTrades().get(1).add((VillagerTrades.ITrade) new SupersLegend(new ItemStack(ItemList.rupee, 8),
+						new ItemStack(ItemList.ice_arrow, 10), 999999999, 25, 0.05F));
+
+				event.getTrades().get(1).add((VillagerTrades.ITrade) new SupersLegend(new ItemStack(ItemList.rupee, 8),
+						new ItemStack(ItemList.shock_arrow, 10), 999999999, 25, 0.05F));
+
+				event.getTrades().get(1).add((VillagerTrades.ITrade) new SupersLegend(new ItemStack(ItemList.rupee, 8),
+						new ItemStack(ItemList.bomb_arrow, 10), 999999999, 25, 0.05F));
+			}
+		}
+
+		public static VillagerTrades.ITrade buildTrade(ItemStack wanted1, ItemStack wanted2, ItemStack given, int tradesUntilDisabled, int xpToVillagr, float priceMultiplier)
+		{
+			return (entity, random) -> new MerchantOffer(wanted1, wanted2, given, tradesUntilDisabled, xpToVillagr, priceMultiplier);
+		}*/
+
+
+
 		@SubscribeEvent
 		public static void registerFluids(final RegistryEvent.Register<Fluid> event)
 		{
@@ -571,6 +676,15 @@ public class SupersLegend
 							//FluidList.poison = (Source) new FluidPoison.Source().setRegistryName(location("poison"))
 					);
 
+		}
+
+		@SubscribeEvent
+		public static void registerBiomes(final RegistryEvent.Register<Biome> event)
+		{
+			event.getRegistry().registerAll
+			(
+					//BiomeList.lost_woods = new LostWoodsBiome()
+			);
 		}
 
 		@SubscribeEvent
