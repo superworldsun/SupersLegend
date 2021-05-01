@@ -10,10 +10,21 @@ public enum ToolMaterialList implements IItemTier
 		kokiri_sword		(2, -2f, 0, 0, 0, ItemList.kokiri_sword),
 		razor_sword			(3, -2f, 200, 1, 0, ItemList.razor_sword),
 		gilded_sword		(4, -2f, 0, 2, 0, ItemList.gilded_sword),
-		master_sword		(6, -2f, 0, 0, 0, ItemList.master_sword),
-		giants_knife		(10, -2f, 8, 2, 0, ItemList.giants_knife),
+
+	//Master Swords
+		master_sword		(5, -2f, 0, 2, 0, ItemList.master_sword),
+		master_sword_v2		(8, -2f, 0, 2, 0, ItemList.master_sword_v2),
+		master_sword_d		(9, -2f, 0, 2, 0, ItemList.master_sword_d),
+		master_sword_n		(9, -2f, 0, 2, 0, ItemList.master_sword_n),
+		master_sword_f		(9, -2f, 0, 2, 0, ItemList.master_sword_f),
+		master_sword_dn		(10, -2f, 0, 2, 0, ItemList.master_sword_dn),
+		master_sword_nf		(10, -2f, 0, 2, 0, ItemList.master_sword_nf),
+		master_sword_fd		(10, -2f, 0, 2, 0, ItemList.master_sword_fd),
+		true_master_sword	(11, -2f, 0, 2, 0, ItemList.true_master_sword),
+
+		giants_knife		(14, -2f, 8, 2, 0, ItemList.giants_knife),
 		broken_giants_knife	(4, -2f, 0, 1, 0, ItemList.broken_giants_knife),
-		biggorons_sword		(10, -2f, 0, 2, 0, ItemList.biggorons_sword),
+		biggorons_sword		(14, -2f, 0, 2, 0, ItemList.biggorons_sword),
 
 		guardian_sword		(5, -2f, 1200, 3, 0, ItemList.guardian_sword),
 		
