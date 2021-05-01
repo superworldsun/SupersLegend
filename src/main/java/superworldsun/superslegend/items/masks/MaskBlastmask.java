@@ -7,28 +7,29 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.ExplosionContext;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
-
+import superworldsun.superslegend.lists.PotionList;
+import superworldsun.superslegend.util.KeyboardUtil;
 
 
 public class MaskBlastmask extends NonEnchantArmor {
-    public MaskBlastmask(String name, EquipmentSlotType slot) 
+    public MaskBlastmask(String name, EquipmentSlotType slot)
 
     {
         super(ArmourMaterialList.blastmask, slot, new Properties().group(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
-    
+
 
 /*@SubscribeEvent
 public void Event(LivingAttackEvent event) {
@@ -44,24 +45,25 @@ public void Event(LivingAttackEvent event) {
 	}
 }*/
     
-    
-    /*@Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
-    {
-    	
-    	
-    	
-        if (!world.isRemote)
-        	
-        	  {
-                boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_blastmask);
-                
-                if(isHelmeton)
-                	
-                	player.isImmuneToExplosions()
-              }
-        
-    }*/
+    //TODO Mask op, has no cooldown
+
+    @Override
+    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+            boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_blastmask);
+            if (isHelmeton)
+            {
+                if (KeyboardUtil.isPressingBButton())
+                {
+                    //player.getCooldownTracker().setCooldown(this, 100);
+                    //world.createExplosion(player, player.getPosX(), player.getPosYHeight(0.0f), player.getPosZ(), 1.0F, Explosion.Mode.NONE);
+
+                    player.addPotionEffect(new EffectInstance(Effect.get(7), 1, 0, false, false));
+
+                    world.createExplosion(player, DamageSource.IN_FIRE, (ExplosionContext)null, player.getPosX(),
+                            player.getPosYHeight(0.8f), player.getPosZ(), 2.0f, false, Explosion.Mode.NONE);
+                }
+            }
+    }
 
    /* protected void applyCustomModifiers(ItemStack stack, PlayerEntity player) {}
 
