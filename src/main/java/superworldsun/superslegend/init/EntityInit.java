@@ -1,7 +1,6 @@
 package superworldsun.superslegend.init;
 
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -14,12 +13,13 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superworldsun.superslegend.SupersLegend;
-import superworldsun.superslegend.entities.mobs.fairy.FairyEntity;
-import superworldsun.superslegend.entities.mobs.poe.PoeEntity;
 import superworldsun.superslegend.entities.projectiles.arrows.*;
+import superworldsun.superslegend.entities.projectiles.beam.EntityFireBeam;
+import superworldsun.superslegend.entities.projectiles.beam.EntitySwordBeam;
 import superworldsun.superslegend.entities.projectiles.items.bomb.BombEntity;
 import superworldsun.superslegend.entities.projectiles.items.boomerang.RegularBoomerang;
 import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangEntity;
+import superworldsun.superslegend.entities.projectiles.items.dinsfire.EntityDinsFire;
 
 import java.util.Random;
 
@@ -33,22 +33,47 @@ public class EntityInit {
 	public static final RegistryObject<EntityType<EntityArrowFire>> FIRE_ARROW = ENTITIES.register("fire_arrow",
 			() -> EntityType.Builder.<EntityArrowFire>create(EntityArrowFire::new, EntityClassification.MISC).size(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+
 	public static final RegistryObject<EntityType<EntityArrowIce>> ICE_ARROW = ENTITIES.register("ice_arrow",
 			() -> EntityType.Builder.<EntityArrowIce>create(EntityArrowIce::new, EntityClassification.MISC).size(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+
 	public static final RegistryObject<EntityType<EntityArrowShock>> SHOCK_ARROW = ENTITIES.register("shock_arrow",
 			() -> EntityType.Builder.<EntityArrowShock>create(EntityArrowShock::new, EntityClassification.MISC).size(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+
 	public static final RegistryObject<EntityType<EntityArrowBomb>> BOMB_ARROW = ENTITIES.register("bomb_arrow",
 			() -> EntityType.Builder.<EntityArrowBomb>create(EntityArrowBomb::new, EntityClassification.MISC).size(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+
 	public static final RegistryObject<EntityType<EntityArrowAncient>> ANCIENT_ARROW = ENTITIES.register("ancient_arrow",
 			() -> EntityType.Builder.<EntityArrowAncient>create(EntityArrowAncient::new, EntityClassification.MISC).size(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
 
-	//public static final RegistryObject<EntityType<EntityIceBeam>> ICE_BEAM = ENTITIES.register("ice_beam",
-	//		() -> EntityType.Builder.<EntityIceBeam>create(EntityIceBeam::new, EntityClassification.MISC).size(0.5F, 0.5F)
+	public static final RegistryObject<EntityType<EntityArrowSilver>> SILVER_ARROW = ENTITIES.register("silver_arrow",
+			() -> EntityType.Builder.<EntityArrowSilver>create(EntityArrowSilver::new, EntityClassification.MISC).size(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+
+	public static final RegistryObject<EntityType<EntityIceBeam>> ICE_BEAM = ENTITIES.register("ice_beam",
+			() -> EntityType.Builder.<EntityIceBeam>create(EntityIceBeam::new, EntityClassification.MISC).size(0.2F, 0.2F)
+					.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+
+	public static final RegistryObject<EntityType<EntityFireBeam>> FIRE_BEAM = ENTITIES.register("fire_beam",
+			() -> EntityType.Builder.<EntityFireBeam>create(EntityFireBeam::new, EntityClassification.MISC).size(0.2F, 0.2F)
+					.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+
+	public static final RegistryObject<EntityType<EntitySwordBeam>> SWORD_BEAM = ENTITIES.register("sword_beam",
+			() -> EntityType.Builder.<EntitySwordBeam>create(EntitySwordBeam::new, EntityClassification.MISC).size(0.6F, 0.1F)
+					.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+
+
+	//public static final RegistryObject<EntityType<EntityDinsFire>> DINS_FIRE = ENTITIES.register("dins_fire",
+	//		() -> EntityType.Builder.<EntityDinsFire>create(EntityDinsFire::new, EntityClassification.MISC).size(10.0F, 10.0F)
 	//				.build(new ResourceLocation(SupersLegend.modid, "textures/entity/arrows").toString()));
+
+	public static final RegistryObject<EntityType<EntityDinsFire>> DINS_FIRE =  ENTITIES.register("dins_fire",
+			() -> EntityType.Builder.<EntityDinsFire>create(EntityDinsFire::new, EntityClassification.MISC).size(0.5f, 0.5f)
+					.build("dins_fire"));
 
 	//public static final EntityType<FairyEntity> TYPE_FAIRYENTITY = EntityType.Builder.create(FairyEntity::new, EntityClassification.CREATURE).size(0.9F, 1.3F).build("superslegend:fairyentity");
 
@@ -57,8 +82,13 @@ public class EntityInit {
 
 	//public static final RegistryObject<EntityType<EntityIceBeam>> ICE_BEAM =  ENTITIES.register("ice_beam", () -> EntityType.Builder.<BoomerangEntity>create(EntityIceBeam::new, EntityClassification.MISC).size(0.5f, 0.5f).setTrackingRange(4).build("ice_beam"));
 
-	public static final RegistryObject<EntityType<BombEntity>> BOMBENTITY = ENTITIES.register("bombentity", () -> EntityType.Builder.<BombEntity>create(BombEntity::new, EntityClassification.MISC).size(.5f, .5f).trackingRange(4).func_233608_b_(5).build("bombentity"));
-	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG =  ENTITIES.register("regular_boomerang", () -> EntityType.Builder.<BoomerangEntity>create(RegularBoomerang::new, EntityClassification.MISC).size(0.5f, 0.5f).setTrackingRange(32).setUpdateInterval(1).setShouldReceiveVelocityUpdates(true).build("regular_boomerang"));
+	public static final RegistryObject<EntityType<BombEntity>> BOMBENTITY = ENTITIES.register("bombentity",
+			() -> EntityType.Builder.<BombEntity>create(BombEntity::new, EntityClassification.MISC).size(.5f, .5f)
+					.trackingRange(4).func_233608_b_(5).build("bombentity"));
+
+	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG =  ENTITIES.register("regular_boomerang",
+			() -> EntityType.Builder.<BoomerangEntity>create(RegularBoomerang::new, EntityClassification.MISC).size(0.5f, 0.5f)
+					.setTrackingRange(32).setUpdateInterval(1).setShouldReceiveVelocityUpdates(true).build("regular_boomerang"));
 
 
 	public static void registerEntitySpawnEggs(final RegistryEvent.Register<Item> event)
