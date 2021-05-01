@@ -1,16 +1,8 @@
 package superworldsun.superslegend.items;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -19,16 +11,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowFire;
-import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangEntity;
-import superworldsun.superslegend.entities.projectiles.items.boomerang.RegularBoomerang;
+import superworldsun.superslegend.entities.projectiles.beam.EntitySwordBeam;
 import superworldsun.superslegend.init.SoundInit;
-import superworldsun.superslegend.lists.ItemList;
 
 import java.util.List;
-import java.util.Random;
 
 public class MasterSword extends ItemCustomSword
 {
@@ -51,9 +38,10 @@ public class MasterSword extends ItemCustomSword
 			BlockPos currentPos = playerIn.getPosition();
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW, SoundCategory.PLAYERS, 3f, 1f);
 
-			ArrowEntity arrow = new ArrowEntity(playerIn.world, playerIn);
-			arrow.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-			playerIn.world.addEntity(arrow);
+			EntitySwordBeam beam = new EntitySwordBeam(playerIn.world, playerIn);
+			float arrowVelocity = 1.5F;
+			beam.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
+			playerIn.world.addEntity(beam);
 		}
 		else if (!worldIn.isRemote && playerIn.isCreative()) {
 			playerIn.getCooldownTracker().setCooldown(this, 15);
@@ -61,9 +49,10 @@ public class MasterSword extends ItemCustomSword
 			BlockPos currentPos = playerIn.getPosition();
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW, SoundCategory.PLAYERS, 3f, 1f);
 
-			EntityArrowFire firearrow = new EntityArrowFire(playerIn.world, playerIn);
-			firearrow.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-			playerIn.world.addEntity(firearrow);
+			EntitySwordBeam beam = new EntitySwordBeam(playerIn.world, playerIn);
+			float arrowVelocity = 1.5F;
+			beam.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
+			playerIn.world.addEntity(beam);
 		}
 		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
 	}
@@ -105,10 +94,12 @@ public class MasterSword extends ItemCustomSword
 		return true;
 	}*/
 
+
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.addInformation(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Blade of Evil's Bane"));
+		list.add(new StringTextComponent(TextFormatting.WHITE + "Blade of Evil's Bane"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Right-Click to Fire a Beam at full HP"));
 	}
 }
