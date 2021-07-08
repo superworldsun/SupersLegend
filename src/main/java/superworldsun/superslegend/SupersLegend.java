@@ -28,7 +28,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import superworldsun.superslegend.CustomLootMobs.*;
+import superworldsun.superslegend.customlootmobs.*;
 import superworldsun.superslegend.blocks.*;
 import superworldsun.superslegend.config.SupersLegendConfig;
 //import superworldsun.superslegend.entities.mobs.fairy.FairyEntityRenderer;

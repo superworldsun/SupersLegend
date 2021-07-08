@@ -1,4 +1,4 @@
-package superworldsun.superslegend.CustomLootMobs;
+package superworldsun.superslegend.customlootmobs;
 
 import java.util.Random;
 
