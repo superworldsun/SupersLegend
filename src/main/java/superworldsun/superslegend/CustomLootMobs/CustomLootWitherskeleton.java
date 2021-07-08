@@ -17,12 +17,12 @@ public class CustomLootWitherskeleton
 
         if(event.getEntityLiving() instanceof WitherSkeletonEntity) {
             if(random.nextInt(3) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(4)));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.rupee, random.nextInt(4)));
             if(random.nextInt(6) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_rupee,1));
             
             if(random.nextInt(40) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.triforce_power_shard,1));
             
 	        }
 	    }

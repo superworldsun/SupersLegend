@@ -24,7 +24,7 @@ public class EntityArrowShock extends AbstractArrowEntity {
 
     public EntityArrowShock(World worldIn, LivingEntity shooter) {
         super(EntityInit.SHOCK_ARROW.get(), shooter, worldIn);
-        this.setDamage(this.getDamage() + 2.0F);
+        this.setBaseDamage(this.getBaseDamage() + 2.0F);
     }
 
     public EntityArrowShock(World worldIn, double x, double y, double z) {
@@ -32,12 +32,12 @@ public class EntityArrowShock extends AbstractArrowEntity {
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(ItemList.shock_arrow);
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -47,23 +47,23 @@ public class EntityArrowShock extends AbstractArrowEntity {
         super.tick();
 
         if (!this.inGround) {
-            this.world.addParticle(ParticleTypes.BUBBLE_POP, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D,
+            this.level.addParticle(ParticleTypes.BUBBLE_POP, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
                     0.0D);
         }
     }
 
 
-    protected void arrowHit(LivingEntity entity) {
-        BlockPos currentPos = entity.getPosition();
+    protected void doPostHurtEffects(LivingEntity entity) {
+        BlockPos currentPos = entity.blockPosition();
     	//System.out.println("Client:" + entity.world.isRemote);
 
     	//LightningBoltEntity l1 = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, entity.world);
     	//l1.setLocationAndAngles(entity.getPosX(), entity.getPosY(), entity.getPosZ(), 0, 0);
     	//entity.world.addEntity(l1);
 
-        entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_SHOCK, SoundCategory.PLAYERS, 1f, 1f);
+        entity.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_SHOCK, SoundCategory.PLAYERS, 1f, 1f);
 
-        entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 50, false, true));
+        entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 50, false, true));
 
     }
 

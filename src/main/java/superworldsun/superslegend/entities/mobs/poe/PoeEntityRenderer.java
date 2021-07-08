@@ -94,9 +94,9 @@ import superworldsun.superslegend.SupersLegend;
         Minecraft minecraft = Minecraft.getInstance();
         boolean flag = this.isVisible(entityIn);
         //boolean flag1 = !flag && !entityIn.isInvisibleToPlayer(minecraft.player);
-        //boolean flag2 = minecraft.func_238206_b_(entityIn);
+        //boolean flag2 = minecraft.shouldEntityAppearGlowing(entityIn);
         float alphaForRender = this.getAlphaForRender(entityIn, partialTicks);
-        RenderType rendertype = entityIn.isDaytimeMode() ? RenderTypes.getPoeInDayTime(getEntityTexture(entityIn)) : RenderTypes.getGhost(getEntityTexture(entityIn));//this.func_230496_a_(entityIn, flag, flag1, flag2);
+        RenderType rendertype = entityIn.isDaytimeMode() ? RenderTypes.getPoeInDayTime(getEntityTexture(entityIn)) : RenderTypes.getGhost(getEntityTexture(entityIn));//this.getRenderType(entityIn, flag, flag1, flag2);
         if (rendertype != null && !entityIn.isInvisible()) {
             IVertexBuilder ivertexbuilder = bufferIn.getBuffer(rendertype);
             int i = getPackedOverlay(entityIn, this.getOverlayProgress(entityIn, partialTicks));

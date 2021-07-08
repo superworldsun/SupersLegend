@@ -8,6 +8,8 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowFire;
 import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowShock;
 
+import net.minecraft.item.Item.Properties;
+
 public class ArrowShock extends ArrowItem
 {
 

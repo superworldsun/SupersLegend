@@ -16,18 +16,20 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class ArmorZoraEffects extends NonEnchantArmor
 {
     public ArmorZoraEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.zora, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.zora, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
         
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.BLUE + "Swimming with the fishes"));
 	}
 
@@ -37,13 +39,13 @@ public class ArmorZoraEffects extends NonEnchantArmor
     	
     	
     	
-        if (!world.isRemote){
-                boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.zora_tunic);
+        if (!world.isClientSide){
+                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.zora_tunic);
                 if(isChestplateOn)
                 	{
                 	if(player.isInWater()) 
                 	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(13), 10, 0, false, false, false));
+                		player.addEffect(new EffectInstance(Effect.byId(13), 10, 0, false, false, false));
                 	}
                 	
                 }

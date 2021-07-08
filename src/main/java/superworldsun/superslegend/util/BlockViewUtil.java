@@ -9,16 +9,16 @@ import superworldsun.superslegend.entities.mobs.poe.PoeEntity;
 public class BlockViewUtil {
 
     public static BlockPos GetBlockInPoesView(PoeEntity poe, LivingEntity target) {
-        float radius = 4 + poe.getRNG().nextInt(5);
-        float neg = poe.getRNG().nextBoolean() ? 1 : -1;
-        float angle = (0.01745329251F * (target.rotationYawHead + 90F + poe.getRNG().nextInt(180)));
+        float radius = 4 + poe.getRandom().nextInt(5);
+        float neg = poe.getRandom().nextBoolean() ? 1 : -1;
+        float angle = (0.01745329251F * (target.yHeadRot + 90F + poe.getRandom().nextInt(180)));
         double extraX = radius * MathHelper.sin((float) (Math.PI + angle));
         double extraZ = radius * MathHelper.cos(angle);
-        BlockPos radialPos = new BlockPos(target.getPosX() + extraX, target.getPosY(), target.getPosZ() + extraZ);
+        BlockPos radialPos = new BlockPos(target.getX() + extraX, target.getY(), target.getZ() + extraZ);
         BlockPos ground = radialPos;
-        if( poe.getDistanceSq(Vector3d.copyCentered(ground)) > 30) {
+        if( poe.distanceToSqr(Vector3d.atCenterOf(ground)) > 30) {
             return ground;
         }
-        return poe.getPosition();
+        return poe.blockPosition();
     }
 }

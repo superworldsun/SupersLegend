@@ -17,9 +17,9 @@ public class CustomLootSilverfish
 
         if(event.getEntityLiving() instanceof SilverfishEntity) {
             if(random.nextInt(4) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.rupee,1));
             if(random.nextInt(15) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_rupee,1));
             
 	        }
 	    }

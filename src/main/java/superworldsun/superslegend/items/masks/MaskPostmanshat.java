@@ -23,12 +23,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.models.masks.ModelPostmansHat;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskPostmanshat extends NonEnchantArmor {
     public MaskPostmanshat(String name, EquipmentSlotType slot)
 
     
     {
-        super(ArmourMaterialList.postmanshat, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.postmanshat, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
@@ -43,9 +45,9 @@ public class MaskPostmanshat extends NonEnchantArmor {
 
 
     @Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.RED + "Worn by those who are"));
 		list.add(new StringTextComponent(TextFormatting.RED + "never late for a delivery"));
 	}

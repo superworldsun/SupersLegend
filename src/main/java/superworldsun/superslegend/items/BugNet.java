@@ -24,6 +24,8 @@ import superworldsun.superslegend.lists.ItemList;
 
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class BugNet extends Item
 {
 
@@ -33,19 +35,19 @@ public class BugNet extends Item
 	}
 
 	@Override
-	public ActionResultType itemInteractionForEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity entity, Hand hand)
+	public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity entity, Hand hand)
 	{
-		playerIn.swingArm(hand);
+		playerIn.swing(hand);
 		if(entity instanceof BeeEntity)
 		{
 			{
-				for (int i = 0; i < playerIn.inventory.getSizeInventory(); ++i) {
-					ItemStack itemStack = playerIn.inventory.getStackInSlot(i);
+				for (int i = 0; i < playerIn.inventory.getContainerSize(); ++i) {
+					ItemStack itemStack = playerIn.inventory.getItem(i);
 					if (itemStack.getItem() == Items.GLASS_BOTTLE) {
 						itemStack.shrink(1);
 
 						entity.remove();
-						playerIn.addItemStackToInventory(new ItemStack(ItemList.bottled_bee));
+						playerIn.addItem(new ItemStack(ItemList.bottled_bee));
 						break;
 					}
 				}
@@ -54,13 +56,13 @@ public class BugNet extends Item
 		if(entity instanceof SilverfishEntity)
 		{
 			{
-				for (int i = 0; i < playerIn.inventory.getSizeInventory(); ++i) {
-					ItemStack itemStack = playerIn.inventory.getStackInSlot(i);
+				for (int i = 0; i < playerIn.inventory.getContainerSize(); ++i) {
+					ItemStack itemStack = playerIn.inventory.getItem(i);
 					if (itemStack.getItem() == Items.GLASS_BOTTLE) {
 						itemStack.shrink(1);
 
 						entity.remove();
-						playerIn.addItemStackToInventory(new ItemStack(ItemList.bottled_silverfish));
+						playerIn.addItem(new ItemStack(ItemList.bottled_silverfish));
 						break;
 					}
 				}
@@ -69,25 +71,25 @@ public class BugNet extends Item
 		}
 		if(entity instanceof EndermiteEntity) {
 			{
-				for (int i = 0; i < playerIn.inventory.getSizeInventory(); ++i) {
-					ItemStack itemStack = playerIn.inventory.getStackInSlot(i);
+				for (int i = 0; i < playerIn.inventory.getContainerSize(); ++i) {
+					ItemStack itemStack = playerIn.inventory.getItem(i);
 					if (itemStack.getItem() == Items.GLASS_BOTTLE) {
 						itemStack.shrink(1);
 
 						entity.remove();
-						playerIn.addItemStackToInventory(new ItemStack(ItemList.bottled_endermite));
+						playerIn.addItem(new ItemStack(ItemList.bottled_endermite));
 						break;
 					}
 				}
 			}
 		}
-		return super.itemInteractionForEntity(stack, playerIn, entity, hand);
+		return super.interactLivingEntity(stack, playerIn, entity, hand);
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		playerIn.swingArm(handIn);
-		return super.onItemRightClick(worldIn, playerIn, handIn);
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		playerIn.swing(handIn);
+		return super.use(worldIn, playerIn, handIn);
 	}
 
 	@Override
@@ -96,13 +98,13 @@ public class BugNet extends Item
 		if(entity instanceof BeeEntity)
 		{
 			{
-				for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-					ItemStack itemStack = player.inventory.getStackInSlot(i);
+				for (int i = 0; i < player.inventory.getContainerSize(); ++i) {
+					ItemStack itemStack = player.inventory.getItem(i);
 					if (itemStack.getItem() == Items.GLASS_BOTTLE) {
 						itemStack.shrink(1);
 
 						entity.remove();
-						player.addItemStackToInventory(new ItemStack(ItemList.bottled_bee));
+						player.addItem(new ItemStack(ItemList.bottled_bee));
 						break;
 					}
 				}
@@ -111,13 +113,13 @@ public class BugNet extends Item
 		if(entity instanceof SilverfishEntity)
 		{
 			{
-				for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-					ItemStack itemStack = player.inventory.getStackInSlot(i);
+				for (int i = 0; i < player.inventory.getContainerSize(); ++i) {
+					ItemStack itemStack = player.inventory.getItem(i);
 					if (itemStack.getItem() == Items.GLASS_BOTTLE) {
 						itemStack.shrink(1);
 
 						entity.remove();
-						player.addItemStackToInventory(new ItemStack(ItemList.bottled_silverfish));
+						player.addItem(new ItemStack(ItemList.bottled_silverfish));
 						break;
 					}
 				}
@@ -127,13 +129,13 @@ public class BugNet extends Item
 		if(entity instanceof EndermiteEntity)
 		{
 			{
-				for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-					ItemStack itemStack = player.inventory.getStackInSlot(i);
+				for (int i = 0; i < player.inventory.getContainerSize(); ++i) {
+					ItemStack itemStack = player.inventory.getItem(i);
 					if (itemStack.getItem() == Items.GLASS_BOTTLE) {
 						itemStack.shrink(1);
 
 						entity.remove();
-						player.addItemStackToInventory(new ItemStack(ItemList.bottled_endermite));
+						player.addItem(new ItemStack(ItemList.bottled_endermite));
 						break;
 					}
 				}
@@ -162,9 +164,9 @@ public class BugNet extends Item
 	}*/
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.WHITE + "Bottles small critters on right click"));
 	}
 }

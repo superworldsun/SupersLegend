@@ -39,7 +39,6 @@ public class ItemList
 		public static Item nayrus_love;
 		public static Item deku_leaf;
 		public static Item blue_candle;
-		public static Item red_candle;
 		public static Item lens_of_truth;
 		public static Item fairy_ocarina;
 		public static Item ocarina_of_time;
@@ -82,7 +81,6 @@ public class ItemList
 		public static Item master_sword_blade;
 		public static Item master_sword_hilt;
 		public static Item moon_pearl;
-		public static Item lantern;
 		public static Item heros_secret_stash;
 		public static Item torch_tower;
 		public static Item kokiri_set;
@@ -93,13 +91,6 @@ public class ItemList
 		public static Item flamebreaker_set;
 		public static Item dark_set;
 		public static Item magic_armor_set;
-
-	//Foods
-
-	public static Item hyrule_bass;
-	public static Item cooked_hyrule_bass;
-	public static Item hylian_loach;
-	public static Item cooked_hylian_loach;
 		
 	//liquids
 		
@@ -114,8 +105,6 @@ public class ItemList
 		public static Item silver_rupee_block;
 		public static Item gold_rupee_block;
 		public static Item spikes_block;
-		public static Item pedestal;
-		public static Item fan_block;
 		public static Item gossip_stone_block;
 		public static Item bush_block;
 		public static Item chain_link_fence_block;
@@ -126,7 +115,6 @@ public class ItemList
 		public static Item jar_block;
 		public static Item grate_block;
 		public static Item grass_patch_block;
-		public static Item silver_ore;
 		public static Item master_ore_block;
 		public static Item shadow_block;
 		public static Item false_shadow_block;
@@ -134,20 +122,7 @@ public class ItemList
 		public static Item tombstone_block;
 		public static Item stone_path_block;
 		public static Item stone_tile_block;
-		public static Item dins_flame;
-		public static Item farores_flame;
-		public static Item nayrus_flame;
-
-		public static Item lantern_light_block;
-
-
-	//Plant BLocks
-
-		public static Item deku_sapling;
-		public static Item deku_wood;
-		public static Item deku_leaves;
-		public static Item deku_log;
-
+		
 	//Liquids
 		public static Item poison;
 		
@@ -155,21 +130,7 @@ public class ItemList
 		public static Item kokiri_sword;
 		public static Item razor_sword;
 		public static Item gilded_sword;
-
 		public static Item master_sword;
-
-		public static Item master_sword_v2;
-
-		public static Item master_sword_d;
-		public static Item master_sword_n;
-		public static Item master_sword_f;
-
-		public static Item master_sword_dn;
-		public static Item master_sword_nf;
-		public static Item master_sword_fd;
-
-		public static Item true_master_sword;
-
 		public static Item giants_knife;
 		public static Item broken_giants_knife;
 		public static Item biggorons_sword;
@@ -192,7 +153,6 @@ public class ItemList
 		public static Item shock_arrow;
 		public static Item ice_arrow;
 		public static Item ancient_arrow;
-		public static Item silver_arrow;
 
 	//shields
 		

@@ -21,7 +21,7 @@ public class DekuTree extends Tree {
                     new BaseTreeFeatureConfig.Builder(
                             new SimpleBlockStateProvider(BlockList.deku_wood.getDefaultState()),
                             new SimpleBlockStateProvider(BlockList.deku_leaves.getDefaultState()),
-                            new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
+                            new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                             new StraightTrunkPlacer(4, 2, 0),
                             new TwoLayerFeature(1, 0, 1)
                     ).setIgnoreVines().build());

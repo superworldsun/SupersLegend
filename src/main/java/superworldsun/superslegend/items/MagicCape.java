@@ -23,6 +23,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import superworldsun.superslegend.init.SoundInit;
 
+import net.minecraft.item.Item.Properties;
+
 public class MagicCape extends Item
 {
 
@@ -31,21 +33,21 @@ public class MagicCape extends Item
 		super(properties);
 	}
 	
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
 		 @SuppressWarnings("unused")
-		ItemStack stack = player.getHeldItem(hand);
+		ItemStack stack = player.getItemInHand(hand);
 		  
-		 if(player.isCrouching() && player.getFoodStats().getFoodLevel()!= 0)
+		 if(player.isCrouching() && player.getFoodData().getFoodLevel()!= 0)
 	     {
-				player.addPotionEffect(new EffectInstance(Effect.get(15), 60, 99, false, false));
-				player.addPotionEffect(new EffectInstance(Effect.get(11), 3, 99, false, false));
-				player.addPotionEffect(new EffectInstance(Effect.get(14), 3, 99, false, false));
-				player.addPotionEffect(new EffectInstance(Effect.get(18), 3, 99, false, false));
-				player.addPotionEffect(new EffectInstance(Effect.get(4), 3, 2, false, false));
-				player.addExhaustion(0.25f);
+				player.addEffect(new EffectInstance(Effect.byId(15), 60, 99, false, false));
+				player.addEffect(new EffectInstance(Effect.byId(11), 3, 99, false, false));
+				player.addEffect(new EffectInstance(Effect.byId(14), 3, 99, false, false));
+				player.addEffect(new EffectInstance(Effect.byId(18), 3, 99, false, false));
+				player.addEffect(new EffectInstance(Effect.byId(4), 3, 2, false, false));
+				player.causeFoodExhaustion(0.25f);
 				
-				player.getCooldownTracker().setCooldown(this, 8);
+				player.getCooldowns().addCooldown(this, 8);
 				
 				/*Random rand = player.world.rand;
 		        for (int i = 0; i < 45; i++)
@@ -57,54 +59,54 @@ public class MagicCape extends Item
 		                    0, 0.105D, 0);
 		        }*/
 				
-		        BlockPos currentPos = player.getPosition();
+		        BlockPos currentPos = player.blockPosition();
 				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.MAGIC_CAPE_ON, SoundCategory.PLAYERS, 1f, 1f);
 	     }
-		 if(!player.isCrouching() && player.getFoodStats().getFoodLevel()!= 0)
+		 if(!player.isCrouching() && player.getFoodData().getFoodLevel()!= 0)
 				
 				{
-	        		player.removePotionEffect(Effect.get(15));
-	        		player.removePotionEffect(Effect.get(11));
-	        		player.removePotionEffect(Effect.get(14));
-	        		player.removePotionEffect(Effect.get(18));
+	        		player.removeEffect(Effect.byId(15));
+	        		player.removeEffect(Effect.byId(11));
+	        		player.removeEffect(Effect.byId(14));
+	        		player.removeEffect(Effect.byId(18));
 	        		
-	        		player.getCooldownTracker().setCooldown(this, 8);
+	        		player.getCooldowns().addCooldown(this, 8);
 	        		
 	        		
-	        		Random rand = player.world.rand;
+	        		Random rand = player.level.random;
 			        for (int i = 0; i < 45; i++)
 			        {
-			        	player.world.addParticle(ParticleTypes.SMOKE,
-			                    player.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
-			                    player.prevPosY + rand.nextFloat() * 3 - 2,
-			                    player.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+			        	player.level.addParticle(ParticleTypes.SMOKE,
+			                    player.xo + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+			                    player.yo + rand.nextFloat() * 3 - 2,
+			                    player.zo + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
 			                    0, 0.105D, 0);
 			        }
 	        		
-			        BlockPos currentPos = player.getPosition();
+			        BlockPos currentPos = player.blockPosition();
 					 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.MAGIC_CAPE_OFF, SoundCategory.PLAYERS, 1f, 1f);
 	        		
 			 
 		 }
 	 
-		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
+		 return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand)); 
 	 }
 	
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
 	{		
-		if(!world.isRemote && ((PlayerEntity) entity).getFoodStats().getFoodLevel()!= 0)
+		if(!world.isClientSide && ((PlayerEntity) entity).getFoodData().getFoodLevel()!= 0)
 			
 			{
-			EffectInstance effect = ((PlayerEntity) entity).getActivePotionEffect(Effects.BLINDNESS);
+			EffectInstance effect = ((PlayerEntity) entity).getEffect(Effects.BLINDNESS);
         	if (effect != null && effect.getAmplifier() == 99) 
         		
         		{
-        		((PlayerEntity) entity).addPotionEffect(new EffectInstance(Effect.get(15), 60, 99, false, false));
-        		((PlayerEntity) entity).addPotionEffect(new EffectInstance(Effect.get(11), 3, 99, false, false));
-        		((PlayerEntity) entity).addPotionEffect(new EffectInstance(Effect.get(14), 3, 99, false, false));
-        		((PlayerEntity) entity).addPotionEffect(new EffectInstance(Effect.get(18), 3, 99, false, false));
-        		((PlayerEntity) entity).addPotionEffect(new EffectInstance(Effect.get(4), 3, 2, false, false));
-        		((PlayerEntity) entity).addExhaustion(0.25f);
+        		((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(15), 60, 99, false, false));
+        		((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(11), 3, 99, false, false));
+        		((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(14), 3, 99, false, false));
+        		((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(18), 3, 99, false, false));
+        		((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(4), 3, 2, false, false));
+        		((PlayerEntity) entity).causeFoodExhaustion(0.25f);
         		}
 			}
 		
@@ -113,9 +115,9 @@ public class MagicCape extends Item
 	
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.RED + "Allows you to slip through many obsticals seamlessly"));
 		list.add(new StringTextComponent(TextFormatting.DARK_RED + "Grants invincibility & invisibility"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Sneak + Right-click to cloak"));

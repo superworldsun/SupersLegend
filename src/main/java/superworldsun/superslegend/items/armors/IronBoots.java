@@ -20,17 +20,19 @@ import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.PotionList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class IronBoots extends NonEnchantArmor {
     public IronBoots(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.ironboots, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.ironboots, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "Sink or Sink"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Allows underwater ground movement"));
 	}
@@ -38,7 +40,7 @@ public class IronBoots extends NonEnchantArmor {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-            boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.iron_boots);
+            boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.iron_boots);
             if(isBootsOn)
             	{
             	if(player.isInWater() && !player.isOnGround())
@@ -47,10 +49,10 @@ public class IronBoots extends NonEnchantArmor {
             		//player.addPotionEffect(new EffectInstance(Effect.get(30), 3, 0, false, false));
             		
             		player.fallDistance = 0.0F;
-    				player.isAirBorne = true;
+    				player.hasImpulse = true;
     				player.setJumping(true);
     				
-    				player.addVelocity(0, -0.07f, 0);
+    				player.push(0, -0.07f, 0);
             		
             		//Vec3d v = player.getMotion();
 					//player.setMotion(v.x, v.y * 2.0D, v.z);
@@ -62,12 +64,12 @@ public class IronBoots extends NonEnchantArmor {
 					//player.setMotion(v.x, v.y * 2.0D, v.z);
 					
 					player.fallDistance = 0.0F;
-    				player.isAirBorne = true;
+    				player.hasImpulse = true;
     				player.setJumping(true);
     				
             		//player.addPotionEffect(new EffectInstance(Effect.get(30), 10, 0, false, false));
             		
-            		player.addPotionEffect(new EffectInstance(PotionList.iron_boots_effect, 8, 0, false, false));
+            		player.addEffect(new EffectInstance(PotionList.iron_boots_effect, 8, 0, false, false));
 
             	}
             	else if (!player.isInWater())
@@ -76,9 +78,9 @@ public class IronBoots extends NonEnchantArmor {
             		//Vec3d v = player.getMotion();
 					//player.setMotion(v.x, v.y * -1.0D, v.z);
             		
-            		player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 10, 2, false, false));
+            		player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 10, 2, false, false));
             		
-            		player.removePotionEffect(PotionList.iron_boots_effect);
+            		player.removeEffect(PotionList.iron_boots_effect);
             		//player.removePotionEffect(Effect.get(30));
             	}
                 

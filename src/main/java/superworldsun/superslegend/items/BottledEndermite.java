@@ -22,6 +22,8 @@ import superworldsun.superslegend.init.SoundInit;
 
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class BottledEndermite extends Item
 {
 
@@ -30,46 +32,46 @@ public class BottledEndermite extends Item
 		super(properties);
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	{
-		ItemStack stack = player.getHeldItem(hand);
+		ItemStack stack = player.getItemInHand(hand);
 
-		if(!world.isRemote && !player.isCreative())
+		if(!world.isClientSide && !player.isCreative())
 		{
-			BlockPos currentPos = player.getPosition();
+			BlockPos currentPos = player.blockPosition();
 			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOTTLE_POP, SoundCategory.PLAYERS, 1f, 1f);
 
-			if (!player.world.isRemote) {
-				EndermiteEntity entity = EntityType.ENDERMITE.create(player.world);
-				entity.setLocationAndAngles(player.getPosX(), player.getPosY(), player.getPosZ(), player.rotationYaw, 0.0F);
-				player.world.addEntity(entity);
-				player.getCooldownTracker().setCooldown(this, 6);
+			if (!player.level.isClientSide) {
+				EndermiteEntity entity = EntityType.ENDERMITE.create(player.level);
+				entity.moveTo(player.getX(), player.getY(), player.getZ(), player.yRot, 0.0F);
+				player.level.addFreshEntity(entity);
+				player.getCooldowns().addCooldown(this, 6);
 			}
 			stack.shrink(1);
-			player.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+			player.addItem(new ItemStack(Items.GLASS_BOTTLE));
 		}
 
-		if(!world.isRemote && player.isCreative())
+		if(!world.isClientSide && player.isCreative())
 		{
-			BlockPos currentPos = player.getPosition();
+			BlockPos currentPos = player.blockPosition();
 			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOTTLE_POP, SoundCategory.PLAYERS, 1f, 1f);
 
-			if (!player.world.isRemote) {
-				EndermiteEntity entity = EntityType.ENDERMITE.create(player.world);
-				entity.setLocationAndAngles(player.getPosX(), player.getPosY(), player.getPosZ(), player.rotationYaw, 0.0F);
-				player.world.addEntity(entity);
-				player.getCooldownTracker().setCooldown(this, 6);
+			if (!player.level.isClientSide) {
+				EndermiteEntity entity = EntityType.ENDERMITE.create(player.level);
+				entity.moveTo(player.getX(), player.getY(), player.getZ(), player.yRot, 0.0F);
+				player.level.addFreshEntity(entity);
+				player.getCooldowns().addCooldown(this, 6);
 			}
 		}
 
-		return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+		return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 	}
 
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "A captive Endermite in a bottle"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-Click to Release"));
 	}   

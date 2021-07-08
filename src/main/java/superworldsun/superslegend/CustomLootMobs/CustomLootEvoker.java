@@ -17,12 +17,12 @@ public class CustomLootEvoker
 
         if(event.getEntityLiving() instanceof EvokerEntity) {
             if(random.nextInt(3) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.rupee, random.nextInt(3)));
             if(random.nextInt(6) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_rupee,1));
             
             if(random.nextInt(25) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.triforce_wisdom_shard,1));
             
 	        }
 	    }

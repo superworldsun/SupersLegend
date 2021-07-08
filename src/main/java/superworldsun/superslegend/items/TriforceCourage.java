@@ -20,6 +20,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class TriforceCourage extends Item
 {
 
@@ -28,23 +30,23 @@ public class TriforceCourage extends Item
 		super(properties);
 	}
 	
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
 		 @SuppressWarnings("unused")
-		ItemStack stack = player.getHeldItem(hand);
-		 BlockPos currentPos = player.getPosition();
-		 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
-					player.addPotionEffect(new EffectInstance(Effect.get(1), 600, 0, false, true));
-					player.addPotionEffect(new EffectInstance(Effect.get(11), 600, 0, false, false));
-					player.getCooldownTracker().setCooldown(this, 10);
+		ItemStack stack = player.getItemInHand(hand);
+		 BlockPos currentPos = player.blockPosition();
+		 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
+					player.addEffect(new EffectInstance(Effect.byId(1), 600, 0, false, true));
+					player.addEffect(new EffectInstance(Effect.byId(11), 600, 0, false, false));
+					player.getCooldowns().addCooldown(this, 10);
 				
-	return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+	return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 		
 	}
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GREEN + "This will give you the Courage to fight for what you beleive in."));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 	}   

@@ -16,18 +16,20 @@ import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.lists.PotionList;
 import net.minecraft.util.text.ITextComponent;
 
+import net.minecraft.item.Item.Properties;
+
 public class ArmorFlippersEffects extends NonEnchantArmor
 {
     public ArmorFlippersEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.flippers, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.flippers, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.AQUA + "Provides the ability to swim like a Zora"));
 	}
 
@@ -37,17 +39,17 @@ public class ArmorFlippersEffects extends NonEnchantArmor
     	
     	
     	
-        if (!world.isRemote){
-                boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.zoras_flippers);
+        if (!world.isClientSide){
+                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.zoras_flippers);
                 if(isBootsOn)
                 	{
                 	if(player.isInWater()&&player.isSprinting()) 
                 	{
-                		player.addPotionEffect(new EffectInstance(PotionList.zoras_grace_effect, 8, 0, false, false));
+                		player.addEffect(new EffectInstance(PotionList.zoras_grace_effect, 8, 0, false, false));
                 	}
                 	if(!player.isSprinting()) 
                 	{
-                		player.removePotionEffect(PotionList.zoras_grace_effect);
+                		player.removeEffect(PotionList.zoras_grace_effect);
                 	}
                 }
         }

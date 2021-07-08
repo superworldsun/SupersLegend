@@ -19,6 +19,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class TriforcePower extends Item
 {
 
@@ -27,26 +29,26 @@ public class TriforcePower extends Item
 		super(properties);
 	}
 	
-	 public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	 public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
 		 @SuppressWarnings("unused")
-		ItemStack stack = player.getHeldItem(hand);
+		ItemStack stack = player.getItemInHand(hand);
 		 {
-			 BlockPos currentPos = player.getPosition();
-			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
-					player.addPotionEffect(new EffectInstance(Effect.get(20), 44, 0, false, false));
-					player.addPotionEffect(new EffectInstance(Effect.get(19), 200, 0, false, false));
-					player.addPotionEffect(new EffectInstance(Effect.get(5), 600, 0, false, true));
-					player.addPotionEffect(new EffectInstance(Effect.get(3), 400, 0, false, false));
-					player.getCooldownTracker().setCooldown(this, 10);
+			 BlockPos currentPos = player.blockPosition();
+			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
+					player.addEffect(new EffectInstance(Effect.byId(20), 44, 0, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(19), 200, 0, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(5), 600, 0, false, true));
+					player.addEffect(new EffectInstance(Effect.byId(3), 400, 0, false, false));
+					player.getCooldowns().addCooldown(this, 10);
 		 }
-	 			return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+	 			return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 			
 		}
 	 @Override
-		public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+		public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 		{
-			super.addInformation(stack, world, list, flag);				
+			super.appendHoverText(stack, world, list, flag);				
 			list.add(new StringTextComponent(TextFormatting.RED + "This gives the you Power, but at what cost?"));
 			list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 		}   

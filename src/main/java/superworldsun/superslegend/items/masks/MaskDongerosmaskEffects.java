@@ -16,29 +16,31 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskDongerosmaskEffects extends NonEnchantArmor {
     public MaskDongerosmaskEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.dongerosmask, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.dongerosmask, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-        if (!world.isRemote)
+        if (!world.isClientSide)
         {
-                boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_dongerosmask);
-                if(isHelmeton) player.addPotionEffect(new EffectInstance(Effect.get(8), 10, 1, false, false));
+                boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_dongerosmask);
+                if(isHelmeton) player.addEffect(new EffectInstance(Effect.byId(8), 10, 1, false, false));
                 
         }
             
     }
 
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
  	{
- 		super.addInformation(stack, world, list, flag);				
+ 		super.appendHoverText(stack, world, list, flag);				
  		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "This Hood is Hoppin!"));
  		list.add(new StringTextComponent(TextFormatting.GRAY + "Grants a jump boost"));
  	}

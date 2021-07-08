@@ -15,13 +15,13 @@ public class PoePathNavigator extends FlyingPathNavigator {
 
     }
 
-    public boolean tryMoveToEntityLiving(Entity entityIn, double speedIn) {
-        poe.getMoveHelper().setMoveTo(entityIn.getPosX(), entityIn.getPosY(), entityIn.getPosZ(), speedIn);
+    public boolean moveTo(Entity entityIn, double speedIn) {
+        poe.getMoveControl().setWantedPosition(entityIn.getX(), entityIn.getY(), entityIn.getZ(), speedIn);
         return true;
     }
 
-    public boolean tryMoveToXYZ(double x, double y, double z, double speedIn) {
-        poe.getMoveHelper().setMoveTo(x, y, z, speedIn);
+    public boolean moveTo(double x, double y, double z, double speedIn) {
+        poe.getMoveControl().setWantedPosition(x, y, z, speedIn);
         return true;
     }
 }

@@ -17,12 +17,12 @@ public class CustomLootGuardian
 
         if(event.getEntityLiving() instanceof GuardianEntity) {
             if(random.nextInt(4) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.rupee, random.nextInt(3)));
             if(random.nextInt(6) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_rupee,1));
             
             if(random.nextInt(55) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_courage_shard,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.triforce_courage_shard,1));
             
 	        }
 	    }

@@ -18,10 +18,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class TorchTowerBlockTop extends Block
 
 {
-	protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 13.0D, 9.0D, 13.0D);
+	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 13.0D, 9.0D, 13.0D);
 
 	   public TorchTowerBlockTop(Properties properties) {
 	      super(properties);
@@ -41,16 +43,16 @@ public class TorchTowerBlockTop extends Block
 	   }
 	   
 	   @SuppressWarnings("deprecation")
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		      return facing == Direction.DOWN && !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		      return facing == Direction.DOWN && !this.canSurvive(stateIn, worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		   }
 
 		   /*public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		      return func_220055_a(worldIn, pos.down(), Direction.UP);
+		      return canSupportCenter(worldIn, pos.down(), Direction.UP);
 		   }*/
 
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		return !worldIn.isAirBlock(pos.down());
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		return !worldIn.isEmptyBlock(pos.below());
 	}
 	   
 	   /*public BlockRenderLayer getRenderLayer() {
@@ -71,7 +73,7 @@ public class TorchTowerBlockTop extends Block
 	        }
 
 		   @Override
-		   public String getString() {
+		   public String getSerializedName() {
 			   return null;
 		   }
 	   }

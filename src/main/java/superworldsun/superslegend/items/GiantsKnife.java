@@ -2,7 +2,6 @@ package superworldsun.superslegend.items;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
@@ -14,10 +13,11 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.lists.ItemList;
 
 import java.util.List;
+
+import net.minecraft.item.Item.Properties;
 
 public class GiantsKnife extends ItemCustomSword
 {
@@ -27,15 +27,10 @@ public class GiantsKnife extends ItemCustomSword
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.GRAY + "A Large Sword that requires two hands to wield"));
-	}
-
-	@Override
-	public boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker) {
-		return true;
 	}
 
 	/*@Override
@@ -48,18 +43,18 @@ public class GiantsKnife extends ItemCustomSword
 	}*/
 
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
-	{
+	{		
 		if(entity instanceof PlayerEntity)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
+			ItemStack equipped = player.getMainHandItem();
 			{
 				if(stack == equipped)
 					{
 						if(player.hasItemInSlot(EquipmentSlotType.OFFHAND))
 						{
-							player.entityDropItem(player.getHeldItemOffhand());
-							player.setItemStackToSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+							player.spawnAtLocation(player.getOffhandItem());
+							player.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 						}
 					}
 			}

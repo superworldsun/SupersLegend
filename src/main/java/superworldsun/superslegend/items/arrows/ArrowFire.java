@@ -9,6 +9,8 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowFire;
 import superworldsun.superslegend.lists.ItemList;
 
+import net.minecraft.item.Item.Properties;
+
 public class ArrowFire extends ArrowItem
 {
 

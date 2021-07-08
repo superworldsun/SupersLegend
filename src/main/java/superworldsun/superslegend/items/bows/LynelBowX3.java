@@ -18,6 +18,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class LynelBowX3 extends BowItem {
     protected final Random rand = new Random();
     public float velocity = 2.95f;
@@ -30,10 +32,10 @@ public class LynelBowX3 extends BowItem {
         this.shotType = shotType;
     }
 
-    public void onPlayerStoppedUsing(@Nonnull ItemStack stack,@Nonnull World worldIn,@Nonnull LivingEntity entityLiving, int timeLeft) {
+    public void releaseUsing(@Nonnull ItemStack stack,@Nonnull World worldIn,@Nonnull LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
-            ItemStack itemstack = playerentity.findAmmo(stack);
+            ItemStack itemstack = playerentity.getProjectile(stack);
 
             int i = this.getUseDuration(stack) - timeLeft;
             i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, i, !itemstack.isEmpty());
@@ -43,79 +45,79 @@ public class LynelBowX3 extends BowItem {
                     itemstack = new ItemStack(Items.ARROW);
                 }
 
-                float f = getArrowVelocity(i);
+                float f = getPowerForTime(i);
                 if (!((double)f < 0.1D)) {
-                    boolean flag1 = playerentity.abilities.isCreativeMode || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, stack, playerentity));
+                    boolean flag1 = playerentity.abilities.instabuild || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, stack, playerentity));
 
                     if(shotType == 1){
-                        if (!worldIn.isRemote) {
+                        if (!worldIn.isClientSide) {
                             ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                             AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
                             abstractarrowentity = customArrow(abstractarrowentity);
-                            abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * velocity, inaccuracy);
+                            abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.0F, f * velocity, inaccuracy);
 
                             if (f == 1.0F) {
-                                abstractarrowentity.setIsCritical(true);
+                                abstractarrowentity.setCritArrow(true);
                             }
 
-                            stack.damageItem(1, playerentity, (p_220009_1_) -> p_220009_1_.sendBreakAnimation(playerentity.getActiveHand()));
+                            stack.hurtAndBreak(1, playerentity, (p_220009_1_) -> p_220009_1_.broadcastBreakEvent(playerentity.getUsedItemHand()));
 
-                            if (flag1 || playerentity.abilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)) {
-                                abstractarrowentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+                            if (flag1 || playerentity.abilities.instabuild && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)) {
+                                abstractarrowentity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
                             }
 
-                            worldIn.addEntity(abstractarrowentity);
+                            worldIn.addFreshEntity(abstractarrowentity);
                         }
 
-                        if (!worldIn.isRemote) {
+                        if (!worldIn.isClientSide) {
                             ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                             AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
                             abstractarrowentity = customArrow(abstractarrowentity);
-                            abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw + 7, 0.0F, f * velocity, inaccuracy);
+                            abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot + 7, 0.0F, f * velocity, inaccuracy);
 
                             if (f == 1.0F) {
-                                abstractarrowentity.setIsCritical(true);
+                                abstractarrowentity.setCritArrow(true);
                             }
 
-                            stack.damageItem(1, playerentity, (p_220009_1_) -> p_220009_1_.sendBreakAnimation(playerentity.getActiveHand()));
+                            stack.hurtAndBreak(1, playerentity, (p_220009_1_) -> p_220009_1_.broadcastBreakEvent(playerentity.getUsedItemHand()));
 
-                            abstractarrowentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+                            abstractarrowentity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
 
-                            worldIn.addEntity(abstractarrowentity);
+                            worldIn.addFreshEntity(abstractarrowentity);
                         }
 
-                        if (!worldIn.isRemote) {
+                        if (!worldIn.isClientSide) {
                             ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                             AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
                             abstractarrowentity = customArrow(abstractarrowentity);
-                            abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw -7, 0.0F, f * velocity, inaccuracy);
+                            abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot -7, 0.0F, f * velocity, inaccuracy);
                             if (f == 1.0F) {
-                                abstractarrowentity.setIsCritical(true);
+                                abstractarrowentity.setCritArrow(true);
                             }
 
-                            stack.damageItem(1, playerentity, (p_220009_1_) -> p_220009_1_.sendBreakAnimation(playerentity.getActiveHand()));
+                            stack.hurtAndBreak(1, playerentity, (p_220009_1_) -> p_220009_1_.broadcastBreakEvent(playerentity.getUsedItemHand()));
 
-                            abstractarrowentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+                            abstractarrowentity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
 
-                            worldIn.addEntity(abstractarrowentity);
+                            worldIn.addFreshEntity(abstractarrowentity);
                         }
                     }
 
-                    worldIn.playSound(null, playerentity.prevPosX, playerentity.prevPosY, playerentity.prevPosZ,
-                            SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    worldIn.playSound(null, playerentity.xo, playerentity.yo, playerentity.zo,
+                            SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
-                    if (!flag1 && !playerentity.abilities.isCreativeMode) { itemstack.shrink(1);
-                        if (itemstack.isEmpty()) { playerentity.inventory.deleteStack(itemstack); }
+                    if (!flag1 && !playerentity.abilities.instabuild) { itemstack.shrink(1);
+                        if (itemstack.isEmpty()) { playerentity.inventory.removeItem(itemstack); }
                     }
 
-                    playerentity.addStat(Stats.ITEM_USED.get(this));
+                    playerentity.awardStat(Stats.ITEM_USED.get(this));
                 }
             }
         }
     
 
-    public void addInformation(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> tooltip,@Nonnull ITooltipFlag flag) {
-        super.addInformation(stack, world, tooltip, flag);
+    public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> tooltip,@Nonnull ITooltipFlag flag) {
+        super.appendHoverText(stack, world, tooltip, flag);
             tooltip.add(new StringTextComponent(TextFormatting.BLUE + "x3 Arrows"));
     }
     
@@ -125,8 +127,8 @@ public class LynelBowX3 extends BowItem {
 	}
 
     @ParametersAreNonnullByDefault
-    public void onCreated(ItemStack itemStack, World world, PlayerEntity player) {
-        super.onCreated(itemStack, world, player);
+    public void onCraftedBy(ItemStack itemStack, World world, PlayerEntity player) {
+        super.onCraftedBy(itemStack, world, player);
             shotType = 1;
     }
 }

@@ -17,7 +17,7 @@ public class EntityArrowAncientRender extends ArrowRenderer<EntityArrowAncient> 
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityArrowAncient entity) {
+    public ResourceLocation getTextureLocation(EntityArrowAncient entity) {
         return TEXTURE;
     }
 

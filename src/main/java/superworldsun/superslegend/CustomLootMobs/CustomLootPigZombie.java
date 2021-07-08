@@ -17,12 +17,12 @@ public class CustomLootPigZombie
 
         if(event.getEntityLiving() instanceof ZombifiedPiglinEntity) {
             if(random.nextInt(6) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.rupee, random.nextInt(3)));
             if(random.nextInt(13) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_rupee,1));
             
             if(random.nextInt(70) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.triforce_power_shard,1));
             
 	        }
 	    }

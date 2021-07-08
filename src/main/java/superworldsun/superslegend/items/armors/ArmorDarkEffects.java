@@ -16,18 +16,20 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class ArmorDarkEffects extends NonEnchantArmor
 {
     public ArmorDarkEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.dark, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.dark, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
         
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.BLACK + "Armor of darkness"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Grants a boost of speed during night"));
 	}
@@ -38,14 +40,14 @@ public class ArmorDarkEffects extends NonEnchantArmor
     	
     	
     	
-        if (!world.isRemote){
-        		boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.dark_cap);
-                boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.dark_tunic);
-                boolean isLeggingsOn = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.dark_leggings);
-                boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.dark_boots);
-                if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn&&!world.isDaytime())
+        if (!world.isClientSide){
+        		boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.dark_cap);
+                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.dark_tunic);
+                boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.dark_leggings);
+                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.dark_boots);
+                if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn&&!world.isDay())
                 	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 1, false, false, false));
+                		player.addEffect(new EffectInstance(Effect.byId(1), 10, 1, false, false, false));
                 	}
                 	
                 }

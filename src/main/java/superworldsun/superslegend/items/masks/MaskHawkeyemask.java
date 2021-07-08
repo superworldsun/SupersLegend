@@ -20,17 +20,19 @@ import superworldsun.superslegend.lists.ItemList;
 import java.util.List;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskHawkeyemask extends NonEnchantArmor {
     public MaskHawkeyemask(String name, EquipmentSlotType slot)
     
     {
-        super(ArmourMaterialList.hawkeye, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.hawkeye, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.WHITE + "A Mask often used by snipers"));
 	}
 

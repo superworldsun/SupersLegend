@@ -13,6 +13,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class ItemCustomShield extends ShieldItem
 {
 	public ItemCustomShield(Properties builder) {
@@ -31,18 +33,18 @@ public class ItemCustomShield extends ShieldItem
 		if(entity instanceof PlayerEntity)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
+			ItemStack equipped = player.getMainHandItem();
 			{
 				if(stack == equipped)
 		        {
-					if(player.isBurning())
+					if(player.isOnFire())
 					{
 						stack.shrink(1);
 						
-						BlockPos currentPos = player.getPosition();
-						 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS, 1f, 1f);
+						BlockPos currentPos = player.blockPosition();
+						 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.SHIELD_BREAK, SoundCategory.PLAYERS, 1f, 1f);
 						 
-						player.sendStatusMessage(new TranslationTextComponent(TextFormatting.RED + "Your shield is gone!"), true);
+						player.displayClientMessage(new TranslationTextComponent(TextFormatting.RED + "Your shield is gone!"), true);
 					}
 		        }
 			}	
@@ -51,18 +53,18 @@ public class ItemCustomShield extends ShieldItem
 		if(entity instanceof PlayerEntity)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemOffhand();
+			ItemStack equipped = player.getOffhandItem();
 			{
 				if(stack == equipped)
 		        {
-					if(player.isBurning())
+					if(player.isOnFire())
 					{
 						stack.shrink(1);
 						
-						BlockPos currentPos = player.getPosition();
-						 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS, 1f, 1f);
+						BlockPos currentPos = player.blockPosition();
+						 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.SHIELD_BREAK, SoundCategory.PLAYERS, 1f, 1f);
 						 
-						player.sendStatusMessage(new TranslationTextComponent(TextFormatting.RED + "Your shield is gone!"), true);
+						player.displayClientMessage(new TranslationTextComponent(TextFormatting.RED + "Your shield is gone!"), true);
 					}
 		        }
 			}

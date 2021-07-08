@@ -2,15 +2,19 @@ package superworldsun.superslegend.items;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import superworldsun.superslegend.entities.projectiles.beam.EntityFireBeam;
+import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowFire;
+import superworldsun.superslegend.lists.ItemList;
 
 import java.util.List;
+
+import net.minecraft.item.Item.Properties;
 
 public class FireRod extends Item
 {
@@ -21,33 +25,29 @@ public class FireRod extends Item
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack stack = playerIn.getHeldItem(handIn);
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+		ItemStack stack = player.getItemInHand(hand);
 		//acts as a cooldown.
-		if (playerIn.getFoodStats().getFoodLevel()!= 0)
-		{
-			if (playerIn.isSwingInProgress) {
-				return new ActionResult<>(ActionResultType.PASS, stack);
-			}
-			playerIn.addExhaustion(6f);
-			playerIn.swingArm(handIn);
-				worldIn.playSound(null, playerIn.getPosition(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-				if (!playerIn.world.isRemote) {
-					EntityFireBeam beam = new EntityFireBeam(playerIn.world, playerIn);
-					float arrowVelocity = 2.0F;
-					beam.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
-					playerIn.world.addEntity(beam);
-				}
+		if (player.swinging) {
+			return new ActionResult<>(ActionResultType.PASS, stack);
 		}
-		return super.onItemRightClick(worldIn, playerIn, handIn);
+		player.swing(hand);
+		if (!player.isShiftKeyDown()) {
+			world.playSound(null, player.blockPosition(), SoundEvents.ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+			if (!player.level.isClientSide) {
+				EntityArrowFire firearrow = new EntityArrowFire(player.level, player);
+				firearrow.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 1.5F, 1.0F);
+				player.level.addFreshEntity(firearrow);
+			}
+		}
+		return super.use(world, player, hand);
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.RED + "Uses Stamina to create a beam Fire"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
+		super.appendHoverText(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.AQUA + "Uses Stamina to create Fire"));
 	}
 
 }

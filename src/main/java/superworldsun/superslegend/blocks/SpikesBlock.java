@@ -13,10 +13,12 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class SpikesBlock extends Block 
 
 	{
-	   protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
+	   protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 
 	   public SpikesBlock(Properties properties) {
 	      super(properties);
@@ -26,12 +28,12 @@ public class SpikesBlock extends Block
 	      return SHAPE;
 	   }
 
-	   public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-		  entityIn.attackEntityFrom(DamageSource.CACTUS, 6.0F);
+	   public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+		  entityIn.hurt(DamageSource.CACTUS, 6.0F);
 	   }
 
 	   public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-	      worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+	      worldIn.getBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
 	   }
 
 	   public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos) {
@@ -45,11 +47,11 @@ public class SpikesBlock extends Block
 	      return 20;
 	   }
 
-	   public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-	      worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+	   public void onPlace(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+	      worldIn.getBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
 	   }
 
-	   public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+	   public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
 	      return false;
 	   }
 

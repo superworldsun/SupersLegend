@@ -17,12 +17,12 @@ public class CustomLootWitch
 
         if(event.getEntityLiving() instanceof WitchEntity) {
             if(random.nextInt(2) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(4)));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.rupee, random.nextInt(4)));
             if(random.nextInt(4) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_rupee,1));
             
             if(random.nextInt(20) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_wisdom_shard,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.triforce_wisdom_shard,1));
             
 	        }
 	    }

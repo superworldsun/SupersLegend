@@ -57,7 +57,7 @@ import superworldsun.superslegend.lists.ItemList;
 	}
 
 	@Override
-	public boolean func_215665_a(IFluidState state, IBlockReader world, BlockPos pos,Fluid fluid, Direction direction) {
+	public boolean canBeReplacedWith(IFluidState state, IBlockReader world, BlockPos pos,Fluid fluid, Direction direction) {
 		return direction == Direction.DOWN && !fluid.isIn(FluidList.Tags.POISON);
 	}
 

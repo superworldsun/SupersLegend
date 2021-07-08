@@ -15,7 +15,7 @@ public class EnableUtil
 
     public static void changeEnabled(PlayerEntity player, Hand hand)
     {
-        changeEnabled(player.getHeldItem(hand));
+        changeEnabled(player.getItemInHand(hand));
     }
 
     public static void changeEnabled(ItemStack stack)

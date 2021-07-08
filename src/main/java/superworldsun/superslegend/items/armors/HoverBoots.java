@@ -26,14 +26,16 @@ import java.util.Random;
 import java.util.Vector;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class HoverBoots extends ArmorItem {
 	public HoverBoots(String name, EquipmentSlotType slot) {
-		super(ArmourMaterialList.hoverboots, slot, new Properties().group(SupersLegend.supers_legend));
+		super(ArmourMaterialList.hoverboots, slot, new Properties().tab(SupersLegend.supers_legend));
 		setRegistryName(SupersLegend.modid, name);
 	}
 
-	public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
-		super.addInformation(stack, world, list, flag);
+	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "No road needed"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Sprint To Hover over Gaps"));
 
@@ -45,36 +47,36 @@ public class HoverBoots extends ArmorItem {
 	{
 
 
-		boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots);
+		boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots);
 
 		if(isBootsOn && player.isSprinting() && player.isOnGround())
 		{
 
-			player.addPotionEffect(new EffectInstance(PotionList.hover_boots_effect, 19, 0, true, false));
+			player.addEffect(new EffectInstance(PotionList.hover_boots_effect, 19, 0, true, false));
 
 		}
 		if(player.isSprinting() && !player.isOnGround())
 		{
-			EffectInstance effect = player.getActivePotionEffect(PotionList.hover_boots_effect);
+			EffectInstance effect = player.getEffect(PotionList.hover_boots_effect);
 			if (effect != null)
 
 			{
-				Vector3d v = player.getMotion();
-				player.setMotion(v.x, v.y * -0.1D, v.z);
+				Vector3d v = player.getDeltaMovement();
+				player.setDeltaMovement(v.x, v.y * -0.1D, v.z);
 
-				if(player.ticksExisted % 2 == 0) {
-					BlockPos currentPos = player.getPosition();
+				if(player.tickCount % 2 == 0) {
+					BlockPos currentPos = player.blockPosition();
 					world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOVER_BOOTS, SoundCategory.PLAYERS, 1f, 1f);
 				}
 
 
-				if(player.ticksExisted % 4 == 0){
-				Random rand = player.world.rand;
+				if(player.tickCount % 4 == 0){
+				Random rand = player.level.random;
 				for (int i = 0; i < 45; i++) {
-					player.world.addParticle(ParticleTypes.CLOUD,
-							player.getPosX() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 0,
-							player.getPosY() + rand.nextFloat() * 0 - 0,
-							player.getPosZ() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 0,
+					player.level.addParticle(ParticleTypes.CLOUD,
+							player.getX() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 0,
+							player.getY() + rand.nextFloat() * 0 - 0,
+							player.getZ() + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 0,
 							0, 0, 0);
 					}
 				}
@@ -85,7 +87,7 @@ public class HoverBoots extends ArmorItem {
 		if(isBootsOn && !player.isSprinting())
 		{
 
-			player.removePotionEffect(PotionList.hover_boots_effect);
+			player.removeEffect(PotionList.hover_boots_effect);
 
 		}
 

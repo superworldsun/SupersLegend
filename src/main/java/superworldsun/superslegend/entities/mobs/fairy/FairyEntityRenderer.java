@@ -29,7 +29,7 @@ public class FairyEntityRenderer extends MobRenderer<FairyEntity, FairyEntityMod
     }
 
     protected void applyRotations(FairyEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
-        if (this.func_230495_a_(entityLiving)) {
+        if (this.isShaking(entityLiving)) {
             rotationYaw += (float) (Math.cos((double) entityLiving.ticksExisted * 7F) * Math.PI * (double) 0.9F);
             float vibrate = 0.05F;
             matrixStackIn.translate((entityLiving.getRNG().nextFloat() - 0.5F) * vibrate, (entityLiving.getRNG().nextFloat() - 0.5F) * vibrate, (entityLiving.getRNG().nextFloat() - 0.5F) * vibrate);

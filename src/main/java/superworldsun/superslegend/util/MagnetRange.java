@@ -19,7 +19,7 @@ public class MagnetRange
 
     public static void setCurrentRange(PlayerEntity player, Hand hand, int range)
     {
-    	setCurrentRange(player.getHeldItem(hand), range);
+    	setCurrentRange(player.getItemInHand(hand), range);
     }
 
     public static void setCurrentRange(ItemStack stack, int newRange)

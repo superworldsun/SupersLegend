@@ -14,6 +14,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class RocsFeather extends Item
 {
 	public RocsFeather(Properties properties)
@@ -23,25 +25,25 @@ public class RocsFeather extends Item
 	
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
 	{		
-		if(entity instanceof PlayerEntity && !world.isRemote)
+		if(entity instanceof PlayerEntity && !world.isClientSide)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
-			if(!world.isRemote)
+			ItemStack equipped = player.getMainHandItem();
+			if(!world.isClientSide)
 			{
 				if(stack == equipped && player.isOnGround())
 		        {
-					player.addPotionEffect(new EffectInstance(Effect.get(28), 24, 0, false, false));
-					player.addPotionEffect(new EffectInstance(Effect.get(8), 1, 3, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(28), 24, 0, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(8), 1, 3, false, false));
 		        }
 			}	
 
 		}
 	}
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.WHITE + "Holding this will grant better ground mobility"));
 	}   
 }

@@ -14,6 +14,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class GoldenScale extends Item
 {
 
@@ -24,11 +26,11 @@ public class GoldenScale extends Item
 	
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
 	{		
-		if(entity instanceof PlayerEntity && !world.isRemote)
+		if(entity instanceof PlayerEntity && !world.isClientSide)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
 
-			if(!world.isRemote)
+			if(!world.isClientSide)
 			{
 		        {
 					if(player.isInWater()) 
@@ -37,7 +39,7 @@ public class GoldenScale extends Item
 	            	}
 	            	else
 	            	{
-	            		player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 415, 0, false, false, false));
+	            		player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 415, 0, false, false, false));
 	            	}
 	                
 	            	}
@@ -47,9 +49,9 @@ public class GoldenScale extends Item
 		}
 	}
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GOLD + "Allows you to dive even longer"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Have this anywhere in your inventory"));
 	}   

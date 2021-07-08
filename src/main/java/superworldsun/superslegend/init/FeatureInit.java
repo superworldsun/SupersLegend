@@ -19,7 +19,7 @@ public class FeatureInit {
     public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, SupersLegend.modid);
 
 
-    //public static final RegistryObject<Structure<NoFeatureConfig>> GRAVEYARD = registerStructure("graveyard", () -> (new GraveyardStructure(NoFeatureConfig.field_236558_a_)));
+    //public static final RegistryObject<Structure<NoFeatureConfig>> GRAVEYARD = registerStructure("graveyard", () -> (new GraveyardStructure(NoFeatureConfig.CODEC)));
 
 
     private static <T extends Structure<?>> RegistryObject<T> registerStructure(String name, Supplier<T> structure) {
@@ -47,17 +47,17 @@ public class FeatureInit {
 
 
         if(transformSurroundingLand){
-            Structure.field_236384_t_ =
+            Structure.NOISE_AFFECTING_FEATURES =
                     ImmutableList.<Structure<?>>builder()
-                            .addAll(Structure.field_236384_t_)
+                            .addAll(Structure.NOISE_AFFECTING_FEATURES)
                             .add(structure)
                             .build();
         }
 
 
-        DimensionStructuresSettings.field_236191_b_ =
+        DimensionStructuresSettings.DEFAULTS =
                 ImmutableMap.<Structure<?>, StructureSeparationSettings>builder()
-                        .putAll(DimensionStructuresSettings.field_236191_b_)
+                        .putAll(DimensionStructuresSettings.DEFAULTS)
                         .put(structure, structureSeparationSettings)
                         .build();
     }*/

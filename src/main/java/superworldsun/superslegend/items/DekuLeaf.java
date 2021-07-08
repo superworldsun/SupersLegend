@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class DekuLeaf extends Item
 {
 	public DekuLeaf(Properties properties)
@@ -33,45 +35,45 @@ public class DekuLeaf extends Item
 
 	@Nonnull
 	@ParametersAreNonnullByDefault
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
 		 @SuppressWarnings("unused")
-		ItemStack stack = player.getHeldItem(hand);
+		ItemStack stack = player.getItemInHand(hand);
 
-		if(!player.isElytraFlying() &&!player.isOnGround() && !player.isInWater() && player.getFoodStats().getFoodLevel()>= 1)
+		if(!player.isFallFlying() &&!player.isOnGround() && !player.isInWater() && player.getFoodData().getFoodLevel()>= 1)
 		        {
 			player.fallDistance *= 0.5F;
-			player.addVelocity(0f, 0.235f, 0f );
+			player.push(0f, 0.235f, 0f );
 			
-			player.addPotionEffect(new EffectInstance(Objects.requireNonNull(Effect.get(28)), 11, 10, false, false));
-			player.addExhaustion(1f);
+			player.addEffect(new EffectInstance(Objects.requireNonNull(Effect.byId(28)), 11, 10, false, false));
+			player.causeFoodExhaustion(1f);
 			
-			Random rand = player.world.rand;
+			Random rand = player.level.random;
 	        for (int i = 0; i < 45; i++)
 	        {
-	        	player.world.addParticle(ParticleTypes.CLOUD,
-	                    player.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
-	                    player.prevPosY + rand.nextFloat() * 1 - 2,
-	                    player.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
+	        	player.level.addParticle(ParticleTypes.CLOUD,
+	                    player.xo + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
+	                    player.yo + rand.nextFloat() * 1 - 2,
+	                    player.zo + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
 	                    0, 0.105D, 0);
 	        }
 			
-			player.getCooldownTracker().setCooldown(this, 9);
+			player.getCooldowns().addCooldown(this, 9);
 		        }
-		if(player.getFoodStats().getFoodLevel() == 0)
+		if(player.getFoodData().getFoodLevel() == 0)
        {
 			
-			player.getCooldownTracker().setCooldown(this, 9);
+			player.getCooldowns().addCooldown(this, 9);
 			
-			BlockPos currentPos = player.getPosition();
-	         player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
+			BlockPos currentPos = player.blockPosition();
+	         player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
        }
-				return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+				return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 	 }
 
-	public void addInformation(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
+	public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-Click in the air, this will slow your decent"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina when airborne"));
 	}   

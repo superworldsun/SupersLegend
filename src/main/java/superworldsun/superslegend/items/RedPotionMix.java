@@ -18,6 +18,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class RedPotionMix extends Item
 {
 
@@ -26,37 +28,37 @@ public class RedPotionMix extends Item
 		super(properties);
 	}
 	
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
-		ItemStack stack = player.getHeldItem(hand);
+		ItemStack stack = player.getItemInHand(hand);
 		  
-		 if(!world.isRemote && !player.isCreative() && player.shouldHeal())
+		 if(!world.isClientSide && !player.isCreative() && player.isHurt())
 	     {
 			 
-			 BlockPos currentPos = player.getPosition();
-			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
+			 BlockPos currentPos = player.blockPosition();
+			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
 			 
 			 	player.setHealth(player.getHealth() + 1.0F);
 				stack.shrink(1);
-				player.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+				player.addItem(new ItemStack(Items.GLASS_BOTTLE));
 				//player.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40);
 	     }
-		 else if (!world.isRemote && player.isCreative())
+		 else if (!world.isClientSide && player.isCreative())
 		 {
-			 BlockPos currentPos = player.getPosition();
-			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
+			 BlockPos currentPos = player.blockPosition();
+			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
 			 
 			 	player.setHealth(player.getHealth() + 1.0F);
 		 }
 	 
-		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
+		 return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand)); 
 	 }
 	
 	
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.DARK_RED + "This could probably be cooked"));
 	}  
 	

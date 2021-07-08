@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraft.client.renderer.RenderState.TextureState;
+
 public class RenderTypes extends RenderType {
 
     protected static final RenderState.TransparencyState GHOST_TRANSPARANCY = new RenderState.TransparencyState("translucent_ghost_transparency", () -> {
@@ -24,12 +26,12 @@ public class RenderTypes extends RenderType {
 
     public static RenderType getPoeInDayTime(ResourceLocation p_228652_0_) {
         TextureState lvt_1_1_ = new TextureState(p_228652_0_, false, false);
-        return makeType("poe_in_day", DefaultVertexFormats.ENTITY, 7, 262144, false, true, RenderType.State.getBuilder().texture(lvt_1_1_).writeMask(COLOR_DEPTH_WRITE).depthTest(DEPTH_LEQUAL).alpha(DEFAULT_ALPHA).diffuseLighting(DIFFUSE_LIGHTING_ENABLED).lightmap(LIGHTMAP_DISABLED).overlay(OVERLAY_ENABLED).transparency(TRANSLUCENT_TRANSPARENCY).fog(FOG).cull(RenderState.CULL_ENABLED).build(true));
+        return create("poe_in_day", DefaultVertexFormats.NEW_ENTITY, 7, 262144, false, true, RenderType.State.builder().setTextureState(lvt_1_1_).setWriteMaskState(COLOR_DEPTH_WRITE).setDepthTestState(LEQUAL_DEPTH_TEST).setAlphaState(DEFAULT_ALPHA).setDiffuseLightingState(DIFFUSE_LIGHTING).setLightmapState(NO_LIGHTMAP).setOverlayState(OVERLAY).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setFogState(FOG).setCullState(RenderState.CULL).createCompositeState(true));
     }
 
     public static RenderType getGhost(ResourceLocation p_228652_0_) {
         TextureState lvt_1_1_ = new TextureState(p_228652_0_, false, false);
-        return makeType("ghost_iaf", DefaultVertexFormats.ENTITY, 7, 262144, false, true, RenderType.State.getBuilder().texture(lvt_1_1_).writeMask(COLOR_DEPTH_WRITE).depthTest(DEPTH_LEQUAL).alpha(DEFAULT_ALPHA).diffuseLighting(DIFFUSE_LIGHTING_ENABLED).lightmap(LIGHTMAP_DISABLED).overlay(OVERLAY_ENABLED).transparency(GHOST_TRANSPARANCY).fog(FOG).cull(RenderState.CULL_ENABLED).build(true));
+        return create("ghost_iaf", DefaultVertexFormats.NEW_ENTITY, 7, 262144, false, true, RenderType.State.builder().setTextureState(lvt_1_1_).setWriteMaskState(COLOR_DEPTH_WRITE).setDepthTestState(LEQUAL_DEPTH_TEST).setAlphaState(DEFAULT_ALPHA).setDiffuseLightingState(DIFFUSE_LIGHTING).setLightmapState(NO_LIGHTMAP).setOverlayState(OVERLAY).setTransparencyState(GHOST_TRANSPARANCY).setFogState(FOG).setCullState(RenderState.CULL).createCompositeState(true));
     }
 
 }

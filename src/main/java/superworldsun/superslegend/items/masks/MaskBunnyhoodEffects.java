@@ -27,11 +27,13 @@ import superworldsun.superslegend.models.masks.ModelBunnyhoodMask;
 //import superworldsun.superslegend.models.armor.ModelBunnyHood;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskBunnyhoodEffects extends NonEnchantArmor {
     public MaskBunnyhoodEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.bunnyhood, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.bunnyhood, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
@@ -46,22 +48,22 @@ public class MaskBunnyhoodEffects extends NonEnchantArmor {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-        if (!world.isRemote){
-                boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_bunnyhood);
+        if (!world.isClientSide){
+                boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_bunnyhood);
                 
                 if(isHelmeton) {
                 	if(!player.isInWater())
                 	{
-						player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 0, false, false));
+						player.addEffect(new EffectInstance(Effect.byId(1), 10, 0, false, false));
                 	}
                 }
         }
     }
     
     @Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "I am Speed"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants a boost of speed"));
 	}

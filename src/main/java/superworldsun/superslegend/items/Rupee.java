@@ -22,6 +22,8 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.init.SoundInit;
 import superworldsun.superslegend.lists.ItemList;
 
+import net.minecraft.item.Item.Properties;
+
 public class Rupee extends Item{
 
 	public Rupee(Properties properties)
@@ -29,40 +31,40 @@ public class Rupee extends Item{
 		super(properties);
 	}
 	
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
-		ItemStack stack = player.getHeldItem(hand);
+		ItemStack stack = player.getItemInHand(hand);
 		
 		if(stack.getCount() >= 5)
 		 {
 			
 			 stack.shrink(5);
 			
-			 player.addItemStackToInventory(new ItemStack(ItemList.blue_rupee));
+			 player.addItem(new ItemStack(ItemList.blue_rupee));
 			 
-			 BlockPos currentPos = player.getPosition();
- 	         player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_GREEN, SoundCategory.PLAYERS, 1f, 1f);
+			 BlockPos currentPos = player.blockPosition();
+ 	         player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_GREEN, SoundCategory.PLAYERS, 1f, 1f);
 		 }
 		        
-	return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+	return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 		
 	}
 
 	public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
 		ArrowEntity arrowentity = new ArrowEntity(worldIn, shooter);
-		arrowentity.setPotionEffect(stack);
+		arrowentity.setEffectsFromItem(stack);
 		return arrowentity;
 	}
 
 	public boolean isInfinite(ItemStack stack, ItemStack bow, PlayerEntity player) {
-		int enchant = net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel(net.minecraft.enchantment.Enchantments.INFINITY, bow);
+		int enchant = net.minecraft.enchantment.EnchantmentHelper.getItemEnchantmentLevel(net.minecraft.enchantment.Enchantments.INFINITY_ARROWS, bow);
 		return enchant <= 0 ? false : this.getClass() == Rupee.class;
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GREEN + "1 rupee"));
 	}   
 } 

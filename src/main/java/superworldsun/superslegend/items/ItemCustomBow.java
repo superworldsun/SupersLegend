@@ -4,6 +4,8 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.item.Item.Properties;
+
 public class ItemCustomBow extends BowItem
 {
 	public ItemCustomBow(Properties builder) {

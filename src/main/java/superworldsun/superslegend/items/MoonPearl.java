@@ -19,10 +19,12 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class MoonPearl extends Item {
 
     public MoonPearl(Properties properties) {
-        super(properties.maxStackSize(16));
+        super(properties.stacksTo(16));
     }
 
     // Huge issue with player teleporting across dimensions.

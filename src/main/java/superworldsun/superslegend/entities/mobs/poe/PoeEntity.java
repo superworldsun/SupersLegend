@@ -78,8 +78,8 @@ public class PoeEntity extends MonsterEntity {
     }
 
     @Override
-    public EntitySize getSize(Pose poseIn) {
-        return super.getSize(poseIn);
+    public EntitySize getDimensions(Pose poseIn) {
+        return super.getDimensions(poseIn);
     }
 
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
@@ -93,22 +93,22 @@ public class PoeEntity extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute prepareAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 30.0D)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 20D)
-                .createMutableAttribute(Attributes.FLYING_SPEED, 0.8F)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.5F)
-                .createMutableAttribute(Attributes.ARMOR, 5D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 30.0D)
+                .add(Attributes.FOLLOW_RANGE, 20D)
+                .add(Attributes.FLYING_SPEED, 0.8F)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.5F)
+                .add(Attributes.ARMOR, 5D);
     }
 
-    public boolean isPotionApplicable(EffectInstance potioneffectIn) {
-        return potioneffectIn.getPotion() != Effects.POISON && potioneffectIn.getPotion() != Effects.WITHER && super.isPotionApplicable(potioneffectIn);
+    public boolean canBeAffected(EffectInstance potioneffectIn) {
+        return potioneffectIn.getEffect() != Effects.POISON && potioneffectIn.getEffect() != Effects.WITHER && super.canBeAffected(potioneffectIn);
     }
 
     public boolean isInvulnerableTo(DamageSource source) {
         return super.isInvulnerableTo(source)
-                && source.isFireDamage()
+                && source.isFire()
                 && source == DamageSource.IN_WALL
                 && source == DamageSource.CACTUS
                 && source == DamageSource.DROWN
@@ -119,7 +119,7 @@ public class PoeEntity extends MonsterEntity {
                 && source == DamageSource.SWEET_BERRY_BUSH;
     }
 
-    protected PathNavigator createNavigator(World worldIn) {
+    protected PathNavigator createNavigation(World worldIn) {
         return new PoePathNavigator(this, worldIn);
     }
 
@@ -143,7 +143,7 @@ public class PoeEntity extends MonsterEntity {
      * If the Poe can be pushed
      */
     @Override
-    public boolean canBePushed() {
+    public boolean isPushable() {
         return false;
     }
 
@@ -152,7 +152,7 @@ public class PoeEntity extends MonsterEntity {
      * Setting to yes, allows it to follow it's attack set of discombobulating the target of where it's at and where it's coming from.
      */
     @Override
-    protected void collideWithEntity(Entity entity) {
+    protected void doPush(Entity entity) {
     }
 
     /**
@@ -169,19 +169,19 @@ public class PoeEntity extends MonsterEntity {
         //this.goalSelector.addGoal(3, new PoeChargeAttack(this));
         // The LookAtGoal is here to help the Poe look at it's target, unless you're creative.
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F, 1.0F) {
-            public boolean shouldContinueExecuting() {
+            public boolean canContinueToUse() {
                 // Here is the call to check if the player is creative or not.
-                if (this.closestEntity != null && this.closestEntity instanceof PlayerEntity && ((PlayerEntity) this.closestEntity).isCreative()) {
+                if (this.lookAt != null && this.lookAt instanceof PlayerEntity && ((PlayerEntity) this.lookAt).isCreative()) {
                     return false;
                 }
-                return super.shouldContinueExecuting();
+                return super.canContinueToUse();
             }
         });
         // Helper to keep the Poe away from water when roaming and "Walking/gliding" around.
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.6D) {
-            public boolean shouldExecute() {
-                executionChance = 60;
-                return super.shouldExecute();
+            public boolean canUse() {
+                interval = 60;
+                return super.canUse();
             }
         });
         // Just looking randomly, nothing special.
@@ -246,11 +246,11 @@ public class PoeEntity extends MonsterEntity {
     /**
      * If the poe is in the day light, do some stuff.
      */
-    protected boolean isInDaylight() {
-        if (this.world.isDaytime() && !this.world.isRemote) {
+    protected boolean isSunBurnTick() {
+        if (this.level.isDay() && !this.level.isClientSide) {
             float f = this.getBrightness();
-            BlockPos blockpos = this.getRidingEntity() instanceof BoatEntity ? (new BlockPos(this.getPosX(), (double) Math.round(this.getPosY()), this.getPosZ())).up() : new BlockPos(this.getPosX(), (double) Math.round(this.getPosY() + 4), this.getPosZ());
-            return f > 0.5F && this.world.canSeeSky(blockpos);
+            BlockPos blockpos = this.getVehicle() instanceof BoatEntity ? (new BlockPos(this.getX(), (double) Math.round(this.getY()), this.getZ())).above() : new BlockPos(this.getX(), (double) Math.round(this.getY() + 4), this.getZ());
+            return f > 0.5F && this.level.canSeeSky(blockpos);
         }
 
         return false;
@@ -260,7 +260,7 @@ public class PoeEntity extends MonsterEntity {
      * Setting the poe to have no gravity allowing it to essentially fly or float where ever it goes.
      * This plays in part with the No clip setting to the mob allowing it to keep it self from going to the void.
      */
-    public boolean hasNoGravity() {
+    public boolean isNoGravity() {
         return true;
     }
 
@@ -352,23 +352,23 @@ public class PoeEntity extends MonsterEntity {
         }
 
         public void tick() {
-            if (this.action == MovementController.Action.MOVE_TO) {
-                Vector3d vec3d = new Vector3d(this.posX - PoeEntity.this.getPosX(), this.posY - PoeEntity.this.getPosY(), this.posZ - PoeEntity.this.getPosZ());
+            if (this.operation == MovementController.Action.MOVE_TO) {
+                Vector3d vec3d = new Vector3d(this.wantedX - PoeEntity.this.getX(), this.wantedY - PoeEntity.this.getY(), this.wantedZ - PoeEntity.this.getZ());
                 double d0 = vec3d.length();
-                if (d0 < PoeEntity.this.getBoundingBox().getAverageEdgeLength()) {
-                    this.action = MovementController.Action.WAIT;
-                    PoeEntity.this.setMotion(PoeEntity.this.getMotion().scale(0.5D));
+                if (d0 < PoeEntity.this.getBoundingBox().getSize()) {
+                    this.operation = MovementController.Action.WAIT;
+                    PoeEntity.this.setDeltaMovement(PoeEntity.this.getDeltaMovement().scale(0.5D));
                 } else {
-                    PoeEntity.this.setMotion(PoeEntity.this.getMotion().add(vec3d.scale(this.speed * 0.05D / d0)));
-                    if (PoeEntity.this.getAttackTarget() == null) {
-                        Vector3d vector3d1 = PoeEntity.this.getMotion();
-                        PoeEntity.this.rotationYaw = -((float) MathHelper.atan2(vector3d1.x, vector3d1.z)) * (180F / (float) Math.PI);
-                        PoeEntity.this.renderYawOffset = PoeEntity.this.rotationYaw;
+                    PoeEntity.this.setDeltaMovement(PoeEntity.this.getDeltaMovement().add(vec3d.scale(this.speedModifier * 0.05D / d0)));
+                    if (PoeEntity.this.getTarget() == null) {
+                        Vector3d vector3d1 = PoeEntity.this.getDeltaMovement();
+                        PoeEntity.this.yRot = -((float) MathHelper.atan2(vector3d1.x, vector3d1.z)) * (180F / (float) Math.PI);
+                        PoeEntity.this.yBodyRot = PoeEntity.this.yRot;
                     } else {
-                        double d2 = PoeEntity.this.getAttackTarget().getPosX() - PoeEntity.this.getPosX();
-                        double d1 = PoeEntity.this.getAttackTarget().getPosZ() - PoeEntity.this.getPosZ();
-                        PoeEntity.this.rotationYaw = -((float) MathHelper.atan2(d2, d1)) * (180F / (float) Math.PI);
-                        PoeEntity.this.renderYawOffset = PoeEntity.this.rotationYaw;
+                        double d2 = PoeEntity.this.getTarget().getX() - PoeEntity.this.getX();
+                        double d1 = PoeEntity.this.getTarget().getZ() - PoeEntity.this.getZ();
+                        PoeEntity.this.yRot = -((float) MathHelper.atan2(d2, d1)) * (180F / (float) Math.PI);
+                        PoeEntity.this.yBodyRot = PoeEntity.this.yRot;
                     }
                 }
             }

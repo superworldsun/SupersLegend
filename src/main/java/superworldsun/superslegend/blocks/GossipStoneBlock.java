@@ -4,6 +4,8 @@ package superworldsun.superslegend.blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class GossipStoneBlock extends AbstractGossipStoneBlock
 {
 

@@ -8,6 +8,8 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowAncient;
 import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowSilver;
 
+import net.minecraft.item.Item.Properties;
+
 public class ArrowSilver extends ArrowItem
 {
 

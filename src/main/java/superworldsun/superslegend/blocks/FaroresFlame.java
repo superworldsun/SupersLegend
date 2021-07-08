@@ -23,6 +23,8 @@ import superworldsun.superslegend.lists.ItemList;
 
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class FaroresFlame extends Block {
 	private Object ItemEntity;
 

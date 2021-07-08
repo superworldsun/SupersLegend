@@ -43,13 +43,13 @@ public class RegularBoomerang extends BoomerangEntity {
         // Following is diamond boomerang only
         // Follows where the entity is looking
         if (!isBouncing && SupersLegendConfig.COMMON.RegularBoomerangFollows.get()) {
-            double x = -MathHelper.sin((player.rotationYaw * 3.141593F) / 180F);
-            double z = MathHelper.cos((player.rotationYaw * 3.141593F) / 180F);
+            double x = -MathHelper.sin((player.yRot * 3.141593F) / 180F);
+            double z = MathHelper.cos((player.yRot * 3.141593F) / 180F);
 
-            double motionX = 0.5D * x * (double) MathHelper.cos((player.rotationPitch / 180F) * 3.141593F);
-            double motionY = -0.5D * (double) MathHelper.sin((player.rotationPitch / 180F) * 3.141593F);
-            double motionZ = 0.5D * z * (double) MathHelper.cos((player.rotationPitch / 180F) * 3.141593F);
-            this.setMotion(motionX, motionY, motionZ);
+            double motionX = 0.5D * x * (double) MathHelper.cos((player.xRot / 180F) * 3.141593F);
+            double motionY = -0.5D * (double) MathHelper.sin((player.xRot / 180F) * 3.141593F);
+            double motionZ = 0.5D * z * (double) MathHelper.cos((player.xRot / 180F) * 3.141593F);
+            this.setDeltaMovement(motionX, motionY, motionZ);
         }
     }
 }

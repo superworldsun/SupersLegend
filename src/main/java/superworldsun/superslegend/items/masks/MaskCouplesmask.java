@@ -14,17 +14,19 @@ import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskCouplesmask extends NonEnchantArmor {
     public MaskCouplesmask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.couplesmask, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.couplesmask, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GRAY + "The physical manifestation of true love"));
 	}
 }

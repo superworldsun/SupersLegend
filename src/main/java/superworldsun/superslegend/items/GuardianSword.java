@@ -16,6 +16,8 @@ import superworldsun.superslegend.lists.ItemList;
 
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class GuardianSword extends ItemCustomSword
 {
 	public GuardianSword(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder)
@@ -24,9 +26,9 @@ public class GuardianSword extends ItemCustomSword
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.AQUA + "A sword made from old technology"));
 	}
 
@@ -35,7 +37,7 @@ public class GuardianSword extends ItemCustomSword
 		if(entity instanceof PlayerEntity)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
+			ItemStack equipped = player.getMainHandItem();
 			{
 				if(stack == equipped)
 					{
@@ -43,12 +45,12 @@ public class GuardianSword extends ItemCustomSword
 						{
 							if(!player.hasItemInSlot(EquipmentSlotType.OFFHAND))
 							{
-								boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.ancient_helmet);
-								boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.ancient_cuirass);
-								boolean isLeggingsOn = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.ancient_greaves);
-								boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.ancient_boots);
+								boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.ancient_helmet);
+								boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.ancient_cuirass);
+								boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.ancient_greaves);
+								boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.ancient_boots);
 								if (isHelmetOn & isChestplateOn & isLeggingsOn & isBootsOn) {
-									player.addPotionEffect(new EffectInstance(Effect.get(5), 5, 0, false, false, false));
+									player.addEffect(new EffectInstance(Effect.byId(5), 5, 0, false, false, false));
 								}
 							}
 						}

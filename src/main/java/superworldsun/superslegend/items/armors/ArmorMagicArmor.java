@@ -22,14 +22,16 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class ArmorMagicArmor extends NonEnchantArmor {
 	public ArmorMagicArmor(String name, EquipmentSlotType slot) {
-		super(ArmourMaterialList.magic, slot, new Properties().group(SupersLegend.supers_legend));
+		super(ArmourMaterialList.magic, slot, new Properties().tab(SupersLegend.supers_legend));
 		setRegistryName(SupersLegend.modid, name);
 	}
 
-	public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
-		super.addInformation(stack, world, list, flag);
+	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "Magic Armor"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants invicibility from rupee"));
 		list.add(new StringTextComponent(TextFormatting.RED + "Slows user when rupee are depleted"));
@@ -39,31 +41,31 @@ public class ArmorMagicArmor extends NonEnchantArmor {
 
 	@Override
 	public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
-		if (!world.isRemote) {
-			boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.magic_armor_cap);
-			boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.magic_armor_tunic);
-			boolean isLeggingsOn = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.magic_armor_leggings);
-			boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.magic_armor_boots);
+		if (!world.isClientSide) {
+			boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.magic_armor_cap);
+			boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.magic_armor_tunic);
+			boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.magic_armor_leggings);
+			boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.magic_armor_boots);
 			if (isHelmetOn & isChestplateOn & isLeggingsOn & isBootsOn) {
-				EffectInstance effect = player.getActivePotionEffect(Effects.RESISTANCE);
+				EffectInstance effect = player.getEffect(Effects.DAMAGE_RESISTANCE);
 				if (effect != null && effect.getAmplifier() == 100)
 
-					player.addPotionEffect(new EffectInstance(Effect.get(11), 14, 99, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(11), 14, 99, false, false));
 				else {
-					for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-						ItemStack armorStack = player.inventory.getStackInSlot(i);
+					for (int i = 0; i < player.inventory.getContainerSize(); ++i) {
+						ItemStack armorStack = player.inventory.getItem(i);
 						if (armorStack.getItem() == ItemList.rupee) {
 							armorStack.shrink(1);
-							player.addPotionEffect(new EffectInstance(Effect.get(11), 10, 100, false, false));
+							player.addEffect(new EffectInstance(Effect.byId(11), 10, 100, false, false));
 							break;
 						}
 					}
 				}
 			}
 			if (isHelmetOn && isChestplateOn && isLeggingsOn && isBootsOn) {
-				EffectInstance effect = player.getActivePotionEffect(Effects.RESISTANCE);
+				EffectInstance effect = player.getEffect(Effects.DAMAGE_RESISTANCE);
 				if (effect == null) {
-					player.addPotionEffect(new EffectInstance(Effect.get(2), 10, 3, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(2), 10, 3, false, false));
 				}
 			}
 			/*if (isHelmetOn && isChestplateOn && isLeggingsOn && isBootsOn) {

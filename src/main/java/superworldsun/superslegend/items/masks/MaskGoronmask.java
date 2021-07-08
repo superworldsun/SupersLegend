@@ -18,17 +18,19 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskGoronmask extends NonEnchantArmor {
     public MaskGoronmask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.goronmask, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.goronmask, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.DARK_RED + "The face of a Goron"));
 		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "Your skin is like stone and cannot stay withered"));
 	}
@@ -40,19 +42,19 @@ public class MaskGoronmask extends NonEnchantArmor {
     	
     	
     	
-        if (!world.isRemote){
-                boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_goronmask);
+        if (!world.isClientSide){
+                boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_goronmask);
                 if(isHelmeton) 
                 	
-                	if(player.getActivePotionEffect(Effects.WITHER) != null)
+                	if(player.getEffect(Effects.WITHER) != null)
                 	{
                 	
-                	player.removePotionEffect(Effect.get(20));
+                	player.removeEffect(Effect.byId(20));
                 	
                 	}
                 	else	
                 	{
-                		player.removePotionEffect(Effect.get(20));
+                		player.removeEffect(Effect.byId(20));
                 	}
                 
                 }
