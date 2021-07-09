@@ -17,6 +17,8 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class MagicMirror extends Item {
 
     private static int duration = 25;
@@ -28,9 +30,9 @@ public class MagicMirror extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack stack = player.getHeldItem(hand);
-        player.setActiveHand(hand);
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        player.startUsingItem(hand);
         return new ActionResult<ItemStack>(ActionResultType.SUCCESS, stack);
     }
 
@@ -38,30 +40,30 @@ public class MagicMirror extends Item {
     public void onUsingTick (ItemStack stack, LivingEntity entity,int count)
     {
 
-        Random rand = entity.world.rand;
+        Random rand = entity.level.random;
         for (int i = 0; i < 45; i++)
         {
-            entity.world.addParticle(ParticleTypes.CLOUD,
-                    entity.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
-                    entity.prevPosY + rand.nextFloat() * 3 - 2,
-                    entity.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+            entity.level.addParticle(ParticleTypes.CLOUD,
+                    entity.xo + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+                    entity.yo + rand.nextFloat() * 3 - 2,
+                    entity.zo + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
                     0, 0.105D, 0);
         }
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entity)
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity entity)
     {
-        if (!world.isRemote)
+        if (!world.isClientSide)
         {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
 
-            if(world.getDimensionKey().equals(World.OVERWORLD)) //if dimension is Overworld
+            if(world.dimension().equals(World.OVERWORLD)) //if dimension is Overworld
             {
-                if(player.func_241140_K_() != null) //player bed location not null
+                if(player.getRespawnPosition() != null) //player bed location not null
                 {
-                    BlockPos bedLoc = player.func_241140_K_(); //get player bed position
-                    BlockPos currentPos = player.getPosition();
+                    BlockPos bedLoc = player.getRespawnPosition(); //get player bed position
+                    BlockPos currentPos = player.blockPosition();
 
                     if (player.isPassenger())
                     {
@@ -69,18 +71,18 @@ public class MagicMirror extends Item {
                     }
 
                     setPositionAndUpdate(entity, world, bedLoc);
-                    world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
+                    world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
                     //player.sendStatusMessage(new TranslationTextComponent("Returned to bed"), true);
                 }
                 else
                 {
-                    player.sendStatusMessage(new TranslationTextComponent("No Bed to return to"), true);
+                    player.displayClientMessage(new TranslationTextComponent("No Bed to return to"), true);
                     return stack;
                 }
             }
             else
             {
-                player.sendStatusMessage(new TranslationTextComponent("Can only use in OverWorld"), true);
+                player.displayClientMessage(new TranslationTextComponent("Can only use in OverWorld"), true);
             }
         }
 
@@ -88,7 +90,7 @@ public class MagicMirror extends Item {
     }
 
     @Override
-    public UseAction getUseAction (ItemStack stack)
+    public UseAction getUseAnimation (ItemStack stack)
     {
         return UseAction.BOW;
     }
@@ -101,19 +103,19 @@ public class MagicMirror extends Item {
 
     public void setPositionAndUpdate(LivingEntity entity, World world, BlockPos bedLoc)
     {
-        entity.setPositionAndUpdate(bedLoc.getX() + 0.5F, bedLoc.getY() + 0.6F, bedLoc.getZ() + 0.5F);
+        entity.teleportTo(bedLoc.getX() + 0.5F, bedLoc.getY() + 0.6F, bedLoc.getZ() + 0.5F);
         entity.fallDistance = 0;
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
     
     @Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.AQUA + "When lost, use this mirror to return home"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-click to return to bed"));
 	}

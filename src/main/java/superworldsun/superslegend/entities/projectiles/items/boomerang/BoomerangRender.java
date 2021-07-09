@@ -25,19 +25,19 @@ public class BoomerangRender extends EntityRenderer<BoomerangEntity> {
     public BoomerangRender(EntityRendererManager renderManager, ItemRenderer item) {
         super(renderManager);
         this.itemRenderer = item;
-        this.shadowSize = 0.15F;
-        this.shadowOpaque = 0.80F;
+        this.shadowRadius = 0.15F;
+        this.shadowStrength = 0.80F;
     }
 
     @Override
     public void render(BoomerangEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        matrixStackIn.push();
-        matrixStackIn.rotate(Vector3f.YP.rotationDegrees(-entityYaw + 90.0f));
-        matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationPitch, entityIn.rotationPitch) + 90.0F));
-        matrixStackIn.rotate(Vector3f.YN.rotationDegrees(90.0f));
-        matrixStackIn.rotate(Vector3f.ZN.rotationDegrees(entityIn.getBoomerangRotation()));
-        this.itemRenderer.renderItem(getItemStackForRender(entityIn), ItemCameraTransforms.TransformType.GROUND, packedLightIn, OverlayTexture.NO_OVERLAY, matrixStackIn, bufferIn);
-        matrixStackIn.pop();
+        matrixStackIn.pushPose();
+        matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(-entityYaw + 90.0f));
+        matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.xRotO, entityIn.xRot) + 90.0F));
+        matrixStackIn.mulPose(Vector3f.YN.rotationDegrees(90.0f));
+        matrixStackIn.mulPose(Vector3f.ZN.rotationDegrees(entityIn.getBoomerangRotation()));
+        this.itemRenderer.renderStatic(getItemStackForRender(entityIn), ItemCameraTransforms.TransformType.GROUND, packedLightIn, OverlayTexture.NO_OVERLAY, matrixStackIn, bufferIn);
+        matrixStackIn.popPose();
 
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
@@ -47,7 +47,7 @@ public class BoomerangRender extends EntityRenderer<BoomerangEntity> {
     }
 
     @Override
-    public ResourceLocation getEntityTexture(BoomerangEntity entity) {
+    public ResourceLocation getTextureLocation(BoomerangEntity entity) {
         return TEXTURE;
     }
 

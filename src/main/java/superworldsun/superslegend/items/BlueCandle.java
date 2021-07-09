@@ -25,6 +25,8 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Objects;
 
+import net.minecraft.item.Item.Properties;
+
 public class BlueCandle extends Item {
    public BlueCandle(Properties builder) {
       super(builder);
@@ -44,7 +46,7 @@ public class BlueCandle extends Item {
          world.setBlockState(blockpos, blockstate.with(BlockStateProperties.LIT, Boolean.TRUE), 11);
          context.getItem().damageItem(1, playerentity, (p_219999_1_) -> p_219999_1_.sendBreakAnimation(context.getHand()));
 
-         return ActionResultType.func_233537_a_(world.isRemote());
+         return ActionResultType.sidedSuccess(world.isRemote());
       } else {
          //noinspection SpellCheckingInspection
          BlockPos blockpos1 = blockpos.offset(context.getFace());
@@ -60,7 +62,7 @@ public class BlueCandle extends Item {
                itemstack.damageItem(1, playerentity, (p_219998_1_) -> p_219998_1_.sendBreakAnimation(context.getHand()));
             }
 
-            return ActionResultType.func_233537_a_(world.isRemote());
+            return ActionResultType.sidedSuccess(world.isRemote());
          } else {
             return ActionResultType.FAIL;
          }

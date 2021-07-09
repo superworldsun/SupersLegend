@@ -26,7 +26,7 @@ public class EntityArrowBomb extends AbstractArrowEntity {
 
     public EntityArrowBomb(World worldIn, LivingEntity shooter) {
         super(EntityInit.BOMB_ARROW.get(), shooter, worldIn);
-        this.setDamage(this.getDamage() + 2.0F);
+        this.setBaseDamage(this.getBaseDamage() + 2.0F);
     }
 
     public EntityArrowBomb(World worldIn, double x, double y, double z) {
@@ -34,21 +34,21 @@ public class EntityArrowBomb extends AbstractArrowEntity {
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(ItemList.bomb_arrow);
     }
 
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected void arrowHit(LivingEntity entity) {
-        super.arrowHit(entity);
-        if (!world.isRaining() && !world.isThundering()) {
-            world.createExplosion((Entity) null, this.prevPosX, this.prevPosY, this.prevPosZ, 4.5f, Explosion.Mode.NONE);
+    protected void doPostHurtEffects(LivingEntity entity) {
+        super.doPostHurtEffects(entity);
+        if (!level.isRaining() && !level.isThundering()) {
+            level.explode((Entity) null, this.xo, this.yo, this.zo, 4.5f, Explosion.Mode.NONE);
         }
     }
 
@@ -57,35 +57,35 @@ public class EntityArrowBomb extends AbstractArrowEntity {
         super.tick();
         if (this.inGround) {
             if (!this.isInWater()) {
-                world.createExplosion((Entity) null, this.prevPosX, this.prevPosY, this.prevPosZ, 3.0f, Explosion.Mode.NONE);
+                level.explode((Entity) null, this.xo, this.yo, this.zo, 3.0f, Explosion.Mode.NONE);
                 this.remove();
             } else {
                 this.remove();
             }
         }
-        if (!this.isWet() && !this.inGround) {
-            this.world.addParticle(ParticleTypes.SMOKE, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D,
+        if (!this.isInWaterOrRain() && !this.inGround) {
+            this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
                     0.0D);
-            this.world.addParticle(ParticleTypes.SMOKE, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D,
+            this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
                     0.0D);
-            this.world.addParticle(ParticleTypes.SMOKE, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D,
+            this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
                     0.0D);
         }
-        if(this.inWater)
+        if(this.wasTouchingWater)
         {
-            BlockPos currentPos = this.getPosition();
-            this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_DEFUSE, SoundCategory.PLAYERS, 1.0f, 1.0f);
+            BlockPos currentPos = this.blockPosition();
+            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_DEFUSE, SoundCategory.PLAYERS, 1.0f, 1.0f);
             this.remove();
         }
-        if(this.isBurning() || this.isInLava())
+        if(this.isOnFire() || this.isInLava())
         {
-            world.createExplosion((Entity) null, this.prevPosX, this.prevPosY, this.prevPosZ, 3.0f, Explosion.Mode.NONE);
+            level.explode((Entity) null, this.xo, this.yo, this.zo, 3.0f, Explosion.Mode.NONE);
             this.remove();
         }
-        if(this.ticksExisted % 9 == 0)
+        if(this.tickCount % 9 == 0)
         {
-            BlockPos currentPos = this.getPosition();
-            this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_FUSE, SoundCategory.PLAYERS, 1.0f, 1.0f);
+            BlockPos currentPos = this.blockPosition();
+            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_FUSE, SoundCategory.PLAYERS, 1.0f, 1.0f);
         }
     }
 }

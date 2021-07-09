@@ -21,6 +21,8 @@ import superworldsun.superslegend.lists.ItemList;
 
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class BitBow extends BowItem
 {
 
@@ -29,27 +31,27 @@ public class BitBow extends BowItem
 		super(properties);
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
-		ItemStack stack = playerIn.getHeldItem(handIn);
-		if (!worldIn.isRemote && !playerIn.isCreative() && playerIn.inventory.hasItemStack(new ItemStack(ItemList.rupee)))
+		ItemStack stack = playerIn.getItemInHand(handIn);
+		if (!worldIn.isClientSide && !playerIn.isCreative() && playerIn.inventory.contains(new ItemStack(ItemList.rupee)))
 		{
-			playerIn.getCooldownTracker().setCooldown(this, 15);
+			playerIn.getCooldowns().addCooldown(this, 15);
 
-			BlockPos currentPos = playerIn.getPosition();
+			BlockPos currentPos = playerIn.blockPosition();
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW, SoundCategory.PLAYERS, 3f, 1f);
 
 			ArrowItem itemarrow = (ArrowItem)Items.ARROW;
 			AbstractArrowEntity entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
 			float arrowVelocity = 3.0F;
-			entityarrow.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
-			entityarrow.setDamage(1);
-			worldIn.addEntity(entityarrow);
-			entityarrow.pickupStatus = AbstractArrowEntity.PickupStatus.DISALLOWED;
+			entityarrow.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, arrowVelocity, 1.0F);
+			entityarrow.setBaseDamage(1);
+			worldIn.addFreshEntity(entityarrow);
+			entityarrow.pickup = AbstractArrowEntity.PickupStatus.DISALLOWED;
 
-			for (int i = 0; i < playerIn.inventory.getSizeInventory(); ++i)
+			for (int i = 0; i < playerIn.inventory.getContainerSize(); ++i)
 			{
-				ItemStack stackslot = playerIn.inventory.getStackInSlot(i);
+				ItemStack stackslot = playerIn.inventory.getItem(i);
 				if (stackslot.getItem() == ItemList.rupee)
 				{
 					stackslot.shrink(1);
@@ -57,27 +59,27 @@ public class BitBow extends BowItem
 				}
 			}
 		}
-		else if (!worldIn.isRemote && playerIn.isCreative()) {
-			playerIn.getCooldownTracker().setCooldown(this, 15);
+		else if (!worldIn.isClientSide && playerIn.isCreative()) {
+			playerIn.getCooldowns().addCooldown(this, 15);
 
-			BlockPos currentPos = playerIn.getPosition();
+			BlockPos currentPos = playerIn.blockPosition();
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW, SoundCategory.PLAYERS, 3f, 1f);
 
 			ArrowItem itemarrow = (ArrowItem)Items.ARROW;
 			AbstractArrowEntity entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
 			float arrowVelocity = 3.0F;
-			entityarrow.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
-			entityarrow.setDamage(1);
-			worldIn.addEntity(entityarrow);
-			entityarrow.pickupStatus = AbstractArrowEntity.PickupStatus.DISALLOWED;
+			entityarrow.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, arrowVelocity, 1.0F);
+			entityarrow.setBaseDamage(1);
+			worldIn.addFreshEntity(entityarrow);
+			entityarrow.pickup = AbstractArrowEntity.PickupStatus.DISALLOWED;
 		}
-		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
+		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "Uses Green Rupee as ammo"));
 	}
 

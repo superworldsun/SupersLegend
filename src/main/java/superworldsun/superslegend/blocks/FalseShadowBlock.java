@@ -12,10 +12,12 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class FalseShadowBlock extends Block
 
 {
-	protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
+	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 
 	public FalseShadowBlock(Properties properties) {
 		super(properties);
@@ -27,7 +29,7 @@ public class FalseShadowBlock extends Block
 
 
 	public BlockState getPlant(IBlockReader world, BlockPos pos) {
-		return getDefaultState();
+		return defaultBlockState();
 	}
 
 	   /*public BlockRenderLayer getRenderLayer() {

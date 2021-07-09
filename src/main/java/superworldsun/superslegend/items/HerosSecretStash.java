@@ -21,39 +21,41 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class HerosSecretStash extends Item
 {
 
-	public static final TranslationTextComponent field_220115_d = new TranslationTextComponent("container.enderchest");
+	public static final TranslationTextComponent CONTAINER_TITLE = new TranslationTextComponent("container.enderchest");
 	
 	public HerosSecretStash(Properties properties)
 	{
 		super(properties);
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	{
 		
-		EnderChestInventory enderChest = player.getInventoryEnderChest();
+		EnderChestInventory enderChest = player.getEnderChestInventory();
 		
 		if (enderChest != null)
 		{
-			if (!world.isRemote)
+			if (!world.isClientSide)
 			{
-				BlockPos currentPos = player.getPosition();
-				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1f, 1f);
-				 player.openContainer(new SimpleNamedContainerProvider((p_220114_1_, p_220114_2_, p_220114_3_) -> {
-		               return ChestContainer.createGeneric9X3(p_220114_1_, p_220114_2_, enderChest);
-		            }, field_220115_d));
+				BlockPos currentPos = player.blockPosition();
+				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1f, 1f);
+				 player.openMenu(new SimpleNamedContainerProvider((p_220114_1_, p_220114_2_, p_220114_3_) -> {
+		               return ChestContainer.threeRows(p_220114_1_, p_220114_2_, enderChest);
+		            }, CONTAINER_TITLE));
 			}
 		}
-		return new ActionResult<ItemStack>(ActionResultType.PASS, player.getHeldItem(hand));
+		return new ActionResult<ItemStack>(ActionResultType.PASS, player.getItemInHand(hand));
 	}
 	 
     @Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.ITALIC + "A safe place for things on the go"));
 	}  
 

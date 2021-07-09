@@ -72,7 +72,7 @@ import java.util.List;
         }
 
         @Override
-        public void func_230364_a_(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
+        public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
 
 
             int x = (chunkX << 4) + 7;
@@ -83,7 +83,7 @@ import java.util.List;
             BlockPos blockpos = new BlockPos(x, 0, z);
 
 
-            JigsawManager.func_242837_a(
+            JigsawManager.addPieces(
                     dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.getRegistry(Registry.JIGSAW_POOL_KEY)
 

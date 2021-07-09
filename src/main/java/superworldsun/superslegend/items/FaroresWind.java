@@ -26,6 +26,8 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.item.Item.Properties;
+
 public class FaroresWind extends Item
 {
 
@@ -35,29 +37,29 @@ public class FaroresWind extends Item
     }
 
     //Set the location in the item
-    public ActionResultType onItemUse(ItemUseContext context)
+    public ActionResultType useOn(ItemUseContext context)
     {
-        World world = context.getWorld();
-        BlockPos pos = context.getPos();
+        World world = context.getLevel();
+        BlockPos pos = context.getClickedPos();
         PlayerEntity player = context.getPlayer();
-        Direction direction = context.getFace();
-        ItemStack stackWind = context.getPlayer().getHeldItemMainhand();
+        Direction direction = context.getClickedFace();
+        ItemStack stackWind = context.getPlayer().getMainHandItem();
 
-        if(getPosition(stackWind) == null && player.isSneaking())
+        if(getPosition(stackWind) == null && player.isShiftKeyDown())
         {
-            setPosition(stackWind, world, pos.offset(direction), player);
-            player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location set!"), true);
-            BlockPos currentPos = player.getPosition();
-            world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 1f, 1f);
-            player.getCooldownTracker().setCooldown(this, 60);
+            setPosition(stackWind, world, pos.relative(direction), player);
+            player.displayClientMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location set!"), true);
+            BlockPos currentPos = player.blockPosition();
+            world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 1f, 1f);
+            player.getCooldowns().addCooldown(this, 60);
             return ActionResultType.SUCCESS;
         }
 
         if(getPosition(stackWind) != null)
         {
-            player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location already set."), true);
-            BlockPos currentPos = player.getPosition();
-            world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1f, 1f);
+            player.displayClientMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location already set."), true);
+            BlockPos currentPos = player.blockPosition();
+            world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.DISPENSER_FAIL, SoundCategory.PLAYERS, 1f, 1f);
             return ActionResultType.SUCCESS;
         }
 
@@ -65,62 +67,62 @@ public class FaroresWind extends Item
     }
 
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
     {
-        ItemStack stack = player.getHeldItem(hand);
+        ItemStack stack = player.getItemInHand(hand);
 
-        if(getPosition(stack) != null && !player.isSneaking() && player.getFoodStats().getFoodLevel()>= 4)
+        if(getPosition(stack) != null && !player.isShiftKeyDown() && player.getFoodData().getFoodLevel()>= 4)
         {
-            Random rand = player.world.rand;
+            Random rand = player.level.random;
             for (int i = 0; i < 45; i++)
             {
-                player.world.addParticle(ParticleTypes.CLOUD,
-                        player.prevPosX + (rand.nextBoolean() ? 2 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
-                        player.prevPosY + rand.nextFloat() * 3 - 2,
-                        player.prevPosZ + (rand.nextBoolean() ? 2 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+                player.level.addParticle(ParticleTypes.CLOUD,
+                        player.xo + (rand.nextBoolean() ? 2 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
+                        player.yo + rand.nextFloat() * 3 - 2,
+                        player.zo + (rand.nextBoolean() ? 2 : 1) * Math.pow(rand.nextFloat(), 1) * 2,
                         0.3, 0.105D, 0.3);
             }
 
-            player.addExhaustion(18);
+            player.causeFoodExhaustion(18);
             teleport(player, world, stack);
-            world.playSound(null, player.prevPosX, player.prevPosY, player.prevPosZ, SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-            player.getCooldownTracker().setCooldown(this, 120);
+            world.playSound(null, player.xo, player.yo, player.zo, SoundEvents.CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            player.getCooldowns().addCooldown(this, 120);
         }
 
-        if(getPosition(stack) != null && player.isSneaking())
+        if(getPosition(stack) != null && player.isShiftKeyDown())
         {
             setPosition(stack, world, null, player);
-            player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location cleared!"), true);
+            player.displayClientMessage(new TranslationTextComponent(TextFormatting.GREEN + "Location cleared!"), true);
         }
 
-        return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+        return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
     }
 
     // The Items Teleport Function
     public void teleport(PlayerEntity player, World world, ItemStack stack)
     {
-        if(world.isRemote)
+        if(world.isClientSide)
         {
             return;
         }
         int Dim = getDimension(stack);
         BlockPos pos = getPosition(stack);
 
-        if(world.getDimensionKey().equals(World.OVERWORLD) && Dim == 0)
+        if(world.dimension().equals(World.OVERWORLD) && Dim == 0)
         {
-            player.setPositionAndUpdate(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F);
+            player.teleportTo(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F);
         }
-        else if(world.getDimensionKey().equals(World.THE_NETHER) && Dim == -1)
+        else if(world.dimension().equals(World.NETHER) && Dim == -1)
         {
-            player.setPositionAndUpdate(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F);
+            player.teleportTo(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F);
         }
-        else if(world.getDimensionKey().equals(World.THE_END) && Dim == 1)
+        else if(world.dimension().equals(World.END) && Dim == 1)
         {
-            player.setPositionAndUpdate(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F);
+            player.teleportTo(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F);
         }
         else
         {
-            player.sendStatusMessage(new TranslationTextComponent(TextFormatting.DARK_GREEN + "You are not currently in the stored dimension"), true);
+            player.displayClientMessage(new TranslationTextComponent(TextFormatting.DARK_GREEN + "You are not currently in the stored dimension"), true);
         }
     }
 
@@ -142,7 +144,7 @@ public class FaroresWind extends Item
 
     public static void setPosition(ItemStack stack, World world, BlockPos pos, PlayerEntity player)
     {
-        if(world.isRemote)
+        if(world.isClientSide)
         {
             return;
         }
@@ -166,9 +168,9 @@ public class FaroresWind extends Item
         else
         {
             tags.put("pos", NBTUtil.writeBlockPos(pos));
-            if(world.getDimensionKey().equals(World.OVERWORLD)) tags.putInt("Dim", 0); //OVERWORLD
-            if(world.getDimensionKey().equals(World.THE_NETHER)) tags.putInt("Dim", -1); //NETHER
-            if(world.getDimensionKey().equals(World.THE_END)) tags.putInt("Dim", 1); //END
+            if(world.dimension().equals(World.OVERWORLD)) tags.putInt("Dim", 0); //OVERWORLD
+            if(world.dimension().equals(World.NETHER)) tags.putInt("Dim", -1); //NETHER
+            if(world.dimension().equals(World.END)) tags.putInt("Dim", 1); //END
         }
         stack.setTag(tags);
     }
@@ -189,7 +191,7 @@ public class FaroresWind extends Item
         return Integer.MAX_VALUE;
     }
 
-    public void addInformation(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
+    public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
     {// Switch Dimension integer values for easily read names
         String dimName;
         switch(getDimension(stack))
@@ -208,7 +210,7 @@ public class FaroresWind extends Item
                 break;
         }
 
-        super.addInformation(stack, world, list, flag);
+        super.appendHoverText(stack, world, list, flag);
         list.add(new StringTextComponent(TextFormatting.GREEN + "Allows you to teleport to a saved location on Right-click"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "Does not work across dimensions"));
         list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));

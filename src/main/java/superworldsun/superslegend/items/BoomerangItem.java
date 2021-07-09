@@ -14,6 +14,8 @@ import superworldsun.superslegend.entities.projectiles.items.boomerang.RegularBo
 import superworldsun.superslegend.entities.projectiles.items.boomerang.BoomerangEntity;
 import superworldsun.superslegend.init.SoundInit;
 
+import net.minecraft.item.Item.Properties;
+
 public class BoomerangItem extends Item {
 
     public BoomerangItem(Properties properties) {
@@ -26,17 +28,17 @@ public class BoomerangItem extends Item {
     }*/
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        if (playerIn.getHeldItem(handIn).getDamage() == 0) {
-            BoomerangEntity boom = new RegularBoomerang(worldIn, playerIn, playerIn.getHeldItem(handIn), handIn);
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        if (playerIn.getItemInHand(handIn).getDamageValue() == 0) {
+            BoomerangEntity boom = new RegularBoomerang(worldIn, playerIn, playerIn.getItemInHand(handIn), handIn);
 
-            BlockPos currentPos = playerIn.getPosition();
+            BlockPos currentPos = playerIn.blockPosition();
             worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOOMERANG_THROW, SoundCategory.PLAYERS, 0.6f, 1.0f);
 
-            worldIn.addEntity(boom);
-            playerIn.setHeldItem(handIn, ItemStack.EMPTY);
+            worldIn.addFreshEntity(boom);
+            playerIn.setItemInHand(handIn, ItemStack.EMPTY);
         }
-        return ActionResult.resultSuccess(playerIn.getHeldItem(handIn));
+        return ActionResult.success(playerIn.getItemInHand(handIn));
     }
 
 }

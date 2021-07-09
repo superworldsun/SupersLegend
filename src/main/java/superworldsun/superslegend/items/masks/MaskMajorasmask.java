@@ -25,11 +25,13 @@ import superworldsun.superslegend.lists.ItemList;
 //import ModelPostmansHat;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskMajorasmask extends NonEnchantArmor {
     public MaskMajorasmask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.majorasmask, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.majorasmask, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     
@@ -46,9 +48,9 @@ public class MaskMajorasmask extends NonEnchantArmor {
         return (A) model;
     }*/
     
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
  	{
- 		super.addInformation(stack, world, list, flag);				
+ 		super.appendHoverText(stack, world, list, flag);				
  		list.add(new StringTextComponent(TextFormatting.RED + "This Mask gives off a strong evil aura"));
  	}
 
@@ -58,19 +60,19 @@ public class MaskMajorasmask extends NonEnchantArmor {
     	
     	
     	
-        if (!world.isRemote){
-                boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_majorasmask);
+        if (!world.isClientSide){
+                boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_majorasmask);
                 if(isHelmeton)
             	{
-            		player.addPotionEffect(new EffectInstance(Effect.get(20), 120, 0, false, true));
-                    player.addPotionEffect(new EffectInstance(Effect.get(5), 10, 1, false, false));
-                    player.addPotionEffect(new EffectInstance(Effect.get(11), 10, 1, false, false));
-                    player.addPotionEffect(new EffectInstance(Effect.get(1), 10, 1, false, false));
-                    player.addPotionEffect(new EffectInstance(Effect.get(31), 10, 0, false, false));
+            		player.addEffect(new EffectInstance(Effect.byId(20), 120, 0, false, true));
+                    player.addEffect(new EffectInstance(Effect.byId(5), 10, 1, false, false));
+                    player.addEffect(new EffectInstance(Effect.byId(11), 10, 1, false, false));
+                    player.addEffect(new EffectInstance(Effect.byId(1), 10, 1, false, false));
+                    player.addEffect(new EffectInstance(Effect.byId(31), 10, 0, false, false));
             	}
             	else
             	{
-                    player.removePotionEffect(Effect.get(20));
+                    player.removeEffect(Effect.byId(20));
                     
             	}
             }

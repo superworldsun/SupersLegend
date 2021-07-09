@@ -1,4 +1,4 @@
-package superworldsun.superslegend.CustomLootMobs;
+package superworldsun.superslegend.customlootmobs;
 
 import java.util.Random;
 
@@ -17,9 +17,9 @@ public class CustomLootEnderman
 
         if(event.getEntityLiving() instanceof EndermanEntity) {
             if(random.nextInt(3) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(4)));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.rupee, random.nextInt(4)));
             if(random.nextInt(8) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_rupee,1));
             
 	        }
 	    }

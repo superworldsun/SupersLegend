@@ -1,4 +1,4 @@
-package superworldsun.superslegend.CustomLootMobs;
+package superworldsun.superslegend.customlootmobs;
 
 import java.util.Random;
 
@@ -17,12 +17,12 @@ public class CustomLootVindicator {
 
         if(event.getEntityLiving() instanceof VindicatorEntity) {
             if(random.nextInt(2) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.rupee, random.nextInt(3)));
             if(random.nextInt(5) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_rupee,1));
             
             if(random.nextInt(25) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_courage_shard,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.triforce_courage_shard,1));
             
 	        }
 	    }

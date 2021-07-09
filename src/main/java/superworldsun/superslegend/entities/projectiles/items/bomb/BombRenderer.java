@@ -23,11 +23,11 @@ public class BombRenderer extends EntityRenderer<BombEntity> {
 
     public BombRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn);
-        this.shadowSize = 0.3F;
+        this.shadowRadius = 0.3F;
     }
 
     public void render(BombEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        matrixStackIn.push();
+        matrixStackIn.pushPose();
         matrixStackIn.translate(0, 1.5f, 0);
         int i = entityIn.getFuse();
         if (i > -1 && (float)i - partialTicks + 1.0F < 10.0F) {
@@ -40,14 +40,14 @@ public class BombRenderer extends EntityRenderer<BombEntity> {
         }
 
 
-        matrixStackIn.rotate(Vector3f.YP.rotationDegrees(entityYaw));
-        matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(180.0f));
-        matrixStackIn.rotate(Vector3f.YN.rotationDegrees(0.0f));
-        matrixStackIn.rotate(Vector3f.ZN.rotationDegrees(0.0f));
-        IVertexBuilder ivertexbuild = ItemRenderer.getEntityGlintVertexBuilder(bufferIn, this.bombModel.getRenderType(BOMB), false, false);
-        this.bombModel.render(matrixStackIn, ivertexbuild, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(entityYaw));
+        matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(180.0f));
+        matrixStackIn.mulPose(Vector3f.YN.rotationDegrees(0.0f));
+        matrixStackIn.mulPose(Vector3f.ZN.rotationDegrees(0.0f));
+        IVertexBuilder ivertexbuild = ItemRenderer.getFoilBufferDirect(bufferIn, this.bombModel.renderType(BOMB), false, false);
+        this.bombModel.renderToBuffer(matrixStackIn, ivertexbuild, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 
-        matrixStackIn.pop();
+        matrixStackIn.popPose();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
@@ -56,7 +56,7 @@ public class BombRenderer extends EntityRenderer<BombEntity> {
     /**
      * Returns the location of an entity's texture.
      */
-    public ResourceLocation getEntityTexture(BombEntity entity) {
+    public ResourceLocation getTextureLocation(BombEntity entity) {
         return BOMB;
     }
 

@@ -30,11 +30,13 @@ import superworldsun.superslegend.models.masks.ModelAllnightmask;
 import javax.annotation.Nonnull;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskAllnightmaskEffects extends NonEnchantArmor {
     public MaskAllnightmaskEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.allnightmask, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.allnightmask, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
@@ -51,28 +53,28 @@ public class MaskAllnightmaskEffects extends NonEnchantArmor {
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
 
-        if (!world.isRemote){
-                boolean isHelmeton = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_allnightmask);
-                if(isHelmeton) player.addPotionEffect(new EffectInstance(Effect.get(16), 230, 0, false, false));
+        if (!world.isClientSide){
+                boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_allnightmask);
+                if(isHelmeton) player.addEffect(new EffectInstance(Effect.byId(16), 230, 0, false, false));
                 }
         if(player.isSleeping())
         {
-        	player.wakeUp();
-        	player.sendStatusMessage(new TranslationTextComponent(TextFormatting.GRAY + "You feel restless"), true);
+        	player.stopSleeping();
+        	player.displayClientMessage(new TranslationTextComponent(TextFormatting.GRAY + "You feel restless"), true);
         }
     }
 
     @Override
-    public @Nonnull Multimap<Attribute, AttributeModifier> getAttributeModifiers(@Nonnull EquipmentSlotType equipmentSlot) {
+    public @Nonnull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@Nonnull EquipmentSlotType equipmentSlot) {
         return HashMultimap.create();
     }
 
     
     @Override
     @OnlyIn(Dist.CLIENT)
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.WHITE + "Cant sleep huh?"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants nightvision"));
 	}

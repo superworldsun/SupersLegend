@@ -19,6 +19,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class FairyOcarina extends Item
 {
 
@@ -27,34 +29,34 @@ public class FairyOcarina extends Item
 		super(properties);
 	}
 	
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
 		 @SuppressWarnings("unused")
-		ItemStack stack = player.getHeldItem(hand);
+		ItemStack stack = player.getItemInHand(hand);
 
 	     {
-			 BlockPos currentPos = player.getPosition();
-			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.BLOCK_NOTE_BLOCK_FLUTE, SoundCategory.PLAYERS, 1f, 1f);
+			 BlockPos currentPos = player.blockPosition();
+			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.NOTE_BLOCK_FLUTE, SoundCategory.PLAYERS, 1f, 1f);
 			 
-			 Random rand = player.world.rand;
+			 Random rand = player.level.random;
 		        for (int i = 0; i < 45; i++)
 		        {
-		        	player.world.addParticle(ParticleTypes.NOTE,
-		                    player.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
-		                    player.prevPosY + rand.nextFloat() * 3 - 2,
-		                    player.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+		        	player.level.addParticle(ParticleTypes.NOTE,
+		                    player.xo + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
+		                    player.yo + rand.nextFloat() * 3 - 2,
+		                    player.zo + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2) * 2,
 		                    0, 0.105D, 0);
 		        }
-		      player.getCooldownTracker().setCooldown(this, 8);
+		      player.getCooldowns().addCooldown(this, 8);
 		 }
 	 
-		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
+		 return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand)); 
 	 }
 			
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GOLD + "A standard Ocarina"));
 	}   
 	//world.setDayTime(0);

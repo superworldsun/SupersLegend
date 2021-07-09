@@ -1,4 +1,4 @@
-package superworldsun.superslegend.CustomLootMobs;
+package superworldsun.superslegend.customlootmobs;
 
 import java.util.Random;
 
@@ -17,12 +17,12 @@ public class CustomLootGhast
 
         if(event.getEntityLiving() instanceof GhastEntity) {
             if(random.nextInt(2) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(4)));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.rupee, random.nextInt(4)));
             if(random.nextInt(4) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_rupee,1));
             
             if(random.nextInt(35) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.triforce_power_shard,1));
             
 	        }
 	    }

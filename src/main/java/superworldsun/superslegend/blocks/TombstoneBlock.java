@@ -21,27 +21,29 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import superworldsun.superslegend.lists.BlockList;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class TombstoneBlock extends Block implements IWaterLoggable
 
 {
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
-	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 
-	protected static final VoxelShape FACE_EAST_AABB = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 3.0D, 19.0D, 16.0D);
-	protected static final VoxelShape FACE_WEST_AABB = Block.makeCuboidShape(13.0D, 0.0D, 0.0D, 16.0D, 19.0D, 16.0D);
-	protected static final VoxelShape FACE_SOUTH_AABB = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 19.0D, 3.0D);
-	protected static final VoxelShape FACE_NORTH_AABB = Block.makeCuboidShape(0.0D, 0.0D, 13.0D, 16.0D, 19.0D, 16.0D);
+	protected static final VoxelShape FACE_EAST_AABB = Block.box(0.0D, 0.0D, 0.0D, 3.0D, 19.0D, 16.0D);
+	protected static final VoxelShape FACE_WEST_AABB = Block.box(13.0D, 0.0D, 0.0D, 16.0D, 19.0D, 16.0D);
+	protected static final VoxelShape FACE_SOUTH_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 19.0D, 3.0D);
+	protected static final VoxelShape FACE_NORTH_AABB = Block.box(0.0D, 0.0D, 13.0D, 16.0D, 19.0D, 16.0D);
 
 	   public TombstoneBlock(Properties properties) {
 	      super(properties);
-		   this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
-		   this.setDefaultState(getDefaultState().with(WATERLOGGED, false));
+		   this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+		   this.registerDefaultState(defaultBlockState().setValue(WATERLOGGED, false));
 	   }
 
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		switch((Direction)state.get(FACING)) {
+		switch((Direction)state.getValue(FACING)) {
 			case EAST:
 			default:
 				return FACE_EAST_AABB;
@@ -56,7 +58,7 @@ public class TombstoneBlock extends Block implements IWaterLoggable
 
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
-		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
 
 	/*public BlockState rotate(BlockState state, Rotation rot) {
@@ -67,24 +69,24 @@ public class TombstoneBlock extends Block implements IWaterLoggable
 		return BlockList.tombstone_block.mirror(state, mirrorIn);
 	}*/
 
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING, TYPE, WATERLOGGED);
 	}
 
 	public FluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) {
-			worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (stateIn.getValue(WATERLOGGED)) {
+			worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
-		return facing == Direction.DOWN && !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return facing == Direction.DOWN && !this.canSurvive(stateIn, worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		return !worldIn.isAirBlock(pos.down());
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		return !worldIn.isEmptyBlock(pos.below());
 	}
 }
 	

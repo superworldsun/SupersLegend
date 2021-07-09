@@ -17,7 +17,7 @@ public class EntityArrowShockRender extends ArrowRenderer<EntityArrowShock> {
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityArrowShock entity) {
+    public ResourceLocation getTextureLocation(EntityArrowShock entity) {
         return TEXTURE;
     }
 

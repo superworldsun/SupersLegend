@@ -16,17 +16,19 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class ArmorClimbingGearEffects extends NonEnchantArmor {
     public ArmorClimbingGearEffects(String name, EquipmentSlotType slot)
     
     {
-        super(ArmourMaterialList.climbing, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.climbing, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "Going up"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Wearing the set grants the ability to climb any surface"));
         list.add(new StringTextComponent(TextFormatting.RED + "Dosent work well in rain"));
@@ -35,21 +37,21 @@ public class ArmorClimbingGearEffects extends NonEnchantArmor {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-        boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.climbers_bandanna);
-        boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.climbing_gear);
-        boolean isLeggingsOn = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.climbing_pants);
-        boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.climbing_boots);
+        boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.climbers_bandanna);
+        boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.climbing_gear);
+        boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.climbing_pants);
+        boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.climbing_boots);
             if(isHelmetOn&isChestplateOn || isHelmetOn&isLeggingsOn || isHelmetOn&isBootsOn ||
                     isChestplateOn&isLeggingsOn || isChestplateOn&isBootsOn || isLeggingsOn&isBootsOn) {
-                if (!player.isSpectator() && player.collidedHorizontally && player.moveForward > 0 && !player.isWet()) {
-                    player.setMotion(player.getMotion().getX(), 0.05, player.getMotion().getZ());
+                if (!player.isSpectator() && player.horizontalCollision && player.zza > 0 && !player.isInWaterOrRain()) {
+                    player.setDeltaMovement(player.getDeltaMovement().x(), 0.05, player.getDeltaMovement().z());
                     player.fallDistance = 0F;
                 }
             }
             if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn)
             {
-                if (!player.isSpectator() && player.collidedHorizontally && player.moveForward > 0 && !player.isWet()) {
-                    player.setMotion(player.getMotion().getX(), 0.1, player.getMotion().getZ());
+                if (!player.isSpectator() && player.horizontalCollision && player.zza > 0 && !player.isInWaterOrRain()) {
+                    player.setDeltaMovement(player.getDeltaMovement().x(), 0.1, player.getDeltaMovement().z());
                     player.fallDistance = 0F;
                 }
             }

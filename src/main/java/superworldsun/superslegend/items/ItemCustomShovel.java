@@ -5,6 +5,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 
+import net.minecraft.item.Item.Properties;
+
 public class ItemCustomShovel extends ShovelItem
 {
 

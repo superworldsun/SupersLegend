@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import superworldsun.superslegend.entities.projectiles.arrows.EntityArrowIce;
 
+import net.minecraft.item.Item.Properties;
+
 public class ArrowIce extends ArrowItem
 {
 

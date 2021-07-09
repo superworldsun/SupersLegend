@@ -23,7 +23,7 @@ public class EntityArrowAncient extends AbstractArrowEntity
 
     public EntityArrowAncient(World worldIn, LivingEntity shooter) {
         super(EntityInit.ANCIENT_ARROW.get(), shooter, worldIn);
-        this.setDamage(this.getDamage() + 30.0F);
+        this.setBaseDamage(this.getBaseDamage() + 30.0F);
     }
 
     public EntityArrowAncient(World worldIn, double x, double y, double z) {
@@ -31,25 +31,25 @@ public class EntityArrowAncient extends AbstractArrowEntity
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(ItemList.ancient_arrow);
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected void arrowHit(LivingEntity entity) {
-        super.arrowHit(entity);
-        if(entity.isNonBoss()){
-        	BlockPos currentPos = entity.getPosition();
-            entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ANCIENT, SoundCategory.PLAYERS, 1f, 1f);
+    protected void doPostHurtEffects(LivingEntity entity) {
+        super.doPostHurtEffects(entity);
+        if(entity.canChangeDimensions()){
+        	BlockPos currentPos = entity.blockPosition();
+            entity.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ANCIENT, SoundCategory.PLAYERS, 1f, 1f);
             //entity.setHealth(0);
         }else {
-        	BlockPos currentPos = entity.getPosition();
-            entity.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ANCIENT, SoundCategory.PLAYERS, 1f, 1f);
+        	BlockPos currentPos = entity.blockPosition();
+            entity.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_ANCIENT, SoundCategory.PLAYERS, 1f, 1f);
             //entity.setHealth(entity.getHealth()-45);
         }
     }

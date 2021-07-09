@@ -19,6 +19,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import superworldsun.superslegend.util.EnableUtil;
 
+import net.minecraft.item.Item.Properties;
+
 public class MagneticGlove extends Item
 {
 
@@ -35,34 +37,34 @@ public class MagneticGlove extends Item
         stack.getOrCreateTag().putInt("Cooldown", cooldown);
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 
-        Vector3d playerPos = player.getPositionVec().add(0, 0.75, 0);
+        Vector3d playerPos = player.position().add(0, 0.75, 0);
 
         int range = 15;
-        List<ItemEntity> items = player.world.getEntitiesWithinAABB(ItemEntity.class, new AxisAlignedBB(playerPos.x - range, playerPos.y - range, playerPos.z - range, playerPos.x + range, playerPos.y + range, playerPos.z + range));
+        List<ItemEntity> items = player.level.getEntitiesOfClass(ItemEntity.class, new AxisAlignedBB(playerPos.x - range, playerPos.y - range, playerPos.z - range, playerPos.x + range, playerPos.y + range, playerPos.z + range));
         int pulled = 0;
         for (ItemEntity item : items) {
-            if (item.isAlive() && !item.cannotPickup() && !item.getPersistentData().getBoolean("PreventRemoteMovement")) {
+            if (item.isAlive() && !item.hasPickUpDelay() && !item.getPersistentData().getBoolean("PreventRemoteMovement")) {
                 if (pulled++ > 200) {
                     break;
                 }
 
-                Vector3d motion = playerPos.subtract(item.getPositionVec().add(0, item.getHeight() / 2, 0));
+                Vector3d motion = playerPos.subtract(item.position().add(0, item.getBbHeight() / 2, 0));
                 if (Math.sqrt(motion.x * motion.x + motion.y * motion.y + motion.z * motion.z) > 1) {
                     motion = motion.normalize();
                 }
-                item.setMotion(motion.scale(0.7));
+                item.setDeltaMovement(motion.scale(0.7));
             }
         }
 
-        return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+        return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
     }
     
     @Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.BLUE + "Pulls items toward the player"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-click to Pull items"));
 	}   

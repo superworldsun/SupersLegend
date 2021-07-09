@@ -1,4 +1,4 @@
-package superworldsun.superslegend.CustomLootMobs;
+package superworldsun.superslegend.customlootmobs;
 
 import java.util.Random;
 
@@ -17,16 +17,16 @@ public class CustomLootMagmacube
 
         if(event.getEntityLiving() instanceof MagmaCubeEntity) {
             if(random.nextInt(8) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.rupee, random.nextInt(3)));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.rupee, random.nextInt(3)));
             if(random.nextInt(10) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_rupee,1));
             
             if(random.nextInt(90) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.triforce_power_shard,1));
             if(random.nextInt(20) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.red_jelly,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.red_jelly,1));
             if(random.nextInt(60) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.blue_jelly,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.blue_jelly,1));
 	        }
 	    }
 	}

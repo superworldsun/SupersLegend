@@ -4,6 +4,8 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
 
+import net.minecraft.item.Item.Properties;
+
 public class ItemCustomPickaxe extends PickaxeItem
 {
 

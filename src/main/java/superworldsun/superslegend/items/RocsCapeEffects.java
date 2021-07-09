@@ -22,11 +22,13 @@ import superworldsun.superslegend.lists.ItemList;
 import superworldsun.superslegend.models.masks.ModelBunnyhoodMask;
 import superworldsun.superslegend.models.masks.ModelRocsCape;
 
+import net.minecraft.item.Item.Properties;
+
 public class RocsCapeEffects extends NonEnchantArmor {
     public RocsCapeEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.rocscape, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.rocscape, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
@@ -41,18 +43,18 @@ public class RocsCapeEffects extends NonEnchantArmor {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-    	if (!world.isRemote){
-    		boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.rocs_cape);
+    	if (!world.isClientSide){
+    		boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.rocs_cape);
             if(isChestplateOn)
             	{
-            	if(player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots)) 
+            	if(player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.hover_boots)) 
             	{
-            		player.removePotionEffect(Effect.get(28));
+            		player.removeEffect(Effect.byId(28));
             	}
             	else if(player.isOnGround())
 		        {
-            		player.addPotionEffect(new EffectInstance(Effect.get(28), 24, 0, false, false));
-					player.addPotionEffect(new EffectInstance(Effect.get(8), 1, 3, false, false));
+            		player.addEffect(new EffectInstance(Effect.byId(28), 24, 0, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(8), 1, 3, false, false));
 		        }
                 
             	}
@@ -62,9 +64,9 @@ public class RocsCapeEffects extends NonEnchantArmor {
         
 
 		    @Override
-			public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+			public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 			{
-				super.addInformation(stack, world, list, flag);				
+				super.appendHoverText(stack, world, list, flag);				
 				list.add(new StringTextComponent(TextFormatting.WHITE + "Wearing this will grant better ground mobility"));
 			}   
 } 

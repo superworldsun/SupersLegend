@@ -17,7 +17,7 @@ public class EntityArrowFireRender extends ArrowRenderer<EntityArrowFire> {
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityArrowFire entity) {
+    public ResourceLocation getTextureLocation(EntityArrowFire entity) {
         return TEXTURE;
     }
 

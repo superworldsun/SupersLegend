@@ -15,18 +15,20 @@ import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
+import net.minecraft.item.Item.Properties;
+
 public class ArmorAncientEffects extends NonEnchantArmor
 {
     public ArmorAncientEffects(String name, EquipmentSlotType slot)
     
     {
-        super(ArmourMaterialList.ancient, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.ancient, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
     {
-        super.addInformation(stack, world, list, flag);
+        super.appendHoverText(stack, world, list, flag);
         list.add(new StringTextComponent(TextFormatting.YELLOW + "Armor made from Ancient technology"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "Wearing the set grants defense"));
     }
@@ -34,24 +36,24 @@ public class ArmorAncientEffects extends NonEnchantArmor
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
     {
-        boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.ancient_helmet);
-        boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.ancient_cuirass);
-        boolean isLeggingsOn = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.ancient_greaves);
-        boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.ancient_boots);
-        if (!world.isRemote)
+        boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.ancient_helmet);
+        boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.ancient_cuirass);
+        boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.ancient_greaves);
+        boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.ancient_boots);
+        if (!world.isClientSide)
         {
             if(isHelmetOn&isChestplateOn || isHelmetOn&isLeggingsOn || isHelmetOn&isBootsOn ||
                     isChestplateOn&isLeggingsOn || isChestplateOn&isBootsOn || isLeggingsOn&isBootsOn)
             {
-                player.addPotionEffect(new EffectInstance(Effect.get(11), 3, 0, false, false, false));
+                player.addEffect(new EffectInstance(Effect.byId(11), 3, 0, false, false, false));
             }
         }
 
-        if (!world.isRemote)
+        if (!world.isClientSide)
         {
             if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn)
             {
-                player.addPotionEffect(new EffectInstance(Effect.get(11), 3, 1, false, false, false));
+                player.addEffect(new EffectInstance(Effect.byId(11), 3, 1, false, false, false));
             }
         }
     }

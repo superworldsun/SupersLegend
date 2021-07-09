@@ -23,7 +23,7 @@ import java.util.function.Supplier;
     public static final RegistryObject<ParticleType<FairyParticleData>> FAIRY = r("fairy", () -> new ParticleType<FairyParticleData>(false, FairyParticleData.DESERIALIZER) {
         @Override
         @Nonnull
-        public Codec<FairyParticleData> func_230522_e_() {
+        public Codec<FairyParticleData> codec() {
             return FairyParticleData.CODEC;
         }
     });

@@ -20,6 +20,8 @@ import superworldsun.superslegend.lists.ItemList;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.item.Item.Properties;
+
 public class BlueRupee extends Item{
 
 	public BlueRupee(Properties properties)
@@ -28,28 +30,28 @@ public class BlueRupee extends Item{
 	}
 
 	@Nonnull
-	public ActionResult<ItemStack> onItemRightClick(@Nonnull World world, PlayerEntity player,@Nonnull Hand hand)
+	public ActionResult<ItemStack> use(@Nonnull World world, PlayerEntity player,@Nonnull Hand hand)
 	 {
-		ItemStack stack = player.getHeldItem(hand);
+		ItemStack stack = player.getItemInHand(hand);
 		
 		if(stack.getCount() >= 4)
 		 {
 			
 			 stack.shrink(4);
 			
-			 player.addItemStackToInventory(new ItemStack(ItemList.red_rupee));
+			 player.addItem(new ItemStack(ItemList.red_rupee));
 			 
-			 BlockPos currentPos = player.getPosition();
- 	         player.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_BLUE, SoundCategory.PLAYERS, 1f, 1f);
+			 BlockPos currentPos = player.blockPosition();
+ 	         player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_BLUE, SoundCategory.PLAYERS, 1f, 1f);
 		 }
 		        
-	return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+	return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 		
 	}
 
-	public void addInformation(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
+	public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.BLUE + "5 rupee"));
 	}   
 } 

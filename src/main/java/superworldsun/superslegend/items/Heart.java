@@ -6,6 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class Heart extends Item
 {
 
@@ -16,11 +18,11 @@ public class Heart extends Item
 	
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
 	{		
-		if(entity instanceof PlayerEntity && !world.isRemote)
+		if(entity instanceof PlayerEntity && !world.isClientSide)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
 
-			if(!world.isRemote && !player.isCreative())
+			if(!world.isClientSide && !player.isCreative())
 			{
 				player.setHealth(player.getHealth() + 2.0F);
 				stack.shrink(1);

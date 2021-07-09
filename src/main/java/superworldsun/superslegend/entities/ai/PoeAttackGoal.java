@@ -23,9 +23,9 @@ public class PoeAttackGoal extends MeleeAttackGoal {
         private double targetY;
         private double targetZ;
         private int delayCounter;
-        private int field_234037_i_;
+        private int ticksUntilNextAttack;
         private final int attackInterval = 20;
-        private long field_220720_k;
+        private long lastCanUseCheck;
         private int failedPathFindingPenalty = 0;
         private boolean canPenalize = false;
 
@@ -34,20 +34,20 @@ public class PoeAttackGoal extends MeleeAttackGoal {
             this.poe = poe;
             this.speedTowardsTarget = speedIn;
             this.longMemory = useLongMemory;
-            this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
         }
 
         /**
          * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
          * method as well.
          */
-        public boolean shouldExecute() {
-            long i = this.poe.world.getGameTime();
-            if (i - this.field_220720_k < 20L) {
+        public boolean canUse() {
+            long i = this.poe.level.getGameTime();
+            if (i - this.lastCanUseCheck < 20L) {
                 return false;
             } else {
-                this.field_220720_k = i;
-                LivingEntity livingentity = this.poe.getAttackTarget();
+                this.lastCanUseCheck = i;
+                LivingEntity livingentity = this.poe.getTarget();
                 if (livingentity == null) {
                     return false;
                 } else if (!livingentity.isAlive()) {
@@ -55,18 +55,18 @@ public class PoeAttackGoal extends MeleeAttackGoal {
                 } else {
                     if (canPenalize) {
                         if (--this.delayCounter <= 0) {
-                            this.path = this.poe.getNavigator().getPathToEntity(livingentity, 0);
-                            this.delayCounter = 4 + this.poe.getRNG().nextInt(7);
+                            this.path = this.poe.getNavigation().createPath(livingentity, 0);
+                            this.delayCounter = 4 + this.poe.getRandom().nextInt(7);
                             return this.path != null;
                         } else {
                             return true;
                         }
                     }
-                    this.path = this.poe.getNavigator().getPathToEntity(livingentity, 0);
+                    this.path = this.poe.getNavigation().createPath(livingentity, 0);
                     if (this.path != null) {
                         return true;
                     } else {
-                        return this.getAttackReachSqr(livingentity) >= this.poe.getDistanceSq(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ());
+                        return this.getAttackReachSqr(livingentity) >= this.poe.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
                     }
                 }
             }
@@ -75,15 +75,15 @@ public class PoeAttackGoal extends MeleeAttackGoal {
         /**
          * Returns whether an in-progress EntityAIBase should continue executing
          */
-        public boolean shouldContinueExecuting() {
-            LivingEntity livingentity = this.poe.getAttackTarget();
+        public boolean canContinueToUse() {
+            LivingEntity livingentity = this.poe.getTarget();
             if (livingentity == null) {
                 return false;
             } else if (!livingentity.isAlive()) {
                 return false;
             } else if (!this.longMemory) {
-                return !this.poe.getNavigator().noPath();
-            } else if (!this.poe.isWithinHomeDistanceFromPosition(livingentity.getPosition())) {
+                return !this.poe.getNavigation().isDone();
+            } else if (!this.poe.isWithinRestriction(livingentity.blockPosition())) {
                 return false;
             } else {
                 return !(livingentity instanceof PlayerEntity) || !livingentity.isSpectator() && !((PlayerEntity)livingentity).isCreative();
@@ -93,44 +93,44 @@ public class PoeAttackGoal extends MeleeAttackGoal {
         /**
          * Execute a one shot task or start executing a continuous task
          */
-        public void startExecuting() {
-            this.poe.getNavigator().setPath(this.path, this.speedTowardsTarget);
-            this.poe.setAggroed(true);
+        public void start() {
+            this.poe.getNavigation().moveTo(this.path, this.speedTowardsTarget);
+            this.poe.setAggressive(true);
             this.delayCounter = 0;
-            this.field_234037_i_ = 0;
+            this.ticksUntilNextAttack = 0;
         }
 
         /**
          * Reset the task's internal state. Called when this task is interrupted by another one
          */
-        public void resetTask() {
-            LivingEntity livingentity = this.poe.getAttackTarget();
-            if (!EntityPredicates.CAN_AI_TARGET.test(livingentity)) {
-                this.poe.setAttackTarget((LivingEntity)null);
+        public void stop() {
+            LivingEntity livingentity = this.poe.getTarget();
+            if (!EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
+                this.poe.setTarget((LivingEntity)null);
             }
 
-            this.poe.setAggroed(false);
-            this.poe.getNavigator().clearPath();
+            this.poe.setAggressive(false);
+            this.poe.getNavigation().stop();
         }
 
         /**
          * Keep ticking a continuous task that has already been started
          */
         public void tick() {
-            LivingEntity livingentity = this.poe.getAttackTarget();
-            this.poe.getLookController().setLookPositionWithEntity(livingentity, 30.0F, 30.0F);
-            double d0 = this.poe.getDistanceSq(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ());
+            LivingEntity livingentity = this.poe.getTarget();
+            this.poe.getLookControl().setLookAt(livingentity, 30.0F, 30.0F);
+            double d0 = this.poe.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
             this.delayCounter = Math.max(this.delayCounter - 1, 0);
-            if ((this.longMemory || this.poe.getEntitySenses().canSee(livingentity)) && this.delayCounter <= 0 && (this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D || livingentity.getDistanceSq(this.targetX, this.targetY, this.targetZ) >= 1.0D || this.poe.getRNG().nextFloat() < 0.05F)) {
-                this.targetX = livingentity.getPosX();
-                this.targetY = livingentity.getPosY();
-                this.targetZ = livingentity.getPosZ();
-                this.delayCounter = 4 + this.poe.getRNG().nextInt(7);
+            if ((this.longMemory || this.poe.getSensing().canSee(livingentity)) && this.delayCounter <= 0 && (this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D || livingentity.distanceToSqr(this.targetX, this.targetY, this.targetZ) >= 1.0D || this.poe.getRandom().nextFloat() < 0.05F)) {
+                this.targetX = livingentity.getX();
+                this.targetY = livingentity.getY();
+                this.targetZ = livingentity.getZ();
+                this.delayCounter = 4 + this.poe.getRandom().nextInt(7);
                 if (this.canPenalize) {
                     this.delayCounter += failedPathFindingPenalty;
-                    if (this.poe.getNavigator().getPath() != null) {
-                        net.minecraft.pathfinding.PathPoint finalPathPoint = this.poe.getNavigator().getPath().getFinalPathPoint();
-                        if (finalPathPoint != null && livingentity.getDistanceSq(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z) < 1)
+                    if (this.poe.getNavigation().getPath() != null) {
+                        net.minecraft.pathfinding.PathPoint finalPathPoint = this.poe.getNavigation().getPath().getEndNode();
+                        if (finalPathPoint != null && livingentity.distanceToSqr(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z) < 1)
                             failedPathFindingPenalty = 0;
                         else
                             failedPathFindingPenalty += 10;
@@ -144,42 +144,42 @@ public class PoeAttackGoal extends MeleeAttackGoal {
                     this.delayCounter += 5;
                 }
 
-                if (!this.poe.getNavigator().tryMoveToEntityLiving(livingentity, this.speedTowardsTarget)) {
+                if (!this.poe.getNavigation().moveTo(livingentity, this.speedTowardsTarget)) {
                     this.delayCounter += 15;
                 }
             }
 
-            this.field_234037_i_ = Math.max(this.field_234037_i_ - 1, 0);
+            this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
             this.checkAndPerformAttack(livingentity, d0);
         }
 
         protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
             double d0 = this.getAttackReachSqr(enemy);
-            if (distToEnemySqr <= d0 && this.field_234037_i_ <= 0) {
-                this.func_234039_g_();
-                this.poe.swingArm(Hand.MAIN_HAND);
-                this.poe.attackEntityAsMob(enemy);
+            if (distToEnemySqr <= d0 && this.ticksUntilNextAttack <= 0) {
+                this.resetAttackCooldown();
+                this.poe.swing(Hand.MAIN_HAND);
+                this.poe.doHurtTarget(enemy);
             }
 
         }
 
-        protected void func_234039_g_() {
-            this.field_234037_i_ = 20;
+        protected void resetAttackCooldown() {
+            this.ticksUntilNextAttack = 20;
         }
 
-        protected boolean func_234040_h_() {
-            return this.field_234037_i_ <= 0;
+        protected boolean isTimeToAttack() {
+            return this.ticksUntilNextAttack <= 0;
         }
 
-        protected int func_234041_j_() {
-            return this.field_234037_i_;
+        protected int getTicksUntilNextAttack() {
+            return this.ticksUntilNextAttack;
         }
 
-        protected int func_234042_k_() {
+        protected int getAttackInterval() {
             return 20;
         }
 
         protected double getAttackReachSqr(LivingEntity attackTarget) {
-            return (double)(this.poe.getWidth() * 2.0F * this.poe.getWidth() * 2.0F + attackTarget.getWidth());
+            return (double)(this.poe.getBbWidth() * 2.0F * this.poe.getBbWidth() * 2.0F + attackTarget.getBbWidth());
         }
     }

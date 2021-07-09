@@ -18,11 +18,13 @@ import superworldsun.superslegend.lists.ItemList;
 
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskGiantsmask extends NonEnchantArmor {
     public MaskGiantsmask(String name, EquipmentSlotType slot) 
 
     {
-        super(ArmourMaterialList.giantsmask, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.giantsmask, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
@@ -100,9 +102,9 @@ public class MaskGiantsmask extends NonEnchantArmor {
 			}
 		}*/
 	 
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Takes a big spirit to wear this mask"));
 	}
 }

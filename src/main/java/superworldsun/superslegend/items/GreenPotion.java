@@ -18,6 +18,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class GreenPotion extends Item
 {
 
@@ -26,36 +28,36 @@ public class GreenPotion extends Item
 		super(properties);
 	}
 	
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
-		ItemStack stack = player.getHeldItem(hand);
+		ItemStack stack = player.getItemInHand(hand);
 		  
-		 if(!world.isRemote && player.getFoodStats().needFood() && !player.isCreative())
+		 if(!world.isClientSide && player.getFoodData().needsFood() && !player.isCreative())
 	     {
 			 
-			 BlockPos currentPos = player.getPosition();
-			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
+			 BlockPos currentPos = player.blockPosition();
+			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
 			 
-			 	player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() + 20);
+			 	player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + 20);
 				stack.shrink(1);
-				player.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+				player.addItem(new ItemStack(Items.GLASS_BOTTLE));
 	     }
-		 else if(player.isCreative() && player.getFoodStats().needFood())
+		 else if(player.isCreative() && player.getFoodData().needsFood())
 		 {
-			 BlockPos currentPos = player.getPosition();
-			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
+			 BlockPos currentPos = player.blockPosition();
+			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
 			 
-			 	player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() + 20);
+			 	player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + 20);
 		 }
 	 
-		 return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand)); 
+		 return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand)); 
 	 }
 	
 	
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GREEN + "The Medicine of Stamina"));
 	}  
 	

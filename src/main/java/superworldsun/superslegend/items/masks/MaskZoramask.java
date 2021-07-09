@@ -18,17 +18,19 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskZoramask extends NonEnchantArmor {
     public MaskZoramask(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.zoramask, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.zoramask, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "The face of a Zora"));
 		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "You can swim with the grace of a Zora"));
 	}
@@ -39,14 +41,14 @@ public class MaskZoramask extends NonEnchantArmor {
     	
     	
     	
-        if (!world.isRemote){
-                boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_zoramask);
+        if (!world.isClientSide){
+                boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.mask_zoramask);
                 if(isHelmetOn)
                 	{
-                	if(player.isInWater() && player.isSprinting() && !player.isOnGround() && player.getFoodStats().getFoodLevel()!= 0)
+                	if(player.isInWater() && player.isSprinting() && !player.isOnGround() && player.getFoodData().getFoodLevel()!= 0)
                 	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(30), 4, 0, false, false, false));
-                		player.addExhaustion(0.09f);
+                		player.addEffect(new EffectInstance(Effect.byId(30), 4, 0, false, false, false));
+                		player.causeFoodExhaustion(0.09f);
                 	}
                 	
                 }

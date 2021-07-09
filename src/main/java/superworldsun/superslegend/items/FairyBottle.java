@@ -22,6 +22,8 @@ import superworldsun.superslegend.init.SoundInit;
 
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class FairyBottle extends Item
 {
 
@@ -32,46 +34,46 @@ public class FairyBottle extends Item
 	
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
 	{		
-		if(entity instanceof PlayerEntity && !world.isRemote)
+		if(entity instanceof PlayerEntity && !world.isClientSide)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-					if(player.getShouldBeDead())
+					if(player.isDeadOrDying())
 	            	{
 	            		player.setHealth(20);
 	            	}
 		}
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	{
-		ItemStack stack = player.getHeldItem(hand);
+		ItemStack stack = player.getItemInHand(hand);
 
-		if(!world.isRemote && !player.isCreative())
+		if(!world.isClientSide && !player.isCreative())
 		{
-			BlockPos currentPos = player.getPosition();
+			BlockPos currentPos = player.blockPosition();
 			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.FAIRY_BOTTLE_USE, SoundCategory.PLAYERS, 1f, 1f);
 
-			player.addPotionEffect(new EffectInstance(Effect.get(10), 60, 4, false, false));
+			player.addEffect(new EffectInstance(Effect.byId(10), 60, 4, false, false));
 			stack.shrink(1);
-			player.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+			player.addItem(new ItemStack(Items.GLASS_BOTTLE));
 		}
 
-		else if (!world.isRemote && player.isCreative())
+		else if (!world.isClientSide && player.isCreative())
 		{
-			BlockPos currentPos = player.getPosition();
+			BlockPos currentPos = player.blockPosition();
 			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.FAIRY_BOTTLE_USE, SoundCategory.PLAYERS, 1f, 1f);
 
-			player.addPotionEffect(new EffectInstance(Effect.get(10), 60, 4, true, true));
+			player.addEffect(new EffectInstance(Effect.byId(10), 60, 4, true, true));
 		}
 
-		return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
+		return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 	}
 
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.RED + "Restores all HP on right click"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Have this anywhere in your inventory"));
 	}   

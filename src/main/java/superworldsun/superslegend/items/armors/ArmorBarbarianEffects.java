@@ -16,18 +16,20 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class ArmorBarbarianEffects extends NonEnchantArmor
 {
     public ArmorBarbarianEffects(String name, EquipmentSlotType slot)
     
     {
-        super(ArmourMaterialList.barbarian, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.barbarian, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
         
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.RED + "Armor once worn by warriors from the Faron region"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Wearing the set grants strength"));
 	}
@@ -35,23 +37,23 @@ public class ArmorBarbarianEffects extends NonEnchantArmor
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-        boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.barbarian_helmet);
-        boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.barbarian_armor);
-        boolean isLeggingsOn = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.barbarian_leg_wraps);
-        boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.barbarian_boots);
-        if (!world.isRemote)
+        boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.barbarian_helmet);
+        boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.barbarian_armor);
+        boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.barbarian_leg_wraps);
+        boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.barbarian_boots);
+        if (!world.isClientSide)
         {
             if(isHelmetOn&isChestplateOn || isHelmetOn&isLeggingsOn || isHelmetOn&isBootsOn ||
                isChestplateOn&isLeggingsOn || isChestplateOn&isBootsOn || isLeggingsOn&isBootsOn)
             {
-                player.addPotionEffect(new EffectInstance(Effect.get(5), 3, 0, false, false, false));
+                player.addEffect(new EffectInstance(Effect.byId(5), 3, 0, false, false, false));
             }
         }
-        if (!world.isRemote)
+        if (!world.isClientSide)
         {
                 if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn)
                 	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(5), 3, 1, false, false, false));
+                		player.addEffect(new EffectInstance(Effect.byId(5), 3, 1, false, false, false));
                 	}
         }
     }

@@ -16,18 +16,20 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import superworldsun.superslegend.lists.ItemList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class ArmorFlamebreakerEffects extends NonEnchantArmor
 {
     public ArmorFlamebreakerEffects(String name, EquipmentSlotType slot) 
     
     {
-        super(ArmourMaterialList.flamebreaker, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.flamebreaker, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
         
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.RED + "Armor of the Gorons"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Wearing full set grants fire restiance"));
 	}
@@ -38,15 +40,15 @@ public class ArmorFlamebreakerEffects extends NonEnchantArmor
     	
     	
     	
-        if (!world.isRemote){
-        		boolean isHelmetOn = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.flamebreaker_helmet);
-                boolean isChestplateOn = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.flamebreaker_tunic);
-                boolean isLeggingsOn = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.flamebreaker_leggings);
-                boolean isBootsOn = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem().equals(ItemList.flamebreaker_boots);
+        if (!world.isClientSide){
+        		boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemList.flamebreaker_helmet);
+                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemList.flamebreaker_tunic);
+                boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemList.flamebreaker_leggings);
+                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemList.flamebreaker_boots);
                 if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn)
                 	{
-                		player.addPotionEffect(new EffectInstance(Effect.get(12), 10, 0, false, false, false));
-                		player.extinguish();
+                		player.addEffect(new EffectInstance(Effect.byId(12), 10, 0, false, false, false));
+                		player.clearFire();
                 	}
                 	
                 }

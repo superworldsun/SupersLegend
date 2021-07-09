@@ -26,7 +26,7 @@ public class EntityArrowFire extends AbstractArrowEntity {
 
         public EntityArrowFire(World worldIn, LivingEntity shooter) {
             super(EntityInit.FIRE_ARROW.get(), shooter, worldIn);
-            this.setDamage(this.getDamage() + 2.0F);
+            this.setBaseDamage(this.getBaseDamage() + 2.0F);
         }
 
         public EntityArrowFire(World worldIn, double x, double y, double z) {
@@ -34,13 +34,13 @@ public class EntityArrowFire extends AbstractArrowEntity {
         }
 
         @Override
-        protected ItemStack getArrowStack() {
+        protected ItemStack getPickupItem() {
             return new ItemStack(ItemList.fire_arrow);
         }
 
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -57,20 +57,20 @@ public class EntityArrowFire extends AbstractArrowEntity {
     }*/
 
         @Override
-        protected void arrowHit(LivingEntity entity) {
-            BlockPos currentPos = this.getPosition();
-            this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_FIRE, SoundCategory.PLAYERS, 1f, 1f);
-            super.arrowHit(entity);
+        protected void doPostHurtEffects(LivingEntity entity) {
+            BlockPos currentPos = this.blockPosition();
+            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_FIRE, SoundCategory.PLAYERS, 1f, 1f);
+            super.doPostHurtEffects(entity);
             if (entity.isAlive()) {
-                entity.setFire(6);
+                entity.setSecondsOnFire(6);
             }
             if (entity.equals(EntityType.BLAZE) || entity.equals(EntityType.MAGMA_CUBE) || entity.equals(EntityType.HUSK)) {
-                entity.setFire(6);
-                this.setDamage(this.getDamage() / 5f);
+                entity.setSecondsOnFire(6);
+                this.setBaseDamage(this.getBaseDamage() / 5f);
             }
             if (entity.equals(EntityType.POLAR_BEAR) || entity.equals(EntityType.STRAY) || entity.equals(EntityType.SNOW_GOLEM)) {
-                entity.setFire(6);
-                this.setDamage(this.getDamage() * 2f);
+                entity.setSecondsOnFire(6);
+                this.setBaseDamage(this.getBaseDamage() * 2f);
             }
         }
 
@@ -79,49 +79,49 @@ public class EntityArrowFire extends AbstractArrowEntity {
         public void tick() {
             super.tick();
 
-            if (!this.isWet() && !this.inGround)
+            if (!this.isInWaterOrRain() && !this.inGround)
                  {
-                    this.world.addParticle(ParticleTypes.FLAME, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D,
+                    this.level.addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
                             0.0D);
                  }
 
 
             if (this.inGround) {
-                if (!this.isWet() || !this.isInWater()) {
-                    if (world.isAirBlock(this.getPosition()))
-                        world.setBlockState(this.getPosition(), Blocks.FIRE.getDefaultState(), 11);
+                if (!this.isInWaterOrRain() || !this.isInWater()) {
+                    if (level.isEmptyBlock(this.blockPosition()))
+                        level.setBlock(this.blockPosition(), Blocks.FIRE.defaultBlockState(), 11);
 
-                    BlockPos currentPos = this.getPosition();
-                    this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_FIRE, SoundCategory.PLAYERS, 1f, 1f);
+                    BlockPos currentPos = this.blockPosition();
+                    this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_FIRE, SoundCategory.PLAYERS, 1f, 1f);
 
                     this.remove();
                 }
-                if (!this.isWet() || !this.isInWater()) {
-                    if (world.isAirBlock(this.getPosition().west()))
-                        world.setBlockState(this.getPosition().west(), Blocks.FIRE.getDefaultState(), 11);
+                if (!this.isInWaterOrRain() || !this.isInWater()) {
+                    if (level.isEmptyBlock(this.blockPosition().west()))
+                        level.setBlock(this.blockPosition().west(), Blocks.FIRE.defaultBlockState(), 11);
 
                 }
-                if (!this.isWet() || !this.isInWater()) {
-                    if (world.isAirBlock(this.getPosition().east()))
-                        world.setBlockState(this.getPosition().east(), Blocks.FIRE.getDefaultState(), 11);
+                if (!this.isInWaterOrRain() || !this.isInWater()) {
+                    if (level.isEmptyBlock(this.blockPosition().east()))
+                        level.setBlock(this.blockPosition().east(), Blocks.FIRE.defaultBlockState(), 11);
 
                 }
-                if (!this.isWet() || !this.isInWater()) {
-                    if (world.isAirBlock(this.getPosition().north()))
-                        world.setBlockState(this.getPosition().north(), Blocks.FIRE.getDefaultState(), 11);
+                if (!this.isInWaterOrRain() || !this.isInWater()) {
+                    if (level.isEmptyBlock(this.blockPosition().north()))
+                        level.setBlock(this.blockPosition().north(), Blocks.FIRE.defaultBlockState(), 11);
 
                 }
-                if (!this.isWet() || !this.isInWater()) {
-                    if (world.isAirBlock(this.getPosition().south()))
-                        world.setBlockState(this.getPosition().south(), Blocks.FIRE.getDefaultState(), 11);
+                if (!this.isInWaterOrRain() || !this.isInWater()) {
+                    if (level.isEmptyBlock(this.blockPosition().south()))
+                        level.setBlock(this.blockPosition().south(), Blocks.FIRE.defaultBlockState(), 11);
 
                 }
             }
 
 
             if (this.isInWater()) {
-                BlockPos currentPos = this.getPosition();
-                this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
+                BlockPos currentPos = this.blockPosition();
+                this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
                 this.remove();
             }
         }

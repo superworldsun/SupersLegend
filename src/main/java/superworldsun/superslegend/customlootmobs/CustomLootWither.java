@@ -1,4 +1,4 @@
-package superworldsun.superslegend.CustomLootMobs;
+package superworldsun.superslegend.customlootmobs;
 
 import java.util.Random;
 
@@ -17,10 +17,10 @@ public class CustomLootWither
 
         if(event.getEntityLiving() instanceof WitherEntity) {
             if(random.nextInt(1) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.silver_rupee,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.silver_rupee,1));
             
             if(random.nextInt(1) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_power_shard,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.triforce_power_shard,1));
             
 	        }
 	    }

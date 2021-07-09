@@ -5,6 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
 
+import net.minecraft.item.Item.Properties;
+
 public class HylianLoach extends Item {
 
 

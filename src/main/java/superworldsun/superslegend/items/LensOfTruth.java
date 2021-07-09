@@ -28,6 +28,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import superworldsun.superslegend.init.SoundInit;
 
+import net.minecraft.item.Item.Properties;
+
 public class LensOfTruth extends Item
 {
 
@@ -38,17 +40,17 @@ public class LensOfTruth extends Item
 
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
 	{
-		if(entity instanceof PlayerEntity && !world.isRemote)
+		if(entity instanceof PlayerEntity && !world.isClientSide)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
-			if(!world.isRemote)
+			ItemStack equipped = player.getMainHandItem();
+			if(!world.isClientSide)
 			{
 				if(stack == equipped)
 				{
-					double x = player.getPosX();
-					double y = player.getPosY();
-					double z = player.getPosZ();
+					double x = player.getX();
+					double y = player.getY();
+					double z = player.getZ();
 
 					//How Far away
 					double d0 = 30.0D;
@@ -59,25 +61,25 @@ public class LensOfTruth extends Item
 
 					if(entity != null && entity.isInvisible())
 					{
-						if (!world.isRemote)
+						if (!world.isClientSide)
 						{
-							((PlayerEntity) entity).addPotionEffect(new EffectInstance(Effect.get(24), 2, 0, false, false));
+							((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(24), 2, 0, false, false));
 						}
 					}
 				}
 			}
 		}
-		if(entity instanceof PlayerEntity && !world.isRemote)
+		if(entity instanceof PlayerEntity && !world.isClientSide)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
-			if(!world.isRemote)
+			ItemStack equipped = player.getMainHandItem();
+			if(!world.isClientSide)
 			{
 				if(stack == equipped)
 				{
-					double x = player.getPosX();
-					double y = player.getPosY();
-					double z = player.getPosZ();
+					double x = player.getX();
+					double y = player.getY();
+					double z = player.getZ();
 
 					//How Far away
 					double d0 = 30.0D;
@@ -88,25 +90,25 @@ public class LensOfTruth extends Item
 
 					if(entity != null && entity.isInvisible())
 					{
-						if (!world.isRemote)
+						if (!world.isClientSide)
 						{
-							((PlayerEntity) entity).addPotionEffect(new EffectInstance(Effect.get(24), 2, 0, false, false));
+							((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(24), 2, 0, false, false));
 						}
 					}
 				}
 			}
 		}
-		if(entity instanceof PlayerEntity && !world.isRemote)
+		if(entity instanceof PlayerEntity && !world.isClientSide)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
-			if(!world.isRemote)
+			ItemStack equipped = player.getMainHandItem();
+			if(!world.isClientSide)
 			{
 				if(stack == equipped)
 				{
-					double x = player.getPosX();
-					double y = player.getPosY();
-					double z = player.getPosZ();
+					double x = player.getX();
+					double y = player.getY();
+					double z = player.getZ();
 
 					//How Far away
 					double d0 = 30.0D;
@@ -118,27 +120,27 @@ public class LensOfTruth extends Item
 
 					if(hostileMob != null && hostileMob.isInvisible())
 					{
-						if (!world.isRemote)
+						if (!world.isClientSide)
 						{
-							hostileMob.addPotionEffect(new EffectInstance(Effect.get(24), 2, 0, false, false));
+							hostileMob.addEffect(new EffectInstance(Effect.byId(24), 2, 0, false, false));
 						}
 					}
 				}
 			}
 		}
-		if(entity instanceof PlayerEntity && !world.isRemote)
+		if(entity instanceof PlayerEntity && !world.isClientSide)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
 
-			ItemStack equipped = player.getHeldItemOffhand();
+			ItemStack equipped = player.getOffhandItem();
 
-			if(!world.isRemote)
+			if(!world.isClientSide)
 			{
 				if(stack == equipped)
 				{
-					double x = player.getPosX();
-					double y = player.getPosY();
-					double z = player.getPosZ();
+					double x = player.getX();
+					double y = player.getY();
+					double z = player.getZ();
 
 					//How Far away
 					double d0 = 30.0D;
@@ -149,9 +151,9 @@ public class LensOfTruth extends Item
 
 					if(hostileMob != null && hostileMob.isInvisible())
 					{
-						if (!world.isRemote)
+						if (!world.isClientSide)
 						{
-							hostileMob.addPotionEffect(new EffectInstance(Effect.get(24), 2, 0, false, false));
+							hostileMob.addEffect(new EffectInstance(Effect.byId(24), 2, 0, false, false));
 						}
 					}
 				}
@@ -161,7 +163,7 @@ public class LensOfTruth extends Item
 
 	private MobEntity scanForHostileMobs(World world, double xpos, double ypos, double zpos, double d0, double d1)
 	{
-		List<MobEntity> list = world.<MobEntity>getEntitiesWithinAABB(MobEntity.class, new AxisAlignedBB
+		List<MobEntity> list = world.<MobEntity>getEntitiesOfClass(MobEntity.class, new AxisAlignedBB
 				((double) xpos - d0,
 						(double) ypos - d1,
 						(double) zpos - d0,
@@ -238,9 +240,9 @@ public class LensOfTruth extends Item
 
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Hold in Hands to reveal a hidden target"));
 		//list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
 	}

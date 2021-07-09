@@ -14,18 +14,20 @@ import superworldsun.superslegend.items.NonEnchantArmor;
 import superworldsun.superslegend.lists.ArmourMaterialList;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskKeatonmask extends NonEnchantArmor {
     public MaskKeatonmask(String name, EquipmentSlotType slot) 
 
     {
-        super(ArmourMaterialList.keatonmask, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.keatonmask, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "This mask is popular with the children"));
 
 

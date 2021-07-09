@@ -27,24 +27,24 @@ public class RupeepouchInventory extends Inventory {
 	
 	public void writeItemStack() {
 		if (isEmpty()) {
-			stack.removeChildTag("Items");
+			stack.removeTagKey("Items");
 		} else {
 			writeNBT(stack.getOrCreateTag());
 		}
 	}
 	
 	private void readNBT(CompoundNBT compound) {
-		final NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getSizeInventory(), ItemStack.EMPTY);
+		final NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getContainerSize(), ItemStack.EMPTY);
 		ItemStackHelper.loadAllItems(compound, list);
 		for (int i = 0; i < list.size(); i++) {
-			setInventorySlotContents(i, list.get(i));
+			setItem(i, list.get(i));
 		}
 	}
 	
 	private void writeNBT(CompoundNBT compound) {
-		final NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getSizeInventory(), ItemStack.EMPTY);
+		final NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getContainerSize(), ItemStack.EMPTY);
 		for (int i = 0; i < list.size(); i++) {
-			list.set(i, getStackInSlot(i));
+			list.set(i, getItem(i));
 		}
 		ItemStackHelper.saveAllItems(compound, list, false);
 	}

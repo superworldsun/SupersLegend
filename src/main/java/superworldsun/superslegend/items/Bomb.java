@@ -18,6 +18,8 @@ import net.minecraft.world.World;
 import superworldsun.superslegend.config.SupersLegendConfig;
 import superworldsun.superslegend.entities.projectiles.items.bomb.BombEntity;
 
+import net.minecraft.item.Item.Properties;
+
 public class Bomb extends Item implements IVanishable {
 
 
@@ -32,14 +34,14 @@ public class Bomb extends Item implements IVanishable {
 		return SupersLegendConfig.COMMON.BombEnabled.get() && super.isInGroup(group);
 	}*/
 
-	public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
+	public boolean canAttackBlock(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
 		return !player.isCreative();
 	}
 
 	/**
 	 * returns the action that specifies what animation to play when the items is being used
 	 */
-	public UseAction getUseAction(ItemStack stack) {
+	public UseAction getUseAnimation(ItemStack stack) {
 		return UseAction.SPEAR;
 	}
 
@@ -53,24 +55,24 @@ public class Bomb extends Item implements IVanishable {
 	/**
 	 * Called when the player stops using an Item (stops holding the right mouse button).
 	 */
-	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+	public void releaseUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
 		if (entityLiving instanceof PlayerEntity) {
 			PlayerEntity playerentity = (PlayerEntity) entityLiving;
 			int i = this.getUseDuration(stack) - timeLeft;
 			if (i >= 10) {
 
 				BombEntity Bomb = new BombEntity(worldIn, playerentity, stack);
-				Bomb.pickupStatus = AbstractArrowEntity.PickupStatus.DISALLOWED;
-				Bomb.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.5F, 0.5F, 0.5F);
-				if (playerentity.abilities.isCreativeMode) {
-					worldIn.addEntity(Bomb);
+				Bomb.pickup = AbstractArrowEntity.PickupStatus.DISALLOWED;
+				Bomb.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.5F, 0.5F, 0.5F);
+				if (playerentity.abilities.instabuild) {
+					worldIn.addFreshEntity(Bomb);
 				}
 
 				//worldIn.addEntity(Bomb);
 				//worldIn.playMovingSound((PlayerEntity) null, Bomb, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				if (!playerentity.abilities.isCreativeMode) {
-					worldIn.addEntity(Bomb);
-					playerentity.inventory.deleteStack(stack);
+				if (!playerentity.abilities.instabuild) {
+					worldIn.addFreshEntity(Bomb);
+					playerentity.inventory.removeItem(stack);
 				}
 			}
 		}
@@ -81,10 +83,10 @@ public class Bomb extends Item implements IVanishable {
 	 * {@link #onItemUse}.
 	 */
 	@Override
-	public ActionResult<ItemStack> onItemRightClick( World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
+	public ActionResult<ItemStack> use( World worldIn, PlayerEntity playerIn, Hand handIn) {
+		ItemStack itemstack = playerIn.getItemInHand(handIn);
 
-		playerIn.setActiveHand(handIn);
+		playerIn.startUsingItem(handIn);
 		return new ActionResult<ItemStack>(ActionResultType.SUCCESS, itemstack);
 	}
 
@@ -93,9 +95,9 @@ public class Bomb extends Item implements IVanishable {
 	 * the damage on the stack.
 	 */
 	@Override
-	public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-		stack.damageItem(1, attacker, (entity) -> {
-			entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+		stack.hurtAndBreak(1, attacker, (entity) -> {
+			entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
 		});
 		return true;
 	}
@@ -103,10 +105,10 @@ public class Bomb extends Item implements IVanishable {
 	/**
 	 * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
 	 */
-	public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-		if ((double)state.getBlockHardness(worldIn, pos) != 0.0D) {
-			stack.damageItem(2, entityLiving, (entity) -> {
-				entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+	public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+		if ((double)state.getDestroySpeed(worldIn, pos) != 0.0D) {
+			stack.hurtAndBreak(2, entityLiving, (entity) -> {
+				entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
 			});
 		}
 

@@ -143,7 +143,7 @@ public class EntityFireBeam extends AbstractArrowEntity
                 this.remove();
             }
         } else {
-            this.func_233566_aG_();
+            this.updateInWaterStateAndDoFluidPushing();
             if (this.world.isRemote) {
                 this.world.addParticle(ParticleTypes.SPIT, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.1D, 0.0D);
             }

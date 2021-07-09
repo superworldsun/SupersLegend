@@ -18,6 +18,8 @@ import superworldsun.superslegend.init.SoundInit;
 
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class MasterSwordV2 extends ItemCustomSword
 {
 
@@ -39,7 +41,7 @@ public class MasterSwordV2 extends ItemCustomSword
 
 			EntitySwordBeam beam = new EntitySwordBeam(playerIn.world, playerIn);
 			float arrowVelocity = 1.5F;
-			beam.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
+			beam.shootFromRotation(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
 			playerIn.world.addEntity(beam);
 		}
 		else if (!worldIn.isRemote && playerIn.isCreative()) {
@@ -50,7 +52,7 @@ public class MasterSwordV2 extends ItemCustomSword
 
 			EntitySwordBeam beam = new EntitySwordBeam(playerIn.world, playerIn);
 			float arrowVelocity = 1.5F;
-			beam.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
+			beam.shootFromRotation(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
 			playerIn.world.addEntity(beam);
 		}
 		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
@@ -70,7 +72,7 @@ public class MasterSwordV2 extends ItemCustomSword
 					if player.swingArm(Hand.MAIN_HAND);
 					{
 						EntityArrowFire firearrow = new EntityArrowFire(player.world, player);
-						firearrow.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+						firearrow.shootFromRotation(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
 						player.world.addEntity(firearrow);
 					}
 				}
@@ -86,7 +88,7 @@ public class MasterSwordV2 extends ItemCustomSword
 				if (playerIn.getHealth() >= playerIn.getMaxHealth()) {
 
 					EntityArrowFire firearrow = new EntityArrowFire(playerIn.world, playerIn);
-					firearrow.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+					firearrow.shootFromRotation(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
 					playerIn.world.addEntity(firearrow);
 				}
 		}

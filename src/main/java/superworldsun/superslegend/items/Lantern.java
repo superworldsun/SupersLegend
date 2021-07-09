@@ -13,6 +13,8 @@ import superworldsun.superslegend.entities.projectiles.beam.EntityFireBeam;
 
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class Lantern extends Item
 {
 

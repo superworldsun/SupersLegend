@@ -396,6 +396,6 @@ public class EntityDinsFire extends Entity {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public void func_234612_a_(PlayerEntity playerIn, float rotationPitch, float rotationYaw, float v, float arrowVelocity, float v1) {
+    public void shootFromRotation(PlayerEntity playerIn, float rotationPitch, float rotationYaw, float v, float arrowVelocity, float v1) {
     }
 }

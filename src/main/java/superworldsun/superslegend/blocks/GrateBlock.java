@@ -21,27 +21,29 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class GrateBlock extends Block implements IWaterLoggable{
 public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
 public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 15.99D, 15.99D, 15.99D);
+protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 15.99D, 15.99D, 15.99D);
 
 	public GrateBlock(Properties properties) {
     super(properties);
-    this.setDefaultState(getDefaultState().with(WATERLOGGED, false));
+    this.registerDefaultState(defaultBlockState().setValue(WATERLOGGED, false));
  }
 
 public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
    return SHAPE;
 }
 
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		      builder.add(TYPE, WATERLOGGED);
 	}
 
 	public FluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(true) : super.getFluidState(state);
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(true) : super.getFluidState(state);
 	}
 
 
@@ -58,12 +60,12 @@ public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos,
 	   
 		   @SuppressWarnings("deprecation")
 		   @Override
-		   public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-				   if (stateIn.get(WATERLOGGED)) {
-					   worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+		   public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+				   if (stateIn.getValue(WATERLOGGED)) {
+					   worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 				   }
 
-				   return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+				   return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 			   }
 
 

@@ -16,9 +16,10 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import superworldsun.superslegend.items.ItemCustomSword;
 
 import java.util.List;
+
+import net.minecraft.item.Item.Properties;
 
 public class BiggornsSword extends ItemCustomSword
 {
@@ -28,15 +29,10 @@ public class BiggornsSword extends ItemCustomSword
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.GRAY + "A Large Sword that requires two hands to wield"));
-	}
-
-	@Override
-	public boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker) {
-		return true;
 	}
 
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
@@ -44,14 +40,14 @@ public class BiggornsSword extends ItemCustomSword
 		if(entity instanceof PlayerEntity)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getHeldItemMainhand();
+			ItemStack equipped = player.getMainHandItem();
 			{
 				if(stack == equipped)
 					{
 						if(player.hasItemInSlot(EquipmentSlotType.OFFHAND))
 						{
-							player.entityDropItem(player.getHeldItemOffhand());
-							player.setItemStackToSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+							player.spawnAtLocation(player.getOffhandItem());
+							player.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 						}
 					}
 			}

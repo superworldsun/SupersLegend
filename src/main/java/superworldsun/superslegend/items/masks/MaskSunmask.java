@@ -14,17 +14,19 @@ import superworldsun.superslegend.lists.ArmourMaterialList;
 import java.util.List;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class MaskSunmask extends NonEnchantArmor {
     public MaskSunmask(String name, EquipmentSlotType slot)
     
     {
-        super(ArmourMaterialList.sunmask, slot, new Properties().group(SupersLegend.supers_legend));
+        super(ArmourMaterialList.sunmask, slot, new Properties().tab(SupersLegend.supers_legend));
         setRegistryName(SupersLegend.modid, name);
     }
     @Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.GOLD + "A Mask that represents the morning sun"));
 	}
 }

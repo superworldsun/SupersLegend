@@ -1,4 +1,4 @@
-package superworldsun.superslegend.CustomLootMobs;
+package superworldsun.superslegend.customlootmobs;
 
 import java.util.Random;
 
@@ -17,10 +17,10 @@ public class CustomLootElderguardian
 
         if(event.getEntityLiving() instanceof ElderGuardianEntity) {
             if(random.nextInt(2) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.red_rupee,3));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.red_rupee,3));
             
             if(random.nextInt(1) == 0)
-                event.getEntityLiving().entityDropItem(new ItemStack(ItemList.triforce_courage_shard,1));
+                event.getEntityLiving().spawnAtLocation(new ItemStack(ItemList.triforce_courage_shard,1));
             
 	        }
 	    }
