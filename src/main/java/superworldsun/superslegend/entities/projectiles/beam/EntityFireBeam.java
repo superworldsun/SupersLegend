@@ -23,8 +23,8 @@ public class EntityFireBeam extends AbstractArrowEntity
 
     public EntityFireBeam(World worldIn, LivingEntity shooter) {
         super(EntityInit.FIRE_BEAM.get(), shooter, worldIn);
-        this.setDamage(this.getDamage() + 2.0F);
-        this.setHitSound(null);
+        this.setBaseDamage(this.getBaseDamage() + 2.0F);
+        this.setSoundEvent(null);
     }
 
     public EntityFireBeam(World worldIn, double x, double y, double z) {
@@ -36,32 +36,34 @@ public class EntityFireBeam extends AbstractArrowEntity
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     private int fuse = 90;
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return null;
     }
 
-    @Override
-    protected void arrowHit(LivingEntity entity) {
+    //TODO FIX ASAP
+
+    /*@Override
+    protected void doPostHurtEffects(LivingEntity entity) {
         BlockPos currentPos = this.getPosition();
-        this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_FIRE, SoundCategory.PLAYERS, 1f, 1f);
-        super.arrowHit(entity);
+        this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_FIRE, SoundCategory.PLAYERS, 1f, 1f);
+        super.doPostHurtEffects(entity);
         if (entity.isAlive()) {
-            entity.setFire(6);
+            entity.setSecondsOnFire(6);
         }
         if (entity.equals(EntityType.BLAZE) || entity.equals(EntityType.MAGMA_CUBE) || entity.equals(EntityType.HUSK)) {
-            entity.setFire(6);
-            this.setDamage(this.getDamage() / 5f);
+            entity.setSecondsOnFire(6);
+            this.setBaseDamage(this.getBaseDamage() / 5f);
         }
         if (entity.equals(EntityType.POLAR_BEAR) || entity.equals(EntityType.STRAY) || entity.equals(EntityType.SNOW_GOLEM)) {
-            entity.setFire(6);
-            this.setDamage(this.getDamage() * 2f);
+            entity.setSecondsOnFire(6);
+            this.setBaseDamage(this.getBaseDamage() * 2f);
         }
     }
 
@@ -73,17 +75,17 @@ public class EntityFireBeam extends AbstractArrowEntity
         if(!this.isOnGround())
         {
             //this.world.addParticle(ParticleTypes.FLAME, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D, 0.0D);
-            this.world.addParticle(ParticleTypes.FLAME, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.03D, 0.0D);
+            this.level.addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), 0.0D, 0.03D, 0.0D);
             this.setNoGravity(true);
         }
 
         if (this.inGround) {
-            if (!this.isWet() || !this.isInWater()) {
-                if (world.isAirBlock(this.getPosition()))
-                    world.setBlockState(this.getPosition(), Blocks.FIRE.getDefaultState(), 11);
+            if (!this.isInWaterOrRain() || !this.isInWater()) {
+                if (level.isEmptyBlock(this.getPosition()))
+                    level.setBlock(this.getPosition(), Blocks.FIRE.defaultBlockState(), 11);
 
                 BlockPos currentPos = this.getPosition();
-                this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_FIRE, SoundCategory.PLAYERS, 1f, 1f);
+                this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_FIRE, SoundCategory.PLAYERS, 1f, 1f);
 
                 this.remove();
             }
@@ -91,7 +93,7 @@ public class EntityFireBeam extends AbstractArrowEntity
 
         if (this.isInWater()) {
             BlockPos currentPos = this.getPosition();
-            this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
+            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
             this.remove();
         }
     }

@@ -20,6 +20,8 @@ import java.util.List;
 
 import net.minecraft.item.Item.Properties;
 
+import javax.annotation.Nonnull;
+
 public class TrueMasterSword extends ItemCustomSword
 {
 
@@ -29,7 +31,7 @@ public class TrueMasterSword extends ItemCustomSword
 	}
 
 
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+	/*public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		playerIn.swingArm(handIn);
@@ -97,10 +99,9 @@ public class TrueMasterSword extends ItemCustomSword
 	}*/
 
 
-	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void addInformation(@Nonnull ItemStack stack, World world, @Nonnull List<ITextComponent> list, @Nonnull ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.GOLD + "The True Blade of Evil's Bane"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Right-Click to Fire a Beam at full HP"));
 	}

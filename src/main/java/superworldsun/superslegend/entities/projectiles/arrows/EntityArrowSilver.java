@@ -25,42 +25,42 @@ public class EntityArrowSilver extends AbstractArrowEntity
 
     public EntityArrowSilver(World worldIn, LivingEntity shooter) {
         super(EntityInit.SILVER_ARROW.get(), shooter, worldIn);
-        this.setDamage(this.getDamage() + 2.0F);
+        this.setBaseDamage(this.getBaseDamage() + 2.0F);
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(ItemList.silver_arrow);
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected void arrowHit(LivingEntity living) {
+    protected void doPostHurtEffects(LivingEntity living) {
         if(living instanceof WitherSkeletonEntity)
         {
-            this.setDamage(this.getDamage() *100);
+            this.setBaseDamage(this.getBaseDamage() *100);
         }
-        super.arrowHit(living);
+        super.doPostHurtEffects(living);
     }
 
     @Override
-    public void setHitSound(SoundEvent soundIn) {
-        super.setHitSound(soundIn);
+    public void setSoundEvent(SoundEvent soundIn) {
+        super.setSoundEvent(soundIn);
     }
 
     /*@Override
     protected void arrowHit(LivingEntity entity) {
         super.arrowHit(entity);
         if(entity.isEntityUndead()){
-            this.setDamage(this.getDamage()*20);
+            this.setDamageValue(this.getDamage()*20);
             }
         if(!entity.isEntityUndead())
         {
-            this.setDamage(this.getDamage()*1.5);
+            this.setDamageValue(this.getDamage()*1.5);
         }
     }*/
 }

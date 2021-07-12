@@ -17,7 +17,7 @@ import java.util.Random;
 
 import net.minecraft.block.AbstractBlock.Properties;
 
-public class LanternLightBlock extends Block
+/*public class LanternLightBlock extends Block
 
 {
 	private int ticksExisted;
@@ -41,9 +41,9 @@ public class LanternLightBlock extends Block
 		{
 
 		}
-	}*/
+	}
 
-	@Override
+	/*@Override
 	protected boolean isAir(BlockState state) {
 		return true;
 	}
@@ -58,4 +58,4 @@ public class LanternLightBlock extends Block
 	public boolean isVariableOpacity() {
 		return true;
 	}
-}
+}*/

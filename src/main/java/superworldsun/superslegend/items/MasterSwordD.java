@@ -30,44 +30,44 @@ public class MasterSwordD extends ItemCustomSword
 
 	//TODO CHANGE ENTITY TO NEW ONE (ARROW PLACE HOLDER)
 
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+	/*public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
-		ItemStack stack = playerIn.getHeldItem(handIn);
-		playerIn.swingArm(handIn);
-		if (!worldIn.isRemote && !playerIn.isCreative() && !playerIn.shouldHeal())
+		ItemStack stack = playerIn.getItemInHand(handIn);
+		playerIn.swing(handIn);
+		if (!worldIn.isClientSide && !playerIn.isCreative() && !playerIn.isHurt())
 		{
-			playerIn.getCooldownTracker().setCooldown(this, 15);
+			playerIn.getCooldowns().addCooldown(this, 15);
 
 			BlockPos currentPos = playerIn.getPosition();
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW, SoundCategory.PLAYERS, 3f, 1f);
 
-			EntitySwordBeam beam = new EntitySwordBeam(playerIn.world, playerIn);
+			EntitySwordBeam beam = new EntitySwordBeam(playerIn.level, playerIn);
 			float arrowVelocity = 1.5F;
-			beam.shootFromRotation(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
-			playerIn.world.addEntity(beam);
+			beam.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, arrowVelocity, 1.0F);
+			playerIn.level.addFreshEntity(beam);
 		}
-		else if (!worldIn.isRemote && playerIn.isCreative()) {
-			playerIn.getCooldownTracker().setCooldown(this, 15);
+		else if (!worldIn.isClientSide && playerIn.isCreative()) {
+			playerIn.getCooldowns().addCooldown(this, 15);
 
 			BlockPos currentPos = playerIn.getPosition();
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW, SoundCategory.PLAYERS, 3f, 1f);
 
-			EntitySwordBeam beam = new EntitySwordBeam(playerIn.world, playerIn);
+			EntitySwordBeam beam = new EntitySwordBeam(playerIn.level, playerIn);
 			float arrowVelocity = 1.5F;
-			beam.shootFromRotation(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
-			playerIn.world.addEntity(beam);
+			beam.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, arrowVelocity, 1.0F);
+			playerIn.level.addFreshEntity(beam);
 		}
-		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
+		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
 	}
 
 
 	/*public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
 	{
-		if(entity instanceof PlayerEntity && !world.isRemote)
+		if(entity instanceof PlayerEntity && !world.isClientSide)
 		{
 			PlayerEntity player = (PlayerEntity)entity;
 			ItemStack equipped = player.getHeldItemMainhand();
-			if(!world.isRemote)
+			if(!world.isClientSide)
 			{
 				if(stack == equipped && !player.shouldHeal())
 				{
@@ -99,9 +99,9 @@ public class MasterSwordD extends ItemCustomSword
 
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.DARK_RED + "A Sword Infused with the Flames of"));
 		list.add(new StringTextComponent(TextFormatting.RED + "Din"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Right-Click to Fire a Beam at full HP"));

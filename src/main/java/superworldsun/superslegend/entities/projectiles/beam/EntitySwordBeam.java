@@ -29,31 +29,32 @@ public class EntitySwordBeam extends AbstractArrowEntity
 
     public EntitySwordBeam(World worldIn, LivingEntity shooter) {
         super(EntityInit.SWORD_BEAM.get(), shooter, worldIn);
-        this.setDamage(this.getDamage() + 1.0F);
-        this.setHitSound(null);
+        //todo fix asap
+        //this.getBaseDamage(this.getBaseDamage() + 1.0F);
+        this.setSoundEvent(null);
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return null;
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected void arrowHit(LivingEntity living) {
+    protected void doPostHurtEffects(LivingEntity living) {
         if(living instanceof WitherSkeletonEntity)
         {
             this.remove();
         }
-        super.arrowHit(living);
+        super.doPostHurtEffects(living);
     }
 
     @Override
-    protected float getWaterDrag() {
+    protected float getWaterInertia() {
         return 1.0f;
     }
 
@@ -69,36 +70,36 @@ public class EntitySwordBeam extends AbstractArrowEntity
                 this.remove();
         }
 
-        if(this.inWater && this.inGround)
+        if(this.isInWater() && this.inGround)
         {
             this.remove();
         }
 
-        if(this.ticksExisted % 2 == 0) {
-            this.world.addParticle(ParticleTypes.CRIT, this.getPosXRandom(1), this.getPosYRandom() * 1, this.getPosZRandom(1), 0.0D, 0.0D, 0.0D);
+        if(this.tickCount % 2 == 0) {
+            this.level.addParticle(ParticleTypes.CRIT, this.getRandomX(1), this.getRandomY() * 1, this.getRandomZ(1), 0.0D, 0.0D, 0.0D);
         }
 
-        Vector3d vec3d1 = this.getPositionVec();
-        Vector3d vec3d = this.getPositionVec().add(this.getMotion());
-        RayTraceResult raytraceresult = this.world.rayTraceBlocks(new RayTraceContext(vec3d1, vec3d, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.ANY, null));
+        Vector3d vec3d1 = this.position();
+        Vector3d vec3d = this.position().add(this.getDeltaMovement());
+        RayTraceResult raytraceresult = this.level.clip(new RayTraceContext(vec3d1, vec3d, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.ANY, null));
 
         if (raytraceresult != null) {
             if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
-                BlockPos pos = new BlockPos(raytraceresult.getHitVec());
-                BlockState state = world.getBlockState(pos);
+                BlockPos pos = new BlockPos(raytraceresult.getLocation());
+                BlockState state = level.getBlockState(pos);
 
-                if (state.getMaterial() == Material.PLANTS && SupersLegendConfig.COMMON.breaksFlowers.get()) {
-                    world.destroyBlock(pos, true);
+                if (state.getMaterial() == Material.PLANT && SupersLegendConfig.COMMON.breaksFlowers.get()) {
+                    level.destroyBlock(pos, true);
                 }
-                if ((state.getMaterial() == Material.TALL_PLANTS) && SupersLegendConfig.COMMON.breaksTallGrass.get()) {
-                    world.destroyBlock(pos, true);
+                if ((state.getMaterial() == Material.REPLACEABLE_PLANT) && SupersLegendConfig.COMMON.breaksTallGrass.get()) {
+                    level.destroyBlock(pos, true);
                 }
             }
         }
         --this.fuse;
         if (this.fuse <= 0) {
             this.remove();
-            if (!this.world.isRemote) {
+            if (!this.level.isClientSide) {
                 this.remove();
             }
         }

@@ -13,8 +13,8 @@ import superworldsun.superslegend.lists.BlockList;
 import javax.annotation.Nonnull;
 import java.util.Random;
 
-public class DekuTree extends Tree {
-
+//public class DekuTree extends Tree {
+/*
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> DEKUTREEFEATURE =
             Feature.TREE.withConfiguration(
@@ -32,4 +32,4 @@ public class DekuTree extends Tree {
         return DEKUTREEFEATURE;
     }
 
-}
+}*/

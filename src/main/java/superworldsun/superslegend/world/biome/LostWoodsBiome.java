@@ -4,10 +4,10 @@ import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 
-public class LostWoodsBiome {
+//public class LostWoodsBiome {
 
 
-    public static Biome BiomeLostWoods(float depth, float scale, boolean isTallVariant) {
+    /*public static Biome BiomeLostWoods(float depth, float scale, boolean isTallVariant) {
         MobSpawnInfo.Builder mobspawninfo$builder = new MobSpawnInfo.Builder();
         DefaultBiomeFeatures.withPassiveMobs(mobspawninfo$builder);
         DefaultBiomeFeatures.withBatsAndHostiles(mobspawninfo$builder);
@@ -46,4 +46,5 @@ public class LostWoodsBiome {
     public static Biome LostWoodsBiome(float v, float v1) {
         return null;
     }
-}
+    }
+*/

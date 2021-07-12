@@ -44,6 +44,10 @@ import superworldsun.superslegend.items.*;
 import superworldsun.superslegend.items.armors.*;
 import superworldsun.superslegend.items.arrows.*;
 import superworldsun.superslegend.items.bows.*;
+import superworldsun.superslegend.items.food.HylianLoach;
+import superworldsun.superslegend.items.food.HylianLoachCooked;
+import superworldsun.superslegend.items.food.HyruleBass;
+import superworldsun.superslegend.items.food.HyruleBassCooked;
 import superworldsun.superslegend.items.masks.*;
 import superworldsun.superslegend.lists.BlockList;
 import superworldsun.superslegend.lists.ItemList;
@@ -296,6 +300,12 @@ public class SupersLegend
 							//ItemList.magic_armor_set = new Item(new Item.Properties().group(supers_legend)).setRegistryName(location("magic_armor_set")),
 
 
+							//Food
+							ItemList.hyrule_bass = new HyruleBass(new Item.Properties().stacksTo(64).tab(supers_legend)).setRegistryName(location("hyrule_bass")),
+							ItemList.cooked_hyrule_bass = new HyruleBassCooked(new Item.Properties().stacksTo(64).tab(supers_legend)).setRegistryName(location("cooked_hyrule_bass")),
+							ItemList.hylian_loach = new HylianLoach(new Item.Properties().stacksTo(64).tab(supers_legend)).setRegistryName(location("hylian_loach")),
+							ItemList.cooked_hylian_loach = new HylianLoachCooked(new Item.Properties().stacksTo(64).tab(supers_legend)).setRegistryName(location("cooked_hylian_loach")),
+
 							//LIQUID REGISTERS
 
 
@@ -327,6 +337,9 @@ public class SupersLegend
 							ItemList.tombstone_block = new BlockItem(BlockList.tombstone_block, new Item.Properties().stacksTo(64).tab(supers_legend)).setRegistryName(BlockList.tombstone_block.getRegistryName()),
 							ItemList.stone_path_block = new BlockItem(BlockList.stone_path_block, new Item.Properties().stacksTo(64).tab(supers_legend)).setRegistryName(BlockList.stone_path_block.getRegistryName()),
 							ItemList.stone_tile_block = new BlockItem(BlockList.stone_tile_block, new Item.Properties().stacksTo(64).tab(supers_legend)).setRegistryName(BlockList.stone_tile_block.getRegistryName()),
+							ItemList.dins_flame = new BlockItem(BlockList.dins_flame, new Item.Properties().stacksTo(1).tab(supers_legend)).setRegistryName(BlockList.dins_flame.getRegistryName()),
+							ItemList.farores_flame = new BlockItem(BlockList.farores_flame, new Item.Properties().stacksTo(1).tab(supers_legend)).setRegistryName(BlockList.farores_flame.getRegistryName()),
+							ItemList.nayrus_flame = new BlockItem(BlockList.nayrus_flame, new Item.Properties().stacksTo(1).tab(supers_legend)).setRegistryName(BlockList.nayrus_flame.getRegistryName()),
 
 
 							//WEAPONS & TOOLS
@@ -334,7 +347,19 @@ public class SupersLegend
 							ItemList.kokiri_sword = new ItemCustomSword(ToolMaterialList.kokiri_sword,2, -2.3f, new Item.Properties().tab(supers_legend)).setRegistryName(location("kokiri_sword")),
 							ItemList.razor_sword = new ItemCustomSword(ToolMaterialList.razor_sword, 2, -2.5f, new Item.Properties().tab(supers_legend)).setRegistryName(location("razor_sword")),
 							ItemList.gilded_sword = new ItemCustomSword(ToolMaterialList.gilded_sword,2, -2.4f, new Item.Properties().tab(supers_legend)).setRegistryName(location("gilded_sword")),
-							ItemList.master_sword = new MasterSword(ToolMaterialList.master_sword,2, -2.3f, new Item.Properties().tab(supers_legend)).setRegistryName(location("master_sword")),
+
+
+							ItemList.master_sword = new MasterSword(ToolMaterialList.master_sword,2, -2.4f, new Item.Properties().tab(supers_legend)).setRegistryName(location("master_sword")),
+							ItemList.master_sword_v2 = new MasterSwordV2(ToolMaterialList.master_sword_v2,2, -2.3f, new Item.Properties().tab(supers_legend)).setRegistryName(location("master_sword_v2")),
+							ItemList.master_sword_d = new MasterSwordD(ToolMaterialList.master_sword_d,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_d")),
+							ItemList.master_sword_n = new MasterSwordN(ToolMaterialList.master_sword_n,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_n")),
+							ItemList.master_sword_f = new MasterSwordF(ToolMaterialList.master_sword_f,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_f")),
+							ItemList.master_sword_dn = new MasterSwordDN(ToolMaterialList.master_sword_dn,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_dn")),
+							ItemList.master_sword_nf = new MasterSwordNF(ToolMaterialList.master_sword_nf,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_nf")),
+							ItemList.master_sword_fd = new MasterSwordFD(ToolMaterialList.master_sword_fd,2, -2.3f, new Item.Properties()).setRegistryName(location("master_sword_fd")),
+							ItemList.true_master_sword = new TrueMasterSword(ToolMaterialList.true_master_sword,2, -2.2f, new Item.Properties().tab(supers_legend)).setRegistryName(location("true_master_sword")),
+
+
 							ItemList.giants_knife = new GiantsKnife(ToolMaterialList.giants_knife,2, -2.3f, new Item.Properties().tab(supers_legend)).setRegistryName(location("giants_knife")),
 							//ItemList.broken_giants_knife = new BiggornsSword(ToolMaterialList.broken_giants_knife,2, -2.7f, new Item.Properties().group(supers_legend)).setRegistryName(location("broken_giants_knife")),
 							ItemList.biggorons_sword = new BiggornsSword(ToolMaterialList.biggorons_sword,2, -2.5f, new Item.Properties().tab(supers_legend)).setRegistryName(location("biggorons_sword")),
@@ -350,7 +375,11 @@ public class SupersLegend
 							ItemList.shock_arrow = new ArrowShock(new Item.Properties().tab(supers_legend)).setRegistryName(location("shock_arrow")),
 							ItemList.bomb_arrow = new ArrowBomb(new Item.Properties().tab(supers_legend)).setRegistryName(location("bomb_arrow")),
 							ItemList.ancient_arrow = new ArrowAncient(new Item.Properties().tab(supers_legend)).setRegistryName(location("ancient_arrow")),
+							ItemList.silver_arrow = new ArrowSilver(new Item.Properties().tab(supers_legend)).setRegistryName(location("silver_arrow")),
 							//ItemList.moon_pearl = new MoonPearl(new Item.Properties().maxStackSize(1).group(supers_legend)).setRegistryName(location("moon_pearl")),
+							ItemList.lantern = new Item(new Item.Properties().stacksTo(1).tab(supers_legend)).setRegistryName(location("lantern")),
+							ItemList.blue_candle = new BlueCandle(new Item.Properties().stacksTo(1).tab(supers_legend)).setRegistryName(location("blue_candle")),
+							ItemList.red_candle = new RedCandle(new Item.Properties().stacksTo(1).tab(supers_legend)).setRegistryName(location("red_candle")),
 							ItemList.heros_secret_stash = new HerosSecretStash(new Item.Properties().stacksTo(1).tab(supers_legend)).setRegistryName(location("heros_secret_stash")),
 							ItemList.book_of_mudora = new BookOfMudora(new Item.Properties().stacksTo(1).tab(supers_legend)).setRegistryName(location("book_of_mudora")),
 							ItemList.silver_scale = new SilverScale(new Item.Properties().stacksTo(1).tab(supers_legend)).setRegistryName(location("silver_scale")),

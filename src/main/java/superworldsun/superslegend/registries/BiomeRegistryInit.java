@@ -10,14 +10,14 @@ import net.minecraft.world.biome.BiomeRegistry;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 import superworldsun.superslegend.lists.BiomeList;
-import superworldsun.superslegend.world.biome.LostWoodsBiome;
+//import superworldsun.superslegend.world.biome.LostWoodsBiome;
 
 public class BiomeRegistryInit extends BiomeRegistry {
 
 
     private static final Int2ObjectMap<RegistryKey<Biome>> idToKeyMap = new Int2ObjectArrayMap<>();
 
-    private static Biome register(int id, RegistryKey<Biome> key, Biome biome) {
+    /*private static Biome register(int id, RegistryKey<Biome> key, Biome biome) {
         idToKeyMap.put(id, key);
         return WorldGenRegistries.register(WorldGenRegistries.BIOME, id, key, biome);
     }
@@ -30,6 +30,6 @@ public class BiomeRegistryInit extends BiomeRegistry {
         register(1, BiomeList.LostWoodsBiome, LostWoodsBiome.LostWoodsBiome(0.1F, 0.2F));
 
         //LostWoodsBiome.LostWoodsBiome(false));
-    }
+    }*/
 
 }

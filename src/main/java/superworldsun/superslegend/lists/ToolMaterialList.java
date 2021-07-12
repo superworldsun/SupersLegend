@@ -7,49 +7,60 @@ import net.minecraft.item.crafting.Ingredient;
 public enum ToolMaterialList implements IItemTier
 {
 	//Weapons
-		kokiri_sword		(2, -2f, 0, 0, 0, ItemList.kokiri_sword),
-		razor_sword			(3, -2f, 200, 1, 0, ItemList.razor_sword),
-		gilded_sword		(4, -2f, 0, 2, 0, ItemList.gilded_sword),
-		master_sword		(6, -2f, 0, 0, 0, ItemList.master_sword),
-		giants_knife		(10, -2f, 8, 2, 0, ItemList.giants_knife),
-		broken_giants_knife	(4, -2f, 0, 1, 0, ItemList.broken_giants_knife),
-		biggorons_sword		(10, -2f, 0, 2, 0, ItemList.biggorons_sword),
+	kokiri_sword		(2, -2f, 0, 0, 0, ItemList.kokiri_sword),
+	razor_sword			(3, -2f, 200, 1, 0, ItemList.razor_sword),
+	gilded_sword		(4, -2f, 0, 2, 0, ItemList.gilded_sword),
 
-		guardian_sword		(5, -2f, 1200, 3, 0, ItemList.guardian_sword),
-		
-		rupee_sword			(2, -2f, 64, 0, 0, ItemList.rupee_sword),
-		blue_rupee_sword	(3, -2f, 122, 1, 0, ItemList.blue_rupee_sword),
-		red_rupee_sword		(4, -2f, 220, 2, 0, ItemList.red_rupee_sword),
-		silver_rupee_sword	(5, -2f, 822, 3, 0, ItemList.silver_rupee_sword),
-		gold_rupee_sword	(6, -3f, 4932, 3, 0, ItemList.gold_rupee_sword),
-		
-		//Tools
-		rupee_pickaxe		(1, 2f, 64, 0, 0, ItemList.rupee_pickaxe),
-		blue_rupee_pickaxe	(2, 3f, 122, 1, 0, ItemList.blue_rupee_pickaxe),
-		red_rupee_pickaxe	(2, 4f, 220, 2, 0, ItemList.red_rupee_pickaxe),
-		silver_rupee_pickaxe(3, 5f, 822, 3, 0, ItemList.silver_rupee_pickaxe),
-		gold_rupee_pickaxe	(4, 12f, 4932, 3, 0, ItemList.gold_rupee_pickaxe),
+	//Master Swords
+	master_sword		(5, -2f, 0, 2, 0, ItemList.master_sword),
+	master_sword_v2		(8, -2f, 0, 2, 0, ItemList.master_sword_v2),
+	master_sword_d		(9, -2f, 0, 2, 0, ItemList.master_sword_d),
+	master_sword_n		(9, -2f, 0, 2, 0, ItemList.master_sword_n),
+	master_sword_f		(9, -2f, 0, 2, 0, ItemList.master_sword_f),
+	master_sword_dn		(10, -2f, 0, 2, 0, ItemList.master_sword_dn),
+	master_sword_nf		(10, -2f, 0, 2, 0, ItemList.master_sword_nf),
+	master_sword_fd		(10, -2f, 0, 2, 0, ItemList.master_sword_fd),
+	true_master_sword	(11, -2f, 0, 2, 0, ItemList.true_master_sword),
 
-		
-		rupee_axe			(5, 2f, 64, 0, 0, ItemList.rupee_axe),
-		blue_rupee_axe		(5, 3f, 122, 1, 0, ItemList.blue_rupee_axe),
-		red_rupee_axe		(6, 4f, 220, 2, 0, ItemList.red_rupee_axe),
-		silver_rupee_axe	(8, 5f, 822, 3, 0, ItemList.silver_rupee_axe),
-		gold_rupee_axe		(8, 12f, 4932, 3, 0, ItemList.gold_rupee_axe),
+	giants_knife		(14, -2f, 8, 2, 0, ItemList.giants_knife),
+	broken_giants_knife	(4, -2f, 0, 1, 0, ItemList.broken_giants_knife),
+	biggorons_sword		(14, -2f, 0, 2, 0, ItemList.biggorons_sword),
 
-		
-		rupee_shovel		(1, 2f, 64, 0, 0, ItemList.rupee_shovel),
-		blue_rupee_shovel	(2, 3f, 122, 1, 0, ItemList.blue_rupee_shovel),
-		red_rupee_shovel	(2, 4f, 220, 2, 0, ItemList.red_rupee_shovel),
-		silver_rupee_shovel	(3, 5f, 822, 3, 0, ItemList.silver_rupee_shovel),
-		gold_rupee_shovel	(4, 12f, 4932, 3, 0, ItemList.gold_rupee_shovel),
+	guardian_sword		(5, -2f, 1200, 3, 0, ItemList.guardian_sword),
 
-		
-		rupee_hoe			(1, 2f, 84, 0, 0, ItemList.rupee_hoe),
-		blue_rupee_hoe		(1, 3f, 164, 1, 0, ItemList.blue_rupee_hoe),
-		red_rupee_hoe		(2, 4f, 310, 2, 0, ItemList.red_rupee_hoe),
-		silver_rupee_hoe	(2, 5f, 822, 3, 0, ItemList.silver_rupee_hoe),
-		gold_rupee_hoe		(2, 12f, 4932, 3, 0, ItemList.gold_rupee_hoe);
+	rupee_sword			(2, -2f, 64, 0, 0, ItemList.rupee_sword),
+	blue_rupee_sword	(3, -2f, 122, 1, 0, ItemList.blue_rupee_sword),
+	red_rupee_sword		(4, -2f, 220, 2, 0, ItemList.red_rupee_sword),
+	silver_rupee_sword	(5, -2f, 822, 3, 0, ItemList.silver_rupee_sword),
+	gold_rupee_sword	(6, -3f, 4932, 3, 0, ItemList.gold_rupee_sword),
+
+	//Tools
+	rupee_pickaxe		(1, 2f, 64, 0, 0, ItemList.rupee_pickaxe),
+	blue_rupee_pickaxe	(2, 3f, 122, 1, 0, ItemList.blue_rupee_pickaxe),
+	red_rupee_pickaxe	(2, 4f, 220, 2, 0, ItemList.red_rupee_pickaxe),
+	silver_rupee_pickaxe(3, 5f, 822, 3, 0, ItemList.silver_rupee_pickaxe),
+	gold_rupee_pickaxe	(4, 12f, 4932, 3, 0, ItemList.gold_rupee_pickaxe),
+
+
+	rupee_axe			(5, 2f, 64, 0, 0, ItemList.rupee_axe),
+	blue_rupee_axe		(5, 3f, 122, 1, 0, ItemList.blue_rupee_axe),
+	red_rupee_axe		(6, 4f, 220, 2, 0, ItemList.red_rupee_axe),
+	silver_rupee_axe	(8, 5f, 822, 3, 0, ItemList.silver_rupee_axe),
+	gold_rupee_axe		(8, 12f, 4932, 3, 0, ItemList.gold_rupee_axe),
+
+
+	rupee_shovel		(1, 2f, 64, 0, 0, ItemList.rupee_shovel),
+	blue_rupee_shovel	(2, 3f, 122, 1, 0, ItemList.blue_rupee_shovel),
+	red_rupee_shovel	(2, 4f, 220, 2, 0, ItemList.red_rupee_shovel),
+	silver_rupee_shovel	(3, 5f, 822, 3, 0, ItemList.silver_rupee_shovel),
+	gold_rupee_shovel	(4, 12f, 4932, 3, 0, ItemList.gold_rupee_shovel),
+
+
+	rupee_hoe			(1, 2f, 84, 0, 0, ItemList.rupee_hoe),
+	blue_rupee_hoe		(1, 3f, 164, 1, 0, ItemList.blue_rupee_hoe),
+	red_rupee_hoe		(2, 4f, 310, 2, 0, ItemList.red_rupee_hoe),
+	silver_rupee_hoe	(2, 5f, 822, 3, 0, ItemList.silver_rupee_hoe),
+	gold_rupee_hoe		(2, 12f, 4932, 3, 0, ItemList.gold_rupee_hoe);
 
 	
 	private float attackDamage, efficiency;

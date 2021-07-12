@@ -12,7 +12,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import superworldsun.superslegend.SupersLegend;
-import superworldsun.superslegend.world.biome.LostWoodsBiome;
+//import superworldsun.superslegend.world.biome.LostWoodsBiome;
 
 import java.util.ArrayList;
 import java.util.List;

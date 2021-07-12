@@ -3,7 +3,7 @@ package superworldsun.superslegend.lists;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.Tag;
-import superworldsun.superslegend.SupersLegend.RegistryEvents;
+//import superworldsun.superslegend.SupersLegend.RegistryEvents;
 //import superworldsun.superslegend.objects.fluids.FluidPoison;
 
 /*public class FluidList {

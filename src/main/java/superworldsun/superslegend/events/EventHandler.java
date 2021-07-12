@@ -103,7 +103,7 @@ public class EventHandler {
 
     @SubscribeEvent
     public void onMobDrops(LivingDropsEvent event) {
-        Entity sourceEntity = event.getSource().getImmediateSource();
+        Entity sourceEntity = event.getSource().getDirectEntity();
         if (sourceEntity instanceof EntityArrowAncient) {
             event.getDrops().clear();
         }

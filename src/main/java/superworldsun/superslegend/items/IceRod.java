@@ -26,7 +26,9 @@ public class IceRod extends Item
 		super(properties);
 	}
 
-	@Override
+	//TODO FIX ASAP
+
+	/*@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack stack = player.getItemInHand(hand);
 		//acts as a cooldown.
@@ -37,19 +39,19 @@ public class IceRod extends Item
 		if (!player.isShiftKeyDown()) {
 			world.playSound(null, player.blockPosition(), SoundEvents.ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 			if (!player.level.isClientSide) {
-				EntityIceBeam icebeam = new EntityIceBeam(player.world, player);
+				EntityIceBeam icebeam = new EntityIceBeam(player.level, player);
 				float arrowVelocity = 0.9F;
-				icebeam.shootFromRotation(player, player.rotationPitch, player.rotationYaw, -4.0F, arrowVelocity, 0.5F);
-				player.world.addEntity(icebeam);
+				icebeam.shootFromRotation(player, player.xRot, player.yRot, -4.0F, arrowVelocity, 0.5F);
+				player.level.addFreshEntity(icebeam);
 			}
 		}
-		return super.onItemRightClick(world, player, hand);
-	}
+		return super.use(world, player, hand);
+	}*/
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.AQUA + "Uses Stamina to create Ice"));
 	}
 

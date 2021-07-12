@@ -30,7 +30,7 @@ public class MasterSwordNF extends ItemCustomSword
 
 	//TODO CHANGE ENTITY TO NEW ONE (ARROW PLACE HOLDER)
 
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+	/*public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		playerIn.swingArm(handIn);
@@ -99,9 +99,9 @@ public class MasterSwordNF extends ItemCustomSword
 
 
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.DARK_RED + "A Powerful Sword Infused with the Flames of"));
 		list.add(new StringTextComponent(TextFormatting.BLUE + "Nayru"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Farore"));

@@ -34,7 +34,7 @@ import java.util.*;
 
 import static superworldsun.superslegend.init.SoundInit.FAIRY_HEAL_ON_TOUCH;
 
-public class EntityDinsFire extends Entity {
+/*public class EntityDinsFire extends Entity {
 
     private BlockPos activatedPos;
     protected boolean isBouncing;
@@ -119,7 +119,7 @@ public class EntityDinsFire extends Entity {
                 /*if ((state.getBlock() instanceof GrassBlock) && SupersLegendConfig.COMMON.breaksGrass.get()) {
                     world.destroyBlock(pos, true);
                 }*/
-                if ((state.getMaterial() == Material.TALL_PLANTS) && SupersLegendConfig.COMMON.breaksTallGrass.get()) {
+                /*if ((state.getMaterial() == Material.TALL_PLANTS) && SupersLegendConfig.COMMON.breaksTallGrass.get()) {
                     world.destroyBlock(pos, true);
                 }
                 if ((state.getBlock() instanceof TorchBlock) && SupersLegendConfig.COMMON.breaksTorches.get()) {
@@ -398,4 +398,4 @@ public class EntityDinsFire extends Entity {
 
     public void shootFromRotation(PlayerEntity playerIn, float rotationPitch, float rotationYaw, float v, float arrowVelocity, float v1) {
     }
-}
+}*/

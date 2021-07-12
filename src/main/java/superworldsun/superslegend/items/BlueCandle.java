@@ -38,31 +38,31 @@ public class BlueCandle extends Item {
    @Nonnull
    public ActionResultType onItemUse(ItemUseContext context) {
       PlayerEntity playerentity = context.getPlayer();
-      World world = context.getWorld();
-      BlockPos blockpos = context.getPos();
+      World world = context.getLevel();
+      BlockPos blockpos = context.getClickedPos();
       BlockState blockstate = world.getBlockState(blockpos);
-      if (CampfireBlock.canBeLit(blockstate) && Objects.requireNonNull(playerentity).getFoodStats().getFoodLevel()>= 1) {
-         world.playSound(playerentity, blockpos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-         world.setBlockState(blockpos, blockstate.with(BlockStateProperties.LIT, Boolean.TRUE), 11);
-         context.getItem().damageItem(1, playerentity, (p_219999_1_) -> p_219999_1_.sendBreakAnimation(context.getHand()));
+      if (CampfireBlock.canLight(blockstate) && Objects.requireNonNull(playerentity).getFoodData().getFoodLevel()>= 1) {
+         world.playSound(playerentity, blockpos, SoundEvents.FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
+         world.setBlock(blockpos, blockstate.setValue(BlockStateProperties.LIT, Boolean.TRUE), 11);
+         context.getItemInHand().hurtAndBreak(1, playerentity, (p_219999_1_) -> p_219999_1_.broadcastBreakEvent(context.getHand()));
 
-         return ActionResultType.sidedSuccess(world.isRemote());
+         return ActionResultType.sidedSuccess(world.isClientSide());
       } else {
          //noinspection SpellCheckingInspection
-         BlockPos blockpos1 = blockpos.offset(context.getFace());
-         if (AbstractFireBlock.canLightBlock(world, blockpos1, context.getPlacementHorizontalFacing() ) && Objects.requireNonNull(playerentity).getFoodStats().getFoodLevel()>= 1) {
-            world.playSound(playerentity, blockpos1, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
+         BlockPos blockpos1 = blockpos.relative(context.getClickedFace());
+         if (AbstractFireBlock.canBePlacedAt(world, blockpos1, context.getHorizontalDirection() ) && Objects.requireNonNull(playerentity).getFoodData().getFoodLevel()>= 1) {
+            world.playSound(playerentity, blockpos1, SoundEvents.FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
             //noinspection SpellCheckingInspection
-            BlockState blockstate1 = AbstractFireBlock.getFireForPlacement(world, blockpos1);
-            playerentity.getCooldownTracker().setCooldown(this, 130);
-            world.setBlockState(blockpos1, blockstate1, 11);
-            ItemStack itemstack = context.getItem();
+            BlockState blockstate1 = AbstractFireBlock.getState(world, blockpos1);
+            playerentity.getCooldowns().addCooldown(this, 130);
+            world.setBlock(blockpos1, blockstate1, 11);
+            ItemStack itemstack = context.getItemInHand();
             if (playerentity instanceof ServerPlayerEntity) {
                CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)playerentity, blockpos1, itemstack);
-               itemstack.damageItem(1, playerentity, (p_219998_1_) -> p_219998_1_.sendBreakAnimation(context.getHand()));
+               itemstack.hurtAndBreak(1, playerentity, (p_219998_1_) -> p_219998_1_.broadcastBreakEvent(context.getHand()));
             }
 
-            return ActionResultType.sidedSuccess(world.isRemote());
+            return ActionResultType.sidedSuccess(world.isClientSide());
          } else {
             return ActionResultType.FAIL;
          }
@@ -74,12 +74,12 @@ public class BlueCandle extends Item {
     */
    @SuppressWarnings("unused")
    public static boolean isUnlitCampfire(BlockState state) {
-      return state.getBlock() == Blocks.CAMPFIRE && !state.get(BlockStateProperties.WATERLOGGED) && !state.get(BlockStateProperties.LIT);
+      return state.getBlock() == Blocks.CAMPFIRE && !state.getValue(BlockStateProperties.WATERLOGGED) && !state.getValue(BlockStateProperties.LIT);
    }
 
 	public void addInformation(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.BLUE + "you can start a fire"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 	}

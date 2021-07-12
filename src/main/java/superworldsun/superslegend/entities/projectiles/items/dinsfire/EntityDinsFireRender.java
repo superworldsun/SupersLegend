@@ -9,7 +9,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import superworldsun.superslegend.SupersLegend;
 import superworldsun.superslegend.entities.projectiles.beam.EntityFireBeam;
 
-@OnlyIn(Dist.CLIENT)
+/*@OnlyIn(Dist.CLIENT)
 public class EntityDinsFireRender extends EntityRenderer<EntityDinsFire> {
 
     protected static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegend.modid, "");
@@ -19,8 +19,8 @@ public class EntityDinsFireRender extends EntityRenderer<EntityDinsFire> {
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityDinsFire entity) {
+    public ResourceLocation getTextureLocation(EntityDinsFire entity) {
         return TEXTURE;
     }
 
-}
+}*/

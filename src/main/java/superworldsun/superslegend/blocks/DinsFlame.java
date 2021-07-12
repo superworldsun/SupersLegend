@@ -40,10 +40,10 @@ public class DinsFlame extends Block {
 
 
 																									//  16        1         16
-	protected static final VoxelShape shapeDown = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+	protected static final VoxelShape shapeDown = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
 																								//0,        0,            0
-	protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
+	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		return shapeDown;
@@ -55,17 +55,17 @@ public class DinsFlame extends Block {
 
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		return this.isValidPosition(stateIn, worldIn, currentPos) ? this.getDefaultState() : Blocks.AIR.getDefaultState();
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		return this.canSurvive(stateIn, worldIn, currentPos) ? this.defaultBlockState() : Blocks.AIR.defaultBlockState();
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		return !worldIn.isAirBlock(pos.down());
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		return !worldIn.isEmptyBlock(pos.below());
 	}
 
 	@Override
-	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
+	public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entity) {
 
 		/*if(entity instanceof Entity) {
 			Entity mob = (Entity) entity;
@@ -82,10 +82,10 @@ public class DinsFlame extends Block {
 			ItemStack newsword = new ItemStack(ItemList.master_sword_d);
 			ItemEntity sword = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), newsword);
 			if(stack.getItem() == ItemList.master_sword_v2) {
-				stack.getAttachedEntity().remove();
-				worldIn.addEntity(sword);
+				stack.getEntityRepresentation().remove();
+				worldIn.addFreshEntity(sword);
 			}else {
-				itemEntity.setPositionAndUpdate(itemEntity.lastTickPosX + ((worldIn.rand.nextDouble() * 2D) - 1D), itemEntity.lastTickPosY + ((worldIn.rand.nextDouble() * 4D) - 2D), itemEntity.lastTickPosZ + ((worldIn.rand.nextDouble() * 2D) - 1D));
+				itemEntity.teleportTo(itemEntity.getX() + ((worldIn.random.nextDouble() * 2D) - 1D), itemEntity.getY() + ((worldIn.random.nextDouble() * 4D) - 2D), itemEntity.getZ() + ((worldIn.random.nextDouble() * 2D) - 1D));
 			}
 		}
 
@@ -95,10 +95,10 @@ public class DinsFlame extends Block {
 			ItemStack newsword = new ItemStack(ItemList.master_sword_dn);
 			ItemEntity sword = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), newsword);
 			if(stack.getItem() == ItemList.master_sword_n) {
-				stack.getAttachedEntity().remove();
-				worldIn.addEntity(sword);
+				stack.getEntityRepresentation().remove();
+				worldIn.addFreshEntity(sword);
 			}else {
-				itemEntity.setPositionAndUpdate(itemEntity.lastTickPosX + ((worldIn.rand.nextDouble() * 2D) - 1D), itemEntity.lastTickPosY + ((worldIn.rand.nextDouble() * 4D) - 2D), itemEntity.lastTickPosZ + ((worldIn.rand.nextDouble() * 2D) - 1D));
+				itemEntity.teleportTo(itemEntity.getX() + ((worldIn.random.nextDouble() * 2D) - 1D), itemEntity.getY() + ((worldIn.random.nextDouble() * 4D) - 2D), itemEntity.getZ() + ((worldIn.random.nextDouble() * 2D) - 1D));
 			}
 		}
 
@@ -108,10 +108,10 @@ public class DinsFlame extends Block {
 			ItemStack newsword = new ItemStack(ItemList.master_sword_fd);
 			ItemEntity sword = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), newsword);
 			if(stack.getItem() == ItemList.master_sword_f) {
-				stack.getAttachedEntity().remove();
-				worldIn.addEntity(sword);
+				stack.getEntityRepresentation().remove();
+				worldIn.addFreshEntity(sword);
 			}else {
-				itemEntity.setPositionAndUpdate(itemEntity.lastTickPosX + ((worldIn.rand.nextDouble() * 2D) - 1D), itemEntity.lastTickPosY + ((worldIn.rand.nextDouble() * 4D) - 2D), itemEntity.lastTickPosZ + ((worldIn.rand.nextDouble() * 2D) - 1D));
+				itemEntity.teleportTo(itemEntity.getX() + ((worldIn.random.nextDouble() * 2D) - 1D), itemEntity.getY() + ((worldIn.random.nextDouble() * 4D) - 2D), itemEntity.getZ() + ((worldIn.random.nextDouble() * 2D) - 1D));
 			}
 		}
 
@@ -121,24 +121,26 @@ public class DinsFlame extends Block {
 			ItemStack newsword = new ItemStack(ItemList.true_master_sword);
 			ItemEntity sword = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), newsword);
 			if(stack.getItem() == ItemList.master_sword_nf) {
-				stack.getAttachedEntity().remove();
-				worldIn.addEntity(sword);
+				stack.getEntityRepresentation().remove();
+				worldIn.addFreshEntity(sword);
 			}else {
-				itemEntity.setPositionAndUpdate(itemEntity.lastTickPosX + ((worldIn.rand.nextDouble() * 2D) - 1D), itemEntity.lastTickPosY + ((worldIn.rand.nextDouble() * 4D) - 2D), itemEntity.lastTickPosZ + ((worldIn.rand.nextDouble() * 2D) - 1D));
+				itemEntity.teleportTo(itemEntity.getX() + ((worldIn.random.nextDouble() * 2D) - 1D), itemEntity.getY() + ((worldIn.random.nextDouble() * 4D) - 2D), itemEntity.getZ() + ((worldIn.random.nextDouble() * 2D) - 1D));
 			}
 		}
-		super.onEntityCollision(state, worldIn, pos, entity);
+		super.entityInside(state, worldIn, pos, entity);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	//TODO FIX THIS ASAP
+
+	/*@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if (rand.nextInt(24) == 0) {
-			worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+			worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
 		}
 
-		BlockPos blockpos = pos.down();
+		BlockPos blockpos = pos.below();
 		BlockState blockstate = worldIn.getBlockState(blockpos);
-		if (!this.canBurn(blockstate) && !blockstate.isSolidSide(worldIn, blockpos, Direction.UP)) {
+		if (!this.canBurn(blockstate) && !blockstate.isFaceSturdy(worldIn, blockpos, Direction.UP)) {
 			if (this.canBurn(worldIn.getBlockState(pos.west()))) {
 				for(int j = 0; j < 2; ++j) {
 					double d3 = (double)pos.getX() + rand.nextDouble() * (double)0.1F;
@@ -175,7 +177,7 @@ public class DinsFlame extends Block {
 				}
 			}
 
-			if (this.canBurn(worldIn.getBlockState(pos.up()))) {
+			if (this.canBurn(worldIn.getBlockState(pos.above()))) {
 				for(int j1 = 0; j1 < 2; ++j1) {
 					double d7 = (double)pos.getX() + rand.nextDouble();
 					double d12 = (double)(pos.getY() + 1) - rand.nextDouble() * (double)0.1F;
@@ -192,7 +194,7 @@ public class DinsFlame extends Block {
 			}
 		}
 
-	}
+	}*/
 
 	protected boolean canBurn(BlockState state) {
 		return true;

@@ -11,11 +11,11 @@ public class HyruleBassCooked extends Item {
 
 
     public HyruleBassCooked(Properties properties) {
-        super(properties.food(new Food.Builder().saturation(0.8f).hunger(7).meat().build()));
+        super(properties.food(new Food.Builder().saturationMod(0.8f).nutrition(7).meat().build()));
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.EAT;
     }
 

@@ -17,7 +17,7 @@ public class EntitySwordBeamRender extends ArrowRenderer<EntitySwordBeam> {
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntitySwordBeam entity) {
+    public ResourceLocation getTextureLocation(EntitySwordBeam entity) {
         return TEXTURE;
     }
 

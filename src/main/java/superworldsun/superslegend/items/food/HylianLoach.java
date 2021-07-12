@@ -11,11 +11,11 @@ public class HylianLoach extends Item {
 
 
     public HylianLoach(Properties properties) {
-        super(properties.food(new Food.Builder().saturation(0.4f).hunger(2).meat().build()));
+        super(properties.food(new Food.Builder().saturationMod(0.4f).nutrition(2).meat().build()));
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.EAT;
     }
 

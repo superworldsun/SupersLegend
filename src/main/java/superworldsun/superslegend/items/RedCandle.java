@@ -35,7 +35,7 @@ public class RedCandle extends Item {
    /**
     * Called when this item is used when targeting a Block
     */
-   @Nonnull
+   /*@Nonnull
    public ActionResultType onItemUse(ItemUseContext context) {
       PlayerEntity playerentity = context.getPlayer();
       World world = context.getWorld();
@@ -74,12 +74,12 @@ public class RedCandle extends Item {
     */
    @SuppressWarnings("unused")
    public static boolean isUnlitCampfire(BlockState state) {
-      return state.getBlock() == Blocks.CAMPFIRE && !state.get(BlockStateProperties.WATERLOGGED) && !state.get(BlockStateProperties.LIT);
+      return state.getBlock() == Blocks.CAMPFIRE && !state.getValue(BlockStateProperties.WATERLOGGED) && !state.getValue(BlockStateProperties.LIT);
    }
 
-	public void addInformation(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
+	public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{
-		super.addInformation(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.RED + "you can start a fire"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 	}
