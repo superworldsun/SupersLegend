@@ -1,0 +1,16 @@
+modLoader = "javafml"
+# We should remember to keep the loader version updated here, it should match the first number in Forge MDK releases
+loaderVersion = "[36,)"
+issueTrackerURL = "https://github.com/superworldsun/SupersLegend/issues"
+# We must have a license field put here otherwise Minecraft will tell us we need one and refuse to launch, it must not be left blank
+license="All rights reserved."
+[[mods]]
+modId = "superslegend"
+version = "1.4"
+displayName = "SupersLegend"
+# We should also have an icon file, Forge searches for under main/resources/icon.png
+logoFile="icon.png"
+displayURL = "https://discord.gg/nSAvsr5"
+authors = "superworldsun"
+credits = "superworldsun"
+description = '''This is a Zelda mod created by superworldsun'''

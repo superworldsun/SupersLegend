@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "superslegend:blocks/rust",
+        "top": "superslegend:blocks/rust",
+        "side": "superslegend:blocks/rust"
+    }
+}

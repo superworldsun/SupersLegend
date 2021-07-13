@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:lanzanite"
+        },
+        {
+            "item": "minecraft:gold_nugget"
+        }
+    ],
+    "result": {
+        "item": "minecraft:gold_ingot",
+        "count": 1
+    }
+}

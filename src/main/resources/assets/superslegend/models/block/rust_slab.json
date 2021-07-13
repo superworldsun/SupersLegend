@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "superslegend:blocks/rust",
+        "top": "superslegend:blocks/rust",
+        "side": "superslegend:blocks/rust"
+    }
+}

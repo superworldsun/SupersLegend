@@ -1,0 +1,22 @@
+{
+	"music.disc.bubblegloop_swamp": {
+		"category": "music",
+		"subtitle": "Swamp music",
+		"sounds": [{
+			"name": "superslegend:music/disc/bubblegloop_swamp",
+			"stream": true
+		}]
+	},
+
+	"item.bubblegloop_disc": {
+		"category": "item",
+		"subtitle": "Bubblegloop Swamp",
+		"sounds": [
+			{
+				"name": "superslegend:item/bubblegloop_disc",
+				"stream": true
+			}
+		]
+	
+	}
+}

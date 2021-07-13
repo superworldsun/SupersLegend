@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "superslegend:item/silver_rupee_hoe"
+    }
+}

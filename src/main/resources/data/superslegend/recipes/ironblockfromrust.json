@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# ",
+        " B"
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:lanzanite"
+        },
+        "B": {
+            "item": "superslegend:rust"
+        }
+    },
+    "result": {
+        "item": "minecraft:iron_block",
+        "count": 1
+    }
+}
