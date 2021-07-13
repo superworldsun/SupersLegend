@@ -1,8 +1,6 @@
-Tutorial Discord Server:
+SupersLegend Discord Server:
 
-https://discord.gg/CJhWB3F
-
-This is a series of tutorials teaching Minecraft Forge 1.16.
+https://discord.gg/nSAvsr5
 
 For bug reports, please submit them to the Issues part of the repo.
 
