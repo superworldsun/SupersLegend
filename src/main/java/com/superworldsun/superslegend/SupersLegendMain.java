@@ -62,7 +62,6 @@ public class SupersLegendMain {
         return new ResourceLocation(SupersLegendMain.MOD_ID, name);
     }
 
-
     @SubscribeEvent
     public static void createBlockItems(final RegistryEvent.Register<Item> event) {
         final IForgeRegistry<Item> registry = event.getRegistry();
