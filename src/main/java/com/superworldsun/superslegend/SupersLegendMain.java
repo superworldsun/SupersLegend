@@ -57,6 +57,12 @@ public class SupersLegendMain {
         MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
     }
 
+    public static ResourceLocation locate(String name)
+    {
+        return new ResourceLocation(SupersLegendMain.MOD_ID, name);
+    }
+
+
     @SubscribeEvent
     public static void createBlockItems(final RegistryEvent.Register<Item> event) {
         final IForgeRegistry<Item> registry = event.getRegistry();
@@ -88,12 +94,7 @@ public class SupersLegendMain {
         });
     }
 
-    public static final ItemGroup RESOURCES = new ItemGroup("SupersLegend") {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(ItemInit.TRIFORCE.get());
-        }
-    };
+    public static final ItemGroup RESOURCES = new SupersLegendItemGroup();
 
     //We need this code for custom bow models with pull animations
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)

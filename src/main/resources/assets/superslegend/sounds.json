@@ -11,12 +11,146 @@
 	"item.bubblegloop_disc": {
 		"category": "item",
 		"subtitle": "Bubblegloop Swamp",
-		"sounds": [
-			{
+		"sounds": [{
 				"name": "superslegend:item/bubblegloop_disc",
 				"stream": true
 			}
 		]
 	
+	},
+	"suns_song": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.suns_song",
+		"sounds": [ "superslegend:item/suns_song" ]
+	},
+	"nayrus_love_cast": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.nayrus_love_cast",
+		"sounds": [ "superslegend:item/nayrus_love_cast" ]
+	},
+	"zelda_error": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.zelda_error",
+		"sounds": [ "superslegend:item/zelda_error" ]
+	},
+	"dash": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.dash",
+		"sounds": [ "superslegend:item/dash" ]
+	},
+	"magic_cape_off": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.magic_cape_off",
+		"sounds": [ "superslegend:item/magic_cape_off" ]
+	},
+	"magic_cape_on": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.magic_cape_on",
+		"sounds": [ "superslegend:item/magic_cape_on" ]
+	},
+	"lens_of_truth_on": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.lens_of_truth_on",
+		"sounds": [ "superslegend:item/lens_of_truth_on" ]
+	},
+	"rupee_green": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_green",
+		"sounds": [ "superslegend:item/rupee_green" ]
+	},
+	"rupee_blue": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_blue",
+		"sounds": [ "superslegend:item/rupee_blue" ]
+	},
+	"rupee_red": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_red",
+		"sounds": [ "superslegend:item/rupee_red" ]
+	},
+	"rupee_silver": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_silver",
+		"sounds": [ "superslegend:item/rupee_silver" ]
+	},
+	"book_of_mudora": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.book_of_mudora",
+		"sounds": [ "superslegend:item/book_of_mudora" ]
+	},
+	"arrow_hit_fire": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.arrow_hit_fire",
+		"sounds": [ "superslegend:item/arrow_hit_fire" ]
+	},
+	"arrow_hit_ice": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.arrow_hit_ice",
+		"sounds": [ "superslegend:item/arrow_hit_ice" ]
+	},
+	"arrow_hit_shock": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.arrow_hit_shock",
+		"sounds": [ "superslegend:item/arrow_hit_shock" ]
+	},
+	"arrow_hit_ancient": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.arrow_hit_ancient",
+		"sounds": [ "superslegend:item/arrow_hit_ancient" ]
+	},
+	"bitbow_arrow": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.bitbow_arrow",
+		"sounds": [ "superslegend:item/bitbow_arrow" ]
+	},
+	"hover_boots": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.hover_boots",
+		"sounds": [ "superslegend:item/hover_boots" ]
+	},
+	"boomerang_fly_loop": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.boomerang_fly_loop",
+		"sounds": [ "superslegend:item/boomerang_fly_loop" ]
+	},
+	"boomerang_throw": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.boomerang_throw",
+		"sounds": [ "superslegend:item/boomerang_throw" ]
+	},
+	"bomb_fuse": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.bomb_fuse",
+		"sounds": [ "superslegend:item/bomb_fuse" ]
+	},
+	"bomb_defuse": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.bomb_defuse",
+		"sounds": [ "superslegend:item/bomb_defuse" ]
+	},
+	"bottle_pop": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.bottle_pop",
+		"sounds": [ "superslegend:item/bottle_pop" ]
+	},
+	"fairy_bottle_use": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.fairy_bottle_use",
+		"sounds": [ "superslegend:item/fairy_bottle_use" ]
+	},
+	"fairy_heal_on_touch": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.fairy_heal_on_touch",
+		"sounds": [ "superslegend:item/fairy_heal_on_touch" ]
+	},
+	"fairy_twinkle": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.fairy_twinkle",
+		"sounds": [ "superslegend:item/fairy_twinkle" ]
+	},
+	"poe_laugh": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.poe_laughing",
+		"sounds": [ "superslegend:item/poe_laugh" ]
 	}
 }

@@ -9,7 +9,30 @@ import java.util.function.Supplier;
 
 public enum ItemToolTiers implements IItemTier {
     // Harvest-level, durability, efficiency, attackdamage, enchantability, repair material
-    LANZANITE(4, 3031, 9.0F, 5.0F, 15, () -> {
+
+    //WEAPONS
+    KOKIRI_SWORD     (0, 0, -2F, 2F, 0, () -> { return null; }),
+    RAZOR_SWORD      (0, 200, -2F, 3F, 0, () -> { return null; }),
+    GILDED_SWORD     (0, 0, -2F, 4F, 0, () -> { return null; }),
+
+    GIANTS_KNIFE     (0, 0, -2F, 14F, 0, () -> { return null; }),
+    BIGGORONS_SWORD  (0, 0, -2F, 14F, 0, () -> { return null; }),
+    GUARDIAN_SWORD   (0, 0, -2F, 5F, 0, () -> { return null; }),
+
+    //MASTER SWORDS
+    MASTER_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
+    MASTER_SWORD_V2  (0, 0, -2F, 8F, 0, () -> { return null; }),
+    MASTER_SWORD_D   (0, 0, -2F, 9F, 0, () -> { return null; }),
+    MASTER_SWORD_N   (0, 0, -2F, 9F, 0, () -> { return null; }),
+    MASTER_SWORD_F   (0, 0, -2F, 9F, 0, () -> { return null; }),
+    MASTER_SWORD_DN  (0, 0, -2F, 10F, 0, () -> { return null; }),
+    MASTER_SWORD_NF  (0, 0, -2F, 10F, 0, () -> { return null; }),
+    MASTER_SWORD_FD  (0, 0, -2F, 10F, 0, () -> { return null; }),
+    TRUE_MASTER_SWORD(0, 0, -2F, 11F, 0, () -> { return null; }),
+
+
+
+    LANZANITE        (4, 3031, 9.0F, 5.0F, 15, () -> {
         return Ingredient.of(ItemInit.LANZANITE.get());
     });
 
