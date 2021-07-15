@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:mask_sunmask"
+        },
+        {
+            "item": "superslegend:mask_moonmask"
+        }
+    ],
+    "result": {
+        "item": "superslegend:mask_couplesmask",
+        "count": 1
+    }
+}

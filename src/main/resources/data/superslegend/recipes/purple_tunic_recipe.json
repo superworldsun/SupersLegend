@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "#L#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:purple_dye"
+        },
+        "L": {
+            "item": "superslegend:kokiri_tunic"
+        }
+    },
+    "result": {
+        "item": "superslegend:purple_tunic",
+        "count": 1
+    }
+}

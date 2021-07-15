@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "gLg",
+        "EME",
+        "iii"
+    ],
+    "key": {
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "L": {
+            "item": "minecraft:light_gray_dye"
+        },
+        "E": {
+            "item": "minecraft:ender_pearl"
+        },
+        "M": {
+            "item": "superslegend:mask_clay"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_moonmask",
+        "count": 1
+    }
+}

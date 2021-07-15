@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#I#",
+        "DLD",
+        "H H"
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:ancient_gear"
+        },
+        "I": {
+            "item": "superslegend:ancient_screw"
+        },
+        "D": {
+            "item": "superslegend:ancient_core"
+        },
+        "L": {
+            "item": "minecraft:iron_leggings"
+        },
+        "H": {
+            "item": "superslegend:ancient_shaft"
+        }
+    },
+    "result": {
+        "item": "superslegend:ancient_greaves",
+        "count": 1
+    }
+}

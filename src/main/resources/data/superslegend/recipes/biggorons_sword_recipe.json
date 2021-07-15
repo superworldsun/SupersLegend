@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "base": {
+        "item": "superslegend:giants_knife"
+    },
+    "addition": {
+        "item": "minecraft:netherite_block"
+    },
+    "result": {
+        "item": "superslegend:biggorons_sword"
+    }
+}

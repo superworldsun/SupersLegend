@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#L#",
+        "#S#",
+        "#T#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:kelp"
+        },
+        "L": {
+            "item": "superslegend:kokiri_boots"
+        },
+        "S": {
+            "item": "minecraft:string"
+        },
+        "T": {
+            "item": "minecraft:lapis_lazuli"
+        }
+    },
+    "result": {
+        "item": "superslegend:zoras_flippers",
+        "count": 1
+    }
+}

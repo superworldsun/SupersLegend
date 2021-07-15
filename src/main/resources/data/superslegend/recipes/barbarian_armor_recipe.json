@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# #",
+        "#L#",
+        "BgB"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:blaze_powder"
+        },
+        "L": {
+            "item": "minecraft:leather_chestplate"
+        },
+        "B": {
+            "item": "minecraft:bone"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        }
+    },
+    "result": {
+        "item": "superslegend:barbarian_armor",
+        "count": 1
+    }
+}

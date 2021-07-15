@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#E#",
+        "#E#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:oak_log"
+        },
+        "E": {
+            "item": "superslegend:red_rupee"
+        }
+    },
+    "result": {
+        "item": "superslegend:deku_shield",
+        "count": 1
+    }
+}

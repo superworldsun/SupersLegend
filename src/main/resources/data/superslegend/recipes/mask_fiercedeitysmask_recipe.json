@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:odolwas_remains"
+        },
+        {
+            "item": "superslegend:gohts_remains"
+        },
+        {
+            "item": "superslegend:gyorgs_remains"
+        },
+        {
+            "item": "superslegend:twinmolds_remains"
+        }
+    ],
+    "result": {
+        "item": "superslegend:mask_fiercedeitysmask",
+        "count": 1
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "BFB",
+        "PPP"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "B": {
+            "item": "minecraft:blaze_powder"
+        },
+        "F": {
+            "item": "minecraft:feather"
+        },
+        "P": {
+            "item": "minecraft:phantom_membrane"
+        }
+    },
+    "result": {
+        "item": "superslegend:rocs_feather",
+        "count": 1
+    }
+}

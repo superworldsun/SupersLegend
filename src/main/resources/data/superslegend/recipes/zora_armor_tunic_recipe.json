@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# #",
+        "DLD",
+        "DDD"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:leather"
+        },
+        "D": {
+            "item": "superslegend:silver_scale"
+        },
+        "L": {
+            "item": "minecraft:lapis_lazuli"
+        }
+    },
+    "result": {
+        "item": "superslegend:zora_armor_tunic",
+        "count": 1
+    }
+}

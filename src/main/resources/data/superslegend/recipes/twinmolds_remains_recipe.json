@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:mask_kamarosmask"
+        },
+        {
+            "item": "superslegend:mask_gibdomask"
+        },
+        {
+            "item": "superslegend:mask_garosmask"
+        },
+        {
+            "item": "superslegend:mask_captainshat"
+        },
+        {
+            "item": "superslegend:mask_giantsmask"
+        }
+    ],
+    "result": {
+        "item": "superslegend:twinmolds_remains",
+        "count": 1
+    }
+}

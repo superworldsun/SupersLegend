@@ -5,6 +5,8 @@ import com.superworldsun.superslegend.items.*;
 import com.superworldsun.superslegend.items.items.*;
 import com.superworldsun.superslegend.items.weapons.GiantsKnife;
 import com.superworldsun.superslegend.items.weapons.HerosBow;
+import com.superworldsun.superslegend.items.weapons.LynelBowX3;
+import com.superworldsun.superslegend.items.weapons.LynelBowX5;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
@@ -151,16 +153,16 @@ public class ItemInit
             () -> new HerosBow(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
     public static final RegistryObject<Item> BIT_BOW = ITEMS.register("bit_bow",
             () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-    /*public static final RegistryObject<Item> LYNEL_BOW_X3 = ITEMS.register("lynel_bow_x3",
-            () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-    public static final RegistryObject<Item> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
-            () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+    public static final RegistryObject<LynelBowX3> LYNEL_BOW_X3 = ITEMS.register("lynel_bow_x3",
+            () -> new LynelBowX3(1, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+    public static final RegistryObject<LynelBowX5> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
+            () -> new LynelBowX5(1,new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
     public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot",
-            () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
-    public static final RegistryObject<Item> DEKU_SHIELD = ITEMS.register("deku_shield",
             () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-    public static final RegistryObject<Item> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
-            () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+    public static final RegistryObject<DekuShield> DEKU_SHIELD = ITEMS.register("deku_shield",
+            () -> new DekuShield(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+    public static final RegistryObject<ShieldItem> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
+            () -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 
     public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
             () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));

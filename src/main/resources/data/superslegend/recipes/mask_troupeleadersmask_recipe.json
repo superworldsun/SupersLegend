@@ -1,0 +1,26 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        " # ",
+        "BCB",
+        " W "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:dispenser"
+        },
+        "B": {
+            "item": "minecraft:bone_meal"
+        },
+        "C": {
+            "item": "superslegend:mask_clay"
+        },
+        "W": {
+            "item": "minecraft:water_bucket"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_troupeleadersmask",
+        "count": 1
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:ice_arrow"
+        },
+        {
+            "item": "superslegend:ice_arrow"
+        },
+        {
+            "item": "superslegend:ice_arrow"
+        },
+        {
+            "item": "superslegend:ice_arrow"
+        },
+        {
+            "item": "superslegend:ice_arrow"
+        }
+    ],
+    "result": {
+        "item": "superslegend:ice_arrow_bundle",
+        "count": 1
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:arrow_bundle"
+        }
+    ],
+    "result": {
+        "item": "minecraft:arrow",
+        "count": 5
+    }
+}

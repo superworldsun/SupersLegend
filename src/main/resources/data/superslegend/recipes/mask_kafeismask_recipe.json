@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#L#",
+        "LCL",
+        "L L"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:purple_dye"
+        },
+        "L": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "C": {
+            "item": "superslegend:mask_clay"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_kafeismask",
+        "count": 1
+    }
+}

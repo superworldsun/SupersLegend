@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+   
+	"pattern": 
+	[
+        "I",
+        "R",
+        "S"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "R": {
+            "item": "superslegend:red_rupee"
+        },
+        "S": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "superslegend:kokiri_sword",
+        "count": 1
+    }
+}

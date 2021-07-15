@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#m#",
+        " # ",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "m": {
+            "item": "superslegend:master_ore"
+        }
+    },
+    "result": {
+        "item": "superslegend:master_sword_hilt",
+        "count": 1
+    }
+}

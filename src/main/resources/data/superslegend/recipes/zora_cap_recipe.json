@@ -1,0 +1,20 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        " # ",
+        "#L#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "L": {
+            "item": "superslegend:kokiri_cap"
+        }
+    },
+    "result": {
+        "item": "superslegend:zora_cap",
+        "count": 1
+    }
+}
