@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.entities.EntityPoisonArrow;
+import com.superworldsun.superslegend.entities.projectiles.arrows.EntityPoisonArrow;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;

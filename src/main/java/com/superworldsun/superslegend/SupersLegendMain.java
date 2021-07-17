@@ -1,8 +1,8 @@
 package com.superworldsun.superslegend;
 
+import com.superworldsun.superslegend.entities.projectiles.arrows.EntityPoisonArrow;
 import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.util.events.EntityEventHandler;
-import com.superworldsun.superslegend.entities.EntityPoisonArrow;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
@@ -51,6 +51,7 @@ public class SupersLegendMain {
         ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
         SoundInit.SOUNDS.register(modEventBus);
+        BiomeInit.BIOMES.register(modEventBus);
         PaintingInit.PAINTING_TYPES.register(modEventBus);
         EntityTypeInit.ENTITIES.register(modEventBus);
 

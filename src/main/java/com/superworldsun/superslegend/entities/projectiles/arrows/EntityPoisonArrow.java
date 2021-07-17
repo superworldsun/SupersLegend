@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.entities;
+package com.superworldsun.superslegend.entities.projectiles.arrows;
 
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;

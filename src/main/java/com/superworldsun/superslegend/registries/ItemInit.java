@@ -85,6 +85,9 @@ public class ItemInit
     public static final RegistryObject<Item> MASTER_SWORLD_HILT = ITEMS.register("master_sword_hilt",
             () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
+    public static final RegistryObject<Item> KOKIRI_SET = ITEMS.register("kokiri_set",
+            () -> new KokiriSet(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
 
     //FOOD
 
