@@ -12,7 +12,6 @@ import net.minecraft.util.text.ITextComponent;
 public class ArmorKokiriEffects extends NonEnchantArmor
 {
 
-
     public ArmorKokiriEffects(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
         super(materialIn, slot, builder);
     }
