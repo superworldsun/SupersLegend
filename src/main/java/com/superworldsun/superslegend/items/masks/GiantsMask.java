@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.IResizableEntity;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraftforge.event.TickEvent.Phase;
@@ -31,7 +32,7 @@ public class GiantsMask extends ArmorItem
 			return;
 		}
 		
-		IResizableEntity resizablePlayer = (IResizableEntity) event.player;
+		IResizableEntity resizablePlayer = (IResizableEntity) (PlayerEntity) event.player;
 		float growingSpeed = 0.05F;
 		float manaCost = 0.01F;
 		boolean hasGiantsMask = event.player.getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.MASK_GIANTSMASK.get();
@@ -46,24 +47,24 @@ public class GiantsMask extends ArmorItem
 			}
 			
 			// Maximum size is 400%
-			if (resizablePlayer.getScale() < 4.0F)
+			if (event.player.getScale() < 4.0F)
 			{
-				resizablePlayer.setScale(resizablePlayer.getScale() + growingSpeed);
+				resizablePlayer.setScale(event.player.getScale() + growingSpeed);
 				
 				// Double checking, yes it is necessary
-				if (resizablePlayer.getScale() > 4.0F)
+				if (event.player.getScale() > 4.0F)
 				{
 					resizablePlayer.setScale(4.0F);
 				}
 			}
 		}
 		// If size was changed, change it back
-		else if (resizablePlayer.getScale() > 1.0F)
+		else if (event.player.getScale() > 1.0F)
 		{
-			resizablePlayer.setScale(resizablePlayer.getScale() - growingSpeed);
+			resizablePlayer.setScale(event.player.getScale() - growingSpeed);
 			
 			// Double checking, yes it is necessary
-			if (resizablePlayer.getScale() < 1.0F)
+			if (event.player.getScale() < 1.0F)
 			{
 				resizablePlayer.setScale(1.0F);
 			}
