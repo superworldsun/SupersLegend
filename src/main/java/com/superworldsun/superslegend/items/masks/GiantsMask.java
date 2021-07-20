@@ -1,8 +1,8 @@
 package com.superworldsun.superslegend.items.masks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.material.MaskMaterial;
 import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.IResizableEntity;
 
@@ -21,7 +21,7 @@ public class GiantsMask extends ArmorItem
 {
 	public GiantsMask(Properties properties)
 	{
-		super(MaskMaterial.INSTANCE, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.giantsmask, EquipmentSlotType.HEAD, properties);
 	}
 
 	@Override
