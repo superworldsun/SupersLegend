@@ -28,7 +28,6 @@ public enum ArmourInit implements IArmorMaterial
 	hoverboots	("hoverboots", 0, new int[] 	{1, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	ironboots	("ironboots", 0, new int[] 		{1, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	pegasusboots("pegasusboots", 0, new int[] 	{1, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	// Why not just use one? They are all the same :)
 	//masks
 	postmanshat("postmanshat", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
 	allnightmask("allnightmask", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
