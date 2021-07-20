@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.superworldsun.superslegend.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"refmap": "superslegend.refmap.json",
+	"mixins": [
+		"MixinPlayerEntity",
+		"MixinPlayerRenderer"
+	],
+	"minVersion": "0.8"
+}
