@@ -43,15 +43,20 @@ public class HoverBoots extends NonEnchantArmor
 			return;
 		}
 		
-		IHoveringEntity eplayer = (IHoveringEntity) event.player;
-		boolean hasHoverBoots = event.player.getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.HOVER_BOOTS.get();
+		// Only if we have boots
+		if (event.player.getItemBySlot(EquipmentSlotType.FEET).getItem() != ItemInit.HOVER_BOOTS.get())
+		{
+			return;
+		}
+		
+		IHoveringEntity hoveringPlayer = (IHoveringEntity) event.player;
 		
 		// 40 ticks are 2 seconds
-		if (hasHoverBoots && eplayer.increaseHoverTime() < 40)
+		if (hoveringPlayer.increaseHoverTime() < 40)
 		{
 			double motionY = event.player.getDeltaMovement().y;
 			
-			if (motionY < 0 && event.player.getY() <= eplayer.getHoverHeight() && !event.player.isOnGround())
+			if (motionY < 0 && event.player.getY() <= hoveringPlayer.getHoverHeight() && !event.player.isOnGround())
 			{
 				// Prevent movement downwards
 				event.player.setDeltaMovement(event.player.getDeltaMovement().x, 0, event.player.getDeltaMovement().z);
@@ -59,17 +64,19 @@ public class HoverBoots extends NonEnchantArmor
 				event.player.fallDistance = 0;
 			}
 			
-			if (event.player.getY() < eplayer.getHoverHeight())
+			// Prevent falling
+			if (event.player.getY() < hoveringPlayer.getHoverHeight())
 			{
-				event.player.setBoundingBox(event.player.getBoundingBox().move(0, eplayer.getHoverHeight() - event.player.getY(), 0));
+				event.player.setBoundingBox(event.player.getBoundingBox().move(0, hoveringPlayer.getHoverHeight() - event.player.getY(), 0));
 			}
 		}
 		
-		// If we are on ground, reset timer for boots
+		// If we are on ground
 		if (event.player.isOnGround())
 		{
-			eplayer.setHoverTime(0);
-			eplayer.setHoverHeight((int) Math.round(event.player.getY()));
+			// Reset timer for boots
+			hoveringPlayer.setHoverTime(0);
+			hoveringPlayer.setHoverHeight((int) Math.round(event.player.getY()));
 		}
 	}
 }
