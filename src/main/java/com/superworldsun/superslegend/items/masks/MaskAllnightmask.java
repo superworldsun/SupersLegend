@@ -2,21 +2,22 @@ package com.superworldsun.superslegend.items.masks;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
-import com.superworldsun.superslegend.items.material.MaskMaterial;
+import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
-import net.minecraft.client.renderer.entity.model.BipedModel;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.text.ITextComponent;
@@ -27,17 +28,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nonnull;
-
-
-import net.minecraft.item.Item.Properties;
-
 public class MaskAllnightmask extends NonEnchantArmor
 
 {
         public MaskAllnightmask(Properties properties)
         {
-            super(MaskMaterial.INSTANCE, EquipmentSlotType.HEAD, properties);
+            super(ArmourInit.allnightmask, EquipmentSlotType.HEAD, properties);
         }
 
         @Override

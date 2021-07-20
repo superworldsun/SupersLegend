@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.items.items;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.material.MaskMaterial;
+import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.IResizableEntity;
 
@@ -18,7 +18,7 @@ public class GnatHat extends ArmorItem
 {
 	public GnatHat(Properties properties)
 	{
-		super(MaskMaterial.INSTANCE, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.gnathat, EquipmentSlotType.HEAD, properties);
 	}
 	
 	@SubscribeEvent

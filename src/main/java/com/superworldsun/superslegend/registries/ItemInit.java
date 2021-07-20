@@ -7,6 +7,7 @@ import com.superworldsun.superslegend.items.LanzaniteMultiToolItem;
 import com.superworldsun.superslegend.items.LanzanitePickaxeItem;
 import com.superworldsun.superslegend.items.MetalBowItem;
 import com.superworldsun.superslegend.items.PoisonArrowItem;
+import com.superworldsun.superslegend.items.armors.HoverBoots;
 import com.superworldsun.superslegend.items.items.BlueRupee;
 import com.superworldsun.superslegend.items.items.BookOfMudora;
 import com.superworldsun.superslegend.items.items.BottledBee;
@@ -18,13 +19,11 @@ import com.superworldsun.superslegend.items.items.DekuShield;
 import com.superworldsun.superslegend.items.items.DinsFire;
 import com.superworldsun.superslegend.items.items.FairyOcarina;
 import com.superworldsun.superslegend.items.items.FaroresWind;
-import com.superworldsun.superslegend.items.masks.*;
 import com.superworldsun.superslegend.items.items.GnatHat;
 import com.superworldsun.superslegend.items.items.GoldRupee;
 import com.superworldsun.superslegend.items.items.GoldenScale;
 import com.superworldsun.superslegend.items.items.GreenPotion;
 import com.superworldsun.superslegend.items.items.HeartContainer;
-import com.superworldsun.superslegend.items.items.HoverBoots;
 import com.superworldsun.superslegend.items.items.LensOfTruth;
 import com.superworldsun.superslegend.items.items.MagicCape;
 import com.superworldsun.superslegend.items.items.MagicMirror;
@@ -40,6 +39,11 @@ import com.superworldsun.superslegend.items.items.TriforceCourage;
 import com.superworldsun.superslegend.items.items.TriforcePower;
 import com.superworldsun.superslegend.items.items.TriforceWisdom;
 import com.superworldsun.superslegend.items.items.VoidContainer;
+import com.superworldsun.superslegend.items.masks.GiantsMask;
+import com.superworldsun.superslegend.items.masks.MaskAllnightmask;
+import com.superworldsun.superslegend.items.masks.MaskBremenmask;
+import com.superworldsun.superslegend.items.masks.MaskBunnyhood;
+import com.superworldsun.superslegend.items.masks.MaskMoonmask;
 import com.superworldsun.superslegend.items.weapons.GiantsKnife;
 import com.superworldsun.superslegend.items.weapons.HerosBow;
 import com.superworldsun.superslegend.items.weapons.LynelBowX3;
@@ -316,10 +320,10 @@ public class ItemInit
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_CAPTAINSHAT = ITEMS.register("mask_captainshat",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-
+	
 	public static final RegistryObject<Item> MASK_GIANTSMASK = ITEMS.register("mask_giantsmask",
 			() -> new GiantsMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-
+	
 	public static final RegistryObject<Item> MASK_FIERCEDEITYSMASK = ITEMS.register("mask_fiercedeitysmask",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_MAJORASMASK = ITEMS.register("mask_majorasmask",

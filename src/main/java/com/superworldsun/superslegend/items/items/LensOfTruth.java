@@ -31,7 +31,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
 public class LensOfTruth extends Item
 {
-	@OnlyIn(Dist.CLIENT)
 	private static final List<LivingEntity> RENDERED_ENTITIES = new ArrayList<>();
 	
 	public LensOfTruth(Properties properties)
