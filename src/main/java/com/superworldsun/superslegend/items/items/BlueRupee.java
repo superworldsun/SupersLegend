@@ -20,36 +20,35 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class BlueRupee extends Item{
-
+public class BlueRupee extends Item
+{	
 	public BlueRupee(Properties properties)
 	{
 		super(properties);
 	}
-
+	
 	@Nonnull
-	public ActionResult<ItemStack> use(@Nonnull World world, PlayerEntity player,@Nonnull Hand hand)
-	 {
+	public ActionResult<ItemStack> use(@Nonnull World world, PlayerEntity player, @Nonnull Hand hand)
+	{
 		ItemStack stack = player.getItemInHand(hand);
 		
-		if(stack.getCount() >= 4)
-		 {
+		if (stack.getCount() >= 4)
+		{
 			
-			 stack.shrink(4);
+			stack.shrink(4);
 			
-			 player.addItem(new ItemStack(ItemInit.RED_RUPEE.get()));
-
-			 BlockPos currentPos = player.blockPosition();
-			 player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_BLUE.get(), SoundCategory.PLAYERS, 1f, 1f);
-		 }
-		        
-	return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
+			player.addItem(new ItemStack(ItemInit.RED_RUPEE.get()));
+			
+			BlockPos currentPos = player.blockPosition();
+			player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_BLUE.get(), SoundCategory.PLAYERS, 1f, 1f);
+		}
 		
+		return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));		
 	}
-
-	public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
+	
+	public void appendHoverText(@Nonnull ItemStack stack, World world, @Nonnull List<ITextComponent> list, @Nonnull ITooltipFlag flag)
 	{
-		super.appendHoverText(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.BLUE + "5 rupee"));
-	}   
-} 
+	}
+}

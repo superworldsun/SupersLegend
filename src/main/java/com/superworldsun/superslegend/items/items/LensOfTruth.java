@@ -1,235 +1,139 @@
 package com.superworldsun.superslegend.items.items;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.registries.ItemInit;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.item.UseAction;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
+@EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
 public class LensOfTruth extends Item
 {
-
+	@OnlyIn(Dist.CLIENT)
+	private static final List<LivingEntity> RENDERED_ENTITIES = new ArrayList<>();
+	
 	public LensOfTruth(Properties properties)
 	{
 		super(properties);
 	}
-
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
-	{
-		if(entity instanceof PlayerEntity && !world.isClientSide)
-		{
-			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getMainHandItem();
-			if(!world.isClientSide)
-			{
-				if(stack == equipped)
-				{
-					double x = player.getX();
-					double y = player.getY();
-					double z = player.getZ();
-
-					//How Far away
-					double d0 = 30.0D;
-					//How Far Up/Down
-					double d1 = 20.0D;
-
-					Entity mobEntity = scanForHostileMobs(world, x, y, z, d0, d1);
-
-					if(entity != null && entity.isInvisible())
-					{
-						if (!world.isClientSide)
-						{
-							((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(24), 2, 0, false, false));
-						}
-					}
-				}
-			}
-		}
-		if(entity instanceof PlayerEntity && !world.isClientSide)
-		{
-			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getMainHandItem();
-			if(!world.isClientSide)
-			{
-				if(stack == equipped)
-				{
-					double x = player.getX();
-					double y = player.getY();
-					double z = player.getZ();
-
-					//How Far away
-					double d0 = 30.0D;
-					//How Far Up/Down
-					double d1 = 20.0D;
-
-					Entity mobEntity = scanForHostileMobs(world, x, y, z, d0, d1);
-
-					if(entity != null && entity.isInvisible())
-					{
-						if (!world.isClientSide)
-						{
-							((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(24), 2, 0, false, false));
-						}
-					}
-				}
-			}
-		}
-		if(entity instanceof PlayerEntity && !world.isClientSide)
-		{
-			PlayerEntity player = (PlayerEntity)entity;
-			ItemStack equipped = player.getMainHandItem();
-			if(!world.isClientSide)
-			{
-				if(stack == equipped)
-				{
-					double x = player.getX();
-					double y = player.getY();
-					double z = player.getZ();
-
-					//How Far away
-					double d0 = 30.0D;
-					//How Far Up/Down
-					double d1 = 20.0D;
-
-					MobEntity hostileMob = scanForHostileMobs(world, x, y, z, d0, d1);
-
-
-					if(hostileMob != null && hostileMob.isInvisible())
-					{
-						if (!world.isClientSide)
-						{
-							hostileMob.addEffect(new EffectInstance(Effect.byId(24), 2, 0, false, false));
-						}
-					}
-				}
-			}
-		}
-		if(entity instanceof PlayerEntity && !world.isClientSide)
-		{
-			PlayerEntity player = (PlayerEntity)entity;
-
-			ItemStack equipped = player.getOffhandItem();
-
-			if(!world.isClientSide)
-			{
-				if(stack == equipped)
-				{
-					double x = player.getX();
-					double y = player.getY();
-					double z = player.getZ();
-
-					//How Far away
-					double d0 = 30.0D;
-					//How Far Up/Down
-					double d1 = 20.0D;
-
-					MobEntity hostileMob = scanForHostileMobs(world, x, y, z, d0, d1);
-
-					if(hostileMob != null && hostileMob.isInvisible())
-					{
-						if (!world.isClientSide)
-						{
-							hostileMob.addEffect(new EffectInstance(Effect.byId(24), 2, 0, false, false));
-						}
-					}
-				}
-			}
-		}
-	}
-
-	private MobEntity scanForHostileMobs(World world, double xpos, double ypos, double zpos, double d0, double d1)
-	{
-		List<MobEntity> list = world.<MobEntity>getEntitiesOfClass(MobEntity.class, new AxisAlignedBB
-				((double) xpos - d0,
-						(double) ypos - d1,
-						(double) zpos - d0,
-						(double) xpos + d0, ypos + d1,
-						(double) zpos + d0));
-
-		MobEntity closestMob = null;
-
-		for (MobEntity entitymob : list)
-		{
-			//Mobs being Picked
-			if (entitymob != null)
-			{
-				closestMob = entitymob;
-				return closestMob;
-			}
-		}
-		return null;
-	}
-
 	
-	/*@Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity arrows) {
-        
-            if(arrows.isAlive())
-                if(arrows instanceof Entity)
-                    if(arrows.isInvisible() && player.getFoodStats().getFoodLevel()>= 2)
-                    {
-                    	((LivingEntity) arrows).addPotionEffect(new EffectInstance(Effect.get(24), 400, 10, false, false));
-                    	//arrows.setInvisible(false);
-                        //arrows.setGlowing(true);
-                    	
-                    	Random rand = arrows.world.rand;
-            	        for (int i = 0; i < 45; i++)
-            	        {
-            	        	arrows.world.addParticle(ParticleTypes.CLOUD,
-            	        			arrows.prevPosX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
-            	        			arrows.prevPosY + rand.nextFloat() * 3 - 2,
-            	        			arrows.prevPosZ + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 1,
-            	                    0, 0.105D, 0);
-            	        }
-            	        
-            	        player.getCooldownTracker().setCooldown(this, 15);
-            	        
-            	        player.addExhaustion(2f);
-            	        
-            	        BlockPos currentPos = player.getPosition();
-            	        arrows.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.LENS_OF_TRUTH_ON, SoundCategory.PLAYERS, 1f, 1f);
-            	        
-                    }
-                    else if(arrows.isInvisible())
-                    {
-                    	player.sendStatusMessage(new TranslationTextComponent(TextFormatting.DARK_PURPLE + "They are already visible"), true);
-                    	
-                    	BlockPos currentPos = player.getPosition();
-            	        arrows.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
-                    }
-                    else if (!arrows.isInvisible())
-                    {
-                    	player.sendStatusMessage(new TranslationTextComponent(TextFormatting.DARK_PURPLE + "They are already visible"), true);
-                    	
-                    	BlockPos currentPos = player.getPosition();
-            	        arrows.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
-                    }
-                    else if (player.getFoodStats().getFoodLevel()<= 1)
-                    {
-                    	BlockPos currentPos = player.getPosition();
-            	        arrows.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR, SoundCategory.PLAYERS, 1f, 1f);
-                    }
-                    	
-        return false;
-        
-    }*/
-
-
+	@OnlyIn(Dist.CLIENT)
+	@SubscribeEvent
+	public static void onLivingPreRender(RenderLivingEvent.Pre<LivingEntity, EntityModel<LivingEntity>> event)
+	{
+		if (event.getEntity().isInvisible())
+		{
+			Minecraft client = Minecraft.getInstance();
+			PlayerEntity player = client.player;
+			
+			if (player.isUsingItem() && player.getItemInHand(player.getUsedItemHand()).getItem() == ItemInit.LENS_OF_TRUTH.get())
+			{
+				// Remove invisibility
+				event.getEntity().setInvisible(false);
+				// Store entity so we can restore invisibility later
+				RENDERED_ENTITIES.add(event.getEntity());
+			}
+		}
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@SubscribeEvent
+	public static void onLivingPostRender(RenderLivingEvent.Post<LivingEntity, EntityModel<LivingEntity>> event)
+	{
+		if (RENDERED_ENTITIES.contains(event.getEntity()))
+		{
+			RENDERED_ENTITIES.remove(event.getEntity());
+			// Restore invisibility
+			event.getEntity().setInvisible(true);
+		}
+	}
+	
+	@Override
+	public int getUseDuration(ItemStack stack)
+	{
+		return 72000;
+	}
+	
+	@Override
+	public UseAction getUseAnimation(ItemStack stack)
+	{
+		return UseAction.NONE;
+	}
+	
+	@Override
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
+	{
+		ItemStack itemstack = player.getItemInHand(hand);
+		
+		// Can't use without mana (only in creative)
+		if (ManaProvider.get(player).getMana() < getManaCost() && !player.abilities.instabuild)
+		{
+			return ActionResult.fail(itemstack);
+		}
+		else
+		{
+			player.startUsingItem(hand);
+			return ActionResult.consume(itemstack);
+		}
+	}
+	
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Hold in Hands to reveal a hidden target"));
-		//list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Mana on use"));
 	}
-
+	
+	@Override
+	public void onUseTick(World world, LivingEntity user, ItemStack stack, int time)
+	{
+		// If used not by player (somehow) we don't want errors, we have mana
+		// only on players
+		if (!(user instanceof PlayerEntity))
+		{
+			return;
+		}
+		
+		PlayerEntity player = (PlayerEntity) user;
+		
+		// Stop using if out of mana
+		if (ManaProvider.get(player).getMana() < getManaCost())
+		{
+			user.stopUsingItem();
+		}
+		
+		// Spend mana every 20 ticks (every one second) (not in creative mod)
+		if (time % 20 == 0 && !player.abilities.instabuild)
+		{
+			ManaProvider.get(player).spendMana(getManaCost());
+		}
+	}
+	
+	private float getManaCost()
+	{
+		return 0.5F;
+	}
 }

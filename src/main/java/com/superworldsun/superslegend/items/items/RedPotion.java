@@ -21,44 +21,38 @@ import net.minecraft.world.World;
 
 public class RedPotion extends Item
 {
-
 	public RedPotion(Properties properties)
 	{
 		super(properties);
 	}
 	
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
-	 {
+	{
 		ItemStack stack = player.getItemInHand(hand);
-		  
-		 if(!world.isClientSide && !player.isCreative() && player.isHurt())
-	     {
-			 
-			 BlockPos currentPos = player.blockPosition();
-			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
-			 
-			 	player.addEffect(new EffectInstance(Effect.byId(10), 60, 4, false, false));
-				stack.shrink(1);
-				player.addItem(new ItemStack(Items.GLASS_BOTTLE));
-				//player.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40);
-	     }
-		 else if (!world.isClientSide && player.isCreative())
-		 {
-			 BlockPos currentPos = player.blockPosition();
-			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);
-			 
-			 player.addEffect(new EffectInstance(Effect.byId(10), 60, 4, true, true));
-		 }
-	 
-		 return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand)); 
-	 }
-	
+		
+		if (!world.isClientSide && !player.isCreative() && player.isHurt())
+		{			
+			BlockPos currentPos = player.blockPosition();
+			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);			
+			player.addEffect(new EffectInstance(Effect.byId(10), 60, 4, false, false));
+			stack.shrink(1);
+			player.addItem(new ItemStack(Items.GLASS_BOTTLE));
+			// player.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40);
+		}
+		else if (!world.isClientSide && player.isCreative())
+		{
+			BlockPos currentPos = player.blockPosition();
+			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WITCH_DRINK, SoundCategory.PLAYERS, 1f, 1f);			
+			player.addEffect(new EffectInstance(Effect.byId(10), 60, 4, true, true));
+		}
+		
+		return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
+	}
 	
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.appendHoverText(stack, world, list, flag);				
+		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.RED + "The Medicine of Life"));
-	}  
-	
+	}	
 }

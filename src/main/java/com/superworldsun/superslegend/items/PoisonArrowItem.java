@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.items;
 
-import com.superworldsun.superslegend.entities.projectiles.arrows.EntityPoisonArrow;
+import com.superworldsun.superslegend.entities.EntityPoisonArrow;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;

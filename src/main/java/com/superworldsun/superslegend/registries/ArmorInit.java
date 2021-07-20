@@ -1,27 +1,19 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.masks.MaskMoonmask;
-import com.superworldsun.superslegend.util.CustomArmorMaterial;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 
-public class ArmorInit
+public class ArmorInit implements IArmorMaterial
 {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
-            SupersLegendMain.MOD_ID);
-
-
-    public static final RegistryObject<Item> MASK_MOONMASK = ITEMS.register("mask_moonmask", () -> new MaskMoonmask(CustomArmorMaterial.MASK, EquipmentSlotType.HEAD, 4));
-
-
     //armor													boots, legs, chest, helm
     //KOKIRI		("kokiri", 0, new int[] 		{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f);
 
-    /*private static final int[] max_damage_array = new int[]{13, 15, 16, 11};
+    private static final int[] max_damage_array = new int[]{13, 15, 16, 11};
     private String name, equipSound;
     private int durability, enchantability;
     private Item repairItem;
@@ -84,6 +76,6 @@ public class ArmorInit
     @Override
     public float getKnockbackResistance() {
         return 0;
-    }*/
+    }
 
 }

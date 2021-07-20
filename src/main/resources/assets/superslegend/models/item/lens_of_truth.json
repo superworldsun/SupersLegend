@@ -2,5 +2,13 @@
     "parent": "item/handheld",
     "textures": {
         "layer0": "superslegend:item/lens_of_truth"
-    }
+    },
+    "overrides": [
+		{
+			"predicate": {
+				"using": 1
+			},
+			"model": "superslegend:item/lens_of_truth_using"
+		}
+	]
 }
