@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.superworldsun.superslegend.util.IExtendedPlayer;
+import com.superworldsun.superslegend.util.IHoveringEntity;
 import com.superworldsun.superslegend.util.IResizableEntity;
 
 import net.minecraft.entity.EntitySize;
@@ -22,11 +22,12 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 @Mixin(PlayerEntity.class)
-public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IExtendedPlayer
+public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity
 {
 	private float scale = 1.0F;
 	private float prevScale = 1.0F;
 	private int hoverTime;
+	private int hoverHeight;
 	
 	// This constructor is fake and never used
 	protected MixinPlayerEntity(EntityType<? extends LivingEntity> type, World world)
@@ -121,6 +122,16 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	public int increaseHoverTime()
 	{
 		return ++hoverTime;
+	}
+	
+	public void setHoverHeight(int height)
+	{
+		hoverHeight = height;
+	}
+	
+	public int getHoverHeight()
+	{
+		return hoverHeight;
 	}
 	
 	// Everything below is taken from original class
