@@ -24,12 +24,6 @@ public class GiantsMask extends ArmorItem
 		super(ArmourInit.giantsmask, EquipmentSlotType.HEAD, properties);
 	}
 
-	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
-	{
-		return SupersLegendMain.MOD_ID + ":textures/armor/giantsmask_layer_1.png";
-	}
-
 	@SubscribeEvent
 	public static void onPlayerTick(PlayerTickEvent event)
 	{
