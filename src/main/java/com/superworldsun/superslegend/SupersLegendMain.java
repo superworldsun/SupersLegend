@@ -2,7 +2,7 @@ package com.superworldsun.superslegend;
 
 import static net.minecraft.item.ItemModelsProperties.register;
 
-import com.superworldsun.superslegend.entities.projectiles.arrows.EntityPoisonArrow;
+import com.superworldsun.superslegend.entities.projectiles.arrows.PoisonArrowEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -113,7 +113,7 @@ public class SupersLegendMain
 			@Override
 			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
 			{
-				EntityPoisonArrow poisonarrowentity = new EntityPoisonArrow(worldIn, position.x(), position.y(), position.z());
+				PoisonArrowEntity poisonarrowentity = new PoisonArrowEntity(worldIn, position.x(), position.y(), position.z());
 				poisonarrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
 				return poisonarrowentity;
 			}

@@ -14,17 +14,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class EntityPoisonArrow extends AbstractArrowEntity {
+public class PoisonArrowEntity extends AbstractArrowEntity {
 
-    public EntityPoisonArrow(EntityType<? extends EntityPoisonArrow> type, World world) {
+    public PoisonArrowEntity(EntityType<? extends PoisonArrowEntity> type, World world) {
         super(type, world);
     }
 
-    public EntityPoisonArrow(World worldIn, LivingEntity shooter) {
+    public PoisonArrowEntity(World worldIn, LivingEntity shooter) {
         super(EntityTypeInit.POISON_ARROW.get(), shooter, worldIn);
     }
 
-    public EntityPoisonArrow(World worldIn, double x, double y, double z) {
+    public PoisonArrowEntity(World worldIn, double x, double y, double z) {
         super(EntityTypeInit.POISON_ARROW.get(), x, y, z, worldIn);
     }
 

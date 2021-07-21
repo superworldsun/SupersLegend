@@ -16,18 +16,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class EntityArrowFire extends AbstractArrowEntity {
+public class FireArrowEntity extends AbstractArrowEntity {
 
-        public EntityArrowFire(EntityType<? extends EntityArrowFire> type, World world) {
+        public FireArrowEntity(EntityType<? extends FireArrowEntity> type, World world) {
             super(type, world);
         }
 
-        public EntityArrowFire(World worldIn, LivingEntity shooter) {
+        public FireArrowEntity(World worldIn, LivingEntity shooter) {
             super(EntityTypeInit.FIRE_ARROW.get(), shooter, worldIn);
             this.setBaseDamage(this.getBaseDamage() + 2.0F);
         }
 
-        public EntityArrowFire(World worldIn, double x, double y, double z) {
+        public FireArrowEntity(World worldIn, double x, double y, double z) {
             super(EntityTypeInit.FIRE_ARROW.get(), x, y, z, worldIn);
         }
 

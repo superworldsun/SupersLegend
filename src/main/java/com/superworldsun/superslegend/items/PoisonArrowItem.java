@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.items;
 
-import com.superworldsun.superslegend.entities.projectiles.arrows.EntityPoisonArrow;
+import com.superworldsun.superslegend.entities.projectiles.arrows.PoisonArrowEntity;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -20,7 +20,7 @@ public class PoisonArrowItem extends ArrowItem {
 
     @Override
     public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
-        EntityPoisonArrow arrow = new EntityPoisonArrow(worldIn, shooter);
+        PoisonArrowEntity arrow = new PoisonArrowEntity(worldIn, shooter);
         return arrow;
     }
 
