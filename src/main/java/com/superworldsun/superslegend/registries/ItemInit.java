@@ -8,6 +8,7 @@ import com.superworldsun.superslegend.items.LanzanitePickaxeItem;
 import com.superworldsun.superslegend.items.MetalBowItem;
 import com.superworldsun.superslegend.items.PoisonArrowItem;
 import com.superworldsun.superslegend.items.armors.HoverBoots;
+import com.superworldsun.superslegend.items.armors.IronBoots;
 import com.superworldsun.superslegend.items.items.BlueRupee;
 import com.superworldsun.superslegend.items.items.BookOfMudora;
 import com.superworldsun.superslegend.items.items.BottledBee;
@@ -349,7 +350,7 @@ public class ItemInit
 	public static final RegistryObject<Item> ZORA_TUNIC = ITEMS.register("zora_tunic", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_LEGGINGS = ITEMS.register("zora_leggings",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> IRON_BOOTS = ITEMS.register("iron_boots", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> IRON_BOOTS = ITEMS.register("iron_boots", () -> new IronBoots(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_FLIPPERS = ITEMS.register("zoras_flippers",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> GORON_CAP = ITEMS.register("goron_cap", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
