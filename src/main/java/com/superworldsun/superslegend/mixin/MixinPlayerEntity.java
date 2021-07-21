@@ -9,14 +9,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.IHoveringEntity;
 import com.superworldsun.superslegend.util.IResizableEntity;
+import com.superworldsun.superslegend.util.ISwimmingEntity;
 
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.Pose;
+import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -25,7 +28,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 @Mixin(PlayerEntity.class)
-public class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity
+public class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, ISwimmingEntity
 {
 	private float scale = 1.0F;
 	private float prevScale = 1.0F;
@@ -141,6 +144,18 @@ public class MixinPlayerEntity extends LivingEntity implements IResizableEntity,
 		return hoverHeight;
 	}
 	
+	@Override
+	public boolean isSwimming()
+	{
+		return canSwim() && !abilities.flying && !this.isSpectator() && super.isSwimming();
+	}
+	
+	@Override
+	public boolean canSwim()
+	{
+		return getItemBySlot(EquipmentSlotType.FEET).getItem() != ItemInit.IRON_BOOTS.get();
+	}
+	
 	private void updateEyeHeight()
 	{
 		eyeHeight = getDimensions(getPose()).height * 0.85F;
@@ -153,6 +168,9 @@ public class MixinPlayerEntity extends LivingEntity implements IResizableEntity,
 	
 	@Shadow
 	private static EntitySize STANDING_DIMENSIONS;
+	
+	@Shadow
+	public PlayerAbilities abilities;
 	
 	@Shadow
 	public Iterable<ItemStack> getArmorSlots()
@@ -168,8 +186,7 @@ public class MixinPlayerEntity extends LivingEntity implements IResizableEntity,
 	
 	@Shadow
 	public void setItemSlot(EquipmentSlotType slot, ItemStack stack)
-	{
-		
+	{		
 	}
 	
 	@Shadow
