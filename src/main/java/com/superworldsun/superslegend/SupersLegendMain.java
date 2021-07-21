@@ -2,11 +2,11 @@ package com.superworldsun.superslegend;
 
 import static net.minecraft.item.ItemModelsProperties.register;
 
+import com.superworldsun.superslegend.entities.projectiles.arrows.EntityPoisonArrow;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.superworldsun.superslegend.config.Config;
-import com.superworldsun.superslegend.entities.EntityPoisonArrow;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
