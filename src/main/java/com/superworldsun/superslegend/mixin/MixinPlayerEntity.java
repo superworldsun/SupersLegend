@@ -15,7 +15,6 @@ import com.superworldsun.superslegend.util.IJumpingEntity;
 import com.superworldsun.superslegend.util.IResizableEntity;
 
 import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.Pose;
@@ -25,10 +24,9 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.world.World;
 
 @Mixin(PlayerEntity.class)
-public class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, IJumpingEntity
+public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, IJumpingEntity
 {
 	private float scale = 1.0F;
 	private float prevScale = 1.0F;
@@ -36,9 +34,9 @@ public class MixinPlayerEntity extends LivingEntity implements IResizableEntity,
 	private int hoverHeight;
 	
 	// This constructor is fake and never used
-	protected MixinPlayerEntity(EntityType<? extends LivingEntity> type, World world)
+	protected MixinPlayerEntity()
 	{
-		super(type, world);
+		super(null, null);
 	}
 	
 	@Overwrite

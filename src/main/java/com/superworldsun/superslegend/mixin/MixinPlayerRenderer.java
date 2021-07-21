@@ -8,7 +8,6 @@ import com.superworldsun.superslegend.util.IResizableEntity;
 
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 
@@ -16,9 +15,9 @@ import net.minecraft.entity.player.PlayerEntity;
 public abstract class MixinPlayerRenderer extends EntityRenderer<PlayerEntity>
 {
 	// This constructor is fake and never used
-	protected MixinPlayerRenderer(EntityRendererManager manager)
+	protected MixinPlayerRenderer()
 	{
-		super(manager);
+		super(null);
 	}
 	
 	@Overwrite
