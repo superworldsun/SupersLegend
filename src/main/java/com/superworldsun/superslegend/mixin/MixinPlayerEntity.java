@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.IHoveringEntity;
+import com.superworldsun.superslegend.util.IJumpingEntity;
 import com.superworldsun.superslegend.util.IResizableEntity;
 
 import net.minecraft.entity.EntitySize;
@@ -27,7 +28,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 @Mixin(PlayerEntity.class)
-public class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity
+public class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, IJumpingEntity
 {
 	private float scale = 1.0F;
 	private float prevScale = 1.0F;
@@ -147,6 +148,12 @@ public class MixinPlayerEntity extends LivingEntity implements IResizableEntity,
 	public boolean isSwimming()
 	{
 		return canSwim() && !abilities.flying && !this.isSpectator() && super.isSwimming();
+	}
+	
+	@Override
+	public boolean isJumping()
+	{
+		return jumping;
 	}
 	
 	private boolean canSwim()

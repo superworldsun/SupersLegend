@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.util.IJumpingEntity;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -59,8 +60,13 @@ public class IronBoots extends NonEnchantArmor
 		{
 			if (event.player.isInWater())
 			{
-				Vector3d motion = event.player.getDeltaMovement();
-				event.player.setDeltaMovement(motion.x, -0.3, motion.z);
+				IJumpingEntity jumpingPlayer = (IJumpingEntity) event.player;
+				
+				if (!jumpingPlayer.isJumping())
+				{
+					Vector3d motion = event.player.getDeltaMovement();
+					event.player.setDeltaMovement(motion.x, -0.3, motion.z);
+				}
 				
 				if (event.player.isOnGround())
 				{
