@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.IHoveringEntity;
 import com.superworldsun.superslegend.util.IResizableEntity;
-import com.superworldsun.superslegend.util.ISwimmingEntity;
 
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
@@ -28,7 +27,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 @Mixin(PlayerEntity.class)
-public class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, ISwimmingEntity
+public class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity
 {
 	private float scale = 1.0F;
 	private float prevScale = 1.0F;
@@ -150,8 +149,7 @@ public class MixinPlayerEntity extends LivingEntity implements IResizableEntity,
 		return canSwim() && !abilities.flying && !this.isSpectator() && super.isSwimming();
 	}
 	
-	@Override
-	public boolean canSwim()
+	private boolean canSwim()
 	{
 		return getItemBySlot(EquipmentSlotType.FEET).getItem() != ItemInit.IRON_BOOTS.get();
 	}
