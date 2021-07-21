@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items.items;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.mana.ManaProvider;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,7 +12,10 @@ import net.minecraft.util.ActionResultType;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
+@EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public abstract class MagicArrow extends ArrowItem
 {
 	public MagicArrow(Properties properties)
