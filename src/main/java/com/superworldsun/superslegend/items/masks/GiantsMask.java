@@ -6,10 +6,9 @@ import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.IResizableEntity;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,7 +22,7 @@ public class GiantsMask extends ArmorItem
 	{
 		super(ArmourInit.giantsmask, EquipmentSlotType.HEAD, properties);
 	}
-
+	
 	@SubscribeEvent
 	public static void onPlayerTick(PlayerTickEvent event)
 	{
@@ -33,7 +32,7 @@ public class GiantsMask extends ArmorItem
 			return;
 		}
 		
-		IResizableEntity resizablePlayer = (IResizableEntity) event.player;
+		IResizableEntity resizablePlayer = (IResizableEntity) (PlayerEntity) event.player;
 		float growingSpeed = 0.05F;
 		float manaCost = 0.01F;
 		boolean hasGiantsMask = event.player.getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.MASK_GIANTSMASK.get();
@@ -42,27 +41,30 @@ public class GiantsMask extends ArmorItem
 		
 		if (hasGiantsMask && hasMana)
 		{
-			ManaProvider.get(event.player).spendMana(manaCost);
+			if (!event.player.abilities.instabuild)
+			{
+				ManaProvider.get(event.player).spendMana(manaCost);
+			}
 			
 			// Maximum size is 400%
-			if (resizablePlayer.getScale() < 4.0F)
+			if (event.player.getScale() < 4.0F)
 			{
-				resizablePlayer.setScale(resizablePlayer.getScale() + growingSpeed);
+				resizablePlayer.setScale(event.player.getScale() + growingSpeed);
 				
 				// Double checking, yes it is necessary
-				if (resizablePlayer.getScale() > 4.0F)
+				if (event.player.getScale() > 4.0F)
 				{
 					resizablePlayer.setScale(4.0F);
 				}
 			}
 		}
 		// If size was changed, change it back
-		else if (resizablePlayer.getScale() > 1.0F)
+		else if (event.player.getScale() > 1.0F)
 		{
-			resizablePlayer.setScale(resizablePlayer.getScale() - growingSpeed);
+			resizablePlayer.setScale(event.player.getScale() - growingSpeed);
 			
 			// Double checking, yes it is necessary
-			if (resizablePlayer.getScale() < 1.0F)
+			if (event.player.getScale() < 1.0F)
 			{
 				resizablePlayer.setScale(1.0F);
 			}

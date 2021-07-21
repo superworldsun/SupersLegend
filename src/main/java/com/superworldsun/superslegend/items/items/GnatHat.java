@@ -38,24 +38,24 @@ public class GnatHat extends ArmorItem
 		if (hasGnatsHat)
 		{
 			// Minimum size is 20%
-			if (resizablePlayer.getScale() > 0.2F)
+			if (event.player.getScale() > 0.2F)
 			{
-				resizablePlayer.setScale(resizablePlayer.getScale() - shrinkingSpeed);
+				resizablePlayer.setScale(event.player.getScale() - shrinkingSpeed);
 				
 				// Double checking, yes it is necessary
-				if (resizablePlayer.getScale() < 0.2F)
+				if (event.player.getScale() < 0.2F)
 				{
 					resizablePlayer.setScale(0.2F);
 				}
 			}
 		}
 		// If not wearing a mask and size was changed, encrease it back
-		else if (resizablePlayer.getScale() < 1.0F)
+		else if (event.player.getScale() < 1.0F)
 		{
-			resizablePlayer.setScale(resizablePlayer.getScale() + shrinkingSpeed);
+			resizablePlayer.setScale(event.player.getScale() + shrinkingSpeed);
 			
 			// Double checking, yes it is necessary
-			if (resizablePlayer.getScale() > 1.0F)
+			if (event.player.getScale() > 1.0F)
 			{
 				resizablePlayer.setScale(1.0F);
 			}

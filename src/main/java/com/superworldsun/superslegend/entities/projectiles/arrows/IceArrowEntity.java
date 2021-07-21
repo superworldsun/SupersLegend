@@ -17,19 +17,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class EntityArrowIce extends AbstractArrowEntity
+public class IceArrowEntity extends AbstractArrowEntity
 {
 
-    public EntityArrowIce(EntityType<? extends EntityArrowIce> type, World world) {
+    public IceArrowEntity(EntityType<? extends IceArrowEntity> type, World world) {
         super(type, world);
     }
 
-    public EntityArrowIce(World worldIn, LivingEntity shooter) {
+    public IceArrowEntity(World worldIn, LivingEntity shooter) {
         super(EntityTypeInit.ICE_ARROW.get(), shooter, worldIn);
         this.setBaseDamage(this.getBaseDamage() + 2.0F);
     }
 
-    public EntityArrowIce(World worldIn, double x, double y, double z) {
+    public IceArrowEntity(World worldIn, double x, double y, double z) {
         super(EntityTypeInit.ICE_ARROW.get(), x, y, z, worldIn);
     }
 

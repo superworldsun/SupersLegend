@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.items.items;
 
-import com.superworldsun.superslegend.entities.projectiles.arrows.EntityArrowIce;
+import com.superworldsun.superslegend.entities.projectiles.arrows.IceArrowEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ArrowItem;
@@ -17,7 +17,7 @@ public class ArrowIce extends ArrowItem
 
     @Override
     public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
-        EntityArrowIce entityArrowIce = new EntityArrowIce(worldIn, shooter);
+        IceArrowEntity entityArrowIce = new IceArrowEntity(worldIn, shooter);
         return entityArrowIce;
     }
 }

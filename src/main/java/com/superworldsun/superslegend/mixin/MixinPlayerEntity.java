@@ -9,29 +9,34 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.superworldsun.superslegend.util.IExtendedPlayer;
+import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.util.IHoveringEntity;
+import com.superworldsun.superslegend.util.IJumpingEntity;
 import com.superworldsun.superslegend.util.IResizableEntity;
 
 import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.Pose;
+import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.world.World;
 
 @Mixin(PlayerEntity.class)
-public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IExtendedPlayer
+public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, IJumpingEntity
 {
 	private float scale = 1.0F;
 	private float prevScale = 1.0F;
 	private int hoverTime;
+	private int hoverHeight;
 	
 	// This constructor is fake and never used
-	protected MixinPlayerEntity(EntityType<? extends LivingEntity> type, World world)
+	protected MixinPlayerEntity()
 	{
-		super(type, world);
+		super(null, null);
 	}
 	
 	@Overwrite
@@ -75,22 +80,25 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	}
 	
 	@Override
+	public float getScale()
+	{
+		return scale;
+	}
+	
+	@Override
 	public void onAddedToWorld()
 	{
 		super.onAddedToWorld();
 		refreshDimensions();
 	}
 	
+	@Override
 	public AxisAlignedBB getBoundingBoxForCulling()
 	{
 		return getBoundingBoxForPose(getPose());
 	}
 	
-	public float getScale()
-	{
-		return scale;
-	}
-	
+	@Override
 	public void setScale(float scale)
 	{
 		this.scale = scale;
@@ -98,9 +106,57 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 		refreshDimensions();
 	}
 	
+	@Override
 	public float getScaleForRender(float partialTick)
 	{
 		return prevScale + (scale - prevScale) * partialTick;
+	}
+	
+	@Override
+	public int getHoverTime()
+	{
+		return hoverTime;
+	}
+	
+	@Override
+	public void setHoverTime(int amount)
+	{
+		hoverTime = amount;
+	}
+	
+	@Override
+	public int increaseHoverTime()
+	{
+		return ++hoverTime;
+	}
+	
+	@Override
+	public void setHoverHeight(int height)
+	{
+		hoverHeight = height;
+	}
+	
+	@Override
+	public int getHoverHeight()
+	{
+		return hoverHeight;
+	}
+	
+	@Override
+	public boolean isSwimming()
+	{
+		return canSwim() && !abilities.flying && !this.isSpectator() && super.isSwimming();
+	}
+	
+	@Override
+	public boolean isJumping()
+	{
+		return jumping;
+	}
+	
+	private boolean canSwim()
+	{
+		return getItemBySlot(EquipmentSlotType.FEET).getItem() != ItemInit.IRON_BOOTS.get();
 	}
 	
 	private void updateEyeHeight()
@@ -108,24 +164,37 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 		eyeHeight = getDimensions(getPose()).height * 0.85F;
 	}
 	
-	public int getHoverTime()
-	{
-		return hoverTime;
-	}
+	/* Everything below is taken from original class */
 	
-	public void setHoverTime(int amount)
-	{
-		hoverTime = amount;
-	}
-	
-	public int increaseHoverTime()
-	{
-		return ++hoverTime;
-	}
-	
-	// Everything below is taken from original class
 	@Shadow
 	private static Map<Pose, EntitySize> POSES;
+	
 	@Shadow
 	private static EntitySize STANDING_DIMENSIONS;
+	
+	@Shadow
+	public PlayerAbilities abilities;
+	
+	@Shadow
+	public Iterable<ItemStack> getArmorSlots()
+	{
+		return null;
+	}
+	
+	@Shadow
+	public ItemStack getItemBySlot(EquipmentSlotType slot)
+	{
+		return null;
+	}
+	
+	@Shadow
+	public void setItemSlot(EquipmentSlotType slot, ItemStack stack)
+	{		
+	}
+	
+	@Shadow
+	public HandSide getMainArm()
+	{
+		return null;
+	}
 }
