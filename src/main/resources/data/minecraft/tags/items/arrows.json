@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "superslegend:poison_arrow"
+    "superslegend:poison_arrow",
+    "superslegend:magic_fire_arrow"
   ]
 }

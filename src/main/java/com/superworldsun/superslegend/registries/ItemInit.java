@@ -9,7 +9,40 @@ import com.superworldsun.superslegend.items.MetalBowItem;
 import com.superworldsun.superslegend.items.PoisonArrowItem;
 import com.superworldsun.superslegend.items.armors.HoverBoots;
 import com.superworldsun.superslegend.items.armors.IronBoots;
-import com.superworldsun.superslegend.items.items.*;
+import com.superworldsun.superslegend.items.items.ArrowFire;
+import com.superworldsun.superslegend.items.items.ArrowIce;
+import com.superworldsun.superslegend.items.items.BlueRupee;
+import com.superworldsun.superslegend.items.items.BookOfMudora;
+import com.superworldsun.superslegend.items.items.BottledBee;
+import com.superworldsun.superslegend.items.items.BottledEndermite;
+import com.superworldsun.superslegend.items.items.BottledSilverfish;
+import com.superworldsun.superslegend.items.items.BugNet;
+import com.superworldsun.superslegend.items.items.DekuLeaf;
+import com.superworldsun.superslegend.items.items.DekuShield;
+import com.superworldsun.superslegend.items.items.DinsFire;
+import com.superworldsun.superslegend.items.items.FairyOcarina;
+import com.superworldsun.superslegend.items.items.FaroresWind;
+import com.superworldsun.superslegend.items.items.GnatHat;
+import com.superworldsun.superslegend.items.items.GoldRupee;
+import com.superworldsun.superslegend.items.items.GoldenScale;
+import com.superworldsun.superslegend.items.items.GreenPotion;
+import com.superworldsun.superslegend.items.items.HeartContainer;
+import com.superworldsun.superslegend.items.items.LensOfTruth;
+import com.superworldsun.superslegend.items.items.MagicCape;
+import com.superworldsun.superslegend.items.items.MagicFireArrow;
+import com.superworldsun.superslegend.items.items.MagicMirror;
+import com.superworldsun.superslegend.items.items.MagneticGlove;
+import com.superworldsun.superslegend.items.items.NayrusLove;
+import com.superworldsun.superslegend.items.items.RedRupee;
+import com.superworldsun.superslegend.items.items.RocsFeather;
+import com.superworldsun.superslegend.items.items.Rupee;
+import com.superworldsun.superslegend.items.items.SilverRupee;
+import com.superworldsun.superslegend.items.items.SilverScale;
+import com.superworldsun.superslegend.items.items.Triforce;
+import com.superworldsun.superslegend.items.items.TriforceCourage;
+import com.superworldsun.superslegend.items.items.TriforcePower;
+import com.superworldsun.superslegend.items.items.TriforceWisdom;
+import com.superworldsun.superslegend.items.items.VoidContainer;
 import com.superworldsun.superslegend.items.masks.GiantsMask;
 import com.superworldsun.superslegend.items.masks.MaskAllnightmask;
 import com.superworldsun.superslegend.items.masks.MaskBremenmask;
@@ -161,12 +194,9 @@ public class ItemInit
 	
 	public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
 			() -> new ArrowFire(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ICE_ARROW = ITEMS.register("ice_arrow",
-			() -> new ArrowIce(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> SHOCK_ARROW = ITEMS.register("shock_arrow",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> BOMB_ARROW = ITEMS.register("bomb_arrow",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ICE_ARROW = ITEMS.register("ice_arrow", () -> new ArrowIce(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> SHOCK_ARROW = ITEMS.register("shock_arrow", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BOMB_ARROW = ITEMS.register("bomb_arrow", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ANCIENT_ARROW = ITEMS.register("ancient_arrow",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> SILVER_ARROW = ITEMS.register("silver_arrow",
@@ -324,7 +354,8 @@ public class ItemInit
 	public static final RegistryObject<Item> ZORA_TUNIC = ITEMS.register("zora_tunic", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_LEGGINGS = ITEMS.register("zora_leggings",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> IRON_BOOTS = ITEMS.register("iron_boots", () -> new IronBoots(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> IRON_BOOTS = ITEMS.register("iron_boots",
+			() -> new IronBoots(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_FLIPPERS = ITEMS.register("zoras_flippers",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> GORON_CAP = ITEMS.register("goron_cap", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -418,4 +449,6 @@ public class ItemInit
 	public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
 			() -> new VoidContainer(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> GNAT_HAT = ITEMS.register("gnat_hat", () -> new GnatHat(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow",
+			() -> new MagicFireArrow(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 }
