@@ -9,49 +9,13 @@ import com.superworldsun.superslegend.items.MetalBowItem;
 import com.superworldsun.superslegend.items.PoisonArrowItem;
 import com.superworldsun.superslegend.items.armors.HoverBoots;
 import com.superworldsun.superslegend.items.armors.IronBoots;
-import com.superworldsun.superslegend.items.items.ArrowFire;
-import com.superworldsun.superslegend.items.items.ArrowIce;
-import com.superworldsun.superslegend.items.items.BlueRupee;
-import com.superworldsun.superslegend.items.items.BookOfMudora;
-import com.superworldsun.superslegend.items.items.BottledBee;
-import com.superworldsun.superslegend.items.items.BottledEndermite;
-import com.superworldsun.superslegend.items.items.BottledSilverfish;
-import com.superworldsun.superslegend.items.items.BugNet;
-import com.superworldsun.superslegend.items.items.DekuLeaf;
-import com.superworldsun.superslegend.items.items.DekuShield;
-import com.superworldsun.superslegend.items.items.DinsFire;
-import com.superworldsun.superslegend.items.items.FairyOcarina;
-import com.superworldsun.superslegend.items.items.FaroresWind;
-import com.superworldsun.superslegend.items.items.GnatHat;
-import com.superworldsun.superslegend.items.items.GoldRupee;
-import com.superworldsun.superslegend.items.items.GoldenScale;
-import com.superworldsun.superslegend.items.items.GreenPotion;
-import com.superworldsun.superslegend.items.items.HeartContainer;
-import com.superworldsun.superslegend.items.items.LensOfTruth;
-import com.superworldsun.superslegend.items.items.MagicCape;
-import com.superworldsun.superslegend.items.items.MagicFireArrow;
-import com.superworldsun.superslegend.items.items.MagicMirror;
-import com.superworldsun.superslegend.items.items.MagneticGlove;
-import com.superworldsun.superslegend.items.items.NayrusLove;
-import com.superworldsun.superslegend.items.items.RedRupee;
-import com.superworldsun.superslegend.items.items.RocsFeather;
-import com.superworldsun.superslegend.items.items.Rupee;
-import com.superworldsun.superslegend.items.items.SilverRupee;
-import com.superworldsun.superslegend.items.items.SilverScale;
-import com.superworldsun.superslegend.items.items.Triforce;
-import com.superworldsun.superslegend.items.items.TriforceCourage;
-import com.superworldsun.superslegend.items.items.TriforcePower;
-import com.superworldsun.superslegend.items.items.TriforceWisdom;
-import com.superworldsun.superslegend.items.items.VoidContainer;
+import com.superworldsun.superslegend.items.items.*;
 import com.superworldsun.superslegend.items.masks.GiantsMask;
 import com.superworldsun.superslegend.items.masks.MaskAllnightmask;
 import com.superworldsun.superslegend.items.masks.MaskBremenmask;
 import com.superworldsun.superslegend.items.masks.MaskBunnyhood;
 import com.superworldsun.superslegend.items.masks.MaskMoonmask;
-import com.superworldsun.superslegend.items.weapons.GiantsKnife;
-import com.superworldsun.superslegend.items.weapons.HerosBow;
-import com.superworldsun.superslegend.items.weapons.LynelBowX3;
-import com.superworldsun.superslegend.items.weapons.LynelBowX5;
+import com.superworldsun.superslegend.items.weapons.*;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 
 import net.minecraft.item.BowItem;
@@ -173,7 +137,7 @@ public class ItemInit
 	public static final RegistryObject<GiantsKnife> GIANTS_KNIFE = ITEMS.register("giants_knife",
 			() -> new GiantsKnife(ItemToolTiers.GIANTS_KNIFE, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> BIGGORONS_SWORD = ITEMS.register("biggorons_sword",
-			() -> new SwordItem(ItemToolTiers.BIGGORONS_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new BiggornsSword(ItemToolTiers.BIGGORONS_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> GUARDIAN_SWORD = ITEMS.register("guardian_sword",
 			() -> new SwordItem(ItemToolTiers.GUARDIAN_SWORD, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	
@@ -258,10 +222,12 @@ public class ItemInit
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BLUE_POTION_MIX = ITEMS.register("blue_potion_mix",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> RED_POTION = ITEMS.register("red_potion", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> RED_POTION = ITEMS.register("red_potion",
+			() -> new RedPotion(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> GREEN_POTION = ITEMS.register("green_potion",
 			() -> new GreenPotion(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> BLUE_POTION = ITEMS.register("blue_potion", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BLUE_POTION = ITEMS.register("blue_potion",
+			() -> new BluePotion(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<BottledBee> BOTTLED_BEE = ITEMS.register("bottled_bee",
 			() -> new BottledBee(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<BottledSilverfish> BOTTLED_SILVERFISH = ITEMS.register("bottled_silverfish",
