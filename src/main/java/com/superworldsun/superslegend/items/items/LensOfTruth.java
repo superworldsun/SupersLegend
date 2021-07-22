@@ -7,6 +7,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.util.ITooltipFlag;
@@ -17,6 +18,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -89,15 +92,26 @@ public class LensOfTruth extends Item
 		// Can't use without mana (only in creative)
 		if (ManaProvider.get(player).getMana() < getManaCost() && !player.abilities.instabuild)
 		{
+			BlockPos currentPos = player.blockPosition();
+			player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR.get(), SoundCategory.PLAYERS, 1f, 1f);
 			return ActionResult.fail(itemstack);
 		}
 		else
 		{
+			BlockPos currentPos = player.blockPosition();
+			player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.LENS_OF_TRUTH_ON.get(), SoundCategory.PLAYERS, 1f, 1f);
 			player.startUsingItem(hand);
 			return ActionResult.consume(itemstack);
 		}
 	}
-	
+
+	@Override
+	public void releaseUsing(ItemStack stack, World world, LivingEntity player, int p_77615_4_)
+	{
+		BlockPos currentPos = player.blockPosition();
+		player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.LENS_OF_TRUTH_OFF.get(), SoundCategory.PLAYERS, 1f, 1f);
+	}
+
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
