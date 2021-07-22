@@ -53,6 +53,11 @@
 		"subtitle": "superslegend.subtitle.lens_of_truth_on",
 		"sounds": [ "superslegend:item/lens_of_truth_on" ]
 	},
+	"item.lens_of_truth_off": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.lens_of_truth_off",
+		"sounds": [ "superslegend:item/lens_of_truth_off" ]
+	},
 	"item.rupee_green": {
 		"category": "player",
 		"subtitle": "superslegend.subtitle.rupee_green",

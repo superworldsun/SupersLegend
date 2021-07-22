@@ -32,6 +32,9 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> LENS_OF_TRUTH_ON = SOUNDS.register("item.lens_of_truth_on", ()
             -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.lens_of_truth_on")));
 
+    public static final RegistryObject<SoundEvent> LENS_OF_TRUTH_OFF = SOUNDS.register("item.lens_of_truth_off", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.lens_of_truth_off")));
+
     public static final RegistryObject<SoundEvent> RUPEE_GREEN = SOUNDS.register("item.rupee_green", ()
             -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.rupee_green")));
 
