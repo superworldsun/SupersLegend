@@ -73,7 +73,7 @@ public class MagicFireArrowEntity extends FireArrowEntity
 	{
 		BlockState blockHit = level.getBlockState(rayTraceResult.getBlockPos());
 		
-		if (blockHit.getMaterial() == Material.WATER)
+		if (blockHit.getMaterial() == Material.ICE || blockHit.getMaterial() == Material.ICE_SOLID)
 		{
 			List<BlockPos> platformShape = BuildingHelper.createRoundPlatformShape(rayTraceResult.getBlockPos(), 3);
 			// We want to replace only ice
