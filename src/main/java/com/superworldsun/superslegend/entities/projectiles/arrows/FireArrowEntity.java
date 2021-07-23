@@ -78,7 +78,7 @@ public class FireArrowEntity extends AbstractArrowEntity
 		
 		if (TagInit.RESISTANT_TO_FIRE.contains(entity.getType()))
 		{
-			setBaseDamage(getBaseDamage() / 5f);
+			setBaseDamage(getBaseDamage() / 2f);
 		}
 		
 		if (TagInit.WEAK_TO_FIRE.contains(entity.getType()))
