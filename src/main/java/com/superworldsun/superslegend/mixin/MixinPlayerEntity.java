@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.mixin;
 
 import java.util.Map;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -167,12 +168,15 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	/* Everything below is taken from original class */
 	
 	@Shadow
+	@Final
 	private static Map<Pose, EntitySize> POSES;
 	
 	@Shadow
+	@Final
 	private static EntitySize STANDING_DIMENSIONS;
 	
 	@Shadow
+	@Final
 	public PlayerAbilities abilities;
 	
 	@Shadow

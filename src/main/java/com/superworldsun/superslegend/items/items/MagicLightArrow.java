@@ -14,4 +14,10 @@ public class MagicLightArrow extends MagicArrow
 	{
 		return new MagicLightArrowEntity(world, shooter);
 	}
+	
+	@Override
+	protected float getManacost()
+	{
+		return 5.0F;
+	}
 }
