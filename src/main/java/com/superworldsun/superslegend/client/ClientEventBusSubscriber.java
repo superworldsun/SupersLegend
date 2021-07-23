@@ -1,9 +1,7 @@
 package com.superworldsun.superslegend.client;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.render.FireArrowRender;
-import com.superworldsun.superslegend.client.render.IceArrowRender;
-import com.superworldsun.superslegend.client.render.PoisonArrowRender;
+import com.superworldsun.superslegend.client.render.*;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 
@@ -36,6 +34,12 @@ public class ClientEventBusSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.POISON_ARROW.get(), PoisonArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.FIRE_ARROW.get(), FireArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.ICE_ARROW.get(), IceArrowRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.SHOCK_ARROW.get(), ShockArrowRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.BOMB_ARROW.get(), BombArrowRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.ANCIENT_ARROW.get(), AncientArrowRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.SILVER_ARROW.get(), SilverArrowRender::new);
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.ICE_BEAM.get(), IceBeamRender::new);
 //		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.LIGHT_ARROW.get(), LightArrowRender::new);
 	}
 }
