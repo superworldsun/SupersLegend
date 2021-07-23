@@ -52,6 +52,13 @@ public class IceArrowEntity extends AbstractArrowEntity
 	}
 	
 	@Override
+	public void onAddedToWorld()
+	{
+		setBaseDamage(4.0D);
+		super.onAddedToWorld();
+	}
+	
+	@Override
 	protected ItemStack getPickupItem()
 	{
 		return new ItemStack(ItemInit.ICE_ARROW.get());

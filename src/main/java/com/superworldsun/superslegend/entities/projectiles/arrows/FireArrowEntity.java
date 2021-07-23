@@ -38,6 +38,13 @@ public class FireArrowEntity extends AbstractArrowEntity
 	}
 	
 	@Override
+	public void onAddedToWorld()
+	{
+		setBaseDamage(4.0D);
+		super.onAddedToWorld();
+	}
+	
+	@Override
 	protected ItemStack getPickupItem()
 	{
 		return new ItemStack(ItemInit.FIRE_ARROW.get());
@@ -134,11 +141,5 @@ public class FireArrowEntity extends AbstractArrowEntity
 			this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
 			this.remove();
 		}
-	}
-	
-	@Override
-	public double getBaseDamage()
-	{
-		return 4.0D;
 	}
 }
