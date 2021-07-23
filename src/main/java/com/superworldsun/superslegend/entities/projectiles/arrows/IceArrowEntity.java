@@ -1,5 +1,8 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -241,7 +244,10 @@ public class IceArrowEntity extends AbstractArrowEntity
 		
 		if (blockHit.getMaterial() == Material.WATER)
 		{
-			level.setBlock(rayTraceResult.getBlockPos(), Blocks.FROSTED_ICE.defaultBlockState(), 11);
+			List<BlockPos> platformShape = getIcePlatformShape(rayTraceResult.getBlockPos(), 5);
+			// We want to replace only water
+			platformShape.removeIf(pos -> level.getBlockState(pos).getMaterial() != Material.WATER);
+			platformShape.forEach(pos -> level.setBlockAndUpdate(pos, Blocks.FROSTED_ICE.defaultBlockState()));
 			remove();
 		}
 		else if (blockHit.getMaterial() == Material.LAVA)
@@ -290,6 +296,36 @@ public class IceArrowEntity extends AbstractArrowEntity
 		playSound(SoundInit.ARROW_HIT_ICE.get(), 1f, 1f);
 		// TODO: create actual FREEZE effect
 		entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 70, 255));
+	}
+	
+	/**
+	 * Creates shape of round platform
+	 * 
+	 * @param centerPos
+	 *            center position
+	 * @param size
+	 *            size of the platform
+	 * @return list of block positions to shape the platform
+	 * @author Daripher
+	 */
+	private List<BlockPos> getIcePlatformShape(BlockPos centerPos, int size)
+	{
+		List<BlockPos> shape = new ArrayList<>();
+		
+		for (int x = -size; x <= size; x++)
+		{
+			for (int z = -size; z <= size; z++)
+			{
+				BlockPos pos = centerPos.north(x).east(z);
+				
+				if (pos.distSqr(centerPos) <= size * size)
+				{
+					shape.add(pos);
+				}
+			}
+		}
+		
+		return shape;
 	}
 	
 	private boolean shouldFall()
