@@ -10,6 +10,7 @@ import com.superworldsun.superslegend.registries.TagInit;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -251,15 +252,24 @@ public class IceArrowEntity extends AbstractArrowEntity
 		
 		if (blockHit.getMaterial() == Material.WATER)
 		{
-			List<BlockPos> platformShape = getIcePlatformShape(rayTraceResult.getBlockPos(), 5);
+			List<BlockPos> platformShape = getIcePlatformShape(rayTraceResult.getBlockPos(), 4);
 			// We want to replace only water
-			platformShape.removeIf(pos -> level.getBlockState(pos).getMaterial() != Material.WATER);
+			platformShape.removeIf(pos -> !level.getBlockState(pos).is(Blocks.WATER));
 			platformShape.forEach(pos -> level.setBlockAndUpdate(pos, Blocks.FROSTED_ICE.defaultBlockState()));
 			remove();
 		}
-		else if (blockHit.getMaterial() == Material.LAVA)
+		else if (blockHit.is(Blocks.LAVA))
 		{
-			level.setBlockAndUpdate(rayTraceResult.getBlockPos(), Blocks.COBBLESTONE.defaultBlockState());
+			// If source block
+			if (blockHit.getValue(FlowingFluidBlock.LEVEL) == 0)
+			{
+				level.setBlockAndUpdate(rayTraceResult.getBlockPos(), Blocks.OBSIDIAN.defaultBlockState());
+			}
+			else
+			{
+				level.setBlockAndUpdate(rayTraceResult.getBlockPos(), Blocks.COBBLESTONE.defaultBlockState());
+			}
+			
 			remove();
 		}
 		else
@@ -311,7 +321,7 @@ public class IceArrowEntity extends AbstractArrowEntity
 	 * @param centerPos
 	 *            center position
 	 * @param size
-	 *            size of the platform
+	 *            radius of the platform
 	 * @return list of block positions to shape the platform
 	 * @author Daripher
 	 */
