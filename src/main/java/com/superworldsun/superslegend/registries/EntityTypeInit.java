@@ -1,7 +1,17 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.entities.projectiles.arrows.*;
+import com.superworldsun.superslegend.entities.projectiles.arrows.AncientArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.BombArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.FireArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.IceArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.IceBeamEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.MagicFireArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.MagicIceArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.MagicLightArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.PoisonArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.ShockArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.SilverArrowEntity;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -54,7 +64,7 @@ public class EntityTypeInit
 			() -> EntityType.Builder.<MagicIceArrowEntity>of(MagicIceArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/projectiles/arrows").toString()));
 	
-	public static final RegistryObject<EntityType<MagicIceArrowEntity>> MAGIC_LIGHT_ARROW = ENTITIES.register("magic_light_arrow",
-			() -> EntityType.Builder.<MagicIceArrowEntity>of(MagicIceArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+	public static final RegistryObject<EntityType<MagicLightArrowEntity>> MAGIC_LIGHT_ARROW = ENTITIES.register("magic_light_arrow",
+			() -> EntityType.Builder.<MagicLightArrowEntity>of(MagicLightArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/projectiles/arrows").toString()));
 }
