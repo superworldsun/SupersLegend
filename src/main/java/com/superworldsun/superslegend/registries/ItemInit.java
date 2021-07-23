@@ -158,13 +158,16 @@ public class ItemInit
 	
 	public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
 			() -> new ArrowFire(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ICE_ARROW = ITEMS.register("ice_arrow", () -> new ArrowIce(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> SHOCK_ARROW = ITEMS.register("shock_arrow", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> BOMB_ARROW = ITEMS.register("bomb_arrow", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ICE_ARROW = ITEMS.register("ice_arrow",
+			() -> new ArrowIce(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> SHOCK_ARROW = ITEMS.register("shock_arrow",
+			() -> new ArrowShock(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BOMB_ARROW = ITEMS.register("bomb_arrow",
+			() -> new ArrowBomb(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ANCIENT_ARROW = ITEMS.register("ancient_arrow",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArrowAncient(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> SILVER_ARROW = ITEMS.register("silver_arrow",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArrowSilver(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	
 	public static final RegistryObject<Item> LANTERN = ITEMS.register("lantern",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
