@@ -5,6 +5,7 @@ import com.superworldsun.superslegend.mana.ManaProvider;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArrowItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
@@ -18,9 +19,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public abstract class MagicArrow extends ArrowItem
 {
-	public MagicArrow(Properties properties)
+	public MagicArrow()
 	{
-		super(properties);
+		super(new Item.Properties().tab(SupersLegendMain.RESOURCES));
 	}
 	
 	@Override
@@ -44,9 +45,12 @@ public abstract class MagicArrow extends ArrowItem
 		if (projectile.getItem() instanceof MagicArrow)
 		{
 			float manacost = ((MagicArrow) projectile.getItem()).getManacost();
+			boolean hasMana = ManaProvider.get(player).getMana() >= manacost;
+			boolean hasArrows = player.inventory.contains(new ItemStack(Items.ARROW));
+			boolean inCreative = player.abilities.instabuild;
 			
 			// Fail if not enough mana or no regular arrows in inventory
-			if (ManaProvider.get(player).getMana() < manacost || !player.inventory.contains(new ItemStack(Items.ARROW)))
+			if (!inCreative && (!hasMana || !hasArrows))
 			{
 				event.setAction(new ActionResult<ItemStack>(ActionResultType.FAIL, event.getBow()));
 			}
@@ -58,7 +62,7 @@ public abstract class MagicArrow extends ArrowItem
 	{
 		ItemStack projectile = event.getEntityLiving().getProjectile(event.getBow());
 		
-		if (projectile.getItem() instanceof MagicArrow)
+		if (!event.getPlayer().abilities.instabuild && projectile.getItem() instanceof MagicArrow)
 		{
 			float manacost = ((MagicArrow) projectile.getItem()).getManacost();
 			ManaProvider.get(event.getPlayer()).spendMana(manacost);
@@ -69,6 +73,6 @@ public abstract class MagicArrow extends ArrowItem
 	
 	protected float getManacost()
 	{
-		return 1.0F;
+		return 4.0F;
 	}
 }

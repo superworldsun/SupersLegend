@@ -1,17 +1,23 @@
 package com.superworldsun.superslegend.items.items;
 
-import com.superworldsun.superslegend.entities.projectiles.arrows.MagicFireArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.MagicLightArrowEntity;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class MagicFireArrow extends MagicArrow
+public class MagicLightArrow extends MagicArrow
 {
 	@Override
 	public AbstractArrowEntity createArrow(World world, ItemStack stack, LivingEntity shooter)
 	{
-		return new MagicFireArrowEntity(world, shooter);
+		return new MagicLightArrowEntity(world, shooter);
+	}
+	
+	@Override
+	protected float getManacost()
+	{
+		return 5.0F;
 	}
 }
