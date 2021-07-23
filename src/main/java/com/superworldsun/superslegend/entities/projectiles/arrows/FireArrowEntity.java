@@ -37,11 +37,21 @@ public class FireArrowEntity extends AbstractArrowEntity
 		super(EntityTypeInit.FIRE_ARROW.get(), x, y, z, worldIn);
 	}
 	
+	public FireArrowEntity(EntityType<? extends FireArrowEntity> type, World worldIn, LivingEntity shooter)
+	{
+		super(type, shooter, worldIn);
+	}
+	
+	public FireArrowEntity(EntityType<? extends FireArrowEntity> type, World worldIn, double x, double y, double z)
+	{
+		super(type, x, y, z, worldIn);
+	}
+	
 	@Override
 	public void onAddedToWorld()
 	{
-		setBaseDamage(4.0D);
 		super.onAddedToWorld();
+		setBaseDamage(4.0D);
 	}
 	
 	@Override
@@ -57,9 +67,9 @@ public class FireArrowEntity extends AbstractArrowEntity
 	}
 	
 	@Override
-	protected void onHitEntity(EntityRayTraceResult rayTraceResutl)
+	protected void onHitEntity(EntityRayTraceResult rayTraceResult)
 	{
-		Entity entity = rayTraceResutl.getEntity();
+		Entity entity = rayTraceResult.getEntity();
 		
 		if (entity.isAlive())
 		{
@@ -76,7 +86,7 @@ public class FireArrowEntity extends AbstractArrowEntity
 			setBaseDamage(getBaseDamage() * 2f);
 		}
 		
-		super.onHitEntity(rayTraceResutl);
+		super.onHitEntity(rayTraceResult);
 	}
 	
 	@Override

@@ -2,12 +2,16 @@ package com.superworldsun.superslegend.entities.projectiles.arrows;
 
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.TagInit;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -21,12 +25,18 @@ public class MagicLightArrowEntity extends AbstractArrowEntity
 	public MagicLightArrowEntity(World worldIn, LivingEntity shooter)
 	{
 		super(EntityTypeInit.MAGIC_LIGHT_ARROW.get(), shooter, worldIn);
-		this.setBaseDamage(this.getBaseDamage() + 2.0F);
 	}
 	
 	public MagicLightArrowEntity(World worldIn, double x, double y, double z)
 	{
 		super(EntityTypeInit.MAGIC_LIGHT_ARROW.get(), x, y, z, worldIn);
+	}
+	
+	@Override
+	public void onAddedToWorld()
+	{
+		super.onAddedToWorld();
+		setBaseDamage(6.0D);
 	}
 	
 	@Override
@@ -39,5 +49,29 @@ public class MagicLightArrowEntity extends AbstractArrowEntity
 	public IPacket<?> getAddEntityPacket()
 	{
 		return NetworkHooks.getEntitySpawningPacket(this);
+	}
+	
+	@Override
+	protected void onHitEntity(EntityRayTraceResult rayTraceResult)
+	{
+		Entity entity = rayTraceResult.getEntity();
+		
+		if (TagInit.WEAK_TO_LIGHT.contains(entity.getType()))
+		{
+			setBaseDamage(getBaseDamage() * 2);
+		}
+		
+		if (TagInit.RESISTANT_TO_LIGHT.contains(entity.getType()))
+		{
+			setBaseDamage(getBaseDamage() / 2);
+		}
+		
+		super.onHitEntity(rayTraceResult);
+		
+		// There is a small time frame after an entity is hurt that gives
+		// immunity to damage. And we already damaged it with common damage from
+		// an arrow. To deal damage 2 times in a row, we have to reset it.
+		entity.invulnerableTime = 0;
+		entity.hurt(DamageSource.MAGIC, 5.0F);
 	}
 }

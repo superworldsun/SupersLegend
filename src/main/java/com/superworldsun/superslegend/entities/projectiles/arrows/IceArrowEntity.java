@@ -44,7 +44,6 @@ public class IceArrowEntity extends AbstractArrowEntity
 	public IceArrowEntity(World worldIn, LivingEntity shooter)
 	{
 		super(EntityTypeInit.ICE_ARROW.get(), shooter, worldIn);
-		this.setBaseDamage(this.getBaseDamage() + 2.0F);
 	}
 	
 	public IceArrowEntity(World worldIn, double x, double y, double z)
@@ -52,11 +51,21 @@ public class IceArrowEntity extends AbstractArrowEntity
 		super(EntityTypeInit.ICE_ARROW.get(), x, y, z, worldIn);
 	}
 	
+	public IceArrowEntity(EntityType<? extends IceArrowEntity> type, World worldIn, LivingEntity shooter)
+	{
+		super(type, shooter, worldIn);
+	}
+	
+	public IceArrowEntity(EntityType<? extends IceArrowEntity> type, World worldIn, double x, double y, double z)
+	{
+		super(type, x, y, z, worldIn);
+	}
+	
 	@Override
 	public void onAddedToWorld()
 	{
-		setBaseDamage(4.0D);
 		super.onAddedToWorld();
+		setBaseDamage(4.0D);
 	}
 	
 	@Override
