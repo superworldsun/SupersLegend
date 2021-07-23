@@ -1,7 +1,9 @@
 package com.superworldsun.superslegend.items.items;
 
+import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,7 +33,58 @@ public class DekuLeaf extends Item
 		super(properties);
 	}
 
-	@Nonnull
+	@Override
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
+	{
+		ItemStack itemstack = player.getItemInHand(hand);
+
+		// Can't use without mana (only in creative)
+		if (ManaProvider.get(player).getMana() < getManaCost() && !player.abilities.instabuild)
+		{
+			player.fallDistance *= 0.5F;
+			player.push(0f, 0.235f, 0f );
+			return ActionResult.fail(itemstack);
+		}
+		else
+		{
+			player.fallDistance *= 0.5F;
+			player.push(0f, 0.235f, 0f );
+			player.startUsingItem(hand);
+			return ActionResult.consume(itemstack);
+		}
+	}
+
+	@Override
+	public void onUseTick(World world, LivingEntity user, ItemStack stack, int time)
+	{
+		// If used not by player (somehow) we don't want errors, we have mana
+		// only on players
+		if (!(user instanceof PlayerEntity))
+		{
+			return;
+		}
+
+		PlayerEntity player = (PlayerEntity) user;
+
+		// Stop using if out of mana
+		if (ManaProvider.get(player).getMana() < getManaCost())
+		{
+			user.stopUsingItem();
+		}
+
+		if (!player.abilities.instabuild)
+		{
+			ManaProvider.get(player).spendMana(getManaCost());
+		}
+	}
+
+	private float getManaCost()
+	{
+		return 5.0F;
+	}
+
+	//OLD CODE
+	/*@Nonnull
 	@ParametersAreNonnullByDefault
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
@@ -67,7 +120,7 @@ public class DekuLeaf extends Item
 	         player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR.get(), SoundCategory.PLAYERS, 1f, 1f);
        }
 				return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
-	 }
+	 }*/
 
 	public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{
