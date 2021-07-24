@@ -4,15 +4,14 @@ import com.superworldsun.superslegend.blocks.tile.PedestalTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -27,14 +26,13 @@ import net.minecraftforge.common.ToolType;
 
 public class PedestalBlock extends Block
 {
-	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	public static final BooleanProperty IS_REVERSE = BooleanProperty.create("is_reverse");
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	protected static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 2, 16);
 	
 	public PedestalBlock()
 	{
 		super(Properties.of(Material.STONE).strength(10.0F, 1000.0F).harvestLevel(1).harvestTool(ToolType.PICKAXE));
-		registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(IS_REVERSE, Boolean.FALSE));
+		registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 	
 	@Override
@@ -102,12 +100,12 @@ public class PedestalBlock extends Block
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
-		return defaultBlockState().setValue(FACING, context.getHorizontalDirection()).setValue(IS_REVERSE, Boolean.FALSE);
+		return defaultBlockState().setValue(FACING, context.getHorizontalDirection());
 	}
 	
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
 	{
-		builder.add(FACING, IS_REVERSE);
+		builder.add(FACING);
 	}
 }
