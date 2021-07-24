@@ -9,16 +9,19 @@ import com.superworldsun.superslegend.client.render.IceBeamRender;
 import com.superworldsun.superslegend.client.render.MagicFireArrowRender;
 import com.superworldsun.superslegend.client.render.MagicIceArrowRender;
 import com.superworldsun.superslegend.client.render.MagicLightArrowRender;
+import com.superworldsun.superslegend.client.render.PedestalRenderer;
 import com.superworldsun.superslegend.client.render.PoisonArrowRender;
 import com.superworldsun.superslegend.client.render.ShockArrowRender;
 import com.superworldsun.superslegend.client.render.SilverArrowRender;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.registries.TileEntityInit;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -52,5 +55,7 @@ public class ClientEventBusSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MAGIC_LIGHT_ARROW.get(), MagicLightArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MAGIC_ICE_ARROW.get(), MagicIceArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MAGIC_FIRE_ARROW.get(), MagicFireArrowRender::new);
+		
+		ClientRegistry.bindTileEntityRenderer(TileEntityInit.PEDESTAL.get(), PedestalRenderer::new);
 	}
 }
