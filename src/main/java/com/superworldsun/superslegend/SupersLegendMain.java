@@ -15,6 +15,7 @@ import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.PaintingInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.registries.TileEntityInit;
 import com.superworldsun.superslegend.util.events.EntityEventHandler;
 
 import net.minecraft.block.DispenserBlock;
@@ -75,6 +76,7 @@ public class SupersLegendMain
 		SoundInit.SOUNDS.register(modEventBus);
 		PaintingInit.PAINTING_TYPES.register(modEventBus);
 		EntityTypeInit.ENTITIES.register(modEventBus);
+		TileEntityInit.TILES.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
 	}
 	
