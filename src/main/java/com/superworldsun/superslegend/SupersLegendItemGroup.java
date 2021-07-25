@@ -8,7 +8,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SupersLegendItemGroup extends ItemGroup
-{	
+{
 	public SupersLegendItemGroup()
 	{
 		super("supers_legend");

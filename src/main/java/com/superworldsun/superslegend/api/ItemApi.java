@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.api;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.util.registry.RegistryHelper;
 import net.minecraft.item.Item;
 
@@ -12,6 +13,7 @@ public class ItemApi extends Item {
      */
     public ItemApi(String regname, Properties properties) {
         super(properties);
+        properties.tab(SupersLegendMain.RESOURCES);
         RegistryHelper.registerItem(this, regname);
     }
 
