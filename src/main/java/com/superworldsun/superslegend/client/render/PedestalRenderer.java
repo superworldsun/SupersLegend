@@ -43,7 +43,6 @@ public class PedestalRenderer extends TileEntityRenderer<PedestalTileEntity>
 		ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
 		matrixStack.pushPose();		
 		matrixStack.translate(0.5D, 0.6D, 0.5D);
-		matrixStack.scale(1F, 1F, 1F);
 		
 		switch (te.getBlockState().getValue(PedestalBlock.FACING))
 		{
