@@ -1,7 +1,16 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.blocks.*;
+import com.superworldsun.superslegend.blocks.FanBlock;
+import com.superworldsun.superslegend.blocks.PedestalBlock;
+import com.superworldsun.superslegend.blocks.PointerBlock;
+import com.superworldsun.superslegend.blocks.RustBlock;
+import com.superworldsun.superslegend.blocks.RustButtonBlock;
+import com.superworldsun.superslegend.blocks.RustPlateBlock;
+import com.superworldsun.superslegend.blocks.RustSlabBlock;
+import com.superworldsun.superslegend.blocks.RustStairsBlock;
+import com.superworldsun.superslegend.blocks.RustWallBlock;
+
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -11,7 +20,7 @@ public class BlockInit
 {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SupersLegendMain.MOD_ID);
 	
-	public static final RegistryObject<Block> RUST = BLOCKS.register("rust", () -> new RustBlock(PropertiesInit.WRECKAGE));	
+	public static final RegistryObject<Block> RUST = BLOCKS.register("rust", () -> new RustBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUPEE_BLOCK = BLOCKS.register("rupee_block", () -> new RustBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> BLUE_RUPEE_BLOCK = BLOCKS.register("blue_rupee_block", () -> new RustBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RED_RUPEE_BLOCK = BLOCKS.register("red_rupee_block", () -> new RustBlock(PropertiesInit.WRECKAGE));
@@ -36,13 +45,14 @@ public class BlockInit
 	public static final RegistryObject<Block> STONE_TILE_BLOCK = BLOCKS.register("stone_tile_block", () -> new RustBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> DINS_FLAME = BLOCKS.register("dins_flame", () -> new RustBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> FARORES_FLAME = BLOCKS.register("farores_flame", () -> new RustBlock(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> NAYRUS_FLAME = BLOCKS.register("nayrus_flame", () -> new RustBlock(PropertiesInit.WRECKAGE));	
-	public static final RegistryObject<Block> POINTER_BLOCK = BLOCKS.register("pointer_block", () -> new PointerBlock(PropertiesInit.WRECKAGE));	
-	public static final RegistryObject<Block> RUST_PLATE = BLOCKS.register("rust_plate", () -> new RustPlateBlock(PropertiesInit.RUST_PLATE));	
-	public static final RegistryObject<Block> RUST_BUTTON = BLOCKS.register("rust_button", () -> new RustButtonBlock(PropertiesInit.WRECKAGE));	
+	public static final RegistryObject<Block> NAYRUS_FLAME = BLOCKS.register("nayrus_flame", () -> new RustBlock(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> POINTER_BLOCK = BLOCKS.register("pointer_block", () -> new PointerBlock(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> RUST_PLATE = BLOCKS.register("rust_plate", () -> new RustPlateBlock(PropertiesInit.RUST_PLATE));
+	public static final RegistryObject<Block> RUST_BUTTON = BLOCKS.register("rust_button", () -> new RustButtonBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUST_STAIRS = BLOCKS.register("rust_stairs",
-			() -> new RustStairsBlock(RUST.get().defaultBlockState(), PropertiesInit.WRECKAGE));	
-	public static final RegistryObject<Block> RUST_WALL = BLOCKS.register("rust_wall", () -> new RustWallBlock(PropertiesInit.WRECKAGE));	
+			() -> new RustStairsBlock(RUST.get().defaultBlockState(), PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> RUST_WALL = BLOCKS.register("rust_wall", () -> new RustWallBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUST_SLAB = BLOCKS.register("rust_slab", () -> new RustSlabBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> PEDESTAL = BLOCKS.register("pedestal", PedestalBlock::new);
+	public static final RegistryObject<Block> FAN = BLOCKS.register("fan", FanBlock::new);
 }

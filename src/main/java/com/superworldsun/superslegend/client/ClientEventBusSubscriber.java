@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.client;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.render.AncientArrowRender;
 import com.superworldsun.superslegend.client.render.BombArrowRender;
+import com.superworldsun.superslegend.client.render.FanRenderer;
 import com.superworldsun.superslegend.client.render.FireArrowRender;
 import com.superworldsun.superslegend.client.render.IceArrowRender;
 import com.superworldsun.superslegend.client.render.IceBeamRender;
@@ -57,5 +58,6 @@ public class ClientEventBusSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MAGIC_FIRE_ARROW.get(), MagicFireArrowRender::new);
 		
 		ClientRegistry.bindTileEntityRenderer(TileEntityInit.PEDESTAL.get(), PedestalRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(TileEntityInit.FAN.get(), FanRenderer::new);
 	}
 }
