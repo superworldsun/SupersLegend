@@ -32,7 +32,7 @@ public class RegistryHelper {
     }
 
     private static ModData getModData(String modid) {
-        ModData data = modData.get(modid);
+        ModData data = modData.get("superslegend");
         if(data == null) {
             data = new ModData();
             modData.put(modid, data);
