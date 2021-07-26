@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.tile.FanTileEntity;
 import com.superworldsun.superslegend.blocks.tile.PedestalTileEntity;
+import com.superworldsun.superslegend.blocks.tile.SwitchableFanTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
@@ -20,6 +21,7 @@ public class TileEntityInit
 	
 	public static final RegistryObject<TileEntityType<PedestalTileEntity>> PEDESTAL = register("pedestal", PedestalTileEntity::new, BlockInit.PEDESTAL);
 	public static final RegistryObject<TileEntityType<FanTileEntity>> FAN = register("fan", FanTileEntity::new, BlockInit.FAN);
+	public static final RegistryObject<TileEntityType<SwitchableFanTileEntity>> SWITCHABLE_FAN = register("switchable_fan", SwitchableFanTileEntity::new, BlockInit.SWITCHABLE_FAN);
 	
 	private static <T extends TileEntity> RegistryObject<TileEntityType<T>> register(String name, Supplier<T> tileEntitySupplier, Supplier<Block> blockSupplier)
 	{

@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
@@ -16,17 +17,26 @@ import net.minecraft.util.math.vector.Vector3d;
 public class FanTileEntity extends TileEntity implements ITickableTileEntity
 {
 	private AxisAlignedBB coveredArea;
+	public float bladesRotation;
 	
 	public FanTileEntity()
 	{
 		super(TileEntityInit.FAN.get());
 	}
 	
+	public FanTileEntity(TileEntityType<? extends FanTileEntity> type)
+	{
+		super(type);
+	}
+	
 	@Override
 	public void tick()
 	{
-		List<Entity> affectedEntities = level.getEntities(null, getCoveredArea());
-		affectedEntities.forEach(entity -> entity.move(MoverType.SELF, getAirflowVector()));
+		if (isPowered())
+		{
+			List<Entity> affectedEntities = level.getEntities(null, getCoveredArea());
+			affectedEntities.forEach(entity -> entity.move(MoverType.PISTON, getAirflowVector()));
+		}
 	}
 	
 	private AxisAlignedBB getCoveredArea()
@@ -53,5 +63,10 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity
 	private Vector3d getAirflowVector()
 	{
 		return new Vector3d(getFanDirection().step()).multiply(0.3D, 0.3D, 0.3D);
+	}
+	
+	public boolean isPowered()
+	{
+		return true;
 	}
 }

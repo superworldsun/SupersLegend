@@ -10,6 +10,7 @@ import com.superworldsun.superslegend.blocks.RustPlateBlock;
 import com.superworldsun.superslegend.blocks.RustSlabBlock;
 import com.superworldsun.superslegend.blocks.RustStairsBlock;
 import com.superworldsun.superslegend.blocks.RustWallBlock;
+import com.superworldsun.superslegend.blocks.SwitchableFanBlock;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
@@ -55,4 +56,5 @@ public class BlockInit
 	public static final RegistryObject<Block> RUST_SLAB = BLOCKS.register("rust_slab", () -> new RustSlabBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> PEDESTAL = BLOCKS.register("pedestal", PedestalBlock::new);
 	public static final RegistryObject<Block> FAN = BLOCKS.register("fan", FanBlock::new);
+	public static final RegistryObject<Block> SWITCHABLE_FAN = BLOCKS.register("switchable_fan", SwitchableFanBlock::new);
 }

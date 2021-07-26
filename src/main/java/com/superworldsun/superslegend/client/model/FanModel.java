@@ -46,10 +46,10 @@ public class FanModel extends Model
 		base.texOffs(7, 33).addBox(7.0F, -17.0F, 0.0F, 2.0F, 2.0F, 4.0F, 0.0F, false);
 	}
 	
-	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float partialTicks)
+	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float partialTicks, float bladesRotation)
 	{
 		buffer.color(1.0F, 1.0F, 1.0F, 1.0F);
-		blade_1.zRot -= partialTicks;
+		blade_1.zRot = bladesRotation;
 		blade_1.render(matrixStack, buffer, packedLight, packedOverlay);
 		base.render(matrixStack, buffer, packedLight, packedOverlay);
 	}

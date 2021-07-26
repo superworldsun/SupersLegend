@@ -25,12 +25,18 @@ public class FanRenderer extends TileEntityRenderer<FanTileEntity>
 	@Override
 	public void render(FanTileEntity te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay)
 	{
+		if (te.isPowered())
+		{
+			te.bladesRotation -= partialTicks;
+		}
+		
 		matrixStack.pushPose();
 		Direction fanDirection = te.getFanDirection();
 		matrixStack.translate(0.5D, 0.5D, 0.5D);
-		matrixStack.mulPose(Vector3f.YP.rotationDegrees(fanDirection.toYRot() + (fanDirection == Direction.SOUTH || fanDirection == Direction.NORTH ? 180 : 0)));
+		boolean flipRotation = fanDirection == Direction.SOUTH || fanDirection == Direction.NORTH;
+		matrixStack.mulPose(Vector3f.YP.rotationDegrees(fanDirection.toYRot() + (flipRotation ? 180 : 0)));
 		matrixStack.translate(-0.5D, -0.5D, -0.5D);
-		model.render(matrixStack, buffer.getBuffer(model.renderType(TEXTURE)), combinedLight, combinedOverlay, partialTicks);
+		model.render(matrixStack, buffer.getBuffer(model.renderType(TEXTURE)), combinedLight, combinedOverlay, partialTicks, te.bladesRotation);
 		matrixStack.popPose();
 	}
 }
