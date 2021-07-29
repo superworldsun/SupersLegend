@@ -1,8 +1,10 @@
 package com.superworldsun.superslegend.items.masks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.cooldowns.CooldownsProvider;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
+import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,8 +37,16 @@ public class BlastMask extends NonEnchantArmor
 	
 	public static void abilityUsed(World world, PlayerEntity player)
 	{
+		// Do nothing if on cooldown
+		if (CooldownsProvider.get(player).hasCooldown(ItemInit.MASK_BLASTMASK.get()))
+		{
+			return;
+		}
+		
 		Vector3d explosionPos = player.getEyePosition(1.0F).add(player.getLookAngle().multiply(0.5D, 0.5D, 0.5D));
 		world.explode(player, explosionPos.x, explosionPos.y, explosionPos.z, 2.0F, Mode.BREAK);
 		player.hurt(DamageSource.explosion(player), 2.0F);
+		// 400 ticks are 20 seconds
+		CooldownsProvider.get(player).setCooldown(ItemInit.MASK_BLASTMASK.get(), 400);
 	}
 }
