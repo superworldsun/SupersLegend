@@ -2,11 +2,14 @@ package com.superworldsun.superslegend;
 
 import static net.minecraft.item.ItemModelsProperties.register;
 
-import com.superworldsun.superslegend.entities.projectiles.arrows.PoisonArrowEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.superworldsun.superslegend.config.Config;
+import com.superworldsun.superslegend.cooldowns.Cooldowns;
+import com.superworldsun.superslegend.cooldowns.CooldownsStorage;
+import com.superworldsun.superslegend.cooldowns.ICooldowns;
+import com.superworldsun.superslegend.entities.projectiles.arrows.PoisonArrowEntity;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
@@ -68,7 +71,7 @@ public class SupersLegendMain
 		// and notify Forge of it
 		modEventBus.addListener(this::setup);
 		context.registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
-
+		
 		// Remember to register items before blocks, problems can occur
 		// otherwise if you don't
 		ItemInit.ITEMS.register(modEventBus);
@@ -103,6 +106,7 @@ public class SupersLegendMain
 	private void setup(final FMLCommonSetupEvent event)
 	{
 		CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana::new);
+		CapabilityManager.INSTANCE.register(ICooldowns.class, new CooldownsStorage(), Cooldowns::new);
 		
 		// This is for thread-safe operations later on such as world-gen
 		event.enqueueWork(() ->
