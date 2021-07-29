@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.cooldowns;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class Cooldowns implements ICooldowns
 	@Override
 	public void setCooldown(Item item, int cooldown)
 	{
-		if (cooldown == 0)
+		if (cooldown <= 0 && cooldowns.containsKey(item))
 		{
 			cooldowns.remove(item);
 		}
@@ -34,10 +35,11 @@ public class Cooldowns implements ICooldowns
 			cooldowns.put(item, cooldown);
 		}
 	}
-
+	
 	@Override
 	public Set<Item> getItemsOnCooldown()
 	{
-		return cooldowns.keySet();
+		// We are making a copy instead of returning the original set
+		return new HashSet<>(cooldowns.keySet());
 	}
 }
