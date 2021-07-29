@@ -41,6 +41,6 @@ public class SyncManaMessage
 	{
 		NetworkEvent.Context ctx = ctxSupplier.get();
 		ctx.setPacketHandled(true);
-		ctx.enqueueWork(() -> DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandlerClass.handlePacket(message, ctx)));
+		ctx.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandlerClass.handlePacket(message, ctx)));
 	}
 }
