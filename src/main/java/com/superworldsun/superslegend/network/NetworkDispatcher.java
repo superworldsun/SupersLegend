@@ -23,9 +23,7 @@ public class NetworkDispatcher
 	@SubscribeEvent
 	public static void onCommonSetupEvent(FMLCommonSetupEvent event)
 	{
-		int ID = 0;
 		networkChannel = NetworkRegistry.newSimpleChannel(new ResourceLocation(SupersLegendMain.MOD_ID, "channel"), () -> "1.0", (s) -> true, (s) -> true);
-		networkChannel.registerMessage(ID++, SyncManaMessage.class, SyncManaMessage::encode, SyncManaMessage::decode,
-				SyncManaMessage.Handler::onMessageReceived, Optional.of(PLAY_TO_CLIENT));
+		networkChannel.registerMessage(1, SyncManaMessage.class, SyncManaMessage::encode, SyncManaMessage::decode, SyncManaMessage::receive, Optional.of(PLAY_TO_CLIENT));
 	}
 }

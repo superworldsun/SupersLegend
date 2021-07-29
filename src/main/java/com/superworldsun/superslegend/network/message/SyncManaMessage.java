@@ -37,13 +37,10 @@ public class SyncManaMessage
 		buf.writeNbt(nbt);
 	}
 	
-	public static class Handler
+	public static void receive(SyncManaMessage message, Supplier<NetworkEvent.Context> ctxSupplier)
 	{
-		public static void onMessageReceived(final SyncManaMessage message, Supplier<NetworkEvent.Context> ctxSupplier)
-		{
-			NetworkEvent.Context ctx = ctxSupplier.get();
-			ctx.setPacketHandled(true);
-			ctx.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandlerClass.handlePacket(message, ctx)));
-		}
+		NetworkEvent.Context ctx = ctxSupplier.get();
+		ctx.setPacketHandled(true);
+		ctx.enqueueWork(() -> DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandlerClass.handlePacket(message, ctx)));
 	}
 }
