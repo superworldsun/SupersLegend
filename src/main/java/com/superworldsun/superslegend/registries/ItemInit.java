@@ -10,6 +10,7 @@ import com.superworldsun.superslegend.items.PoisonArrowItem;
 import com.superworldsun.superslegend.items.armors.HoverBoots;
 import com.superworldsun.superslegend.items.armors.IronBoots;
 import com.superworldsun.superslegend.items.items.*;
+import com.superworldsun.superslegend.items.masks.BlastMask;
 import com.superworldsun.superslegend.items.masks.GiantsMask;
 import com.superworldsun.superslegend.items.masks.MaskAllnightmask;
 import com.superworldsun.superslegend.items.masks.MaskBremenmask;
@@ -255,7 +256,7 @@ public class ItemInit
 	public static final RegistryObject<Item> MASK_ALLNIGHTMASK = ITEMS.register("mask_allnightmask",
 			() -> new MaskAllnightmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_BLASTMASK = ITEMS.register("mask_blastmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new BlastMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_STONEMASK = ITEMS.register("mask_stonemask",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_BREMANMASK = ITEMS.register("mask_bremenmask",
