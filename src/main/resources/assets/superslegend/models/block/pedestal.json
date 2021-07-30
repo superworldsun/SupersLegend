@@ -1,8 +1,8 @@
 {
   "texture_size": [32, 32],
   "textures": {
-    "0": "superslegend:block/pedestal_block",
-    "particle": "superslegend:block/pedestal_block"
+    "0": "superslegend:block/pedestal",
+    "particle": "superslegend:block/pedestal"
   },
   "elements": [
     {
