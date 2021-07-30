@@ -46,7 +46,7 @@ public class BlastMask extends NonEnchantArmor
 		Vector3d explosionPos = player.getEyePosition(1.0F).add(player.getLookAngle().multiply(0.5D, 0.5D, 0.5D));
 		world.explode(player, explosionPos.x, explosionPos.y, explosionPos.z, 2.0F, Mode.BREAK);
 		player.hurt(DamageSource.explosion(player), 2.0F);
-		// 400 ticks are 20 seconds
-		CooldownsProvider.get(player).setCooldown(ItemInit.MASK_BLASTMASK.get(), 400);
+		// 200 ticks are 10 seconds
+		CooldownsProvider.get(player).setCooldown(ItemInit.MASK_BLASTMASK.get(), 200);
 	}
 }
