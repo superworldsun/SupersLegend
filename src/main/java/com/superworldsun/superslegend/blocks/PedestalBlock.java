@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.blocks.tile.PedestalTileEntity;
+import com.superworldsun.superslegend.util.BlockShapeHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -27,7 +28,7 @@ import net.minecraftforge.common.ToolType;
 public class PedestalBlock extends Block
 {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	protected static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 2, 16);
+	protected static final VoxelShape SHAPE = Block.box(2, 0, 5, 14, 4, 11);
 	
 	public PedestalBlock()
 	{
@@ -38,7 +39,7 @@ public class PedestalBlock extends Block
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx)
 	{
-		return SHAPE;
+		return BlockShapeHelper.rotateShape(Direction.SOUTH, state.getValue(FACING), SHAPE);
 	}
 	
 	@Override
