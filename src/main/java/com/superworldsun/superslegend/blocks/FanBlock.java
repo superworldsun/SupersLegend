@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.blocks;
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
 
 import com.superworldsun.superslegend.blocks.tile.FanTileEntity;
+import com.superworldsun.superslegend.util.BlockShapeHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -71,7 +72,7 @@ public class FanBlock extends DirectionalBlock implements IWaterLoggable
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx)
 	{
-		return rotateShape(Direction.SOUTH, state.getValue(FACING), SHAPE);
+		return BlockShapeHelper.rotateShape(Direction.SOUTH, state.getValue(FACING), SHAPE);
 	}
 	
 	@Override
@@ -95,22 +96,5 @@ public class FanBlock extends DirectionalBlock implements IWaterLoggable
 		}
 		
 		return state;
-	}
-	
-	// This should be in some helper class, it is super useful
-	public static VoxelShape rotateShape(Direction from, Direction to, VoxelShape shape)
-	{
-		VoxelShape[] buffer = new VoxelShape[] { shape, VoxelShapes.empty() };
-		int times = (to.get2DDataValue() - from.get2DDataValue() + 4) % 4;
-		
-		for (int i = 0; i < times; i++)
-		{
-			buffer[0].forAllBoxes(
-					(minX, minY, minZ, maxX, maxY, maxZ) -> buffer[1] = VoxelShapes.or(buffer[1], VoxelShapes.box(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
-			buffer[0] = buffer[1];
-			buffer[1] = VoxelShapes.empty();
-		}
-		
-		return buffer[0];
 	}
 }
