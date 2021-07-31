@@ -6,7 +6,11 @@ import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.entity.CreatureAttribute;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.boss.WitherEntity;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -30,9 +34,14 @@ public class GibdoMask extends NonEnchantArmor
 		{
 			return;
 		}
-		
+
+		//event.getEntityLiving() instanceof BlazeEntity
+
 		// Only works on undead
-		if (event.getEntityLiving().getMobType() != CreatureAttribute.UNDEAD)
+		if (event.getEntityLiving().getMobType() != CreatureAttribute.UNDEAD || !(event.getEntityLiving() instanceof SkeletonEntity) ||
+				!(event.getEntityLiving() instanceof PhantomEntity) || !(event.getEntityLiving() instanceof SkeletonEntity) ||
+				!(event.getEntityLiving() instanceof StrayEntity) || !(event.getEntityLiving() instanceof WitherEntity) ||
+				!(event.getEntityLiving() instanceof WitherSkeletonEntity))
 		{
 			return;
 		}
