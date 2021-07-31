@@ -1,19 +1,21 @@
 package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
+import com.superworldsun.superslegend.registries.ArmourInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraft.util.text.ITextComponent;
 
-public class ArmorKokiriEffects extends NonEnchantArmor
+public class ArmorKokiriBoots extends NonEnchantArmor
 {
 
-    public ArmorKokiriEffects(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
-        super(materialIn, slot, builder);
+    public ArmorKokiriBoots(Properties properties)
+    {
+        super(ArmourInit.kokiri, EquipmentSlotType.FEET, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

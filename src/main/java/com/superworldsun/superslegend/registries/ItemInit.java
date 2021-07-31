@@ -7,8 +7,7 @@ import com.superworldsun.superslegend.items.LanzaniteMultiToolItem;
 import com.superworldsun.superslegend.items.LanzanitePickaxeItem;
 import com.superworldsun.superslegend.items.MetalBowItem;
 import com.superworldsun.superslegend.items.PoisonArrowItem;
-import com.superworldsun.superslegend.items.armors.HoverBoots;
-import com.superworldsun.superslegend.items.armors.IronBoots;
+import com.superworldsun.superslegend.items.armors.*;
 import com.superworldsun.superslegend.items.food.HylianLoach;
 import com.superworldsun.superslegend.items.food.HylianLoachCooked;
 import com.superworldsun.superslegend.items.food.HyruleBass;
@@ -323,13 +322,14 @@ public class ItemInit
 	// ARMORS
 	
 	public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap",
+			() -> new ArmorKokiriCap(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> KOKIRI_TUNIC = ITEMS.register("kokiri_tunic",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorKokiriChestplate(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> KOKIRI_LEGGINGS = ITEMS.register("kokiri_leggings",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorKokiriLeggings(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> KOKIRI_BOOTS = ITEMS.register("kokiri_boots",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorKokiriBoots(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_CAP = ITEMS.register("zora_cap", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_TUNIC = ITEMS.register("zora_tunic", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_LEGGINGS = ITEMS.register("zora_leggings",
