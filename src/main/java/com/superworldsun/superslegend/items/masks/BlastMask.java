@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.items.masks;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.cooldowns.CooldownsProvider;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
@@ -17,11 +16,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.Explosion.Mode;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
-@EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
 public class BlastMask extends NonEnchantArmor
 {
 	public BlastMask(Properties properties)
