@@ -1,31 +1,17 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.FriedEggItem;
-import com.superworldsun.superslegend.items.LanzaniteItem;
-import com.superworldsun.superslegend.items.LanzaniteMultiToolItem;
-import com.superworldsun.superslegend.items.LanzanitePickaxeItem;
-import com.superworldsun.superslegend.items.MetalBowItem;
-import com.superworldsun.superslegend.items.PoisonArrowItem;
+import com.superworldsun.superslegend.items.*;
 import com.superworldsun.superslegend.items.armors.*;
 import com.superworldsun.superslegend.items.food.HylianLoach;
 import com.superworldsun.superslegend.items.food.HylianLoachCooked;
 import com.superworldsun.superslegend.items.food.HyruleBass;
 import com.superworldsun.superslegend.items.food.HyruleBassCooked;
 import com.superworldsun.superslegend.items.items.*;
-import com.superworldsun.superslegend.items.masks.BlastMask;
 import com.superworldsun.superslegend.items.masks.*;
 import com.superworldsun.superslegend.items.weapons.*;
 import com.superworldsun.superslegend.util.ItemToolTiers;
-
-import net.minecraft.item.BowItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.MusicDiscItem;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.Rarity;
-import net.minecraft.item.ShieldItem;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraftforge.fml.RegistryObject;
@@ -149,12 +135,12 @@ public class ItemInit
 	
 	public static final RegistryObject<HerosBow> HEROS_BOW = ITEMS.register("heros_bow",
 			() -> new HerosBow(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> HOOKSHOT = ITEMS.register("hookshot",
+	/*public static final RegistryObject<Item> HOOKSHOT = ITEMS.register("hookshot",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> LONGSHOT = ITEMS.register("longshot",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> CLAWSHOT = ITEMS.register("clawshot",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
 	public static final RegistryObject<Item> BIT_BOW = ITEMS.register("bit_bow",
 			() -> new BitBow(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<LynelBowX3> LYNEL_BOW_X3 = ITEMS.register("lynel_bow_x3",
@@ -428,4 +414,14 @@ public class ItemInit
 	public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow", MagicFireArrow::new);
 	public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow", MagicIceArrow::new);
 	public static final RegistryObject<Item> MAGIC_LIGHT_ARROW = ITEMS.register("magic_light_arrow", MagicLightArrow::new);
+
+	//Hookshots
+	public static final RegistryObject<Item> HOOKSHOT = ITEMS.register("hookshot",
+			() -> new HookshotItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> LONGSHOT = ITEMS.register("longshot",
+			() -> new LongshotItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> CLAWSHOT = ITEMS.register("clawshot",
+			() -> new ClawshotItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 }

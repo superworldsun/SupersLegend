@@ -1,37 +1,27 @@
 package com.superworldsun.superslegend;
 
-import static net.minecraft.item.ItemModelsProperties.register;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.superworldsun.superslegend.config.Config;
 import com.superworldsun.superslegend.cooldowns.Cooldowns;
 import com.superworldsun.superslegend.cooldowns.CooldownsStorage;
 import com.superworldsun.superslegend.cooldowns.ICooldowns;
 import com.superworldsun.superslegend.entities.projectiles.arrows.PoisonArrowEntity;
+import com.superworldsun.superslegend.hookshotCap.Hook;
+import com.superworldsun.superslegend.hookshotCap.SyncToClient;
+import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
+import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
-import com.superworldsun.superslegend.registries.BlockInit;
-import com.superworldsun.superslegend.registries.EntityTypeInit;
-import com.superworldsun.superslegend.registries.ItemInit;
-import com.superworldsun.superslegend.registries.PaintingInit;
-import com.superworldsun.superslegend.registries.SoundInit;
-import com.superworldsun.superslegend.registries.TileEntityInit;
+import com.superworldsun.superslegend.registries.*;
+import com.superworldsun.superslegend.util.ClientHandler;
 import com.superworldsun.superslegend.util.events.EntityEventHandler;
-
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.FishingRodItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -46,7 +36,16 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.network.NetworkDirection;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.registries.IForgeRegistry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Optional;
+
+import static net.minecraft.item.ItemModelsProperties.register;
 
 @Mod(SupersLegendMain.MOD_ID)
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -55,6 +54,7 @@ public class SupersLegendMain
 	// Our instance, referenced in the below sub-class
 	public static SupersLegendMain instance;
 	// The strings for our name and modid + logger
+	public static SimpleChannel NETWORK;
 	public static final String NAME = "SupersLegend";
 	public static final String MOD_ID = "superslegend";
 	public static final Logger LOGGER = LogManager.getLogger();
@@ -70,6 +70,7 @@ public class SupersLegendMain
 		// Our listener for setup, it will pick up on anything put into setup
 		// and notify Forge of it
 		modEventBus.addListener(this::setup);
+		modEventBus.addListener(this::doClientStuff);
 		context.registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
 		
 		// Remember to register items before blocks, problems can occur
@@ -81,6 +82,8 @@ public class SupersLegendMain
 		EntityTypeInit.ENTITIES.register(modEventBus);
 		TileEntityInit.TILES.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
+		MinecraftForge.EVENT_BUS.register(new Hook());
+
 	}
 	
 	public static ResourceLocation locate(String name)
@@ -107,7 +110,11 @@ public class SupersLegendMain
 	{
 		CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana::new);
 		CapabilityManager.INSTANCE.register(ICooldowns.class, new CooldownsStorage(), Cooldowns::new);
-		
+		CapabilityManager.INSTANCE.register(HookModel.class, new HookStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });
+
+		NETWORK = NetworkRegistry.newSimpleChannel(new ResourceLocation("superslegend", "main_channel"), () -> "1.0", s -> true, s -> true);
+		NETWORK.registerMessage(1, SyncToClient.class, SyncToClient::encode, SyncToClient::new, SyncToClient::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+
 		// This is for thread-safe operations later on such as world-gen
 		event.enqueueWork(() ->
 		{
@@ -219,6 +226,12 @@ public class SupersLegendMain
 				}
 			});
 		}
+
+
 	}
-	
+	private void doClientStuff(final FMLClientSetupEvent event) {
+		RendererManagerInit.init();
+		ClientHandler.setupClient();
+
+	}
 }
