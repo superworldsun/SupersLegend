@@ -37,12 +37,8 @@ public class LongshotItem extends Item {
         ActionResult<ItemStack> ret = ForgeEventFactory.onArrowNock(itemstack, world, player, hand, true);
         if (ret != null) return ret;
 
-        if (!player.abilities.instabuild) {
-            return ActionResult.fail(itemstack);
-        } else {
             player.startUsingItem(hand);
             return ActionResult.consume(itemstack);
-        }
     }
 
     @Override
@@ -82,9 +78,9 @@ public class LongshotItem extends Item {
 
         }
 
-        if (!HookModel.get((PlayerEntity) player).getHasHook())
-            world.playSound((PlayerEntity) player, player.blockPosition(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1F, 1F);
-
+        if (!HookModel.get((PlayerEntity) player).getHasHook()) { //Sound at launch.
+            //world.playSound((PlayerEntity) player, player.blockPosition(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1F, 1F);
+        }
     }
 
     //Time to charge the hookshot.
