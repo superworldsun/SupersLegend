@@ -76,9 +76,9 @@ public class ClawshotItem extends Item {
                 HookModel.get((PlayerEntity) player).setHasHook(!HookModel.get((PlayerEntity) player).getHasHook());
         }
 
-        if (!HookModel.get((PlayerEntity) player).getHasHook()) //Sound at launch.
-            world.playSound((PlayerEntity) player, player.blockPosition(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1F, 1F);
-
+        if (!HookModel.get((PlayerEntity) player).getHasHook()) { //Sound at launch.
+            //world.playSound((PlayerEntity) player, player.blockPosition(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1F, 1F);
+        }
     }
 
     //Time to charge the hookshot.

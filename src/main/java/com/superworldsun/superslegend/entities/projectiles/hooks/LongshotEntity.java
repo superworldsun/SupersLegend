@@ -78,9 +78,9 @@ public class LongshotEntity extends AbstractArrowEntity {
         if (getOwner() instanceof PlayerEntity) {
             owner = (PlayerEntity) getOwner();
 
-            if (isPulling && tickCount % 2 == 0) //This is the sound that sounds when the hook is moving you.
-                level.playSound(null, owner.blockPosition(), SoundEvents.AXE_STRIP, SoundCategory.PLAYERS, 1F, 1F);
-
+            if (isPulling && tickCount % 2 == 0) { //This is the sound that sounds when the hook is moving you.
+                //level.playSound(null, owner.blockPosition(), SoundEvents.AXE_STRIP, SoundCategory.PLAYERS, 1F, 1F);
+            }
             if (!level.isClientSide) {
                 if (this.hookedEntity != null) { //In case the mob you are hooked to dies while you go towards it ..
                     if (this.hookedEntity.removed) {

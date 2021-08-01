@@ -78,9 +78,9 @@ public class LongshotItem extends Item {
 
         }
 
-        if (!HookModel.get((PlayerEntity) player).getHasHook())
-            world.playSound((PlayerEntity) player, player.blockPosition(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1F, 1F);
-
+        if (!HookModel.get((PlayerEntity) player).getHasHook()) { //Sound at launch.
+            //world.playSound((PlayerEntity) player, player.blockPosition(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1F, 1F);
+        }
     }
 
     //Time to charge the hookshot.
