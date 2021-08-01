@@ -1,6 +1,15 @@
 {
-    "parent": "item/handheld",
-    "textures": {
+    "parent": "item/generated",
+    "textures": 
+	{
         "layer0": "superslegend:item/clawshot"
+    },
+  "overrides": [
+    {
+      "predicate": {
+        "cast": 1
+      },
+      "model": "superslegend:item/clawshot_fired"
     }
+  ]
 }

@@ -1,18 +1,10 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.entities.projectiles.arrows.AncientArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.BombArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.FireArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.IceArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.IceBeamEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.MagicFireArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.MagicIceArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.MagicLightArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.PoisonArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.ShockArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.SilverArrowEntity;
-
+import com.superworldsun.superslegend.entities.projectiles.arrows.*;
+import com.superworldsun.superslegend.entities.projectiles.hooks.ClawshotEntity;
+import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
+import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -67,4 +59,17 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<MagicLightArrowEntity>> MAGIC_LIGHT_ARROW = ENTITIES.register("magic_light_arrow",
 			() -> EntityType.Builder.<MagicLightArrowEntity>of(MagicLightArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/projectiles/arrows").toString()));
+
+	public static final RegistryObject<EntityType<HookshotEntity>> HOOKSHOT_ENTITY = ENTITIES.register("hookshot",
+			() -> EntityType.Builder.<HookshotEntity>of(HookshotEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/hookshot").toString()));
+
+	public static final RegistryObject<EntityType<LongshotEntity>> LONGSHOT_ENTITY = ENTITIES.register("longshot",
+			() -> EntityType.Builder.<LongshotEntity>of(LongshotEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/hookshot").toString()));
+
+	public static final RegistryObject<EntityType<ClawshotEntity>> CLAWSHOT_ENTITY = ENTITIES.register("clawshot",
+			() -> EntityType.Builder.<ClawshotEntity>of(ClawshotEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/clawshot").toString()));
+
 }
