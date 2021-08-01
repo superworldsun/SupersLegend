@@ -212,7 +212,7 @@ public class HookshotEntity extends AbstractArrowEntity {
      */
     @Override
     protected float getWaterInertia() {
-        return super.getWaterInertia();
+        return 0.9F;
     }
 
     /**
