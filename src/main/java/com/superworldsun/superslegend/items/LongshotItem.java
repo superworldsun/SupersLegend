@@ -37,12 +37,8 @@ public class LongshotItem extends Item {
         ActionResult<ItemStack> ret = ForgeEventFactory.onArrowNock(itemstack, world, player, hand, true);
         if (ret != null) return ret;
 
-        if (!player.abilities.instabuild) {
-            return ActionResult.fail(itemstack);
-        } else {
             player.startUsingItem(hand);
             return ActionResult.consume(itemstack);
-        }
     }
 
     @Override
