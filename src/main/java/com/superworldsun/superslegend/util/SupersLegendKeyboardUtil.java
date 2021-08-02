@@ -11,4 +11,8 @@ public class SupersLegendKeyboardUtil {
     public static boolean isHoldingLeftShift() {
         return InputMappings.isKeyDown(MINECRAFT_WINDOW, GLFW.GLFW_KEY_LEFT_SHIFT);
     }
+
+    public static boolean isHoldingSpace() {
+        return InputMappings.isKeyDown(MINECRAFT_WINDOW, GLFW.GLFW_KEY_SPACE);
+    }
 }

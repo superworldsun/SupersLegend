@@ -4,6 +4,7 @@ package com.superworldsun.superslegend.entities.projectiles.hooks;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.items.ClawshotItem;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.util.SupersLegendKeyboardUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -131,9 +132,9 @@ public class ClawshotEntity extends AbstractArrowEntity {
                         else if (new Vector3d(distance.x, 0, distance.z).length() < new Vector3d(target.getBbWidth() / 2, 0, target.getBbWidth() / 2).length() / 1.4) {
                             motion = new Vector3d(0, motion.y, 0);
                         }
-                        //By pressing Shift you go down. If you let go, you go back up.
-                        if (owner.isShiftKeyDown() && new Vector3d(distance.x, 0, distance.z).length() < new Vector3d(target.getBbWidth() / 2, 0, target.getBbWidth() / 2).length() / 1.4) {
-                            motion = new Vector3d(0, -motion.y/2, 0);
+                        //By pressing Space you go down. If you let go, you go back up.
+                        if (motion.y > 0 && SupersLegendKeyboardUtil.isHoldingSpace() && new Vector3d(distance.x, 0, distance.z).length() < new Vector3d(target.getBbWidth() / 2, 0, target.getBbWidth() / 2).length() / 1.4) {
+                            motion = new Vector3d(0, -motion.y/3, 0);
                         }
 
                         target.fallDistance = 0; //Cancel Fall Damage
