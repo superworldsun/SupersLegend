@@ -3,7 +3,7 @@ package com.superworldsun.superslegend.entities.projectiles.arrows;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
-import net.minecraft.entity.Entity;
+import com.superworldsun.superslegend.util.Functions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -16,6 +16,8 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+import static com.superworldsun.superslegend.util.Functions.repeat;
+
 public class BombArrowEntity extends AbstractArrowEntity {
 
     public BombArrowEntity(EntityType<? extends BombArrowEntity> type, World world) {
@@ -25,10 +27,6 @@ public class BombArrowEntity extends AbstractArrowEntity {
     public BombArrowEntity(World worldIn, LivingEntity shooter) {
         super(EntityTypeInit.BOMB_ARROW.get(), shooter, worldIn);
         this.setBaseDamage(this.getBaseDamage() + 2.0F);
-    }
-
-    public BombArrowEntity(World worldIn, double x, double y, double z) {
-        super(EntityTypeInit.BOMB_ARROW.get(), x, y, z, worldIn);
     }
 
     @Override
@@ -45,8 +43,9 @@ public class BombArrowEntity extends AbstractArrowEntity {
     @Override
     protected void doPostHurtEffects(LivingEntity entity) {
         super.doPostHurtEffects(entity);
+        // TODO could be thundering without rain. Maybe use isInRainOrWater
         if (!level.isRaining() && !level.isThundering()) {
-            level.explode((Entity) null, this.xo, this.yo, this.zo, 4.5f, Explosion.Mode.NONE);
+            level.explode(null, this.xo, this.yo, this.zo, 4.5f, Explosion.Mode.NONE);
         }
     }
 
@@ -55,36 +54,44 @@ public class BombArrowEntity extends AbstractArrowEntity {
     public void tick() {
         super.tick();
         if (this.inGround) {
-            if (!this.isInWater()) {
-                level.explode((Entity) null, this.xo, this.yo, this.zo, 3.0f, Explosion.Mode.NONE);
-                this.remove();
-            } else {
-                this.remove();
-            }
+            if (!this.isInWater())
+                level.explode(null, this.xo, this.yo, this.zo, 3.0f, Explosion.Mode.NONE);
+            this.remove();
         }
-        if (!this.isInWaterOrRain() && !this.inGround) {
-            this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
-                    0.0D);
-            this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
-                    0.0D);
-            this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
-                    0.0D);
+        addSmokeToFlightPath();
+        defuseInWater();
+        explodeInHeat();
+        playFuseSoundEveryNinthTick();
+    }
+
+    private void playFuseSoundEveryNinthTick() {
+        if(this.tickCount % 9 == 0)
+        {
+            BlockPos currentPos = this.blockPosition();
+            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
         }
+    }
+
+    private void explodeInHeat() {
+        if(this.isOnFire() || this.isInLava())
+        {
+            level.explode(null, this.xo, this.yo, this.zo, 3.0f, Explosion.Mode.NONE);
+            this.remove();
+        }
+    }
+
+    private void defuseInWater() {
         if(this.wasTouchingWater)
         {
             BlockPos currentPos = this.blockPosition();
             this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_DEFUSE.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
             this.remove();
         }
-        if(this.isOnFire() || this.isInLava())
-        {
-            level.explode((Entity) null, this.xo, this.yo, this.zo, 3.0f, Explosion.Mode.NONE);
-            this.remove();
-        }
-        if(this.tickCount % 9 == 0)
-        {
-            BlockPos currentPos = this.blockPosition();
-            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
+    }
+
+    private void addSmokeToFlightPath() {
+        if (!this.isInWaterOrRain() && !this.inGround) {
+            repeat(3, () -> this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D));
         }
     }
 }

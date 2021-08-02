@@ -95,7 +95,7 @@ public class FireArrowEntity extends AbstractArrowEntity
 	{
 		super.tick();
 
-		addFireParticlesToFlighPath();
+		addFireParticlesToFlightPath();
 		burnGroundOnImpact();
 		extinguishInWater();
 	}
@@ -117,7 +117,7 @@ public class FireArrowEntity extends AbstractArrowEntity
 		}
 	}
 
-	private void addFireParticlesToFlighPath() {
+	private void addFireParticlesToFlightPath() {
 		if (!this.isInWaterOrRain() && !this.inGround)
 		{
 			this.level.addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
