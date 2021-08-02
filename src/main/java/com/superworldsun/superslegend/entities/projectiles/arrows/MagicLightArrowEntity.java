@@ -26,12 +26,7 @@ public class MagicLightArrowEntity extends AbstractArrowEntity
 	{
 		super(EntityTypeInit.MAGIC_LIGHT_ARROW.get(), shooter, worldIn);
 	}
-	
-	public MagicLightArrowEntity(World worldIn, double x, double y, double z)
-	{
-		super(EntityTypeInit.MAGIC_LIGHT_ARROW.get(), x, y, z, worldIn);
-	}
-	
+
 	@Override
 	public void onAddedToWorld()
 	{
@@ -55,17 +50,9 @@ public class MagicLightArrowEntity extends AbstractArrowEntity
 	protected void onHitEntity(EntityRayTraceResult rayTraceResult)
 	{
 		Entity entity = rayTraceResult.getEntity();
-		
-		if (TagInit.WEAK_TO_LIGHT.contains(entity.getType()))
-		{
-			setBaseDamage(getBaseDamage() * 2);
-		}
-		
-		if (TagInit.RESISTANT_TO_LIGHT.contains(entity.getType()))
-		{
-			setBaseDamage(getBaseDamage() / 2);
-		}
-		
+
+		applyResistanceAndWeakness(entity);
+
 		super.onHitEntity(rayTraceResult);
 		
 		// There is a small time frame after an entity is hurt that gives
@@ -73,5 +60,12 @@ public class MagicLightArrowEntity extends AbstractArrowEntity
 		// an arrow. To deal damage 2 times in a row, we have to reset it.
 		entity.invulnerableTime = 0;
 		entity.hurt(DamageSource.MAGIC, 5.0F);
+	}
+
+	private void applyResistanceAndWeakness(Entity entity) {
+		if (TagInit.WEAK_TO_LIGHT.contains(entity.getType()))
+			setBaseDamage(getBaseDamage() * 2);
+		if (TagInit.RESISTANT_TO_LIGHT.contains(entity.getType()))
+			setBaseDamage(getBaseDamage() / 2);
 	}
 }

@@ -37,9 +37,7 @@ public class SilverArrowEntity extends AbstractArrowEntity
     @Override
     protected void doPostHurtEffects(LivingEntity living) {
         if(living instanceof WitherSkeletonEntity)
-        {
-            this.setBaseDamage(this.getBaseDamage() *100);
-        }
+            this.setBaseDamage(this.getBaseDamage() * 100);
         super.doPostHurtEffects(living);
     }
 
