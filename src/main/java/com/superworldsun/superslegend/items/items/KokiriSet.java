@@ -36,9 +36,9 @@ public class KokiriSet extends Item{
 				 stack.shrink(1);
 
 
-				 player.addItem(new ItemStack(ItemInit.KOKIRI_CAP.get()));
-				 player.addItem(new ItemStack(ItemInit.KOKIRI_TUNIC.get()));
-				 player.addItem(new ItemStack(ItemInit.KOKIRI_LEGGINGS.get()));
+				 //player.addItem(new ItemStack(ItemInit.KOKIRI_CAP.get()));
+				 //player.addItem(new ItemStack(ItemInit.KOKIRI_TUNIC.get()));
+				 //player.addItem(new ItemStack(ItemInit.KOKIRI_LEGGINGS.get()));
 
 
 				 BlockPos currentPos = player.blockPosition();

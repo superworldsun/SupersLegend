@@ -186,7 +186,7 @@ public class ClawshotEntity extends AbstractArrowEntity {
      */
     @Override
     protected float getWaterInertia() {
-        return 0.9F;
+        return 1.0F;
     }
 
     /**
