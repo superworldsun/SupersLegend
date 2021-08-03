@@ -11,6 +11,7 @@ import com.superworldsun.superslegend.items.items.*;
 import com.superworldsun.superslegend.items.masks.*;
 import com.superworldsun.superslegend.items.weapons.*;
 import com.superworldsun.superslegend.util.ItemToolTiers;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -153,6 +154,8 @@ public class ItemInit
 			() -> new DekuShield(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<ShieldItem> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
 			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<ShieldItem> SACRED_SHIELD = ITEMS.register("sacred_shield",
+			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	
 	public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
 			() -> new ArrowFire(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -248,7 +251,7 @@ public class ItemInit
 	public static final RegistryObject<Item> MASK_CLAY = ITEMS.register("mask_clay",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_POSTMANSHAT = ITEMS.register("mask_postmanshat",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskPostmanshat(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_ALLNIGHTMASK = ITEMS.register("mask_allnightmask",
 			() -> new MaskAllnightmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_BLASTMASK = ITEMS.register("mask_blastmask",
@@ -258,138 +261,147 @@ public class ItemInit
 	public static final RegistryObject<Item> MASK_BREMANMASK = ITEMS.register("mask_bremenmask",
 			() -> new MaskBremenmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_GREATFAIRYMASK = ITEMS.register("mask_greatfairymask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskGreatfairymask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_DEKUMASK = ITEMS.register("mask_dekumask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskDekumask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_KEATONMASK = ITEMS.register("mask_keatonmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskKeatonmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_BUNNYHOOD = ITEMS.register("mask_bunnyhood",
 			() -> new MaskBunnyhood(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_DONGEROSMASK = ITEMS.register("mask_dongerosmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskDongerosmaskEffects(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_MASKOFSCENTS = ITEMS.register("mask_maskofscents",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskMaskofscents(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_GORONMASK = ITEMS.register("mask_goronmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskGoronmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_ROMANISMASK = ITEMS.register("mask_romanismask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskRomanismask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_TROUPELEADERSMASK = ITEMS.register("mask_troupeleadersmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskTroupeleadersmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_KAFEISMASK = ITEMS.register("mask_kafeismask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskKafeismask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_COUPLESMASK = ITEMS.register("mask_couplesmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskCouplesmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_MASKOFTRUTH = ITEMS.register("mask_maskoftruth",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskMaskofTruth(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_ZORAMASK = ITEMS.register("mask_zoramask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskZoramask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_KAMAROSMASK = ITEMS.register("mask_kamarosmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskKamarosmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_GIBDOMASK = ITEMS.register("mask_gibdomask", GibdoMask::new);
 	public static final RegistryObject<Item> MASK_GAROSMASK = ITEMS.register("mask_garosmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskGarosmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_CAPTAINSHAT = ITEMS.register("mask_captainshat",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	
+			() -> new MaskCaptainshat(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_GIANTSMASK = ITEMS.register("mask_giantsmask",
 			() -> new GiantsMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	
 	public static final RegistryObject<Item> MASK_FIERCEDEITYSMASK = ITEMS.register("mask_fiercedeitysmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskFiercedeitysmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_MAJORASMASK = ITEMS.register("mask_majorasmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskMajorasmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_MOONMASK = ITEMS.register("mask_moonmask",
 			() -> new MaskMoonmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_SUNMASK = ITEMS.register("mask_sunmask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskSunmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_HAWKEYEMASK = ITEMS.register("mask_hawkeyemask",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MaskHawkeyemask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	
 	// ARMORS
 	
-	public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap",
-			() -> new ArmorKokiriCap(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> KOKIRI_TUNIC = ITEMS.register("kokiri_tunic",
-			() -> new ArmorKokiriChestplate(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> KOKIRI_LEGGINGS = ITEMS.register("kokiri_leggings",
-			() -> new ArmorKokiriLeggings(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> KOKIRI_BOOTS = ITEMS.register("kokiri_boots",
-			() -> new ArmorKokiriBoots(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ZORA_CAP = ITEMS.register("zora_cap", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ZORA_TUNIC = ITEMS.register("zora_tunic", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ZORA_LEGGINGS = ITEMS.register("zora_leggings",
+	public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap",
+			() -> new ArmorKokiri(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> KOKIRI_TUNIC = ITEMS.register("kokiri_tunic",
+			() -> new ArmorKokiri(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> KOKIRI_LEGGINGS = ITEMS.register("kokiri_leggings",
+			() -> new ArmorKokiri(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> KOKIRI_BOOTS = ITEMS.register("kokiri_boots",
+			() -> new ArmorKokiri(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ZORA_CAP = ITEMS.register("zora_cap",
+			() -> new ArmorZoraEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ZORA_TUNIC = ITEMS.register("zora_tunic",
+			() -> new ArmorZoraEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ZORA_LEGGINGS = ITEMS.register("zora_leggings",
+			() -> new ArmorZoraEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> IRON_BOOTS = ITEMS.register("iron_boots",
 			() -> new IronBoots(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_FLIPPERS = ITEMS.register("zoras_flippers",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> GORON_CAP = ITEMS.register("goron_cap", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> GORON_TUNIC = ITEMS.register("goron_tunic", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorFlippersEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> GORON_CAP = ITEMS.register("goron_cap",
+			() -> new ArmorGoronEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> GORON_TUNIC = ITEMS.register("goron_tunic",
+			() -> new ArmorGoronEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> GORON_LEGGINGS = ITEMS.register("goron_leggings",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorGoronEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> HOVER_BOOTS = ITEMS.register("hover_boots",
 			() -> new HoverBoots(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> PURPLE_CAP = ITEMS.register("purple_cap", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> PURPLE_CAP = ITEMS.register("purple_cap",
+			() -> new ArmorPurpleEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> PURPLE_TUNIC = ITEMS.register("purple_tunic",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorPurpleEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> PURPLE_LEGGINGS = ITEMS.register("purple_leggings",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorPurpleEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> PEGASUS_BOOTS = ITEMS.register("pegasus_boots",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new PegasusBoots(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MAGIC_ARMOR_CAP = ITEMS.register("magic_armor_cap",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorMagicArmor(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MAGIC_ARMOR_TUNIC = ITEMS.register("magic_armor_tunic",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorMagicArmor(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MAGIC_ARMOR_LEGGINGS = ITEMS.register("magic_armor_leggings",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorMagicArmor(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MAGIC_ARMOR_BOOTS = ITEMS.register("magic_armor_boots",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> DARK_CAP = ITEMS.register("dark_cap", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> DARK_TUNIC = ITEMS.register("dark_tunic", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorMagicArmor(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> DARK_CAP = ITEMS.register("dark_cap",
+			() -> new ArmorDarkEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> DARK_TUNIC = ITEMS.register("dark_tunic",
+			() -> new ArmorDarkEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> DARK_LEGGINGS = ITEMS.register("dark_leggings",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> DARK_BOOTS = ITEMS.register("dark_boots", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorDarkEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> DARK_BOOTS = ITEMS.register("dark_boots",
+			() -> new ArmorDarkEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
 	public static final RegistryObject<Item> ZORA_ARMOR_CAP = ITEMS.register("zora_armor_cap",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorZoraArmorEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_ARMOR_TUNIC = ITEMS.register("zora_armor_tunic",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorZoraArmorEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_ARMOR_LEGGINGS = ITEMS.register("zora_armor_leggings",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorZoraArmorEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_ARMOR_BOOTS = ITEMS.register("zora_armor_flippers",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorZoraArmorEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> FLAMEBREAKER_HELMET = ITEMS.register("flamebreaker_helmet",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorFlamebreakerEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> FLAMEBREAKER_TUNIC = ITEMS.register("flamebreaker_tunic",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorFlamebreakerEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> FLAMEBREAKER_LEGGINGS = ITEMS.register("flamebreaker_leggings",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorFlamebreakerEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> FLAMEBREAKER_BOOTS = ITEMS.register("flamebreaker_boots",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorFlamebreakerEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ANCIENT_HELMET = ITEMS.register("ancient_helmet",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorAncientEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ANCIENT_CUIRASS = ITEMS.register("ancient_cuirass",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorAncientEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ANCIENT_GREAVES = ITEMS.register("ancient_greaves",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorAncientEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ANCIENT_BOOTS = ITEMS.register("ancient_boots",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorAncientEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BARBARIAN_HELMET = ITEMS.register("barbarian_helmet",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorBarbarianEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BARBARIAN_ARMOR = ITEMS.register("barbarian_armor",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorBarbarianEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BARBARIAN_LEG_WRAPS = ITEMS.register("barbarian_leg_wraps",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorBarbarianEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BARBARIAN_BOOTS = ITEMS.register("barbarian_boots",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorBarbarianEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> CLIMBERS_BANDANNA = ITEMS.register("climbers_bandanna",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorClimbingGearEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> CLIMBING_GEAR = ITEMS.register("climbing_gear",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorClimbingGearEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> CLIMBING_PANTS = ITEMS.register("climbing_pants",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorClimbingGearEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> CLIMBING_BOOTS = ITEMS.register("climbing_boots",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new ArmorClimbingGearEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	
 	public static final RegistryObject<Item> FRIED_EGG = ITEMS.register("fried_egg",
 			() -> new FriedEggItem(new Item.Properties()
