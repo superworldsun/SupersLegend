@@ -10,17 +10,15 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.util.text.ITextComponent;
 
-public class ArmorKokiriCap extends NonEnchantArmor
+public class ArmorKokiri extends NonEnchantArmor
 {
 
-    public ArmorKokiriCap(Properties properties)
-    {
-        super(ArmourInit.kokiri, EquipmentSlotType.HEAD, properties);
+    public ArmorKokiri(EquipmentSlotType slot, Properties properties) {
+        super(ArmourInit.kokiri, slot, properties);
     }
 
-    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
-	{
-		super.appendHoverText(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "Traditional Heros Garb"));
-	}
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
+        super.appendHoverText(stack, world, list, flag);
+        list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "Traditional Heros Garb"));
+    }
 }
