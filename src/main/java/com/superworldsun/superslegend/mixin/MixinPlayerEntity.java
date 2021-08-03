@@ -192,13 +192,13 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	}
 	
 	@Shadow
-	public void setItemSlot(EquipmentSlotType slot, ItemStack stack)
-	{		
-	}
-	
-	@Shadow
 	public HandSide getMainArm()
 	{
 		return null;
+	}
+	
+	@Shadow
+	public void setItemSlot(EquipmentSlotType slot, ItemStack stack)
+	{
 	}
 }
