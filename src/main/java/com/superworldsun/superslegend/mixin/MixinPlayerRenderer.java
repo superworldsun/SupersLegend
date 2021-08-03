@@ -4,7 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.superworldsun.superslegend.util.IResizableEntity;
+import com.superworldsun.superslegend.interfaces.IResizableEntity;
 
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;

@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.util;
+package com.superworldsun.superslegend.interfaces;
 
 public interface IHoveringEntity
 {

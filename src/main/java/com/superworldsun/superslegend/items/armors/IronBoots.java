@@ -3,10 +3,10 @@ package com.superworldsun.superslegend.items.armors;
 import java.util.UUID;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
-import com.superworldsun.superslegend.util.IJumpingEntity;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.ai.attributes.Attribute;
