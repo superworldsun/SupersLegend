@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
+import com.superworldsun.superslegend.registries.ArmourInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -13,8 +14,8 @@ public class ArmorPurpleEffects extends NonEnchantArmor
 {
 
 
-    public ArmorPurpleEffects(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
-        super(materialIn, slot, builder);
+    public ArmorPurpleEffects(EquipmentSlotType slot, Properties properties) {
+        super(ArmourInit.purple, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

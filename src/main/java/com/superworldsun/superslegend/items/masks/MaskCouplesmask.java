@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
+import com.superworldsun.superslegend.registries.ArmourInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -17,9 +18,10 @@ public class MaskCouplesmask extends NonEnchantArmor
 {
 
 
-    public MaskCouplesmask(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
-        super(materialIn, slot, builder);
-    }
+	public MaskCouplesmask(Properties properties)
+	{
+		super(ArmourInit.couplesmask, EquipmentSlotType.HEAD, properties);
+	}
 
     @Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)

@@ -7,12 +7,15 @@ import javax.annotation.Nonnull;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.client.model.ModelAllnightmask;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,18 +39,18 @@ public class MaskAllnightmask extends NonEnchantArmor
             super(ArmourInit.allnightmask, EquipmentSlotType.HEAD, properties);
         }
 
-        @Override
+        /*@Override
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
         {
             return SupersLegendMain.MOD_ID + ":textures/armor/giantsmask_layer_1.png";
-        }
+        }*/
 
-    /*@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     @OnlyIn(Dist.CLIENT)
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
     {
         return (A) new ModelAllnightmask(0);
-    }*/
+    }
 
 
         @Override
@@ -72,7 +75,6 @@ public class MaskAllnightmask extends NonEnchantArmor
 
 
         @Override
-        @OnlyIn(Dist.CLIENT)
         public void appendHoverText (ItemStack stack, World world, List < ITextComponent > list, ITooltipFlag flag)
         {
             super.appendHoverText(stack, world, list, flag);

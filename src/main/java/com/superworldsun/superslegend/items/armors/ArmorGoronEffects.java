@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
+import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,8 +18,8 @@ public class ArmorGoronEffects extends NonEnchantArmor
 {
 
 
-    public ArmorGoronEffects(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
-        super(materialIn, slot, builder);
+    public ArmorGoronEffects(EquipmentSlotType slot, Properties properties) {
+        super(ArmourInit.goron, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

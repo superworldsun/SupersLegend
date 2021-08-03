@@ -36,12 +36,10 @@ public class GibdoMask extends NonEnchantArmor
 		}
 
 		//event.getEntityLiving() instanceof BlazeEntity
+		//!(event.getEntityLiving() instanceof SkeletonEntity)
 
 		// Only works on undead
-		if (event.getEntityLiving().getMobType() != CreatureAttribute.UNDEAD || !(event.getEntityLiving() instanceof SkeletonEntity) ||
-				!(event.getEntityLiving() instanceof PhantomEntity) || !(event.getEntityLiving() instanceof SkeletonEntity) ||
-				!(event.getEntityLiving() instanceof StrayEntity) || !(event.getEntityLiving() instanceof WitherEntity) ||
-				!(event.getEntityLiving() instanceof WitherSkeletonEntity))
+		if (event.getEntityLiving().getMobType() != CreatureAttribute.UNDEAD)
 		{
 			return;
 		}

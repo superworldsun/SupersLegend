@@ -16,12 +16,6 @@ public class MaskMoonmask extends ArmorItem
         super(ArmourInit.moonmask, EquipmentSlotType.HEAD, properties);
     }
 
-    @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
-    {
-        return SupersLegendMain.MOD_ID + ":textures/armor/giantsmask_layer_1.png";
-    }
-
     /*private boolean isLeggings = false;
 
     public MaskMoonmask(IArmorMaterial material, EquipmentSlotType slot, int type) {
