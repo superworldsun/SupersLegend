@@ -64,7 +64,7 @@ public class SupersLegendMain
 	public SupersLegendMain()
 	{
 		instance = this;
-		
+
 		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModLoadingContext context = ModLoadingContext.get();
 		// Our listener for setup, it will pick up on anything put into setup
@@ -72,7 +72,7 @@ public class SupersLegendMain
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
 		context.registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
-		
+
 		// Remember to register items before blocks, problems can occur
 		// otherwise if you don't
 		ItemInit.ITEMS.register(modEventBus);
@@ -205,6 +205,9 @@ public class SupersLegendMain
 					p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isUsingItem() && p_239421_2_.getUseItem() == p_239421_0_ ? 1.0F : 0.0F);
 			
 			register(ItemInit.HYLIAN_SHIELD.get(), new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_,
+					p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isUsingItem() && p_239421_2_.getUseItem() == p_239421_0_ ? 1.0F : 0.0F);
+
+			register(ItemInit.SACRED_SHIELD.get(), new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_,
 					p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isUsingItem() && p_239421_2_.getUseItem() == p_239421_0_ ? 1.0F : 0.0F);
 			
 			register(ItemInit.FISHING_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) ->
