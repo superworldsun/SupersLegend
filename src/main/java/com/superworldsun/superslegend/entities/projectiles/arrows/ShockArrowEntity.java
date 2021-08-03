@@ -27,10 +27,6 @@ public class ShockArrowEntity extends AbstractArrowEntity {
         this.setBaseDamage(this.getBaseDamage() + 2.0F);
     }
 
-    public ShockArrowEntity(World worldIn, double x, double y, double z) {
-        super(EntityTypeInit.SHOCK_ARROW.get(), x, y, z, worldIn);
-    }
-
     @Override
     protected ItemStack getPickupItem() {
         return new ItemStack(ItemInit.SHOCK_ARROW.get());

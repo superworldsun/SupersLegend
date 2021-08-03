@@ -13,7 +13,9 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -31,12 +33,7 @@ public class FireArrowEntity extends AbstractArrowEntity
 	{
 		super(EntityTypeInit.FIRE_ARROW.get(), shooter, worldIn);
 	}
-	
-	public FireArrowEntity(World worldIn, double x, double y, double z)
-	{
-		super(EntityTypeInit.FIRE_ARROW.get(), x, y, z, worldIn);
-	}
-	
+
 	public FireArrowEntity(EntityType<? extends FireArrowEntity> type, World worldIn, LivingEntity shooter)
 	{
 		super(type, shooter, worldIn);
@@ -71,24 +68,21 @@ public class FireArrowEntity extends AbstractArrowEntity
 	{
 		Entity entity = rayTraceResult.getEntity();
 		
-		if (entity.isAlive())
-		{
+		if (entity.isAlive()) {
 			entity.setSecondsOnFire(6);
-		}
-		
-		if (TagInit.RESISTANT_TO_FIRE.contains(entity.getType()))
-		{
-			setBaseDamage(getBaseDamage() / 2f);
-		}
-		
-		if (TagInit.WEAK_TO_FIRE.contains(entity.getType()))
-		{
-			setBaseDamage(getBaseDamage() * 2f);
+			applyResistanceAndWeakness(entity);
 		}
 		
 		super.onHitEntity(rayTraceResult);
 	}
-	
+
+	private void applyResistanceAndWeakness(Entity entity) {
+		if (TagInit.RESISTANT_TO_FIRE.contains(entity.getType()))
+			setBaseDamage(getBaseDamage() / 2f);
+		else if (TagInit.WEAK_TO_FIRE.contains(entity.getType()))
+			setBaseDamage(getBaseDamage() * 2f);
+	}
+
 	@Override
 	protected void doPostHurtEffects(LivingEntity entity)
 	{
@@ -100,56 +94,64 @@ public class FireArrowEntity extends AbstractArrowEntity
 	public void tick()
 	{
 		super.tick();
-		
+
+		addFireParticlesToFlightPath();
+		burnGroundOnImpact();
+		extinguishInWater();
+	}
+
+	private void burnGroundOnImpact() {
+		if (this.inGround)
+		{
+			if (!this.isInWaterOrRain())
+			{
+				if (level.isEmptyBlock(this.blockPosition()))
+					level.setBlock(this.blockPosition(), Blocks.FIRE.defaultBlockState(), 11);
+
+				playSoundAtBlockPosition(SoundInit.ARROW_HIT_FIRE.get());
+
+				this.remove();
+
+				setHorizontallyAdjacentBlocksAblaze();
+			}
+		}
+	}
+
+	private void addFireParticlesToFlightPath() {
 		if (!this.isInWaterOrRain() && !this.inGround)
 		{
 			this.level.addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
 		}
-		
-		if (this.inGround)
-		{
-			if (!this.isInWaterOrRain() || !this.isInWater())
-			{
-				if (level.isEmptyBlock(this.blockPosition()))
-					level.setBlock(this.blockPosition(), Blocks.FIRE.defaultBlockState(), 11);
-				
-				BlockPos currentPos = this.blockPosition();
-				this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_FIRE.get(), SoundCategory.PLAYERS, 1f,
-						1f);
-				
-				this.remove();
-			}
-			if (!this.isInWaterOrRain() || !this.isInWater())
-			{
-				if (level.isEmptyBlock(this.blockPosition().west()))
-					level.setBlock(this.blockPosition().west(), Blocks.FIRE.defaultBlockState(), 11);
-				
-			}
-			if (!this.isInWaterOrRain() || !this.isInWater())
-			{
-				if (level.isEmptyBlock(this.blockPosition().east()))
-					level.setBlock(this.blockPosition().east(), Blocks.FIRE.defaultBlockState(), 11);
-				
-			}
-			if (!this.isInWaterOrRain() || !this.isInWater())
-			{
-				if (level.isEmptyBlock(this.blockPosition().north()))
-					level.setBlock(this.blockPosition().north(), Blocks.FIRE.defaultBlockState(), 11);
-				
-			}
-			if (!this.isInWaterOrRain() || !this.isInWater())
-			{
-				if (level.isEmptyBlock(this.blockPosition().south()))
-					level.setBlock(this.blockPosition().south(), Blocks.FIRE.defaultBlockState(), 11);
-				
-			}
-		}
-		
+	}
+
+	private void extinguishInWater() {
+		// TODO shouldn't this include rain?
 		if (this.isInWater())
 		{
-			BlockPos currentPos = this.blockPosition();
-			this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
+			playSoundAtBlockPosition(SoundEvents.FIRE_EXTINGUISH);
 			this.remove();
 		}
+	}
+
+	private void playSoundAtBlockPosition(SoundEvent soundEvent) {
+		BlockPos currentPos = this.blockPosition();
+		this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), soundEvent, SoundCategory.PLAYERS, 1f,
+				1f);
+	}
+
+	private void setHorizontallyAdjacentBlocksAblaze()
+	{
+		if (isEmptyBlock(Direction.WEST))
+			level.setBlock(this.blockPosition().west(), Blocks.FIRE.defaultBlockState(), 11);
+		if (isEmptyBlock(Direction.EAST))
+			level.setBlock(this.blockPosition().east(), Blocks.FIRE.defaultBlockState(), 11);
+		if (isEmptyBlock(Direction.NORTH))
+			level.setBlock(this.blockPosition().north(), Blocks.FIRE.defaultBlockState(), 11);
+		if (isEmptyBlock(Direction.SOUTH))
+			level.setBlock(this.blockPosition().south(), Blocks.FIRE.defaultBlockState(), 11);
+	}
+
+	private boolean isEmptyBlock(Direction dir) {
+		return level.isEmptyBlock(this.blockPosition().relative(dir));
 	}
 }

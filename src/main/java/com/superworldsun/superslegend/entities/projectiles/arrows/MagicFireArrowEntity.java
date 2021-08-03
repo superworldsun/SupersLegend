@@ -33,11 +33,6 @@ public class MagicFireArrowEntity extends FireArrowEntity
 		super(EntityTypeInit.MAGIC_FIRE_ARROW.get(), worldIn, shooter);
 	}
 	
-	public MagicFireArrowEntity(World worldIn, double x, double y, double z)
-	{
-		super(EntityTypeInit.MAGIC_FIRE_ARROW.get(), worldIn, x, y, z);
-	}
-	
 	@Override
 	public void onAddedToWorld()
 	{

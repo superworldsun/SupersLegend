@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.entities.projectiles.arrows;
 
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.util.Functions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -36,14 +37,15 @@ public class PoisonArrowEntity extends AbstractArrowEntity {
     /**
      * Called to update the entity's position/logic.
      */
+    @Override
     public void tick() {
         super.tick();
 
         if (!level.isClientSide() && !this.inGround || !level.isClientSide() && !this.isInWaterOrRain() || !level.isClientSide() && !this.isInWater()) {
-            this.level.addParticle(ParticleTypes.COMPOSTER, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
-                    0.0D);
-            this.level.addParticle(ParticleTypes.COMPOSTER, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
-                    0.0D);
+            Functions.repeat(2, () -> {
+                this.level.addParticle(ParticleTypes.COMPOSTER, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D,
+                        0.0D);
+            });
         }
     }
 
@@ -54,7 +56,6 @@ public class PoisonArrowEntity extends AbstractArrowEntity {
 
     @Override
     protected void doPostHurtEffects(LivingEntity living) {
-        BlockPos currentPos = this.blockPosition();
         living.addEffect(new EffectInstance(Effects.POISON, 1200, 1));
         super.doPostHurtEffects(living);
     }

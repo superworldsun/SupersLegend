@@ -23,12 +23,7 @@ public class MagicIceArrowEntity extends IceArrowEntity
 	{
 		super(EntityTypeInit.MAGIC_ICE_ARROW.get(), worldIn, shooter);
 	}
-	
-	public MagicIceArrowEntity(World worldIn, double x, double y, double z)
-	{
-		super(EntityTypeInit.MAGIC_ICE_ARROW.get(), worldIn, x, y, z);
-	}
-	
+
 	@Override
 	public void onAddedToWorld()
 	{
