@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.items.armors;
+package com.superworldsun.superslegend.items.masks;
 
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
@@ -9,18 +9,19 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import java.util.List;
 
-public class ArmorKokiriChestplate extends NonEnchantArmor
-{
+public class MaskSunmask extends NonEnchantArmor {
 
-    public ArmorKokiriChestplate(Properties properties)
+    public MaskSunmask(Properties properties)
     {
-        super(ArmourInit.kokiri, EquipmentSlotType.CHEST, properties);
+        super(ArmourInit.sunmask, EquipmentSlotType.HEAD, properties);
     }
 
-    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
+    @Override
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "Traditional Heros Garb"));
+		list.add(new StringTextComponent(TextFormatting.GOLD + "A Mask that represents the morning sun"));
 	}
 }
