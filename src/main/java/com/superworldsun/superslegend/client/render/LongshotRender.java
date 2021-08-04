@@ -28,7 +28,7 @@ public class LongshotRender extends EntityRenderer<LongshotEntity> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/hookshot.png");
     private static final ResourceLocation CHAIN_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/chain.png");
-    private static final RenderType CHAIN_LAYER = RenderType.entityCutout(CHAIN_TEXTURE);
+    private static final RenderType CHAIN_LAYER = RenderType.entitySmoothCutout(CHAIN_TEXTURE);
     //Get the model.
     private final LongshotModel<LongshotEntity> model = new LongshotModel<>();
 
