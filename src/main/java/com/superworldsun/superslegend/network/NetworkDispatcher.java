@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.network.message.MaskAbilityMessage;
+import com.superworldsun.superslegend.network.message.SetGossipStoneTextMessage;
 import com.superworldsun.superslegend.network.message.SyncManaMessage;
 
 import net.minecraft.util.ResourceLocation;
@@ -25,8 +26,9 @@ public class NetworkDispatcher
 	@SubscribeEvent
 	public static void onCommonSetupEvent(FMLCommonSetupEvent event)
 	{
-		networkChannel = NetworkRegistry.newSimpleChannel(new ResourceLocation(SupersLegendMain.MOD_ID, "channel"), () -> "1.0", (s) -> true, (s) -> true);
+		networkChannel = NetworkRegistry.newSimpleChannel(new ResourceLocation(SupersLegendMain.MOD_ID, "channel"), () -> "1.0", s -> true, s -> true);
 		networkChannel.registerMessage(1, SyncManaMessage.class, SyncManaMessage::encode, SyncManaMessage::decode, SyncManaMessage::receive, Optional.of(PLAY_TO_CLIENT));
 		networkChannel.registerMessage(2, MaskAbilityMessage.class, MaskAbilityMessage::encode, MaskAbilityMessage::decode, MaskAbilityMessage::receive, Optional.of(PLAY_TO_SERVER));
+		networkChannel.registerMessage(3, SetGossipStoneTextMessage.class, SetGossipStoneTextMessage::encode, SetGossipStoneTextMessage::decode, SetGossipStoneTextMessage::receive, Optional.of(PLAY_TO_SERVER));
 	}
 }
