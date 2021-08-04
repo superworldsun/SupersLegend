@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.hooks;
 
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.items.ClawshotItem;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
@@ -20,6 +21,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.MathHelper;
@@ -48,7 +50,7 @@ public class ClawshotEntity extends AbstractArrowEntity {
     private PlayerEntity owner;
     private Entity hookedEntity;
     private ItemStack stack;
-
+    AxisAlignedBB axisAlignedBB;
 
     public ClawshotEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity owner, World world) {
         super(type, owner, world);
@@ -115,7 +117,8 @@ public class ClawshotEntity extends AbstractArrowEntity {
                         if (owner.isCrouching() && hookedEntity != null) { //Change in case you want to bring the entity to you.
                             target = hookedEntity;
                             origin = owner;
-                            owner.setNoGravity(true);
+                            owner.setNoGravity(false);
+
                         }
 
                         double brakeZone = ((6D * (maxSpeed)) / 10);
@@ -133,12 +136,11 @@ public class ClawshotEntity extends AbstractArrowEntity {
                             motion = new Vector3d(0, motion.y, 0);
                         }
                         //By pressing Space you go down. If you let go, you go back up.
-                        if (motion.y > 0 && SupersLegendKeyboardUtil.isHoldingSpace() && new Vector3d(distance.x, 0, distance.z).length() < new Vector3d(target.getBbWidth() / 2, 0, target.getBbWidth() / 2).length() / 1.4) {
+                        if (hookedEntity == null && motion.y > 0 && SupersLegendKeyboardUtil.isHoldingSpace() && new Vector3d(distance.x, 0, distance.z).length() < new Vector3d(target.getBbWidth() / 2, 0, target.getBbWidth() / 2).length() / 1.4) {
                             motion = new Vector3d(0, -motion.y/3, 0);
                         }
 
                         target.fallDistance = 0; //Cancel Fall Damage
-
                         target.setDeltaMovement(motion); //Set motion.
                         target.hurtMarked = true; //Make motion works, this is necessary.
 
@@ -158,7 +160,6 @@ public class ClawshotEntity extends AbstractArrowEntity {
                     spriteC = false;
                     HookModel.get(owner).setHasHook(false);
                     kill();
-
                 }
             }
         }
