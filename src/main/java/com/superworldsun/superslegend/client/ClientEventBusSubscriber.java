@@ -14,10 +14,13 @@ import com.superworldsun.superslegend.client.render.PedestalRenderer;
 import com.superworldsun.superslegend.client.render.PoisonArrowRender;
 import com.superworldsun.superslegend.client.render.ShockArrowRender;
 import com.superworldsun.superslegend.client.render.SilverArrowRender;
+import com.superworldsun.superslegend.client.screen.BagScreen;
 import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.registries.ContainerInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.TileEntityInit;
 
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
@@ -65,5 +68,7 @@ public class ClientEventBusSubscriber
 		ClientRegistry.bindTileEntityRenderer(TileEntityInit.PEDESTAL.get(), PedestalRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(TileEntityInit.FAN.get(), FanRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(TileEntityInit.SWITCHABLE_FAN.get(), FanRenderer::new);
+		
+		ScreenManager.register(ContainerInit.BAG.get(), BagScreen::new);
 	}
 }

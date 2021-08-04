@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.client.gui;
+package com.superworldsun.superslegend.client.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
