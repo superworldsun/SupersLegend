@@ -52,7 +52,6 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	private AxisAlignedBB getCoveredArea()
 	{
 		Direction fanDirection = getFanDirection();
@@ -63,8 +62,8 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity
 			BlockPos checkingPos = worldPosition.relative(fanDirection, i);
 			VoxelShape checkingCollisionShape = level.getBlockState(checkingPos).getCollisionShape(level, checkingPos);
 			
-			if (!level.getBlockState(checkingPos).isAir(level, checkingPos) && checkingCollisionShape != VoxelShapes.empty()
-					&& checkingCollisionShape.max(Axis.Y) >= 0.75D && checkingCollisionShape.min(Axis.Y) <= 0.75D)
+			if (!level.isEmptyBlock(checkingPos) && checkingCollisionShape != VoxelShapes.empty() && checkingCollisionShape.max(Axis.Y) >= 0.75D
+					&& checkingCollisionShape.min(Axis.Y) <= 0.75D)
 			{
 				break;
 			}
