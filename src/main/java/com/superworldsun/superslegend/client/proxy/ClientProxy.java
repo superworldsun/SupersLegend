@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.client.proxy;
 
-import com.superworldsun.superslegend.client.gui.GossipStoneScreen;
+import com.superworldsun.superslegend.client.screen.GossipStoneScreen;
 import com.superworldsun.superslegend.proxy.IProxy;
 
 import net.minecraft.client.Minecraft;

@@ -23,6 +23,7 @@ import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
 import com.superworldsun.superslegend.proxy.IProxy;
 import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.registries.ContainerInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.PaintingInit;
@@ -99,6 +100,7 @@ public class SupersLegendMain
 		PaintingInit.PAINTING_TYPES.register(modEventBus);
 		EntityTypeInit.ENTITIES.register(modEventBus);
 		TileEntityInit.TILES.register(modEventBus);
+		ContainerInit.CONTAINERS.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
 		MinecraftForge.EVENT_BUS.register(new Hook());
 		DistExecutor.unsafeCallWhenOn(Dist.CLIENT, () -> () -> proxy = new ClientProxy());
