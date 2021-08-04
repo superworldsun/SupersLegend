@@ -25,6 +25,7 @@ import com.superworldsun.superslegend.proxy.IProxy;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ContainerInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.registries.FluidInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.PaintingInit;
 import com.superworldsun.superslegend.registries.RendererManagerInit;
@@ -101,6 +102,7 @@ public class SupersLegendMain
 		EntityTypeInit.ENTITIES.register(modEventBus);
 		TileEntityInit.TILES.register(modEventBus);
 		ContainerInit.CONTAINERS.register(modEventBus);
+		FluidInit.FLUIDS.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
 		MinecraftForge.EVENT_BUS.register(new Hook());
 		DistExecutor.unsafeCallWhenOn(Dist.CLIENT, () -> () -> proxy = new ClientProxy());
