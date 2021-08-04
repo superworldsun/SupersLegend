@@ -1,5 +1,13 @@
 package com.superworldsun.superslegend;
 
+import static net.minecraft.item.ItemModelsProperties.register;
+
+import java.util.Optional;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.superworldsun.superslegend.client.proxy.ClientProxy;
 import com.superworldsun.superslegend.config.Config;
 import com.superworldsun.superslegend.cooldowns.Cooldowns;
 import com.superworldsun.superslegend.cooldowns.CooldownsStorage;
@@ -9,26 +17,41 @@ import com.superworldsun.superslegend.hookshotCap.Hook;
 import com.superworldsun.superslegend.hookshotCap.SyncToClient;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
+import com.superworldsun.superslegend.interfaces.IHasNoItem;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
-import com.superworldsun.superslegend.registries.*;
+import com.superworldsun.superslegend.proxy.IProxy;
+import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.PaintingInit;
+import com.superworldsun.superslegend.registries.RendererManagerInit;
+import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.registries.TileEntityInit;
 import com.superworldsun.superslegend.util.ClientHandler;
 import com.superworldsun.superslegend.util.events.EntityEventHandler;
+
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.FishingRodItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -40,12 +63,6 @@ import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.registries.IForgeRegistry;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.util.Optional;
-
-import static net.minecraft.item.ItemModelsProperties.register;
 
 @Mod(SupersLegendMain.MOD_ID)
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -58,6 +75,7 @@ public class SupersLegendMain
 	public static final String NAME = "SupersLegend";
 	public static final String MOD_ID = "superslegend";
 	public static final Logger LOGGER = LogManager.getLogger();
+	public static IProxy proxy = new IProxy() {};
 	
 	// This sub-class below is the start where we'll add registry and stuff
 	// later on
@@ -83,7 +101,7 @@ public class SupersLegendMain
 		TileEntityInit.TILES.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
 		MinecraftForge.EVENT_BUS.register(new Hook());
-
+		DistExecutor.unsafeCallWhenOn(Dist.CLIENT, () -> () -> proxy = new ClientProxy());
 	}
 	
 	public static ResourceLocation locate(String name)
@@ -98,6 +116,11 @@ public class SupersLegendMain
 		
 		BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block ->
 		{
+			if(block instanceof IHasNoItem)
+			{
+				return;
+			}
+			
 			final Item.Properties properties = new Item.Properties().tab(SupersLegendMain.RESOURCES);
 			final BlockItem blockItem = new BlockItem(block, properties);
 			blockItem.setRegistryName(block.getRegistryName());

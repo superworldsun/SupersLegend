@@ -6,20 +6,18 @@ import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
-@EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class GibdoMask extends NonEnchantArmor
 {
 	public GibdoMask()
@@ -34,12 +32,8 @@ public class GibdoMask extends NonEnchantArmor
 		{
 			return;
 		}
-
-		//event.getEntityLiving() instanceof BlazeEntity
-		//!(event.getEntityLiving() instanceof SkeletonEntity)
-
-		// Only works on undead
-		if (event.getEntityLiving().getMobType() != CreatureAttribute.UNDEAD)
+		
+		if (!isEntityAffected(event.getEntityLiving()))
 		{
 			return;
 		}
@@ -55,5 +49,11 @@ public class GibdoMask extends NonEnchantArmor
 		{
 			((MobEntity) event.getEntityLiving()).setTarget(null);
 		}
+	}
+	
+	private static boolean isEntityAffected(LivingEntity entity)
+	{
+		return entity.getMobType() == CreatureAttribute.UNDEAD && entity.getType() != EntityType.WITHER && entity.getType() != EntityType.PHANTOM
+				&& !EntityTypeTags.SKELETONS.contains(entity.getType());
 	}
 }

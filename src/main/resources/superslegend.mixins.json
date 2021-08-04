@@ -5,7 +5,8 @@
 	"refmap": "superslegend.refmap.json",
 	"mixins": [
 		"MixinPlayerEntity",
-		"MixinPlayerRenderer"
+		"MixinPlayerRenderer",
+		"MixinAbstractSkeletonEntity"
 	],
 	"minVersion": "0.8"
 }

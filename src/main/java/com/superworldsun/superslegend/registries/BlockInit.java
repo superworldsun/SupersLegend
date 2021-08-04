@@ -20,6 +20,7 @@ public class BlockInit
 	public static final RegistryObject<Block> GOLD_RUPEE_BLOCK = BLOCKS.register("gold_rupee_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> SPIKES_BLOCK = BLOCKS.register("spikes_block", () -> new SpikesBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> GOSSIP_STONE_BLOCK = BLOCKS.register("gossip_stone_block", () -> new GossipStoneBlock(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> GOSSIP_STONE_TOP = BLOCKS.register("gossip_stone_top", GossipStoneTopBlock::new);
 	public static final RegistryObject<Block> BUSH_BLOCK = BLOCKS.register("bush_block", () -> new BushBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> CHAIN_LINK_FENCE_BLOCK = BLOCKS.register("chain_link_fence_block", () -> new ChainLinkFenceBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> DEKU_FLOWER_BLOCK = BLOCKS.register("deku_flower_block", () -> new DekuFlowerBlock(PropertiesInit.WRECKAGE));
@@ -41,8 +42,7 @@ public class BlockInit
 	public static final RegistryObject<Block> POINTER_BLOCK = BLOCKS.register("pointer_block", () -> new PointerBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUST_PLATE = BLOCKS.register("rust_plate", () -> new RustPlateBlock(PropertiesInit.RUST_PLATE));
 	public static final RegistryObject<Block> RUST_BUTTON = BLOCKS.register("rust_button", () -> new RustButtonBlock(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> RUST_STAIRS = BLOCKS.register("rust_stairs",
-			() -> new RustStairsBlock(RUST.get().defaultBlockState(), PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> RUST_STAIRS = BLOCKS.register("rust_stairs", () -> new RustStairsBlock(RUST.get().defaultBlockState(), PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUST_WALL = BLOCKS.register("rust_wall", () -> new RustWallBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUST_SLAB = BLOCKS.register("rust_slab", () -> new RustSlabBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> PEDESTAL = BLOCKS.register("pedestal", PedestalBlock::new);

@@ -10,10 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.superworldsun.superslegend.interfaces.IHoveringEntity;
+import com.superworldsun.superslegend.interfaces.IJumpingEntity;
+import com.superworldsun.superslegend.interfaces.IResizableEntity;
 import com.superworldsun.superslegend.registries.ItemInit;
-import com.superworldsun.superslegend.util.IHoveringEntity;
-import com.superworldsun.superslegend.util.IJumpingEntity;
-import com.superworldsun.superslegend.util.IResizableEntity;
 
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.LivingEntity;
@@ -192,13 +192,13 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	}
 	
 	@Shadow
-	public void setItemSlot(EquipmentSlotType slot, ItemStack stack)
-	{		
-	}
-	
-	@Shadow
 	public HandSide getMainArm()
 	{
 		return null;
+	}
+	
+	@Shadow
+	public void setItemSlot(EquipmentSlotType slot, ItemStack stack)
+	{
 	}
 }

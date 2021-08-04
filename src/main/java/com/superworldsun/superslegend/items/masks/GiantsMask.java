@@ -1,10 +1,10 @@
 package com.superworldsun.superslegend.items.masks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.interfaces.IResizableEntity;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
-import com.superworldsun.superslegend.util.IResizableEntity;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
