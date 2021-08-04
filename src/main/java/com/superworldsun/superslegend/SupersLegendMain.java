@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.hookshotCap.Hook;
 import com.superworldsun.superslegend.hookshotCap.SyncToClient;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
+import com.superworldsun.superslegend.interfaces.IHasNoItem;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
@@ -98,6 +99,11 @@ public class SupersLegendMain
 		
 		BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block ->
 		{
+			if(block instanceof IHasNoItem)
+			{
+				return;
+			}
+			
 			final Item.Properties properties = new Item.Properties().tab(SupersLegendMain.RESOURCES);
 			final BlockItem blockItem = new BlockItem(block, properties);
 			blockItem.setRegistryName(block.getRegistryName());
