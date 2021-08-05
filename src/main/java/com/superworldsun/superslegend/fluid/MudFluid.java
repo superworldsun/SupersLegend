@@ -6,7 +6,6 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.FluidInit;
 import com.superworldsun.superslegend.registries.ItemInit;
-import com.superworldsun.superslegend.registries.TagInit;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -30,7 +29,7 @@ public abstract class MudFluid extends CustomFluid
 	
 	protected MudFluid()
 	{
-		super(buildProperties());
+		super(OVERLAY_TEXTURE, buildProperties());
 	}
 	
 	@SubscribeEvent
@@ -84,7 +83,7 @@ public abstract class MudFluid extends CustomFluid
 	{
 		public Source()
 		{
-			super(TagInit.MUD, OVERLAY_TEXTURE, buildProperties());
+			super(OVERLAY_TEXTURE, buildProperties());
 		}
 	}
 	
@@ -92,7 +91,7 @@ public abstract class MudFluid extends CustomFluid
 	{
 		public Flowing()
 		{
-			super(TagInit.MUD, OVERLAY_TEXTURE, buildProperties());
+			super(OVERLAY_TEXTURE, buildProperties());
 		}
 	}
 	
