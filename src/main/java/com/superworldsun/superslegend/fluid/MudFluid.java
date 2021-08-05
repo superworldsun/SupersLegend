@@ -101,6 +101,6 @@ public abstract class MudFluid extends ForgeFlowingFluid
 		ResourceLocation flowingTexture = new ResourceLocation(SupersLegendMain.MOD_ID, "block/mud_flowing");
 		FluidAttributes.Builder attributes = FluidAttributes.builder(sourceTexture, flowingTexture).density(2048).viscosity(10000);
 		return new Properties(FluidInit.MUD_SOURCE, FluidInit.MUD_FLOWING, attributes).block(BlockInit.LIQUID_MUD).bucket(ItemInit.MUD_BUCKET).tickRate(20)
-				.levelDecreasePerBlock(2);
+				.levelDecreasePerBlock(2).canMultiply();
 	}
 }

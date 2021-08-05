@@ -56,6 +56,6 @@ public abstract class PoisonFluid extends ForgeFlowingFluid
 		ResourceLocation sourceTexture = new ResourceLocation(SupersLegendMain.MOD_ID, "block/poison_still");
 		ResourceLocation flowingTexture = new ResourceLocation(SupersLegendMain.MOD_ID, "block/poison_flowing");
 		FluidAttributes.Builder attributes = FluidAttributes.builder(sourceTexture, flowingTexture).density(512).viscosity(1024);
-		return new Properties(FluidInit.POISON_SOURCE, FluidInit.POISON_FLOWING, attributes).block(BlockInit.LIQUID_POISON).bucket(ItemInit.POISON_BUCKET);
+		return new Properties(FluidInit.POISON_SOURCE, FluidInit.POISON_FLOWING, attributes).block(BlockInit.LIQUID_POISON).bucket(ItemInit.POISON_BUCKET).canMultiply();
 	}
 }
