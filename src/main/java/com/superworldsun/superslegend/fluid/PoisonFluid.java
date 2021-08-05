@@ -4,7 +4,6 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.FluidInit;
 import com.superworldsun.superslegend.registries.ItemInit;
-import com.superworldsun.superslegend.registries.TagInit;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.potion.EffectInstance;
@@ -23,7 +22,7 @@ public abstract class PoisonFluid extends CustomFluid
 	
 	protected PoisonFluid()
 	{
-		super(buildProperties());
+		super(OVERLAY_TEXTURE, buildProperties());
 	}
 	
 	@SubscribeEvent
@@ -44,7 +43,7 @@ public abstract class PoisonFluid extends CustomFluid
 	{
 		public Source()
 		{
-			super(TagInit.POISON, OVERLAY_TEXTURE, buildProperties());
+			super(OVERLAY_TEXTURE, buildProperties());
 		}
 	}
 	
@@ -52,7 +51,7 @@ public abstract class PoisonFluid extends CustomFluid
 	{
 		public Flowing()
 		{
-			super(TagInit.POISON, OVERLAY_TEXTURE, buildProperties());
+			super(OVERLAY_TEXTURE, buildProperties());
 		}
 	}
 	

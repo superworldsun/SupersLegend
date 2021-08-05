@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.state.StateContainer;
-import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Matrix4f;
@@ -28,9 +27,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
 public abstract class CustomFluid extends ForgeFlowingFluid
 {
-	protected CustomFluid(Properties properties)
+	private ResourceLocation overlayTexture;
+	
+	protected CustomFluid(ResourceLocation overlayTexture, Properties properties)
 	{
 		super(properties);
+		this.overlayTexture = overlayTexture;
 	}
 	
 	@OnlyIn(Dist.CLIENT)
@@ -47,10 +49,10 @@ public abstract class CustomFluid extends ForgeFlowingFluid
 		FluidState fluidstate = event.getPlayer().level.getFluidState(blockpos);
 		Fluid fluid = fluidstate.getType();
 		
-		if (fluid instanceof CustomFluid && fluidstate.is(((CustomFluid) fluid).getFluidTag()))
+		if (fluid instanceof CustomFluid)
 		{
 			event.setCanceled(true);
-			renderOverlay(event.getMatrixStack(), ((CustomFluid) fluid).getOverlayTexture());
+			renderOverlay(event.getMatrixStack(), ((CustomFluid) fluid).overlayTexture);
 		}
 	}
 	
@@ -77,20 +79,11 @@ public abstract class CustomFluid extends ForgeFlowingFluid
 		RenderSystem.disableBlend();
 	}
 	
-	protected abstract ITag<Fluid> getFluidTag();
-	
-	protected abstract ResourceLocation getOverlayTexture();
-
 	public static class Flowing extends CustomFluid
 	{
-		private final ResourceLocation overlayTexture;
-		private final ITag<Fluid> fluidTag;
-
-		public Flowing(ITag<Fluid> fluidTag, ResourceLocation overlayTexture, Properties properties)
+		public Flowing(ResourceLocation overlayTexture, Properties properties)
 		{
-			super(properties);
-			this.overlayTexture = overlayTexture;
-			this.fluidTag = fluidTag;
+			super(overlayTexture, properties);
 			registerDefaultState(getStateDefinition().any().setValue(LEVEL, 7));
 		}
 		
@@ -109,30 +102,13 @@ public abstract class CustomFluid extends ForgeFlowingFluid
 		{
 			return false;
 		}
-
-		@Override
-		protected ITag<Fluid> getFluidTag()
-		{
-			return fluidTag;
-		}
-
-		@Override
-		protected ResourceLocation getOverlayTexture()
-		{
-			return overlayTexture;
-		}
 	}
 	
 	public static class Source extends CustomFluid
 	{
-		private ResourceLocation overlayTexture;
-		private ITag<Fluid> fluidTag;
-
-		public Source(ITag<Fluid> fluidTag, ResourceLocation overlayTexture, Properties properties)
+		public Source(ResourceLocation overlayTexture, Properties properties)
 		{
-			super(properties);
-			this.overlayTexture = overlayTexture;
-			this.fluidTag = fluidTag;
+			super(overlayTexture, properties);
 		}
 		
 		public int getAmount(FluidState state)
@@ -144,17 +120,5 @@ public abstract class CustomFluid extends ForgeFlowingFluid
 		{
 			return true;
 		}
-
-		@Override
-		protected ITag<Fluid> getFluidTag()
-		{
-			return fluidTag;
-		}
-
-		@Override
-		protected ResourceLocation getOverlayTexture()
-		{
-			return overlayTexture;
-		}
-	}	
+	}
 }
