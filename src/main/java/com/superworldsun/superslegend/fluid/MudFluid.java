@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.FluidInit;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.TagInit;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -18,14 +19,14 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public abstract class MudFluid extends ForgeFlowingFluid
+public abstract class MudFluid extends CustomFluid
 {
 	private static final UUID MUD_MODIFIER_ID = UUID.fromString("91b846fd-adb1-4035-bbff-1ecdd49825fc");
+	private static final ResourceLocation OVERLAY_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/block/mud_overlay.png");
 	
 	protected MudFluid()
 	{
@@ -79,19 +80,19 @@ public abstract class MudFluid extends ForgeFlowingFluid
 		}
 	}
 	
-	public static class Source extends ForgeFlowingFluid.Source
+	public static class Source extends CustomFluid.Source
 	{
 		public Source()
 		{
-			super(buildProperties());
+			super(TagInit.MUD, OVERLAY_TEXTURE, buildProperties());
 		}
 	}
 	
-	public static class Flowing extends ForgeFlowingFluid.Flowing
+	public static class Flowing extends CustomFluid.Flowing
 	{
 		public Flowing()
 		{
-			super(buildProperties());
+			super(TagInit.MUD, OVERLAY_TEXTURE, buildProperties());
 		}
 	}
 	
@@ -101,6 +102,6 @@ public abstract class MudFluid extends ForgeFlowingFluid
 		ResourceLocation flowingTexture = new ResourceLocation(SupersLegendMain.MOD_ID, "block/mud_flowing");
 		FluidAttributes.Builder attributes = FluidAttributes.builder(sourceTexture, flowingTexture).density(2048).viscosity(10000);
 		return new Properties(FluidInit.MUD_SOURCE, FluidInit.MUD_FLOWING, attributes).block(BlockInit.LIQUID_MUD).bucket(ItemInit.MUD_BUCKET).tickRate(20)
-				.levelDecreasePerBlock(2);
+				.levelDecreasePerBlock(2).canMultiply();
 	}
 }
