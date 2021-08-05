@@ -4,6 +4,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.FluidInit;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.TagInit;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.potion.EffectInstance;
@@ -12,13 +13,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public abstract class PoisonFluid extends ForgeFlowingFluid
+public abstract class PoisonFluid extends CustomFluid
 {
+	private static final ResourceLocation OVERLAY_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/block/poison_overlay.png");
+	
 	protected PoisonFluid()
 	{
 		super(buildProperties());
@@ -38,19 +40,19 @@ public abstract class PoisonFluid extends ForgeFlowingFluid
 		}
 	}
 	
-	public static class Source extends ForgeFlowingFluid.Source
+	public static class Source extends CustomFluid.Source
 	{
 		public Source()
 		{
-			super(buildProperties());
+			super(TagInit.POISON, OVERLAY_TEXTURE, buildProperties());
 		}
 	}
 	
-	public static class Flowing extends ForgeFlowingFluid.Flowing
+	public static class Flowing extends CustomFluid.Flowing
 	{
 		public Flowing()
 		{
-			super(buildProperties());
+			super(TagInit.POISON, OVERLAY_TEXTURE, buildProperties());
 		}
 	}
 	
