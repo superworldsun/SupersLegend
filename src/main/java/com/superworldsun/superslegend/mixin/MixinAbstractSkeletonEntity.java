@@ -28,7 +28,7 @@ import net.minecraft.scoreboard.Team;
 public class MixinAbstractSkeletonEntity extends MonsterEntity implements ITameableSkeleton
 {
 	private static final DataParameter<Boolean> TAMED = EntityDataManager.defineId(AbstractSkeletonEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Optional<UUID>> OWNERUUID = EntityDataManager.defineId(AbstractSkeletonEntity.class, DataSerializers.OPTIONAL_UUID);
+	private static final DataParameter<Optional<UUID>> OWNER_UUID = EntityDataManager.defineId(AbstractSkeletonEntity.class, DataSerializers.OPTIONAL_UUID);
 	
 	// This constructor is fake and never used
 	protected MixinAbstractSkeletonEntity()
@@ -49,7 +49,7 @@ public class MixinAbstractSkeletonEntity extends MonsterEntity implements ITamea
 	{
 		super.defineSynchedData();
 		entityData.define(TAMED, false);
-		entityData.define(OWNERUUID, Optional.empty());
+		entityData.define(OWNER_UUID, Optional.empty());
 	}
 	
 	@Override
@@ -97,7 +97,7 @@ public class MixinAbstractSkeletonEntity extends MonsterEntity implements ITamea
 	@Override
 	public UUID getOwnerUniqueId()
 	{
-		return entityData.get(OWNERUUID).orElse(null);
+		return entityData.get(OWNER_UUID).orElse(null);
 	}
 	
 	@Override
@@ -108,6 +108,6 @@ public class MixinAbstractSkeletonEntity extends MonsterEntity implements ITamea
 	
 	private void setOwnerUUID(@Nullable UUID id)
 	{
-		entityData.set(OWNERUUID, Optional.ofNullable(id));
+		entityData.set(OWNER_UUID, Optional.ofNullable(id));
 	}
 }
