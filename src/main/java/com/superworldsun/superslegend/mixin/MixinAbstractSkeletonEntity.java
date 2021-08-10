@@ -103,7 +103,7 @@ public class MixinAbstractSkeletonEntity extends MonsterEntity implements ITamea
 	@Override
 	public boolean hasOwner()
 	{
-		return getOwnerUniqueId() != null;
+		return getOwner() != null;
 	}
 	
 	private void setOwnerUUID(@Nullable UUID id)
