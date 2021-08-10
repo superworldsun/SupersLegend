@@ -16,7 +16,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 public class ArmorAncientEffects extends NonEnchantArmor
-{	
+{
 	public ArmorAncientEffects(EquipmentSlotType slot, Properties properties)
 	{
 		super(ArmourInit.ancient, slot, properties);
@@ -52,8 +52,7 @@ public class ArmorAncientEffects extends NonEnchantArmor
 			{
 				player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 3, 0, false, false, false));
 			}
-			
-			if (armorPartsEquipped == 4)
+			else if (armorPartsEquipped == 4)
 			{
 				player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 3, 1, false, false, false));
 			}
