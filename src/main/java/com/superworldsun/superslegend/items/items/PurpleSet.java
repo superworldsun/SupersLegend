@@ -1,10 +1,7 @@
 package com.superworldsun.superslegend.items.items;
 
-import java.util.List;
-
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.ItemInit;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -19,9 +16,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.RegistryObject;
 
-public class KokiriSet extends Item
+import java.util.List;
+
+public class PurpleSet extends Item
 {
-	public KokiriSet()
+	public PurpleSet()
 	{
 		super(new Properties().tab(SupersLegendMain.RESOURCES));
 	}
@@ -31,9 +30,9 @@ public class KokiriSet extends Item
 	{
 		ItemStack stack = player.getItemInHand(hand);
 		
-		addOrDrop(player, ItemInit.KOKIRI_CAP);
-		addOrDrop(player, ItemInit.KOKIRI_LEGGINGS);
-		addOrDrop(player, ItemInit.KOKIRI_TUNIC);
+		addOrDrop(player, ItemInit.PURPLE_CAP);
+		addOrDrop(player, ItemInit.PURPLE_LEGGINGS);
+		addOrDrop(player, ItemInit.PURPLE_TUNIC);
 
 		if (!player.abilities.instabuild)
 		{
@@ -48,7 +47,7 @@ public class KokiriSet extends Item
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Kokiri set"));
+		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Purple set"));
 	}
 	
 	private void addOrDrop(PlayerEntity player, RegistryObject<Item> itemSupplier)
