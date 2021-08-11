@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.items.items;
 import java.util.List;
 import java.util.Random;
 
+import com.superworldsun.superslegend.mana.ManaProvider;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -64,12 +65,14 @@ public class FaroresWind extends Item
         return ActionResultType.PASS;
     }
 
+    float manaCost = 5.00F;
 
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
     {
+        boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
         ItemStack stack = player.getItemInHand(hand);
 
-        if(getPosition(stack) != null && !player.isShiftKeyDown() && player.getFoodData().getFoodLevel()>= 4)
+        if(getPosition(stack) != null && !player.isShiftKeyDown() && hasMana)
         {
             Random rand = player.level.random;
             for (int i = 0; i < 45; i++)
@@ -81,7 +84,7 @@ public class FaroresWind extends Item
                         0.3, 0.105D, 0.3);
             }
 
-            player.causeFoodExhaustion(18);
+            ManaProvider.get(player).spendMana(manaCost);
             teleport(player, world, stack);
             world.playSound(null, player.xo, player.yo, player.zo, SoundEvents.CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
             player.getCooldowns().addCooldown(this, 120);
@@ -211,7 +214,7 @@ public class FaroresWind extends Item
         super.appendHoverText(stack, world, list, flag);
         list.add(new StringTextComponent(TextFormatting.GREEN + "Allows you to teleport to a saved location on Right-click"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "Does not work across dimensions"));
-        list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
+        list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Magic on use"));
         list.add(new StringTextComponent(TextFormatting.WHITE + "Set: " + TextFormatting.AQUA + "Point at a block and sneak + Right-click"));
         list.add(new StringTextComponent(TextFormatting.WHITE + "Clear: " + TextFormatting.AQUA + "Point in the air and sneak + Right-click"));
 

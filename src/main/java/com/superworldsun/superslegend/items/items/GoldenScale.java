@@ -32,7 +32,7 @@ public class GoldenScale extends Item
 			if(!world.isClientSide)
 			{
 				//TODO PUT THIS IN CHANGELOG
-					if(!player.isEyeInFluid(FluidTags.WATER) && !player.isEyeInFluid(FluidTags.LAVA))
+				if(!player.isEyeInFluid(FluidTags.WATER) && !player.isEyeInFluid(FluidTags.LAVA) && player.isInWater())
 	            	{
 	            		player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 415, 0, false, false, false));
 	            	}

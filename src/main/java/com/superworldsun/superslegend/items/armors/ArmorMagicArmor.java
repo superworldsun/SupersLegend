@@ -34,10 +34,10 @@ public class ArmorMagicArmor extends NonEnchantArmor {
 	@Override
 	public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
 		if (!world.isClientSide) {
-			boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.MAGIC_ARMOR_CAP);
-			boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemInit.MAGIC_ARMOR_TUNIC);
-			boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemInit.MAGIC_ARMOR_LEGGINGS);
-			boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemInit.MAGIC_ARMOR_BOOTS);
+			boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().getItem() == ItemInit.MAGIC_ARMOR_CAP.get();
+			boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().getItem() == ItemInit.MAGIC_ARMOR_TUNIC.get();
+			boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().getItem() == ItemInit.MAGIC_ARMOR_LEGGINGS.get();
+			boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().getItem() == ItemInit.MAGIC_ARMOR_BOOTS.get();
 			if (isHelmetOn & isChestplateOn & isLeggingsOn & isBootsOn) {
 				EffectInstance effect = player.getEffect(Effects.DAMAGE_RESISTANCE);
 				if (effect != null && effect.getAmplifier() == 100)
@@ -46,9 +46,9 @@ public class ArmorMagicArmor extends NonEnchantArmor {
 				else {
 					for (int i = 0; i < player.inventory.getContainerSize(); ++i) {
 						ItemStack armorStack = player.inventory.getItem(i);
-						if (armorStack.getItem().equals(ItemInit.RUPEE)) {
+						if (armorStack.getItem().getItem() == ItemInit.RUPEE.get()) {
 							armorStack.shrink(1);
-							player.addEffect(new EffectInstance(Effect.byId(11), 10, 100, false, false));
+							player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 10, 100, false, false, false));
 							break;
 						}
 					}
@@ -57,7 +57,7 @@ public class ArmorMagicArmor extends NonEnchantArmor {
 			if (isHelmetOn && isChestplateOn && isLeggingsOn && isBootsOn) {
 				EffectInstance effect = player.getEffect(Effects.DAMAGE_RESISTANCE);
 				if (effect == null) {
-					player.addEffect(new EffectInstance(Effect.byId(2), 10, 3, false, false));
+					player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 10, 3, false, false, false));
 				}
 			}
 			/*if (isHelmetOn && isChestplateOn && isLeggingsOn && isBootsOn) {

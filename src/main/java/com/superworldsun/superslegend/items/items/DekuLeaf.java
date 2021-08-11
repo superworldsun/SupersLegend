@@ -33,7 +33,7 @@ public class DekuLeaf extends Item
 		super(properties);
 	}
 
-	@Override
+	/*@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	{
 		ItemStack itemstack = player.getItemInHand(hand);
@@ -81,23 +81,27 @@ public class DekuLeaf extends Item
 	private float getManaCost()
 	{
 		return 5.0F;
-	}
+	}*/
 
 	//OLD CODE
-	/*@Nonnull
+	float manaCost = 0.25F;
+
+	@Nonnull
 	@ParametersAreNonnullByDefault
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
+		 boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
 		 @SuppressWarnings("unused")
 		ItemStack stack = player.getItemInHand(hand);
 
-		if(!player.isFallFlying() &&!player.isOnGround() && !player.isInWater() && player.getFoodData().getFoodLevel()>= 1)
-		        {
+		if(!player.isFallFlying() &&!player.isOnGround() && !player.isInWater() && hasMana)
+
+		{
 			player.fallDistance *= 0.5F;
 			player.push(0f, 0.235f, 0f );
 			
 			player.addEffect(new EffectInstance(Objects.requireNonNull(Effect.byId(28)), 11, 10, false, false));
-			player.causeFoodExhaustion(1f);
+			ManaProvider.get(player).spendMana(manaCost);
 			
 			Random rand = player.level.random;
 	        for (int i = 0; i < 45; i++)
@@ -120,7 +124,7 @@ public class DekuLeaf extends Item
 	         player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR.get(), SoundCategory.PLAYERS, 1f, 1f);
        }
 				return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
-	 }*/
+	 }
 
 	public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{

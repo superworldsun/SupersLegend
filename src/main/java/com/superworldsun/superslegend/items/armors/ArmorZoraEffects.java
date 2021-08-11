@@ -31,11 +31,8 @@ public class ArmorZoraEffects extends NonEnchantArmor
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-    	
-    	
-    	
         if (!world.isClientSide){
-                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemInit.ZORA_TUNIC);
+                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemInit.ZORA_TUNIC.get();
                 if(isChestplateOn)
                 	{
                 	if(player.isInWater()) 
@@ -46,4 +43,5 @@ public class ArmorZoraEffects extends NonEnchantArmor
                 }
         }
     }
+
 }

@@ -24,6 +24,7 @@ public class BlockInit
 	public static final RegistryObject<Block> BUSH_BLOCK = BLOCKS.register("bush_block", () -> new BushBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> CHAIN_LINK_FENCE_BLOCK = BLOCKS.register("chain_link_fence_block", () -> new ChainLinkFenceBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> DEKU_FLOWER_BLOCK = BLOCKS.register("deku_flower_block", () -> new DekuFlowerBlock(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> YELLOW_DEKU_FLOWER_BLOCK = BLOCKS.register("yellow_deku_flower_block", () -> new DekuFlowerBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> POT_BLOCK = BLOCKS.register("pot_block", () -> new PotBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> JAR_BLOCK = BLOCKS.register("jar_block", () -> new JarBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> GRATE_BLOCK = BLOCKS.register("grate_block", () -> new GrateBlock(PropertiesInit.WRECKAGE));

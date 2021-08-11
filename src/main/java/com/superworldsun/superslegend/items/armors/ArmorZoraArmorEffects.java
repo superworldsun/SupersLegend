@@ -33,14 +33,12 @@ public class ArmorZoraArmorEffects extends NonEnchantArmor
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-    	
-    	
-    	
-        if (!world.isClientSide){
-        		boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.ZORA_ARMOR_CAP);
-                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemInit.ZORA_ARMOR_TUNIC);
-                boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemInit.ZORA_ARMOR_LEGGINGS);
-                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemInit.ZORA_ARMOR_BOOTS);
+        if (!world.isClientSide)
+        {
+        		boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.ZORA_ARMOR_CAP.get();
+                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemInit.ZORA_ARMOR_TUNIC.get();
+                boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem() == ItemInit.ZORA_ARMOR_LEGGINGS.get();
+                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.ZORA_ARMOR_BOOTS.get();
                 if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn)
                 	{
                 	if(player.isInWater()) 

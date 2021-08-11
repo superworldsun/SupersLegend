@@ -168,7 +168,29 @@ public class ItemInit
 			() -> new ArrowAncient(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> SILVER_ARROW = ITEMS.register("silver_arrow",
 			() -> new ArrowSilver(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	
+
+	//BAGS
+
+	public static final RegistryObject<Item> SPOILS_BAG = ITEMS.register("spoils_bag", SpoilsBagItem::new);
+	public static final RegistryObject<Item> DELIVERY_BAG = ITEMS.register("delivery_bag", DeliveryBagItem::new);
+	public static final RegistryObject<Item> BAIT_BAG = ITEMS.register("bait_bag", BaitBagItem::new);
+
+	//Sets
+
+	public static final RegistryObject<Item> KOKIRI_SET = ITEMS.register("kokiri_set", KokiriSet::new);
+	public static final RegistryObject<Item> GORON_SET = ITEMS.register("goron_set", GoronSet::new);
+	public static final RegistryObject<Item> ZORA_SET = ITEMS.register("zora_set", ZoraSet::new);
+	public static final RegistryObject<Item> PURPLE_SET = ITEMS.register("purple_set", PurpleSet::new);
+	public static final RegistryObject<Item> MAGIC_ARMOR_SET = ITEMS.register("magic_armor_set", MagicArmorSet::new);
+	public static final RegistryObject<Item> DARK_SET = ITEMS.register("dark_set", DarkSet::new);
+	public static final RegistryObject<Item> ZORA_ARMOR_SET = ITEMS.register("zora_armor_set", ZoraArmorSet::new);
+	public static final RegistryObject<Item> FLAMEBREAKER_SET = ITEMS.register("flamebreaker_set", FlamebreakerSet::new);
+	public static final RegistryObject<Item> ANCIENT_SET = ITEMS.register("ancient_set", AncientSet::new);
+	public static final RegistryObject<Item> BARBARIAN_SET = ITEMS.register("barbarian_set", BarbarianSet::new);
+	public static final RegistryObject<Item> CLIMBING_SET = ITEMS.register("climbing_set", ClimbingSet::new);
+
+	//Tools
+
 	public static final RegistryObject<Item> LANTERN = ITEMS.register("lantern",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BLUE_CANDLE = ITEMS.register("blue_candle",
@@ -186,7 +208,7 @@ public class ItemInit
 	public static final RegistryObject<RocsFeather> ROCS_FEATHER = ITEMS.register("rocs_feather",
 			() -> new RocsFeather(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> FISHING_ROD = ITEMS.register("fishing_rod",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new FishingRodItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<BugNet> BUG_NET = ITEMS.register("bug_net",
 			() -> new BugNet(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<MagicMirror> MAGIC_MIRROR = ITEMS.register("magic_mirror",
@@ -247,7 +269,9 @@ public class ItemInit
 			() -> new TriforceWisdom(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<TriforceCourage> TRIFORCE_COURAGE = ITEMS.register("triforce_courage",
 			() -> new TriforceCourage(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	
+
+	//Masks
+
 	public static final RegistryObject<Item> MASK_CLAY = ITEMS.register("mask_clay",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_POSTMANSHAT = ITEMS.register("mask_postmanshat",
@@ -309,7 +333,7 @@ public class ItemInit
 	// ARMORS
 	
 	public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new RocsCapeEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap",
 			() -> new ArmorKokiri(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> KOKIRI_TUNIC = ITEMS.register("kokiri_tunic",
@@ -344,6 +368,127 @@ public class ItemInit
 			() -> new ArmorPurpleEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> PEGASUS_BOOTS = ITEMS.register("pegasus_boots",
 			() -> new PegasusBoots(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> LOBSTER_SHIRT = ITEMS.register("lobster_shirt",
+			() -> new ArmorKokiri(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> NINTENDO_SWITCH_SHIRT = ITEMS.register("nintendo_switch_shirt",
+			() -> new ArmorKokiri(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_HYRULE_CAP = ITEMS.register("hero_of_hyrule_cap",
+			() -> new ArmorHeroOfHyrule(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_HYRULE_TUNIC = ITEMS.register("hero_of_hyrule_tunic",
+			() -> new ArmorHeroOfHyrule(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_HYRULE_LEGGINGS = ITEMS.register("hero_of_hyrule_leggings",
+			() -> new ArmorHeroOfHyrule(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_HYRULE_BOOTS = ITEMS.register("hero_of_hyrule_boots",
+			() -> new ArmorHeroOfHyrule(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	/*public static final RegistryObject<Item> HERO_OF_MENS_HEADBAND = ITEMS.register("hero_of_",
+			() -> new ArmorHerosNew(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_MENS_TUNIC = ITEMS.register("hero_of_",
+			() -> new ArmorHerosNew(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_MENS_LEGGINGS = ITEMS.register("hero_of_",
+			() -> new ArmorHerosNew(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_MENS_BOOTS = ITEMS.register("hero_of_",
+			() -> new ArmorHerosNew(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
+
+	/*public static final RegistryObject<Item> HERO_OF_MINISH_CAP = ITEMS.register("hero_of_minish_cap",
+			() -> new ArmorHerosOfMinish(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_MINISH_TUNIC = ITEMS.register("hero_of_minish_tunic",
+			() -> new ArmorHerosOfMinish(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_MINISH_LEGGINGS = ITEMS.register("hero_of_minish_leggings",
+			() -> new ArmorHerosOfMinish(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_MINISH_BOOTS = ITEMS.register("hero_of_minish_boots",
+			() -> new ArmorHerosOfMinish(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
+
+	public static final RegistryObject<Item> HERO_OF_TWILIGHT_CAP = ITEMS.register("hero_of_twilight_cap",
+			() -> new ArmorHeroOfTwilight(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_TWILIGHT_TUNIC = ITEMS.register("hero_of_twilight_tunic",
+			() -> new ArmorHeroOfTwilight(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_TWILIGHT_LEGGINGS = ITEMS.register("hero_of_twilight_leggings",
+			() -> new ArmorHeroOfTwilight(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_TWILIGHT_BOOTS = ITEMS.register("hero_of_twilight_boots",
+			() -> new ArmorHeroOfTwilight(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_LEGEND_CAP = ITEMS.register("hero_of_legend_cap",
+			() -> new ArmorHeroOfLegend(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_LEGEND_TUNIC = ITEMS.register("hero_of_legend_tunic",
+			() -> new ArmorHeroOfLegend(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_LEGEND_LEGGINGS = ITEMS.register("hero_of_legend_leggings",
+			() -> new ArmorHeroOfLegend(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_LEGEND_BOOTS = ITEMS.register("hero_of_legend_boots",
+			() -> new ArmorHeroOfLegend(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_WIND_CAP = ITEMS.register("hero_of_wind_cap",
+			() -> new ArmorHeroOfWind(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_WIND_TUNIC = ITEMS.register("hero_of_wind_tunic",
+			() -> new ArmorHeroOfWind(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_WIND_LEGGINGS = ITEMS.register("hero_of_wind_leggings",
+			() -> new ArmorHeroOfWind(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_WIND_BOOTS = ITEMS.register("hero_of_wind_boots",
+			() -> new ArmorHeroOfWind(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	//public static final RegistryObject<Item> HERO_OF_THE_WILD = ITEMS.register("hero_of_",
+	//		() -> new ArmorHeroOfWild(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_THE_WILD_TUNIC = ITEMS.register("hero_of_wild_tunic",
+			() -> new ArmorHeroOfWild(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_THE_WILD_LEGGINGS = ITEMS.register("hero_of_wild_leggings",
+			() -> new ArmorHeroOfWild(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_THE_WILD_BOOTS = ITEMS.register("hero_of_wild_boots",
+			() -> new ArmorHeroOfWild(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_SKY_CAP = ITEMS.register("hero_of_sky_cap",
+			() -> new ArmorHeroOfSky(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_SKY_TUNIC = ITEMS.register("hero_of_sky_tunic",
+			() -> new ArmorHeroOfSky(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_SKY_LEGGINGS = ITEMS.register("hero_of_sky_leggings",
+			() -> new ArmorHeroOfSky(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> HERO_OF_SKY_BOOTS = ITEMS.register("hero_of_sky_boots",
+			() -> new ArmorHeroOfSky(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+
+
+	public static final RegistryObject<Item> HEROS_NEW_CAP = ITEMS.register("heros_new_cap",
+			() -> new ArmorHerosNew(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> HEROS_NEW_TUNIC = ITEMS.register("heros_new_tunic",
+			() -> new ArmorHerosNew(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> HEROS_NEW_LEGGINGS = ITEMS.register("heros_new_leggings",
+			() -> new ArmorHerosNew(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> HEROS_NEW_BOOTS = ITEMS.register("heros_new_boots",
+			() -> new ArmorHerosNew(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ENGINEERS_HAT = ITEMS.register("engineers_hat",
+			() -> new ArmorHerosNew(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ENGINEERS_SHIRT = ITEMS.register("engineers_shirt",
+			() -> new ArmorHerosNew(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ENGINEERS_PANTS = ITEMS.register("engineers_pants",
+			() -> new ArmorHerosNew(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ENGINEERS_BOOTS = ITEMS.register("engineers_boots",
+			() -> new ArmorHerosNew(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MAGIC_ARMOR_CAP = ITEMS.register("magic_armor_cap",
 			() -> new ArmorMagicArmor(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MAGIC_ARMOR_TUNIC = ITEMS.register("magic_armor_tunic",
@@ -436,8 +581,6 @@ public class ItemInit
 
 	public static final RegistryObject<Item> CLAWSHOT = ITEMS.register("clawshot",
 			() -> new ClawshotItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> SPOILS_BAG = ITEMS.register("spoils_bag", SpoilsBagItem::new);
 	public static final RegistryObject<Item> POISON_BUCKET = ITEMS.register("poison_bucket", () -> new BucketItem(FluidInit.POISON_SOURCE, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MUD_BUCKET = ITEMS.register("mud_bucket", () -> new BucketItem(FluidInit.MUD_SOURCE, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> KOKIRI_SET = ITEMS.register("kokiri_set", KokiriSet::new);
 }

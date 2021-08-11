@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items.items;
 
+import com.superworldsun.superslegend.mana.ManaProvider;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
@@ -33,32 +34,26 @@ public class DinsFire extends Item {
    /**
     * Called when this item is used when targeting a Block
     */
-   @Nonnull
+   float manaCost = 3.00F;
    public ActionResultType useOn(ItemUseContext context) {
+      boolean hasMana = ManaProvider.get(context.getPlayer()).getMana() >= manaCost || context.getPlayer().abilities.instabuild;
       PlayerEntity playerentity = context.getPlayer();
       World world = context.getLevel();
       BlockPos blockpos = context.getClickedPos();
       BlockState blockstate = world.getBlockState(blockpos);
-      if (CampfireBlock.canLight(blockstate) && Objects.requireNonNull(playerentity).getFoodData().getFoodLevel()>= 1) {
+      if (CampfireBlock.canLight(blockstate) && hasMana) {
          world.playSound(playerentity, blockpos, SoundEvents.FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-         world.setBlock(blockpos, blockstate.setValue(BlockStateProperties.LIT, Boolean.TRUE), 11);
-         context.getItemInHand().hurtAndBreak(1, playerentity, (p_219999_1_) -> p_219999_1_.broadcastBreakEvent(context.getHand()));
+         world.setBlock(blockpos, blockstate.setValue(BlockStateProperties.LIT, Boolean.valueOf(true)), 11);
+         ManaProvider.get(context.getPlayer()).spendMana(manaCost);
 
          return ActionResultType.sidedSuccess(world.isClientSide());
       } else {
-         //noinspection SpellCheckingInspection
          BlockPos blockpos1 = blockpos.relative(context.getClickedFace());
-         if (AbstractFireBlock.canBePlacedAt(world, blockpos1, context.getHorizontalDirection() ) && Objects.requireNonNull(playerentity).getFoodData().getFoodLevel()>= 1) {
+         if (AbstractFireBlock.canBePlacedAt(world, blockpos1, context.getHorizontalDirection()) && hasMana) {
             world.playSound(playerentity, blockpos1, SoundEvents.FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-            //noinspection SpellCheckingInspection
             BlockState blockstate1 = AbstractFireBlock.getState(world, blockpos1);
-            playerentity.causeFoodExhaustion(4f);
             world.setBlock(blockpos1, blockstate1, 11);
-            ItemStack itemstack = context.getItemInHand();
-            if (playerentity instanceof ServerPlayerEntity) {
-               CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)playerentity, blockpos1, itemstack);
-               itemstack.hurtAndBreak(1, playerentity, (p_219998_1_) -> p_219998_1_.broadcastBreakEvent(context.getHand()));
-            }
+            ManaProvider.get(context.getPlayer()).spendMana(manaCost);
 
             return ActionResultType.sidedSuccess(world.isClientSide());
          } else {

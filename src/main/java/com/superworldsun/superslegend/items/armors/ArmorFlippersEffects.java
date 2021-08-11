@@ -30,9 +30,6 @@ public class ArmorFlippersEffects extends NonEnchantArmor
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-    	
-    	
-    	
         if (!world.isClientSide){
                 boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemInit.ZORA_FLIPPERS);
                 if(isBootsOn)

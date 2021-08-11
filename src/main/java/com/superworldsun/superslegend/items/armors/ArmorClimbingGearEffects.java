@@ -31,10 +31,10 @@ public class ArmorClimbingGearEffects extends NonEnchantArmor {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-        boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.CLIMBERS_BANDANNA);
-        boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemInit.CLIMBING_GEAR);
-        boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemInit.CLIMBING_PANTS);
-        boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemInit.CLIMBING_BOOTS);
+        boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.CLIMBERS_BANDANNA.get();
+        boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemInit.CLIMBING_GEAR.get();
+        boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem() == ItemInit.CLIMBING_PANTS.get();
+        boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.CLIMBING_BOOTS.get();
             if(isHelmetOn&isChestplateOn || isHelmetOn&isLeggingsOn || isHelmetOn&isBootsOn ||
                     isChestplateOn&isLeggingsOn || isChestplateOn&isBootsOn || isLeggingsOn&isBootsOn) {
                 if (!player.isSpectator() && player.horizontalCollision && player.zza > 0 && !player.isInWaterOrRain()) {
@@ -50,4 +50,6 @@ public class ArmorClimbingGearEffects extends NonEnchantArmor {
                 }
             }
     }
+    //player.getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.ANCIENT_BOOTS.get()
+
 }

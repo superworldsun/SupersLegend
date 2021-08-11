@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.items.items;
 import java.util.List;
 import java.util.Random;
 
+import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,14 +30,17 @@ public class NayrusLove extends Item
 	{
 		super(properties);
 	}
-	
+
+	float manaCost = 8.00F;
+
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
+		 boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
 		ItemStack stack = player.getItemInHand(hand);
 		 //player.setActiveHand(hand);
 	        
 		  
-		 if (player.isAlive() && player.getFoodData().getFoodLevel()>= 9) 
+		 if (player.isAlive() && hasMana)
 		 {
 	            @SuppressWarnings("unused")
 				ActionResult<ItemStack> success = new ActionResult<>(ActionResultType.SUCCESS, player.getItemInHand(hand));
@@ -44,8 +48,8 @@ public class NayrusLove extends Item
 	            
 	            BlockPos currentPos = player.blockPosition();
 				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.NAYRUS_LOVE_CAST.get(), SoundCategory.PLAYERS, 1f, 1f);
-				 
-	            player.causeFoodExhaustion(100f);
+
+			 ManaProvider.get(player).spendMana(manaCost);
 	            
 	            Random rand = player.level.random;
 		        for (int i = 0; i < 45; i++)
@@ -62,7 +66,7 @@ public class NayrusLove extends Item
 				player.addEffect(new EffectInstance(Effect.byId(11), 300, 99, false, false));
 				player.getCooldowns().addCooldown(this, 100);
 		 		}
-		 		else if(player.getFoodData().getFoodLevel()<= 8)
+		 		else if(ManaProvider.get(player).getMana() <8)
 		 		{
 		 			BlockPos currentPos = player.blockPosition();
 					 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR.get(), SoundCategory.PLAYERS, 1f, 1f);

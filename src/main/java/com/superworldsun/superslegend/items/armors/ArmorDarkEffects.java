@@ -9,6 +9,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -32,19 +33,16 @@ public class ArmorDarkEffects extends NonEnchantArmor
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-    	
-    	
-    	
-        if (!world.isClientSide){
-        		boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.DARK_CAP);
-                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemInit.DARK_TUNIC);
-                boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemInit.DARK_LEGGINGS);
-                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemInit.DARK_BOOTS);
-                if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn&&!world.isDay())
+        if (!world.isClientSide)
+        {
+        		boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.DARK_CAP.get();
+                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemInit.DARK_TUNIC.get();
+                boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem() == ItemInit.DARK_LEGGINGS.get();
+                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.DARK_BOOTS.get();
+                if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn && !world.isDay())
                 	{
-                		player.addEffect(new EffectInstance(Effect.byId(1), 10, 1, false, false, false));
+                        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 4, 1, false, false, false));
                 	}
-                	
-                }
+        }
     }
 }
