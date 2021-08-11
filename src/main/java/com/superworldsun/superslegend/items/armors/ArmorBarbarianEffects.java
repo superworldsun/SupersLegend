@@ -10,6 +10,7 @@ import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -31,26 +32,33 @@ public class ArmorBarbarianEffects extends NonEnchantArmor
 	}
 
     @Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
+    public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
     {
-        boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.BARBARIAN_HELMET);
-        boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemInit.BARBARIAN_ARMOR);
-        boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemInit.BARBARIAN_LEG_WRAPS);
-        boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemInit.BARBARIAN_BOOTS);
+        int armorPartsEquipped = 0;
+
+        if (player.getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.BARBARIAN_HELMET.get())
+            armorPartsEquipped++;
+
+        if (player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemInit.BARBARIAN_ARMOR.get())
+            armorPartsEquipped++;
+
+        if (player.getItemBySlot(EquipmentSlotType.LEGS).getItem() == ItemInit.BARBARIAN_LEG_WRAPS.get())
+            armorPartsEquipped++;
+
+        if (player.getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.BARBARIAN_BOOTS.get())
+            armorPartsEquipped++;
+
         if (!world.isClientSide)
         {
-            if(isHelmetOn&isChestplateOn || isHelmetOn&isLeggingsOn || isHelmetOn&isBootsOn ||
-               isChestplateOn&isLeggingsOn || isChestplateOn&isBootsOn || isLeggingsOn&isBootsOn)
+            if (armorPartsEquipped > 1 && armorPartsEquipped < 4)
             {
-                player.addEffect(new EffectInstance(Effect.byId(5), 3, 0, false, false, false));
+                player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 3, 0, false, false, false));
             }
-        }
-        if (!world.isClientSide)
-        {
-                if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn)
-                	{
-                		player.addEffect(new EffectInstance(Effect.byId(5), 3, 1, false, false, false));
-                	}
+
+            if (armorPartsEquipped == 4)
+            {
+                player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 3, 1, false, false, false));
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.items.items;
+package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
@@ -30,7 +30,7 @@ public class PegasusBoots extends NonEnchantArmor {
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
         if (!world.isClientSide){
-                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemInit.PEGASUS_BOOTS);
+                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.PEGASUS_BOOTS.get();
                 if(isBootsOn)
                 	{
                 	if(player.isInWater()) 

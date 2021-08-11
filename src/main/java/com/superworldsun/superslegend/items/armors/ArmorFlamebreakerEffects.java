@@ -32,20 +32,18 @@ public class ArmorFlamebreakerEffects extends NonEnchantArmor
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
     {
-    	
-    	
-    	
-        if (!world.isClientSide){
-        		boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.FLAMEBREAKER_HELMET);
-                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().equals(ItemInit.FLAMEBREAKER_TUNIC);
-                boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().equals(ItemInit.FLAMEBREAKER_LEGGINGS);
-                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().equals(ItemInit.FLAMEBREAKER_BOOTS);
+        if (!world.isClientSide)
+        {
+        		boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().getItem() == ItemInit.FLAMEBREAKER_HELMET.get();
+                boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().getItem() == ItemInit.FLAMEBREAKER_TUNIC.get();
+                boolean isLeggingsOn = player.getItemBySlot(EquipmentSlotType.LEGS).getItem().getItem() == ItemInit.FLAMEBREAKER_LEGGINGS.get();
+                boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem().getItem() == ItemInit.FLAMEBREAKER_BOOTS.get();
                 if(isHelmetOn&isChestplateOn&isLeggingsOn&isBootsOn)
                 	{
                 		player.addEffect(new EffectInstance(Effect.byId(12), 10, 0, false, false, false));
                 		player.clearFire();
                 	}
                 	
-                }
+        }
     }
 }
