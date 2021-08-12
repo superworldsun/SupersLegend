@@ -4,6 +4,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.network.NetworkDispatcher;
+import com.superworldsun.superslegend.network.message.SyncManaMessage;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,6 +22,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.network.PacketDistributor;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class ManaProvider implements ICapabilitySerializable<CompoundNBT>
@@ -58,7 +61,7 @@ public class ManaProvider implements ICapabilitySerializable<CompoundNBT>
 		}
 		
 		PlayerEntity player = (PlayerEntity) event.getEntity();
-		ManaProvider.get(player).sync((ServerPlayerEntity) player);
+		ManaProvider.sync((ServerPlayerEntity) player);
 	}
 	
 	@Override
@@ -85,9 +88,13 @@ public class ManaProvider implements ICapabilitySerializable<CompoundNBT>
 		MANA_CAPABILITY.readNBT(instance, null, nbt);
 	}
 	
-	@Nullable
 	public static IMana get(PlayerEntity player)
 	{
-		return player.getCapability(MANA_CAPABILITY).orElse(null);
+		return player.getCapability(MANA_CAPABILITY).orElse(new Mana());
+	}
+	
+	public static void sync(ServerPlayerEntity player)
+	{
+		NetworkDispatcher.networkChannel.send(PacketDistributor.PLAYER.with(() -> player), new SyncManaMessage(player));
 	}
 }

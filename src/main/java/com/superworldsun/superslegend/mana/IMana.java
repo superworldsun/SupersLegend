@@ -13,6 +13,4 @@ public interface IMana
 	void restoreMana(float amount);
 
 	void setMana(float amount);
-
-	void sync(ServerPlayerEntity player);
 }
