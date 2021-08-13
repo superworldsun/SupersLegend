@@ -283,7 +283,7 @@ public class ItemInit
 	public static final RegistryObject<Item> MASK_STONEMASK = ITEMS.register("mask_stonemask",
 			() -> new MaskStonemask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_BREMANMASK = ITEMS.register("mask_bremenmask",
-			() -> new MaskBremenmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new BremenMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_GREATFAIRYMASK = ITEMS.register("mask_greatfairymask",
 			() -> new MaskGreatfairymask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_DEKUMASK = ITEMS.register("mask_dekumask",

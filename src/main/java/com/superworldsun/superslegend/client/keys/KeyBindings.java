@@ -3,10 +3,14 @@ package com.superworldsun.superslegend.client.keys;
 import org.lwjgl.glfw.GLFW;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.interfaces.IMaskAbility;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.MaskAbilityMessage;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,11 +34,26 @@ public class KeyBindings
 	private static class Events
 	{
 		@SubscribeEvent
-		public static void onClientSetup(InputEvent.KeyInputEvent event)
+		public static void onKeyInput(InputEvent.KeyInputEvent event)
 		{
 			if (event.getKey() == MASK_ABILITY.getKey().getValue())
 			{
-				NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage());
+				Minecraft client = Minecraft.getInstance();
+				Item helmetItem = client.player.getItemBySlot(EquipmentSlotType.HEAD).getItem();
+				
+				if (helmetItem instanceof IMaskAbility)
+				{
+					if (event.getAction() == GLFW.GLFW_PRESS)
+					{
+						((IMaskAbility) helmetItem).startUsingAbility(client.player);
+						NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(true));
+					}
+					else if (event.getAction() == GLFW.GLFW_RELEASE)
+					{
+						((IMaskAbility) helmetItem).stopUsingAbility(client.player);
+						NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(false));
+					}
+				}
 			}
 		}
 	}
