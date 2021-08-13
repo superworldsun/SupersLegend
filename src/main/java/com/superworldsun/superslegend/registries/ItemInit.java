@@ -295,7 +295,7 @@ public class ItemInit
 	public static final RegistryObject<Item> MASK_DONGEROSMASK = ITEMS.register("mask_dongerosmask",
 			() -> new MaskDongerosmaskEffects(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_MASKOFSCENTS = ITEMS.register("mask_maskofscents",
-			() -> new MaskMaskofscents(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new ScentsMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_GORONMASK = ITEMS.register("mask_goronmask",
 			() -> new MaskGoronmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_ROMANISMASK = ITEMS.register("mask_romanismask",
