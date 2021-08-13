@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.tile.FalseShadowTileEntity;
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.PropertiesInit;
 
@@ -58,6 +59,12 @@ public class FalseShadowBlock extends Block
 	public static void onDrawBlockHighlight(DrawHighlightEvent.HighlightBlock event)
 	{
 		Minecraft client = Minecraft.getInstance();
+		
+		// Applied only to false shadow blocks
+		if (client.level.getBlockState(event.getTarget().getBlockPos()).getBlock() != BlockInit.FALSE_SHADOW_BLOCK.get())
+		{
+			return;
+		}
 		
 		// Do not render if player is using lens
 		if (client.player.isUsingItem() && client.player.getUseItem().getItem() == ItemInit.LENS_OF_TRUTH.get())

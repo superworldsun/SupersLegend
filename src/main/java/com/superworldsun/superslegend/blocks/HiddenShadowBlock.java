@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.tile.HiddenShadowTileEntity;
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.PropertiesInit;
 
@@ -58,6 +59,12 @@ public class HiddenShadowBlock extends Block
 	public static void onDrawBlockHighlight(DrawHighlightEvent.HighlightBlock event)
 	{
 		Minecraft client = Minecraft.getInstance();
+		
+		// Applied only to hidden shadow blocks
+		if (client.level.getBlockState(event.getTarget().getBlockPos()).getBlock() != BlockInit.HIDDEN_SHADOW_BLOCK.get())
+		{
+			return;
+		}
 		
 		// Do not render if player is not using lens
 		if (!client.player.isUsingItem() || client.player.getUseItem().getItem() != ItemInit.LENS_OF_TRUTH.get())
