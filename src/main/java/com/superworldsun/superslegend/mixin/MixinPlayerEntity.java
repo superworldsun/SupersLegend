@@ -23,7 +23,6 @@ import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.HandSide;
 import net.minecraft.util.math.AxisAlignedBB;
 
 @Mixin(PlayerEntity.class)
@@ -180,25 +179,8 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	public PlayerAbilities abilities;
 	
 	@Shadow
-	public Iterable<ItemStack> getArmorSlots()
-	{
-		return null;
-	}
-	
-	@Shadow
 	public ItemStack getItemBySlot(EquipmentSlotType slot)
 	{
 		return null;
-	}
-	
-	@Shadow
-	public HandSide getMainArm()
-	{
-		return null;
-	}
-	
-	@Shadow
-	public void setItemSlot(EquipmentSlotType slot, ItemStack stack)
-	{
 	}
 }
