@@ -175,6 +175,44 @@ public class ItemInit
 	public static final RegistryObject<Item> DELIVERY_BAG = ITEMS.register("delivery_bag", DeliveryBagItem::new);
 	public static final RegistryObject<Item> BAIT_BAG = ITEMS.register("bait_bag", BaitBagItem::new);
 
+	public static final RegistryObject<Item> LETTER = ITEMS.register("letter", Letter::new);
+
+	public static final RegistryObject<Item> BULLET_BAG = ITEMS.register("bullet_bag",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> BIG_BULLET_BAG = ITEMS.register("big_bullet_bag",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", Quiver::new);
+
+	public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", Quiver::new);
+
+	public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", Quiver::new);
+
+	public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> BIG_BOMB_BAG = ITEMS.register("big_bomb_bag",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> BIGGEST_BOMB_BAG = ITEMS.register("biggest_bomb_bag",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> WALLET = ITEMS.register("wallet",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> MEDIUM_WALLET = ITEMS.register("medium_wallet",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> GIANTS_WALLET = ITEMS.register("giants_wallet",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> COLOSSAL_WALLET = ITEMS.register("colossal_wallet",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
 	//Sets
 
 	public static final RegistryObject<Item> KOKIRI_SET = ITEMS.register("kokiri_set", KokiriSet::new);
@@ -188,6 +226,10 @@ public class ItemInit
 	public static final RegistryObject<Item> ANCIENT_SET = ITEMS.register("ancient_set", AncientSet::new);
 	public static final RegistryObject<Item> BARBARIAN_SET = ITEMS.register("barbarian_set", BarbarianSet::new);
 	public static final RegistryObject<Item> CLIMBING_SET = ITEMS.register("climbing_set", ClimbingSet::new);
+	public static final RegistryObject<Item> TWILIGHT_SET = ITEMS.register("twilight_set", EngineersSet::new);
+	public static final RegistryObject<Item> HEROSNEW_SET = ITEMS.register("herosnew_set", HerosNewSet::new);
+	public static final RegistryObject<Item> WIND_SET = ITEMS.register("wind_set", HerosNewSet::new);
+	public static final RegistryObject<Item> ENGINEERS_SET = ITEMS.register("engineers_set", EngineersSet::new);
 
 	//Tools
 
@@ -374,6 +416,12 @@ public class ItemInit
 
 	public static final RegistryObject<Item> NINTENDO_SWITCH_SHIRT = ITEMS.register("nintendo_switch_shirt",
 			() -> new ArmorKokiri(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> SNOW_BOOTS = ITEMS.register("snow_boots",
+			() -> new ArmorKokiri(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> SAND_BOOTS = ITEMS.register("sand_boots",
+			() -> new ArmorKokiri(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
 	public static final RegistryObject<Item> HERO_OF_HYRULE_CAP = ITEMS.register("hero_of_hyrule_cap",
 			() -> new ArmorHeroOfHyrule(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
