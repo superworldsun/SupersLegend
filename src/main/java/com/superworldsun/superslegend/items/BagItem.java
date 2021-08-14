@@ -32,7 +32,7 @@ public abstract class BagItem extends Item
 				@Override
 				public Container createMenu(int windowId, PlayerInventory playerInventory, PlayerEntity player)
 				{
-					return new BagContainer(windowId, player.inventory, hand);
+					return getContainer(windowId, playerInventory, player, hand);
 				}
 				
 				@Override
@@ -46,6 +46,11 @@ public abstract class BagItem extends Item
 		}
 		
 		return ActionResult.success(player.getItemInHand(hand));
+	}
+	
+	public Container getContainer(int windowId, PlayerInventory playerInventory, PlayerEntity player, Hand hand)
+	{
+		return new BagContainer(windowId, player.inventory, hand);
 	}
 	
 	public abstract boolean canHoldItem(ItemStack stack);

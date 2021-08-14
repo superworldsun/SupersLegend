@@ -22,7 +22,7 @@ public class BagContainer extends Container
 	{
 		super(ContainerInit.BAG.get(), windowId);
 		ItemStack bagStack = playerInventory.player.getItemInHand(activeHand);
-		BagInventory bagInventory = BagInventory.fromStack(bagStack);
+		BagInventory bagInventory = BagInventory.fromStack(bagStack, 27);
 		bagItem = (BagItem) bagStack.getItem();
 		
 		for (int i = 0; i < 3; ++i)

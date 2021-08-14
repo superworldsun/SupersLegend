@@ -1,53 +1,22 @@
 package com.superworldsun.superslegend.items;
 
-import com.superworldsun.superslegend.container.BagContainer;
+import com.superworldsun.superslegend.container.LetterContainer;
 
-import com.superworldsun.superslegend.container.BagContainerLetter;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
 
-public abstract class LetterItem extends Item
+public abstract class LetterItem extends BagItem
 {
 	public LetterItem(Properties properties)
 	{
-		super(properties.stacksTo(1));
+		super(properties);
 	}
-
+	
 	@Override
-	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
+	public Container getContainer(int windowId, PlayerInventory playerInventory, PlayerEntity player, Hand hand)
 	{
-		if (!world.isClientSide)
-		{
-			INamedContainerProvider containerProvider = new INamedContainerProvider()
-			{
-				@Override
-				public Container createMenu(int windowId, PlayerInventory playerInventory, PlayerEntity player)
-				{
-					return new BagContainerLetter(windowId, player.inventory, hand);
-				}
-
-				@Override
-				public ITextComponent getDisplayName()
-				{
-					return player.getItemInHand(hand).getDisplayName();
-				}
-			};
-
-			NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, packetBuffer -> packetBuffer.writeEnum(hand));
-		}
-
-		return ActionResult.success(player.getItemInHand(hand));
+		return new LetterContainer(windowId, player.inventory, hand);
 	}
-
-	public abstract boolean canHoldItem(ItemStack stack);
 }

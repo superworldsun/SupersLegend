@@ -10,12 +10,13 @@ import net.minecraft.util.NonNullList;
 
 public class BagInventory implements IInventory
 {
-	private final NonNullList<ItemStack> stacks = NonNullList.withSize(27, ItemStack.EMPTY);
+	private final NonNullList<ItemStack> stacks;
 	private final ItemStack bag;
 	
-	private BagInventory(ItemStack bag)
+	private BagInventory(ItemStack bag, int size)
 	{
 		this.bag = bag;
+		this.stacks = NonNullList.withSize(size, ItemStack.EMPTY);
 	}
 	
 	@Override
@@ -121,9 +122,9 @@ public class BagInventory implements IInventory
 		return nbt;
 	}
 	
-	public static BagInventory fromStack(ItemStack stack)
+	public static BagInventory fromStack(ItemStack stack, int size)
 	{
-		BagInventory inventory = new BagInventory(stack);
+		BagInventory inventory = new BagInventory(stack, size);
 		inventory.load(stack.getOrCreateTagElement("Inventory"));
 		return inventory;
 	}
