@@ -186,11 +186,9 @@ public class ItemInit
 	public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
-	public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", Quiver::new);
-
-	public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", Quiver::new);
-
-	public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", Quiver::new);
+	public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", SmallQuiver::new);
+	public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", MediumQuiver::new);
+	public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", BigQuiver::new);
 
 	public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
