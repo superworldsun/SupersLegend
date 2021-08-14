@@ -330,8 +330,7 @@ public class ItemInit
 			() -> new MaskGreatfairymask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_DEKUMASK = ITEMS.register("mask_dekumask",
 			() -> new MaskDekumask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> MASK_KEATONMASK = ITEMS.register("mask_keatonmask",
-			() -> new MaskKeatonmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> MASK_KEATONMASK = ITEMS.register("mask_keatonmask", KeatonMask::new);
 	public static final RegistryObject<Item> MASK_BUNNYHOOD = ITEMS.register("mask_bunnyhood",
 			() -> new MaskBunnyhood(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_DONGEROSMASK = ITEMS.register("mask_dongerosmask",
