@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class MediumQuiverScreen extends BagScreen<MediumQuiverContainer>
+public class MediumQuiverScreen extends SimpleContainerScreen<MediumQuiverContainer>
 {
 	public MediumQuiverScreen(MediumQuiverContainer container, PlayerInventory playerInventory, ITextComponent title)
 	{

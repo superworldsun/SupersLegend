@@ -20,6 +20,7 @@ import com.superworldsun.superslegend.client.screen.BagScreen;
 import com.superworldsun.superslegend.client.screen.BigQuiverScreen;
 import com.superworldsun.superslegend.client.screen.LetterScreen;
 import com.superworldsun.superslegend.client.screen.MediumQuiverScreen;
+import com.superworldsun.superslegend.client.screen.PostboxScreen;
 import com.superworldsun.superslegend.client.screen.SmallQuiverScreen;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ContainerInit;
@@ -88,5 +89,6 @@ public class ClientEventBusSubscriber
 		ScreenManager.register(ContainerInit.SMALL_QUIVER.get(), SmallQuiverScreen::new);
 		ScreenManager.register(ContainerInit.MEDIUM_QUIVER.get(), MediumQuiverScreen::new);
 		ScreenManager.register(ContainerInit.BIG_QUIVER.get(), BigQuiverScreen::new);
+		ScreenManager.register(ContainerInit.POSTBOX.get(), PostboxScreen::new);
 	}
 }

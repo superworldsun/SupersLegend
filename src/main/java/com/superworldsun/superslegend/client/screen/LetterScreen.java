@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class LetterScreen extends BagScreen<LetterContainer>
+public class LetterScreen extends SimpleContainerScreen<LetterContainer>
 {
 	public LetterScreen(LetterContainer container, PlayerInventory playerInventory, ITextComponent title)
 	{

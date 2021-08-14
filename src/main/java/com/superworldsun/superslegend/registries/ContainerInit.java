@@ -1,11 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.container.BagContainer;
-import com.superworldsun.superslegend.container.BigQuiverContainer;
-import com.superworldsun.superslegend.container.LetterContainer;
-import com.superworldsun.superslegend.container.MediumQuiverContainer;
-import com.superworldsun.superslegend.container.SmallQuiverContainer;
+import com.superworldsun.superslegend.container.*;
 
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -22,4 +18,5 @@ public class ContainerInit
 	public static final RegistryObject<ContainerType<SmallQuiverContainer>> SMALL_QUIVER = CONTAINERS.register("small_quiver", () -> IForgeContainerType.create(SmallQuiverContainer::new));
 	public static final RegistryObject<ContainerType<MediumQuiverContainer>> MEDIUM_QUIVER = CONTAINERS.register("medium_quiver", () -> IForgeContainerType.create(MediumQuiverContainer::new));
 	public static final RegistryObject<ContainerType<BigQuiverContainer>> BIG_QUIVER = CONTAINERS.register("big_quiver", () -> IForgeContainerType.create(BigQuiverContainer::new));
+	public static final RegistryObject<ContainerType<PostboxContainer>> POSTBOX = CONTAINERS.register("postbox", () -> IForgeContainerType.create(PostboxContainer::new));
 }
