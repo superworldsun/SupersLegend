@@ -27,6 +27,8 @@ public class BlockInit
 	public static final RegistryObject<Block> YELLOW_DEKU_FLOWER_BLOCK = BLOCKS.register("yellow_deku_flower_block", () -> new DekuFlowerBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> POT_BLOCK = BLOCKS.register("pot_block", () -> new PotBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> JAR_BLOCK = BLOCKS.register("jar_block", () -> new JarBlock(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> POSTBOX_BLOCK = BLOCKS.register("postbox_block", () -> new PostboxBlock(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> POSTBOX_TOP = BLOCKS.register("postbox_top", PostboxTopBlock::new);
 	public static final RegistryObject<Block> GRATE_BLOCK = BLOCKS.register("grate_block", () -> new GrateBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> GRASS_PATCH_BLOCK = BLOCKS.register("grass_patch_block", () -> new GrassPatch(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> TORCH_TOWER = BLOCKS.register("torch_tower", () -> new Block(PropertiesInit.WRECKAGE));
