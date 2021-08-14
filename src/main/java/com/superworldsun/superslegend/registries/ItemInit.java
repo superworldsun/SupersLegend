@@ -186,11 +186,9 @@ public class ItemInit
 	public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
-	public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", Quiver::new);
-
-	public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", Quiver::new);
-
-	public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", Quiver::new);
+	public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", SmallQuiver::new);
+	public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", MediumQuiver::new);
+	public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", BigQuiver::new);
 
 	public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -330,8 +328,7 @@ public class ItemInit
 			() -> new MaskGreatfairymask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_DEKUMASK = ITEMS.register("mask_dekumask",
 			() -> new MaskDekumask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> MASK_KEATONMASK = ITEMS.register("mask_keatonmask",
-			() -> new MaskKeatonmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> MASK_KEATONMASK = ITEMS.register("mask_keatonmask", KeatonMask::new);
 	public static final RegistryObject<Item> MASK_BUNNYHOOD = ITEMS.register("mask_bunnyhood",
 			() -> new MaskBunnyhood(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_DONGEROSMASK = ITEMS.register("mask_dongerosmask",
@@ -615,7 +612,7 @@ public class ItemInit
 			() -> new PoisonArrowItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BUBBLEGLOOP_DISC = ITEMS.register("bubblegloop_disc",
 			() -> new MusicDiscItem(1, SoundInit.BUBBLEGLOOP_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item> GNAT_HAT = ITEMS.register("gnat_hat", () -> new GnatHat(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> GNAT_HAT = ITEMS.register("gnat_hat", GnatHat::new);
 	public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow", MagicFireArrow::new);
 	public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow", MagicIceArrow::new);
 	public static final RegistryObject<Item> MAGIC_LIGHT_ARROW = ITEMS.register("magic_light_arrow", MagicLightArrow::new);

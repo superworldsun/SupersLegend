@@ -1,9 +1,7 @@
 package com.superworldsun.superslegend.container;
 
-import com.superworldsun.superslegend.container.slot.BagSlot;
-import com.superworldsun.superslegend.container.slot.LockedSlot;
-import com.superworldsun.superslegend.inventory.BagInventory;
-import com.superworldsun.superslegend.items.BagItem;
+import com.superworldsun.superslegend.blocks.tile.PostboxTileEntity;
+import com.superworldsun.superslegend.inventory.PostboxInventory;
 import com.superworldsun.superslegend.registries.ContainerInit;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,18 +10,12 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.Hand;
 
-public class BagContainer extends Container
+public class PostboxContainer extends Container
 {
-	private final BagItem bagItem;
-	
-	public BagContainer(int windowId, PlayerInventory playerInventory, Hand activeHand)
+	public PostboxContainer(int windowId, PlayerInventory playerInventory, PostboxInventory postboxInventory)
 	{
-		super(ContainerInit.BAG.get(), windowId);
-		ItemStack bagStack = playerInventory.player.getItemInHand(activeHand);
-		BagInventory bagInventory = BagInventory.fromStack(bagStack, 27);
-		bagItem = (BagItem) bagStack.getItem();
+		super(ContainerInit.POSTBOX.get(), windowId);
 		
 		for (int i = 0; i < 3; ++i)
 		{
@@ -35,28 +27,21 @@ public class BagContainer extends Container
 		
 		for (int i = 0; i < 9; ++i)
 		{
-			if (activeHand == Hand.MAIN_HAND && playerInventory.selected == i)
-			{
-				addSlot(new LockedSlot(playerInventory, i, 8 + i * 18, 144));
-			}
-			else
-			{
-				addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
-			}
+			addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
 		}
 		
 		for (int i = 0; i < 3; ++i)
 		{
-			for (int j = 0; j < 9; ++j)
+			for (int j = 0; j < 3; ++j)
 			{
-				addSlot(new BagSlot(bagInventory, j + i * 9, 8 + j * 18, 18 + i * 18, bagItem));
+				addSlot(new Slot(postboxInventory, j + i * 3, 62 + j * 18, 18 + i * 18));
 			}
 		}
 	}
 	
-	public BagContainer(int windowId, PlayerInventory playerInventory, PacketBuffer additionalData)
+	public PostboxContainer(int windowId, PlayerInventory playerInventory, PacketBuffer additionalData)
 	{
-		this(windowId, playerInventory, additionalData.readEnum(Hand.class));
+		this(windowId, playerInventory, new PostboxInventory((PostboxTileEntity) playerInventory.player.level.getBlockEntity(additionalData.readBlockPos())));
 	}
 	
 	@Override
@@ -79,17 +64,14 @@ public class BagContainer extends Container
 		ItemStack sourceStackBeforeMerge = sourceStack.copy();
 		boolean successfulTransfer = false;
 		
-		if (SlotZone.BAG.contains(sourceSlotIndex))
+		if (SlotZone.POSTBOX.contains(sourceSlotIndex))
 		{
 			successfulTransfer = mergeInto(SlotZone.WHOLE_INVENTORY, sourceStack, false);
 		}
 		
 		if (SlotZone.WHOLE_INVENTORY.contains(sourceSlotIndex))
 		{
-			if (bagItem.canHoldItem(sourceStack))
-			{
-				successfulTransfer = mergeInto(SlotZone.BAG, sourceStack, false);
-			}
+			successfulTransfer = mergeInto(SlotZone.POSTBOX, sourceStack, false);
 			
 			if (!successfulTransfer)
 			{
@@ -134,7 +116,7 @@ public class BagContainer extends Container
 	
 	private enum SlotZone
 	{
-		WHOLE_INVENTORY(0, 36), INVENTORY(0, 27), HOTBAR(27, 9), BAG(36, 27);
+		WHOLE_INVENTORY(0, 36), INVENTORY(0, 27), HOTBAR(27, 9), POSTBOX(36, 9);
 		
 		SlotZone(int firstIndex, int numberOfSlots)
 		{

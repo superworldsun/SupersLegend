@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.inventory;
 
+import com.superworldsun.superslegend.blocks.tile.PostboxTileEntity;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -8,15 +10,14 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.NonNullList;
 
-public class BagInventory implements IInventory
+public class PostboxInventory implements IInventory
 {
-	private final NonNullList<ItemStack> stacks;
-	private final ItemStack bag;
+	private final NonNullList<ItemStack> stacks = NonNullList.withSize(9, ItemStack.EMPTY);
+	private final PostboxTileEntity postbox;
 	
-	private BagInventory(ItemStack bag, int size)
+	public PostboxInventory(PostboxTileEntity postbox)
 	{
-		this.bag = bag;
-		this.stacks = NonNullList.withSize(size, ItemStack.EMPTY);
+		this.postbox = postbox;
 	}
 	
 	@Override
@@ -95,13 +96,13 @@ public class BagInventory implements IInventory
 	@Override
 	public void setChanged()
 	{
-		saveToStack(bag);
+		postbox.setChanged();
 	}
 	
 	@Override
 	public boolean stillValid(PlayerEntity player)
 	{
-		return player.isAlive();
+		return player.isAlive() && postbox.getLevel().getBlockEntity(postbox.getBlockPos()) == postbox;
 	}
 	
 	public void load(CompoundNBT nbt)
@@ -120,17 +121,5 @@ public class BagInventory implements IInventory
 		stacks.forEach(stack -> stackTags.add(stack.save(new CompoundNBT())));
 		nbt.put("Slots", stackTags);
 		return nbt;
-	}
-	
-	public static BagInventory fromStack(ItemStack stack, int size)
-	{
-		BagInventory inventory = new BagInventory(stack, size);
-		inventory.load(stack.getOrCreateTagElement("Inventory"));
-		return inventory;
-	}
-	
-	public void saveToStack(ItemStack stack)
-	{
-		save(stack.getOrCreateTagElement("Inventory"));
 	}
 }

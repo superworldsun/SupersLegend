@@ -14,15 +14,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Hand;
 
-public class BagContainer extends Container
+public class LetterContainer extends Container
 {
 	private final BagItem bagItem;
 	
-	public BagContainer(int windowId, PlayerInventory playerInventory, Hand activeHand)
+	public LetterContainer(int windowId, PlayerInventory playerInventory, Hand activeHand)
 	{
-		super(ContainerInit.BAG.get(), windowId);
+		super(ContainerInit.LETTER.get(), windowId);
 		ItemStack bagStack = playerInventory.player.getItemInHand(activeHand);
-		BagInventory bagInventory = BagInventory.fromStack(bagStack, 27);
+		BagInventory bagInventory = BagInventory.fromStack(bagStack, 1);
 		bagItem = (BagItem) bagStack.getItem();
 		
 		for (int i = 0; i < 3; ++i)
@@ -45,16 +45,10 @@ public class BagContainer extends Container
 			}
 		}
 		
-		for (int i = 0; i < 3; ++i)
-		{
-			for (int j = 0; j < 9; ++j)
-			{
-				addSlot(new BagSlot(bagInventory, j + i * 9, 8 + j * 18, 18 + i * 18, bagItem));
-			}
-		}
+		addSlot(new BagSlot(bagInventory, 0, 80, 36, bagItem));
 	}
 	
-	public BagContainer(int windowId, PlayerInventory playerInventory, PacketBuffer additionalData)
+	public LetterContainer(int windowId, PlayerInventory playerInventory, PacketBuffer additionalData)
 	{
 		this(windowId, playerInventory, additionalData.readEnum(Hand.class));
 	}
@@ -79,7 +73,7 @@ public class BagContainer extends Container
 		ItemStack sourceStackBeforeMerge = sourceStack.copy();
 		boolean successfulTransfer = false;
 		
-		if (SlotZone.BAG.contains(sourceSlotIndex))
+		if (SlotZone.LETTER.contains(sourceSlotIndex))
 		{
 			successfulTransfer = mergeInto(SlotZone.WHOLE_INVENTORY, sourceStack, false);
 		}
@@ -88,7 +82,7 @@ public class BagContainer extends Container
 		{
 			if (bagItem.canHoldItem(sourceStack))
 			{
-				successfulTransfer = mergeInto(SlotZone.BAG, sourceStack, false);
+				successfulTransfer = mergeInto(SlotZone.LETTER, sourceStack, false);
 			}
 			
 			if (!successfulTransfer)
@@ -134,7 +128,7 @@ public class BagContainer extends Container
 	
 	private enum SlotZone
 	{
-		WHOLE_INVENTORY(0, 36), INVENTORY(0, 27), HOTBAR(27, 9), BAG(36, 27);
+		WHOLE_INVENTORY(0, 36), INVENTORY(0, 27), HOTBAR(27, 9), LETTER(36, 1);
 		
 		SlotZone(int firstIndex, int numberOfSlots)
 		{

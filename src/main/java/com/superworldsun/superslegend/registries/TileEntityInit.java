@@ -18,4 +18,5 @@ public class TileEntityInit
 	public static final RegistryObject<TileEntityType<GossipStoneTileEntity>> GOSSIP_STONE = TILES.register("gossip_stone", GossipStoneTileEntity::createType);
 	public static final RegistryObject<TileEntityType<FalseShadowTileEntity>> FALSE_SHADOW = TILES.register("false_shadow", FalseShadowTileEntity::createType);
 	public static final RegistryObject<TileEntityType<HiddenShadowTileEntity>> HIDDEN_SHADOW = TILES.register("hidden_shadow", HiddenShadowTileEntity::createType);
+	public static final RegistryObject<TileEntityType<PostboxTileEntity>> POSTBOX = TILES.register("postbox", PostboxTileEntity::createType);
 }

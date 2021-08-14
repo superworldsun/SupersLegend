@@ -18,7 +18,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @Mixin(MushroomBlock.class)
-public class MixinMushroomBlock extends BushBlock
+public abstract class MixinMushroomBlock extends BushBlock
 {
 	// This constructor is fake and never used
 	protected MixinMushroomBlock()

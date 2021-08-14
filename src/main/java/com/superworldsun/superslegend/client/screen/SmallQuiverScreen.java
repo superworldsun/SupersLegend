@@ -1,15 +1,15 @@
 package com.superworldsun.superslegend.client.screen;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.container.LetterContainer;
+import com.superworldsun.superslegend.container.SmallQuiverContainer;
 
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class LetterScreen extends SimpleContainerScreen<LetterContainer>
+public class SmallQuiverScreen extends SimpleContainerScreen<SmallQuiverContainer>
 {
-	public LetterScreen(LetterContainer container, PlayerInventory playerInventory, ITextComponent title)
+	public SmallQuiverScreen(SmallQuiverContainer container, PlayerInventory playerInventory, ITextComponent title)
 	{
 		super(container, playerInventory, title);
 	}
@@ -17,6 +17,6 @@ public class LetterScreen extends SimpleContainerScreen<LetterContainer>
 	@Override
 	protected ResourceLocation getBackgroundTexture()
 	{
-		return new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/letter.png");
+		return new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/small_quiver.png");
 	}
 }

@@ -14,15 +14,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Hand;
 
-public class BagContainer extends Container
+public class MediumQuiverContainer extends Container
 {
 	private final BagItem bagItem;
 	
-	public BagContainer(int windowId, PlayerInventory playerInventory, Hand activeHand)
+	public MediumQuiverContainer(int windowId, PlayerInventory playerInventory, Hand activeHand)
 	{
-		super(ContainerInit.BAG.get(), windowId);
+		super(ContainerInit.MEDIUM_QUIVER.get(), windowId);
 		ItemStack bagStack = playerInventory.player.getItemInHand(activeHand);
-		BagInventory bagInventory = BagInventory.fromStack(bagStack, 27);
+		BagInventory bagInventory = BagInventory.fromStack(bagStack, 6);
 		bagItem = (BagItem) bagStack.getItem();
 		
 		for (int i = 0; i < 3; ++i)
@@ -45,16 +45,16 @@ public class BagContainer extends Container
 			}
 		}
 		
-		for (int i = 0; i < 3; ++i)
+		for (int i = 0; i < 2; ++i)
 		{
-			for (int j = 0; j < 9; ++j)
+			for (int j = 0; j < 3; ++j)
 			{
-				addSlot(new BagSlot(bagInventory, j + i * 9, 8 + j * 18, 18 + i * 18, bagItem));
+				addSlot(new BagSlot(bagInventory, j + i * 3, 62 + j * 18, 28 + i * 18, bagItem));
 			}
 		}
 	}
 	
-	public BagContainer(int windowId, PlayerInventory playerInventory, PacketBuffer additionalData)
+	public MediumQuiverContainer(int windowId, PlayerInventory playerInventory, PacketBuffer additionalData)
 	{
 		this(windowId, playerInventory, additionalData.readEnum(Hand.class));
 	}
@@ -134,7 +134,7 @@ public class BagContainer extends Container
 	
 	private enum SlotZone
 	{
-		WHOLE_INVENTORY(0, 36), INVENTORY(0, 27), HOTBAR(27, 9), BAG(36, 27);
+		WHOLE_INVENTORY(0, 36), INVENTORY(0, 27), HOTBAR(27, 9), BAG(36, 6);
 		
 		SlotZone(int firstIndex, int numberOfSlots)
 		{
