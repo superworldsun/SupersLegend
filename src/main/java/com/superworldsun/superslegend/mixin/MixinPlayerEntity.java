@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IHoveringEntity;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.interfaces.IResizableEntity;
@@ -28,6 +29,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 @Mixin(PlayerEntity.class)
 public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, IJumpingEntity
 {
+	private float targetScale = 1.0F;
 	private float scale = 1.0F;
 	private float prevScale = 1.0F;
 	private int hoverTime;
@@ -64,7 +66,27 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	@Inject(method = "tick", at = @At("HEAD"))
 	private void injectTick(CallbackInfo ci)
 	{
+		targetScale = 1.0F;
+		
+		getArmorSlots().forEach(stack ->
+		{
+			if (stack.getItem() instanceof IEntityResizer)
+			{
+				targetScale *= ((IEntityResizer) stack.getItem()).getScale((PlayerEntity) getEntity());
+			}
+		});
+		
 		prevScale = scale;
+		
+		if (targetScale > scale)
+		{
+			setScale(Math.min(targetScale, scale + 0.05F));
+		}
+		
+		if (targetScale < scale)
+		{
+			setScale(Math.max(targetScale, scale - 0.05F));
+		}
 		
 		// Increase movement if we are bigger, decrease if we are smaller
 		if (scale > 1)
@@ -96,14 +118,6 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	public AxisAlignedBB getBoundingBoxForCulling()
 	{
 		return getBoundingBoxForPose(getPose());
-	}
-	
-	@Override
-	public void setScale(float scale)
-	{
-		this.scale = scale;
-		updateEyeHeight();
-		refreshDimensions();
 	}
 	
 	@Override
@@ -152,6 +166,13 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	public boolean isJumping()
 	{
 		return jumping;
+	}
+	
+	private void setScale(float scale)
+	{
+		this.scale = scale;
+		updateEyeHeight();
+		refreshDimensions();
 	}
 	
 	private boolean canSwim()

@@ -612,7 +612,7 @@ public class ItemInit
 			() -> new PoisonArrowItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BUBBLEGLOOP_DISC = ITEMS.register("bubblegloop_disc",
 			() -> new MusicDiscItem(1, SoundInit.BUBBLEGLOOP_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item> GNAT_HAT = ITEMS.register("gnat_hat", () -> new GnatHat(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> GNAT_HAT = ITEMS.register("gnat_hat", GnatHat::new);
 	public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow", MagicFireArrow::new);
 	public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow", MagicIceArrow::new);
 	public static final RegistryObject<Item> MAGIC_LIGHT_ARROW = ITEMS.register("magic_light_arrow", MagicLightArrow::new);
