@@ -1,7 +1,5 @@
 package com.superworldsun.superslegend.mana;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
-
 public interface IMana
 {
 	float getMana();
