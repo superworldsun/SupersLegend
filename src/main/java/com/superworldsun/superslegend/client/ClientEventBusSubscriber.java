@@ -17,6 +17,7 @@ import com.superworldsun.superslegend.client.render.PoisonArrowRender;
 import com.superworldsun.superslegend.client.render.ShockArrowRender;
 import com.superworldsun.superslegend.client.render.SilverArrowRender;
 import com.superworldsun.superslegend.client.screen.BagScreen;
+import com.superworldsun.superslegend.client.screen.LetterScreen;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ContainerInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
@@ -80,5 +81,6 @@ public class ClientEventBusSubscriber
 		ClientRegistry.bindTileEntityRenderer(TileEntityInit.HIDDEN_SHADOW.get(), HiddenShadowRenderer::new);
 		
 		ScreenManager.register(ContainerInit.BAG.get(), BagScreen::new);
+		ScreenManager.register(ContainerInit.LETTER.get(), LetterScreen::new);
 	}
 }
