@@ -25,7 +25,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.scoreboard.Team;
 
 @Mixin(AbstractSkeletonEntity.class)
-public class MixinAbstractSkeletonEntity extends MonsterEntity implements ITameableSkeleton
+public abstract class MixinAbstractSkeletonEntity extends MonsterEntity implements ITameableSkeleton
 {
 	private static final DataParameter<Boolean> TAMED = EntityDataManager.defineId(AbstractSkeletonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Optional<UUID>> OWNER_UUID = EntityDataManager.defineId(AbstractSkeletonEntity.class, DataSerializers.OPTIONAL_UUID);
