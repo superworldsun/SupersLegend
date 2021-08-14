@@ -1,5 +1,9 @@
 {
   "itemGroup.supers_legend": "SupersLegend",
+
+  "key.categories.superslegend": "SupersLegend",
+  "key.mask_ability": "Mask Ability",
+
   "item.superslegend.rupee": "Rupee",
   "item.superslegend.blue_rupee": "Blue Rupee",
   "item.superslegend.red_rupee": "Red Rupee",
