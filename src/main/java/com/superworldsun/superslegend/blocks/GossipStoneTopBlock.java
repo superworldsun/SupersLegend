@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.interfaces.IHasNoItem;
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.PropertiesInit;
 
 import net.minecraft.block.Block;
@@ -10,6 +11,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.DebugPacketSender;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
@@ -22,6 +24,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class GossipStoneTopBlock extends Block implements IHasNoItem
@@ -64,6 +67,23 @@ public class GossipStoneTopBlock extends Block implements IHasNoItem
 	{
 		pos = pos.below();
 		return world.getBlockState(pos).getBlock().getPickBlock(state, target, world, pos, player);
+	}
+	
+	@Override
+	public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos)
+	{
+		return !world.isEmptyBlock(pos.below()) && (world.getBlockState(pos.below()).is(BlockInit.GOSSIP_STONE_BLOCK.get()));
+	}
+	
+	@Override
+	public void neighborChanged(BlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos, boolean flag)
+	{
+		DebugPacketSender.sendNeighborsUpdatePacket(world, pos);
+		
+		if (!canSurvive(state, world, pos))
+		{
+			world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
