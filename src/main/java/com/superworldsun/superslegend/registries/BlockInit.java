@@ -32,8 +32,8 @@ public class BlockInit
 	public static final RegistryObject<Block> TORCH_TOWER = BLOCKS.register("torch_tower", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> MASTER_ORE_BLOCK = BLOCKS.register("master_ore_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> SHADOW_BLOCK = BLOCKS.register("shadow_block", () -> new Block(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> FALSE_SHADOW_BLOCK = BLOCKS.register("false_shadow_block", () -> new FalseShadowBlock(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> HIDDEN_SHADOW_BLOCK = BLOCKS.register("hidden_shadow_block", () -> new HiddenShadowBlock(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> FALSE_SHADOW_BLOCK = BLOCKS.register("false_shadow_block", FalseShadowBlock::new);
+	public static final RegistryObject<Block> HIDDEN_SHADOW_BLOCK = BLOCKS.register("hidden_shadow_block", HiddenShadowBlock::new);
 	public static final RegistryObject<Block> TOMBSTONE_BLOCK = BLOCKS.register("tombstone_block", () -> new TombstoneBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> STONE_PATH_BLOCK = BLOCKS.register("stone_path_block", () -> new StonePathBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> STONE_TILE_BLOCK = BLOCKS.register("stone_tile_block", () -> new StoneTileBlock(PropertiesInit.WRECKAGE));

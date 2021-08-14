@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.items.masks;
 
 import com.superworldsun.superslegend.cooldowns.CooldownsProvider;
+import com.superworldsun.superslegend.interfaces.IMaskAbility;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
@@ -17,7 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.Explosion.Mode;
 import net.minecraft.world.World;
 
-public class BlastMask extends NonEnchantArmor
+public class BlastMask extends NonEnchantArmor implements IMaskAbility
 {
 	public BlastMask(Properties properties)
 	{
@@ -30,7 +31,8 @@ public class BlastMask extends NonEnchantArmor
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Bomb Blastic"));
 	}
 	
-	public static void abilityUsed(World world, PlayerEntity player)
+	@Override
+	public void startUsingAbility(PlayerEntity player)
 	{
 		// Do nothing if on cooldown
 		if (CooldownsProvider.get(player).hasCooldown(ItemInit.MASK_BLASTMASK.get()))
@@ -39,9 +41,10 @@ public class BlastMask extends NonEnchantArmor
 		}
 		
 		Vector3d explosionPos = player.getEyePosition(1.0F).add(player.getLookAngle().multiply(0.5D, 0.5D, 0.5D));
-		world.explode(player, explosionPos.x, explosionPos.y, explosionPos.z, 2.0F, Mode.BREAK);
+		player.level.explode(player, explosionPos.x, explosionPos.y, explosionPos.z, 2.0F, Mode.BREAK);
 		player.hurt(DamageSource.explosion(player), 2.0F);
 		// 200 ticks are 10 seconds
 		CooldownsProvider.get(player).setCooldown(ItemInit.MASK_BLASTMASK.get(), 200);
+		IMaskAbility.super.startUsingAbility(player);
 	}
 }

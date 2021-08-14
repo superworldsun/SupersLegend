@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.blocks.tile;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.TileEntityInit;
 
@@ -10,6 +11,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -70,5 +73,10 @@ public class GossipStoneTileEntity extends TileEntity
 	public void setMessage(String message)
 	{
 		this.message = message;
+	}
+	
+	public static TileEntityType<GossipStoneTileEntity> createType()
+	{
+		return Builder.of(GossipStoneTileEntity::new, BlockInit.GOSSIP_STONE_BLOCK.get()).build(null);
 	}
 }

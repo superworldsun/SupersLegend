@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.blocks.tile;
 
 import java.util.List;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.TileEntityInit;
 
@@ -13,6 +14,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -87,5 +89,15 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity
 	public boolean isPowered()
 	{
 		return true;
+	}
+	
+	public static TileEntityType<FanTileEntity> createType()
+	{
+		return Builder.of(FanTileEntity::new, BlockInit.FAN.get()).build(null);
+	}
+	
+	public static TileEntityType<SwitchableFanTileEntity> createSwitchableFanType()
+	{
+		return Builder.of(SwitchableFanTileEntity::new, BlockInit.SWITCHABLE_FAN.get()).build(null);
 	}
 }

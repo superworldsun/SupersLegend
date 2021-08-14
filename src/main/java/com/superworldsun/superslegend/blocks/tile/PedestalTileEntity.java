@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.blocks.tile;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.TileEntityInit;
 
 import net.minecraft.block.BlockState;
@@ -9,6 +10,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -74,5 +77,10 @@ public class PedestalTileEntity extends TileEntity
 	{
 		ItemEntity itemEntity = new ItemEntity(level, worldPosition.getX() + 0.5D, worldPosition.getY() + 0.5D, worldPosition.getZ() + 0.5D, getSword());
 		level.addFreshEntity(itemEntity);
+	}
+	
+	public static TileEntityType<PedestalTileEntity> createType()
+	{
+		return Builder.of(PedestalTileEntity::new, BlockInit.PEDESTAL.get()).build(null);
 	}
 }

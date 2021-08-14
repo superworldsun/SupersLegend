@@ -86,6 +86,6 @@ public class CooldownsProvider implements ICapabilitySerializable<CompoundNBT>
 	@Nullable
 	public static ICooldowns get(PlayerEntity player)
 	{
-		return player.getCapability(COOLDOWNS_CAPABILITY).orElse(null);
+		return player.getCapability(COOLDOWNS_CAPABILITY).orElse(new Cooldowns());
 	}
 }

@@ -6,7 +6,8 @@
 	"mixins": [
 		"MixinPlayerEntity",
 		"MixinPlayerRenderer",
-		"MixinAbstractSkeletonEntity"
+		"MixinAbstractSkeletonEntity",
+		"MixinMushroomBlock"
 	],
 	"minVersion": "0.8"
 }
