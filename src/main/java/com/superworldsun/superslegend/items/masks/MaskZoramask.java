@@ -24,7 +24,7 @@ public class MaskZoramask extends NonEnchantArmor {
 
     public MaskZoramask(Properties properties)
     {
-        super(ArmourInit.zoramask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.ZORA_MASK, EquipmentSlotType.HEAD, properties);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class MaskAllnightmask extends NonEnchantArmor
 {
         public MaskAllnightmask(Properties properties)
         {
-            super(ArmourInit.allnightmask, EquipmentSlotType.HEAD, properties);
+            super(ArmourInit.ALLNIGHT_MASK, EquipmentSlotType.HEAD, properties);
         }
 
         /*@Override

@@ -35,7 +35,7 @@ public class DekuMask extends NonEnchantArmor implements IPlayerModelChanger, IE
 {
 	public DekuMask(Properties properties)
 	{
-		super(ArmourInit.dekumask, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.DEKU_MASK, EquipmentSlotType.HEAD, properties);
 	}
 	
 	@Override

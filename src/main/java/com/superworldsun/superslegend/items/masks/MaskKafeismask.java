@@ -16,7 +16,7 @@ public class MaskKafeismask extends NonEnchantArmor {
 
     public MaskKafeismask(Properties properties)
     {
-        super(ArmourInit.kafeismask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.KAFEIS_MASK, EquipmentSlotType.HEAD, properties);
     }
 
     @Override

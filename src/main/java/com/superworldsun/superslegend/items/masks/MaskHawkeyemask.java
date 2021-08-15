@@ -27,7 +27,7 @@ public class MaskHawkeyemask extends NonEnchantArmor
 {
 	public MaskHawkeyemask(Properties properties)
 	{
-		super(ArmourInit.hawkeye, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.HAWKEYE, EquipmentSlotType.HEAD, properties);
 	}
 	
 	@OnlyIn(Dist.CLIENT)

@@ -21,7 +21,7 @@ public class ArmorBarbarianEffects extends NonEnchantArmor
 
 
     public ArmorBarbarianEffects(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.barbarian, slot, properties);
+        super(ArmourInit.BARBARIAN, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

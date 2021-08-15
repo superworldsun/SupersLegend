@@ -27,7 +27,7 @@ public class MaskBunnyhood extends NonEnchantArmor
 
 	public MaskBunnyhood(Properties properties)
 	{
-		super(ArmourInit.bunnyhood, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.BUNNY_HOOD, EquipmentSlotType.HEAD, properties);
 	}
 
 	@SuppressWarnings("unchecked")

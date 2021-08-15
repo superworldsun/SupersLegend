@@ -15,7 +15,7 @@ public class GnatHat extends ArmorItem implements IEntityResizer
 {
 	public GnatHat()
 	{
-		super(ArmourInit.gnathat, EquipmentSlotType.HEAD, new Properties().tab(SupersLegendMain.RESOURCES));
+		super(ArmourInit.GNAT_HAT, EquipmentSlotType.HEAD, new Properties().tab(SupersLegendMain.RESOURCES));
 	}
 	
 	@Override

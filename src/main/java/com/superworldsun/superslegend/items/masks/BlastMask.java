@@ -22,7 +22,7 @@ public class BlastMask extends NonEnchantArmor implements IMaskAbility
 {
 	public BlastMask(Properties properties)
 	{
-		super(ArmourInit.blastmask, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.BLAST_MASK, EquipmentSlotType.HEAD, properties);
 	}
 	
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

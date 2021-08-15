@@ -19,7 +19,7 @@ public class ArmorAncientEffects extends NonEnchantArmor
 {
 	public ArmorAncientEffects(EquipmentSlotType slot, Properties properties)
 	{
-		super(ArmourInit.ancient, slot, properties);
+		super(ArmourInit.ANCIENT, slot, properties);
 	}
 	
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

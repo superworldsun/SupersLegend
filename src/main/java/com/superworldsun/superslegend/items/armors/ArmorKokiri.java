@@ -14,7 +14,7 @@ public class ArmorKokiri extends NonEnchantArmor
 {
 
     public ArmorKokiri(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.kokiri, slot, properties);
+        super(ArmourInit.KOKIRI, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {

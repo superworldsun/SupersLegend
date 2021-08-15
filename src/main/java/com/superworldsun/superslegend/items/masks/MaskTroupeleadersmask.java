@@ -18,7 +18,7 @@ public class MaskTroupeleadersmask extends NonEnchantArmor {
 
     public MaskTroupeleadersmask(Properties properties)
     {
-        super(ArmourInit.troupeleadersmask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.TROUPE_LEADERS_MASK, EquipmentSlotType.HEAD, properties);
     }
 
     @Override

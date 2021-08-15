@@ -15,7 +15,7 @@ public class ArmorPurpleEffects extends NonEnchantArmor
 
 
     public ArmorPurpleEffects(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.purple, slot, properties);
+        super(ArmourInit.PURPLE, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

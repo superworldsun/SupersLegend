@@ -17,7 +17,7 @@ public class ScentsMask extends NonEnchantArmor
 {
 	public ScentsMask(Properties properties)
 	{
-		super(ArmourInit.maskofscents, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.SCENTS_MASK, EquipmentSlotType.HEAD, properties);
 	}
 	
 	@Override

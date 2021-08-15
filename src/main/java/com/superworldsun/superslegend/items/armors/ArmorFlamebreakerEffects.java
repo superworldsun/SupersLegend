@@ -19,7 +19,7 @@ public class ArmorFlamebreakerEffects extends NonEnchantArmor
 
 
     public ArmorFlamebreakerEffects(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.flamebreaker, slot, properties);
+        super(ArmourInit.FLAMEBREAKER, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

@@ -21,7 +21,7 @@ public class MaskPostmanshat extends NonEnchantArmor {
 
     public MaskPostmanshat(Properties properties)
     {
-        super(ArmourInit.postmanshat, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.POSTMANS_HAT, EquipmentSlotType.HEAD, properties);
     }
 
     @SuppressWarnings("unchecked")

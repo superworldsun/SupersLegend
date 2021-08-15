@@ -16,7 +16,7 @@ public class MaskRomanismask extends NonEnchantArmor {
 
     public MaskRomanismask(Properties properties)
     {
-        super(ArmourInit.romanismask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.ROMANIS_MASK, EquipmentSlotType.HEAD, properties);
     }
 
     @Override

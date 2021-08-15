@@ -34,7 +34,7 @@ public class MaskMaskofTruth extends NonEnchantArmor
 	
 	public MaskMaskofTruth(Properties properties)
 	{
-		super(ArmourInit.maskoftruth, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.TRUTH_MASK, EquipmentSlotType.HEAD, properties);
 	}
 	
 	@Override

@@ -16,7 +16,7 @@ public class MaskGarosmask extends NonEnchantArmor {
 
     public MaskGarosmask(Properties properties)
     {
-        super(ArmourInit.garosmask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.GAROS_MASK, EquipmentSlotType.HEAD, properties);
     }
 
     @Override

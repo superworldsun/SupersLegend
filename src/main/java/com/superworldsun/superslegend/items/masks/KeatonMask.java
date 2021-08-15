@@ -20,7 +20,7 @@ public class KeatonMask extends NonEnchantArmor
 {
 	public KeatonMask()
 	{
-		super(ArmourInit.keatonmask, EquipmentSlotType.HEAD, new Properties().tab(SupersLegendMain.RESOURCES));
+		super(ArmourInit.KEATON_MASK, EquipmentSlotType.HEAD, new Properties().tab(SupersLegendMain.RESOURCES));
 	}
 	
 	@OnlyIn(Dist.CLIENT)

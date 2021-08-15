@@ -14,7 +14,7 @@ public class ArmorHeroOfLegend extends NonEnchantArmor
 {
 
     public ArmorHeroOfLegend(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.legend, slot, properties);
+        super(ArmourInit.LEGEND, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {

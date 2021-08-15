@@ -17,7 +17,7 @@ public class ArmorClimbingGearEffects extends NonEnchantArmor {
 
 
     public ArmorClimbingGearEffects(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.climbing, slot, properties);
+        super(ArmourInit.CLIMBING, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

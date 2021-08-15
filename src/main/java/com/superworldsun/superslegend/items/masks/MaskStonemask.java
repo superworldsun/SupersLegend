@@ -21,7 +21,7 @@ public class MaskStonemask extends NonEnchantArmor
 {
 	public MaskStonemask(Properties properties)
 	{
-		super(ArmourInit.stonemask, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.STONE_MASK, EquipmentSlotType.HEAD, properties);
 	}
 
 	@Override

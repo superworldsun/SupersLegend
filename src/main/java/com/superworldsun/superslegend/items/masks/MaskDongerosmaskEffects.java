@@ -18,7 +18,7 @@ public class MaskDongerosmaskEffects extends NonEnchantArmor {
 
     public MaskDongerosmaskEffects(Properties properties)
     {
-        super(ArmourInit.dongerosmask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.DONGEROS_MASK, EquipmentSlotType.HEAD, properties);
     }
 
     @Override

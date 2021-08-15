@@ -14,7 +14,7 @@ public class ArmorHerosOfMinish extends NonEnchantArmor
 {
 
     public ArmorHerosOfMinish(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.minish, slot, properties);
+        super(ArmourInit.MINISH, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {

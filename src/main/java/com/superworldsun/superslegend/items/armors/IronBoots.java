@@ -38,7 +38,7 @@ public class IronBoots extends NonEnchantArmor
 	
 	public IronBoots(Properties builder)
 	{
-		super(ArmourInit.ironboots, EquipmentSlotType.FEET, builder);
+		super(ArmourInit.IRON_BOOTS, EquipmentSlotType.FEET, builder);
 	}
 	
 	@OnlyIn(Dist.CLIENT)
