@@ -31,7 +31,7 @@ public class MaskCaptainshat extends NonEnchantArmor
 {
 	public MaskCaptainshat(Properties properties)
 	{
-		super(ArmourInit.captainshat, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.CAPTAINS_HAT, EquipmentSlotType.HEAD, properties);
 	}
 	
 	@OnlyIn(Dist.CLIENT)

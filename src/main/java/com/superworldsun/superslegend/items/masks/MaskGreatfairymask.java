@@ -16,7 +16,7 @@ public class MaskGreatfairymask extends NonEnchantArmor {
 
     public MaskGreatfairymask(Properties properties)
     {
-        super(ArmourInit.greatfairymask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.GREAT_FAIRY_MASK, EquipmentSlotType.HEAD, properties);
     }
 
     @Override

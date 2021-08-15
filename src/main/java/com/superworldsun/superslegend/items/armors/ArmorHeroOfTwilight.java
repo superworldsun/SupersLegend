@@ -14,7 +14,7 @@ public class ArmorHeroOfTwilight extends NonEnchantArmor
 {
 
     public ArmorHeroOfTwilight(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.twilight, slot, properties);
+        super(ArmourInit.TWILIGHT, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {

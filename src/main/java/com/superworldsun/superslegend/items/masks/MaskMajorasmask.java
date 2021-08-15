@@ -21,7 +21,7 @@ public class MaskMajorasmask extends NonEnchantArmor {
 
     public MaskMajorasmask(Properties properties)
     {
-        super(ArmourInit.majorasmask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.MAJORAS_MASK, EquipmentSlotType.HEAD, properties);
     }
     
     /*@SuppressWarnings("unchecked")

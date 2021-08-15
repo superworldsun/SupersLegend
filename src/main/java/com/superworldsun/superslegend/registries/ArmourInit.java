@@ -6,98 +6,91 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 
-public enum ArmourInit implements IArmorMaterial
+public class ArmourInit implements IArmorMaterial
 {
-	//armor										boots, legs, chest, helm
-	kokiri		("kokiri", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	zora		("zora", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	goron		("goron", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	purple		("purple", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	magic		("magic", 0, new int[] 			{1, 1, 1, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	herosnew	("herosnew", 0, new int[] 		{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	twilight	("twilight", 0, new int[] 		{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	wind		("wind", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	lobster		("lobster", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	engineer	("engineer", 0, new int[] 		{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	nswitch		("nswitch", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	hyrule		("hyrule", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	wild		("wild", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	minish		("minish", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	sky			("sky", 0, new int[] 				{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	legend		("legend", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	dark		("dark", 0, new int[] 			{1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	zoraarmor	("zoraarmor", 0, new int[] 		{1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	flamebreaker("flamebreaker", 0, new int[] 	{1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	ancient		("ancient", 0, new int[] 			{1, 3, 5, 1}, 0, null, "item.armor.equip_leather", 3.0f),
-	barbarian	("barbarian", 0, new int[] 		{1, 1, 2, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	climbing	("climbing", 0, new int[] 		{1, 2, 3, 1}, 0, null, "item.armor.equip_leather", 0.0f),
-	flippers	("flippers", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	rocscape	("rocscape", 0, new int[] 		{0, 0, 2, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	hoverboots	("hoverboots", 0, new int[] 		{1, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	ironboots	("ironboots", 0, new int[] 		{1, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	pegasusboots("pegasusboots", 0, new int[] 	{1, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	//masks
-	postmanshat("postmanshat", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	allnightmask("allnightmask", 0, new int[] 	{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	blastmask("blastmask", 0, new int[] 			{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	stonemask("stonemask", 0, new int[] 			{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	greatfairymask("greatfairymask", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	dekumask("dekumask", 0, new int[] 			{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	keatonmask("keatonmask", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	bremenmask("bremenmask", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	bunnyhood("bunnyhood", 0, new int[] 			{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	dongerosmask("dongerosmask", 0, new int[] 	{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	maskofscents("maskofscents", 0, new int[] 	{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	goronmask("goronmask", 0, new int[] 			{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	romanismask("romanismask", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	troupeleadersmask("troupeleadersmask", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	kafeismask("kafeismask", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	couplesmask("couplesmask", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	maskoftruth("maskoftruth", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	zoramask("zoramask", 0, new int[] 			{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	kamarosmask("kamarosmask", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	gibdomask("gibdomask", 0, new int[] 			{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	garosmask("garosmask", 0, new int[] 			{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	captainshat("captainshat", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	gnathat("gnathat", 0, new int[] 				{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	giantsmask("giantsmask", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	fiercedeitysmask("fiercedeitysmask", 0, new int[] {0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	majorasmask("majorasmask", 0, new int[] 		{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	hawkeye("hawkeye", 0, new int[] 				{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	moonmask("moonmask", 0, new int[] 			{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f),
-	sunmask("sunmask", 0, new int[] 				{0, 0, 0, 0}, 0, null, "item.armor.equip_leather", 0.0f);
+	public static final ArmourInit KOKIRI = new ArmourInit("kokiri").defence(1, 3, 5, 1);
+	public static final ArmourInit ZORA = new ArmourInit("zora").defence(1, 3, 5, 1);
+	public static final ArmourInit GORON = new ArmourInit("goron").defence(1, 3, 5, 1);
+	public static final ArmourInit PURPLE = new ArmourInit("purple").defence(1, 3, 5, 1);
+	public static final ArmourInit MAGIC = new ArmourInit("magic").defence(1, 1, 1, 1);
+	public static final ArmourInit HEROS_NEW = new ArmourInit("herosnew").defence(1, 3, 5, 1);
+	public static final ArmourInit TWILIGHT = new ArmourInit("twilight").defence(1, 3, 5, 1);
+	public static final ArmourInit WIND = new ArmourInit("wind").defence(1, 3, 5, 1);
+	public static final ArmourInit LOBSTER = new ArmourInit("lobster").defence(1, 3, 5, 1);
+	public static final ArmourInit ENGINEER = new ArmourInit("engineer").defence(1, 3, 5, 1);
+	public static final ArmourInit NSWITCH = new ArmourInit("nswitch").defence(1, 3, 5, 1);
+	public static final ArmourInit HYRULE = new ArmourInit("hyrule").defence(1, 3, 5, 1);
+	public static final ArmourInit WILD = new ArmourInit("wild").defence(1, 3, 5, 1);
+	public static final ArmourInit MINISH = new ArmourInit("minish").defence(1, 3, 5, 1);
+	public static final ArmourInit SKY = new ArmourInit("sky").defence(1, 3, 5, 1);
+	public static final ArmourInit LEGEND = new ArmourInit("legend").defence(1, 3, 5, 1);
+	public static final ArmourInit DARK = new ArmourInit("dark").defence(1, 2, 3, 1);
+	public static final ArmourInit ZORAARMOR = new ArmourInit("zoraarmor").defence(1, 2, 3, 1);
+	public static final ArmourInit FLAMEBREAKER = new ArmourInit("flamebreaker").defence(1, 2, 3, 1);
+	public static final ArmourInit ANCIENT = new ArmourInit("ancient").defence(1, 3, 5, 1).toughness(3.0F);
+	public static final ArmourInit BARBARIAN = new ArmourInit("barbarian").defence(1, 1, 2, 1);
+	public static final ArmourInit CLIMBING = new ArmourInit("climbing").defence(1, 2, 3, 1);
+	public static final ArmourInit FLIPPERS = new ArmourInit("flippers");
+	public static final ArmourInit ROCSCAPE = new ArmourInit("rocscape").defence(0, 0, 2, 0);
+	public static final ArmourInit HOVER_BOOTS = new ArmourInit("hoverboots").defence(1, 0, 0, 0);
+	public static final ArmourInit IRON_BOOTS = new ArmourInit("ironboots").defence(1, 0, 0, 0);
+	public static final ArmourInit PEGASUS_BOOTS = new ArmourInit("pegasusboots").defence(1, 0, 0, 0);
+	public static final ArmourInit POSTMANS_HAT = new ArmourInit("postmanshat");
+	public static final ArmourInit ALLNIGHT_MASK = new ArmourInit("allnightmask");
+	public static final ArmourInit BLAST_MASK = new ArmourInit("blastmask");
+	public static final ArmourInit STONE_MASK = new ArmourInit("stonemask");
+	public static final ArmourInit GREAT_FAIRY_MASK = new ArmourInit("greatfairymask");
+	public static final ArmourInit DEKU_MASK = new ArmourInit("dekumask");
+	public static final ArmourInit KEATON_MASK = new ArmourInit("keatonmask");
+	public static final ArmourInit BREMEN_MASK = new ArmourInit("bremenmask");
+	public static final ArmourInit BUNNY_HOOD = new ArmourInit("bunnyhood");
+	public static final ArmourInit DONGEROS_MASK = new ArmourInit("dongerosmask");
+	public static final ArmourInit SCENTS_MASK = new ArmourInit("maskofscents");
+	public static final ArmourInit GORON_MASK = new ArmourInit("goronmask");
+	public static final ArmourInit ROMANIS_MASK = new ArmourInit("romanismask");
+	public static final ArmourInit TROUPE_LEADERS_MASK = new ArmourInit("troupeleadersmask");
+	public static final ArmourInit KAFEIS_MASK = new ArmourInit("kafeismask");
+	public static final ArmourInit COUPLES_MASK = new ArmourInit("couplesmask");
+	public static final ArmourInit TRUTH_MASK = new ArmourInit("maskoftruth");
+	public static final ArmourInit ZORA_MASK = new ArmourInit("zoramask");
+	public static final ArmourInit KAMAROS_MASK = new ArmourInit("kamarosmask");
+	public static final ArmourInit GIBDO_MASK = new ArmourInit("gibdomask");
+	public static final ArmourInit GAROS_MASK = new ArmourInit("garosmask");
+	public static final ArmourInit CAPTAINS_HAT = new ArmourInit("captainshat");
+	public static final ArmourInit GNAT_HAT = new ArmourInit("gnathat");
+	public static final ArmourInit GIANTS_MASK = new ArmourInit("giantsmask");
+	public static final ArmourInit FIERCE_DEITYS_MASK = new ArmourInit("fiercedeitysmask");
+	public static final ArmourInit MAJORAS_MASK = new ArmourInit("majorasmask");
+	public static final ArmourInit HAWKEYE = new ArmourInit("hawkeye");
+	public static final ArmourInit MOON_MASK = new ArmourInit("moonmask");
+	public static final ArmourInit SUN_MASK = new ArmourInit("sunmask");
 	
-	private static final int[] MAX_DAMAGE_ARRAY = { 13, 15, 16, 11 };
-	private String name, equipSound;
-	private int durability, enchantability;
-	private Item repairItem;
-	private int[] damageReductionAmounts;
-	private float toughness;
+	protected final String name;
+	protected SoundEvent equipSound = SoundEvents.ARMOR_EQUIP_LEATHER;
+	protected int enchantability = 0;
+	protected Item repairItem = null;
+	protected int[] defence = { 0, 0, 0, 0 };
+	protected int[] durability = { 0, 0, 0, 0 };
+	protected float toughness = 0.0f;
 	
-	private ArmourInit(String name, int durability, int[] damageReductionAmounts, int enchantability, Item repairItem, String equipSound, float toughness)
+	protected ArmourInit(String name)
 	{
 		this.name = name;
-		this.equipSound = equipSound;
-		this.durability = durability;
-		this.enchantability = enchantability;
-		this.repairItem = repairItem;
-		this.damageReductionAmounts = damageReductionAmounts;
-		this.toughness = toughness;
 	}
 	
 	@Override
 	public int getDefenseForSlot(EquipmentSlotType slot)
 	{
-		return this.damageReductionAmounts[slot.getIndex()];
+		return this.defence[slot.getIndex()];
 	}
 	
 	@Override
 	public int getDurabilityForSlot(EquipmentSlotType slot)
 	{
-		return MAX_DAMAGE_ARRAY[slot.getIndex()] * this.durability;
+		return durability[slot.getIndex()];
 	}
 	
 	@Override
@@ -121,7 +114,7 @@ public enum ArmourInit implements IArmorMaterial
 	@Override
 	public SoundEvent getEquipSound()
 	{
-		return new SoundEvent(new ResourceLocation(equipSound));
+		return equipSound;
 	}
 	
 	@Override
@@ -134,5 +127,41 @@ public enum ArmourInit implements IArmorMaterial
 	public float getKnockbackResistance()
 	{
 		return 0;
-	}	
+	}
+	
+	protected ArmourInit defence(int boots, int leggings, int chestplate, int helemt)
+	{
+		this.defence = new int[] { boots, leggings, chestplate, helemt };
+		return this;
+	}
+	
+	protected ArmourInit durability(int boots, int leggings, int chestplate, int helemt)
+	{
+		this.durability = new int[] { boots, leggings, chestplate, helemt };
+		return this;
+	}
+	
+	protected ArmourInit toughness(float toughness)
+	{
+		this.toughness = toughness;
+		return this;
+	}
+	
+	protected ArmourInit enchantability(int enchantability)
+	{
+		this.enchantability = enchantability;
+		return this;
+	}
+	
+	protected ArmourInit equipSound(SoundEvent equipSound)
+	{
+		this.equipSound = equipSound;
+		return this;
+	}
+	
+	protected ArmourInit repairItem(Item repairItem)
+	{
+		this.repairItem = repairItem;
+		return this;
+	}
 }

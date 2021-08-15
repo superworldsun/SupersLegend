@@ -19,7 +19,7 @@ public class ArmorMagicArmor extends NonEnchantArmor {
 
 
 	public ArmorMagicArmor(EquipmentSlotType slot, Properties properties) {
-		super(ArmourInit.magic, slot, properties);
+		super(ArmourInit.MAGIC, slot, properties);
 	}
 
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {

@@ -20,7 +20,7 @@ public class MaskFiercedeitysmask extends NonEnchantArmor {
 
 	public MaskFiercedeitysmask(Properties properties)
 	{
-		super(ArmourInit.fiercedeitysmask, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.FIERCE_DEITYS_MASK, EquipmentSlotType.HEAD, properties);
 	}
     
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

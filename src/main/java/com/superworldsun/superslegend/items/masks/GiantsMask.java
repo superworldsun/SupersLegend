@@ -18,7 +18,7 @@ public class GiantsMask extends ArmorItem implements IEntityResizer
 {
 	public GiantsMask(Properties properties)
 	{
-		super(ArmourInit.giantsmask, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.GIANTS_MASK, EquipmentSlotType.HEAD, properties);
 	}
 	
 	@Override

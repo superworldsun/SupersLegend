@@ -36,7 +36,7 @@ public class BremenMask extends NonEnchantArmor implements IMaskAbility
 {
 	public BremenMask(Properties properties)
 	{
-		super(ArmourInit.bremenmask, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.BREMEN_MASK, EquipmentSlotType.HEAD, properties);
 	}
 	
 	@Override

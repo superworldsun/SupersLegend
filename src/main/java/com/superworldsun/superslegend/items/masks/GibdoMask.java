@@ -22,7 +22,7 @@ public class GibdoMask extends NonEnchantArmor
 {
 	public GibdoMask()
 	{
-		super(ArmourInit.gibdomask, EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES));
+		super(ArmourInit.GIBDO_MASK, EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES));
 	}
 	
 	@SubscribeEvent

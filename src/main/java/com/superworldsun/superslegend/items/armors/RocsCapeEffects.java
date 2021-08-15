@@ -24,7 +24,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class RocsCapeEffects extends NonEnchantArmor {
 
 	public RocsCapeEffects(EquipmentSlotType slot, Properties properties) {
-		super(ArmourInit.rocscape, slot, properties);
+		super(ArmourInit.ROCSCAPE, slot, properties);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -18,7 +18,7 @@ public class MaskKamarosmask extends NonEnchantArmor {
 
     public MaskKamarosmask(Properties properties)
     {
-        super(ArmourInit.kamarosmask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.KAMAROS_MASK, EquipmentSlotType.HEAD, properties);
     }
 
     @Override

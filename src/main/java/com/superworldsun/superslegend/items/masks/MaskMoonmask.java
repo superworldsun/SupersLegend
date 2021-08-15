@@ -13,7 +13,7 @@ public class MaskMoonmask extends ArmorItem
 
     public MaskMoonmask(Properties properties)
     {
-        super(ArmourInit.moonmask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.MOON_MASK, EquipmentSlotType.HEAD, properties);
     }
 
     /*private boolean isLeggings = false;

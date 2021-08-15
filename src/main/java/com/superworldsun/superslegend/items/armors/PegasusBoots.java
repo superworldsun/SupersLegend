@@ -17,7 +17,7 @@ import net.minecraft.util.text.ITextComponent;
 public class PegasusBoots extends NonEnchantArmor {
 
 	public PegasusBoots(EquipmentSlotType slot, Properties properties) {
-		super(ArmourInit.pegasusboots, slot, properties);
+		super(ArmourInit.PEGASUS_BOOTS, slot, properties);
 	}
 
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

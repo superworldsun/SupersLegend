@@ -14,7 +14,7 @@ public class ArmorHeroOfWind extends NonEnchantArmor
 {
 
     public ArmorHeroOfWind(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.wind, slot, properties);
+        super(ArmourInit.WIND, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {

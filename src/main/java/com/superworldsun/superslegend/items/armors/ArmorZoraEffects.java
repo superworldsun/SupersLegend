@@ -19,7 +19,7 @@ public class ArmorZoraEffects extends NonEnchantArmor
 
 
     public ArmorZoraEffects(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.zora, slot, properties);
+        super(ArmourInit.ZORA, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

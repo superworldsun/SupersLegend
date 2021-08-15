@@ -14,7 +14,7 @@ public class ArmorHeroOfHyrule extends NonEnchantArmor
 {
 
     public ArmorHeroOfHyrule(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.hyrule, slot, properties);
+        super(ArmourInit.HYRULE, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {

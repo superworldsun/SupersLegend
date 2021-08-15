@@ -26,7 +26,7 @@ public class HoverBoots extends NonEnchantArmor
 {
 	public HoverBoots(Properties properties)
 	{
-		super(ArmourInit.hoverboots, EquipmentSlotType.FEET, properties);
+		super(ArmourInit.HOVER_BOOTS, EquipmentSlotType.FEET, properties);
 	}
 	
 	@OnlyIn(Dist.CLIENT)

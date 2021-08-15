@@ -18,7 +18,7 @@ public class ArmorGoronEffects extends NonEnchantArmor
 {
 
     public ArmorGoronEffects(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.goron, slot, properties);
+        super(ArmourInit.GORON, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)

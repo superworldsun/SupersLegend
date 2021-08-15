@@ -20,7 +20,7 @@ public class MaskCouplesmask extends NonEnchantArmor
 
 	public MaskCouplesmask(Properties properties)
 	{
-		super(ArmourInit.couplesmask, EquipmentSlotType.HEAD, properties);
+		super(ArmourInit.COUPLES_MASK, EquipmentSlotType.HEAD, properties);
 	}
 
     @Override

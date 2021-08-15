@@ -15,7 +15,7 @@ public class MaskSunmask extends NonEnchantArmor {
 
     public MaskSunmask(Properties properties)
     {
-        super(ArmourInit.sunmask, EquipmentSlotType.HEAD, properties);
+        super(ArmourInit.SUN_MASK, EquipmentSlotType.HEAD, properties);
     }
 
     @Override

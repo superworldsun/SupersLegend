@@ -20,7 +20,7 @@ public class ArmorDarkEffects extends NonEnchantArmor
 
 
     public ArmorDarkEffects(EquipmentSlotType slot, Properties properties) {
-        super(ArmourInit.dark, slot, properties);
+        super(ArmourInit.DARK, slot, properties);
     }
 
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
