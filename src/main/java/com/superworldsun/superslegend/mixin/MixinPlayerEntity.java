@@ -31,7 +31,9 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 {
 	private float targetScale = 1.0F;
 	private float scale = 1.0F;
-	private float prevScale = 1.0F;
+	private float targetRenderScale = 1.0F;
+	private float renderScale = 1.0F;
+	private float prevRenderScale = 1.0F;
 	private int hoverTime;
 	private int hoverHeight;
 	
@@ -67,16 +69,28 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	private void injectTick(CallbackInfo ci)
 	{
 		targetScale = 1.0F;
+		targetRenderScale = 1.0F;
 		
 		getArmorSlots().forEach(stack ->
 		{
 			if (stack.getItem() instanceof IEntityResizer)
 			{
 				targetScale *= ((IEntityResizer) stack.getItem()).getScale((PlayerEntity) getEntity());
+				targetRenderScale *= ((IEntityResizer) stack.getItem()).getRenderScale((PlayerEntity) getEntity());
 			}
 		});
 		
-		prevScale = scale;
+		prevRenderScale = renderScale;
+		
+		if (targetRenderScale > renderScale)
+		{
+			setScale(Math.min(targetRenderScale, renderScale + 0.05F));
+		}
+		
+		if (targetRenderScale < renderScale)
+		{
+			setScale(Math.max(targetRenderScale, renderScale - 0.05F));
+		}
 		
 		if (targetScale > scale)
 		{
@@ -123,7 +137,7 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	@Override
 	public float getScaleForRender(float partialTick)
 	{
-		return prevScale + (scale - prevScale) * partialTick;
+		return prevRenderScale + (renderScale - prevRenderScale) * partialTick;
 	}
 	
 	@Override
