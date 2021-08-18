@@ -91,12 +91,10 @@ public class ItemInit
 	
 	// FOOD
 	
-	public static final RegistryObject<Item> HYRULE_BASS = ITEMS.register("hyrule_bass",
-			() -> new HyruleBass(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> HYRULE_BASS = ITEMS.register("hyrule_bass", HyruleBass::new);
 	public static final RegistryObject<Item> COOKED_HYRULE_BASS = ITEMS.register("cooked_hyrule_bass",
 			() -> new HyruleBassCooked(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> HYLIAN_LOACH = ITEMS.register("hylian_loach",
-			() -> new HylianLoach(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> HYLIAN_LOACH = ITEMS.register("hylian_loach", HylianLoach::new);
 	public static final RegistryObject<Item> COOKED_HYLIAN_LOACH = ITEMS.register("cooked_hylian_loach",
 			() -> new HylianLoachCooked(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	
