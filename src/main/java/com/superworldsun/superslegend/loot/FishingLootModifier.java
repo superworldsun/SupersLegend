@@ -20,12 +20,12 @@ import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
-public class FishLootModifier extends LootModifier
+public class FishingLootModifier extends LootModifier
 {
 	protected final TableLootEntry table;
 	protected final float chance;
 	
-	public FishLootModifier(ILootCondition[] conditions, TableLootEntry lootTable, float replaceChance)
+	public FishingLootModifier(ILootCondition[] conditions, TableLootEntry lootTable, float replaceChance)
 	{
 		super(conditions);
 		table = lootTable;
@@ -49,19 +49,19 @@ public class FishLootModifier extends LootModifier
 		}
 	}
 	
-	public static class Serializer extends GlobalLootModifierSerializer<FishLootModifier>
+	public static class Serializer extends GlobalLootModifierSerializer<FishingLootModifier>
 	{
 		@Override
-		public FishLootModifier read(ResourceLocation location, JsonObject object, ILootCondition[] lootConditions)
+		public FishingLootModifier read(ResourceLocation location, JsonObject object, ILootCondition[] lootConditions)
 		{
 			String resLoc = JSONUtils.getAsString(object, "table");
 			TableLootEntry table = (TableLootEntry) TableLootEntry.lootTableReference(new ResourceLocation(resLoc)).build();
 			float chance = JSONUtils.getAsFloat(object, "chance");
-			return new FishLootModifier(lootConditions, table, chance);
+			return new FishingLootModifier(lootConditions, table, chance);
 		}
 		
 		@Override
-		public JsonObject write(FishLootModifier instance)
+		public JsonObject write(FishingLootModifier instance)
 		{
 			JsonObject json = makeConditions(instance.conditions);
 			json.addProperty("table", instance.table.name.toString());
