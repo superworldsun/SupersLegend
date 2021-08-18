@@ -1,10 +1,7 @@
 package com.superworldsun.superslegend.loot;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Set;
-
-import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
@@ -18,7 +15,6 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class FishingLootModifier extends LootModifier
 {
