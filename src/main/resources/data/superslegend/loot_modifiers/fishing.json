@@ -1,0 +1,11 @@
+{
+   "type":"superslegend:fishing",
+   "conditions":[
+      {
+         "condition":"forge:loot_table_id",
+         "loot_table_id":"minecraft:gameplay/fishing"
+      }
+   ],
+   "table":"superslegend:gameplay/fishing",
+   "chance":0.3
+}
