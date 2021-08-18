@@ -1,18 +1,12 @@
 package com.superworldsun.superslegend.items.food;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
-import net.minecraftforge.event.entity.player.ItemFishedEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
-@EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class HyruleBass extends Item
 {
 	public HyruleBass()
@@ -30,11 +24,5 @@ public class HyruleBass extends Item
 	public int getUseDuration(ItemStack p_77626_1_)
 	{
 		return 32;
-	}
-	
-	@SubscribeEvent
-	public static void onItemFished(ItemFishedEvent event)
-	{
-		event.getDrops().add(new ItemStack(ItemInit.HYRULE_BASS.get()));
 	}
 }
