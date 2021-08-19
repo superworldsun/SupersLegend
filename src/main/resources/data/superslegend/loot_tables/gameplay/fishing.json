@@ -6,12 +6,12 @@
          "entries":[
             {
                "type":"minecraft:item",
-               "weight":30,
+               "weight":20,
                "name":"superslegend:hylian_loach"
             },
             {
                "type":"minecraft:item",
-               "weight":30,
+               "weight":80,
                "name":"superslegend:hyrule_bass"
             }
          ]
