@@ -69,7 +69,7 @@ public class DekuMask extends NonEnchantArmor implements IPlayerModelChanger, IE
 	@Override
 	public float getScale(PlayerEntity player)
 	{
-		return 0.75F;
+		return 0.65F;
 	}
 	
 	@Override
