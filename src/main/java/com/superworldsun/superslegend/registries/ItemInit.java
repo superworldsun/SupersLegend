@@ -157,8 +157,7 @@ public class ItemInit
 			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<ShieldItem> SACRED_SHIELD = ITEMS.register("sacred_shield",
 			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<ShieldItem> MIRROR_SHIELD = ITEMS.register("mirror_shield",
-			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> MIRROR_SHIELD = ITEMS.register("mirror_shield", MirrorShield::new);
 	
 	public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
 			() -> new ArrowFire(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
