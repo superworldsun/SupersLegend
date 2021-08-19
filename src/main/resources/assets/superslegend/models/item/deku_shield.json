@@ -1,11 +1,9 @@
 {
     "textures": {
-        "particle": "block/dark_oak_planks"
-    },
-    "textures": {
 		"0": "superslegend:item/deku_shield",
 		"particle": "superslegend:item/deku_shield"
 	},
+	"gui_light": "front",
 	"elements": [
 		{
 			"from": [3, 4, 7],

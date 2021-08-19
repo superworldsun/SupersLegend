@@ -27,7 +27,6 @@ import net.minecraft.scoreboard.Team;
 @Mixin(AbstractSkeletonEntity.class)
 public abstract class MixinAbstractSkeletonEntity extends MonsterEntity implements ITameableSkeleton
 {
-	private static final DataParameter<Boolean> TAMED = EntityDataManager.defineId(AbstractSkeletonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Optional<UUID>> OWNER_UUID = EntityDataManager.defineId(AbstractSkeletonEntity.class, DataSerializers.OPTIONAL_UUID);
 	
 	// This constructor is fake and never used
@@ -48,7 +47,6 @@ public abstract class MixinAbstractSkeletonEntity extends MonsterEntity implemen
 	protected void defineSynchedData()
 	{
 		super.defineSynchedData();
-		entityData.define(TAMED, false);
 		entityData.define(OWNER_UUID, Optional.empty());
 	}
 	

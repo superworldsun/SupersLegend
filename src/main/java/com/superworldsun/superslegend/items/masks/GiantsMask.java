@@ -35,7 +35,7 @@ public class GiantsMask extends ArmorItem implements IEntityResizer
 	public float getScale(PlayerEntity player)
 	{
 		float manaCost = 0.01F;
-		boolean hasMana = ManaProvider.get(player).getMana() >= manaCost;
+		boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
 		return hasMana ? 4.0F : 1.0F;
 	}
 }

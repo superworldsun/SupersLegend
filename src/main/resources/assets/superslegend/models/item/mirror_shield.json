@@ -1,12 +1,10 @@
 {
-    "textures": {
-        "particle": "block/dark_oak_planks"
-    },
 	"texture_size": [32, 32],
     "textures": {
 		"0": "superslegend:item/mirror_shield",
 		"particle": "superslegend:item/mirror_shield"
 	},
+	"gui_light": "front",
 	"elements": [
 		{
 			"from": [7, 3, 5],

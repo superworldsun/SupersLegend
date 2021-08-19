@@ -84,12 +84,12 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 		
 		if (targetRenderScale > renderScale)
 		{
-			setScale(Math.min(targetRenderScale, renderScale + 0.05F));
+			renderScale = Math.min(targetRenderScale, renderScale + 0.05F);
 		}
 		
 		if (targetRenderScale < renderScale)
 		{
-			setScale(Math.max(targetRenderScale, renderScale - 0.05F));
+			renderScale = Math.max(targetRenderScale, renderScale - 0.05F);
 		}
 		
 		if (targetScale > scale)
