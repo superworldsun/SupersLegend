@@ -16,12 +16,7 @@ import com.superworldsun.superslegend.client.render.PedestalRenderer;
 import com.superworldsun.superslegend.client.render.PoisonArrowRender;
 import com.superworldsun.superslegend.client.render.ShockArrowRender;
 import com.superworldsun.superslegend.client.render.SilverArrowRender;
-import com.superworldsun.superslegend.client.screen.BagScreen;
-import com.superworldsun.superslegend.client.screen.BigQuiverScreen;
-import com.superworldsun.superslegend.client.screen.LetterScreen;
-import com.superworldsun.superslegend.client.screen.MediumQuiverScreen;
-import com.superworldsun.superslegend.client.screen.PostboxScreen;
-import com.superworldsun.superslegend.client.screen.SmallQuiverScreen;
+import com.superworldsun.superslegend.client.screen.*;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ContainerInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
@@ -50,6 +45,8 @@ public class ClientEventBusSubscriber
 		RenderTypeLookup.setRenderLayer(BlockInit.GRATE_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.SPIKES_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.GRASS_PATCH_BLOCK.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.ODD_MUSHROOM.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.MAGIC_MUSHROOM.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.SHADOW_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.FALSE_SHADOW_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.HIDDEN_SHADOW_BLOCK.get(), RenderType.cutout());
@@ -89,6 +86,9 @@ public class ClientEventBusSubscriber
 		ScreenManager.register(ContainerInit.SMALL_QUIVER.get(), SmallQuiverScreen::new);
 		ScreenManager.register(ContainerInit.MEDIUM_QUIVER.get(), MediumQuiverScreen::new);
 		ScreenManager.register(ContainerInit.BIG_QUIVER.get(), BigQuiverScreen::new);
+		ScreenManager.register(ContainerInit.SMALL_BOMB_BAG.get(), SmallBombBagScreen::new);
+		//ScreenManager.register(ContainerInit.MEDIUM_BOMB_BAG.get(), MediumQuiverScreen::new);
+		//ScreenManager.register(ContainerInit.BIG_BOMB_BAG.get(), BigQuiverScreen::new);
 		ScreenManager.register(ContainerInit.POSTBOX.get(), PostboxScreen::new);
 	}
 }
