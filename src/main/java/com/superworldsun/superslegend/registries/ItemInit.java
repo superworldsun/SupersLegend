@@ -76,6 +76,9 @@ public class ItemInit
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ANCIENT_SPRING = ITEMS.register("ancient_spring",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> MOON_TEAR = ITEMS.register("moon_tear",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	
 	public static final RegistryObject<Item> MASTER_ORE = ITEMS.register("master_ore", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASTER_SWORD_BLADE = ITEMS.register("master_sword_blade",
@@ -154,6 +157,8 @@ public class ItemInit
 			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<ShieldItem> SACRED_SHIELD = ITEMS.register("sacred_shield",
 			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<ShieldItem> MIRROR_SHIELD = ITEMS.register("mirror_shield",
+			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	
 	public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
 			() -> new ArrowFire(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -188,8 +193,7 @@ public class ItemInit
 	public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", MediumQuiver::new);
 	public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", BigQuiver::new);
 
-	public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag", SmallBombBag::new);
 
 	public static final RegistryObject<Item> BIG_BOMB_BAG = ITEMS.register("big_bomb_bag",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -253,9 +257,20 @@ public class ItemInit
 			() -> new MagicMirror(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<MagicCape> MAGIC_CAPE = ITEMS.register("magic_cape",
 			() -> new MagicCape(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> MAGIC_POWDER = ITEMS.register("magic_powder",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> REGULAR_BOOMERANG = ITEMS.register("regular_boomerang",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> BOMB = ITEMS.register("bomb", () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BOMB = ITEMS.register("bomb",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> MAGIC_HAMMER = ITEMS.register("magic_hammer",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> MEGATON_HAMMER = ITEMS.register("megaton_hammer",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<SkullHammer> SKULL_HAMMER = ITEMS.register("skull_hammer",
+		() -> new SkullHammer(ItemToolTiers.SKULL_HAMMER, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
 	public static final RegistryObject<Item> FIRE_ROD = ITEMS.register("fire_rod",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod",
