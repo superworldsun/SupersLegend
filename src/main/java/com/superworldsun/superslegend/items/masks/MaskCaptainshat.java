@@ -51,7 +51,7 @@ public class MaskCaptainshat extends NonEnchantArmor
 		}
 		
 		// Only works for skeletons
-		if (!isEntityAffected(event.getEntityLiving()))
+		if (!EntityTypeTags.SKELETONS.contains(event.getEntity().getType()))
 		{
 			return;
 		}
@@ -62,11 +62,14 @@ public class MaskCaptainshat extends NonEnchantArmor
 			return;
 		}
 		
-		// Reset target if target has hat equipped
-		if (event.getTarget().getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.MASK_CAPTAINSHAT.get())
+		// Only if target has hat equipped
+		if (event.getTarget().getItemBySlot(EquipmentSlotType.HEAD).getItem() != ItemInit.MASK_CAPTAINSHAT.get())
 		{
-			((MobEntity) event.getEntityLiving()).setTarget(null);
+			return;
 		}
+		
+		// Reset target
+		((MobEntity) event.getEntity()).setTarget(null);
 		
 		// Everything below works only for tameable skeletons
 		if (!(event.getEntity() instanceof ITameableSkeleton))
@@ -99,10 +102,5 @@ public class MaskCaptainshat extends NonEnchantArmor
 		{
 			tameableSkeleton.setOwner(null);
 		}
-	}
-	
-	private static boolean isEntityAffected(LivingEntity entity)
-	{
-		return EntityTypeTags.SKELETONS.contains(entity.getType());
 	}
 }
