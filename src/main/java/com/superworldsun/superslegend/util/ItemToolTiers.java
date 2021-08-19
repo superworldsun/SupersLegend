@@ -19,6 +19,8 @@ public enum ItemToolTiers implements IItemTier {
     BIGGORONS_SWORD  (0, 0, -2F, 14F, 0, () -> { return null; }),
     GUARDIAN_SWORD   (0, 0, -2F, 5F, 0, () -> { return null; }),
 
+    SKULL_HAMMER     (0, 0, -2F, 8F, 0, () -> { return null; }),
+
     //MASTER SWORDS
     MASTER_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
     MASTER_SWORD_V2  (0, 0, -2F, 8F, 0, () -> { return null; }),
