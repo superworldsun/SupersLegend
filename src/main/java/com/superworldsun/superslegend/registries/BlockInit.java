@@ -31,6 +31,8 @@ public class BlockInit
 	public static final RegistryObject<Block> POSTBOX_TOP = BLOCKS.register("postbox_top", PostboxTopBlock::new);
 	public static final RegistryObject<Block> GRATE_BLOCK = BLOCKS.register("grate_block", () -> new GrateBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> GRASS_PATCH_BLOCK = BLOCKS.register("grass_patch_block", () -> new GrassPatch(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> ODD_MUSHROOM = BLOCKS.register("odd_mushroom", () -> new OddMushroomBlock(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> MAGIC_MUSHROOM = BLOCKS.register("magic_mushroom", () -> new MagicMushroomBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> TORCH_TOWER = BLOCKS.register("torch_tower", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> MASTER_ORE_BLOCK = BLOCKS.register("master_ore_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> SHADOW_BLOCK = BLOCKS.register("shadow_block", () -> new Block(PropertiesInit.WRECKAGE));
