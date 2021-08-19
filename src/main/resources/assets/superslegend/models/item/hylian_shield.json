@@ -1,11 +1,9 @@
 {
     "textures": {
-        "particle": "block/dark_oak_planks"
-    },
-    "textures": {
 		"0": "superslegend:item/hylianshield",
 		"particle": "superslegend:item/hylianshield"
 	},
+	"gui_light": "front",
 	"elements": [
 		{
 			"from": [7, 0, 7],
