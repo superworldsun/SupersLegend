@@ -18,5 +18,8 @@ public class ContainerInit
 	public static final RegistryObject<ContainerType<SmallQuiverContainer>> SMALL_QUIVER = CONTAINERS.register("small_quiver", () -> IForgeContainerType.create(SmallQuiverContainer::new));
 	public static final RegistryObject<ContainerType<MediumQuiverContainer>> MEDIUM_QUIVER = CONTAINERS.register("medium_quiver", () -> IForgeContainerType.create(MediumQuiverContainer::new));
 	public static final RegistryObject<ContainerType<BigQuiverContainer>> BIG_QUIVER = CONTAINERS.register("big_quiver", () -> IForgeContainerType.create(BigQuiverContainer::new));
+	public static final RegistryObject<ContainerType<SmallBombContainer>> SMALL_BOMB_BAG = CONTAINERS.register("small_bomb_bag", () -> IForgeContainerType.create(SmallBombContainer::new));
+	//public static final RegistryObject<ContainerType<MediumQuiverContainer>> BIG_BOMB_BAG = CONTAINERS.register("medium_bomb_bag", () -> IForgeContainerType.create(MediumQuiverContainer::new));
+	//public static final RegistryObject<ContainerType<BigQuiverContainer>> BIGGEST_BOMB_BAG = CONTAINERS.register("big_bomb_bag", () -> IForgeContainerType.create(BigQuiverContainer::new));
 	public static final RegistryObject<ContainerType<PostboxContainer>> POSTBOX = CONTAINERS.register("postbox", () -> IForgeContainerType.create(PostboxContainer::new));
 }
