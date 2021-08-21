@@ -1,21 +1,7 @@
 package com.superworldsun.superslegend.client;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.render.AncientArrowRender;
-import com.superworldsun.superslegend.client.render.BombArrowRender;
-import com.superworldsun.superslegend.client.render.FalseShadowRenderer;
-import com.superworldsun.superslegend.client.render.FanRenderer;
-import com.superworldsun.superslegend.client.render.FireArrowRender;
-import com.superworldsun.superslegend.client.render.HiddenShadowRenderer;
-import com.superworldsun.superslegend.client.render.IceArrowRender;
-import com.superworldsun.superslegend.client.render.IceBeamRender;
-import com.superworldsun.superslegend.client.render.MagicFireArrowRender;
-import com.superworldsun.superslegend.client.render.MagicIceArrowRender;
-import com.superworldsun.superslegend.client.render.MagicLightArrowRender;
-import com.superworldsun.superslegend.client.render.PedestalRenderer;
-import com.superworldsun.superslegend.client.render.PoisonArrowRender;
-import com.superworldsun.superslegend.client.render.ShockArrowRender;
-import com.superworldsun.superslegend.client.render.SilverArrowRender;
+import com.superworldsun.superslegend.client.render.*;
 import com.superworldsun.superslegend.client.screen.*;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ContainerInit;
@@ -62,7 +48,8 @@ public class ClientEventBusSubscriber
 		RenderTypeLookup.setRenderLayer(FluidInit.MUD_SOURCE.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(FluidInit.POISON_FLOWING.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(FluidInit.POISON_SOURCE.get(), RenderType.translucent());
-		
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.PELLET.get(), PelletRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.POISON_ARROW.get(), PoisonArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.FIRE_ARROW.get(), FireArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.ICE_ARROW.get(), IceArrowRender::new);
