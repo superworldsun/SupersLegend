@@ -25,5 +25,13 @@ public class PropertiesInit {
             .harvestTool(ToolType.PICKAXE)
             .requiresCorrectToolForDrops();
 
+    public static final Block.Properties HAMMERED_WOODEN_PEG = Block.Properties.of(Material.WOOD)
+            .strength(1.0F, 1.0F)
+            .sound(SoundType.WOOD)
+            .harvestLevel(1)
+            .harvestTool(ToolType.AXE)
+            .randomTicks()
+            .requiresCorrectToolForDrops();
+
 }
 
