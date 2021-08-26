@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items.weapons;
 
+import com.superworldsun.superslegend.items.custom.ItemCustomSword;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,8 +15,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-//TODO MAKE OLD CUSTOM CLASS EXTENSION
-public class GiantsKnife extends SwordItem
+public class GiantsKnife extends ItemCustomSword
 {
 	public GiantsKnife(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder)
 	{
@@ -28,15 +28,6 @@ public class GiantsKnife extends SwordItem
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.GRAY + "A Large Sword that requires two hands to wield"));
 	}
-
-	/*@Override
-	public int getDamage(ItemStack stack) {
-		if (stack.getDamage() <= 2)
-		{
-
-		}
-		return 0;
-	}*/
 
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
 	{		

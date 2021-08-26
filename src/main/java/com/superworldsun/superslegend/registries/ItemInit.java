@@ -10,6 +10,7 @@ import com.superworldsun.superslegend.items.food.HyruleBassCooked;
 import com.superworldsun.superslegend.items.items.*;
 import com.superworldsun.superslegend.items.masks.*;
 import com.superworldsun.superslegend.items.weapons.*;
+import com.superworldsun.superslegend.items.weapons.SlingShot;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -150,7 +151,7 @@ public class ItemInit
 	public static final RegistryObject<LynelBowX5> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
 			() -> new LynelBowX5(1, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new SlingShot(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<DekuShield> DEKU_SHIELD = ITEMS.register("deku_shield",
 			() -> new DekuShield(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<ShieldItem> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
@@ -158,7 +159,10 @@ public class ItemInit
 	public static final RegistryObject<ShieldItem> SACRED_SHIELD = ITEMS.register("sacred_shield",
 			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MIRROR_SHIELD = ITEMS.register("mirror_shield", MirrorShield::new);
-	
+
+	public static final RegistryObject<Item> DEKU_SEED = ITEMS.register("deku_seed",
+			() -> new DekuSeed(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
 	public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
 			() -> new ArrowFire(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ICE_ARROW = ITEMS.register("ice_arrow", () -> new ArrowIce(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -263,12 +267,12 @@ public class ItemInit
 	public static final RegistryObject<Item> BOMB = ITEMS.register("bomb",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MAGIC_HAMMER = ITEMS.register("magic_hammer",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MagicHammer(ItemToolTiers.MAGIC_HAMMER, 2, -2.6f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MEGATON_HAMMER = ITEMS.register("megaton_hammer",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new MegatonHammer(ItemToolTiers.MEGATON_HAMMER, 2, -2.8f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
 	public static final RegistryObject<SkullHammer> SKULL_HAMMER = ITEMS.register("skull_hammer",
-		() -> new SkullHammer(ItemToolTiers.SKULL_HAMMER, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+		() -> new SkullHammer(ItemToolTiers.SKULL_HAMMER, 2, -3.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
 	public static final RegistryObject<Item> FIRE_ROD = ITEMS.register("fire_rod",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));

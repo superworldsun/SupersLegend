@@ -1,0 +1,22 @@
+{
+    "texture_size": [64, 64],
+    "textures": {
+        "0": "superslegend:block/rusted_peg_block",
+        "particle": "superslegend:block/rusted_peg_block"
+    },
+    "elements": [
+        {
+            "from": [3.75, -0.05, 3.75],
+            "to": [12.25, 0.2, 12.25],
+            "faces": {
+                "north": {"uv": [6.25, 0, 8.5, 0.25], "texture": "#0"},
+                "east": {"uv": [6.25, 0.25, 8.5, 0.5], "texture": "#0"},
+                "south": {"uv": [6.25, 0.5, 8.5, 0.75], "texture": "#0"},
+                "west": {"uv": [6.25, 0.75, 8.5, 1], "texture": "#0"},
+                "up": {"uv": [6.25, 2.25, 4, 0], "texture": "#0"},
+                "down": {"uv": [6.25, 2.25, 4, 4.5], "texture": "#0"}
+            }
+        }
+    ],
+    "display": {}
+}
