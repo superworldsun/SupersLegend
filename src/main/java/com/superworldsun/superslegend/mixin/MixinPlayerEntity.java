@@ -14,6 +14,10 @@ import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IHoveringEntity;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.interfaces.IResizableEntity;
+import com.superworldsun.superslegend.light.AbstractLightEmitter;
+import com.superworldsun.superslegend.light.EntityLightEmitter;
+import com.superworldsun.superslegend.light.ILightEmitterContainer;
+import com.superworldsun.superslegend.light.ILightReceiver;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.entity.EntitySize;
@@ -25,9 +29,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.vector.Vector3d;
 
 @Mixin(PlayerEntity.class)
-public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, IJumpingEntity
+public abstract class MixinPlayerEntity extends LivingEntity
+		implements IResizableEntity, IHoveringEntity, IJumpingEntity, ILightReceiver, ILightEmitterContainer
 {
 	private float targetScale = 1.0F;
 	private float scale = 1.0F;
@@ -36,6 +42,9 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	private float prevRenderScale = 1.0F;
 	private int hoverTime;
 	private int hoverHeight;
+	private boolean isLit;
+	private EntityLightEmitter lightEmitter = new EntityLightEmitter(this::getCommandSenderWorld, () -> Vector3d.directionFromRotation(getRotationVector()),
+			this::position, this);
 	
 	// This constructor is fake and never used
 	protected MixinPlayerEntity()
@@ -180,6 +189,30 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	public boolean isJumping()
 	{
 		return jumping;
+	}
+	
+	@Override
+	public void receiveLight()
+	{
+		isLit = true;
+	}
+	
+	@Override
+	public void stopReceivingLight()
+	{
+		isLit = false;
+	}
+	
+	@Override
+	public boolean isLit()
+	{
+		return isLit;
+	}
+	
+	@Override
+	public AbstractLightEmitter getLightEmitter()
+	{
+		return lightEmitter;
 	}
 	
 	private void setScale(float scale)
