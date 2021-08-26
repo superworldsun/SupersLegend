@@ -48,7 +48,8 @@ public class ClientEventBusSubscriber
 		RenderTypeLookup.setRenderLayer(FluidInit.MUD_SOURCE.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(FluidInit.POISON_FLOWING.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(FluidInit.POISON_SOURCE.get(), RenderType.translucent());
-		
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.PELLET.get(), PelletRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.POISON_ARROW.get(), PoisonArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.FIRE_ARROW.get(), FireArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.ICE_ARROW.get(), IceArrowRender::new);

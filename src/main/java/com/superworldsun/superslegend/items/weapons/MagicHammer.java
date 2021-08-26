@@ -2,40 +2,34 @@ package com.superworldsun.superslegend.items.weapons;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.registries.ArmourInit;
-import com.superworldsun.superslegend.util.ItemToolTiers;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.IVanishable;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.IItemTier;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.TieredItem;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.sound.SoundEvent;
 
 import java.util.List;
-import java.util.Set;
 
-public class SkullHammer extends TieredItem implements IVanishable {
+public class MagicHammer extends TieredItem implements IVanishable {
 	private final float attackDamage;
 	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
-	public SkullHammer(IItemTier p_i48460_1_, int p_i48460_2_, float p_i48460_3_, Item.Properties p_i48460_4_) {
+	public MagicHammer(IItemTier p_i48460_1_, int p_i48460_2_, float p_i48460_3_, Properties p_i48460_4_) {
 		super(p_i48460_1_, p_i48460_4_);
 		this.attackDamage = (float)p_i48460_2_ + p_i48460_1_.getAttackDamageBonus();
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
@@ -90,6 +84,6 @@ public class SkullHammer extends TieredItem implements IVanishable {
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.WHITE + "A giant hammer with strong power"));
+		list.add(new StringTextComponent(TextFormatting.WHITE + "A large hammer"));
 	}
 }

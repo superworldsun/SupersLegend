@@ -122,7 +122,7 @@ public class ClawshotEntity extends AbstractArrowEntity {
                         }
 
                         double brakeZone = ((6D * (maxSpeed)) / 10);
-                        double pullSpeed = (maxSpeed) / 6D;
+                        double pullSpeed = (maxSpeed) / 9D;
                         Vector3d distance = origin.position().subtract(target.position().add(0, target.getBbHeight() / 2, 0)); //Get distance.
                         double reduction = (pullSpeed * distance.length() / brakeZone); //Get motion reduction.
                         Vector3d motion = distance.normalize().multiply(reduction, reduction, reduction); //Get last motion.
