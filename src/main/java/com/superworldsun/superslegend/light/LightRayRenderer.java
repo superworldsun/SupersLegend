@@ -39,7 +39,7 @@ public class LightRayRenderer
 		
 		if (lightDirection.y != 0)
 		{
-			matrixStack.mulPose(Vector3f.ZP.rotation((float) Math.atan2(lightDirection.y, lightDirection.x)));
+			matrixStack.mulPose(Vector3f.ZP.rotation(-(float) Math.atan2(lightDirection.y, lightDirection.x)));
 		}
 		
 		matrixStack.translate(-0.5D, -0.5D, -0.5D);
