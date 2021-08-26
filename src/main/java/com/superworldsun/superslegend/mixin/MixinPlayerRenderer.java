@@ -12,6 +12,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.interfaces.IHandRenderer;
 import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
 import com.superworldsun.superslegend.interfaces.IResizableEntity;
+import com.superworldsun.superslegend.light.ILightEmitterContainer;
+import com.superworldsun.superslegend.light.LightRayRenderer;
 
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -63,9 +65,10 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 	}
 	
 	@Inject(method = "render", at = @At("HEAD"))
-	public void injectRender(AbstractClientPlayerEntity player, float rotationYaw, float rotationPitch, MatrixStack matrix, IRenderTypeBuffer buffer, int light,
-			CallbackInfo ci)
+	public void injectRender(AbstractClientPlayerEntity player, float rotationYaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer renderBuffer,
+			int light, CallbackInfo ci)
 	{
+		LightRayRenderer.render(((ILightEmitterContainer) player).getLightEmitter(), partialTicks, matrix, renderBuffer, light);
 		chooseCurrentModel(player);
 	}
 	

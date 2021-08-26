@@ -19,4 +19,6 @@ public class TileEntityInit
 	public static final RegistryObject<TileEntityType<FalseShadowTileEntity>> FALSE_SHADOW = TILES.register("false_shadow", FalseShadowTileEntity::createType);
 	public static final RegistryObject<TileEntityType<HiddenShadowTileEntity>> HIDDEN_SHADOW = TILES.register("hidden_shadow", HiddenShadowTileEntity::createType);
 	public static final RegistryObject<TileEntityType<PostboxTileEntity>> POSTBOX = TILES.register("postbox", PostboxTileEntity::createType);
+	public static final RegistryObject<TileEntityType<LightEmitterTileEntity>> LIGHT_EMITTER = TILES.register("light_emitter", LightEmitterTileEntity::createType);
+	public static final RegistryObject<TileEntityType<LightPrismTileEntity>> LIGHT_PRISM = TILES.register("light_prism", LightPrismTileEntity::createType);
 }

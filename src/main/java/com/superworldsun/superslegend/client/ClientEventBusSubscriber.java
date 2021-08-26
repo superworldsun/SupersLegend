@@ -67,6 +67,8 @@ public class ClientEventBusSubscriber
 		ClientRegistry.bindTileEntityRenderer(TileEntityInit.SWITCHABLE_FAN.get(), FanRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(TileEntityInit.FALSE_SHADOW.get(), FalseShadowRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(TileEntityInit.HIDDEN_SHADOW.get(), HiddenShadowRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(TileEntityInit.LIGHT_EMITTER.get(), LightEmitterRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(TileEntityInit.LIGHT_PRISM.get(), LightPrismRenderer::new);
 		
 		ScreenManager.register(ContainerInit.BAG.get(), BagScreen::new);
 		ScreenManager.register(ContainerInit.LETTER.get(), LetterScreen::new);

@@ -1,0 +1,10 @@
+{
+   "variants":{
+      "lit=false":{
+         "model":"superslegend:block/light_prism"
+      },
+      "lit=true":{
+         "model":"superslegend:block/light_prism"
+      }
+   }
+}
