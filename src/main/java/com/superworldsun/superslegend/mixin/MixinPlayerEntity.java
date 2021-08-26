@@ -29,7 +29,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.vector.Vector3d;
 
 @Mixin(PlayerEntity.class)
 public abstract class MixinPlayerEntity extends LivingEntity
@@ -43,8 +42,7 @@ public abstract class MixinPlayerEntity extends LivingEntity
 	private int hoverTime;
 	private int hoverHeight;
 	private boolean isLit;
-	private EntityLightEmitter lightEmitter = new EntityLightEmitter(this::getCommandSenderWorld, () -> Vector3d.directionFromRotation(getRotationVector()),
-			this::position, this);
+	private EntityLightEmitter lightEmitter = new EntityLightEmitter(this::getCommandSenderWorld, this::getLookAngle, this::position, this);
 	
 	// This constructor is fake and never used
 	protected MixinPlayerEntity()
