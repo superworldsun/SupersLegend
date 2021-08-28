@@ -16,7 +16,7 @@ public abstract class AbstractLightEmitter
 {
 	private static final Vector3d LIGHT_LENGTH = new Vector3d(48, 48, 48);
 	private final Supplier<Vector3d> lightDirectionSupplier;
-	private final Supplier<Vector3d> coordinatesSupplier;
+	private final Supplier<Vector3d> positionSupplier;
 	private final Supplier<World> levelSupplier;
 	public Vector3d lightVector = Vector3d.ZERO;
 	public Vector3d prevLightVector = Vector3d.ZERO;
@@ -26,7 +26,7 @@ public abstract class AbstractLightEmitter
 	public AbstractLightEmitter(Supplier<World> levelSupplier, Supplier<Vector3d> lightDirectionSupplier, Supplier<Vector3d> coordinatesSupplier)
 	{
 		this.lightDirectionSupplier = lightDirectionSupplier;
-		this.coordinatesSupplier = coordinatesSupplier;
+		this.positionSupplier = coordinatesSupplier;
 		this.levelSupplier = levelSupplier;
 	}
 	
@@ -41,7 +41,7 @@ public abstract class AbstractLightEmitter
 			return;
 		}
 		
-		Vector3d coordinates = coordinatesSupplier.get();
+		Vector3d coordinates = positionSupplier.get();
 		World level = levelSupplier.get();
 		prevLightVector = lightVector;
 		lightVector = lightDirection.multiply(LIGHT_LENGTH);
@@ -56,17 +56,19 @@ public abstract class AbstractLightEmitter
 		{
 			BlockRayTraceResult blockRayTraceResult = (BlockRayTraceResult) rayTraceResult;
 			litObject = level.getBlockEntity(blockRayTraceResult.getBlockPos());
-			vectorToBlock = lightDirection.multiply(rayTraceResult.getLocation().subtract(coordinates));
+			double length = rayTraceResult.getLocation().subtract(coordinates).length();
+			vectorToBlock = lightDirection.multiply(length, length, length);
 		}
 		
 		rayTraceResult = ProjectileHelper.getEntityHitResult(level, getSourceEntity(), coordinates, lightEnd, boundingBox, e -> true);
 		
 		if (rayTraceResult != null)
 		{
-			vectorToEntity = lightDirection.multiply(rayTraceResult.getLocation().subtract(coordinates));
+			double length = rayTraceResult.getLocation().subtract(coordinates).length();
+			vectorToEntity = lightDirection.multiply(length, length, length);
 		}
 		
-		if (vectorToEntity.length() < vectorToBlock.length())
+		if (rayTraceResult != null && vectorToEntity.length() < vectorToBlock.length())
 		{
 			EntityRayTraceResult entityRayTraceResult = (EntityRayTraceResult) rayTraceResult;
 			litObject = entityRayTraceResult.getEntity();
@@ -94,6 +96,11 @@ public abstract class AbstractLightEmitter
 	public Vector3d getLightDirection()
 	{
 		return lightDirectionSupplier.get();
+	}
+	
+	public Vector3d getLightPosition()
+	{
+		return positionSupplier.get();
 	}
 	
 	protected Entity getSourceEntity()

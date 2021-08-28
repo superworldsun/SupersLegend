@@ -33,16 +33,15 @@ public class LightRayRenderer
 		}
 		
 		matrixStack.pushPose();
-		matrixStack.translate(lightDirection.x * 1.001F, lightDirection.y * 1.001F, lightDirection.z * 1.001F);
-		matrixStack.translate(0.5D, 0.5D, 0.5D);
+		matrixStack.translate(emitter.getLightPosition().x, emitter.getLightPosition().y, emitter.getLightPosition().z);
 		matrixStack.mulPose(Vector3f.YP.rotation((float) (Math.atan2(lightDirection.x, lightDirection.z) - Math.PI / 2)));
 		
 		if (lightDirection.y != 0)
 		{
-			matrixStack.mulPose(Vector3f.ZP.rotation(-(float) Math.atan2(lightDirection.y, lightDirection.x)));
+			matrixStack.mulPose(Vector3f.ZN.rotation(-(float) Math.atan2(lightDirection.y, lightDirection.x)));
 		}
 		
-		matrixStack.translate(-0.5D, -0.5D, -0.5D);
+		matrixStack.translate(0, -0.5, -0.5);
 		float prevRaySize = (float) emitter.prevLightVector.length();
 		float raySize = (float) emitter.lightVector.length();
 		matrixStack.scale(prevRaySize + (raySize - prevRaySize) * partialTicks, 1, 1);
