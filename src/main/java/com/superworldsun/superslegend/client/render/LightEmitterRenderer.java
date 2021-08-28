@@ -19,6 +19,7 @@ public class LightEmitterRenderer extends TileEntityRenderer<LightEmitterTileEnt
 	public void render(LightEmitterTileEntity te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer renderBuffer, int combinedLight,
 			int combinedOverlay)
 	{
+		matrixStack.translate(-te.getBlockPos().getX(), -te.getBlockPos().getY(), -te.getBlockPos().getZ());
 		LightRayRenderer.render(te.lightEmitter, partialTicks, matrixStack, renderBuffer, combinedLight);
 	}
 	

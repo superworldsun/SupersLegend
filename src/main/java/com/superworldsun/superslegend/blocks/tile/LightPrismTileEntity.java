@@ -7,6 +7,10 @@ import com.superworldsun.superslegend.light.ILightReceiver;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.TileEntityInit;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -81,6 +85,40 @@ public class LightPrismTileEntity extends TileEntity implements ITickableTileEnt
 	public boolean isLit()
 	{
 		return isLit;
+	}
+	
+	@Override
+	public CompoundNBT save(CompoundNBT compound)
+	{
+		compound.putFloat("targetRotation", targetRotation);
+		compound.putFloat("rotation", rotation);
+		return super.save(compound);
+	}
+	
+	@Override
+	public void load(BlockState state, CompoundNBT compound)
+	{
+		targetRotation = compound.getFloat("targetRotation");
+		rotation = compound.getFloat("rotation");
+		super.load(state, compound);
+	}
+	
+	@Override
+	public SUpdateTileEntityPacket getUpdatePacket()
+	{
+		return new SUpdateTileEntityPacket(worldPosition, 0, getUpdateTag());
+	}
+	
+	@Override
+	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet)
+	{
+		load(level.getBlockState(packet.getPos()), packet.getTag());
+	}
+	
+	@Override
+	public CompoundNBT getUpdateTag()
+	{
+		return save(new CompoundNBT());
 	}
 	
 	private Vector3d getLightDirecion()
