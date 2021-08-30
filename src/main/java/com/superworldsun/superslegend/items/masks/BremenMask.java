@@ -20,6 +20,8 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.pathfinding.FlyingPathNavigator;
+import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -88,6 +90,12 @@ public class BremenMask extends NonEnchantArmor implements IMaskAbility
 		if (event.getEntity() instanceof AnimalEntity)
 		{
 			AnimalEntity animal = (AnimalEntity) event.getEntity();
+			
+			if (!(animal.getNavigation() instanceof GroundPathNavigator) && !(animal.getNavigation() instanceof FlyingPathNavigator))
+			{
+				return;
+			}
+			
 			animal.goalSelector.addGoal(3, new FollowBremenMaskGoal(animal, 1.2D, false));
 		}
 	}
