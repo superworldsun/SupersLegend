@@ -19,6 +19,11 @@ public class BlockInit
 	public static final RegistryObject<Block> SILVER_RUPEE_BLOCK = BLOCKS.register("silver_rupee_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> GOLD_RUPEE_BLOCK = BLOCKS.register("gold_rupee_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> SPIKES_BLOCK = BLOCKS.register("spikes_block", () -> new SpikesBlock(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> ANCIENT_TABLET = BLOCKS.register("ancient_tablet", () -> new AncientTablet(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> ANCIENT_TABLET_RUBBLE = BLOCKS.register("ancient_tablet_rubble", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> ANCIENT_TABLET_BOMBOS = BLOCKS.register("ancient_tablet_bombos", () -> new AncientTablet(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> ANCIENT_TABLET_ETHER = BLOCKS.register("ancient_tablet_ether", () -> new AncientTablet(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> ANCIENT_TABLET_QUAKE = BLOCKS.register("ancient_tablet_quake", () -> new AncientTablet(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> GOSSIP_STONE_BLOCK = BLOCKS.register("gossip_stone_block", () -> new GossipStoneBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> GOSSIP_STONE_TOP = BLOCKS.register("gossip_stone_top", GossipStoneTopBlock::new);
 	public static final RegistryObject<Block> BUSH_BLOCK = BLOCKS.register("bush_block", () -> new BushBlock(PropertiesInit.WRECKAGE));
