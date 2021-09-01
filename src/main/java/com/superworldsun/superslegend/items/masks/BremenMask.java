@@ -41,6 +41,7 @@ public class BremenMask extends NonEnchantArmor implements IMaskAbility
 		super(ArmourInit.BREMEN_MASK, EquipmentSlotType.HEAD, properties);
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
@@ -74,7 +75,7 @@ public class BremenMask extends NonEnchantArmor implements IMaskAbility
 		IMaskAbility.super.stopUsingAbility(player);
 	}
 	
-	@OnlyIn(value = Dist.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	private void playMaskSound(PlayerEntity player)
 	{
 		Minecraft client = Minecraft.getInstance();

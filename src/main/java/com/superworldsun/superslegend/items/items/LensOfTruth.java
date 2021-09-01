@@ -112,6 +112,7 @@ public class LensOfTruth extends Item
 		player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.LENS_OF_TRUTH_OFF.get(), SoundCategory.PLAYERS, 1f, 1f);
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
