@@ -38,6 +38,7 @@ public class DekuMask extends NonEnchantArmor implements IPlayerModelChanger, IE
 		super(ArmourInit.DEKU_MASK, EquipmentSlotType.HEAD, properties);
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
@@ -52,14 +53,14 @@ public class DekuMask extends NonEnchantArmor implements IPlayerModelChanger, IE
 		player.removeEffect(Effects.POISON);
 	}
 	
-	@OnlyIn(value = Dist.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public PlayerModel<AbstractClientPlayerEntity> getPlayerModel(AbstractClientPlayerEntity player)
 	{
 		return new DekuPlayerModel();
 	}
 	
-	@OnlyIn(value = Dist.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public ResourceLocation getPlayerTexture(AbstractClientPlayerEntity player)
 	{
