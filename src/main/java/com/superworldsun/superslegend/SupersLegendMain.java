@@ -173,6 +173,9 @@ public class SupersLegendMain
 		{
 			register(ItemInit.LENS_OF_TRUTH.get(), new ResourceLocation("using"),
 					(stack, world, entity) -> entity != null && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+			register(ItemInit.CLAWSHOT.get(), new ResourceLocation("pulling"),
+					(stack, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 			
 			register(ItemInit.METAL_BOW.get(), new ResourceLocation("pull"), (stack, world, entity) ->
 			{
