@@ -52,14 +52,14 @@ public class SlingShot extends BowItem {
 
 			if (!ammoItem.isEmpty() || infiniteAmmo) {
 				if (ammoItem.isEmpty()) {
-					ammoItem = new ItemStack(ItemInit.DEKU_SEED.get());
+					ammoItem = new ItemStack(ItemInit.DEKU_SEEDS.get());
 				}
 
 				float f = getPowerForTime(i);
 				if (!((double) f < 0.1D)) {
 					boolean flag1 = player.abilities.instabuild || (ammoItem.getItem() instanceof DekuSeed && ((DekuSeed) ammoItem.getItem()).isInfinite(ammoItem, stack, player));
 					if (!worldIn.isClientSide) {
-						DekuSeed DekuSeed = (DekuSeed) (ammoItem.getItem() instanceof DekuSeed ? ammoItem.getItem() : ItemInit.DEKU_SEED.get());
+						DekuSeed DekuSeed = (DekuSeed) (ammoItem.getItem() instanceof DekuSeed ? ammoItem.getItem() : ItemInit.DEKU_SEEDS.get());
 						PelletEntity shot = (PelletEntity) DekuSeed.createArrow(worldIn, ammoItem, player);
 						shot.shootFromRotation(player, player.xRot, player.yRot, 0.0F, f * 3.0F, 1.0F);
 					}
