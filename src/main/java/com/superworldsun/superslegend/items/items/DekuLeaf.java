@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -98,9 +99,10 @@ public class DekuLeaf extends Item
 
 		{
 			player.fallDistance *= 0.5F;
-			player.push(0f, 0.235f, 0f );
+			//player.push(0f, 0.235f, 0f );
 			
-			player.addEffect(new EffectInstance(Objects.requireNonNull(Effect.byId(28)), 11, 10, false, false));
+			//player.addEffect(new EffectInstance(Objects.requireNonNull(Effect.byId(28)), 11, 10, false, false));
+			player.addEffect(new EffectInstance(Effects.LEVITATION, 11, -1, false, false, false));
 			ManaProvider.get(player).spendMana(manaCost);
 			
 			Random rand = player.level.random;
