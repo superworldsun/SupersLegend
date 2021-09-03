@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.entities.projectiles.hooks;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.items.HookshotItem;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -18,6 +19,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.MathHelper;
@@ -52,9 +54,9 @@ public class HookshotEntity extends AbstractArrowEntity {
 
     public HookshotEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity owner, World world) {
         super(type, owner, world);
+        this.setSoundEvent(SoundInit.HOOKSHOT_TARGET.get());
         this.setNoGravity(true);
         this.setBaseDamage(0);
-
     }
 
     public HookshotEntity(EntityType<HookshotEntity> hookshotEntityEntityType, World world) {
@@ -73,6 +75,12 @@ public class HookshotEntity extends AbstractArrowEntity {
     @Override
     public void tick() {
         super.tick();
+
+        if(this.tickCount % 3 == 0)
+        {
+            BlockPos currentPos = this.blockPosition();
+            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOOKSHOT_EXTENDED.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
+        }
 
         if (getOwner() instanceof PlayerEntity) {
             owner = (PlayerEntity) getOwner();
