@@ -2,26 +2,38 @@ package com.superworldsun.superslegend.items.weapons;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.IVanishable;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.monster.EndermiteEntity;
+import net.minecraft.entity.monster.SilverfishEntity;
+import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.TieredItem;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import java.util.List;
 
@@ -37,6 +49,26 @@ public class MegatonHammer extends TieredItem implements IVanishable {
 		builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)p_i48460_3_, AttributeModifier.Operation.ADDITION));
 		this.defaultModifiers = builder.build();
 	}
+
+	/*@Override
+	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity)
+	{
+		if(entity instanceof LivingEntity)
+		{
+			entity.playSound(SoundInit.MEGATON_HAMMER_HIT.get(), 1f, 1f);
+		}
+		return true;
+	}*/
+
+	/*public static PlayerInteractEvent.LeftClickBlock onLeftClickBlock(PlayerEntity player, BlockPos pos, Direction face)
+	{
+		BlockPos currentPos = player.blockPosition();
+		world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
+
+		PlayerInteractEvent.LeftClickBlock evt = new PlayerInteractEvent.LeftClickBlock(player, pos, face);
+		MinecraftForge.EVENT_BUS.post(evt);
+		return evt;
+	}*/
 
 	public float getDamage() {
 		return this.attackDamage;
