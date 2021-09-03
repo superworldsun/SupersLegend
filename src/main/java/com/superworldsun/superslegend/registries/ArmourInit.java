@@ -11,6 +11,7 @@ import net.minecraft.util.SoundEvents;
 
 public class ArmourInit implements IArmorMaterial
 {
+	//Armors
 	public static final ArmourInit KOKIRI = new ArmourInit("kokiri").defence(1, 3, 5, 1);
 	public static final ArmourInit ZORA = new ArmourInit("zora").defence(1, 3, 5, 1);
 	public static final ArmourInit GORON = new ArmourInit("goron").defence(1, 3, 5, 1);
@@ -38,6 +39,7 @@ public class ArmourInit implements IArmorMaterial
 	public static final ArmourInit HOVER_BOOTS = new ArmourInit("hoverboots").defence(1, 0, 0, 0);
 	public static final ArmourInit IRON_BOOTS = new ArmourInit("ironboots").defence(1, 0, 0, 0);
 	public static final ArmourInit PEGASUS_BOOTS = new ArmourInit("pegasusboots").defence(1, 0, 0, 0);
+	//Masks
 	public static final ArmourInit POSTMANS_HAT = new ArmourInit("postmanshat");
 	public static final ArmourInit ALLNIGHT_MASK = new ArmourInit("allnightmask");
 	public static final ArmourInit BLAST_MASK = new ArmourInit("blastmask");
@@ -67,6 +69,14 @@ public class ArmourInit implements IArmorMaterial
 	public static final ArmourInit HAWKEYE = new ArmourInit("hawkeye");
 	public static final ArmourInit MOON_MASK = new ArmourInit("moonmask");
 	public static final ArmourInit SUN_MASK = new ArmourInit("sunmask");
+	//Rings
+	public static final ArmourInit FRIENDSHIP_RING = new ArmourInit("friendship_ring");
+	public static final ArmourInit POWER_RING_L1 = new ArmourInit("power_ring_l1");
+	public static final ArmourInit POWER_RING_L2 = new ArmourInit("power_ring_l2");
+	public static final ArmourInit POWER_RING_L3 = new ArmourInit("power_ring_l3");
+	public static final ArmourInit ARMOR_RING_L1 = new ArmourInit("armor_ring_l1");
+	public static final ArmourInit ARMOR_RING_L2 = new ArmourInit("armor_ring_l2");
+	public static final ArmourInit ARMOR_RING_L3 = new ArmourInit("armor_ring_l3");
 	
 	protected final String name;
 	protected SoundEvent equipSound = SoundEvents.ARMOR_EQUIP_LEATHER;
