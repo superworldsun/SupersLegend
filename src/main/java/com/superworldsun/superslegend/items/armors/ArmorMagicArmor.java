@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.MagicArmorModel;
+import com.superworldsun.superslegend.client.model.armor.MagicArmorModel;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
