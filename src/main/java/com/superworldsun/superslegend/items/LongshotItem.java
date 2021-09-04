@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.items;
 import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -13,6 +14,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 
@@ -55,6 +57,9 @@ public class LongshotItem extends Item {
     //Function that manages what happens when you launch the hook.
     @Override
     public void releaseUsing(ItemStack itemStack, World world, LivingEntity player, int remainingUseTicks) {
+
+        BlockPos currentPos = player.blockPosition();
+        world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOOKSHOT_FIRE.get(), SoundCategory.PLAYERS, 1f, 1f);
 
         ItemStack stack = player.getItemInHand(player.getUsedItemHand());
         //Get Charge

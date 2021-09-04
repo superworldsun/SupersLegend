@@ -32,7 +32,7 @@ public class PelletEntity extends AbstractArrowEntity {
     @Override
     protected ItemStack getPickupItem()
     {
-        return new ItemStack(ItemInit.DEKU_SEED.get());
+        return new ItemStack(ItemInit.DEKU_SEEDS.get());
     }
 
     @Override

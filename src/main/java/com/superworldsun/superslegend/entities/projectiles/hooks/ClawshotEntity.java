@@ -5,6 +5,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.items.ClawshotItem;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.util.SupersLegendKeyboardUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -21,10 +22,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -54,6 +52,7 @@ public class ClawshotEntity extends AbstractArrowEntity {
 
     public ClawshotEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity owner, World world) {
         super(type, owner, world);
+        this.setSoundEvent(null);
         this.setNoGravity(true);
         this.setBaseDamage(0);
 
@@ -76,12 +75,19 @@ public class ClawshotEntity extends AbstractArrowEntity {
     public void tick() {
         super.tick();
 
+        if(this.tickCount % 3 == 0)
+        {
+            BlockPos currentPos = this.blockPosition();
+            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.CLAWSHOT_EXTENDED.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
+        }
+
         if (getOwner() instanceof PlayerEntity) {
             owner = (PlayerEntity) getOwner();
 
-            if (isPulling && tickCount % 2 == 0) { //This is the sound that sounds when the hook is moving you.
+            //if (isPulling && tickCount % 2 == 0) { //This is the sound that sounds when the hook is moving you.
                 //level.playSound(null, owner.blockPosition(), SoundEvents.AXE_STRIP, SoundCategory.PLAYERS, 1F, 1F);
-            }
+            //}
+
             if (!level.isClientSide) {
                 if (this.hookedEntity != null) { //In case the mob you are hooked to dies while you go towards it ..
                     if (this.hookedEntity.removed) {

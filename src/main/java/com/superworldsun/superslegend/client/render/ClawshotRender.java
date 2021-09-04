@@ -83,7 +83,7 @@ public class ClawshotRender extends EntityRenderer<ClawshotEntity> {
         stack.mulPose(Vector3f.YP.rotation((float) (-Math.atan2(z, x)) - 1.5707964F));
         stack.mulPose(Vector3f.XP.rotation((float) (-Math.atan2(lengthXY, y)) - 1.5707964F));
         // You can change the size of the hook here.
-        stack.scale(0.3F,0.3F,0.3F);
+        stack.scale(1.0F,1.0F,1.0F);
         IVertexBuilder ivertexbuilder = provider.getBuffer(this.model.renderType(TEXTURE));
         this.model.renderToBuffer(stack, ivertexbuilder, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 

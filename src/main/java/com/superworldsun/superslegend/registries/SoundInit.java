@@ -80,6 +80,45 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> BOMB_DEFUSE = SOUNDS.register("item.bomb_defuse", ()
             -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.bomb_defuse")));
 
+    public static final RegistryObject<SoundEvent> HOOKSHOT_SET = SOUNDS.register("item.hookshot_set", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.hookshot_set")));
+
+    public static final RegistryObject<SoundEvent> HOOKSHOT_EXTENDED = SOUNDS.register("item.hookshot_extended", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.hookshot_extended")));
+
+    public static final RegistryObject<SoundEvent> HOOKSHOT_FIRE = SOUNDS.register("item.hookshot_fire", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.hookshot_fire")));
+
+    public static final RegistryObject<SoundEvent> HOOKSHOT_TARGET = SOUNDS.register("item.hookshot_target", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.hookshot_target")));
+
+    public static final RegistryObject<SoundEvent> HOOKSHOT_CLANG = SOUNDS.register("item.hookshot_clang", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.hookshot_clang")));
+
+    public static final RegistryObject<SoundEvent> CLAWSHOT_SET = SOUNDS.register("item.clawshot_set", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.clawshot_set")));
+
+    public static final RegistryObject<SoundEvent> CLAWSHOT_FIRE = SOUNDS.register("item.clawshot_fire", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.clawshot_fire")));
+
+    public static final RegistryObject<SoundEvent> CLAWSHOT_EXTENDED = SOUNDS.register("item.clawshot_extended", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.clawshot_extended")));
+
+    public static final RegistryObject<SoundEvent> CLAWSHOT_RETURN = SOUNDS.register("item.clawshot_return", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.clawshot_return")));
+
+    public static final RegistryObject<SoundEvent> MEGATON_HAMMER_SWING = SOUNDS.register("item.megaton_hammer_swing", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.megaton_hammer_swing")));
+
+    public static final RegistryObject<SoundEvent> MEGATON_HAMMER_HIT = SOUNDS.register("item.megaton_hammer_hit", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.megaton_hammer_hit")));
+
+    public static final RegistryObject<SoundEvent> SLINGSHOT_PULL = SOUNDS.register("item.slingshot_pull", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.slingshot_pull")));
+
+    public static final RegistryObject<SoundEvent> SLINGSHOT_SHOOT = SOUNDS.register("item.slingshot_shoot", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.slingshot_shoot")));
+
     public static final RegistryObject<SoundEvent> BOTTLE_POP = SOUNDS.register("item.bottle_pop", ()
             -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.bottle_pop")));
 

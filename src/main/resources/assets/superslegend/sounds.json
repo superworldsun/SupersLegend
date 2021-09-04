@@ -133,6 +133,71 @@
 		"subtitle": "superslegend.subtitle.bomb_defuse",
 		"sounds": [ "superslegend:item/bomb_defuse" ]
 	},
+	"item.hookshot_set": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.hookshot_set",
+		"sounds": [ "superslegend:item/hookshot_set" ]
+	},
+	"item.hookshot_extended": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.hookshot_extended",
+		"sounds": [ "superslegend:item/hookshot_extended" ]
+	},
+	"item.hookshot_fire": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.hookshot_fire",
+		"sounds": [ "superslegend:item/hookshot_fire" ]
+	},
+	"item.hookshot_target": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.hookshot_target",
+		"sounds": [ "superslegend:item/hookshot_target" ]
+	},
+	"item.hookshot_clang": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.hookshot_clang",
+		"sounds": [ "superslegend:item/hookshot_clang" ]
+	},
+	"item.clawshot_set": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.clawshot_set",
+		"sounds": [ "superslegend:item/clawshot_set" ]
+	},
+	"item.clawshot_fire": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.clawshot_fire",
+		"sounds": [ "superslegend:item/clawshot_fire" ]
+	},
+	"item.clawshot_extended": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.clawshot_extended",
+		"sounds": [ "superslegend:item/clawshot_extended" ]
+	},
+	"item.clawshot_return": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.clawshot_return",
+		"sounds": [ "superslegend:item/clawshot_return" ]
+	},
+	"item.megaton_hammer_swing": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.megaton_hammer_swing",
+		"sounds": [ "superslegend:item/megaton_hammer_swing" ]
+	},
+	"item.megaton_hammer_hit": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.megaton_hammer_hit",
+		"sounds": [ "superslegend:item/megaton_hammer_hit" ]
+	},
+	"item.slingshot_pull": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.slingshot_pull",
+		"sounds": [ "superslegend:item/slingshot_pull" ]
+	},
+	"item.slingshot_shoot": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.slingshot_shoot",
+		"sounds": [ "superslegend:item/slingshot_shoot" ]
+	},
 	"item.bottle_pop": {
 		"category": "player",
 		"subtitle": "superslegend.subtitle.bottle_pop",
