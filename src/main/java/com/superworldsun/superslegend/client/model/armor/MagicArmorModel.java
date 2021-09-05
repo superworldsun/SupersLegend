@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.client.model;
+package com.superworldsun.superslegend.client.model.armor;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;

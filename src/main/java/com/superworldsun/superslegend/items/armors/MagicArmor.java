@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.MagicArmorModel;
+import com.superworldsun.superslegend.client.model.armor.MagicArmorModel;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
@@ -24,11 +24,11 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-public class ArmorMagicArmor extends NonEnchantArmor
+public class MagicArmor extends NonEnchantArmor
 {
 	private static final Map<EquipmentSlotType, BipedModel<?>> MODELS_CACHE = new HashMap<>();
 	
-	public ArmorMagicArmor(EquipmentSlotType slot, Properties properties)
+	public MagicArmor(EquipmentSlotType slot, Properties properties)
 	{
 		super(ArmourInit.MAGIC, slot, properties);
 	}
@@ -56,7 +56,7 @@ public class ArmorMagicArmor extends NonEnchantArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
 	{
-		return SupersLegendMain.MOD_ID + ":textures/models/armor/magic.png";
+		return SupersLegendMain.MOD_ID + ":textures/models/armor/magic_armor.png";
 	}
 	
 	@Override
