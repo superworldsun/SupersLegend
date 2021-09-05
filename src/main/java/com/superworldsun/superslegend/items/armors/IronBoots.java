@@ -1,14 +1,20 @@
 package com.superworldsun.superslegend.items.armors;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.client.model.armor.IronBootsModel;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
@@ -35,10 +41,31 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 public class IronBoots extends NonEnchantArmor
 {
 	private static final UUID IRON_BOOTS_MODIFIER_ID = UUID.fromString("0fd3562e-c58f-4c6c-b912-d9d6c36bb5ca");
+	private static final Map<EquipmentSlotType, BipedModel<?>> MODELS_CACHE = new HashMap<>();
 	
 	public IronBoots(Properties builder)
 	{
 		super(ArmourInit.IRON_BOOTS, EquipmentSlotType.FEET, builder);
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@SuppressWarnings("unchecked")
+	@Override
+	public <M extends BipedModel<?>> M getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, M _default)
+	{
+		if (!MODELS_CACHE.containsKey(armorSlot))
+		{
+			MODELS_CACHE.put(armorSlot, new IronBootsModel());
+		}
+		
+		return (M) MODELS_CACHE.get(armorSlot);
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType armorSlot, String type)
+	{
+		return SupersLegendMain.MOD_ID + ":textures/models/armor/iron_boots.png";
 	}
 	
 	@OnlyIn(Dist.CLIENT)
