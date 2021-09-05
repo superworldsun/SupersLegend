@@ -56,7 +56,7 @@ public class ArmorMagicArmor extends NonEnchantArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
 	{
-		return SupersLegendMain.MOD_ID + ":textures/models/armor/magic.png";
+		return SupersLegendMain.MOD_ID + ":textures/models/armor/magic_armor.png";
 	}
 	
 	@Override
