@@ -397,13 +397,13 @@ public class ItemInit
 	public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape",
 			() -> new RocsCapeEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap",
-			() -> new ArmorKokiri(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new KokiriArmor(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> KOKIRI_TUNIC = ITEMS.register("kokiri_tunic",
-			() -> new ArmorKokiri(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new KokiriArmor(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> KOKIRI_LEGGINGS = ITEMS.register("kokiri_leggings",
-			() -> new ArmorKokiri(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new KokiriArmor(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> KOKIRI_BOOTS = ITEMS.register("kokiri_boots",
-			() -> new ArmorKokiri(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new KokiriArmor(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_CAP = ITEMS.register("zora_cap",
 			() -> new ArmorZoraEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ZORA_TUNIC = ITEMS.register("zora_tunic",
