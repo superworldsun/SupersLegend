@@ -24,11 +24,11 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-public class ArmorMagicArmor extends NonEnchantArmor
+public class MagicArmor extends NonEnchantArmor
 {
 	private static final Map<EquipmentSlotType, BipedModel<?>> MODELS_CACHE = new HashMap<>();
 	
-	public ArmorMagicArmor(EquipmentSlotType slot, Properties properties)
+	public MagicArmor(EquipmentSlotType slot, Properties properties)
 	{
 		super(ArmourInit.MAGIC, slot, properties);
 	}
