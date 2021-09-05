@@ -67,6 +67,7 @@ public class ArmourInit implements IArmorMaterial
 	public static final ArmourInit FIERCE_DEITYS_MASK = new ArmourInit("fiercedeitysmask");
 	public static final ArmourInit MAJORAS_MASK = new ArmourInit("majorasmask");
 	public static final ArmourInit HAWKEYE = new ArmourInit("hawkeye");
+	public static final ArmourInit HEROS_CHARM = new ArmourInit("heroscharm");
 	public static final ArmourInit MOON_MASK = new ArmourInit("moonmask");
 	public static final ArmourInit SUN_MASK = new ArmourInit("sunmask");
 	//Rings
