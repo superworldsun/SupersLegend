@@ -392,7 +392,7 @@ public class ItemInit
 	public static final RegistryObject<Item> MASK_HAWKEYEMASK = ITEMS.register("mask_hawkeyemask",
 			() -> new MaskHawkeyemask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_HEROS_CHARM = ITEMS.register("mask_heroscharm",
-			() -> new MaskHerosCharm(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new HerosCharmMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	
 	// ARMORS
 	
