@@ -39,8 +39,11 @@ public abstract class MixinPlayerEntity extends LivingEntity
 	private float targetRenderScale = 1.0F;
 	private float renderScale = 1.0F;
 	private float prevRenderScale = 1.0F;
+
 	private int hoverTime;
 	private int hoverHeight;
+	private boolean jumpedFromGround;
+
 	private boolean isLit;
 	private EntityLightEmitter lightEmitter = new EntityLightEmitter(this::getCommandSenderWorld, this::getLookAngle, this::position, this);
 	
@@ -176,6 +179,14 @@ public abstract class MixinPlayerEntity extends LivingEntity
 	{
 		return hoverHeight;
 	}
+
+	@Override
+	public boolean jumpedFromBlock() { return jumpedFromGround; }
+
+	@Override
+	public void setJumpedFromBlock(boolean state) {
+		jumpedFromGround = state;
+	}
 	
 	@Override
 	public boolean isSwimming()
@@ -188,7 +199,7 @@ public abstract class MixinPlayerEntity extends LivingEntity
 	{
 		return jumping;
 	}
-	
+
 	@Override
 	public void receiveLight()
 	{
