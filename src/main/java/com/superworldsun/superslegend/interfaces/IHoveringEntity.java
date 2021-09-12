@@ -11,4 +11,8 @@ public interface IHoveringEntity
 	void setHoverHeight(int height);
 	
 	int getHoverHeight();
+
+	void setJumpedFromBlock(boolean state);
+
+	boolean jumpedFromBlock();
 }
