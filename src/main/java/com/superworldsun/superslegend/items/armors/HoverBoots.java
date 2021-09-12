@@ -1,21 +1,20 @@
 package com.superworldsun.superslegend.items.armors;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.armor.HoverBootsModel;
 import com.superworldsun.superslegend.interfaces.IHoveringEntity;
+import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
-import net.minecraft.client.renderer.entity.model.BipedModel;
+import com.superworldsun.superslegend.util.PlayerUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.PigEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -24,6 +23,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -57,29 +57,16 @@ public class HoverBoots extends NonEnchantArmor
 	{
 		return SupersLegendMain.MOD_ID + ":textures/models/armor/hover_boots.png";
 	}
-	
-	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
-	{
-		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.YELLOW + "No road needed"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Sprint To Hover over Gaps"));
-	}
 
-	/*public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
-	{
-		if (!world.isClientSide)
-		{
-			boolean isBootsOn = player.getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.PEGASUS_BOOTS.get();
-			if(isBootsOn)
-			{
-				if(player.isOnGround() & player.isSprinting())
-				{
-					player.addEffect(new EffectInstance(Effects.LEVITATION, 30, -1, false, false, false));
-				}
-			}
+	static boolean disableSprintingChecks = false;
+
+	@SubscribeEvent
+	public static void onJump(LivingEvent.LivingJumpEvent event) {
+		if (event.getEntityLiving() instanceof PlayerEntity) {
+			IHoveringEntity entity = (IHoveringEntity)event.getEntityLiving();
+			entity.setJumpedFromBlock(true);
 		}
-	}*/
+	}
 
 	@SubscribeEvent
 	public static void onPlayerTick(PlayerTickEvent event)
@@ -95,35 +82,57 @@ public class HoverBoots extends NonEnchantArmor
 		{
 			return;
 		}
-
+		
 		IHoveringEntity hoveringPlayer = (IHoveringEntity) event.player;
 
-		// 40 ticks are 2 seconds
-		if (hoveringPlayer.increaseHoverTime() < 40)
-		{
-			double motionY = event.player.getDeltaMovement().y;
+		// Second variable (checkHeight) is responsible, how many blocks under the player's foot
+		// must be clear (not solid) to active hover "mode"
+		if (!PlayerUtil.solidGroundCheck(event.player, 1)) {
+			boolean ok = false;
 
-			if (motionY < 0 && event.player.getY() <= hoveringPlayer.getHoverHeight() && !event.player.isOnGround())
-			{
-				// Prevent movement downwards
-				event.player.setDeltaMovement(event.player.getDeltaMovement().x, 0, event.player.getDeltaMovement().z);
-				// Reset fall distance, we are not falling
-				event.player.fallDistance = 0;
+			if (disableSprintingChecks) {
+				ok = true;
+			} else {
+				if (event.player.isSprinting()) {
+					ok = true;
+				}
 			}
 
-			// Prevent falling
-			if (event.player.getY() < hoveringPlayer.getHoverHeight())
-			{
-				event.player.setBoundingBox(event.player.getBoundingBox().move(0, hoveringPlayer.getHoverHeight() - event.player.getY(), 0));
+			if (ok && !hoveringPlayer.jumpedFromBlock()) {
+				// 40 ticks are 2 seconds
+				if (hoveringPlayer.increaseHoverTime() < 40)
+				{
+					double motionY = event.player.getDeltaMovement().y;
+
+					if (motionY < 0 && event.player.getY() <= hoveringPlayer.getHoverHeight() && !event.player.isOnGround())
+					{
+						// Prevent movement downwards
+						event.player.setDeltaMovement(event.player.getDeltaMovement().x, 0, event.player.getDeltaMovement().z);
+						// Reset fall distance, we are not falling
+						event.player.fallDistance = 0;
+					}
+
+					// Prevent falling
+					if (event.player.getY() < hoveringPlayer.getHoverHeight())
+					{
+						event.player.setBoundingBox(event.player.getBoundingBox().move(0, hoveringPlayer.getHoverHeight() - event.player.getY(), 0));
+					}
+				}
 			}
 		}
 
+		// If sprinting checks are enabled, checks if the player stops sprinting
+		if (!event.player.isSprinting() && !disableSprintingChecks){
+			hoveringPlayer.setHoverTime(100);
+		}
+		
 		// If we are on ground
 		if (event.player.isOnGround())
 		{
 			// Reset timer for boots
 			hoveringPlayer.setHoverTime(0);
 			hoveringPlayer.setHoverHeight((int) Math.round(event.player.getY()));
+			hoveringPlayer.setJumpedFromBlock(false);
 		}
 	}
 }
