@@ -7,7 +7,6 @@
 			"stream": true
 		}]
 	},
-
 	"item.bubblegloop_disc": {
 		"category": "item",
 		"subtitle": "Bubblegloop Swamp",
@@ -16,7 +15,181 @@
 				"stream": true
 			}
 		]
-	
+	},
+	"music.disc.forest_temple": {
+		"category": "music",
+		"subtitle": "Forest Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/forest_temple",
+			"stream": true
+		}]
+	},
+	"item.forest_temple_disc": {
+		"category": "item",
+		"subtitle": "Forest Temple",
+		"sounds": [{
+			"name": "superslegend:item/forest_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.fire_temple": {
+		"category": "music",
+		"subtitle": "Fire Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/fire_temple",
+			"stream": true
+		}]
+	},
+	"item.fire_temple_disc": {
+		"category": "item",
+		"subtitle": "Fire Temple",
+		"sounds": [{
+			"name": "superslegend:item/fire_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.water_temple": {
+		"category": "music",
+		"subtitle": "Water Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/water_temple",
+			"stream": true
+		}]
+	},
+	"item.water_temple_disc": {
+		"category": "item",
+		"subtitle": "Water Temple",
+		"sounds": [{
+			"name": "superslegend:item/water_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.shadow_temple": {
+		"category": "music",
+		"subtitle": "Shadow Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/shadow_temple",
+			"stream": true
+		}]
+	},
+	"item.shadow_temple_disc": {
+		"category": "item",
+		"subtitle": "Shadow Temple",
+		"sounds": [{
+			"name": "superslegend:item/shadow_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.spirit_temple": {
+		"category": "music",
+		"subtitle": "Spirit Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/spirit_temple",
+			"stream": true
+		}]
+	},
+	"item.spirit_temple_disc": {
+		"category": "item",
+		"subtitle": "Spirit Temple",
+		"sounds": [{
+			"name": "superslegend:item/spirit_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.woodfall_temple": {
+		"category": "music",
+		"subtitle": "Woodfall Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/woodfall_temple",
+			"stream": true
+		}]
+	},
+	"item.woodfall_temple_disc": {
+		"category": "item",
+		"subtitle": "Spirit Temple",
+		"sounds": [{
+			"name": "superslegend:item/woodfall_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.snowhead_temple": {
+		"category": "music",
+		"subtitle": "Spirit Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/snowhead_temple",
+			"stream": true
+		}]
+	},
+	"item.snowhead_temple_disc": {
+		"category": "item",
+		"subtitle": "Snowhead Temple",
+		"sounds": [{
+			"name": "superslegend:item/snowhead_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.great_bay_temple": {
+		"category": "music",
+		"subtitle": "Great Bay Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/great_bay_temple",
+			"stream": true
+		}]
+	},
+	"item.great_bay_temple_disc": {
+		"category": "item",
+		"subtitle": "Great Bay Temple",
+		"sounds": [{
+			"name": "superslegend:item/great_bay_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.stone_tower_temple_reality": {
+		"category": "music",
+		"subtitle": "Stone Tower Temple Reality",
+		"sounds": [{
+			"name": "superslegend:music/disc/stone_tower_temple_reality",
+			"stream": true
+		}]
+	},
+	"item.stone_tower_temple_reality_disc": {
+		"category": "item",
+		"subtitle": "Stone Tower Temple Reality",
+		"sounds": [{
+			"name": "superslegend:item/stone_tower_temple_reality_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.stone_tower_temple_illusion": {
+		"category": "music",
+		"subtitle": "Stone Tower Temple Illusion",
+		"sounds": [{
+			"name": "superslegend:music/disc/stone_tower_temple_illusion",
+			"stream": true
+		}]
+	},
+	"item.stone_tower_temple_illusion_disc": {
+		"category": "item",
+		"subtitle": "Stone Tower Temple Illusion",
+		"sounds": [{
+			"name": "superslegend:item/stone_tower_temple_illusion_disc",
+			"stream": true
+		}
+		]
+	},
+	"item.bremen_march": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.bremen_march",
+		"sounds": [ "superslegend:item/bremen_march" ]
 	},
 	"item.suns_song": {
 		"category": "player",

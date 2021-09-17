@@ -137,10 +137,63 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> SUNS_SONG = SOUNDS.register("item.suns_song", ()
             -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.suns_song")));
 
+    public static final RegistryObject<SoundEvent> BREMEN_MARCH = SOUNDS.register("item.bremen_march", ()
+            -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.bremen_march")));
+
 
     public static final Lazy<SoundEvent> BUBBLEGLOOP_DISC_LAZY = Lazy
             .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.bubblegloop_disc")));
 
     public static final RegistryObject<SoundEvent> BUBBLEGLOOP_DISC = SOUNDS.register("item.bubblegloop_disc.disc", BUBBLEGLOOP_DISC_LAZY);
+
+    public static final Lazy<SoundEvent> FOREST_TEMPLE_DISC_LAZY = Lazy
+            .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.forest_temple_disc")));
+
+    public static final RegistryObject<SoundEvent> FOREST_TEMPLE_DISC = SOUNDS.register("item.forest_temple_disc.disc", FOREST_TEMPLE_DISC_LAZY);
+
+    public static final Lazy<SoundEvent> FIRE_TEMPLE_DISC_LAZY = Lazy
+            .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.fire_temple_disc")));
+
+    public static final RegistryObject<SoundEvent> FIRE_TEMPLE_DISC = SOUNDS.register("item.fire_temple_disc.disc", FIRE_TEMPLE_DISC_LAZY);
+
+    public static final Lazy<SoundEvent> WATER_TEMPLE_DISC_LAZY = Lazy
+            .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.water_temple_disc")));
+
+    public static final RegistryObject<SoundEvent> WATER_TEMPLE_DISC = SOUNDS.register("item.water_temple_disc.disc", WATER_TEMPLE_DISC_LAZY);
+
+    public static final Lazy<SoundEvent> SHADOW_TEMPLE_DISC_LAZY = Lazy
+            .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.shadow_temple_disc")));
+
+    public static final RegistryObject<SoundEvent> SHADOW_TEMPLE_DISC = SOUNDS.register("item.shadow_temple_disc.disc", SHADOW_TEMPLE_DISC_LAZY);
+
+    public static final Lazy<SoundEvent> SPIRIT_TEMPLE_DISC_LAZY = Lazy
+            .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.spirit_temple_disc")));
+
+    public static final RegistryObject<SoundEvent> SPIRIT_TEMPLE_DISC = SOUNDS.register("item.spirit_temple_disc.disc", SPIRIT_TEMPLE_DISC_LAZY);
+
+    public static final Lazy<SoundEvent> WOODFALL_TEMPLE_DISC_LAZY = Lazy
+            .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.woodfall_temple_disc")));
+
+    public static final RegistryObject<SoundEvent> WOODFALL_TEMPLE_DISC = SOUNDS.register("item.woodfall_temple_disc.disc", WOODFALL_TEMPLE_DISC_LAZY);
+
+    public static final Lazy<SoundEvent> SNOWHEAD_TEMPLE_DISC_LAZY = Lazy
+            .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.snowhead_temple_disc")));
+
+    public static final RegistryObject<SoundEvent> SNOWHEAD_TEMPLE_DISC = SOUNDS.register("item.snowhead_temple_disc.disc", SNOWHEAD_TEMPLE_DISC_LAZY);
+
+    public static final Lazy<SoundEvent> GREAT_BAY_TEMPLE_DISC_LAZY = Lazy
+            .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.great_bay_temple_disc")));
+
+    public static final RegistryObject<SoundEvent> GREAT_BAY_TEMPLE_DISC = SOUNDS.register("item.great_bay_temple_disc.disc", GREAT_BAY_TEMPLE_DISC_LAZY);
+
+    public static final Lazy<SoundEvent> STONE_TOWER_TEMPLE_REALITY_DISC_LAZY = Lazy
+            .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.stone_tower_temple_reality_disc")));
+
+    public static final RegistryObject<SoundEvent> STONE_TOWER_TEMPLE_REALITY_DISC = SOUNDS.register("item.stone_tower_temple_reality_disc.disc", STONE_TOWER_TEMPLE_REALITY_DISC_LAZY);
+
+    public static final Lazy<SoundEvent> STONE_TOWER_TEMPLE_ILLUSION_DISC_LAZY = Lazy
+            .of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, "item.stone_tower_temple_illusion_disc")));
+
+    public static final RegistryObject<SoundEvent> STONE_TOWER_TEMPLE_ILLUSION_DISC = SOUNDS.register("item.stone_tower_temple_illusion_disc.disc", STONE_TOWER_TEMPLE_ILLUSION_DISC_LAZY);
 
 }
