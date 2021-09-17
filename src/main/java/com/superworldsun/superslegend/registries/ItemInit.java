@@ -35,7 +35,19 @@ public class ItemInit
 			() -> new SilverRupee(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<GoldRupee> GOLD_RUPEE = ITEMS.register("gold_rupee",
 			() -> new GoldRupee(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	
+
+	public static final RegistryObject<Item> SMALL_KEY = ITEMS.register("small_key",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BIG_KEY = ITEMS.register("big_key",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> MAGICAL_KEY = ITEMS.register("magical_key",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> SMALL_LOCK = ITEMS.register("small_lock",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BIG_LOCK = ITEMS.register("big_lock",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
 	public static final RegistryObject<Item> ARROW_BUNDLE = ITEMS.register("arrow_bundle",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> FIRE_ARROW_BUNDLE = ITEMS.register("fire_arrow_bundle",
@@ -110,6 +122,21 @@ public class ItemInit
 			() -> new SwordItem(ItemToolTiers.RAZOR_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> GILDED_SWORD = ITEMS.register("gilded_sword",
 			() -> new SwordItem(ItemToolTiers.GILDED_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<SwordItem> GREAT_FAIRYS_SWORD = ITEMS.register("great_fairys_sword",
+			() -> new SwordItem(ItemToolTiers.GREAT_FAIRYS_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<GiantsKnife> GIANTS_KNIFE = ITEMS.register("giants_knife",
+			() -> new GiantsKnife(ItemToolTiers.GIANTS_KNIFE, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<SwordItem> BIGGORONS_SWORD = ITEMS.register("biggorons_sword",
+			() -> new BiggornsSword(ItemToolTiers.BIGGORONS_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<SwordItem> GODDESS_SWORD = ITEMS.register("goddess_sword",
+			() -> new SwordItem(ItemToolTiers.GODDESS_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<SwordItem> GODDESS_LONG_SWORD = ITEMS.register("goddess_long_sword",
+			() -> new SwordItem(ItemToolTiers.GODDESS_LONG_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<SwordItem> GODDESS_WHITE_SWORD = ITEMS.register("goddess_white_sword",
+			() -> new SwordItem(ItemToolTiers.GODDESS_WHITE_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	
 	public static final RegistryObject<SwordItem> MASTER_SWORD = ITEMS.register("master_sword",
 			() -> new SwordItem(ItemToolTiers.MASTER_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -129,13 +156,18 @@ public class ItemInit
 			() -> new SwordItem(ItemToolTiers.MASTER_SWORD_FD, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> TRUE_MASTER_SWORD = ITEMS.register("true_master_sword",
 			() -> new SwordItem(ItemToolTiers.TRUE_MASTER_SWORD, 2, -2.2f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<GiantsKnife> GIANTS_KNIFE = ITEMS.register("giants_knife",
-			() -> new GiantsKnife(ItemToolTiers.GIANTS_KNIFE, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<SwordItem> BIGGORONS_SWORD = ITEMS.register("biggorons_sword",
-			() -> new BiggornsSword(ItemToolTiers.BIGGORONS_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
 	public static final RegistryObject<SwordItem> GUARDIAN_SWORD = ITEMS.register("guardian_sword",
 			() -> new SwordItem(ItemToolTiers.GUARDIAN_SWORD, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	
+	public static final RegistryObject<Item> GUARDIAN_SHIELD = ITEMS.register("guardian_shield",
+			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<SwordItem> ANCIENT_BATTLE_AXE = ITEMS.register("ancient_battle_axe",
+			() -> new SwordItem(ItemToolTiers.ANCIENT_BATTLE_AXE, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<SwordItem> GUARDIAN_SPEAR = ITEMS.register("guardian_spear",
+			() -> new SwordItem(ItemToolTiers.GUARDIAN_SPEAR, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<HerosBow> FAIRY_BOW = ITEMS.register("fairy_bow",
+			() -> new HerosBow(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<HerosBow> HEROS_BOW = ITEMS.register("heros_bow",
 			() -> new HerosBow(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BIT_BOW = ITEMS.register("bit_bow",
@@ -258,7 +290,19 @@ public class ItemInit
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> REGULAR_BOOMERANG = ITEMS.register("regular_boomerang",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> WW_BOOMERANG = ITEMS.register("ww_boomerang",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BOOMERANG = ITEMS.register("boomerang",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> MAGICAL_BOOMERANG = ITEMS.register("magical_boomerang",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> GALE_BOOMERANG = ITEMS.register("gale_boomerang",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BOMB = ITEMS.register("bomb",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> WATER_BOMB = ITEMS.register("water_bomb",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BOMBCHU = ITEMS.register("bombchu",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> HOOKSHOT = ITEMS.register("hookshot",
 			() -> new HookshotItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
@@ -284,6 +328,10 @@ public class ItemInit
 	public static final RegistryObject<Item> FIRE_ROD = ITEMS.register("fire_rod",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick",
+			() -> new Item(new Item.Properties().stacksTo(15).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> DEKU_NUTS = ITEMS.register("deku_nuts",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> EMPTY_CONTAINER = ITEMS.register("empty_container",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
@@ -433,17 +481,17 @@ public class ItemInit
 	public static final RegistryObject<Item> PEGASUS_BOOTS = ITEMS.register("pegasus_boots",
 			() -> new PegasusBoots(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
-	/*public static final RegistryObject<Item> LOBSTER_SHIRT = ITEMS.register("lobster_shirt",
-			() -> new ArmorKokiri(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> LOBSTER_SHIRT = ITEMS.register("lobster_shirt",
+			() -> new KokiriArmor(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
 	public static final RegistryObject<Item> NINTENDO_SWITCH_SHIRT = ITEMS.register("nintendo_switch_shirt",
-			() -> new Item(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new KokiriArmor(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
 	public static final RegistryObject<Item> SNOW_BOOTS = ITEMS.register("snow_boots",
-			() -> new ArmorKokiri(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new KokiriArmor(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
 	public static final RegistryObject<Item> SAND_BOOTS = ITEMS.register("sand_boots",
-			() -> new ArmorKokiri(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
+			() -> new KokiriArmor(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
 	public static final RegistryObject<Item> HERO_OF_HYRULE_CAP = ITEMS.register("hero_of_hyrule_cap",
 			() -> new ArmorHeroOfHyrule(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -617,7 +665,66 @@ public class ItemInit
 			() -> new ArmorClimbingGearEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> CLIMBING_BOOTS = ITEMS.register("climbing_boots",
 			() -> new ArmorClimbingGearEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	
+
+	//Pendants
+
+	public static final RegistryObject<Item> PENDANT_OF_COURAGE = ITEMS.register("pendant_of_courage",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> PENDANT_OF_WISDOM = ITEMS.register("pendant_of_wisdom",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> PENDANT_OF_POWER = ITEMS.register("pendant_of_power",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> JOY_PENDANT = ITEMS.register("joy_pendant",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> PIRATES_CHARM = ITEMS.register("pirates_charm",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> SKULL_NECKLACE = ITEMS.register("skull_neklace",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+
+
+
+	//Hands Power Bracelet
+	public static final RegistryObject<Item> POWER_BRACELET = ITEMS.register("power_bracelet",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> SILVER_GAUNTLETS = ITEMS.register("silver_gauntlets",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> GOLDEN_GAUNTLETS = ITEMS.register("golden_gauntlets",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+
+	//Music Discs
+	public static final RegistryObject<Item> BUBBLEGLOOP_DISC = ITEMS.register("bubblegloop_disc",
+			() -> new MusicDiscItem(1, SoundInit.BUBBLEGLOOP_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> FOREST_TEMPLE_DISC = ITEMS.register("forest_temple_disc",
+			() -> new MusicDiscItem(1, SoundInit.FOREST_TEMPLE_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> FIRE_TEMPLE_DISC = ITEMS.register("fire_temple_disc",
+			() -> new MusicDiscItem(1, SoundInit.FIRE_TEMPLE_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> WATER_TEMPLE_DISC = ITEMS.register("water_temple_disc",
+			() -> new MusicDiscItem(1, SoundInit.WATER_TEMPLE_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> SHADOW_TEMPLE_DISC = ITEMS.register("shadow_temple_disc",
+			() -> new MusicDiscItem(1, SoundInit.SHADOW_TEMPLE_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> SPIRIT_TEMPLE_DISC = ITEMS.register("spirit_temple_disc",
+			() -> new MusicDiscItem(1, SoundInit.SPIRIT_TEMPLE_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> WOODFALL_TEMPLE_DISC = ITEMS.register("woodfall_temple_disc",
+			() -> new MusicDiscItem(1, SoundInit.WOODFALL_TEMPLE_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> SNOWHEAD_TEMPLE_DISC = ITEMS.register("snowhead_temple_disc",
+			() -> new MusicDiscItem(1, SoundInit.SNOWHEAD_TEMPLE_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> GREAT_BAY_TEMPLE_DISC = ITEMS.register("great_bay_temple_disc",
+			() -> new MusicDiscItem(1, SoundInit.GREAT_BAY_TEMPLE_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> STONE_TOWER_TEMPLE_REALITY_DISC_LAZY = ITEMS.register("stone_tower_temple_reality_disc",
+			() -> new MusicDiscItem(1, SoundInit.STONE_TOWER_TEMPLE_REALITY_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> STONE_TOWER_TEMPLE_ILLUSION_DISC = ITEMS.register("stone_tower_temple_illusion_disc",
+			() -> new MusicDiscItem(1, SoundInit.STONE_TOWER_TEMPLE_ILLUSION_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+
 	public static final RegistryObject<Item> FRIED_EGG = ITEMS.register("fried_egg",
 			() -> new FriedEggItem(new Item.Properties()
 					.food(new Food.Builder().nutrition(8).effect(() -> new EffectInstance(Effects.HARM, 20, 1), 1F).saturationMod(0.7f).alwaysEat().build())
@@ -635,8 +742,6 @@ public class ItemInit
 	
 	public static final RegistryObject<Item> POISON_ARROW = ITEMS.register("poison_arrow",
 			() -> new PoisonArrowItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> BUBBLEGLOOP_DISC = ITEMS.register("bubblegloop_disc",
-			() -> new MusicDiscItem(1, SoundInit.BUBBLEGLOOP_DISC_LAZY, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> GNAT_HAT = ITEMS.register("gnat_hat", GnatHat::new);
 	public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow", MagicFireArrow::new);
 	public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow", MagicIceArrow::new);
