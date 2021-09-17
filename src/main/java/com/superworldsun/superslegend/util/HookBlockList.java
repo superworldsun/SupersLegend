@@ -1,7 +1,9 @@
 package com.superworldsun.superslegend.util;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ public class HookBlockList {
     public static List<Block> hookableBlocks = new ArrayList<>();
 
     public static void setHookableBlocks() {
+        hookableBlocks.add(BlockInit.GRAPPLE_BLOCK.get());
         hookableBlocks.add(Blocks.OAK_WOOD);
         hookableBlocks.add(Blocks.SPRUCE_WOOD);
         hookableBlocks.add(Blocks.BIRCH_WOOD);
