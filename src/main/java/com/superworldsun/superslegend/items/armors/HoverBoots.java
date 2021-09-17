@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.client.model.armor.HoverBootsModel;
 import com.superworldsun.superslegend.interfaces.IHoveringEntity;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
@@ -9,7 +10,10 @@ import com.superworldsun.superslegend.registries.ItemInit;
 
 import com.superworldsun.superslegend.util.PlayerUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -27,6 +31,9 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class HoverBoots extends NonEnchantArmor
@@ -58,7 +65,9 @@ public class HoverBoots extends NonEnchantArmor
 		return SupersLegendMain.MOD_ID + ":textures/models/armor/hover_boots.png";
 	}
 
-	static boolean disableSprintingChecks = false;
+	//true = no sprinting
+	//false = must be sprinting to hover
+	static boolean disableSprintingChecks = true;
 
 	@SubscribeEvent
 	public static void onJump(LivingEvent.LivingJumpEvent event) {
