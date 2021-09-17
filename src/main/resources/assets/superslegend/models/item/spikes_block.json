@@ -1,3 +1,4 @@
 {
+    "gui_light": "front",
     "parent": "superslegend:block/spikes_block"
 }
