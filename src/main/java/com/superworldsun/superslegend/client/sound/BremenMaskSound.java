@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.client.sound;
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.client.audio.TickableSound;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -16,7 +17,7 @@ public class BremenMaskSound extends TickableSound
 	
 	public BremenMaskSound(PlayerEntity entity)
 	{
-		super(SoundEvents.MUSIC_DISC_PIGSTEP, SoundCategory.PLAYERS);
+		super(SoundInit.BREMEN_MARCH.get(), SoundCategory.PLAYERS);
 		this.player = entity;
 		this.looping = true;
 		this.delay = 0;
