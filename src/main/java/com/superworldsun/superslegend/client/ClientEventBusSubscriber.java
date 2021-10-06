@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.client;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.render.*;
 import com.superworldsun.superslegend.client.screen.*;
+import com.superworldsun.superslegend.container.SelectContainer;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ContainerInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
@@ -12,6 +13,9 @@ import com.superworldsun.superslegend.registries.TileEntityInit;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -79,5 +83,6 @@ public class ClientEventBusSubscriber
 		//ScreenManager.register(ContainerInit.MEDIUM_BOMB_BAG.get(), MediumQuiverScreen::new);
 		//ScreenManager.register(ContainerInit.BIG_BOMB_BAG.get(), BigQuiverScreen::new);
 		ScreenManager.register(ContainerInit.POSTBOX.get(), PostboxScreen::new);
+		ScreenManager.register(ContainerInit.SELECT_CONTAINER.get(), SelectScreen::new);
 	}
 }
