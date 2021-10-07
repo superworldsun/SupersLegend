@@ -6,12 +6,16 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.container.SelectContainer;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.SelectInteractionMessage;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
-public class SelectScreen extends SimpleContainerScreen<SelectContainer>
+import java.util.List;
+
+public class SelectScreen extends ContainerScreen<SelectContainer>
 {
 	final SelectContainer container;
 	final PlayerInventory playerInventory;
@@ -23,6 +27,7 @@ public class SelectScreen extends SimpleContainerScreen<SelectContainer>
 		this(container, playerInventory, title, 0);
 	}
 
+	List<Slot> slots;
 	private SelectScreen(SelectContainer container, PlayerInventory playerInventory, ITextComponent title, int menuIndex)
 	{
 		super(container, playerInventory, title);
@@ -30,6 +35,8 @@ public class SelectScreen extends SimpleContainerScreen<SelectContainer>
 		this.container = container;
 		this.playerInventory = playerInventory;
 		this.menuIndex = menuIndex;
+
+		slots = container.slots;
 
 		switch(menuIndex)
 		{
@@ -39,17 +46,29 @@ public class SelectScreen extends SimpleContainerScreen<SelectContainer>
 
 				titleLabelX = 27;
 				titleLabelY = 4;
+				setupSwordInv();
 				break;
 
 			case 1:
+				imageWidth = 215;
+				imageHeight = 121;
+
+				buttonYOffset = 121 - 98;
+
+				titleLabelX = 17;
+				titleLabelY = 4;
+				setupEquipmentInv();
+				break;
+
 			case 3:
 				imageWidth = 215;
 				imageHeight = 121;
 
 				buttonYOffset = 121 - 98;
 
-				titleLabelX = 27;
+				titleLabelX = 54;
 				titleLabelY = 4;
+				setupMaskInv();
 				break;
 
 			case 2:
@@ -58,8 +77,9 @@ public class SelectScreen extends SimpleContainerScreen<SelectContainer>
 
 				buttonYOffset = 188 - 98;
 
-				titleLabelX = 27;
+				titleLabelX = 36;
 				titleLabelY = 4;
+				setupRingInv();
 				break;
 
 			case 4:
@@ -68,8 +88,9 @@ public class SelectScreen extends SimpleContainerScreen<SelectContainer>
 
 				buttonYOffset = 166 - 98;
 
-				titleLabelX = 27;
-				titleLabelY = 4;
+				titleLabelX = 5;
+				titleLabelY = 5;
+				setupStatusInv();
 				break;
 		}
 	}
@@ -98,12 +119,6 @@ public class SelectScreen extends SimpleContainerScreen<SelectContainer>
 		this.renderBackground(p_230430_1_);
 		super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
 		this.renderTooltip(p_230430_1_, p_230430_2_, p_230430_3_);
-	}
-
-	@Override
-	protected ResourceLocation getBackgroundTexture()
-	{
-		return new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/select" + menuIndex + ".png");
 	}
 
 	public int menuIndex;
@@ -135,5 +150,97 @@ public class SelectScreen extends SimpleContainerScreen<SelectContainer>
 	{
 		this.menuIndex = menuIndex;
 		minecraft.setScreen(new SelectScreen(container, playerInventory, new StringTextComponent(titles[menuIndex]), menuIndex));
+	}
+
+	private void setupSwordInv()
+	{
+		for(int k = 0; k < 9; k++)
+		{
+			slots.get(k).x = 27 + 18 * k;
+			slots.get(k).y = 76;
+		}
+
+		for(int y = 0; y < 3; y++)
+		{
+			for(int x = 0; x < 9; x++)
+			{
+				slots.get(x + y * 9 + 9).x = 27 + 18 * (x % 9);
+				slots.get(x + y * 9 + 9).y = 18 + 18 * y;
+			}
+		}
+	}
+
+	private void setupEquipmentInv()
+	{
+		for(int k = 0; k < 9; k++)
+		{
+			slots.get(k).x = 27 + 18 * k;
+			slots.get(k).y = 99;
+		}
+
+		for(int y = 0; y < 4; y++)
+		{
+			for(int x = 0; x < 10; x++)
+			{
+				slots.get(x + y * 10 + 9).x = 18 + 18 * (x % 9);
+				slots.get(x + y * 10 + 9).y = 18 + 18 * y;
+			}
+		}
+	}
+
+	private void setupRingInv()
+	{
+		int maxSlot = 7 + 7 * 9 + 10;
+		for(int k = 0; k < 9; k++)
+		{
+			slots.get(k).x = 27 + 18 * k;
+			slots.get(k).y = 166;
+		}
+
+		for(int y = 0; y < 8; y++)
+		{
+			for(int x = 0; x < 8; x++)
+			{
+				slots.get(x + y * 8 + 9).x = 37 + 18 * (x % 9);
+				slots.get(x + y * 8 + 9).y = 18 + 18 * y;
+			}
+		}
+
+		for(int k = maxSlot; k < slots.size(); k++)
+		{
+			slots.get(k).x = 1000;
+		}
+	}
+
+	private void setupMaskInv()
+	{
+		int maxSlot = 5 + 3 * 9 + 10;
+		for(int k = 0; k < 9; k++)
+		{
+			slots.get(k).x = 27 + 18 * k;
+			slots.get(k).y = 99;
+		}
+
+		for(int y = 0; y < 4; y++)
+		{
+			for(int x = 0; x < 6; x++)
+			{
+				slots.get(x + y * 6 + 9).x = 55 + 18 * (x % 9);
+				slots.get(x + y * 6 + 9).y = 18 + 18 * y;
+			}
+		}
+
+		for(int k = maxSlot; k < slots.size(); k++)
+		{
+			slots.get(k).x = 1000;
+		}
+	}
+
+	private void setupStatusInv()
+	{
+		for(Slot slot : slots)
+		{
+			slot.x = 1000;
+		}
 	}
 }
