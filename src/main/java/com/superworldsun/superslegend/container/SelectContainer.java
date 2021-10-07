@@ -18,19 +18,15 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.items.IItemHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SelectContainer extends Container
 {
-    IInventory swordInv = new Inventory(27);
-    IInventory equipmentInv = new Inventory(40);
-    IInventory ringInv = new Inventory(64);
-    IInventory maskInv = new Inventory(24);
-    IInventory statusInv = new Inventory(1);
-
-    List<Slot> defaultSlots = new ArrayList<>();
+    // 64 since the most amount of slots ever needed should be 64
+    IInventory containerInventory = new Inventory(64);
 
     // Put all the items you'd like in the menus here
 
@@ -71,7 +67,7 @@ public class SelectContainer extends Container
     @Override
     public ItemStack clicked(int slotIndex, int p_184996_2_, ClickType p_184996_3_, PlayerEntity player)
     {
-        if(slots.size() > slotIndex)
+        if(slots.size() > slotIndex && slotIndex >= 0)
         {
             Slot slot = slots.get(slotIndex);
             if (slot instanceof SelectSlot)
@@ -91,14 +87,23 @@ public class SelectContainer extends Container
     {
         super(ContainerInit.SELECT_CONTAINER.get(), id);
 
-        defaultSlots = ImmutableList.copyOf(slots);
+        for(int k = 0; k < 9; k++)
+        {
+            addSlot(new LockedSlot(playerInventory, k, 0, 0));
+        }
 
-        setupSwordInv(playerInventory);
+        for(int k = 0; k < 64; k++)
+        {
+            containerInventory.setItem(k, ItemStack.EMPTY);
+            addSlot(new SelectSlot(containerInventory, k, 0, 0));
+        }
+
+        changeMenu(0);
 
         for(int k = 0; k < 27; k++)
         {
-            if(inventories[menuIndex].size() > k) swordInv.setItem(k, swords.get(k));
-            else swordInv.setItem(k, ItemStack.EMPTY);
+            if(inventories[menuIndex].size() > k) containerInventory.setItem(k, swords.get(k));
+            else containerInventory.setItem(k, ItemStack.EMPTY);
         }
 
 
@@ -118,15 +123,10 @@ public class SelectContainer extends Container
         return true;
     }
 
-    IInventory[] invs = new IInventory[]{ swordInv, equipmentInv, ringInv, maskInv, statusInv };
-
     public int menuIndex = 0;
     public void changeMenu(int offset)
     {
         menuIndex = Math.floorMod((offset + menuIndex), inventories.length);
-
-        slots.clear();
-        slots.addAll(defaultSlots);
 
         switch(menuIndex)
         {
@@ -151,10 +151,10 @@ public class SelectContainer extends Container
                 break;
         }
 
-        for(int k = 0; k < invs[menuIndex].getContainerSize(); k++)
+        for(int k = 0; k < containerInventory.getContainerSize(); k++)
         {
-            if(inventories[menuIndex].size() > k) invs[menuIndex].setItem(k, (ItemStack) (inventories[menuIndex].get(k)));
-            else invs[menuIndex].setItem(k, ItemStack.EMPTY);
+            if(inventories[menuIndex].size() > k) containerInventory.setItem(k, (ItemStack) (inventories[menuIndex].get(k)));
+            else containerInventory.setItem(k, ItemStack.EMPTY);
         }
 
         if(player == null) return;
@@ -164,7 +164,7 @@ public class SelectContainer extends Container
     @Override
     public ItemStack quickMoveStack(PlayerEntity player, int slot)
     {
-        moveItemStackTo(invs[menuIndex].getItem(slot), slot, slot, false);
+        moveItemStackTo(containerInventory.getItem(slot), slot, slot, false);
         return ItemStack.EMPTY;
     }
 
@@ -174,14 +174,16 @@ public class SelectContainer extends Container
     {
         for(int k = 0; k < 9; k++)
         {
-            addSlot(new LockedSlot(playerInventory, k, 27 + 18 * k, 76));
+            slots.get(k).x = 27 + 18 * k;
+            slots.get(k).y = 76;
         }
 
         for(int y = 0; y < 3; y++)
         {
             for(int x = 0; x < 9; x++)
             {
-                addSlot(new SelectSlot(swordInv, x + y * 9, 27 + 18 * (x % 9), 18 + 18 * y));
+                slots.get(x + y * 9 + 9).x = 27 + 18 * (x % 9);
+                slots.get(x + y * 9 + 9).y = 18 + 18 * y;
             }
         }
     }
@@ -190,52 +192,73 @@ public class SelectContainer extends Container
     {
         for(int k = 0; k < 9; k++)
         {
-            addSlot(new LockedSlot(playerInventory, k, 27 + 18 * k, 99));
+            slots.get(k).x = 27 + 18 * k;
+            slots.get(k).y = 99;
         }
 
         for(int y = 0; y < 4; y++)
         {
             for(int x = 0; x < 10; x++)
             {
-                addSlot(new SelectSlot(equipmentInv, x + y * 9, 18 + 18 * (x % 9), 18 + 18 * y));
+                slots.get(x + y * 10 + 9).x = 18 + 18 * (x % 9);
+                slots.get(x + y * 10 + 9).y = 18 + 18 * y;
             }
         }
     }
 
     private void setupRingInv(PlayerInventory playerInventory)
     {
+        int maxSlot = 7 + 7 * 9 + 10;
         for(int k = 0; k < 9; k++)
         {
-            addSlot(new LockedSlot(playerInventory, k, 27 + 18 * k, 166));
+            slots.get(k).x = 27 + 18 * k;
+            slots.get(k).y = 166;
         }
 
         for(int y = 0; y < 8; y++)
         {
             for(int x = 0; x < 8; x++)
             {
-                addSlot(new SelectSlot(ringInv, x + y * 9, 37 + 18 * (x % 9), 18 + 18 * y));
+                slots.get(x + y * 8 + 9).x = 37 + 18 * (x % 9);
+                slots.get(x + y * 8 + 9).y = 18 + 18 * y;
             }
+        }
+
+        for(int k = maxSlot; k < slots.size(); k++)
+        {
+            slots.get(k).x = 1000;
         }
     }
 
     private void setupMaskInv(PlayerInventory playerInventory)
     {
+        int maxSlot = 5 + 3 * 9 + 10;
         for(int k = 0; k < 9; k++)
         {
-            addSlot(new LockedSlot(playerInventory, k, 27 + 18 * k, 99));
+            slots.get(k).x = 27 + 18 * k;
+            slots.get(k).y = 99;
         }
 
         for(int y = 0; y < 4; y++)
         {
             for(int x = 0; x < 6; x++)
             {
-                addSlot(new SelectSlot(maskInv, x + y * 9, 55 + 18 * (x % 9), 18 + 18 * y));
+                slots.get(x + y * 6 + 9).x = 55 + 18 * (x % 9);
+                slots.get(x + y * 6 + 9).y = 18 + 18 * y;
             }
+        }
+
+        for(int k = maxSlot; k < slots.size(); k++)
+        {
+            slots.get(k).x = 1000;
         }
     }
 
     private void setupStatusInv(PlayerInventory playerInventory)
     {
-        addSlot(new SelectSlot(statusInv, 0, 4, 50));
+        for(Slot slot : slots)
+        {
+            slot.x = 1000;
+        }
     }
 }
