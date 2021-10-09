@@ -6,7 +6,9 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.container.SelectContainer;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.SelectInteractionMessage;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.ResourceLocation;
@@ -96,6 +98,12 @@ public class SelectScreen extends ContainerScreen<SelectContainer>
 	}
 
 	@Override
+	protected void init()
+	{
+		super.init();
+	}
+
+	@Override
 	protected void renderLabels(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_)
 	{
 		this.font.draw(p_230451_1_, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
@@ -148,6 +156,7 @@ public class SelectScreen extends ContainerScreen<SelectContainer>
 
 	public void resetScreen(int menuIndex)
 	{
+		minecraft.player.playSound(SoundInit.ARROW_HIT_SHOCK.get(), 1, 1);
 		this.menuIndex = menuIndex;
 		minecraft.setScreen(new SelectScreen(container, playerInventory, new StringTextComponent(titles[menuIndex]), menuIndex));
 	}
