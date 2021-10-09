@@ -4,6 +4,7 @@ import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.SelectInteractionMessage;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.client.gui.IGuiEventListener;
+import net.minecraft.client.gui.recipebook.RecipeBookGui;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
@@ -54,8 +55,8 @@ public class EntityEventHandler {
     {
         if(event.getGui() instanceof InventoryScreen)
         {
-            Button openSelectButton = new Button(event.getGui().width / 2 - 176 / 2 + 154,
-                    event.getGui().height / 2 - 23 + 6, 16, 16,
+            Button openSelectButton = new Button((event.getGui().width - ((InventoryScreen) event.getGui()).getXSize()) / 2 + 2,
+                    (event.getGui().height - ((InventoryScreen) event.getGui()).getYSize()) / 2 - 16, 16, 16,
                     new StringTextComponent("SL"), a ->
                     NetworkDispatcher.networkChannel.sendToServer(new SelectInteractionMessage(0, true)));
 
