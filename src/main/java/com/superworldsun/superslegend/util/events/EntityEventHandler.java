@@ -54,21 +54,15 @@ public class EntityEventHandler {
     {
         if(event.getGui() instanceof InventoryScreen)
         {
-
-            Button openSelectButton = new Button(event.getGui().width / 2 - 176 / 2 - 16, 100, 16, 16,
+            Button openSelectButton = new Button(event.getGui().width / 2 - 176 / 2 + 154,
+                    event.getGui().height / 2 - 23 + 6, 16, 16,
                     new StringTextComponent("SL"), a ->
                     NetworkDispatcher.networkChannel.sendToServer(new SelectInteractionMessage(0, true)));
 
-            ((List<Widget>) ObfuscationReflectionHelper.getPrivateValue(Screen.class, event.getGui(), "buttons")).add(openSelectButton);
-            ((List<IGuiEventListener>) ObfuscationReflectionHelper.getPrivateValue(Screen.class, event.getGui(), "children")).add(openSelectButton);
-        } else if(event.getGui() instanceof CreativeScreen)
-        {
-            Button openSelectButton = new Button(event.getGui().width / 2 - 196 / 2 - 16, 100, 16, 16,
-                    new StringTextComponent("SL"), a ->
-                    NetworkDispatcher.networkChannel.sendToServer(new SelectInteractionMessage(0, true)));
-
-            ((List<Widget>) ObfuscationReflectionHelper.getPrivateValue(Screen.class, event.getGui(), "buttons")).add(openSelectButton);
-            ((List<IGuiEventListener>) ObfuscationReflectionHelper.getPrivateValue(Screen.class, event.getGui(), "children")).add(openSelectButton);
+            ((List<Widget>) ObfuscationReflectionHelper.getPrivateValue(Screen.class, event.getGui(), "buttons"))
+                    .add(openSelectButton);
+            ((List<IGuiEventListener>) ObfuscationReflectionHelper.getPrivateValue(Screen.class, event.getGui(),
+                    "children")).add(openSelectButton);
         }
     }
 }
