@@ -154,7 +154,7 @@ public class SelectScreen extends ContainerScreen<SelectContainer>
 
 	private void setupSwordInv()
 	{
-		int maxSlot = 37;
+		int maxSlot = 36;
 		for(int k = 0; k < 9; k++)
 		{
 			slots.get(k).x = 27 + 18 * k;
@@ -178,7 +178,7 @@ public class SelectScreen extends ContainerScreen<SelectContainer>
 
 	private void setupEquipmentInv()
 	{
-		int maxSlot = 50;
+		int maxSlot = 49;
 		for(int k = 0; k < 9; k++)
 		{
 			slots.get(k).x = 27 + 18 * k;
@@ -226,7 +226,7 @@ public class SelectScreen extends ContainerScreen<SelectContainer>
 
 	private void setupMaskInv()
 	{
-		int maxSlot = 34;
+		int maxSlot = 33;
 		for(int k = 0; k < 9; k++)
 		{
 			slots.get(k).x = 27 + 18 * k;
