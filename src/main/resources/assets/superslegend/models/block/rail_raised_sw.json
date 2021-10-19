@@ -1,0 +1,6 @@
+{
+  "parent": "superslegend:block/template_rail_raised_sw",
+  "textures": {
+    "rail": "superslegend:block/rail"
+  }
+}
