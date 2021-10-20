@@ -104,6 +104,8 @@ public class ItemInit
 			() -> new HeartContainer(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
 			() -> new VoidContainer(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	public static final RegistryObject<Item> SPINNER = ITEMS.register("spinner", SpinnerItem::new);
 	
 	// FOOD
 	

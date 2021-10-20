@@ -3,7 +3,11 @@ package com.superworldsun.superslegend.registries;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.*;
 
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -67,4 +71,5 @@ public class BlockInit
 	public static final RegistryObject<FluidBlock> LIQUID_MUD = BLOCKS.register("liquid_mud", () -> new FluidBlock(FluidInit.MUD_SOURCE));
 	public static final RegistryObject<Block> LIGHT_EMITTER = BLOCKS.register("light_emitter", LightEmitterBlock::new);
 	public static final RegistryObject<Block> LIGHT_PRISM = BLOCKS.register("light_prism", LightPrismBlock::new);
+	public static final RegistryObject<Block> RIDGED_WALL_RAIL = BLOCKS.register("ridged_wall_rail", () -> new RidgedWallRail(AbstractBlock.Properties.of(Material.DECORATION).noCollission().strength(0.7F).sound(SoundType.METAL)));
 }

@@ -130,7 +130,7 @@ public class SelectScreen extends ContainerScreen<SelectContainer>
 	}
 
 	public int menuIndex;
-	String[] titles = new String[]{ "Swords", "Equipment", "Rings", "Masks", "Status" };
+	String[] titles = new String[]{ "Items", "Equipment", "Rings", "Masks", "Status" };
 
 	public boolean mouseClicked(double x, double y, int p_231044_5_)
 	{
