@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.block.Block;
