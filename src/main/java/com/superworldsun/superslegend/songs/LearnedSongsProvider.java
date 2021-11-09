@@ -36,7 +36,7 @@ public class LearnedSongsProvider implements ICapabilitySerializable<CompoundNBT
 	@SubscribeEvent
 	public static void attachCapability(AttachCapabilitiesEvent<Entity> event)
 	{
-		// We add mana only to players
+		// We add learned songs data only to players
 		if (!(event.getObject() instanceof PlayerEntity))
 		{
 			return;
@@ -48,7 +48,7 @@ public class LearnedSongsProvider implements ICapabilitySerializable<CompoundNBT
 	@SubscribeEvent
 	public static void playerJoinWorld(EntityJoinWorldEvent event)
 	{
-		// We add mana only to players, means we only sync it for players
+		// We add learned songs data only to players, means we only sync it for players
 		if (!(event.getEntity() instanceof PlayerEntity))
 		{
 			return;
