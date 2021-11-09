@@ -22,16 +22,10 @@ import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
 import com.superworldsun.superslegend.proxy.IProxy;
-import com.superworldsun.superslegend.registries.BlockInit;
-import com.superworldsun.superslegend.registries.ContainerInit;
-import com.superworldsun.superslegend.registries.EntityTypeInit;
-import com.superworldsun.superslegend.registries.FluidInit;
-import com.superworldsun.superslegend.registries.ItemInit;
-import com.superworldsun.superslegend.registries.LootInit;
-import com.superworldsun.superslegend.registries.PaintingInit;
-import com.superworldsun.superslegend.registries.RendererManagerInit;
-import com.superworldsun.superslegend.registries.SoundInit;
-import com.superworldsun.superslegend.registries.TileEntityInit;
+import com.superworldsun.superslegend.registries.*;
+import com.superworldsun.superslegend.songs.ILearnedSongs;
+import com.superworldsun.superslegend.songs.LearnedSongs;
+import com.superworldsun.superslegend.songs.LearnedSongsStorage;
 import com.superworldsun.superslegend.util.ClientHandler;
 import com.superworldsun.superslegend.util.events.EntityEventHandler;
 
@@ -139,6 +133,7 @@ public class SupersLegendMain
 	{
 		CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana::new);
 		CapabilityManager.INSTANCE.register(ICooldowns.class, new CooldownsStorage(), Cooldowns::new);
+		CapabilityManager.INSTANCE.register(ILearnedSongs.class, new LearnedSongsStorage(), LearnedSongs::new);
 		CapabilityManager.INSTANCE.register(HookModel.class, new HookStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });
 
 		NETWORK = NetworkRegistry.newSimpleChannel(new ResourceLocation("superslegend", "main_channel"), () -> "1.0", s -> true, s -> true);
