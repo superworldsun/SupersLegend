@@ -99,6 +99,7 @@ public class SupersLegendMain
 		ContainerInit.CONTAINERS.register(modEventBus);
 		FluidInit.FLUIDS.register(modEventBus);
 		LootInit.REGISTRY.register(modEventBus);
+		OcarinaSongInit.REGISTRY.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
 		MinecraftForge.EVENT_BUS.register(new Hook());
 		DistExecutor.unsafeCallWhenOn(Dist.CLIENT, () -> () -> proxy = new ClientProxy());
