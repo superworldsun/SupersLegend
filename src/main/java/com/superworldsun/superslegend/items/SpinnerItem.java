@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 public class SpinnerItem extends Item
 {
-    public SpinnerItem() {
+    public SpinnerItem(Properties tab) {
         super(new Item.Properties());
         DispenserBlock.registerBehavior(this, DISPENSER_BEHAVIOR);
     }

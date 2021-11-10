@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.util.events;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.SelectInteractionMessage;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -18,16 +19,55 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtils;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import java.util.List;
 
+@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
 public class EntityEventHandler {
+
+    /*@SubscribeEvent
+    public void onpigjump(LivingEvent.LivingJumpEvent event)
+    {
+        if(event.getEntityLiving() instanceof PigEntity) {
+
+                event.getEntityLiving().addEffect(new EffectInstance(Effects.LEVITATION, 1000, 5));
+                event.getEntityLiving().playSound(SoundInit.PIGFLY.get(), 0.25F, 1.0F);
+        }
+    }*/
+
+    @SubscribeEvent
+    public static void onFogColor(EntityViewRenderEvent.FogColors event)
+    {
+        Biome b = event.getInfo().getEntity().level.getBiome(event.getInfo().getEntity().blockPosition());
+        if (event.getInfo().getEntity().level.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY).getKey(b).toString().equals("superslegend:dark_world_forest"))
+        {
+            event.setRed(0.92F);
+            event.setGreen(0.95F);
+            event.setBlue(0.95F);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onFogDensity(EntityViewRenderEvent.FogDensity event)
+    {
+        Biome b = event.getInfo().getEntity().level.getBiome(event.getInfo().getEntity().blockPosition());
+        if (event.getInfo().getEntity().level.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY).getKey(b).toString().equals("superslegend:dark_world_forest"))
+        {
+            event.setDensity(0.01f);
+            event.setCanceled(true);
+        }
+    }
 
     @SubscribeEvent
     public void onpigjump(LivingEvent.LivingJumpEvent event)
