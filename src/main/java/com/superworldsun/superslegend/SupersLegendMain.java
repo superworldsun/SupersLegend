@@ -20,13 +20,14 @@ import com.superworldsun.superslegend.interfaces.IHasNoItem;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
-import com.superworldsun.superslegend.registries.*;
+import com.superworldsun.superslegend.registries.BiomeInit;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ContainerInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.FluidInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.LootInit;
+import com.superworldsun.superslegend.registries.OcarinaSongInit;
 import com.superworldsun.superslegend.registries.PaintingInit;
 import com.superworldsun.superslegend.registries.RendererManagerInit;
 import com.superworldsun.superslegend.registries.TileEntityInit;
@@ -94,6 +95,8 @@ public class SupersLegendMain
 
 		// Remember to register items before blocks, problems can occur
 		// otherwise if you don't
+		ItemInit.ITEMS.register(modEventBus);
+		BlockInit.BLOCKS.register(modEventBus);
 		BiomeInit.BIOMES.register(modEventBus);
 		BiomeInit.registerBiomes();
 		PaintingInit.PAINTING_TYPES.register(modEventBus);
