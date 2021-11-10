@@ -72,4 +72,21 @@ public class BlockInit
 	public static final RegistryObject<Block> LIGHT_EMITTER = BLOCKS.register("light_emitter", LightEmitterBlock::new);
 	public static final RegistryObject<Block> LIGHT_PRISM = BLOCKS.register("light_prism", LightPrismBlock::new);
 	public static final RegistryObject<Block> RIDGED_WALL_RAIL = BLOCKS.register("ridged_wall_rail", () -> new RidgedWallRail(AbstractBlock.Properties.of(Material.DECORATION).noCollission().strength(0.7F).sound(SoundType.METAL)));
+
+	public static final RegistryObject<Block> TALKING_TIMBER_PLANKS = BLOCKS.register("talking_timber_planks", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_SAPLING = BLOCKS.register("talking_timber_sapling", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_LOG = BLOCKS.register("talking_timber_log", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_STRIPPED_LOG = BLOCKS.register("talking_timber_stripped_log", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_STRIPPED_WOOD = BLOCKS.register("talking_timber_stripped_wood", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_WOOD = BLOCKS.register("talking_timber_wood", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_LEAVES = BLOCKS.register("talking_timber_leaves", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_SLAB = BLOCKS.register("talking_timber_slab", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_PLATE = BLOCKS.register("talking_timber_plate", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_FENCE = BLOCKS.register("talking_timber_fence", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_TRAPDOOR = BLOCKS.register("talking_timber_trapdoor", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_FENCE_GATE = BLOCKS.register("talking_timber_fence_gate", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_STAIRS = BLOCKS.register("talking_timber_stairs", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_BUTTON = BLOCKS.register("talking_timber_button", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_DOOR = BLOCKS.register("talking_timber_door", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TALKING_TIMBER_SIGN = BLOCKS.register("talking_timber_sign", () -> new Block(PropertiesInit.WRECKAGE));
 }
