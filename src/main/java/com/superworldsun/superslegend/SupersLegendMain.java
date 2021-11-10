@@ -23,6 +23,15 @@ import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
 import com.superworldsun.superslegend.proxy.IProxy;
 import com.superworldsun.superslegend.registries.*;
+import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.registries.ContainerInit;
+import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.registries.FluidInit;
+import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.LootInit;
+import com.superworldsun.superslegend.registries.PaintingInit;
+import com.superworldsun.superslegend.registries.RendererManagerInit;
+import com.superworldsun.superslegend.registries.TileEntityInit;
 import com.superworldsun.superslegend.songs.ILearnedSongs;
 import com.superworldsun.superslegend.songs.LearnedSongs;
 import com.superworldsun.superslegend.songs.LearnedSongsStorage;
@@ -90,9 +99,8 @@ public class SupersLegendMain
 
 		// Remember to register items before blocks, problems can occur
 		// otherwise if you don't
-		ItemInit.ITEMS.register(modEventBus);
-		BlockInit.BLOCKS.register(modEventBus);
-		SoundInit.SOUNDS.register(modEventBus);
+		BiomeInit.BIOMES.register(modEventBus);
+		BiomeInit.registerBiomes();
 		PaintingInit.PAINTING_TYPES.register(modEventBus);
 		EntityTypeInit.ENTITIES.register(modEventBus);
 		TileEntityInit.TILES.register(modEventBus);
@@ -200,7 +208,22 @@ public class SupersLegendMain
 			});
 			register(ItemInit.HEROS_BOW.get(), new ResourceLocation("pulling"),
 					(stack, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-			
+
+			register(ItemInit.FAIRY_BOW.get(), new ResourceLocation("pull"), (stack, world, entity) ->
+			{
+				if (entity == null)
+				{
+					return 0.0F;
+				}
+				else
+				{
+					return entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
+				}
+			});
+			register(ItemInit.FAIRY_BOW.get(), new ResourceLocation("pulling"),
+					(stack, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+
 			register(ItemInit.LYNEL_BOW_X3.get(), new ResourceLocation("pull"), (stack, world, entity) ->
 			{
 				if (entity == null)
