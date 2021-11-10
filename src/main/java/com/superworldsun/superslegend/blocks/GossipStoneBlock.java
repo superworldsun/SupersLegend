@@ -2,8 +2,8 @@ package com.superworldsun.superslegend.blocks;
 
 import java.util.UUID;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.tile.GossipStoneTileEntity;
+import com.superworldsun.superslegend.client.screen.GossipStoneScreen;
 import com.superworldsun.superslegend.registries.BlockInit;
 
 import net.minecraft.block.Block;
@@ -11,6 +11,7 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -19,7 +20,6 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
-//import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -31,6 +31,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
 
 public class GossipStoneBlock extends Block
@@ -93,7 +94,7 @@ public class GossipStoneBlock extends Block
 	{
 		if (entity instanceof PlayerEntity && world.isClientSide)
 		{
-			DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> SupersLegendMain.proxy.showGossipStoneScreen(pos));
+			DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> showGossipStoneScreen(pos));
 		}
 	}
 	
@@ -125,5 +126,12 @@ public class GossipStoneBlock extends Block
 	public TileEntity createTileEntity(BlockState state, IBlockReader world)
 	{
 		return new GossipStoneTileEntity();
+	}
+	
+	@OnlyIn(value = Dist.CLIENT)
+	private void showGossipStoneScreen(BlockPos pos)
+	{
+		Minecraft client = Minecraft.getInstance();
+		client.setScreen(new GossipStoneScreen(pos));
 	}
 }
