@@ -105,7 +105,8 @@ public class ItemInit
 	public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
 			() -> new VoidContainer(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
-	public static final RegistryObject<Item> SPINNER = ITEMS.register("spinner", SpinnerItem::new);
+	public static final RegistryObject<Item> SPINNER = ITEMS.register("spinner",
+			() -> new SpinnerItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	
 	// FOOD
 	
@@ -210,6 +211,7 @@ public class ItemInit
 	public static final RegistryObject<Item> BAIT_BAG = ITEMS.register("bait_bag", BaitBagItem::new);
 
 	public static final RegistryObject<Item> LETTER = ITEMS.register("letter", Letter::new);
+	public static final RegistryObject<Item> RED_LETTER = ITEMS.register("red_letter", Letter::new);
 
 	public static final RegistryObject<Item> BULLET_BAG = ITEMS.register("bullet_bag",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -685,13 +687,22 @@ public class ItemInit
 
 
 
-	//Hands Power Bracelet
-	public static final RegistryObject<Item> POWER_BRACELET = ITEMS.register("power_bracelet",
+	//Hands (gloves, gauntlets, bracelets)
+	public static final RegistryObject<Item> POWER_BRACELETS = ITEMS.register("power_bracelets",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> GORONS_BRACELET = ITEMS.register("gorons_bracelet",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> SILVER_GAUNTLETS = ITEMS.register("silver_gauntlets",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> GOLDEN_GAUNTLETS = ITEMS.register("golden_gauntlets",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+
+	//Rings
+	public static final RegistryObject<Item> BLUE_RING = ITEMS.register("blue_ring",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> RED_RING = ITEMS.register("red_ring",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+
 
 	//Music Discs
 	public static final RegistryObject<Item> BUBBLEGLOOP_DISC = ITEMS.register("bubblegloop_disc",
