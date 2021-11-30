@@ -66,7 +66,12 @@ public class SoundInit
 	public static final RegistryObject<SoundEvent> GREAT_BAY_TEMPLE_DISC = register("item.great_bay_temple_disc.disc");
 	public static final RegistryObject<SoundEvent> STONE_TOWER_TEMPLE_REALITY_DISC = register("item.stone_tower_temple_reality_disc.disc");
 	public static final RegistryObject<SoundEvent> STONE_TOWER_TEMPLE_ILLUSION_DISC = register("item.stone_tower_temple_illusion_disc.disc");
-	
+	public static final RegistryObject<SoundEvent> OCARINA_NOTE_D = register("item.ocarina.note_d");
+	public static final RegistryObject<SoundEvent> OCARINA_NOTE_R = register("item.ocarina.note_r");
+	public static final RegistryObject<SoundEvent> OCARINA_NOTE_L = register("item.ocarina.note_l");
+	public static final RegistryObject<SoundEvent> OCARINA_NOTE_U = register("item.ocarina.note_u");
+	public static final RegistryObject<SoundEvent> OCARINA_NOTE_A = register("item.ocarina.note_a");
+
 	private static RegistryObject<SoundEvent> register(String soundName)
 	{
 		return SOUNDS.register(soundName, Lazy.of(() -> new SoundEvent(new ResourceLocation(SupersLegendMain.MOD_ID, soundName))));
