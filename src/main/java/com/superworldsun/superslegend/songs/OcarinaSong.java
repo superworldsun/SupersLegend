@@ -1,9 +1,11 @@
 package com.superworldsun.superslegend.songs;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public class OcarinaSong implements IForgeRegistryEntry<OcarinaSong>
+public abstract class OcarinaSong implements IForgeRegistryEntry<OcarinaSong>
 {
 	private ResourceLocation registryName;
 	private final String pattern;
@@ -36,4 +38,6 @@ public class OcarinaSong implements IForgeRegistryEntry<OcarinaSong>
 	{
 		return OcarinaSong.class;
 	}
+	
+	public abstract void onSongPlayed(PlayerEntity player, World level);
 }
