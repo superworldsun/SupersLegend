@@ -15,6 +15,9 @@ public class SongOfStorms extends OcarinaSong
 	@Override
 	public void onSongPlayed(PlayerEntity player, World level)
 	{
-		
+		if (level.dimension() == World.OVERWORLD && !level.isRaining())
+		{
+			level.getLevelData().setRaining(true);
+		}
 	}
 }
