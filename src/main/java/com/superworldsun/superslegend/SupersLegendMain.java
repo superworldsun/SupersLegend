@@ -30,6 +30,7 @@ import com.superworldsun.superslegend.registries.LootInit;
 import com.superworldsun.superslegend.registries.OcarinaSongInit;
 import com.superworldsun.superslegend.registries.PaintingInit;
 import com.superworldsun.superslegend.registries.RendererManagerInit;
+import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.registries.TileEntityInit;
 import com.superworldsun.superslegend.songs.ILearnedSongs;
 import com.superworldsun.superslegend.songs.LearnedSongs;
@@ -97,6 +98,7 @@ public class SupersLegendMain
 		// otherwise if you don't
 		ItemInit.ITEMS.register(modEventBus);
 		BlockInit.BLOCKS.register(modEventBus);
+		SoundInit.SOUNDS.register(modEventBus);
 		BiomeInit.BIOMES.register(modEventBus);
 		BiomeInit.registerBiomes();
 		PaintingInit.PAINTING_TYPES.register(modEventBus);

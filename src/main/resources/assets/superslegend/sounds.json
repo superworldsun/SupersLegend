@@ -395,5 +395,30 @@
 		"category": "player",
 		"subtitle": "superslegend.subtitle.poe_laughing",
 		"sounds": [ "superslegend:item/poe_laugh" ]
+	},
+	"item.ocarina.note_d": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item.ocarina.note_d",
+		"sounds": [ "superslegend:item/ocarina/note_d" ]
+	},
+	"item.ocarina.note_u": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item.ocarina.note_u",
+		"sounds": [ "superslegend:item/ocarina/note_u" ]
+	},
+	"item.ocarina.note_r": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item.ocarina.note_r",
+		"sounds": [ "superslegend:item/ocarina/note_r" ]
+	},
+	"item.ocarina.note_l": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item.ocarina.note_l",
+		"sounds": [ "superslegend:item/ocarina/note_l" ]
+	},
+	"item.ocarina.note_a": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item.ocarina.note_a",
+		"sounds": [ "superslegend:item/ocarina/note_a" ]
 	}
 }
