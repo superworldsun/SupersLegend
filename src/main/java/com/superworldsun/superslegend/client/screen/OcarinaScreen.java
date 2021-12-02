@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.client.screen;
 
+import java.util.UUID;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.SupersLegendRegistries;
@@ -14,6 +16,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class OcarinaScreen extends Screen
 {
@@ -144,6 +147,7 @@ public class OcarinaScreen extends Screen
 		if (closeDelay == 0)
 		{
 			NetworkDispatcher.networkChannel.sendToServer(new PlaySongMessage(playedSong));
+			minecraft.player.sendMessage(new TranslationTextComponent("screen.ocarina.song_played", playedSong.getLocalizedName()), UUID.randomUUID());
 			minecraft.setScreen(null);
 		}
 		

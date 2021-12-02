@@ -2,6 +2,8 @@ package com.superworldsun.superslegend.songs;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
@@ -18,6 +20,11 @@ public abstract class OcarinaSong implements IForgeRegistryEntry<OcarinaSong>
 	public String getPattern()
 	{
 		return pattern;
+	}
+	
+	public ITextComponent getLocalizedName()
+	{
+		return new TranslationTextComponent("song." + getRegistryName().toString());
 	}
 	
 	@Override
