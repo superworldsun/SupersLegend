@@ -46,7 +46,7 @@ public class SunsSong extends OcarinaSong
 			
 			if (serverWorld.isDay() && played_at_day || !serverWorld.isDay() && !played_at_day)
 			{
-				serverWorld.setDayTime(serverWorld.getDayTime() + 24L);
+				serverWorld.setDayTime(serverWorld.getDayTime() + 49L);
 			}
 			else
 			{
