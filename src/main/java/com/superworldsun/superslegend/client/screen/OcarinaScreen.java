@@ -5,6 +5,7 @@ import java.util.UUID;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.SupersLegendRegistries;
+import com.superworldsun.superslegend.client.sound.OcarinaSongSound;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.PlaySongMessage;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -133,6 +134,7 @@ public class OcarinaScreen extends Screen
 			
 			if (/* learnedSongs.getLearnedSongs().contains(song) && */song.getPattern().equals(playedNotes))
 			{
+				LearnedSongsProvider.get(minecraft.player).setCurrentSong(null);
 				playedSong = song;
 				closeDelay = 20;
 			}
@@ -149,6 +151,8 @@ public class OcarinaScreen extends Screen
 			NetworkDispatcher.networkChannel.sendToServer(new PlaySongMessage(playedSong));
 			minecraft.player.sendMessage(new TranslationTextComponent("screen.ocarina.song_played", playedSong.getLocalizedName()), UUID.randomUUID());
 			minecraft.setScreen(null);
+			minecraft.getSoundManager().play(new OcarinaSongSound(minecraft.player, playedSong));
+			LearnedSongsProvider.get(minecraft.player).setCurrentSong(playedSong);
 		}
 		
 		if (closeDelay > 0)
