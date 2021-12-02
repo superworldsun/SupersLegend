@@ -1,24 +1,31 @@
 package com.superworldsun.superslegend.client.screen;
 
+import java.util.UUID;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.SupersLegendRegistries;
+import com.superworldsun.superslegend.client.sound.OcarinaSongSound;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.PlaySongMessage;
 import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.songs.ILearnedSongs;
 import com.superworldsun.superslegend.songs.LearnedSongsProvider;
+import com.superworldsun.superslegend.songs.OcarinaSong;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class OcarinaScreen extends Screen
 {
 	private static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/ocarina.png");
 	private static int max_notes;
 	private String playedNotes = "";
+	private int closeDelay = -1;
+	private OcarinaSong playedSong;
 	
 	public OcarinaScreen()
 	{
@@ -127,12 +134,31 @@ public class OcarinaScreen extends Screen
 			
 			if (/* learnedSongs.getLearnedSongs().contains(song) && */song.getPattern().equals(playedNotes))
 			{
-				NetworkDispatcher.networkChannel.sendToServer(new PlaySongMessage(song));
-				minecraft.setScreen(null);
+				LearnedSongsProvider.get(minecraft.player).setCurrentSong(null);
+				playedSong = song;
+				closeDelay = 20;
 			}
 		});
 		
 		return super.keyPressed(keyCode, p_231046_2_, p_231046_3_);
+	}
+	
+	@Override
+	public void tick()
+	{
+		if (closeDelay == 0)
+		{
+			NetworkDispatcher.networkChannel.sendToServer(new PlaySongMessage(playedSong));
+			minecraft.player.sendMessage(new TranslationTextComponent("screen.ocarina.song_played", playedSong.getLocalizedName()), UUID.randomUUID());
+			minecraft.setScreen(null);
+			minecraft.getSoundManager().play(new OcarinaSongSound(minecraft.player, playedSong));
+			LearnedSongsProvider.get(minecraft.player).setCurrentSong(playedSong);
+		}
+		
+		if (closeDelay > 0)
+		{
+			closeDelay--;
+		}
 	}
 	
 	@Override
