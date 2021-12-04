@@ -26,7 +26,7 @@ public abstract class OcarinaSong implements IForgeRegistryEntry<OcarinaSong>
 	
 	public ITextComponent getLocalizedName()
 	{
-		return new TranslationTextComponent("song." + getRegistryName().toString());
+		return new TranslationTextComponent("song." + getRegistryName().toString().replace(":", "."));
 	}
 	
 	@Override
