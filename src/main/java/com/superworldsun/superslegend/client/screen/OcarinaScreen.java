@@ -95,7 +95,7 @@ public class OcarinaScreen extends Screen
 	@Override
 	public boolean keyPressed(int keyCode, int p_231046_2_, int p_231046_3_)
 	{
-		if (playedNotes.length() < max_notes)
+		if (playedNotes.length() < max_notes && playedSong == null)
 		{
 			if (keyCode == minecraft.options.keyUp.getKey().getValue())
 			{
