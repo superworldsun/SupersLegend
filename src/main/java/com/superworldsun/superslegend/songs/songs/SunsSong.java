@@ -1,11 +1,13 @@
 package com.superworldsun.superslegend.songs.songs;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.play.server.SUpdateTimePacket;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -34,6 +36,12 @@ public class SunsSong extends OcarinaSong
 			played = true;
 			played_at_day = level.isDay();
 		}
+	}
+
+	@Override
+	public SoundEvent getPlayingSound()
+	{
+		return SoundInit.SUNS_SONG.get();
 	}
 	
 	@SubscribeEvent

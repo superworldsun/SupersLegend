@@ -196,6 +196,11 @@
 		"subtitle": "superslegend.subtitle.suns_song",
 		"sounds": [ "superslegend:item/suns_song" ]
 	},
+	"item.song_of_storms": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_storms",
+		"sounds": [ "superslegend:item/song_of_storms" ]
+	},
 	"item.nayrus_love_cast": {
 		"category": "player",
 		"subtitle": "superslegend.subtitle.nayrus_love_cast",
