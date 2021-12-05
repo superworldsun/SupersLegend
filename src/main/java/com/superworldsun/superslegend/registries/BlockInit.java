@@ -4,7 +4,6 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.*;
 
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -89,4 +88,5 @@ public class BlockInit
 	public static final RegistryObject<Block> TALKING_TIMBER_BUTTON = BLOCKS.register("talking_timber_button", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> TALKING_TIMBER_DOOR = BLOCKS.register("talking_timber_door", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> TALKING_TIMBER_SIGN = BLOCKS.register("talking_timber_sign", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> ROYAL_TILE = BLOCKS.register("royal_tile", RoyalTileBlock::new);
 }
