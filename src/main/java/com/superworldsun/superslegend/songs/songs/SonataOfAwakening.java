@@ -15,6 +15,13 @@ public class SonataOfAwakening extends OcarinaSong
 	@Override
 	public void onSongPlayed(PlayerEntity player, World level)
 	{
-		
+		int radius = 5;
+		level.getEntities(player, player.getBoundingBox().inflate(radius)).forEach(entity ->
+		{
+			if (entity instanceof PlayerEntity && ((PlayerEntity) entity).isSleeping())
+			{
+				((PlayerEntity) entity).stopSleeping();
+			}
+		});
 	}
 }
