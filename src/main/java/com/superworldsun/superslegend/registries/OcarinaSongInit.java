@@ -28,7 +28,7 @@ public class OcarinaSongInit
 	public static final RegistryObject<OcarinaSong> SONATA_OF_AWAKENING = REGISTRY.register("sonata_of_awakening", SonataOfAwakening::new);
 	public static final RegistryObject<OcarinaSong> SONG_OF_DOUBLE_TIME = REGISTRY.register("song_of_double_time", SongOfDoubleTime::new);
 	public static final RegistryObject<OcarinaSong> PRELUDE_OF_LIGHT = REGISTRY.register("prelude_of_light", PreludeOfLight::new);
-	public static final RegistryObject<OcarinaSong> CORON_LULLABY = REGISTRY.register("coron_lullaby", CoronLullaby::new);
+	public static final RegistryObject<OcarinaSong> GORON_LULLABY = REGISTRY.register("goron_lullaby", GoronLullaby::new);
 	public static final RegistryObject<OcarinaSong> OATH_TO_ORDER = REGISTRY.register("oath_to_order", OathToOrder::new);
 	public static final RegistryObject<OcarinaSong> NEW_WAVE_BOSSA_NOVA = REGISTRY.register("new_wave_bossa_nova", NewWaveBossaNova::new);
 	public static final RegistryObject<OcarinaSong> ELEGY_OF_EMPTYNESS = REGISTRY.register("elegy_of_emptyness", ElegyOfEmptyness::new);

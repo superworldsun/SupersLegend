@@ -5,9 +5,9 @@ import com.superworldsun.superslegend.songs.OcarinaSong;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
-public class CoronLullaby extends OcarinaSong
+public class GoronLullaby extends OcarinaSong
 {
-	public CoronLullaby()
+	public GoronLullaby()
 	{
 		super("arlarlra");
 	}
