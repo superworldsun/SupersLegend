@@ -2,14 +2,15 @@ package com.superworldsun.superslegend.songs.songs;
 
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
+import net.minecraft.entity.IAngerable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
-public class SonataOfAwakening extends OcarinaSong
+public class GoronLullaby extends OcarinaSong
 {
-	public SonataOfAwakening()
+	public GoronLullaby()
 	{
-		super("ululara");
+		super("arlarlra");
 	}
 	
 	@Override
@@ -18,9 +19,9 @@ public class SonataOfAwakening extends OcarinaSong
 		int radius = 5;
 		level.getEntities(player, player.getBoundingBox().inflate(radius)).forEach(entity ->
 		{
-			if (entity instanceof PlayerEntity && ((PlayerEntity) entity).isSleeping())
+			if (entity instanceof IAngerable && ((IAngerable) entity).isAngry())
 			{
-				((PlayerEntity) entity).stopSleeping();
+				((IAngerable) entity).stopBeingAngry();
 			}
 		});
 	}
