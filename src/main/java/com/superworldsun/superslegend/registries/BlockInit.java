@@ -90,4 +90,5 @@ public class BlockInit
 	public static final RegistryObject<Block> TALKING_TIMBER_SIGN = BLOCKS.register("talking_timber_sign", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> ROYAL_TILE = BLOCKS.register("royal_tile", RoyalTileBlock::new);
 	public static final RegistryObject<Block> BLOCK_OF_TIME = BLOCKS.register("block_of_time", TimeBlock::new);
+	public static final RegistryObject<Block> OWL_STATUE = BLOCKS.register("owl_statue", () -> new OwlStatue(PropertiesInit.WRECKAGE));
 }
