@@ -55,6 +55,10 @@ public class SoundInit
 	public static final RegistryObject<SoundEvent> POE_LAUGH = register("item.poe_laugh");
 	public static final RegistryObject<SoundEvent> SUNS_SONG = register("item.suns_song");
 	public static final RegistryObject<SoundEvent> SONG_OF_STORMS = register("item.song_of_storms");
+	public static final RegistryObject<SoundEvent> ZELDAS_LULLABY = register("item.zeldas_lullaby");
+	public static final RegistryObject<SoundEvent> SONG_OF_DOUBLE_TIME = register("item.song_of_double_time");
+	public static final RegistryObject<SoundEvent> INVERTED_SONG_OF_TIME = register("item.inverted_song_of_time");
+	public static final RegistryObject<SoundEvent> SONG_OF_SOARING = register("item.song_of_soaring");
 	public static final RegistryObject<SoundEvent> BREMEN_MARCH = register("item.bremen_march");
 	public static final RegistryObject<SoundEvent> BUBBLEGLOOP_DISC = register("item.bubblegloop_disc");
 	public static final RegistryObject<SoundEvent> FOREST_TEMPLE_DISC = register("item.forest_temple_disc");

@@ -201,6 +201,26 @@
 		"subtitle": "superslegend.subtitle.song_of_storms",
 		"sounds": [ "superslegend:item/song_of_storms" ]
 	},
+	"item.song_of_soaring": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_soaring",
+		"sounds": [ "superslegend:item/song_of_soaring" ]
+	},
+	"item.inverted_song_of_time": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.inverted_song_of_time",
+		"sounds": [ "superslegend:item/inverted_song_of_time" ]
+	},
+	"item.song_of_double_time": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_double_time",
+		"sounds": [ "superslegend:item/song_of_double_time" ]
+	},
+	"item.zeldas_lullaby": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.zeldas_lullaby",
+		"sounds": [ "superslegend:item/zeldas_lullaby" ]
+	},
 	"item.nayrus_love_cast": {
 		"category": "player",
 		"subtitle": "superslegend.subtitle.nayrus_love_cast",

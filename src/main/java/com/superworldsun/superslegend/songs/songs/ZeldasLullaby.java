@@ -1,11 +1,13 @@
 package com.superworldsun.superslegend.songs.songs;
 
 import com.superworldsun.superslegend.blocks.RoyalTileBlock;
+import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -14,6 +16,12 @@ public class ZeldasLullaby extends OcarinaSong
 	public ZeldasLullaby()
 	{
 		super("lurlur");
+	}
+
+	@Override
+	public SoundEvent getPlayingSound()
+	{
+		return SoundInit.ZELDAS_LULLABY.get();
 	}
 	
 	@Override
