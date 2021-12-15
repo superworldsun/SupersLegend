@@ -1,11 +1,13 @@
 package com.superworldsun.superslegend.songs.songs;
 
 import com.superworldsun.superslegend.blocks.TimeBlock;
+import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -14,6 +16,12 @@ public class SongOfTime extends OcarinaSong
 	public SongOfTime()
 	{
 		super("radrad");
+	}
+
+	@Override
+	public SoundEvent getPlayingSound()
+	{
+		return SoundInit.SONG_OF_TIME.get();
 	}
 	
 	@Override

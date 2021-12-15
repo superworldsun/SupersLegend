@@ -27,6 +27,12 @@ public class SunsSong extends OcarinaSong
 	{
 		super("rdurdu");
 	}
+
+	@Override
+	public SoundEvent getPlayingSound()
+	{
+		return SoundInit.SUNS_SONG.get();
+	}
 	
 	@Override
 	public void onSongPlayed(PlayerEntity player, World level)
@@ -36,12 +42,6 @@ public class SunsSong extends OcarinaSong
 			played = true;
 			played_at_day = level.isDay();
 		}
-	}
-
-	@Override
-	public SoundEvent getPlayingSound()
-	{
-		return SoundInit.SUNS_SONG.get();
 	}
 	
 	@SubscribeEvent

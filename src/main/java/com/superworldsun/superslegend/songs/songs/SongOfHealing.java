@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.songs.songs;
 import java.util.List;
 import java.util.Map;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
 import net.minecraft.enchantment.Enchantment;
@@ -11,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class SongOfHealing extends OcarinaSong
@@ -18,6 +20,12 @@ public class SongOfHealing extends OcarinaSong
 	public SongOfHealing()
 	{
 		super("lrdlrd");
+	}
+
+	@Override
+	public SoundEvent getPlayingSound()
+	{
+		return SoundInit.SONG_OF_HEALING.get();
 	}
 	
 	@Override

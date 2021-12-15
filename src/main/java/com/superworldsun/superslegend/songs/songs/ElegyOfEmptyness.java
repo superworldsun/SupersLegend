@@ -1,8 +1,10 @@
 package com.superworldsun.superslegend.songs.songs;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class ElegyOfEmptyness extends OcarinaSong
@@ -11,7 +13,13 @@ public class ElegyOfEmptyness extends OcarinaSong
 	{
 		super("rlrdrul");
 	}
-	
+
+	@Override
+	public SoundEvent getPlayingSound()
+	{
+		return SoundInit.ELEGY_OF_EMPTYNESS.get();
+	}
+
 	@Override
 	public void onSongPlayed(PlayerEntity player, World level)
 	{

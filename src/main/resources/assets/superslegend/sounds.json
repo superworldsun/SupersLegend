@@ -191,30 +191,105 @@
 		"subtitle": "superslegend.subtitle.bremen_march",
 		"sounds": [ "superslegend:item/bremen_march" ]
 	},
-	"item.suns_song": {
+	"item.bolero_of_fire": {
 		"category": "player",
-		"subtitle": "superslegend.subtitle.suns_song",
-		"sounds": [ "superslegend:item/suns_song" ]
+		"subtitle": "superslegend.subtitle.bolero_of_fire",
+		"sounds": [ "superslegend:item/bolero_of_fire" ]
 	},
-	"item.song_of_storms": {
+	"item.elegy_of_emptyness": {
 		"category": "player",
-		"subtitle": "superslegend.subtitle.song_of_storms",
-		"sounds": [ "superslegend:item/song_of_storms" ]
+		"subtitle": "superslegend.subtitle.elegy_of_emptyness",
+		"sounds": [ "superslegend:item/elegy_of_emptyness" ]
 	},
-	"item.song_of_soaring": {
+	"item.eponas_song": {
 		"category": "player",
-		"subtitle": "superslegend.subtitle.song_of_soaring",
-		"sounds": [ "superslegend:item/song_of_soaring" ]
+		"subtitle": "superslegend.subtitle.eponas_song",
+		"sounds": [ "superslegend:item/eponas_song" ]
+	},
+	"item.goron_lullaby": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.goron_lullaby",
+		"sounds": [ "superslegend:item/goron_lullaby" ]
 	},
 	"item.inverted_song_of_time": {
 		"category": "player",
 		"subtitle": "superslegend.subtitle.inverted_song_of_time",
 		"sounds": [ "superslegend:item/inverted_song_of_time" ]
 	},
+	"item.minuet_of_forest": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.minuet_of_forest",
+		"sounds": [ "superslegend:item/minuet_of_forest" ]
+	},
+	"item.new_wave_bossa_nova": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.new_wave_bossa_nova",
+		"sounds": [ "superslegend:item/new_wave_bossa_nova" ]
+	},
+	"item.nocturn_of_shadow": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.nocturn_of_shadow",
+		"sounds": [ "superslegend:item/nocturn_of_shadow" ]
+	},
+	"item.oath_to_order": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.oath_to_order",
+		"sounds": [ "superslegend:item/oath_to_order" ]
+	},
+	"item.prelude_of_light": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.prelude_of_light",
+		"sounds": [ "superslegend:item/prelude_of_light" ]
+	},
+	"item.requiem_of_spirit": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.requiem_of_spirit",
+		"sounds": [ "superslegend:item/requiem_of_spirit" ]
+	},
+	"item.sarias_song": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.sarias_song",
+		"sounds": [ "superslegend:item/sarias_song" ]
+	},
+	"item.serenade_of_water": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.serenade_of_water",
+		"sounds": [ "superslegend:item/serenade_of_water" ]
+	},
+	"item.sonata_of_awakening": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.sonata_of_awakening",
+		"sounds": [ "superslegend:item/sonata_of_awakening" ]
+	},
 	"item.song_of_double_time": {
 		"category": "player",
 		"subtitle": "superslegend.subtitle.song_of_double_time",
 		"sounds": [ "superslegend:item/song_of_double_time" ]
+	},
+	"item.song_of_healing": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_healing",
+		"sounds": [ "superslegend:item/song_of_healing" ]
+	},
+	"item.song_of_soaring": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_soaring",
+		"sounds": [ "superslegend:item/song_of_soaring" ]
+	},
+	"item.song_of_storms": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_storms",
+		"sounds": [ "superslegend:item/song_of_storms" ]
+	},
+	"item.song_of_time": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_time",
+		"sounds": [ "superslegend:item/song_of_time" ]
+	},
+	"item.suns_song": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.suns_song",
+		"sounds": [ "superslegend:item/suns_song" ]
 	},
 	"item.zeldas_lullaby": {
 		"category": "player",

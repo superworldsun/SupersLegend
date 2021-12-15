@@ -53,12 +53,29 @@ public class SoundInit
 	public static final RegistryObject<SoundEvent> FAIRY_HEAL_ON_TOUCH = register("item.fairy_heal_on_touch");
 	public static final RegistryObject<SoundEvent> FAIRY_TWINKLE = register("item.fairy_twinkle");
 	public static final RegistryObject<SoundEvent> POE_LAUGH = register("item.poe_laugh");
-	public static final RegistryObject<SoundEvent> SUNS_SONG = register("item.suns_song");
-	public static final RegistryObject<SoundEvent> SONG_OF_STORMS = register("item.song_of_storms");
-	public static final RegistryObject<SoundEvent> ZELDAS_LULLABY = register("item.zeldas_lullaby");
-	public static final RegistryObject<SoundEvent> SONG_OF_DOUBLE_TIME = register("item.song_of_double_time");
+
+	public static final RegistryObject<SoundEvent> BOLERO_OF_FIRE = register("item.bolero_of_fire");
+	public static final RegistryObject<SoundEvent> ELEGY_OF_EMPTYNESS = register("item.elegy_of_emptyness");
+	public static final RegistryObject<SoundEvent> EPONAS_SONG = register("item.eponas_song");
+	public static final RegistryObject<SoundEvent> GORON_LULLABY = register("item.goron_lullaby");
 	public static final RegistryObject<SoundEvent> INVERTED_SONG_OF_TIME = register("item.inverted_song_of_time");
+	public static final RegistryObject<SoundEvent> MINUET_OF_FOREST = register("item.minuet_of_forest");
+	public static final RegistryObject<SoundEvent> NEW_WAVE_BOSSA_NOVA = register("item.new_wave_bossa_nova");
+	public static final RegistryObject<SoundEvent> NOCTURNE_OF_SHADOW = register("item.nocturn_of_shadow");
+	public static final RegistryObject<SoundEvent> OATH_TO_ORDER = register("item.oath_to_order");
+	public static final RegistryObject<SoundEvent> PRELUDE_OF_LIGHT = register("item.prelude_of_light");
+	public static final RegistryObject<SoundEvent> REQUIEM_OF_SPIRIT = register("item.requiem_of_spirit");
+	public static final RegistryObject<SoundEvent> SARIAS_SONG = register("item.sarias_song");
+	public static final RegistryObject<SoundEvent> SERENADE_OF_WATER = register("item.serenade_of_water");
+	public static final RegistryObject<SoundEvent> SONATA_OF_AWAKENING = register("item.sonata_of_awakening");
+	public static final RegistryObject<SoundEvent> SONG_OF_DOUBLE_TIME = register("item.song_of_double_time");
+	public static final RegistryObject<SoundEvent> SONG_OF_HEALING = register("item.song_of_healing");
 	public static final RegistryObject<SoundEvent> SONG_OF_SOARING = register("item.song_of_soaring");
+	public static final RegistryObject<SoundEvent> SONG_OF_STORMS = register("item.song_of_storms");
+	public static final RegistryObject<SoundEvent> SONG_OF_TIME = register("item.song_of_time");
+	public static final RegistryObject<SoundEvent> SUNS_SONG = register("item.suns_song");
+	public static final RegistryObject<SoundEvent> ZELDAS_LULLABY = register("item.zeldas_lullaby");
+
 	public static final RegistryObject<SoundEvent> BREMEN_MARCH = register("item.bremen_march");
 	public static final RegistryObject<SoundEvent> BUBBLEGLOOP_DISC = register("item.bubblegloop_disc");
 	public static final RegistryObject<SoundEvent> FOREST_TEMPLE_DISC = register("item.forest_temple_disc");
