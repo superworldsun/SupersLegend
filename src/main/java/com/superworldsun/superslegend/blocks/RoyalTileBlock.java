@@ -21,7 +21,7 @@ import net.minecraft.world.server.ServerWorld;
 public class RoyalTileBlock extends Block
 {
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-	protected static final VoxelShape SHAPE = Block.box(1D, 0D, 1D, 15D, 1D, 15D);
+	protected static final VoxelShape SHAPE = Block.box(0D, 0D, 0D, 16D, 1D, 16D);
 	
 	public RoyalTileBlock()
 	{
