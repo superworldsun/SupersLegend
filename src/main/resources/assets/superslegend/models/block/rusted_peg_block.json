@@ -1,5 +1,6 @@
 {
     "texture_size": [64, 64],
+    "parent": "block/cube_all",
     "textures": {
         "0": "superslegend:block/rusted_peg_block",
         "particle": "superslegend:block/rusted_peg_block"
