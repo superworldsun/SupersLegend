@@ -136,8 +136,8 @@ public class ItemInit
 
 	public static final RegistryObject<SwordItem> GODDESS_SWORD = ITEMS.register("goddess_sword",
 			() -> new SwordItem(ItemToolTiers.GODDESS_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<SwordItem> GODDESS_LONG_SWORD = ITEMS.register("goddess_long_sword",
-			() -> new SwordItem(ItemToolTiers.GODDESS_LONG_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<SwordItem> GODDESS_LONGSWORD = ITEMS.register("goddess_longsword",
+			() -> new SwordItem(ItemToolTiers.GODDESS_LONGSWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> GODDESS_WHITE_SWORD = ITEMS.register("goddess_white_sword",
 			() -> new SwordItem(ItemToolTiers.GODDESS_WHITE_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	

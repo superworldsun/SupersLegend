@@ -28,7 +28,7 @@ public enum ItemToolTiers implements IItemTier {
 
     //MASTER SWORDS
     GODDESS_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
-    GODDESS_LONG_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
+    GODDESS_LONGSWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
     GODDESS_WHITE_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
 
     MASTER_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
