@@ -1,5 +1,6 @@
 {
   "texture_size": [32, 32],
+  "parent": "block/cube_all",
   "textures": {
     "0": "superslegend:block/pedestal",
     "particle": "superslegend:block/pedestal"
