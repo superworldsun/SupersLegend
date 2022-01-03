@@ -1,5 +1,6 @@
 {
 	"texture_size": [64, 64],
+	"parent": "block/cube_all",
 	"textures": {
 		"0": "superslegend:models/block/light_emitter",
 		"particle": "superslegend:models/block/light_emitter"
