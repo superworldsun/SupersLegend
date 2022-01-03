@@ -74,9 +74,9 @@ public class DinsFlame extends Block {
 		if(entity instanceof ItemEntity) {
 			ItemEntity itemEntity = (ItemEntity) entity;
 			ItemStack stack = itemEntity.getItem();
-			ItemStack newsword = new ItemStack(ItemInit.MASTER_SWORD_D.get());
+			ItemStack newsword = new ItemStack(ItemInit.MASTER_SWORD.get());
 			ItemEntity sword = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), newsword);
-			if(stack.getItem() == ItemInit.MASTER_SWORD_V2.get()) {
+			if(stack.getItem() == ItemInit.GODDESS_WHITE_SWORD.get()) {
 				stack.getEntityRepresentation().remove();
 				worldIn.addFreshEntity(sword);
 			}else {
@@ -84,7 +84,7 @@ public class DinsFlame extends Block {
 			}
 		}
 
-		if(entity instanceof ItemEntity) {
+		/*if(entity instanceof ItemEntity) {
 			ItemEntity itemEntity = (ItemEntity) entity;
 			ItemStack stack = itemEntity.getItem();
 			ItemStack newsword = new ItemStack(ItemInit.MASTER_SWORD_DN.get());
@@ -121,7 +121,7 @@ public class DinsFlame extends Block {
 			}else {
 				itemEntity.teleportTo(itemEntity.getX() + ((worldIn.random.nextDouble() * 2D) - 1D), itemEntity.getY() + ((worldIn.random.nextDouble() * 4D) - 2D), itemEntity.getZ() + ((worldIn.random.nextDouble() * 2D) - 1D));
 			}
-		}
+		}*/
 		super.entityInside(state, worldIn, pos, entity);
 	}
 
