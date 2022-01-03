@@ -12,6 +12,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
@@ -25,9 +26,15 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
 public class FalseShadowBlock extends Block
 {
+	protected static final VoxelShape COLLISION = Block.box(0.0D, 0.0D, 0.D, 0.0D, 0.0D, 0.0D);
+
 	public FalseShadowBlock()
 	{
 		super(PropertiesInit.WRECKAGE);
+	}
+
+	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		return COLLISION;
 	}
 	
 	@Override
