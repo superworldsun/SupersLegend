@@ -17,6 +17,9 @@ import com.superworldsun.superslegend.hookshotCap.SyncToClient;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
 import com.superworldsun.superslegend.interfaces.IHasNoItem;
+import com.superworldsun.superslegend.items.SacredShieldItem;
+import com.superworldsun.superslegend.items.capabilities.SacredShieldState;
+import com.superworldsun.superslegend.items.capabilities.SacredShieldStorage;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
@@ -47,6 +50,7 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -110,6 +114,7 @@ public class SupersLegendMain
 		OcarinaSongInit.REGISTRY.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
 		MinecraftForge.EVENT_BUS.register(new Hook());
+		MinecraftForge.EVENT_BUS.register(new SacredShieldItem(new Properties()));
 	}
 	
 	public static ResourceLocation locate(String name)
@@ -143,6 +148,7 @@ public class SupersLegendMain
 		CapabilityManager.INSTANCE.register(ICooldowns.class, new CooldownsStorage(), Cooldowns::new);
 		CapabilityManager.INSTANCE.register(ILearnedSongs.class, new LearnedSongsStorage(), LearnedSongs::new);
 		CapabilityManager.INSTANCE.register(HookModel.class, new HookStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });
+		CapabilityManager.INSTANCE.register(SacredShieldState.class, new SacredShieldStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });
 
 		NETWORK = NetworkRegistry.newSimpleChannel(new ResourceLocation("superslegend", "main_channel"), () -> "1.0", s -> true, s -> true);
 		NETWORK.registerMessage(1, SyncToClient.class, SyncToClient::encode, SyncToClient::new, SyncToClient::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
