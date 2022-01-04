@@ -32,7 +32,7 @@ public class SacredShieldItem extends ExtendedShieldItem
 	private static int regenerateTime = 200;
 	public SacredShieldItem(Properties properties)
 	{
-		super(properties.stacksTo(1).tab(SupersLegendMain.RESOURCES).durability(200));
+		super(properties.stacksTo(1).tab(SupersLegendMain.RESOURCES).durability(50));
 	}
 	
 	@Override
