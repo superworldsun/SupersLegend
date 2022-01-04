@@ -17,6 +17,7 @@ public enum ItemToolTiers implements IItemTier {
     GREAT_FAIRYS_SWORD(0, 0, -2F, 4F, 0, () -> { return null; }),
 
     GIANTS_KNIFE     (0, 0, -2F, 14F, 0, () -> { return null; }),
+    BROKEN_GIANTS_KNIFE(0, 0, -2F, 3F, 0, () -> { return null; }),
     BIGGORONS_SWORD  (0, 0, -2F, 14F, 0, () -> { return null; }),
     GUARDIAN_SWORD   (0, 0, -2F, 5F, 0, () -> { return null; }),
     ANCIENT_BATTLE_AXE   (0, 0, -2F, 5F, 0, () -> { return null; }),
@@ -42,7 +43,7 @@ public enum ItemToolTiers implements IItemTier {
     TRUE_MASTER_SWORD(0, 0, -2F, 11F, 0, () -> { return null; }),
 
 
-
+    //Example
     LANZANITE        (4, 3031, 9.0F, 5.0F, 15, () -> {
         return Ingredient.of(ItemInit.LANZANITE.get());
     });
