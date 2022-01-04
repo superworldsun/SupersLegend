@@ -88,12 +88,6 @@ public class SacredShieldItem extends ExtendedShieldItem
 						state.setTicksToRegenerate(ticksToRegenerate - 1);
 					}
 				}
-				else
-				{
-					SacredShieldState state = new SacredShieldState();
-					state.setTicksToRegenerate(regenerateTime);
-					stateOptional = new SacredShieldProvider(state).getCapability(SacredShieldCapability.INSTANCE);
-				}
 			}
 		}
 	}
