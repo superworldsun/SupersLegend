@@ -69,19 +69,11 @@ public class GiantsKnife extends ItemCustomSword
 		if(itemStack.getDamageValue() < itemStack.getMaxDamage() - 1) {
 			super.hurtEnemy(itemStack, attacked, attacker);
 		}
+
 		else {
-			Iterable<ItemStack> inventory = attacker.getAllSlots(); 
-			int i = 0;
-			ItemStack newItemStack = null;
-			for(ItemStack stack : inventory) {
-				if(stack == itemStack) {
-					newItemStack = new ItemStack(ItemInit.BROKEN_GIANTS_KNIFE.get());
-					break;
-				}
-				i++;
-			}
+			ItemStack	newItemStack = new ItemStack(ItemInit.BROKEN_GIANTS_KNIFE.get());
 			newItemStack.setDamageValue(newItemStack.getMaxDamage());
-			attacker.setSlot(i, newItemStack);
+			attacker.setItemSlot(EquipmentSlotType.MAINHAND, newItemStack);
 			attacker.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
 		}
 		return true;
