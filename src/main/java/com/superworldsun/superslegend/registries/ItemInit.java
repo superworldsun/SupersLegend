@@ -132,7 +132,7 @@ public class ItemInit
 	public static final RegistryObject<GiantsKnife> GIANTS_KNIFE = ITEMS.register("giants_knife",
 			() -> new GiantsKnife(ItemToolTiers.GIANTS_KNIFE, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<GiantsKnife> BROKEN_GIANTS_KNIFE = ITEMS.register("broken_giants_knife",
-			() -> new GiantsKnife(ItemToolTiers.GIANTS_KNIFE, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new GiantsKnife(ItemToolTiers.BROKEN_GIANTS_KNIFE, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> BIGGORONS_SWORD = ITEMS.register("biggorons_sword",
 			() -> new BiggornsSword(ItemToolTiers.BIGGORONS_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
