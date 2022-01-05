@@ -46,7 +46,7 @@ public class FalseShadowRenderer extends TileEntityRenderer<FalseShadowTileEntit
 		{
 			World world = te.getLevel();
 			matrixStack.pushPose();
-			BlockPos blockpos = new BlockPos(te.getBlockPos().getX(), te.getRenderBoundingBox().maxY, te.getBlockPos().getZ());
+			BlockPos blockpos = new BlockPos(te.getBlockPos().getX(), te.getBlockPos().getY(), te.getBlockPos().getZ());
 			BlockRendererDispatcher blockRenderer = Minecraft.getInstance().getBlockRenderer();
 			
 			for (RenderType type : RenderType.chunkBufferLayers())
