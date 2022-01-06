@@ -26,21 +26,15 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
 public class FalseShadowBlock extends Block
 {
-	protected static final VoxelShape COLLISION = Block.box(0.0D, 0.0D, 0.D, 0.0D, 0.0D, 0.0D);
 
 	public FalseShadowBlock()
 	{
-		super(PropertiesInit.WRECKAGE);
+		super(PropertiesInit.WRECKAGE.noCollission());
 	}
-
-	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return COLLISION;
-	}
-	
 	@Override
 	public BlockRenderType getRenderShape(BlockState state)
 	{
-		return BlockRenderType.ENTITYBLOCK_ANIMATED;
+		return BlockRenderType.INVISIBLE;
 	}
 	
 	@Override
@@ -69,7 +63,7 @@ public class FalseShadowBlock extends Block
 		
 		// Applied only to false shadow blocks
 		if (client.level.getBlockState(event.getTarget().getBlockPos()).getBlock() != BlockInit.FALSE_SHADOW_BLOCK.get())
-		{
+		{  
 			return;
 		}
 		
