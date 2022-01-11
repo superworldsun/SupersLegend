@@ -28,8 +28,12 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotTypeMessage;
 
 import java.util.List;
 
@@ -44,6 +48,12 @@ public class EntityEventHandler {
                 event.getEntityLiving().addEffect(new EffectInstance(Effects.LEVITATION, 1000, 5));
                 event.getEntityLiving().playSound(SoundInit.PIGFLY.get(), 0.25F, 1.0F);
         }
+    }*/
+
+    //Dosent work yet
+    /*@SubscribeEvent
+    public static void interModEnqueue(InterModEnqueueEvent e){
+        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.MODIFY_TYPE, () -> new SlotTypeMessage.Builder("ring").size(1));
     }*/
 
     @SubscribeEvent
@@ -66,16 +76,6 @@ public class EntityEventHandler {
         {
             event.setDensity(0.01f);
             event.setCanceled(true);
-        }
-    }
-
-    @SubscribeEvent
-    public void onpigjump(LivingEvent.LivingJumpEvent event)
-    {
-        if(event.getEntityLiving() instanceof PigEntity) {
-
-                event.getEntityLiving().addEffect(new EffectInstance(Effects.LEVITATION, 1000, 5));
-                event.getEntityLiving().playSound(SoundInit.PIGFLY.get(), 0.25F, 1.0F);
         }
     }
 

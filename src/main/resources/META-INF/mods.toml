@@ -14,3 +14,10 @@ displayURL = "https://discord.gg/nSAvsr5"
 authors = "superworldsun"
 credits = "superworldsun"
 description = '''This is a Zelda mod created by superworldsun'''
+
+[[dependencies.superslegend]]
+    modId = "curios"
+    mandatory = true
+    versionRange = "[1.16.5-4.0.5.1,)"
+    ordering = "AFTER"
+    side = "BOTH"

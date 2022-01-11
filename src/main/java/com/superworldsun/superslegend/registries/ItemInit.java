@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.registries;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.*;
 import com.superworldsun.superslegend.items.armors.*;
+import com.superworldsun.superslegend.items.curios.rings.RedRing;
 import com.superworldsun.superslegend.items.food.HylianLoach;
 import com.superworldsun.superslegend.items.food.HylianLoachCooked;
 import com.superworldsun.superslegend.items.food.HyruleBass;
@@ -703,7 +704,7 @@ public class ItemInit
 	public static final RegistryObject<Item> BLUE_RING = ITEMS.register("blue_ring",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> RED_RING = ITEMS.register("red_ring",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new RedRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 
 
 	//Music Discs

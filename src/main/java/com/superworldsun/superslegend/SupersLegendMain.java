@@ -4,6 +4,7 @@ import static net.minecraft.item.ItemModelsProperties.register;
 
 import java.util.Optional;
 
+import com.superworldsun.superslegend.util.events.ModEventHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -113,6 +114,7 @@ public class SupersLegendMain
 		LootInit.REGISTRY.register(modEventBus);
 		OcarinaSongInit.REGISTRY.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
+		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
 		MinecraftForge.EVENT_BUS.register(new Hook());
 		MinecraftForge.EVENT_BUS.register(new SacredShieldItem(new Properties()));
 	}
