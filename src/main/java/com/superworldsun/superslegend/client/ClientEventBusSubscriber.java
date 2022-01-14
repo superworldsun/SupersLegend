@@ -84,6 +84,7 @@ public class ClientEventBusSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MAGIC_ICE_ARROW.get(), MagicIceArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MAGIC_FIRE_ARROW.get(), MagicFireArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.SPINNER.get(), SpinnerRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.HEART.get(), HeartRender::new);
 
 		ClientRegistry.bindTileEntityRenderer(TileEntityInit.PEDESTAL.get(), PedestalRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(TileEntityInit.FAN.get(), FanRenderer::new);

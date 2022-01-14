@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.entities.HeartEntity;
 import com.superworldsun.superslegend.entities.SpinnerEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.hooks.ClawshotEntity;
@@ -81,4 +82,8 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<SpinnerEntity>> SPINNER = ENTITIES.register("spinner",
 			() -> EntityType.Builder.<SpinnerEntity>of(SpinnerEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/spinner").toString()));
+
+	public static final RegistryObject<EntityType<HeartEntity>> HEART = ENTITIES.register("heart",
+			() -> EntityType.Builder.<HeartEntity>of(HeartEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/heart").toString()));
 }
