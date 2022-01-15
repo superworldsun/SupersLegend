@@ -1,32 +1,21 @@
 package com.superworldsun.superslegend.items.curios.rings;
 
-import com.google.common.collect.LinkedHashMultimap;
-import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.SupersLegendMain;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
+import com.superworldsun.superslegend.registries.ItemInit;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import top.theillusivec4.curios.api.CuriosCapability;
-import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.ISlotType;
-import top.theillusivec4.curios.api.type.capability.ICurio;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-import javax.annotation.Nonnull;
-import java.util.UUID;
-
+@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class RedRing extends Item implements ICurioItem {
-    private static final ResourceLocation REDRING_TEXTURE  = new ResourceLocation(SupersLegendMain.MOD_ID,
+    private static final ResourceLocation REDRING_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID,
             "textures/entity/amulet.png");
     private Object model;
 
@@ -35,46 +24,23 @@ public class RedRing extends Item implements ICurioItem {
     }
 
 
+    @SubscribeEvent
+    public static void onLivingHurt(LivingHurtEvent event) {
+        //Check if it is the Player who takes damage.
+        if (event.getEntityLiving() instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 
+            //Get the Ring as an ItemStack
+            ItemStack stack =
+                    CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.RED_RING.get(), player).map(
+                            ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 
-            @Deprecated
-            public void curioTick(String identifier, int index, LivingEntity livingEntity) {
-
-                if (!livingEntity.isAlive() && livingEntity.tickCount % 19 == 0) {
-                    livingEntity.addEffect(new EffectInstance(Effects.DIG_SPEED, 20, 0, true, true));
-                }
+            //Check if player is wearing it.
+            if (!stack.isEmpty()) {
+                //Don't do a Check to see if the damage comes from DamageSource.GENERIC. I don't know what mob/block uses the "GENERIC" damage in the game so I normally do a (event.getSource != DamageSource.*Type*) if I don't want it to take less damage from something in particular.
+                event.setAmount(event.getAmount() / 2);
             }
-
-            public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext,
-                                                                                UUID uuid) {
-                Multimap<Attribute, AttributeModifier> atts = LinkedHashMultimap.create();
-                atts.put(Attributes.MOVEMENT_SPEED,
-                        new AttributeModifier(uuid, SupersLegendMain.MOD_ID + ":speed_bonus", 0.1,
-                                AttributeModifier.Operation.MULTIPLY_TOTAL));
-                atts.put(Attributes.ARMOR,
-                        new AttributeModifier(uuid, SupersLegendMain.MOD_ID + ":armor_bonus", 2,
-                                AttributeModifier.Operation.ADDITION));
-                return atts;
-            }
-
-            @Deprecated
-            public ICurio.DropRule getDropRule(LivingEntity livingEntity) {
-                return ICurio.DropRule.ALWAYS_KEEP;
-            }
-
-            @Deprecated
-            public ICurio.SoundInfo getEquipSound(SlotContext slotContext) {
-                return new ICurio.SoundInfo(SoundEvents.ARMOR_EQUIP_GOLD, 1.0f, 1.0f);
-            }
-
-            @Deprecated
-            public boolean canEquipFromUse(SlotContext slot) {
-                return true;
-            }
-
-
-    @Deprecated
-    public boolean hasEffect(@Nonnull ItemStack stack) {
-        return true;
+        }
     }
+
 }
