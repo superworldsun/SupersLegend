@@ -1,50 +1,34 @@
 package com.superworldsun.superslegend.entities;
 
 import com.superworldsun.superslegend.registries.EntityTypeInit;
-import net.minecraft.block.AbstractRailBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
-import net.minecraft.network.play.server.SSpawnExperienceOrbPacket;
-import net.minecraft.network.play.server.SSpawnObjectPacket;
-import net.minecraft.state.properties.RailShape;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-
-import java.util.Map;
 
 public class HeartEntity extends Entity {
 
     public int tickCount;
     public int age;
     public int throwTime;
-    private int health = 5;
     //Amount of healing.
     public int value = 1;
+    private int health = 5;
 
     public HeartEntity(World p_i1585_1_, double p_i1585_2_, double p_i1585_4_, double p_i1585_6_) {
         this(EntityTypeInit.HEART.get(), p_i1585_1_);
         this.setPos(p_i1585_2_, p_i1585_4_, p_i1585_6_);
-        this.yRot = (float)(this.random.nextDouble() * 360.0D);
-        this.setDeltaMovement((this.random.nextDouble() * (double)0.2F - (double)0.1F) * 2.0D, this.random.nextDouble() * 0.2D * 2.0D, (this.random.nextDouble() * (double)0.2F - (double)0.1F) * 2.0D);
+        this.yRot = (float) (this.random.nextDouble() * 360.0D);
+        this.setDeltaMovement((this.random.nextDouble() * (double) 0.2F - (double) 0.1F) * 2.0D, this.random.nextDouble() * 0.2D * 2.0D, (this.random.nextDouble() * (double) 0.2F - (double) 0.1F) * 2.0D);
     }
 
     public HeartEntity(EntityType<?> p_i48580_1_, World p_i48580_2_) {
@@ -74,7 +58,7 @@ public class HeartEntity extends Entity {
         }
 
         if (this.level.getFluidState(this.blockPosition()).is(FluidTags.LAVA)) {
-            this.setDeltaMovement((double)((this.random.nextFloat() - this.random.nextFloat()) * 0.2F), (double)0.2F, (double)((this.random.nextFloat() - this.random.nextFloat()) * 0.2F));
+            this.setDeltaMovement((this.random.nextFloat() - this.random.nextFloat()) * 0.2F, 0.2F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
             this.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + this.random.nextFloat() * 0.4F);
         }
 
@@ -85,11 +69,11 @@ public class HeartEntity extends Entity {
         this.move(MoverType.SELF, this.getDeltaMovement());
         float f = 0.98F;
         if (this.onGround) {
-            BlockPos pos =new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ());
+            BlockPos pos = new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ());
             f = this.level.getBlockState(pos).getSlipperiness(this.level, pos, this) * 0.98F;
         }
 
-        this.setDeltaMovement(this.getDeltaMovement().multiply((double)f, 0.98D, (double)f));
+        this.setDeltaMovement(this.getDeltaMovement().multiply(f, 0.98D, f));
         if (this.onGround) {
             this.setDeltaMovement(this.getDeltaMovement().multiply(1.0D, -0.9D, 1.0D));
         }
@@ -104,7 +88,7 @@ public class HeartEntity extends Entity {
 
     private void setUnderwaterMovement() {
         Vector3d vector3d = this.getDeltaMovement();
-        this.setDeltaMovement(vector3d.x * (double)0.99F, Math.min(vector3d.y + (double)5.0E-4F, (double)0.06F), vector3d.z * (double)0.99F);
+        this.setDeltaMovement(vector3d.x * (double) 0.99F, Math.min(vector3d.y + (double) 5.0E-4F, 0.06F), vector3d.z * (double) 0.99F);
     }
 
     @Override
@@ -122,7 +106,7 @@ public class HeartEntity extends Entity {
             return false;
         } else {
             this.markHurt();
-            this.health = (int)((float)this.health - p_70097_2_);
+            this.health = (int) ((float) this.health - p_70097_2_);
             if (this.health <= 0) {
                 this.remove();
             }
@@ -140,13 +124,13 @@ public class HeartEntity extends Entity {
 
     @Override
     protected void addAdditionalSaveData(CompoundNBT p_213281_1_) {
-        p_213281_1_.putShort("Health", (short)this.health);
-        p_213281_1_.putShort("Age", (short)this.age);
-        p_213281_1_.putShort("Value", (short)this.value);
+        p_213281_1_.putShort("Health", (short) this.health);
+        p_213281_1_.putShort("Age", (short) this.age);
+        p_213281_1_.putShort("Value", (short) this.value);
     }
 
     /**
-     *     This function allows the entity to be "consumed" and heal the player.
+     * This function allows the entity to be "consumed" and heal the player.
      */
     @Override
     public void playerTouch(PlayerEntity player) {
