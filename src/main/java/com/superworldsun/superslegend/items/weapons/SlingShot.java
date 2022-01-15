@@ -62,6 +62,7 @@ public class SlingShot extends BowItem {
 						DekuSeed DekuSeed = (DekuSeed) (ammoItem.getItem() instanceof DekuSeed ? ammoItem.getItem() : ItemInit.DEKU_SEEDS.get());
 						PelletEntity shot = (PelletEntity) DekuSeed.createArrow(worldIn, ammoItem, player);
 						shot.shootFromRotation(player, player.xRot, player.yRot, 0.0F, f * 3.0F, 1.0F);
+						worldIn.addFreshEntity(shot);
 					}
 
 					worldIn.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
