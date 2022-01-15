@@ -7,11 +7,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
@@ -20,11 +18,9 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-import java.util.Objects;
-
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class BlueRing extends Item implements ICurioItem {
-    private static final ResourceLocation REDRING_TEXTURE  = new ResourceLocation(SupersLegendMain.MOD_ID,
+    private static final ResourceLocation REDRING_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID,
             "textures/entity/amulet.png");
     private Object model;
 
@@ -35,7 +31,7 @@ public class BlueRing extends Item implements ICurioItem {
     @SubscribeEvent
     public static void livingDamageEvent(LivingDamageEvent event) {
         //Check if is player doing the damage.
-        if(event.getSource().getDirectEntity() instanceof PlayerEntity) {
+        if (event.getSource().getDirectEntity() instanceof PlayerEntity) {
 
             //Get Player.
             PlayerEntity player = (PlayerEntity) event.getSource().getDirectEntity();
@@ -53,13 +49,13 @@ public class BlueRing extends Item implements ICurioItem {
     }
 
 
-            @Deprecated
-            public ICurio.DropRule getDropRule(LivingEntity livingEntity) {
-                return ICurio.DropRule.ALWAYS_KEEP;
-            }
+    @Deprecated
+    public ICurio.DropRule getDropRule(LivingEntity livingEntity) {
+        return ICurio.DropRule.ALWAYS_KEEP;
+    }
 
-            @Deprecated
-            public ICurio.SoundInfo getEquipSound(SlotContext slotContext) {
-                return new ICurio.SoundInfo(SoundEvents.ARMOR_EQUIP_GOLD, 1.0f, 1.0f);
-            }
+    @Deprecated
+    public ICurio.SoundInfo getEquipSound(SlotContext slotContext) {
+        return new ICurio.SoundInfo(SoundEvents.ARMOR_EQUIP_GOLD, 1.0f, 1.0f);
+    }
 }
