@@ -2,6 +2,8 @@ package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.HeartEntity;
+import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
+import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.entities.SpinnerEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.hooks.ClawshotEntity;
@@ -86,4 +88,13 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<HeartEntity>> HEART = ENTITIES.register("heart",
 			() -> EntityType.Builder.<HeartEntity>of(HeartEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/heart").toString()));
+
+	public static final RegistryObject<EntityType<MagicJarEntity>> MAGIC_JAR = ENTITIES.register("magic_jar",
+			() -> EntityType.Builder.<MagicJarEntity>of(MagicJarEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/magic_jar").toString()));
+
+	public static final RegistryObject<EntityType<LargeMagicJarEntity>> LARGE_MAGIC_JAR = ENTITIES.register("large_magic_jar",
+			() -> EntityType.Builder.<LargeMagicJarEntity>of(LargeMagicJarEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/large_magic_jar").toString()));
+
 }

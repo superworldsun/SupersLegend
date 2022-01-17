@@ -3,6 +3,8 @@ package com.superworldsun.superslegend.util.events;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.HeartEntity;
+import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
+import com.superworldsun.superslegend.entities.MagicJarEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,7 +34,7 @@ public class ModEventHandler {
             Entity entity = event.getEntity();
             PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
             World level = player.level;
-            if(!level.isClientSide) { //Here you should put something to make it appear with X%.
+            if(!level.isClientSide && new Random().nextDouble() <= 0.30) { //Appear with 30% probability
                 double d0 = (double) (random.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double) (random.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double) (random.nextFloat() * 0.5F) + 0.25D;
@@ -40,6 +42,37 @@ public class ModEventHandler {
                 //Amount of healing.
                 heartEntity.value= 1;
                 level.addFreshEntity(heartEntity);
+            }
+        }
+    }
+
+    /**Function that spawns a HeartEntity when killing an entity.
+     */
+    @SubscribeEvent
+    public void onEntityKilledSpawnMagicJar(LivingDeathEvent event){
+        Random random = new Random();
+        //Check if player killed the entity                          //Check if entity being killed is MonsterEntity
+        if (event.getSource().getEntity() instanceof PlayerEntity && event.getEntityLiving() instanceof MonsterEntity) {
+            Entity entity = event.getEntity();
+            PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
+            World level = player.level;
+            if(!level.isClientSide && new Random().nextDouble() <= 0.15) { //Appear with 15% probability
+                double d0 = (double) (random.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double) (random.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double) (random.nextFloat() * 0.5F) + 0.25D;
+                MagicJarEntity magicJarEntity = new MagicJarEntity(level, entity.getX() + d0, entity.getY() + d1, entity.getZ() + d2);
+                //Amount of mana restore.
+                magicJarEntity.value= 4;
+                level.addFreshEntity(magicJarEntity);
+            }
+            if(!level.isClientSide && new Random().nextDouble() <= 0.05) { //Appear with 5% probability
+                double d0 = (double) (random.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double) (random.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double) (random.nextFloat() * 0.5F) + 0.25D;
+                LargeMagicJarEntity largeMagicJarEntity = new LargeMagicJarEntity(level, entity.getX() + d0, entity.getY() + d1, entity.getZ() + d2);
+                //Amount of mana restore.
+                largeMagicJarEntity.value= 10;
+                level.addFreshEntity(largeMagicJarEntity);
             }
         }
     }
