@@ -4,6 +4,7 @@ package com.superworldsun.superslegend.util.events;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.HeartEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -26,8 +27,8 @@ public class ModEventHandler {
     @SubscribeEvent
     public void onEntityKilledSpawnHeart(LivingDeathEvent event){
         Random random = new Random();
-        //Check if player killed the entity
-        if (event.getSource().getEntity() instanceof PlayerEntity) {
+        //Check if player killed the entity                          //Check if entity being killed is MonsterEntity
+        if (event.getSource().getEntity() instanceof PlayerEntity && event.getEntityLiving() instanceof MonsterEntity) {
             Entity entity = event.getEntity();
             PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
             World level = player.level;
@@ -36,6 +37,7 @@ public class ModEventHandler {
                 double d1 = (double) (random.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double) (random.nextFloat() * 0.5F) + 0.25D;
                 HeartEntity heartEntity = new HeartEntity(level, entity.getX() + d0, entity.getY() + d1, entity.getZ() + d2);
+                //Amount of healing.
                 heartEntity.value= 1;
                 level.addFreshEntity(heartEntity);
             }

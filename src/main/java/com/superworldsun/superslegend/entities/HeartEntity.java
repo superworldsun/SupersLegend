@@ -20,7 +20,7 @@ public class HeartEntity extends Entity {
     public int tickCount;
     public int age;
     public int throwTime;
-    //Amount of healing.
+    //Default amount of healing.
     public int value = 1;
     private int health = 5;
 
