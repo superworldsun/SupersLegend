@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.entities;
 
+import com.superworldsun.superslegend.mana.IMana;
+import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -15,7 +17,9 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class HeartEntity extends Entity {
+import javax.annotation.Nonnull;
+
+public class MagicJarEntity extends Entity {
 
     public int tickCount;
     public int age;
@@ -24,14 +28,14 @@ public class HeartEntity extends Entity {
     public int value = 1;
     private int health = 5;
 
-    public HeartEntity(World p_i1585_1_, double p_i1585_2_, double p_i1585_4_, double p_i1585_6_) {
-        this(EntityTypeInit.HEART.get(), p_i1585_1_);
+    public MagicJarEntity(World p_i1585_1_, double p_i1585_2_, double p_i1585_4_, double p_i1585_6_) {
+        this(EntityTypeInit.MAGIC_JAR.get(), p_i1585_1_);
         this.setPos(p_i1585_2_, p_i1585_4_, p_i1585_6_);
         this.yRot = (float) (this.random.nextDouble() * 360.0D);
         this.setDeltaMovement((this.random.nextDouble() * (double) 0.2F - (double) 0.1F) * 2.0D, this.random.nextDouble() * 0.2D * 2.0D, (this.random.nextDouble() * (double) 0.2F - (double) 0.1F) * 2.0D);
     }
 
-    public HeartEntity(EntityType<?> p_i48580_1_, World p_i48580_2_) {
+    public MagicJarEntity(EntityType<?> p_i48580_1_, World p_i48580_2_) {
         super(p_i48580_1_, p_i48580_2_);
     }
 
@@ -130,15 +134,14 @@ public class HeartEntity extends Entity {
     }
 
     /**
-     * This function allows the entity to be "consumed" and heal the player.
+     * This function allows the entity to be "consumed" and restore mana (player).
      */
     @Override
     public void playerTouch(PlayerEntity player) {
         if (!this.level.isClientSide) {
-            if (this.throwTime == 0 && player.getHealth() != player.getMaxHealth()) {
-
-                player.heal(value);
-
+            IMana mana = ManaProvider.get(player);
+            if (this.throwTime == 0 && mana.getMana() != mana.getMaxMana()) {
+                mana.restoreMana(value);
                 this.remove();
             }
 
