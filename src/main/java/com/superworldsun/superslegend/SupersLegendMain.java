@@ -21,6 +21,7 @@ import com.superworldsun.superslegend.interfaces.IHasNoItem;
 import com.superworldsun.superslegend.items.SacredShieldItem;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldState;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldStorage;
+import com.superworldsun.superslegend.items.weapons.SlingShot;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
@@ -117,6 +118,7 @@ public class SupersLegendMain
 		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
 		MinecraftForge.EVENT_BUS.register(new Hook());
 		MinecraftForge.EVENT_BUS.register(new SacredShieldItem(new Properties()));
+		MinecraftForge.EVENT_BUS.register(new SlingShot(new Properties()));
 	}
 	
 	public static ResourceLocation locate(String name)
