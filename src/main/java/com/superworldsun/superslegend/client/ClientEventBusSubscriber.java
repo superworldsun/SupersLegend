@@ -65,7 +65,7 @@ public class ClientEventBusSubscriber
 		RenderTypeLookup.setRenderLayer(BlockInit.DINS_FLAME.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(BlockInit.FARORES_FLAME.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.NAYRUS_FLAME.get(), RenderType.translucent());
-		RenderTypeLookup.setRenderLayer(BlockInit.RIDGED_WALL_RAIL.get(), RenderType.translucent());
+		//RenderTypeLookup.setRenderLayer(BlockInit.RIDGED_WALL_RAIL.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(FluidInit.MUD_FLOWING.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(FluidInit.MUD_SOURCE.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(FluidInit.POISON_FLOWING.get(), RenderType.translucent());
