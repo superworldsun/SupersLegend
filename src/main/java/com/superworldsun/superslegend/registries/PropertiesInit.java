@@ -1,7 +1,8 @@
 package com.superworldsun.superslegend.registries;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 public class PropertiesInit {
     public static final Block.Properties WRECKAGE = Block.Properties.of(Material.METAL)
@@ -23,6 +24,7 @@ public class PropertiesInit {
             .sound(SoundType.METAL)
             .harvestLevel(1)
             .harvestTool(ToolType.PICKAXE)
+            .friction(1f)
             .requiresCorrectToolForDrops();
 
     public static final Block.Properties HAMMERED_WOODEN_PEG = Block.Properties.of(Material.WOOD)
@@ -33,5 +35,22 @@ public class PropertiesInit {
             .randomTicks()
             .requiresCorrectToolForDrops();
 
+
+
+    public static final Block.Properties QUICK_SAND = Block.Properties.of(Material.SAND)
+            .strength(1.0F, 1.0F)
+            .sound(SoundType.SAND)
+            .harvestLevel(1)
+            .harvestTool(ToolType.SHOVEL)
+            .noCollission()
+            .isSuffocating(PropertiesInit::always);
+
+    private static boolean always(BlockState p_235426_0_, IBlockReader p_235426_1_, BlockPos p_235426_2_) {
+        return true;
+    }
+
+    private static boolean never(BlockState p_235436_0_, IBlockReader p_235436_1_, BlockPos p_235436_2_) {
+        return false;
+    }
 }
 
