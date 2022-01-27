@@ -14,8 +14,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class BlockInit
 {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SupersLegendMain.MOD_ID);
-	
+
+	//TODO FIGURE OUT WHY LINE PLACEMENT MAKES SOME BLOCKS HAVE NO COLLISION, BOTTOM HAS NONE BUT TOP OF LIST IS SOLID?
+
 	public static final RegistryObject<Block> RUST = BLOCKS.register("rust", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> CRACKED_FLOOR = BLOCKS.register("cracked_floor", () -> new CrackedFloor(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> QUICK_SAND = BLOCKS.register("quick_sand", () -> new QuickSand(PropertiesInit.QUICK_SAND));
 	public static final RegistryObject<Block> RUPEE_BLOCK = BLOCKS.register("rupee_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> BLUE_RUPEE_BLOCK = BLOCKS.register("blue_rupee_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RED_RUPEE_BLOCK = BLOCKS.register("red_rupee_block", () -> new Block(PropertiesInit.WRECKAGE));
@@ -70,7 +74,7 @@ public class BlockInit
 	public static final RegistryObject<FluidBlock> LIQUID_MUD = BLOCKS.register("liquid_mud", () -> new FluidBlock(FluidInit.MUD_SOURCE));
 	public static final RegistryObject<Block> LIGHT_EMITTER = BLOCKS.register("light_emitter", LightEmitterBlock::new);
 	public static final RegistryObject<Block> LIGHT_PRISM = BLOCKS.register("light_prism", LightPrismBlock::new);
-	public static final RegistryObject<Block> RIDGED_WALL_RAIL = BLOCKS.register("ridged_wall_rail", () -> new RidgedWallRail(AbstractBlock.Properties.of(Material.DECORATION).noCollission().strength(0.7F).sound(SoundType.METAL)));
+	//public static final RegistryObject<Block> RIDGED_WALL_RAIL = BLOCKS.register("ridged_wall_rail", () -> new RidgedWallRail(AbstractBlock.Properties.of(Material.DECORATION).noCollission().strength(0.7F).sound(SoundType.METAL)));
 
 	public static final RegistryObject<Block> TALKING_TIMBER_PLANKS = BLOCKS.register("talking_timber_planks", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> TALKING_TIMBER_SAPLING = BLOCKS.register("talking_timber_sapling", () -> new Block(PropertiesInit.WRECKAGE));
