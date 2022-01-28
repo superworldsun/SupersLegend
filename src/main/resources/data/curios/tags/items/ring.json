@@ -3,6 +3,22 @@
   "values":
   [
     "superslegend:blue_ring",
-    "superslegend:red_ring"
+    "superslegend:red_ring",
+    "superslegend:green_ring",
+    "superslegend:power_ring_l1",
+    "superslegend:power_ring_l2",
+    "superslegend:power_ring_l3",
+    "superslegend:armor_ring_l1",
+    "superslegend:armor_ring_l2",
+    "superslegend:armor_ring_l3",
+    "superslegend:cursed_ring",
+    "superslegend:heart_ring_l1",
+    "superslegend:heart_ring_l2",
+    "superslegend:green_luck_ring",
+    "superslegend:blue_luck_ring",
+    "superslegend:gold_luck_ring",
+    "superslegend:red_luck_ring",
+    "superslegend:steadfast_ring",
+    "superslegend:swimmers_ring"
   ]
 }
