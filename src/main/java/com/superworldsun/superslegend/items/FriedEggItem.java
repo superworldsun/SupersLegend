@@ -28,18 +28,4 @@ public class FriedEggItem extends Item {
         return 20;
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
-    {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        if(SupersLegendKeyboardUtil.isHoldingLeftShift())
-        {
-            tooltip.add(new StringTextComponent(TextFormatting.GOLD+"A fried turtle egg."));
-        }
-        else
-        {
-            tooltip.add(new StringTextComponent("Hold Left Shift to see more info!"));
-
-        }
-    }
 }

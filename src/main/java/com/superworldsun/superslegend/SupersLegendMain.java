@@ -8,7 +8,7 @@ import com.superworldsun.superslegend.util.events.ModEventHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.superworldsun.superslegend.config.Config;
+import com.superworldsun.superslegend.config.SupersLegendConfig;
 import com.superworldsun.superslegend.cooldowns.Cooldowns;
 import com.superworldsun.superslegend.cooldowns.CooldownsStorage;
 import com.superworldsun.superslegend.cooldowns.ICooldowns;
@@ -98,7 +98,7 @@ public class SupersLegendMain
 		// and notify Forge of it
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
-		context.registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupersLegendConfig.SPEC, "superslegend.toml");
 
 		// Remember to register items before blocks, problems can occur
 		// otherwise if you don't

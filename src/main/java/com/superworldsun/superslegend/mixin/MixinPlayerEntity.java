@@ -53,13 +53,13 @@ public abstract class MixinPlayerEntity extends LivingEntity
 		super(null, null);
 	}
 	
-	@Overwrite
-	public EntitySize getDimensions(Pose pose)
-	{
-		return POSES.getOrDefault(pose, STANDING_DIMENSIONS).scale(getScale());
-	}
+	//@Overwrite
+	//public EntitySize getDimensions(Pose pose)
+	//{
+	//	return POSES.getOrDefault(pose, STANDING_DIMENSIONS).scale(getScale());
+	//}
 	
-	@Overwrite
+//	@Overwrite
 	public float getStandingEyeHeight(Pose pose, EntitySize size)
 	{
 		switch (pose)
@@ -75,7 +75,7 @@ public abstract class MixinPlayerEntity extends LivingEntity
 		}
 	}
 	
-	@Inject(method = "tick", at = @At("HEAD"))
+	//@Inject(method = "tick", at = @At("HEAD"))
 	private void injectTick(CallbackInfo ci)
 	{
 		targetScale = 1.0F;

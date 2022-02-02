@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.entities.SpinnerEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
+import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
 import com.superworldsun.superslegend.entities.projectiles.hooks.ClawshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
@@ -96,5 +97,9 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<LargeMagicJarEntity>> LARGE_MAGIC_JAR = ENTITIES.register("large_magic_jar",
 			() -> EntityType.Builder.<LargeMagicJarEntity>of(LargeMagicJarEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/large_magic_jar").toString()));
+
+	public static final RegistryObject<EntityType<EntityBomb>> BOMB = ENTITIES.register("bomb",
+			() -> EntityType.Builder.<EntityBomb>of(EntityBomb::new,
+					EntityClassification.MISC).sized(0.25F, 0.25F).build("bomb"));
 
 }
