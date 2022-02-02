@@ -38,7 +38,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 		super(null, null, 0);
 	}
 	
-	@Overwrite
+//	@Overwrite
 	private void renderHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand,
 			ModelRenderer handOverlay)
 	{
@@ -64,7 +64,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 		}
 	}
 	
-	@Inject(method = "render", at = @At("HEAD"))
+	//@Inject(method = "render", at = @At("HEAD"))
 	public void injectRender(AbstractClientPlayerEntity player, float rotationYaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer renderBuffer,
 			int light, CallbackInfo ci)
 	{
@@ -72,7 +72,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 		chooseCurrentModel(player);
 	}
 	
-	@Inject(method = "getTextureLocation", at = @At("HEAD"), cancellable = true)
+	//@Inject(method = "getTextureLocation", at = @At("HEAD"), cancellable = true)
 	private void injectGetTextureLocation(AbstractClientPlayerEntity player, CallbackInfoReturnable<ResourceLocation> ci)
 	{
 		player.getArmorSlots().forEach(stack ->
@@ -84,7 +84,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 		});
 	}
 	
-	@Overwrite
+//	@Overwrite
 	protected void scale(AbstractClientPlayerEntity player, MatrixStack matrix, float partialTicks)
 	{
 		float playerScale = ((IResizableEntity) player).getScaleForRender(partialTicks);

@@ -4,6 +4,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.render.*;
 import com.superworldsun.superslegend.client.screen.*;
 import com.superworldsun.superslegend.container.SelectContainer;
+import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ContainerInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
@@ -13,8 +14,10 @@ import com.superworldsun.superslegend.registries.TileEntityInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MinecartTickableSound;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -39,6 +42,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+
+import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEventBusSubscriber
@@ -106,5 +111,19 @@ public class ClientEventBusSubscriber
 		//ScreenManager.register(ContainerInit.BIG_BOMB_BAG.get(), BigQuiverScreen::new);
 		ScreenManager.register(ContainerInit.POSTBOX.get(), PostboxScreen::new);
 		ScreenManager.register(ContainerInit.SELECT_CONTAINER.get(), SelectScreen::new);
+		registerEntityModels(event.getMinecraftSupplier());
+	}
+
+	private static void registerEntityModels(Supplier<Minecraft> minecraft) {
+		//Just a variable I have set incase I want to add more entites, which will make the code more efficient
+		ItemRenderer renderer = minecraft.get().getItemRenderer();
+
+		/*
+		 * We now need to render the entity on the client using the Rendering Registry
+		 * We take in the Entity then the RenderType. I use a lambda function here for ease.
+		 * Most projectiles will use SpriteRenderers for their rendering, using the same texture as the item
+		 * It taKes in the manager from the lambda and the variable above for the item renderer.
+		 */
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.BOMB.get(), (renderManager) -> new BombRender<EntityBomb>(renderManager, renderer));
 	}
 }
