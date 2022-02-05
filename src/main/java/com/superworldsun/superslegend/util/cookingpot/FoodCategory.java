@@ -18,6 +18,7 @@ public enum FoodCategory {
     MONSTERPART("#994741"),
     FAIRY("#A552A5"),
     HEARTY("#CCC928"),
+    OTHER("#000000"),
     INEDIBLE("#9B9B9B");
     //Todo: add some effect modifier categories
 

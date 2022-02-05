@@ -821,9 +821,16 @@ public class ItemInit
 	//I.e, hunger is...(2+8)/2=5 and saturation is...(6.4+0.6)/2=3.5 (fyi, hunger is a whole number, so round up if needed!)
 	//multiply results x2.5, giving us a good fair-average to make possible-hunger values seem fair no matter how min/max ingredients is used
 
+	public static final RegistryObject<Item> GOAT_BUTTER = ITEMS.register("goat_butter",
+			() -> new Item(new Item.Properties().stacksTo(64).tab(SupersLegendMain.RESOURCES)));
+
 	//Meals
 	public static final Item MEAT_SKEWER = register(ITEMS, "meat_skewer", CookingPotFood.builder().nutrition(12)
-			.saturationMod(8F).alwaysEat().effect(Effects.HEAL, 5, 0).build());
+			.saturationMod(8F).alwaysEat().build());
+	public static final Item MEAT_STUFFED_PUMPKIN = register(ITEMS, "meat_stuffed_pumpkin", CookingPotFood.builder().nutrition(11)
+			.saturationMod(7.37F).alwaysEat().build());
+	public static final Item FRUIT_PIE = register(ITEMS, "fruit_pie", CookingPotFood.builder().nutrition(6)
+			.saturationMod(2F).alwaysEat().build());
 
 	//For cooking pots
 	public static final Map<FoodCategory, Item> foodCategoryItems = Util.make(new EnumMap<FoodCategory, Item>(FoodCategory.class), map -> {
