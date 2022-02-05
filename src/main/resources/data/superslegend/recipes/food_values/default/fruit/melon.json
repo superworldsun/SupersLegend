@@ -1,0 +1,10 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:melon_slice",
+	"minecraft:melon"
+  ],
+  "values": {
+    "FRUIT": 1.0
+  }
+}

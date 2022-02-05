@@ -113,6 +113,7 @@ public class SupersLegendMain
 		FluidInit.FLUIDS.register(modEventBus);
 		LootInit.REGISTRY.register(modEventBus);
 		OcarinaSongInit.REGISTRY.register(modEventBus);
+		RecipeSerializerInit.RECIPE_SERIALIZERS.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
 		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
 		MinecraftForge.EVENT_BUS.register(new Hook());

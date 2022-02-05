@@ -20,5 +20,10 @@ public class TileEntityInit
 	public static final RegistryObject<TileEntityType<HiddenShadowTileEntity>> HIDDEN_SHADOW = TILES.register("hidden_shadow", HiddenShadowTileEntity::createType);
 	public static final RegistryObject<TileEntityType<PostboxTileEntity>> POSTBOX = TILES.register("postbox", PostboxTileEntity::createType);
 	public static final RegistryObject<TileEntityType<LightEmitterTileEntity>> LIGHT_EMITTER = TILES.register("light_emitter", LightEmitterTileEntity::createType);
-	public static final RegistryObject<TileEntityType<LightPrismTileEntity>> LIGHT_PRISM = TILES.register("light_prism", LightPrismTileEntity::createType);
+	public static final RegistryObject<TileEntityType<LightPrismTileEntity>> LIGHT_PRISM = TILES.register("light_prism",
+			LightPrismTileEntity::createType);
+
+	public static final RegistryObject<TileEntityType<CookingPotTileEntity>> COOKING_POT = TILES.register("cooking_pot",
+			CookingPotTileEntity::createType);
+
 }
