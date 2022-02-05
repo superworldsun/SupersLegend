@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.registries;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.*;
 import com.superworldsun.superslegend.items.armors.*;
+import com.superworldsun.superslegend.items.cookingpot.CookingPotFood;
 import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.food.HylianLoach;
 import com.superworldsun.superslegend.items.food.HylianLoachCooked;
@@ -12,19 +13,25 @@ import com.superworldsun.superslegend.items.items.*;
 import com.superworldsun.superslegend.items.masks.*;
 import com.superworldsun.superslegend.items.weapons.*;
 import com.superworldsun.superslegend.items.weapons.SlingShot;
+import com.superworldsun.superslegend.util.cookingpot.FoodCategory;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.Util;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistryEntry;
+
+import java.util.EnumMap;
+import java.util.Map;
 
 public class ItemInit
 {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SupersLegendMain.MOD_ID);
-	
+
 	public static final RegistryObject<Item> LANZANITE = ITEMS.register("lanzanite",
 			() -> new LanzaniteItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Rupee> RUPEE = ITEMS.register("rupee", () -> new Rupee(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -805,4 +812,35 @@ public class ItemInit
 
 	public static final RegistryObject<Item> POISON_BUCKET = ITEMS.register("poison_bucket", () -> new BucketItem(FluidInit.POISON_SOURCE, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MUD_BUCKET = ITEMS.register("mud_bucket", () -> new BucketItem(FluidInit.MUD_SOURCE, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+	//Recommended way to calculate fair hunger/saturation values dynamically based on ingredients
+	//Take the minimum and maximum hunger/sat for each possible food category in a recipe
+	//(for example, meat skewers...so just meat, so this makes it easy for this example)
+	//For any kind of vanilla meat, cooked or not, the min hunger/saturation is 2 and 0.6, max is 8 and 6.4
+	//Add lowest/highest hunger and saturation together then divide by two to get the average
+	//I.e, hunger is...(2+8)/2=5 and saturation is...(6.4+0.6)/2=3.5 (fyi, hunger is a whole number, so round up if needed!)
+	//multiply results x2.5, giving us a good fair-average to make possible-hunger values seem fair no matter how min/max ingredients is used
+
+	public static final RegistryObject<Item> GOAT_BUTTER = ITEMS.register("goat_butter",
+			() -> new Item(new Item.Properties().stacksTo(64).tab(SupersLegendMain.RESOURCES)));
+
+	//Meals
+	public static final Item MEAT_SKEWER = register(ITEMS, "meat_skewer", CookingPotFood.builder().nutrition(12)
+			.saturationMod(8F).alwaysEat().build());
+	public static final Item MEAT_STUFFED_PUMPKIN = register(ITEMS, "meat_stuffed_pumpkin", CookingPotFood.builder().nutrition(11)
+			.saturationMod(7.37F).alwaysEat().build());
+	public static final Item FRUIT_PIE = register(ITEMS, "fruit_pie", CookingPotFood.builder().nutrition(6)
+			.saturationMod(2F).alwaysEat().build());
+
+	//For cooking pots
+	public static final Map<FoodCategory, Item> foodCategoryItems = Util.make(new EnumMap<FoodCategory, Item>(FoodCategory.class), map -> {
+		for (FoodCategory category : FoodCategory.values()) {
+			map.put(category, register(ITEMS, "food_category_" + category.name().toLowerCase(), new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES))));
+		}
+	});
+
+	private static <T extends IForgeRegistryEntry<T>, E extends T> E register(final DeferredRegister<T> register, final String name, final E entry) {
+		register.register(name, () -> entry);
+		return entry;
+	}
 }

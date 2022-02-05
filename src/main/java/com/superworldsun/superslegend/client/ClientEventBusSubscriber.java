@@ -1,9 +1,9 @@
 package com.superworldsun.superslegend.client;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.client.screen.CookingPotScreen;
 import com.superworldsun.superslegend.client.render.*;
 import com.superworldsun.superslegend.client.screen.*;
-import com.superworldsun.superslegend.container.SelectContainer;
 import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ContainerInit;
@@ -12,36 +12,16 @@ import com.superworldsun.superslegend.registries.FluidInit;
 import com.superworldsun.superslegend.registries.TileEntityInit;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.MinecartTickableSound;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.entity.SpriteRenderer;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
-import net.minecraft.entity.item.minecart.MinecartEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.network.play.server.SSpawnObjectPacket;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.function.Supplier;
 
@@ -111,6 +91,7 @@ public class ClientEventBusSubscriber
 		//ScreenManager.register(ContainerInit.BIG_BOMB_BAG.get(), BigQuiverScreen::new);
 		ScreenManager.register(ContainerInit.POSTBOX.get(), PostboxScreen::new);
 		ScreenManager.register(ContainerInit.SELECT_CONTAINER.get(), SelectScreen::new);
+		ScreenManager.register(ContainerInit.COOKING_POT.get(), CookingPotScreen::new);
 		registerEntityModels(event.getMinecraftSupplier());
 	}
 

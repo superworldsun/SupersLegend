@@ -1,0 +1,9 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:sugar_cane"
+  ],
+  "values": {
+    "VEGETABLE": 1.0
+  }
+}

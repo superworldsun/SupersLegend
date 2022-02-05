@@ -1,0 +1,10 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:pumpkin",
+	"minecraft:carved_pumpkin"
+  ],
+  "values": {
+    "VEGETABLE": 1.0
+  }
+}

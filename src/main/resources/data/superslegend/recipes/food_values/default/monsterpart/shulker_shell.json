@@ -1,0 +1,9 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:shulker_shell"
+  ],
+  "values": {
+    "MONSTERPART": 1.0
+  }
+}

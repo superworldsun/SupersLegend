@@ -1,0 +1,12 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:honey_bottle",
+	"minecraft:honeycomb",
+	"minecraft:honeycomb_block",
+	"minecraft:honey_block"
+  ],
+  "values": {
+    "HONEY": 1.0
+  }
+}

@@ -10,6 +10,7 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class BlockInit
 {
@@ -95,4 +96,18 @@ public class BlockInit
 	public static final RegistryObject<Block> ROYAL_TILE = BLOCKS.register("royal_tile", RoyalTileBlock::new);
 	public static final RegistryObject<Block> BLOCK_OF_TIME = BLOCKS.register("block_of_time", TimeBlock::new);
 	public static final RegistryObject<Block> OWL_STATUE = BLOCKS.register("owl_statue", () -> new OwlStatue(PropertiesInit.WRECKAGE));
+	//public static final RegistryObject<Block> COOKING_POT = BLOCKS.register("cooking_pot", CookingPotBlock::new);
+
+	//For cooking pot
+	public static final Block COOKING_POT = register(BLOCKS, "cooking_pot", new CookingPotBlock() {
+		//@Override
+		//public int getPotLevel() {
+		//	return 0;
+		//}
+	});
+
+	private static <T extends IForgeRegistryEntry<T>, E extends T> E register(final DeferredRegister<T> register, final String name, final E entry) {
+		register.register(name, () -> entry);
+		return entry;
+	}
 }

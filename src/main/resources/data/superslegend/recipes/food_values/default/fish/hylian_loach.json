@@ -1,0 +1,10 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "superslegend:hylian_loach",
+    "superslegend:cooked_hylian_loach"
+  ],
+  "values": {
+    "FISH": 1.0
+  }
+}

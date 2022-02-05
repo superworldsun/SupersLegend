@@ -1,0 +1,12 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:dried_kelp",
+	"minecraft:kelp",
+	"minecraft:dried_kelp_block"
+  ],
+  "values": {
+    "VEGETABLE": 1.0,
+	"SEAFOOD": 1.0
+  }
+}

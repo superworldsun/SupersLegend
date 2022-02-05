@@ -1,0 +1,10 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:chicken",
+    "minecraft:cooked_chicken"
+  ],
+  "values": {
+    "MEAT": 0.5
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:phantom_membrane"
+  ],
+  "values": {
+    "MONSTERPART": 1.0
+  }
+}

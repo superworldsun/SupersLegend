@@ -25,12 +25,12 @@ public class MixinClientPlay
     @Shadow
     private ClientWorld level;
 
-    //@Inject(
-   //         method = "handleAddEntity(Lnet/minecraft/network/play/server/SSpawnObjectPacket;)V",
-    //        at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/network/play/server/SSpawnObjectPacket;getType()Lnet/minecraft/entity/EntityType;"),
-     //       cancellable = true,
-    //        locals = LocalCapture.CAPTURE_FAILHARD
-  //  )
+    @Inject(
+            method = "handleAddEntity(Lnet/minecraft/network/play/server/SSpawnObjectPacket;)V",
+            at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/network/play/server/SSpawnObjectPacket;getType()Lnet/minecraft/entity/EntityType;"),
+            cancellable = true,
+            locals = LocalCapture.CAPTURE_FAILHARD
+    )
     private void onEntitySpawn(SSpawnObjectPacket packet, CallbackInfo ci, double x, double y, double z, EntityType<?> type)
     {
         Entity entity;
