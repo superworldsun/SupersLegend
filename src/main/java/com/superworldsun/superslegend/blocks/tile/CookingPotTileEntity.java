@@ -49,6 +49,7 @@ public class CookingPotTileEntity extends TileEntity implements ITickableTileEnt
                 if (!isValidIngredient(stack)) {
                    return stack;
                 }
+
             }
             return super.insertItem(slot, stack, simulate);
         }
@@ -60,7 +61,7 @@ public class CookingPotTileEntity extends TileEntity implements ITickableTileEnt
         }
     };
 
-    private final RangedWrapper itemHandlerInput = new RangedWrapper(itemHandler, 0, 4);
+    private final RangedWrapper itemHandlerInput = new RangedWrapper(itemHandler, 0, 5);
     private final RangedWrapper itemHandlerOutput = new RangedWrapper(itemHandler, 5, 6);
 
     private int cookingTime;

@@ -26,11 +26,9 @@ public class CookingPotContainer extends Container {
             for (int i = 0; i < 2; i++) {
                 for (int j = 0; j < 2; j++) {
                     addSlot(new SlotItemHandler(itemHandler, j + i * 2, 39 + j * 18, 17 + i * 18));
+                    addSlot(new SlotItemHandler(itemHandler, 4, 48, 53));
                 }
             }
-
-            //Keeping for fifth slot later
-          //  addSlot(new SlotItemHandler(itemHandler, 4, 48, 71));
 
             addSlot(new SlotCookingPotOutput(itemHandler, 5, 117, 44));
         }
@@ -69,13 +67,13 @@ public class CookingPotContainer extends Container {
             ItemStack slotStack = slot.getItem();
             itemStack = slotStack.copy();
 
-            if (index == 4) {
+            if (index == 5) {
                 if (!this.moveItemStackTo(slotStack, 6, 42, true)) {
                     return ItemStack.EMPTY;
                 }
 
                 slot.onQuickCraft(slotStack, itemStack);
-            } else if (index >= 4) {
+            } else if (index >= 5) {
                 if (tileEntity.isValidIngredient(slotStack)) {
                     if (!this.moveItemStackTo(slotStack, 5, 7, false)) {
                         return ItemStack.EMPTY;

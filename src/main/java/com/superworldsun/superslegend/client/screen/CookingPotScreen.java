@@ -53,14 +53,8 @@ public class CookingPotScreen extends ContainerScreen<CookingPotContainer> {
 
         // Draw Input Slots
         blit(matrixStack, leftPos + 38, topPos + 16, 176, 97, 36, 36);
-
-        //Keeping these for the fifth slot
-        // Draw Fuel Slots
-      //  blit(matrixStack, leftPos + 47, topPos + 55, 176, 30, 18, 33);
-
-        // Draw Fuel Bar
-        //int burningProgress = menu.getBurningProgress();
-      // blit(matrixStack, leftPos + 48, topPos + 54 + 13 - burningProgress, 176, 13 - burningProgress, 14, burningProgress + 1);
+        //For fifth slot!
+        blit(matrixStack, leftPos + 38, topPos + 16, 176, 97, 36, 16);
 
         // Draw Process Arrow
         blit(matrixStack, leftPos + 80, topPos + 44, 176, 63, 24, 17);

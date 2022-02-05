@@ -23,7 +23,7 @@ public abstract class MixinFoxEntity extends AnimalEntity
 		super(null, null);
 	}
 	
-	//@Inject(method = "trusts", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "trusts", at = @At("HEAD"), cancellable = true)
 	private void injectTrusts(UUID uuid, CallbackInfoReturnable<Boolean> ci)
 	{
 		PlayerEntity player = level.getPlayerByUUID(uuid);

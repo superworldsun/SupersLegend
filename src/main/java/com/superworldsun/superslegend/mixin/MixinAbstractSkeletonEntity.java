@@ -35,7 +35,7 @@ public abstract class MixinAbstractSkeletonEntity extends MonsterEntity implemen
 		super(null, null);
 	}
 	
-	//@Inject(method = "registerGoals", at = @At("HEAD"))
+	@Inject(method = "registerGoals", at = @At("HEAD"))
 	private void injectRegisterGoals(CallbackInfo ci)
 	{
 		goalSelector.addGoal(4, new FollowSkeletonOwnerGoal<>(this, 1.0D, 10.0F, 2.0F));
