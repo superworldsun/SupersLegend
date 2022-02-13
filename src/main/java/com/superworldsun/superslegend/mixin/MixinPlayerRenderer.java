@@ -1,5 +1,11 @@
 package com.superworldsun.superslegend.mixin;
 
+import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.items.items.Lantern;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;

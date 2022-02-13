@@ -277,7 +277,11 @@ public class ItemInit
 	//Tools
 
 	public static final RegistryObject<Item> LANTERN = ITEMS.register("lantern",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new Lantern(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).durability(4000)));
+	public static final RegistryObject<Item> EXTINGUISHEDLANTERN = ITEMS.register("extinguishedlantern",
+			() -> new ExtinguishedLantern(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> OIL = ITEMS.register("oil_bottle",
+			() -> new Oil(new Item.Properties().stacksTo(64).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BLUE_CANDLE = ITEMS.register("blue_candle",
 			() -> new BlueCandle(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> RED_CANDLE = ITEMS.register("red_candle",
