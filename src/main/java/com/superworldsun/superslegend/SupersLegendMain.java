@@ -34,6 +34,7 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.*;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -66,9 +67,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static net.minecraft.item.ItemModelsProperties.register;
 
@@ -83,7 +82,8 @@ public class SupersLegendMain
 	public static final String NAME = "SupersLegend";
 	public static final String MOD_ID = "superslegend";
 	public static final Logger LOGGER = LogManager.getLogger();
-	
+	public static final ArrayList<BlockPos> toRemove = new ArrayList<BlockPos>();
+	public static final HashMap<UUID, BlockPos> affectedblocks = new HashMap();
 	// This sub-class below is the start where we'll add registry and stuff
 	// later on
 	public SupersLegendMain()
