@@ -310,28 +310,28 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		if (this.crouching)
 		{
 			this.body.xRot = 0.5F;
-			this.rightArm.xRot += 0.4F;
-			this.leftArm.xRot += 0.4F;
+			this.rightArm.xRot += 0.0F;
+			this.leftArm.xRot += 0.0F;
 			this.rightLeg.z = 3.5F;
 			this.leftLeg.z = 3.5F;
-			this.rightLeg.y = 16.2F;
-			this.leftLeg.y = 16.2F;
-			this.head.y = 12.2F;
+			this.rightLeg.y = 17.0F;
+			this.leftLeg.y = 17.0F;
+			this.head.y = -5.0F;
 			this.body.y = 11.2F;
-			this.leftArm.y = 12.7F;
-			this.rightArm.y = 12.7F;
+			this.leftArm.y = 0.0F;
+			this.rightArm.y = 0.0F;
 		}
 		else
 		{
 			this.body.xRot = 0.0F;
-			this.rightLeg.z = -0.4F;
-			this.leftLeg.z = -0.4F;
-			this.rightLeg.y = 16.0F;
-			this.leftLeg.y = 16.0F;
-			this.head.y = 8.0F;
+			this.rightLeg.z = -0.0F;
+			this.leftLeg.z = -0.0F;
+			this.rightLeg.y = 13.0F;
+			this.leftLeg.y = 13.0F;
+			this.head.y = -5.0F;
 			this.body.y = 8.0F;
-			this.leftArm.y = 9.5F;
-			this.rightArm.y = 9.5F;
+			this.leftArm.y = 0.0F;
+			this.rightArm.y = 0.0F;
 		}
 
 		ModelHelper.bobArms(this.rightArm, this.leftArm, p_225597_4_);
