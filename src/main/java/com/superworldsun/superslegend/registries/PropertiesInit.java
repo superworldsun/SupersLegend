@@ -35,8 +35,6 @@ public class PropertiesInit {
             .randomTicks()
             .requiresCorrectToolForDrops();
 
-
-
     public static final Block.Properties QUICK_SAND = Block.Properties.of(Material.SAND)
             .strength(1.0F, 1.0F)
             .sound(SoundType.SAND)
@@ -44,6 +42,19 @@ public class PropertiesInit {
             .harvestTool(ToolType.SHOVEL)
             .noCollission()
             .isSuffocating(PropertiesInit::always);
+
+    public static final Block.Properties TORCH_TOWER = Block.Properties.of(Material.WOOD)
+            .strength(1.0F, 1.0F)
+            .sound(SoundType.WOOD)
+            .harvestLevel(1)
+            .harvestTool(ToolType.AXE);
+
+    public static final Block.Properties TORCH_TOWER_TOP = Block.Properties.of(Material.WOOD)
+            .strength(1.0F, 1.0F)
+            .sound(SoundType.WOOD)
+            .harvestLevel(1)
+            .harvestTool(ToolType.AXE)
+            .lightLevel(value -> 15);
 
     private static boolean always(BlockState p_235426_0_, IBlockReader p_235426_1_, BlockPos p_235426_2_) {
         return true;

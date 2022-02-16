@@ -3,10 +3,7 @@ package com.superworldsun.superslegend.registries;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.*;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -47,7 +44,8 @@ public class BlockInit
 	public static final RegistryObject<Block> GRASS_PATCH_BLOCK = BLOCKS.register("grass_patch_block", () -> new GrassPatch(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> ODD_MUSHROOM = BLOCKS.register("odd_mushroom", () -> new OddMushroomBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> MAGIC_MUSHROOM = BLOCKS.register("magic_mushroom", () -> new MagicMushroomBlock(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> TORCH_TOWER = BLOCKS.register("torch_tower", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TORCH_TOWER = BLOCKS.register("torch_tower", () -> new TorchTower(PropertiesInit.TORCH_TOWER));
+	public static final RegistryObject<Block> TORCH_TOWER_TOP = BLOCKS.register("torch_tower_top", () -> new TorchTowerTop(PropertiesInit.TORCH_TOWER_TOP));
 	public static final RegistryObject<Block> MASTER_ORE_BLOCK = BLOCKS.register("master_ore_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> WOODEN_PEG_BLOCK = BLOCKS.register("wooden_peg_block", () -> new WoodenPegBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUSTED_PEG_BLOCK = BLOCKS.register("rusted_peg_block", () -> new RustedPegBlock(PropertiesInit.WRECKAGE));
