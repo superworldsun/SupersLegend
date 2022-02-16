@@ -14,7 +14,6 @@ public class QuickSand extends FallingBlock {
         super(properties);
     }
 
-
     public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         entityIn.makeStuckInBlock(state, new Vector3d(0.75D, (double)0.10F, 0.75D));
         if(entityIn instanceof LivingEntity && entityIn.isAlive() && entityIn.getEyeY() < (double)(pos.getY() + 1))
