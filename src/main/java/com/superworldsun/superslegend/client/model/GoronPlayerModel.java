@@ -168,17 +168,15 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		setRotationAngle(cube_r19, 0.0F, -0.3054F, 0.0F);
 		cube_r19.texOffs(0, 9).addBox(2.5F, -2.25F, -3.5F, 3.0F, 3.0F, 3.0F, 0.0F, false);
 
-		rightArm = new ModelRenderer(this);
-		rightArm.setPos(-6.0F, -13.0F, 1.0F);
-		setRotationAngle(rightArm, 0.0F, 0.0F, -1.3526F);
-		rightArm.texOffs(47, 0).addBox(-22.2136F, -4.5861F, -3.0F, 10.0F, 6.0F, 6.0F, 0.0F, false);
-		rightArm.texOffs(65, 56).addBox(-12.2136F, -3.5861F, -2.0F, 12.0F, 4.0F, 4.0F, 0.0F, false);
-
 		leftArm = new ModelRenderer(this);
 		leftArm.setPos(6.0F, -13.0F, 1.0F);
-		setRotationAngle(leftArm, 0.0F, 0.0F, 1.3526F);
-		leftArm.texOffs(47, 0).addBox(12.2136F, -4.5861F, -3.0F, 10.0F, 6.0F, 6.0F, 0.0F, true);
-		leftArm.texOffs(65, 56).addBox(0.2136F, -3.5861F, -2.0F, 12.0F, 4.0F, 4.0F, 0.0F, true);
+		leftArm.texOffs(47, 0).addBox(-22.2136F, -4.5861F, -3.0F, 10.0F, 6.0F, 6.0F, 0.0F, false);
+		leftArm.texOffs(65, 56).addBox(-12.2136F, -3.5861F, -2.0F, 12.0F, 4.0F, 4.0F, 0.0F, false);
+
+		rightArm = new ModelRenderer(this);
+		rightArm.setPos(-6.0F, -13.0F, 1.0F);
+		rightArm.texOffs(47, 0).addBox(12.2136F, -4.5861F, -3.0F, 10.0F, 6.0F, 6.0F, 0.0F, true);
+		rightArm.texOffs(65, 56).addBox(0.2136F, -3.5861F, -2.0F, 12.0F, 4.0F, 4.0F, 0.0F, true);
 
 		rightLeg = new ModelRenderer(this);
 		rightLeg.setPos(-4.0F, 5.0F, 2.0F);
@@ -205,7 +203,6 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			{
 				this.body.yRot *= -1.0F;
 			}
-
 			this.rightArm.z = MathHelper.sin(this.body.yRot) * 4.0F;
 			this.rightArm.x = -MathHelper.cos(this.body.yRot) * 4.0F;
 			this.leftArm.z = -MathHelper.sin(this.body.yRot) * 4.0F;
@@ -251,11 +248,11 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			this.head.xRot = p_225597_6_ * ((float) Math.PI / 180F);
 		}
 
-		this.body.yRot = 0.0F;
-		this.rightArm.z = 0.5F;
-		this.rightArm.x = -4.0F;
-		this.leftArm.z = 0.5F;
-		this.leftArm.x = 4.0F;
+//		this.body.yRot = 0.0F;
+//		this.rightArm.z = 0.5F;
+//		this.rightArm.x = -4.0F;
+//		this.leftArm.z = 0.5F;
+//		this.leftArm.x = 4.0F;
 		float f = 1.0F;
 		if (flag)
 		{
@@ -268,11 +265,13 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		{
 			f = 1.0F;
 		}
-
-		this.rightArm.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + (float) Math.PI) * 2.0F * p_225597_3_ * 0.5F / f;
-		this.leftArm.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 2.0F * p_225597_3_ * 0.5F / f;
-		this.rightArm.zRot = 0.0F;
-		this.leftArm.zRot = 0.0F;
+//
+	//	this.leftArm.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + (float) Math.PI) * 2.0F * p_225597_3_ * 0.5F / f;
+	//	this.rightArm.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 2.0F * p_225597_3_ * 0.5F / f;
+		this.rightArm.zRot = 90.0F;
+		this.leftArm.zRot = -90.0F;
+		this.rightArm.x = -12.0F;
+		this.leftArm.x = 12.0F;
 		this.rightLeg.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 1.4F * p_225597_3_ / f;
 		this.leftLeg.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + (float) Math.PI) * 1.4F * p_225597_3_ / f;
 		this.rightLeg.yRot = 0.0F;
@@ -291,8 +290,8 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			this.leftLeg.zRot = -0.07853982F;
 		}
 
-		this.rightArm.yRot = 0.0F;
-		this.leftArm.yRot = 0.0F;
+//		this.rightArm.yRot = 0.0F;
+//		this.leftArm.yRot = 0.0F;
 		boolean flag2 = player.getMainArm() == HandSide.RIGHT;
 		boolean flag3 = flag2 ? this.leftArmPose.isTwoHanded() : this.rightArmPose.isTwoHanded();
 		if (flag2 != flag3)
@@ -307,32 +306,32 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		}
 
 		this.setupAttackAnimation(player, p_225597_4_);
-		if (this.crouching)
-		{
-			this.body.xRot = 0.5F;
-			this.rightArm.xRot += 0.0F;
-			this.leftArm.xRot += 0.0F;
-			this.rightLeg.z = 3.5F;
-			this.leftLeg.z = 3.5F;
-			this.rightLeg.y = 17.0F;
-			this.leftLeg.y = 17.0F;
-			this.head.y = -5.0F;
-			this.body.y = 11.2F;
-			this.leftArm.y = 0.0F;
-			this.rightArm.y = 0.0F;
-		}
-		else
-		{
-			this.body.xRot = 0.0F;
-			this.rightLeg.z = -0.0F;
-			this.leftLeg.z = -0.0F;
-			this.rightLeg.y = 13.0F;
-			this.leftLeg.y = 13.0F;
-			this.head.y = -5.0F;
-			this.body.y = 8.0F;
-			this.leftArm.y = 0.0F;
-			this.rightArm.y = 0.0F;
-		}
+//		if (this.crouching)
+//		{
+//			this.body.xRot = 0.5F;
+//			this.rightArm.xRot += 0.0F;
+//			this.leftArm.xRot += 0.0F;
+//			this.rightLeg.z = 3.5F;
+//			this.leftLeg.z = 3.5F;
+//			this.rightLeg.y = 17.0F;
+//			this.leftLeg.y = 17.0F;
+//			this.head.y = -5.0F;
+//			this.body.y = 11.2F;
+//			this.leftArm.y = 0.0F;
+//			this.rightArm.y = 0.0F;
+//		}
+//		else
+//		{
+//			this.body.xRot = 0.0F;
+//			this.rightLeg.z = -0.0F;
+//			this.leftLeg.z = -0.0F;
+//			this.rightLeg.y = 13.0F;
+//			this.leftLeg.y = 13.0F;
+//			this.head.y = -5.0F;
+//			this.body.y = 8.0F;
+//			this.leftArm.y = 0.0F;
+//			this.rightArm.y = 0.0F;
+//		}
 
 		ModelHelper.bobArms(this.rightArm, this.leftArm, p_225597_4_);
 		if (this.swimAmount > 0.0F)
@@ -341,37 +340,37 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			HandSide handside = this.getAttackArm(player);
 			float f2 = handside == HandSide.RIGHT && this.attackTime > 0.0F ? 0.0F : this.swimAmount;
 			float f3 = handside == HandSide.LEFT && this.attackTime > 0.0F ? 0.0F : this.swimAmount;
-			if (f1 < 14.0F)
-			{
-				this.leftArm.xRot = this.rotlerpRad(f3, this.leftArm.xRot, 0.0F);
-				this.rightArm.xRot = MathHelper.lerp(f2, this.rightArm.xRot, 0.0F);
-				this.leftArm.yRot = this.rotlerpRad(f3, this.leftArm.yRot, (float) Math.PI);
-				this.rightArm.yRot = MathHelper.lerp(f2, this.rightArm.yRot, (float) Math.PI);
-				this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot,
-						(float) Math.PI + 1.8707964F * this.quadraticArmUpdate(f1) / this.quadraticArmUpdate(14.0F));
-				this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot,
-						(float) Math.PI - 1.8707964F * this.quadraticArmUpdate(f1) / this.quadraticArmUpdate(14.0F));
-			}
-			else if (f1 >= 14.0F && f1 < 22.0F)
-			{
-				float f6 = (f1 - 14.0F) / 8.0F;
-				this.leftArm.xRot = this.rotlerpRad(f3, this.leftArm.xRot, ((float) Math.PI / 2F) * f6);
-				this.rightArm.xRot = MathHelper.lerp(f2, this.rightArm.xRot, ((float) Math.PI / 2F) * f6);
-				this.leftArm.yRot = this.rotlerpRad(f3, this.leftArm.yRot, (float) Math.PI);
-				this.rightArm.yRot = MathHelper.lerp(f2, this.rightArm.yRot, (float) Math.PI);
-				this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot, 5.012389F - 1.8707964F * f6);
-				this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot, 1.2707963F + 1.8707964F * f6);
-			}
-			else if (f1 >= 22.0F && f1 < 26.0F)
-			{
-				float f4 = (f1 - 22.0F) / 4.0F;
-				this.leftArm.xRot = this.rotlerpRad(f3, this.leftArm.xRot, ((float) Math.PI / 2F) - ((float) Math.PI / 2F) * f4);
-				this.rightArm.xRot = MathHelper.lerp(f2, this.rightArm.xRot, ((float) Math.PI / 2F) - ((float) Math.PI / 2F) * f4);
-				this.leftArm.yRot = this.rotlerpRad(f3, this.leftArm.yRot, (float) Math.PI);
-				this.rightArm.yRot = MathHelper.lerp(f2, this.rightArm.yRot, (float) Math.PI);
-				this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot, (float) Math.PI);
-				this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot, (float) Math.PI);
-			}
+//			if (f1 < 14.0F)
+//			{
+//				this.leftArm.xRot = this.rotlerpRad(f3, this.leftArm.xRot, 0.0F);
+//				this.rightArm.xRot = MathHelper.lerp(f2, this.rightArm.xRot, 0.0F);
+//				this.leftArm.yRot = this.rotlerpRad(f3, this.leftArm.yRot, (float) Math.PI);
+//				this.rightArm.yRot = MathHelper.lerp(f2, this.rightArm.yRot, (float) Math.PI);
+//				this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot,
+//						(float) Math.PI + 1.8707964F * this.quadraticArmUpdate(f1) / this.quadraticArmUpdate(14.0F));
+//				this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot,
+//						(float) Math.PI - 1.8707964F * this.quadraticArmUpdate(f1) / this.quadraticArmUpdate(14.0F));
+//			}
+//			else if (f1 >= 14.0F && f1 < 22.0F)
+//			{
+//				float f6 = (f1 - 14.0F) / 8.0F;
+//				this.leftArm.xRot = this.rotlerpRad(f3, this.leftArm.xRot, ((float) Math.PI / 2F) * f6);
+//				this.rightArm.xRot = MathHelper.lerp(f2, this.rightArm.xRot, ((float) Math.PI / 2F) * f6);
+//				this.leftArm.yRot = this.rotlerpRad(f3, this.leftArm.yRot, (float) Math.PI);
+//				this.rightArm.yRot = MathHelper.lerp(f2, this.rightArm.yRot, (float) Math.PI);
+//				this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot, 5.012389F - 1.8707964F * f6);
+//				this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot, 1.2707963F + 1.8707964F * f6);
+//			}
+//			else if (f1 >= 22.0F && f1 < 26.0F)
+//			{
+//				float f4 = (f1 - 22.0F) / 4.0F;
+//				this.leftArm.xRot = this.rotlerpRad(f3, this.leftArm.xRot, ((float) Math.PI / 2F) - ((float) Math.PI / 2F) * f4);
+//				this.rightArm.xRot = MathHelper.lerp(f2, this.rightArm.xRot, ((float) Math.PI / 2F) - ((float) Math.PI / 2F) * f4);
+//				this.leftArm.yRot = this.rotlerpRad(f3, this.leftArm.yRot, (float) Math.PI);
+//				this.rightArm.yRot = MathHelper.lerp(f2, this.rightArm.yRot, (float) Math.PI);
+//				this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot, (float) Math.PI);
+//				this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot, (float) Math.PI);
+//			}
 
 			this.leftLeg.xRot = MathHelper.lerp(this.swimAmount, this.leftLeg.xRot, 0.3F * MathHelper.cos(p_225597_2_ * 0.33333334F + (float) Math.PI));
 			this.rightLeg.xRot = MathHelper.lerp(this.swimAmount, this.rightLeg.xRot, 0.3F * MathHelper.cos(p_225597_2_ * 0.33333334F));
