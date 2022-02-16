@@ -16,6 +16,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -84,6 +85,20 @@ public class TombstoneBlock extends Block implements IWaterLoggable
 
 	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
 		return !worldIn.isEmptyBlock(pos.below());
+	}
+	@Override
+	public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_, ISelectionContext p_220071_4_) {
+		switch((Direction)p_220071_1_.getValue(FACING)) {
+			case EAST:
+				return VoxelShapes.box(0,0,0,0.2,1,1);
+			case WEST:
+				return VoxelShapes.box(0.8,0,0,1,1,1);
+			case SOUTH:
+				return VoxelShapes.box(0,0,0,1,1,0.2);
+			case NORTH:
+				return VoxelShapes.box(0,0,0.8,1,1,1);
+		}
+		return VoxelShapes.box(0,0.8,0.8,1,1,1);
 	}
 }
 	
