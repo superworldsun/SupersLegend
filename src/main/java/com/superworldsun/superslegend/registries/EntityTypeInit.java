@@ -7,6 +7,8 @@ import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.entities.SpinnerEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.RegularBoomerang;
 import com.superworldsun.superslegend.entities.projectiles.hooks.ClawshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
@@ -73,6 +75,10 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<HookshotEntity>> HOOKSHOT_ENTITY = ENTITIES.register("hookshot",
 			() -> EntityType.Builder.<HookshotEntity>of(HookshotEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/hookshot").toString()));
+
+	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG = ENTITIES.register("regular_boomerang",
+			() -> EntityType.Builder.<BoomerangEntity>of(RegularBoomerang::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/boomerang").toString()));
 
 	public static final RegistryObject<EntityType<LongshotEntity>> LONGSHOT_ENTITY = ENTITIES.register("longshot",
 			() -> EntityType.Builder.<LongshotEntity>of(LongshotEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
