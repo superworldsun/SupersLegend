@@ -12,6 +12,7 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.IPacket;
@@ -178,11 +179,12 @@ public abstract class BoomerangEntity extends Entity {
                 isBouncing = true;
                 this.setDeltaMovement(new Vector3d(newX, newY, newZ).multiply(bounceFactor, bounceFactor, bounceFactor));
             }
+            if (player != null) {
+                this.beforeTurnAround(player);
 
-            this.beforeTurnAround(player);
-
-            if (timeBeforeTurnAround-- <= 0) {
-                turningAround = true;
+                if (timeBeforeTurnAround-- <= 0) {
+                    turningAround = true;
+                }
             }
         } else if (player != null) {
             double x = player.getX() - this.getX();
@@ -220,7 +222,6 @@ public abstract class BoomerangEntity extends Entity {
                 timeBeforeTurnAround = 0;
             }
         }
-
         Iterator<ItemEntity> iterator = itemsPickedUp.iterator();
         while (iterator.hasNext()) {
             ItemEntity item = iterator.next();
@@ -230,6 +231,7 @@ public abstract class BoomerangEntity extends Entity {
                 item.setPos(pos.x, pos.y, pos.z);
             }
         }
+
 
         super.tick();
     }
@@ -249,14 +251,16 @@ public abstract class BoomerangEntity extends Entity {
     public void setEntityDead() {
         if (this.getReturnTo() != null) {
             if (selfStack != null) {
-                if (this.hand == Hand.OFF_HAND) {
-                    if (this.getReturnTo().getOffhandItem().isEmpty()) {
-                        this.getReturnTo().setItemInHand(Hand.OFF_HAND, selfStack);
-                    } else {
-                        this.getReturnTo().inventory.add(selfStack);
+                if (!this.getReturnTo() .getMainHandItem().getItem().equals(Items.AIR)) {
+                    if (!this.getReturnTo() .getOffhandItem().getItem().equals(Items.AIR)) {
+                        this.getReturnTo() .drop(selfStack,true);
                     }
-                } else {
-                    this.getReturnTo().inventory.add(selfStack);
+                    else {
+                        this.getReturnTo() .setItemInHand(Hand.OFF_HAND,selfStack);
+                    }
+                }
+                else {
+                    this.getReturnTo() .setItemInHand(Hand.MAIN_HAND,selfStack);
                 }
             }
         }
@@ -385,5 +389,10 @@ public abstract class BoomerangEntity extends Entity {
     @Override
     public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    @Override
+    public boolean canChangeDimensions() {
+        return false;
     }
 }
