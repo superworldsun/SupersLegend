@@ -4,7 +4,6 @@ import com.superworldsun.superslegend.registries.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -13,10 +12,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
 
 public class TorchTower extends Block
 
@@ -31,39 +26,6 @@ public class TorchTower extends Block
 	      return SHAPE;
 	   }
 
-	@OnlyIn(Dist.CLIENT)
-	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
-	{
-		double d0 = (double)pos.getX() + 0.5D;
-		double d1 = (double)pos.getY() + 1.5D;
-		double d2 = (double)pos.getZ() + 0.5D;
-		worldIn.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-		worldIn.addParticle(ParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-
-		double d3 = (double)pos.getX() + 0.6D;
-		double d4 = (double)pos.getY() + 1.4D;
-		double d5 = (double)pos.getZ() + 0.6D;
-		worldIn.addParticle(ParticleTypes.SMOKE, d3, d4, d5, 0.0D, 0.0D, 0.0D);
-		worldIn.addParticle(ParticleTypes.FLAME, d3, d4, d5, 0.0D, 0.0D, 0.0D);
-
-		double d6 = (double)pos.getX() + 0.4D;
-		double d7 = (double)pos.getY() + 1.4D;
-		double d8 = (double)pos.getZ() + 0.4D;
-		worldIn.addParticle(ParticleTypes.SMOKE, d6, d7, d8, 0.0D, 0.0D, 0.0D);
-		worldIn.addParticle(ParticleTypes.FLAME, d6, d7, d8, 0.0D, 0.0D, 0.0D);
-
-		double d9 = (double)pos.getX() + 0.6D;
-		double d10 = (double)pos.getY() + 1.4D;
-		double d11 = (double)pos.getZ() + 0.4D;
-		worldIn.addParticle(ParticleTypes.SMOKE, d9, d10, d11, 0.0D, 0.0D, 0.0D);
-		worldIn.addParticle(ParticleTypes.FLAME, d9, d10, d11, 0.0D, 0.0D, 0.0D);
-
-		double d12 = (double)pos.getX() + 0.4D;
-		double d13 = (double)pos.getY() + 1.4D;
-		double d14 = (double)pos.getZ() + 0.6D;
-		worldIn.addParticle(ParticleTypes.SMOKE, d12, d13, d14, 0.0D, 0.0D, 0.0D);
-		worldIn.addParticle(ParticleTypes.FLAME, d12, d13, d14, 0.0D, 0.0D, 0.0D);
-	}
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -76,13 +38,49 @@ public class TorchTower extends Block
 	@Override
 	public void onPlace(BlockState state, World world, BlockPos pos, BlockState oldState, boolean flag)
 	{
-		world.setBlockAndUpdate(pos.above(), BlockInit.TORCH_TOWER_TOP.get().defaultBlockState());
+		world.setBlockAndUpdate(pos.above(), BlockInit.TORCH_TOWER_TOP_UNLIT.get().defaultBlockState());
 	}
+
+	/*@Override
+	public void onNeighborChange(BlockState state, IWorldReader world, BlockPos pos, BlockPos neighbor) {
+		super.onNeighborChange(state, world, pos, neighbor);
+		if (pos.above() )
+		{
+			getBlockState().getBlock().onNeighborChange(getBlockState(), world, pos, neighbor);
+		}
+	}*/
+
+	/*@Override
+	public void onNeighborChange(BlockState state, IWorldReader world, BlockPos pos, BlockPos neighbor) {
+		super.onNeighborChange(state, world, pos, neighbor);
+		if(world.getBlockState(neighbor) == this.getDefaultState().with(LIT, true))
+		{
+			action(state,world,pos);
+		}
+	}*/
+
+	@Override
+	public void onNeighborChange(BlockState state, IWorldReader world, BlockPos pos, BlockPos neighbor)
+	{
+		if(world.getBlockState(pos.above()) == BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState())
+		{
+			//state
+		}
+	}
+
+	/*public boolean isSignalSource(BlockState p_149744_1_) {
+		return false;
+	}*/
+
+	/*public int getSignal(BlockState p_180656_1_, IBlockReader p_180656_2_, BlockPos p_180656_3_, Direction p_180656_4_) {
+		return 15;
+	}*/
 
 	@Override
 	public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos)
 	{
-		return !world.isEmptyBlock(pos.below()) && (world.getBlockState(pos.above()).is(BlockInit.TORCH_TOWER_TOP.get()) || world.isEmptyBlock(pos.above()));
+		return !world.isEmptyBlock(pos.below()) && (world.getBlockState(pos.above()).is(BlockInit.TORCH_TOWER_TOP_UNLIT.get())
+				|| (world.getBlockState(pos.above()).is(BlockInit.TORCH_TOWER_TOP_LIT.get()) || world.isEmptyBlock(pos.above())));
 	}
 }
 	
