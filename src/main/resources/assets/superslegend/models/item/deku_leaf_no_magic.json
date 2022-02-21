@@ -3,21 +3,7 @@
   "textures": {
     "1": "superslegend:item/deku_leaf"
   },
-  "gui_light": "front",
   "elements": [
-    {
-      "from": [2.25, 2, 7.5],
-      "to": [14.75, 14, 7.5],
-      "rotation": {"angle": 0, "axis": "y", "origin": [8.26804, 8.45407, 7.5]},
-      "faces": {
-        "north": {"uv": [0, 0, 6.25, 6], "texture": "#1"},
-        "east": {"uv": [0, 0, 0, 6], "texture": "#1"},
-        "south": {"uv": [0, 6, 6.25, 12], "texture": "#1"},
-        "west": {"uv": [0, 0, 0, 6], "texture": "#1"},
-        "up": {"uv": [6.25, 0, 0, 0], "texture": "#1"},
-        "down": {"uv": [6.25, 0, 0, 0], "texture": "#1"}
-      }
-    },
     {
       "from": [8.05, 0, 7.46],
       "to": [8.55, 15, 7.54],
@@ -210,13 +196,13 @@
       "name": "leaf",
       "origin": [0, 0, 0],
       "color": 0,
-      "children": [0]
+      "children": []
     },
     {
       "name": "stem",
       "origin": [9.49478, 5.98744, 7.5],
       "color": 0,
-      "children": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      "children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     }
   ]
 }

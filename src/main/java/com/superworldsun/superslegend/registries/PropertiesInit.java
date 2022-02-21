@@ -49,11 +49,19 @@ public class PropertiesInit {
             .harvestLevel(1)
             .harvestTool(ToolType.AXE);
 
-    public static final Block.Properties TORCH_TOWER_TOP = Block.Properties.of(Material.WOOD)
+    public static final Block.Properties TORCH_TOWER_TOP_UNLIT = Block.Properties.of(Material.WOOD)
             .strength(1.0F, 1.0F)
             .sound(SoundType.WOOD)
             .harvestLevel(1)
             .harvestTool(ToolType.AXE)
+            .noCollission();
+
+    public static final Block.Properties TORCH_TOWER_TOP_LIT = Block.Properties.of(Material.WOOD)
+            .strength(1.0F, 1.0F)
+            .sound(SoundType.WOOD)
+            .harvestLevel(1)
+            .harvestTool(ToolType.AXE)
+            .noCollission()
             .lightLevel(value -> 15);
 
     private static boolean always(BlockState p_235426_0_, IBlockReader p_235426_1_, BlockPos p_235426_2_) {

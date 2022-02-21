@@ -45,7 +45,8 @@ public class BlockInit
 	public static final RegistryObject<Block> ODD_MUSHROOM = BLOCKS.register("odd_mushroom", () -> new OddMushroomBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> MAGIC_MUSHROOM = BLOCKS.register("magic_mushroom", () -> new MagicMushroomBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> TORCH_TOWER = BLOCKS.register("torch_tower", () -> new TorchTower(PropertiesInit.TORCH_TOWER));
-	public static final RegistryObject<Block> TORCH_TOWER_TOP = BLOCKS.register("torch_tower_top", () -> new TorchTowerTop(PropertiesInit.TORCH_TOWER_TOP));
+	public static final RegistryObject<Block> TORCH_TOWER_TOP_UNLIT = BLOCKS.register("torch_tower_top_unlit", () -> new TorchTowerTopUnlit(PropertiesInit.TORCH_TOWER_TOP_UNLIT));
+	public static final RegistryObject<Block> TORCH_TOWER_TOP_LIT = BLOCKS.register("torch_tower_top_lit", () -> new TorchTowerTopLit(PropertiesInit.TORCH_TOWER_TOP_LIT));
 	public static final RegistryObject<Block> MASTER_ORE_BLOCK = BLOCKS.register("master_ore_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> WOODEN_PEG_BLOCK = BLOCKS.register("wooden_peg_block", () -> new WoodenPegBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUSTED_PEG_BLOCK = BLOCKS.register("rusted_peg_block", () -> new RustedPegBlock(PropertiesInit.WRECKAGE));
