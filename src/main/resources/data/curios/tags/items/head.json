@@ -1,0 +1,37 @@
+{
+  "replace": "false",
+  "values":
+  [
+    "superslegend:mask_clay",
+    "superslegend:mask_postmanshat",
+    "superslegend:mask_allnightmask",
+    "superslegend:mask_blastmask",
+    "superslegend:mask_stonemask",
+    "superslegend:mask_bremenmask",
+    "superslegend:mask_greatfairymask",
+    "superslegend:mask_dekumask",
+    "superslegend:mask_keatonmask",
+    "superslegend:mask_bunnyhood",
+    "superslegend:mask_dongerosmask",
+    "superslegend:mask_maskofscents",
+    "superslegend:mask_goronmask",
+    "superslegend:mask_romanismask",
+    "superslegend:mask_troupeleadersmask",
+    "superslegend:mask_kafeismask",
+    "superslegend:mask_couplesmask",
+    "superslegend:mask_maskoftruth",
+    "superslegend:mask_zoramask",
+    "superslegend:mask_kamarosmask",
+    "superslegend:mask_gibdomask",
+    "superslegend:mask_garosmask",
+    "superslegend:mask_captainshat",
+    "superslegend:mask_giantsmask",
+    "superslegend:mask_fiercedeitysmask",
+    "superslegend:mask_majorasmask",
+    "superslegend:mask_moonmask",
+    "superslegend:mask_maskoftruth",
+    "superslegend:mask_sunmask",
+    "superslegend:mask_hawkeyemask",
+    "superslegend:mask_heroscharm"
+  ]
+}
