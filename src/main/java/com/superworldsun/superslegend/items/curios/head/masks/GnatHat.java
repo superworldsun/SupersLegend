@@ -33,6 +33,7 @@ public class GnatHat extends Item implements IEntityResizer, ICurioItem
 		super(properties);
 	}
 
+	/*
 	@OnlyIn(Dist.CLIENT)
 	@SuppressWarnings("unchecked")
 	@Override
@@ -52,7 +53,8 @@ public class GnatHat extends Item implements IEntityResizer, ICurioItem
 	{
 		return SupersLegendMain.MOD_ID + ":textures/models/armor/gnat_hat.png";
 	}
-	
+	*/
+
 	@Override
 	public float getScale(PlayerEntity player)
 	{
