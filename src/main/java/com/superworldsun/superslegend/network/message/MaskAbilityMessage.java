@@ -68,11 +68,11 @@ public class MaskAbilityMessage
 				if(!stack0.isEmpty()) {
 					if (message.started)
 					{
-						ctx.enqueueWork(() -> ((IMaskAbility) helmetItem).startUsingAbility(player));
+						ctx.enqueueWork(() -> ((IMaskAbility) stack.getItem()).startUsingAbility(player));
 					}
 					else
 					{
-						ctx.enqueueWork(() -> ((IMaskAbility) helmetItem).stopUsingAbility(player));
+						ctx.enqueueWork(() -> ((IMaskAbility) stack.getItem()).stopUsingAbility(player));
 					}
 				}
 			}
