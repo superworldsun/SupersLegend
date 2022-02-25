@@ -4,11 +4,17 @@ import java.util.function.Supplier;
 
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
 
+import com.superworldsun.superslegend.network.NetworkDispatcher;
+import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.lwjgl.glfw.GLFW;
+import top.theillusivec4.curios.api.CuriosApi;
 
 public class MaskAbilityMessage
 {
@@ -53,5 +59,23 @@ public class MaskAbilityMessage
 				ctx.enqueueWork(() -> ((IMaskAbility) helmetItem).stopUsingAbility(player));
 			}
 		}
+
+		//Check if is Curios.
+		ItemInit.getCurios().forEach(stack ->
+		{
+			if (stack.getItem() instanceof IMaskAbility) {
+				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(stack.getItem(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+				if(!stack0.isEmpty()) {
+					if (message.started)
+					{
+						ctx.enqueueWork(() -> ((IMaskAbility) helmetItem).startUsingAbility(player));
+					}
+					else
+					{
+						ctx.enqueueWork(() -> ((IMaskAbility) helmetItem).stopUsingAbility(player));
+					}
+				}
+			}
+		});
 	}
 }
