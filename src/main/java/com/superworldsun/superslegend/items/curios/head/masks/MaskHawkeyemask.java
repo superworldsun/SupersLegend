@@ -8,6 +8,7 @@ import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
@@ -22,6 +23,8 @@ import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
@@ -41,12 +44,13 @@ public class MaskHawkeyemask extends Item implements ICurioItem
 	@SubscribeEvent
 	public static void onFovUpdate(FOVUpdateEvent event)
 	{
-		boolean hasMask = event.getEntity().getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.MASK_HAWKEYEMASK.get();
-		boolean usingBow = event.getEntity().getUseItem().getItem() instanceof BowItem;
-		
-		if (hasMask && usingBow)
-		{
-			event.setNewfov(event.getFov() - 3.0F);
+		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_DEKUMASK.get(), (LivingEntity) event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		if(!stack0.isEmpty()) {
+			boolean usingBow = event.getEntity().getUseItem().getItem() instanceof BowItem;
+
+			if (usingBow) {
+				event.setNewfov(event.getFov() - 3.0F);
+			}
 		}
 	}
 }
