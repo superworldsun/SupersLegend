@@ -37,7 +37,8 @@ public class HerosCharmMask extends Item implements ICurioItem
 	public HerosCharmMask(Properties properties) {
 		super(properties);
 	}
-	
+
+	/*
 	@OnlyIn(Dist.CLIENT)
 	@SuppressWarnings("unchecked")
 	@Override
@@ -57,7 +58,8 @@ public class HerosCharmMask extends Item implements ICurioItem
 	{
 		return SupersLegendMain.MOD_ID + ":textures/models/armor/heroscharm.png";
 	}
-	
+	*/
+
 	@Override
 	public @Nonnull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@Nonnull EquipmentSlotType equipmentSlot)
 	{
