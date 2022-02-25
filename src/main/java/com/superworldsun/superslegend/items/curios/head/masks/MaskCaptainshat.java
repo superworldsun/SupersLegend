@@ -26,6 +26,8 @@ import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
@@ -63,8 +65,8 @@ public class MaskCaptainshat extends Item implements ICurioItem
 		}
 		
 		// Only if target has hat equipped
-		if (event.getTarget().getItemBySlot(EquipmentSlotType.HEAD).getItem() != ItemInit.MASK_CAPTAINSHAT.get())
-		{
+		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_CAPTAINSHAT.get(), (LivingEntity) event.getTarget()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		if(!stack0.isEmpty()) {
 			return;
 		}
 		
@@ -98,9 +100,12 @@ public class MaskCaptainshat extends Item implements ICurioItem
 		ITameableSkeleton tameableSkeleton = (ITameableSkeleton) event.getEntity();
 		
 		// If owner has no captain's hat, set no owner
-		if (tameableSkeleton.hasOwner() && tameableSkeleton.getOwner().getItemBySlot(EquipmentSlotType.HEAD).getItem() != ItemInit.MASK_CAPTAINSHAT.get())
-		{
-			tameableSkeleton.setOwner(null);
+		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_CAPTAINSHAT.get(), (LivingEntity) tameableSkeleton.getOwner()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		if(!stack0.isEmpty()) {
+			if (tameableSkeleton.hasOwner())
+			{
+				tameableSkeleton.setOwner(null);
+			}
 		}
 	}
 }
