@@ -13,6 +13,7 @@ import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
@@ -47,11 +48,10 @@ public class DekuMask extends Item implements IPlayerModelChanger, IEntityResize
 		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "The face of a Deku"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Your wooden skin is unlikely to be poisoned"));
 	}
-	
+
 	@Override
-	public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
-	{
-		player.removeEffect(Effects.POISON);
+	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+		livingEntity.removeEffect(Effects.POISON);
 	}
 	
 	@OnlyIn(Dist.CLIENT)

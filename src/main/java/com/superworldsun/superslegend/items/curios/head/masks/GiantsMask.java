@@ -5,6 +5,7 @@ import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ArmourInit;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
@@ -21,7 +22,18 @@ public class GiantsMask extends Item implements IEntityResizer, ICurioItem
 	public GiantsMask(Properties properties)
 	{
 		super(properties);	}
-	
+
+	@Override
+	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+		PlayerEntity player = (PlayerEntity) livingEntity;
+		if (!player.abilities.instabuild)
+		{
+			float manaCost = 0.01F;
+			ManaProvider.get(player).spendMana(manaCost);
+		}
+	}
+
+/*
 	@Override
 	public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
 	{
@@ -31,7 +43,8 @@ public class GiantsMask extends Item implements IEntityResizer, ICurioItem
 			ManaProvider.get(player).spendMana(manaCost);
 		}
 	}
-	
+	*/
+
 	@Override
 	public float getScale(PlayerEntity player)
 	{

@@ -3,11 +3,13 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.armor.GnatHatModel;
 import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.registries.ArmourInit;
 
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -30,7 +32,7 @@ public class GnatHat extends Item implements IEntityResizer, ICurioItem
 	public GnatHat(Properties properties) {
 		super(properties);
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
 	@SuppressWarnings("unchecked")
 	@Override
@@ -40,7 +42,7 @@ public class GnatHat extends Item implements IEntityResizer, ICurioItem
 		{
 			MODELS_CACHE.put(armorSlot, new GnatHatModel());
 		}
-		
+
 		return (M) MODELS_CACHE.get(armorSlot);
 	}
 	

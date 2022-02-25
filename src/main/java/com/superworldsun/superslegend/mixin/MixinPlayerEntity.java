@@ -4,10 +4,12 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.interfaces.*;
 import com.superworldsun.superslegend.items.items.Lantern;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
 import net.minecraftforge.fml.common.thread.SidedThreadGroups;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -16,10 +18,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.superworldsun.superslegend.interfaces.IEntityResizer;
-import com.superworldsun.superslegend.interfaces.IHoveringEntity;
-import com.superworldsun.superslegend.interfaces.IJumpingEntity;
-import com.superworldsun.superslegend.interfaces.IResizableEntity;
 import com.superworldsun.superslegend.light.AbstractLightEmitter;
 import com.superworldsun.superslegend.light.EntityLightEmitter;
 import com.superworldsun.superslegend.light.ILightEmitterContainer;
@@ -31,6 +29,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
+import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(PlayerEntity.class)
 public abstract class MixinPlayerEntity extends LivingEntity
@@ -135,6 +134,17 @@ public abstract class MixinPlayerEntity extends LivingEntity
 				targetScale *= ((IEntityResizer) stack.getItem()).getScale((PlayerEntity) getEntity());
 				targetRenderScale *= ((IEntityResizer) stack.getItem()).getRenderScale((PlayerEntity) getEntity());
 			}
+		});
+
+		ItemInit.getCurios().forEach(stack ->
+		{
+			if (stack.getItem() instanceof IEntityResizer) {
+				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(stack.getItem(), (PlayerEntity) getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+				if(!stack0.isEmpty()) {
+					targetScale *= ((IEntityResizer) stack.getItem()).getScale((PlayerEntity) getEntity());
+					targetRenderScale *= ((IEntityResizer) stack.getItem()).getRenderScale((PlayerEntity) getEntity());
+				}
+				}
 		});
 
 		prevRenderScale = renderScale;
