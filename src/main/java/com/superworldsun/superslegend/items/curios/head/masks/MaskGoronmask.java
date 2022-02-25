@@ -15,6 +15,7 @@ import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -40,6 +41,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
@@ -58,6 +61,7 @@ public class MaskGoronmask extends Item implements IPlayerModelChanger, IEntityR
 		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "Your skin is like stone and cannot stay withered"));
 	}
 
+
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public PlayerModel<AbstractClientPlayerEntity> getPlayerModel(AbstractClientPlayerEntity player)
@@ -71,6 +75,7 @@ public class MaskGoronmask extends Item implements IPlayerModelChanger, IEntityR
 	{
 		return new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/goron_player.png");
 	}
+
 
 	@Override
 	public float getScale(PlayerEntity player)
@@ -92,8 +97,8 @@ public class MaskGoronmask extends Item implements IPlayerModelChanger, IEntityR
 			return;
 		}
 
-		if (event.getEntityLiving().getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.MASK_DEKUMASK.get())
-		{
+		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GORONMASK.get(), (LivingEntity) event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		if(!stack0.isEmpty()) {
 			if (event.getSource() == DamageSource.LAVA)
 			{
 				event.setAmount(event.getAmount() / 99999);
@@ -106,11 +111,10 @@ public class MaskGoronmask extends Item implements IPlayerModelChanger, IEntityR
 	}
 
 	@Override
-	public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
-	{
+	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+		World world = livingEntity.level;
+		PlayerEntity player = (PlayerEntity) livingEntity;
 		if (!world.isClientSide){
-			boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.MASK_GORONMASK);
-			if(isHelmeton)
 
 				if(player.isOnFire() || player.isInLava()) {
 					player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 5, 0, false, false, false));
@@ -128,8 +132,8 @@ public class MaskGoronmask extends Item implements IPlayerModelChanger, IEntityR
 		}
 
 		// Only if we have boots
-		if (event.player.getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.MASK_GORONMASK.get())
-		{
+		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GORONMASK.get(), (LivingEntity) event.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		if(!stack0.isEmpty()) {
 			if (event.player.isInWater())
 			{
 				IJumpingEntity jumpingPlayer = (IJumpingEntity) event.player;
