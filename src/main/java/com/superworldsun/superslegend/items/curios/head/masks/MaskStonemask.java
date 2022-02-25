@@ -35,11 +35,11 @@ public class MaskStonemask extends Item implements ICurioItem
 	}
 
 	@Override
-	public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
-	{
+	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+		World world = livingEntity.level;
+		PlayerEntity player = (PlayerEntity) livingEntity;
 		if (!world.isClientSide){
-			boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.MASK_STONEMASK);
-			if(isHelmeton) player.addEffect(new EffectInstance(Effects.INVISIBILITY, 10, 0, false, false, false));
+			player.addEffect(new EffectInstance(Effects.INVISIBILITY, 10, 0, false, false, false));
 		}
 	}
 
