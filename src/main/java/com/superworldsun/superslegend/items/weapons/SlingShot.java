@@ -8,6 +8,7 @@ import com.superworldsun.superslegend.entities.projectiles.arrows.PelletEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.SilverArrowEntity;
 import com.superworldsun.superslegend.items.items.DekuSeed;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.IVanishable;
@@ -57,7 +58,7 @@ public class SlingShot extends BowItem {
 		if(event.getItem().getItem() instanceof SlingShot) {
 			if(event.getEntityLiving().isUsingItem()) {
 				if(event.getDuration() == 72000) {
-					event.getEntityLiving().level.playSound(null, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), SoundEvents.ARMOR_EQUIP_ELYTRA, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					event.getEntityLiving().level.playSound(null, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), SoundInit.SLINGSHOT_PULL.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
 				}
 					if(event.getDuration() > 71980) {
 					event.setDuration(event.getDuration() - 1);
@@ -98,10 +99,10 @@ public class SlingShot extends BowItem {
 					}
 					
 					if(i >= 20) {
-						worldIn.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.GENERIC_EXPLODE, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+						worldIn.playSound(null, player.getX(), player.getY(), player.getZ(), SoundInit.SLINGSHOT_SHOOT.get(), SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 					}
 					else {
-						worldIn.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+						worldIn.playSound(null, player.getX(), player.getY(), player.getZ(), SoundInit.SLINGSHOT_SHOOT.get(), SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 					}
 					if (!flag1 && !player.abilities.instabuild) {
 						ammoItem.shrink(1);
