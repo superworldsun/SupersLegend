@@ -33,18 +33,6 @@ public class GiantsMask extends Item implements IEntityResizer, ICurioItem
 		}
 	}
 
-/*
-	@Override
-	public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
-	{
-		if (!player.abilities.instabuild)
-		{
-			float manaCost = 0.01F;
-			ManaProvider.get(player).spendMana(manaCost);
-		}
-	}
-	*/
-
 	@Override
 	public float getScale(PlayerEntity player)
 	{
