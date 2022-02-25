@@ -4,6 +4,7 @@ import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -21,8 +22,9 @@ public class MaskDongerosmaskEffects extends Item  implements ICurioItem {
         super(properties);
     }
     @Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
-    {
+    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+        World world = livingEntity.level;
+        PlayerEntity player = (PlayerEntity) livingEntity;
         if (!world.isClientSide)
         {
                 boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.MASK_DONGEROSMASK);
