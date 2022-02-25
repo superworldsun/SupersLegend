@@ -44,7 +44,7 @@ public class MaskAllnightmask extends Item implements ICurioItem
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
         {
             return SupersLegendMain.MOD_ID + ":textures/armor/giantsmask_layer_1.png";
-        }*/
+        }
 
     @SuppressWarnings("unchecked")
     @OnlyIn(Dist.CLIENT)
@@ -52,11 +52,12 @@ public class MaskAllnightmask extends Item implements ICurioItem
     {
         return (A) new ModelAllnightmask(0);
     }
-
+*/
 
         @Override
-        public void onArmorTick (ItemStack stack, World world, PlayerEntity player)
-        {
+        public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+                World world = livingEntity.level;
+                PlayerEntity player = (PlayerEntity) livingEntity;
 
             if (!world.isClientSide) {
                 boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.MASK_ALLNIGHTMASK);
