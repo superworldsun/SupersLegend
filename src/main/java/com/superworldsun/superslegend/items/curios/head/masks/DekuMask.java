@@ -31,6 +31,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
@@ -87,9 +89,8 @@ public class DekuMask extends Item implements IPlayerModelChanger, IEntityResize
 		{
 			return;
 		}
-
-		if (event.getEntityLiving().getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.MASK_DEKUMASK.get())
-		{
+		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_DEKUMASK.get(), (LivingEntity) event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		if(!stack0.isEmpty()) {
 			if (event.getSource() == DamageSource.LAVA)
 			{
 				event.setAmount(event.getAmount() * 4);
