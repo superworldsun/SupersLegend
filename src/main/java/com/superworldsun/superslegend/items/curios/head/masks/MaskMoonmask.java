@@ -1,17 +1,9 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
-import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.registries.ArmourInit;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class MaskMoonmask extends Item implements ICurioItem
-{
+public class MaskMoonmask extends Item implements ICurioItem {
 
     public MaskMoonmask(Properties properties) {
         super(properties);

@@ -1,22 +1,9 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.HerosCharmModel;
-import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
-import com.superworldsun.superslegend.registries.ArmourInit;
-
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -30,13 +17,17 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class HerosCharmMask extends Item implements ICurioItem
-{
-	private static final Map<EquipmentSlotType, BipedModel<?>> MODELS_CACHE = new HashMap<>();
-	
-	public HerosCharmMask(Properties properties) {
-		super(properties);
-	}
+import javax.annotation.Nonnull;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class HerosCharmMask extends Item implements ICurioItem {
+    private static final Map<EquipmentSlotType, BipedModel<?>> MODELS_CACHE = new HashMap<>();
+
+    public HerosCharmMask(Properties properties) {
+        super(properties);
+    }
 
 	/*
 	@OnlyIn(Dist.CLIENT)
@@ -60,17 +51,16 @@ public class HerosCharmMask extends Item implements ICurioItem
 	}
 	*/
 
-	@Override
-	public @Nonnull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@Nonnull EquipmentSlotType equipmentSlot)
-	{
-		return HashMultimap.create();
-	}
-	
-	@OnlyIn(Dist.CLIENT)
-	@Override
-	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
-	{
-		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.WHITE + "Allows you to find ones weakness"));
-	}
+    @Override
+    public @Nonnull
+    Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@Nonnull EquipmentSlotType equipmentSlot) {
+        return HashMultimap.create();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
+        super.appendHoverText(stack, world, list, flag);
+        list.add(new StringTextComponent(TextFormatting.WHITE + "Allows you to find ones weakness"));
+    }
 }

@@ -2,13 +2,9 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 
 import com.superworldsun.superslegend.cooldowns.CooldownsProvider;
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
-import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
-import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -20,32 +16,28 @@ import net.minecraft.world.Explosion.Mode;
 import net.minecraft.world.World;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class BlastMask extends Item implements IMaskAbility, ICurioItem
-{
-	public BlastMask(Properties properties)
-	{
-		super(properties);	}
-	
-	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
-	{
-		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Bomb Blastic"));
-	}
-	
-	@Override
-	public void startUsingAbility(PlayerEntity player)
-	{
-		// Do nothing if on cooldown
-		if (CooldownsProvider.get(player).hasCooldown(ItemInit.MASK_BLASTMASK.get()))
-		{
-			return;
-		}
-		
-		Vector3d explosionPos = player.getEyePosition(1.0F).add(player.getLookAngle().multiply(0.5D, 0.5D, 0.5D));
-		player.level.explode(player, explosionPos.x, explosionPos.y, explosionPos.z, 2.0F, Mode.BREAK);
-		player.hurt(DamageSource.explosion(player), 2.0F);
-		// 200 ticks are 10 seconds
-		CooldownsProvider.get(player).setCooldown(ItemInit.MASK_BLASTMASK.get(), 200);
-		IMaskAbility.super.startUsingAbility(player);
-	}
+public class BlastMask extends Item implements IMaskAbility, ICurioItem {
+    public BlastMask(Properties properties) {
+        super(properties);
+    }
+
+    public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
+        super.appendHoverText(stack, world, list, flag);
+        list.add(new StringTextComponent(TextFormatting.GRAY + "Bomb Blastic"));
+    }
+
+    @Override
+    public void startUsingAbility(PlayerEntity player) {
+        // Do nothing if on cooldown
+        if (CooldownsProvider.get(player).hasCooldown(ItemInit.MASK_BLASTMASK.get())) {
+            return;
+        }
+
+        Vector3d explosionPos = player.getEyePosition(1.0F).add(player.getLookAngle().multiply(0.5D, 0.5D, 0.5D));
+        player.level.explode(player, explosionPos.x, explosionPos.y, explosionPos.z, 2.0F, Mode.BREAK);
+        player.hurt(DamageSource.explosion(player), 2.0F);
+        // 200 ticks are 10 seconds
+        CooldownsProvider.get(player).setCooldown(ItemInit.MASK_BLASTMASK.get(), 200);
+        IMaskAbility.super.startUsingAbility(player);
+    }
 }
