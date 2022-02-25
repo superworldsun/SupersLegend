@@ -7,6 +7,7 @@ import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -37,19 +38,18 @@ public class MaskZoramask extends Item  implements ICurioItem {
     float manaCost = 0.03F;
 
     @Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
-    {
+    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+        World world = livingEntity.level;
+        PlayerEntity player = (PlayerEntity) livingEntity;
         boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
-        boolean isHelmetOn = player.getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.MASK_ZORAMASK.get();
 
-        if(isHelmetOn)
-        {
+
             if(player.isSwimming() && hasMana && player.isAlive())
             {
                 ManaProvider.get(player).spendMana(manaCost);
                 player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 4, 0, true, true, true));
             }
-        }
+
     }
         
     
