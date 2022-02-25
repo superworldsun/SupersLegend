@@ -30,17 +30,21 @@ public class MaskBunnyhood extends Item implements ICurioItem
 	public MaskBunnyhood(Properties properties) {
 		super(properties);
 	}
+
+	/*
 	@SuppressWarnings("unchecked")
 	@OnlyIn(Dist.CLIENT)
 	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
 	{
 		return (A) new ModelBunnyhoodMask(0);
 	}
-
+*/
     
     @Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) 
-    {
+	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+		World world = livingEntity.level;
+		PlayerEntity player = (PlayerEntity) livingEntity;
+
         if (!world.isClientSide){
                 boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.MASK_BUNNYHOOD);
                 
