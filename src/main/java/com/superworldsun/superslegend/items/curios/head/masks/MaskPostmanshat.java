@@ -24,12 +24,14 @@ public class MaskPostmanshat extends Item  implements ICurioItem {
         super(properties);
     }
 
+    /*
     @SuppressWarnings("unchecked")
     @OnlyIn(Dist.CLIENT)
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
     {
         return (A) new ModelPostmansHat(0);
     }
+*/
 
     @Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
