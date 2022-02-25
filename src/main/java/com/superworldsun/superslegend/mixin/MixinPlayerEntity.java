@@ -135,7 +135,7 @@ public abstract class MixinPlayerEntity extends LivingEntity
 				targetRenderScale *= ((IEntityResizer) stack.getItem()).getRenderScale((PlayerEntity) getEntity());
 			}
 		});
-
+//Check if is Curios.
 		ItemInit.getCurios().forEach(stack ->
 		{
 			if (stack.getItem() instanceof IEntityResizer) {

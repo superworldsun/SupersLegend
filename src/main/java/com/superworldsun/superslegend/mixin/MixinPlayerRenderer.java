@@ -95,7 +95,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 				ci.setReturnValue(((IPlayerModelChanger) stack.getItem()).getPlayerTexture(player));
 			}
 		});
-
+//Check if is Curios.
 		ItemInit.getCurios().forEach(stack ->
 		{
 			if (stack instanceof IPlayerModelChanger)
@@ -136,7 +136,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 				model = ((IPlayerModelChanger) stack.getItem()).getPlayerModel(player);
 			}
 		});
-
+//Check if is Curios.
 		ItemInit.getCurios().forEach(stack ->
 		{
 			if (stack instanceof IPlayerModelChanger)
