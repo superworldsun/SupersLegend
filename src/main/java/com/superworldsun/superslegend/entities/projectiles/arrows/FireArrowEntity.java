@@ -72,6 +72,15 @@ public class FireArrowEntity extends AbstractArrowEntity
 			entity.setSecondsOnFire(6);
 			applyResistanceAndWeakness(entity);
 		}
+
+		if (entity instanceof LivingEntity) {
+			LivingEntity livingentity = (LivingEntity) entity;
+
+			this.getBaseDamage();
+			if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
+				livingentity.setArrowCount(livingentity.getArrowCount() - 1);
+			}
+		}
 		
 		super.onHitEntity(rayTraceResult);
 	}
@@ -132,6 +141,7 @@ public class FireArrowEntity extends AbstractArrowEntity
 			this.remove();
 		}
 	}
+
 
 	private void playSoundAtBlockPosition(SoundEvent soundEvent) {
 		BlockPos currentPos = this.blockPosition();

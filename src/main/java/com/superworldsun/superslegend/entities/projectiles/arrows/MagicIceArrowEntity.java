@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.entities.projectiles.arrows;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -52,5 +53,15 @@ public class MagicIceArrowEntity extends IceArrowEntity
 		// an arrow. To deal damage 2 times in a row, we have to reset it.
 		rayTraceResult.getEntity().invulnerableTime = 0;
 		rayTraceResult.getEntity().hurt(DamageSource.MAGIC, 5.0F);
+
+		Entity entity = rayTraceResult.getEntity();
+		if (entity instanceof LivingEntity) {
+			LivingEntity livingentity = (LivingEntity) entity;
+
+			this.getBaseDamage();
+			if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
+				livingentity.setArrowCount(livingentity.getArrowCount() - 1);
+			}
+		}
 	}
 }
