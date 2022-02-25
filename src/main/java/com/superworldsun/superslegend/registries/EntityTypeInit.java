@@ -1,10 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.entities.HeartEntity;
-import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
-import com.superworldsun.superslegend.entities.MagicJarEntity;
-import com.superworldsun.superslegend.entities.SpinnerEntity;
+import com.superworldsun.superslegend.entities.*;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
@@ -15,6 +12,7 @@ import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.mastersword.MasterSwordSwordEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -113,4 +111,9 @@ public class EntityTypeInit
 			() -> EntityType.Builder.<EntityBomb>of(EntityBomb::new,
 					EntityClassification.MISC).sized(0.25F, 0.25F).build("bomb"));
 
+	//MOBS
+
+	public static final RegistryObject<EntityType<TPBokoblinEntity>> TP_BOKOBLIN = ENTITIES.register("tp_bokoblin",
+			() -> EntityType.Builder.<TPBokoblinEntity>of(TPBokoblinEntity::new, EntityClassification.MONSTER).sized(2.0F, 1.0F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/tp_bokoblin").toString()));
 }
