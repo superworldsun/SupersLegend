@@ -4,13 +4,13 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.*;
 import com.superworldsun.superslegend.items.armors.*;
 import com.superworldsun.superslegend.items.cookingpot.CookingPotFood;
+import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.food.HylianLoach;
 import com.superworldsun.superslegend.items.food.HylianLoachCooked;
 import com.superworldsun.superslegend.items.food.HyruleBass;
 import com.superworldsun.superslegend.items.food.HyruleBassCooked;
 import com.superworldsun.superslegend.items.items.*;
-import com.superworldsun.superslegend.items.masks.*;
 import com.superworldsun.superslegend.items.weapons.*;
 import com.superworldsun.superslegend.items.weapons.SlingShot;
 import com.superworldsun.superslegend.util.cookingpot.FoodCategory;
@@ -24,13 +24,25 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ItemInit
 {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SupersLegendMain.MOD_ID);
+
+	public static List<Item> getCurios() {
+		return ITEMS.getEntries().stream()
+				.filter(RegistryObject::isPresent)
+				.map(RegistryObject::get)
+				.filter(item -> item instanceof ICurioItem)
+				.map(item -> (Item) item)
+				.collect(Collectors.toList());
+	}
 
 	public static final RegistryObject<Item> LANZANITE = ITEMS.register("lanzanite",
 			() -> new LanzaniteItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
@@ -415,7 +427,7 @@ public class ItemInit
 			() -> new MaskGreatfairymask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_DEKUMASK = ITEMS.register("mask_dekumask",
 			() -> new DekuMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> MASK_KEATONMASK = ITEMS.register("mask_keatonmask", KeatonMask::new);
+	public static final RegistryObject<Item> MASK_KEATONMASK = ITEMS.register("mask_keatonmask", () -> new KeatonMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_BUNNYHOOD = ITEMS.register("mask_bunnyhood",
 			() -> new MaskBunnyhood(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_DONGEROSMASK = ITEMS.register("mask_dongerosmask",
@@ -438,7 +450,7 @@ public class ItemInit
 			() -> new MaskZoramask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_KAMAROSMASK = ITEMS.register("mask_kamarosmask",
 			() -> new MaskKamarosmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> MASK_GIBDOMASK = ITEMS.register("mask_gibdomask", GibdoMask::new);
+	public static final RegistryObject<Item> MASK_GIBDOMASK = ITEMS.register("mask_gibdomask", () -> new GibdoMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_GAROSMASK = ITEMS.register("mask_garosmask",
 			() -> new MaskGarosmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_CAPTAINSHAT = ITEMS.register("mask_captainshat",
@@ -807,7 +819,7 @@ public class ItemInit
 	
 	public static final RegistryObject<Item> POISON_ARROW = ITEMS.register("poison_arrow",
 			() -> new PoisonArrowItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> GNAT_HAT = ITEMS.register("gnat_hat", GnatHat::new);
+	public static final RegistryObject<Item> GNAT_HAT = ITEMS.register("gnat_hat", () -> new GnatHat(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow", MagicFireArrow::new);
 	public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow", MagicIceArrow::new);
 	public static final RegistryObject<Item> MAGIC_LIGHT_ARROW = ITEMS.register("magic_light_arrow", MagicLightArrow::new);

@@ -4,28 +4,50 @@ import com.superworldsun.superslegend.registries.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
+import net.minecraft.world.server.ServerWorld;
 
-public class TorchTower extends Block
+import java.util.Random;
 
-{
+public class TorchTower extends Block {
 	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 13.0D, 16.0D, 13.0D);
+	public static final IntegerProperty OUTPUT_POWER = BlockStateProperties.POWER;
 
 	   public TorchTower(Properties properties) {
 	      super(properties);
+		   this.registerDefaultState(this.stateDefinition.any().setValue(OUTPUT_POWER, Integer.valueOf(0)));
 	   }
 
-	   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+	@Override
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
+		p_206840_1_.add(OUTPUT_POWER);
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 	      return SHAPE;
-	   }
+	}
 
+	@Override
+	public boolean isSignalSource(BlockState p_149744_1_) {
+		return true;
+	}
+
+	@Override
+	public int getSignal(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos, Direction direction) {
+		return blockState.getValue(OUTPUT_POWER);
+	}
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -40,41 +62,6 @@ public class TorchTower extends Block
 	{
 		world.setBlockAndUpdate(pos.above(), BlockInit.TORCH_TOWER_TOP_UNLIT.get().defaultBlockState());
 	}
-
-	/*@Override
-	public void onNeighborChange(BlockState state, IWorldReader world, BlockPos pos, BlockPos neighbor) {
-		super.onNeighborChange(state, world, pos, neighbor);
-		if (pos.above() )
-		{
-			getBlockState().getBlock().onNeighborChange(getBlockState(), world, pos, neighbor);
-		}
-	}*/
-
-	/*@Override
-	public void onNeighborChange(BlockState state, IWorldReader world, BlockPos pos, BlockPos neighbor) {
-		super.onNeighborChange(state, world, pos, neighbor);
-		if(world.getBlockState(neighbor) == this.getDefaultState().with(LIT, true))
-		{
-			action(state,world,pos);
-		}
-	}*/
-
-	@Override
-	public void onNeighborChange(BlockState state, IWorldReader world, BlockPos pos, BlockPos neighbor)
-	{
-		if(world.getBlockState(pos.above()) == BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState())
-		{
-			//state
-		}
-	}
-
-	/*public boolean isSignalSource(BlockState p_149744_1_) {
-		return false;
-	}*/
-
-	/*public int getSignal(BlockState p_180656_1_, IBlockReader p_180656_2_, BlockPos p_180656_3_, Direction p_180656_4_) {
-		return 15;
-	}*/
 
 	@Override
 	public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos)
