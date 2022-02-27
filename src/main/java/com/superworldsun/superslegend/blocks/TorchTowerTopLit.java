@@ -29,6 +29,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
+import static com.superworldsun.superslegend.blocks.TorchTower.OUTPUT_POWER;
+
 public class TorchTowerTopLit extends Block implements IHasNoItem
 
 {
@@ -117,6 +119,12 @@ public class TorchTowerTopLit extends Block implements IHasNoItem
 		{
 			world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 		}
+	}
+
+	@Override
+	public void onPlace(BlockState blockState, World world, BlockPos blockPos, BlockState oldBlockState, boolean b) {
+		world.setBlockAndUpdate(blockPos.below(), BlockInit.TORCH_TOWER.get().defaultBlockState().setValue(OUTPUT_POWER, 15));
+		world.setBlockAndUpdate(blockPos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState());
 	}
 }
 	
