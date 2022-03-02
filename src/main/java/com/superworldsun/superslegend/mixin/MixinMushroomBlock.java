@@ -2,6 +2,8 @@ package com.superworldsun.superslegend.mixin;
 
 import java.util.Random;
 
+import net.minecraft.item.ItemStack;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.spongepowered.asm.mixin.Mixin;
 
 import com.superworldsun.superslegend.registries.ItemInit;
@@ -16,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(MushroomBlock.class)
 public abstract class MixinMushroomBlock extends BushBlock
@@ -31,9 +34,9 @@ public abstract class MixinMushroomBlock extends BushBlock
 	public void animateTick(BlockState state, World world, BlockPos pos, Random random)
 	{
 		Minecraft client = Minecraft.getInstance();
-		
-		if (client.player.getItemBySlot(EquipmentSlotType.HEAD).getItem() == ItemInit.MASK_MASKOFSCENTS.get())
-		{
+
+		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_MASKOFSCENTS.get(), client.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		if (!stack0.isEmpty()) {
 			double radius = 20;
 			
 			if (client.player.distanceToSqr(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5) < radius * radius)

@@ -3,8 +3,12 @@ package com.superworldsun.superslegend.items.items;
 import java.util.List;
 import java.util.Random;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.util.DimBlockPos;
+
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,23 +16,23 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.event.world.ChunkEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nonnull;
 
-public class FaroresWind extends Item
-{
+@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
+public class FaroresWind extends Item {
 
     public FaroresWind(Properties properties)
     {
@@ -226,4 +230,26 @@ public class FaroresWind extends Item
             list.add(new StringTextComponent(TextFormatting.YELLOW + "Dim: " + dimName + "  X: " + pos.getX() + "  Y: " + pos.getY() + "  Z: " + pos.getZ()));
         }
     }
+/*
+    @SubscribeEvent
+    public static void handleChunkUnload(ChunkEvent.Unload event) {
+        World world = (World) event.getWorld();
+        if (!world.isClientSide && (world instanceof ServerWorld)) {
+            ServerWorld worldServer = (ServerWorld) world;
+
+            Chunk chunk = (Chunk) event.getChunk();
+            // Handle this directly instead of through EntityTracking for speed
+            EntityData data = EntityTracking.getData();
+
+            for (ClassInheritanceMultiMap<Entity> entityList : chunk.getEntitySections()) {
+                for (Entity entity : entityList) {
+                    if (data.trackedEntities.contains(entity.getUUID())) {
+                        DimBlockPos dbp = new DimBlockPos(entity.blockPosition(), world.dimensionType().logicalHeight());
+                        EntityTracking.storeEntity(entity, dbp);
+                    }
+                }
+            }
+        }
+    }
+*/
 }

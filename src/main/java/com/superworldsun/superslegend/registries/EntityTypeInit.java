@@ -1,10 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.entities.HeartEntity;
-import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
-import com.superworldsun.superslegend.entities.MagicJarEntity;
-import com.superworldsun.superslegend.entities.SpinnerEntity;
+import com.superworldsun.superslegend.entities.*;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
@@ -107,5 +104,10 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<EntityBomb>> BOMB = ENTITIES.register("bomb",
 			() -> EntityType.Builder.<EntityBomb>of(EntityBomb::new,
 					EntityClassification.MISC).sized(0.25F, 0.25F).build("bomb"));
+
+	public static final RegistryObject<EntityType<FaroresWindEntity>> FARORES_WIND = ENTITIES.register("farores_wind",
+			() -> EntityType.Builder.<FaroresWindEntity>of(FaroresWindEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/farores_wind").toString()));
+
 
 }

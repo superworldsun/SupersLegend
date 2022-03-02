@@ -39,7 +39,7 @@ public class GibdoMask extends Item implements ICurioItem {
         }
 
         // Reset target if target has mask equipped
-        ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_DEKUMASK.get(), event.getTarget()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIBDOMASK.get(), event.getTarget()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
         if (!stack0.isEmpty()) {
             ((MobEntity) event.getEntityLiving()).setTarget(null);
         }

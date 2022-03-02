@@ -31,7 +31,7 @@ public class MaskHawkeyemask extends Item implements ICurioItem {
 
     @SubscribeEvent
     public static void onFovUpdate(FOVUpdateEvent event) {
-        ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_DEKUMASK.get(), event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_HAWKEYEMASK.get(), event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
         if (!stack0.isEmpty()) {
             boolean usingBow = event.getEntity().getUseItem().getItem() instanceof BowItem;
 

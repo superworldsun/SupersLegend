@@ -50,7 +50,7 @@ public class MaskCaptainshat extends Item implements ICurioItem {
 
         // Only if target has hat equipped
         ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_CAPTAINSHAT.get(), event.getTarget()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-        if (!stack0.isEmpty()) {
+        if (stack0.isEmpty()) {
             return;
         }
 
@@ -80,11 +80,12 @@ public class MaskCaptainshat extends Item implements ICurioItem {
         ITameableSkeleton tameableSkeleton = (ITameableSkeleton) event.getEntity();
 
         // If owner has no captain's hat, set no owner
+        if(tameableSkeleton.getOwner() != null){
         ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_CAPTAINSHAT.get(), tameableSkeleton.getOwner()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-        if (!stack0.isEmpty()) {
-            if (tameableSkeleton.hasOwner()) {
-                tameableSkeleton.setOwner(null);
-            }
+        if (tameableSkeleton.hasOwner() && stack0.isEmpty()) {
+
+            tameableSkeleton.setOwner(null);
+        }
         }
     }
 
