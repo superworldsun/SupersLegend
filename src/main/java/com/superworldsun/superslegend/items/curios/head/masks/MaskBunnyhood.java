@@ -13,6 +13,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
@@ -38,9 +40,8 @@ public class MaskBunnyhood extends Item implements ICurioItem {
         PlayerEntity player = (PlayerEntity) livingEntity;
 
         if (!world.isClientSide) {
-            boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.MASK_BUNNYHOOD);
-
-            if (isHelmeton) {
+            ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_BUNNYHOOD.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+            if (!stack0.isEmpty()) {
                 if (!player.isInWater()) {
                     player.addEffect(new EffectInstance(Effect.byId(1), 10, 0, false, false));
                 }

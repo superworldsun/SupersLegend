@@ -110,10 +110,16 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<EntityBomb>> BOMB = ENTITIES.register("bomb",
 			() -> EntityType.Builder.<EntityBomb>of(EntityBomb::new,
 					EntityClassification.MISC).sized(0.25F, 0.25F).build("bomb"));
+  
+  public static final RegistryObject<EntityType<FaroresWindEntity>> FARORES_WIND = ENTITIES.register("farores_wind",
+			() -> EntityType.Builder.<FaroresWindEntity>of(FaroresWindEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/farores_wind").toString()));
+
 
 	//MOBS
 
 	public static final RegistryObject<EntityType<TPBokoblinEntity>> TP_BOKOBLIN = ENTITIES.register("tp_bokoblin",
 			() -> EntityType.Builder.<TPBokoblinEntity>of(TPBokoblinEntity::new, EntityClassification.MONSTER).sized(2.0F, 1.0F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/tp_bokoblin").toString()));
+
 }
