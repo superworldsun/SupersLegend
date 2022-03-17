@@ -8,7 +8,8 @@
     "MixinPlayerRenderer",
     "MixinAbstractSkeletonEntity",
     "MixinMushroomBlock",
-    "MixinFoxEntity"
+    "MixinFoxEntity",
+    "MixinFlowingFluid"
   ],
   "minVersion": "0.8"
 }
