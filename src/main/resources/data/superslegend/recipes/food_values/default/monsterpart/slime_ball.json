@@ -1,0 +1,9 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:slime_ball"
+  ],
+  "values": {
+    "MONSTERPART": 1.0
+  }
+}

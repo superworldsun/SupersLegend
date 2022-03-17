@@ -14,6 +14,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -118,5 +119,10 @@ public class RoyalTileBlock extends Block
 	public PushReaction getPistonPushReaction(BlockState blockState)
 	{
 		return PushReaction.DESTROY;
+	}
+
+	@Override
+	public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_, ISelectionContext p_220071_4_) {
+		return VoxelShapes.box(0,0,0,1,0.2,1);
 	}
 }

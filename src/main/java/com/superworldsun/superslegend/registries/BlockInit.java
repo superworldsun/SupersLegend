@@ -3,13 +3,11 @@ package com.superworldsun.superslegend.registries;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.*;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class BlockInit
 {
@@ -46,7 +44,9 @@ public class BlockInit
 	public static final RegistryObject<Block> GRASS_PATCH_BLOCK = BLOCKS.register("grass_patch_block", () -> new GrassPatch(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> ODD_MUSHROOM = BLOCKS.register("odd_mushroom", () -> new OddMushroomBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> MAGIC_MUSHROOM = BLOCKS.register("magic_mushroom", () -> new MagicMushroomBlock(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> TORCH_TOWER = BLOCKS.register("torch_tower", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> TORCH_TOWER = BLOCKS.register("torch_tower", () -> new TorchTower(PropertiesInit.TORCH_TOWER));
+	public static final RegistryObject<Block> TORCH_TOWER_TOP_UNLIT = BLOCKS.register("torch_tower_top_unlit", () -> new TorchTowerTopUnlit(PropertiesInit.TORCH_TOWER_TOP_UNLIT));
+	public static final RegistryObject<Block> TORCH_TOWER_TOP_LIT = BLOCKS.register("torch_tower_top_lit", () -> new TorchTowerTopLit(PropertiesInit.TORCH_TOWER_TOP_LIT));
 	public static final RegistryObject<Block> MASTER_ORE_BLOCK = BLOCKS.register("master_ore_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> WOODEN_PEG_BLOCK = BLOCKS.register("wooden_peg_block", () -> new WoodenPegBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUSTED_PEG_BLOCK = BLOCKS.register("rusted_peg_block", () -> new RustedPegBlock(PropertiesInit.WRECKAGE));
@@ -95,4 +95,18 @@ public class BlockInit
 	public static final RegistryObject<Block> ROYAL_TILE = BLOCKS.register("royal_tile", RoyalTileBlock::new);
 	public static final RegistryObject<Block> BLOCK_OF_TIME = BLOCKS.register("block_of_time", TimeBlock::new);
 	public static final RegistryObject<Block> OWL_STATUE = BLOCKS.register("owl_statue", () -> new OwlStatue(PropertiesInit.WRECKAGE));
+	//public static final RegistryObject<Block> COOKING_POT = BLOCKS.register("cooking_pot", CookingPotBlock::new);
+
+	//For cooking pot
+	public static final Block COOKING_POT = register(BLOCKS, "cooking_pot", new CookingPotBlock() {
+		//@Override
+		//public int getPotLevel() {
+		//	return 0;
+		//}
+	});
+
+	private static <T extends IForgeRegistryEntry<T>, E extends T> E register(final DeferredRegister<T> register, final String name, final E entry) {
+		register.register(name, () -> entry);
+		return entry;
+	}
 }

@@ -1,6 +1,11 @@
 package com.superworldsun.superslegend.client.keys;
 
+import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.network.message.SelectInteractionMessage;
+import com.superworldsun.superslegend.registries.ItemInit;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.lwjgl.glfw.GLFW;
 
 import com.superworldsun.superslegend.SupersLegendMain;
@@ -19,6 +24,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import top.theillusivec4.curios.api.CuriosApi;
 
 @EventBusSubscriber(bus = Bus.MOD, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
 public class KeyBindings
@@ -43,20 +49,32 @@ public class KeyBindings
 			{
 				Minecraft client = Minecraft.getInstance();
 				Item helmetItem = client.player.getItemBySlot(EquipmentSlotType.HEAD).getItem();
-				
-				if (helmetItem instanceof IMaskAbility)
+
+				//Check if is Curios.
+				ItemInit.getCurios().forEach(stack ->
 				{
-					if (event.getAction() == GLFW.GLFW_PRESS)
-					{
-						((IMaskAbility) helmetItem).startUsingAbility(client.player);
-						NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(true));
+					if (stack.getItem() instanceof IMaskAbility) {
+						ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(stack.getItem(), client.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+						if(!stack0.isEmpty()) {
+							if (event.getAction() == GLFW.GLFW_PRESS) {
+								((IMaskAbility) stack0.getItem()).startUsingAbility(client.player);
+								NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(true));
+							} else if (event.getAction() == GLFW.GLFW_RELEASE) {
+								((IMaskAbility) stack0.getItem()).stopUsingAbility(client.player);
+								NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(false));
+							}}
 					}
-					else if (event.getAction() == GLFW.GLFW_RELEASE)
-					{
-						((IMaskAbility) helmetItem).stopUsingAbility(client.player);
-						NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(false));
+				});
+
+					if (helmetItem instanceof IMaskAbility) {
+						if (event.getAction() == GLFW.GLFW_PRESS) {
+							((IMaskAbility) helmetItem).startUsingAbility(client.player);
+							NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(true));
+						} else if (event.getAction() == GLFW.GLFW_RELEASE) {
+							((IMaskAbility) helmetItem).stopUsingAbility(client.player);
+							NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(false));
+						}
 					}
-				}
 			} else if(SELECT_INVENTORY.isDown())
 			{
 				NetworkDispatcher.networkChannel.sendToServer(new SelectInteractionMessage(0, true));

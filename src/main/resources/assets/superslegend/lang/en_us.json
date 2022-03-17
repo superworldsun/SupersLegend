@@ -3,6 +3,13 @@
 
   "key.categories.superslegend": "SupersLegend",
   "key.mask_ability": "Mask Ability",
+  
+  "block.superslegend.cooking_pot": "Cooking Pot",
+  
+  "item.superslegend.meat_skewer": "Meat Skewer",
+  "item.superslegend.meat_stuffed_pumpkin": "Meat-Stuffed Pumpkin",
+  "item.superslegend.fruit_pie": "Fruit Pie",
+  "item.superslegend.goat_butter": "Goat Butter",
 
   "item.superslegend.rupee": "Rupee",
   "item.superslegend.blue_rupee": "Blue Rupee",
@@ -17,12 +24,15 @@
   "item.superslegend.magic_mirror": "Magic Mirror",
   "item.superslegend.magic_cape": "Magic Cape",
   "item.superslegend.sling_shot": "Sling Shot",
-  "item.superslegend.regular_boomerang": "Boomerang",
+  "item.superslegend.boomerang": "Boomerang",
   "item.superslegend.bomb": "Bomb",
   "item.superslegend.fire_rod": "Fire Rod",
   "item.superslegend.ice_rod": "Ice Rod",
   "item.superslegend.magic_hammer": "Magic Hammer",
   "item.superslegend.megaton_hammer": "Megaton Hammer",
+  "item.superslegend.skull_hammer": "Skull Hammer",
+  "item.superslegend.oil_bottle": "Bottle of Oil",
+  "item.superslegend.extinguishedlantern": "Extinguished Lantern",
   "item.superslegend.skull_hammer": "Skull Hammer",
   "item.superslegend.ice_rod": "Ice Rod",
   "item.superslegend.empty_container": "Empty Container",

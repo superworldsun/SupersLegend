@@ -1,0 +1,10 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:spider_eye",
+	"minecraft:fermented_spider_eye"
+  ],
+  "values": {
+    "MONSTERPART": 1.0
+  }
+}

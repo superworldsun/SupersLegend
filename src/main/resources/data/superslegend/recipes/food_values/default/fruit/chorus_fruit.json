@@ -1,0 +1,10 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:chorus_fruit",
+	"minecraft:popped_chorus_fruit"
+  ],
+  "values": {
+    "FRUIT": 1.0
+  }
+}

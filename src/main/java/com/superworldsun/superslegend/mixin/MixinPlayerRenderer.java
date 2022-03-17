@@ -1,5 +1,14 @@
 package com.superworldsun.superslegend.mixin;
 
+import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.items.items.Lantern;
+import com.superworldsun.superslegend.registries.ItemInit;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -25,6 +34,7 @@ import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.ResourceLocation;
+import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(PlayerRenderer.class)
 public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientPlayerEntity, PlayerModel<AbstractClientPlayerEntity>>
@@ -38,6 +48,9 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 		super(null, null, 0);
 	}
 	
+	/**
+	 * @author
+	 */
 	@Overwrite
 	private void renderHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand,
 			ModelRenderer handOverlay)
@@ -82,8 +95,21 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 				ci.setReturnValue(((IPlayerModelChanger) stack.getItem()).getPlayerTexture(player));
 			}
 		});
+//Check if is Curios.
+		ItemInit.getCurios().forEach(stack ->
+		{
+			if (stack instanceof IPlayerModelChanger)
+			{
+				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(stack.getItem(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+				if(!stack0.isEmpty())
+				ci.setReturnValue(((IPlayerModelChanger) stack0.getItem()).getPlayerTexture(player));
+			}
+		});
 	}
 	
+	/**
+	 * @author
+	 */
 	@Overwrite
 	protected void scale(AbstractClientPlayerEntity player, MatrixStack matrix, float partialTicks)
 	{
@@ -110,7 +136,17 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 				model = ((IPlayerModelChanger) stack.getItem()).getPlayerModel(player);
 			}
 		});
-		
+//Check if is Curios.
+		ItemInit.getCurios().forEach(stack ->
+		{
+			if (stack instanceof IPlayerModelChanger)
+			{
+				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(stack.getItem(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+				if(!stack0.isEmpty())
+				model = ((IPlayerModelChanger) stack0.getItem()).getPlayerModel(player);
+			}
+		});
+
 		if (model != baseModel)
 		{
 			if (layers.contains(armorLayer))

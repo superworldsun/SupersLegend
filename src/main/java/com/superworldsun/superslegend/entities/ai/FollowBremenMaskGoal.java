@@ -11,8 +11,11 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.GroundPathNavigator;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 
 public class FollowBremenMaskGoal extends Goal
 {
@@ -66,8 +69,10 @@ public class FollowBremenMaskGoal extends Goal
 	
 	private boolean shouldFollow(PlayerEntity player)
 	{
-		Item mask = player.getItemBySlot(EquipmentSlotType.HEAD).getItem();
-		return mask == ItemInit.MASK_BREMANMASK.get() && ((IMaskAbility) mask).isPlayerUsingAbility(player);
+		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_BREMANMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		if (!stack0.isEmpty())
+		return stack0.getItem() == ItemInit.MASK_BREMANMASK.get() && ((IMaskAbility) stack0.getItem()).isPlayerUsingAbility(player);
+		return false;
 	}
 	
 	public boolean canContinueToUse()

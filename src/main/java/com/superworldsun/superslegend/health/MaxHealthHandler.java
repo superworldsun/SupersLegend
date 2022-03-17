@@ -3,7 +3,7 @@ package com.superworldsun.superslegend.health;
 import java.util.UUID;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.config.Config;
+import com.superworldsun.superslegend.config.SupersLegendConfig;
 
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
@@ -31,7 +31,7 @@ public class MaxHealthHandler
 		
 		PlayerEntity player = (PlayerEntity) event.getEntity();
 		ModifiableAttributeInstance maxHealth = player.getAttribute(Attributes.MAX_HEALTH);
-		AttributeModifier baseHealthModifier = new AttributeModifier(BASE_HEALTH_MODIFIER_ID, "Base", Config.COMMON.playerMaxHealth.get() - 20,
+		AttributeModifier baseHealthModifier = new AttributeModifier(BASE_HEALTH_MODIFIER_ID, "Base", SupersLegendConfig.getInstance().playerMaxHealth() - 20,
 				Operation.ADDITION);
 		
 		// Add base modifier only if not added yet
