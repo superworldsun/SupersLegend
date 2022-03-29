@@ -61,31 +61,39 @@ public class MagicMirror extends Item {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity entity)
     {
-    	if (!world.isClientSide)
-    	{
-    		ServerPlayerEntity player = (ServerPlayerEntity) entity;
+        if (!world.isClientSide)
+        {
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
 
-    		BlockPos returnLoc = getPosition(stack); //get saved position
-    		if(returnLoc != null) //saved location not null
-    		{
-    			BlockPos currentPos = player.blockPosition();
+            if(world.dimension().equals(World.OVERWORLD)) //if dimension is Overworld
+            {
+                BlockPos returnLoc = getPosition(stack); //get saved position
+                if(returnLoc != null) //saved location not null
+                {
+                    BlockPos currentPos = player.blockPosition();
 
-    			if (player.isPassenger())
-    			{
-    				player.stopRiding();
-    			}
+                    if (player.isPassenger())
+                    {
+                        player.stopRiding();
+                    }
 
-    			setPositionAndUpdate(entity, world, returnLoc);
-    			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
-    			//player.sendStatusMessage(new TranslationTextComponent("Returned to saved position"), true);
-    		}
-    		else
-    		{
-    			player.displayClientMessage(new TranslationTextComponent("No position saved"), true);
-    			return stack;
-    		}
-    	}
-    	return stack;
+                    setPositionAndUpdate(entity, world, returnLoc);
+                    world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
+                    //player.sendStatusMessage(new TranslationTextComponent("Returned to saved position"), true);
+                }
+                else
+                {
+                    player.displayClientMessage(new TranslationTextComponent("No position saved"), true);
+                    return stack;
+                }
+            }
+            else
+            {
+            	player.displayClientMessage(new TranslationTextComponent("Can only use in OverWorld"), true);
+            }
+        }
+
+        return stack;
     }
 
     @Override
@@ -108,7 +116,7 @@ public class MagicMirror extends Item {
 
     @Override
     public boolean isFoil(ItemStack stack) {
-        return getPosition(stack) != null;
+        return true;
     }
     
     @Override
