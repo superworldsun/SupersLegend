@@ -116,7 +116,7 @@ public class MagicMirror extends Item {
 
     @Override
     public boolean isFoil(ItemStack stack) {
-        return true;
+        return getPosition(stack) != null;
     }
     
     @Override
