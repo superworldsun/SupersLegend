@@ -188,7 +188,7 @@ public class MagicMirror extends Item {
 	public static void onTick(PlayerTickEvent event) {
     	World world = event.player.level;
     	BlockPos pos = event.player.blockPosition();
-    	if(world.getBrightness(LightType.SKY, pos) > 11 && pos.getY() >= 60 && posSafe(pos, world)) {
+    	if(world.getBrightness(LightType.SKY, pos) >+ 11 && pos.getY() >= 60 && posSafe(pos, world)) {
     		for(ItemStack itemStack : event.player.inventory.items) {
     			if(itemStack.getItem() instanceof MagicMirror && getPosition(itemStack) != null) {
     				MagicMirror.setPosition(itemStack, world, null, null);
