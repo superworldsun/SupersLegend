@@ -210,6 +210,13 @@ public class MagicMirror extends Item {
     			else if(posSafe(pos.north(), world)) {
     				pos = pos.north();
     			}
+    			else
+    			{
+    				while(!posSafe(pos, world))
+    				{
+    					pos = pos.below();
+    				}
+    			}
     		}
     		for(ItemStack itemStack : event.player.inventory.items) {
     			if(itemStack.getItem() instanceof MagicMirror && getPosition(itemStack) == null) {
