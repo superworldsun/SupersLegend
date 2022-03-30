@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.items.items;
 
+import net.minecraft.block.AirBlock;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -175,11 +177,18 @@ public class MagicMirror extends Item {
         }
         stack.setTag(tags);
     }
+    
+    private static boolean posSafe(BlockPos pos, World world) {
+    	boolean posSafe = !(world.getBlockState(pos.below()).getBlock() instanceof AirBlock);
+    	posSafe = posSafe || !(world.getBlockState(pos.below(2)).getBlock() instanceof AirBlock);
+    	return posSafe && world.getBlockState(pos.above()).getBlock().isPossibleToRespawnInThis();
+    }
+    
     @SubscribeEvent
 	public static void onTick(PlayerTickEvent event) {
     	World world = event.player.level;
     	BlockPos pos = event.player.blockPosition();
-    	if(world.getBrightness(LightType.SKY, pos) == 15 && pos.getY() >= 64) {
+    	if(world.getBrightness(LightType.SKY, pos) >+ 11 && pos.getY() >= 60 && posSafe(pos, world)) {
     		for(ItemStack itemStack : event.player.inventory.items) {
     			if(itemStack.getItem() instanceof MagicMirror && getPosition(itemStack) != null) {
     				MagicMirror.setPosition(itemStack, world, null, null);
@@ -188,6 +197,27 @@ public class MagicMirror extends Item {
     	}
     	else
     	{
+    		if(!posSafe(pos, world)) {
+    			if(posSafe(pos.east(), world)) {
+    				pos = pos.east();
+    			}
+    			else if(posSafe(pos.west(), world)) {
+    				pos = pos.west();
+    			}
+    			else if(posSafe(pos.south(), world)) {
+    				pos = pos.south();
+    			}
+    			else if(posSafe(pos.north(), world)) {
+    				pos = pos.north();
+    			}
+    			else
+    			{
+    				while(!posSafe(pos, world))
+    				{
+    					pos = pos.below();
+    				}
+    			}
+    		}
     		for(ItemStack itemStack : event.player.inventory.items) {
     			if(itemStack.getItem() instanceof MagicMirror && getPosition(itemStack) == null) {
     				MagicMirror.setPosition(itemStack, world, pos, null);
