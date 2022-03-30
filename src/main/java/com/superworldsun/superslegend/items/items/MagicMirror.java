@@ -181,7 +181,7 @@ public class MagicMirror extends Item {
     private static boolean posSafe(BlockPos pos, World world) {
     	boolean posSafe = !(world.getBlockState(pos.below()).getBlock() instanceof AirBlock);
     	posSafe = posSafe || !(world.getBlockState(pos.below(2)).getBlock() instanceof AirBlock);
-    	return posSafe;
+    	return posSafe && world.getBlockState(pos.above()).getBlock().isPossibleToRespawnInThis();
     }
     
     @SubscribeEvent
