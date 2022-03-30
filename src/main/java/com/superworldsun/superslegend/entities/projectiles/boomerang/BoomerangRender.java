@@ -23,7 +23,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 @OnlyIn(Dist.CLIENT)
 public class BoomerangRender extends EntityRenderer<BoomerangEntity> {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/item/regular_boomerang.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/item/boomerang.png");
 
     private final ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 

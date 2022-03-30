@@ -36,7 +36,7 @@ public class RegularBoomerang extends BoomerangEntity {
 
     @Override
     public DamageSource causeNewDamage(BoomerangEntity entityboomerang, Entity entity) {
-        return (new IndirectEntityDamageSource("regular_boomerang", entityboomerang, entity)).setProjectile();
+        return (new IndirectEntityDamageSource("boomerang", entityboomerang, entity)).setProjectile();
     }
 
     @Override
