@@ -5,6 +5,8 @@ import com.superworldsun.superslegend.entities.*;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.MagicBoomerang;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.MagicBoomerangEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.RegularBoomerang;
 import com.superworldsun.superslegend.entities.projectiles.hooks.ClawshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
@@ -75,9 +77,13 @@ public class EntityTypeInit
 			() -> EntityType.Builder.<HookshotEntity>of(HookshotEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/hookshot").toString()));
 
-	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG = ENTITIES.register("regular_boomerang",
+	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG = ENTITIES.register("boomerang",
 			() -> EntityType.Builder.<BoomerangEntity>of(RegularBoomerang::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/boomerang").toString()));
+
+	public static final RegistryObject<EntityType<MagicBoomerangEntity>> MAGIC_BOOMERANG = ENTITIES.register("magic_boomerang",
+			() -> EntityType.Builder.<MagicBoomerangEntity>of(MagicBoomerang::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/magic_boomerang").toString()));
 
 	public static final RegistryObject<EntityType<MasterSwordSwordEntity>> MASTERSWORD_SWORD_ENTITY = ENTITIES.register("mastersword_sword",
 			() -> EntityType.Builder.<MasterSwordSwordEntity>of(MasterSwordSwordEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
