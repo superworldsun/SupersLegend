@@ -223,10 +223,8 @@ public class MagicMirror extends Item {
     				{
     					pos = pos.below();
     				}
-    				if(pos.getY() == 0) {
-    					while(!posSafe(pos, world)) {
-        					pos = pos.above();
-        				}
+    				if(!posSafe(pos, world)) {
+    					pos = null;
     				}
     			}
     		}
