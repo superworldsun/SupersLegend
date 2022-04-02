@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.items;
 
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,6 +21,7 @@ import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
@@ -210,11 +212,19 @@ public class MagicMirror extends Item {
     			else if(posSafe(pos.north(), world)) {
     				pos = pos.north();
     			}
+    			else if(!world.getBlockState(pos.above()).getBlock().isPossibleToRespawnInThis()) {
+    				while(!posSafe(pos, world)) {
+    					pos = pos.above();
+    				}
+    			}
     			else
     			{
-    				while(!posSafe(pos, world))
+    				while(!posSafe(pos, world) && pos.getY() > 0)
     				{
     					pos = pos.below();
+    				}
+    				if(!posSafe(pos, world)) {
+    					pos = null;
     				}
     			}
     		}
