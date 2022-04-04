@@ -13,18 +13,23 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class RustedPegBlock extends Block
-
-{
+public class RustedPegBlock extends Block {
 
 	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D);
+	protected static final VoxelShape HITBOX_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 24.0D, 12.0D);
 
 	public RustedPegBlock(Properties properties) {
 		super(properties);
 	}
 
 	@Override
-	public void attack(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity) {
+	public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_, ISelectionContext p_220071_4_) {
+		return HITBOX_SHAPE;
+	}
+
+	@Override
+	public void attack(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity)
+	{
 
 		if (playerEntity.isHolding(ItemInit.MEGATON_HAMMER.get()) || playerEntity.isHolding(ItemInit.SKULL_HAMMER.get()))
 		{
