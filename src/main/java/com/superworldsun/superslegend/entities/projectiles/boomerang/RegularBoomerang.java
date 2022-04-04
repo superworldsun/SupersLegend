@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.entities.projectiles.boomerang;
 
 import com.superworldsun.superslegend.config.SupersLegendConfig;
-import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

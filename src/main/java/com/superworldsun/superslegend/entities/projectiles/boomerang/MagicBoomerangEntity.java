@@ -49,7 +49,7 @@ public abstract class MagicBoomerangEntity extends Entity {
         super(type, world);
         this.bounceFactor = 0.84999999999999998D;
         this.turningAround = false;
-        this.timeBeforeTurnAround = 30;
+        this.timeBeforeTurnAround = 60;
         this.itemsPickedUp = new ArrayList<ItemEntity>();
         this.hand = Hand.MAIN_HAND;
     }

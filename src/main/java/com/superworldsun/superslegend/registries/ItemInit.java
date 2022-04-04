@@ -323,13 +323,13 @@ public class ItemInit
 	public static final RegistryObject<Item> MAGIC_BOOMERANG = ITEMS.register("magic_boomerang",
 			() -> new MagicBoomerangItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> WW_BOOMERANG = ITEMS.register("ww_boomerang",
-			() -> new Boomerang(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new WWBoomerangItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> GALE_BOOMERANG = ITEMS.register("gale_boomerang",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new GaleBoomerangItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BOMB = ITEMS.register("bomb",
 			() -> new BombItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> WATER_BOMB = ITEMS.register("water_bomb",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new BombItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BOMBCHU = ITEMS.register("bombchu",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> HOOKSHOT = ITEMS.register("hookshot",
