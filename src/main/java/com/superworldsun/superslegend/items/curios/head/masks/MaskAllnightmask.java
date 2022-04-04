@@ -18,6 +18,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nonnull;
@@ -48,8 +50,10 @@ public class MaskAllnightmask extends Item implements ICurioItem {
         PlayerEntity player = (PlayerEntity) livingEntity;
 
         if (!world.isClientSide) {
-            boolean isHelmeton = player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(ItemInit.MASK_ALLNIGHTMASK);
-            if (isHelmeton) player.addEffect(new EffectInstance(Effect.byId(16), 230, 0, false, false));
+            ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_ALLNIGHTMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+            if (!stack0.isEmpty()) {
+                player.addEffect(new EffectInstance(Effect.byId(16), 230, 0, false, false));
+            }
         }
         if (player.isSleeping()) {
             player.stopSleeping();
