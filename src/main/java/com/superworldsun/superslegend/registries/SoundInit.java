@@ -13,6 +13,7 @@ public class SoundInit
 	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, SupersLegendMain.MOD_ID);
 	
 	public static final RegistryObject<SoundEvent> PIGFLY = register("entity.actions.special");
+	public static final RegistryObject<SoundEvent> FLOOR_SWITCH = register("item.floor_switch");
 	public static final RegistryObject<SoundEvent> NAYRUS_LOVE_CAST = register("item.nayrus_love_cast");
 	public static final RegistryObject<SoundEvent> ZELDA_ERROR = register("item.zelda_error");
 	public static final RegistryObject<SoundEvent> DASH = register("item.dash");
