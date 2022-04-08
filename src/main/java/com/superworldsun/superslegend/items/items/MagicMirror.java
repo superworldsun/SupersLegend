@@ -37,7 +37,7 @@ public class MagicMirror extends Item {
     public MagicMirror(Properties properties) {
         super(properties);
 
-       
+
     }
 
     @Override
@@ -93,7 +93,7 @@ public class MagicMirror extends Item {
             }
             else
             {
-            	player.displayClientMessage(new TranslationTextComponent("Can only use in OverWorld"), true);
+                player.displayClientMessage(new TranslationTextComponent("Can only use in OverWorld"), true);
             }
         }
 
@@ -122,15 +122,15 @@ public class MagicMirror extends Item {
     public boolean isFoil(ItemStack stack) {
         return getPosition(stack) != null;
     }
-    
+
     @Override
-	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
-	{
-		super.appendHoverText(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.AQUA + "When lost, use this mirror to return home"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-click to return outside"));
-	}
-    
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+    {
+        super.appendHoverText(stack, world, list, flag);
+        list.add(new StringTextComponent(TextFormatting.AQUA + "Use the Magic Mirror to warp back to any entrance"));
+        list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-click to return"));
+    }
+
     public static BlockPos getPosition(ItemStack stack)
     {
         if (!stack.hasTag())
@@ -179,61 +179,61 @@ public class MagicMirror extends Item {
         }
         stack.setTag(tags);
     }
-    
+
     private static boolean posSafe(BlockPos pos, World world) {
-    	boolean posSafe = !(world.getBlockState(pos.below()).getBlock() instanceof AirBlock);
-    	posSafe = posSafe || !(world.getBlockState(pos.below(2)).getBlock() instanceof AirBlock);
-    	return posSafe && world.getBlockState(pos.above()).getBlock().isPossibleToRespawnInThis();
+        boolean posSafe = !(world.getBlockState(pos.below()).getBlock() instanceof AirBlock);
+        posSafe = posSafe || !(world.getBlockState(pos.below(2)).getBlock() instanceof AirBlock);
+        return posSafe && world.getBlockState(pos.above()).getBlock().isPossibleToRespawnInThis();
     }
-    
+
     @SubscribeEvent
-	public static void onTick(PlayerTickEvent event) {
-    	World world = event.player.level;
-    	BlockPos pos = event.player.blockPosition();
-    	if(world.getBrightness(LightType.SKY, pos) >+ 11 && pos.getY() >= 60 && posSafe(pos, world)) {
-    		for(ItemStack itemStack : event.player.inventory.items) {
-    			if(itemStack.getItem() instanceof MagicMirror && getPosition(itemStack) != null) {
-    				MagicMirror.setPosition(itemStack, world, null, null);
-    			}
-    		}
-    	}
-    	else
-    	{
-    		if(!posSafe(pos, world)) {
-    			if(posSafe(pos.east(), world)) {
-    				pos = pos.east();
-    			}
-    			else if(posSafe(pos.west(), world)) {
-    				pos = pos.west();
-    			}
-    			else if(posSafe(pos.south(), world)) {
-    				pos = pos.south();
-    			}
-    			else if(posSafe(pos.north(), world)) {
-    				pos = pos.north();
-    			}
-    			else if(!world.getBlockState(pos.above()).getBlock().isPossibleToRespawnInThis()) {
-    				while(!posSafe(pos, world)) {
-    					pos = pos.above();
-    				}
-    			}
-    			else
-    			{
-    				while(!posSafe(pos, world) && pos.getY() > 0)
-    				{
-    					pos = pos.below();
-    				}
-    				if(!posSafe(pos, world)) {
-    					pos = null;
-    				}
-    			}
-    		}
-    		for(ItemStack itemStack : event.player.inventory.items) {
-    			if(itemStack.getItem() instanceof MagicMirror && getPosition(itemStack) == null) {
-    				MagicMirror.setPosition(itemStack, world, pos, null);
-    			}
-    		}
-    	}
+    public static void onTick(PlayerTickEvent event) {
+        World world = event.player.level;
+        BlockPos pos = event.player.blockPosition();
+        if(world.getBrightness(LightType.SKY, pos) >+ 11 && pos.getY() >= 60 && posSafe(pos, world)) {
+            for(ItemStack itemStack : event.player.inventory.items) {
+                if(itemStack.getItem() instanceof MagicMirror && getPosition(itemStack) != null) {
+                    MagicMirror.setPosition(itemStack, world, null, null);
+                }
+            }
+        }
+        else
+        {
+            if(!posSafe(pos, world)) {
+                if(posSafe(pos.east(), world)) {
+                    pos = pos.east();
+                }
+                else if(posSafe(pos.west(), world)) {
+                    pos = pos.west();
+                }
+                else if(posSafe(pos.south(), world)) {
+                    pos = pos.south();
+                }
+                else if(posSafe(pos.north(), world)) {
+                    pos = pos.north();
+                }
+                else if(!world.getBlockState(pos.above()).getBlock().isPossibleToRespawnInThis()) {
+                    while(!posSafe(pos, world)) {
+                        pos = pos.above();
+                    }
+                }
+                else
+                {
+                    while(!posSafe(pos, world) && pos.getY() > 0)
+                    {
+                        pos = pos.below();
+                    }
+                    if(!posSafe(pos, world)) {
+                        pos = null;
+                    }
+                }
+            }
+            for(ItemStack itemStack : event.player.inventory.items) {
+                if(itemStack.getItem() instanceof MagicMirror && getPosition(itemStack) == null) {
+                    MagicMirror.setPosition(itemStack, world, pos, null);
+                }
+            }
+        }
     }
 
 }
