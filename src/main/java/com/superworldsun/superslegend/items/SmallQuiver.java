@@ -60,8 +60,15 @@ public class SmallQuiver extends Item {
 		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.QUIVER.get(), (LivingEntity) event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 		int count = ItemNBTHelper.getInt(stack0, TAG_COUNT, 0);
 		if (!stack0.isEmpty() && count < STORAGE && stack.sameItem(Items.ARROW.getDefaultInstance())) {
-			setItemStack(stack0, stack);
-			stack.setCount(0);
+			if((stack.getCount() + count) > STORAGE) {
+				int newCount = stack.getCount() + count;
+				stack.setCount(STORAGE - count);
+				setItemStack(stack0, stack);
+				stack.setCount(newCount - STORAGE);
+			} else {
+				setItemStack(stack0, stack);
+				stack.setCount(0);
+			}
 		}
 
 	}
@@ -78,7 +85,7 @@ public class SmallQuiver extends Item {
 	}
 
 	public static void setCount(ItemStack stack, int count) {
-		if(count <= 0) {
+		if(count == 0) {
 			stack.getTag().remove(TAG_STORED_ITEM);
 			stack.getTag().remove(TAG_COUNT);
 			stack.setDamageValue(0);
