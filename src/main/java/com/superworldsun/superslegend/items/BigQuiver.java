@@ -52,9 +52,9 @@ public class BigQuiver extends Item {
 	public static void onItemPickup(EntityItemPickupEvent event) {
 		ItemStack stack = event.getItem().getItem();
 
-		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.QUIVER.get(), (LivingEntity) event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BIGGEST_QUIVER.get(), (LivingEntity) event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 		int count = ItemNBTHelper.getInt(stack0, TAG_COUNT, 0);
-		if (!stack0.isEmpty() && count < STORAGE && stack == Items.ARROW.getDefaultInstance()) {
+		if (!stack0.isEmpty() && count < STORAGE && stack.sameItem(Items.ARROW.getDefaultInstance())) {
 			setItemStack(stack0, stack);
 			stack.setCount(0);
 		}
