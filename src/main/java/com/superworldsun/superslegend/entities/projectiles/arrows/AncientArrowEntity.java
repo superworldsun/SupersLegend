@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.entities.projectiles.arrows;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -11,6 +12,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -47,6 +49,20 @@ public class AncientArrowEntity extends AbstractArrowEntity
             else
                 entity.setHealth(entity.getHealth() - 45);
          */
+    }
+
+    @Override
+    protected void onHitEntity(EntityRayTraceResult result) {
+        super.onHitEntity(result);
+        Entity entity = result.getEntity();
+        if (entity instanceof LivingEntity) {
+            LivingEntity livingentity = (LivingEntity) entity;
+
+            this.getBaseDamage();
+            if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
+                livingentity.setArrowCount(livingentity.getArrowCount() - 1);
+            }
+        }
     }
 
     private void playSoundAtBlockPosition(LivingEntity entity, SoundEvent sound) {

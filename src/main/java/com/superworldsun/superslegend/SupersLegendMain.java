@@ -14,6 +14,7 @@ import com.superworldsun.superslegend.interfaces.IHasNoItem;
 import com.superworldsun.superslegend.items.SacredShieldItem;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldState;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldStorage;
+import com.superworldsun.superslegend.items.items.MagicMirror;
 import com.superworldsun.superslegend.items.weapons.SlingShot;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
@@ -119,6 +120,7 @@ public class SupersLegendMain
 		MinecraftForge.EVENT_BUS.register(new Hook());
 		MinecraftForge.EVENT_BUS.register(new SacredShieldItem(new Properties()));
 		MinecraftForge.EVENT_BUS.register(new SlingShot(new Properties()));
+		MinecraftForge.EVENT_BUS.register(new MagicMirror(new Properties()));
 
 		//The structure gen listeners must use MinecraftForge.EVENT_BUS and
 		// not MLJavaModLoadingContext.get().getModEventBus(), otherwise, you will cause MC to crash

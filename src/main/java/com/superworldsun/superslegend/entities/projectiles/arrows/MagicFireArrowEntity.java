@@ -10,6 +10,7 @@ import com.superworldsun.superslegend.util.BuildingHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -61,6 +62,16 @@ public class MagicFireArrowEntity extends FireArrowEntity
 		// an arrow. To deal damage 2 times in a row, we have to reset it.
 		rayTraceResult.getEntity().invulnerableTime = 0;
 		rayTraceResult.getEntity().hurt(DamageSource.MAGIC, 5.0F);
+
+		Entity entity = rayTraceResult.getEntity();
+		if (entity instanceof LivingEntity) {
+			LivingEntity livingentity = (LivingEntity) entity;
+
+			this.getBaseDamage();
+			if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
+				livingentity.setArrowCount(livingentity.getArrowCount() - 1);
+			}
+		}
 	}
 	
 	@Override

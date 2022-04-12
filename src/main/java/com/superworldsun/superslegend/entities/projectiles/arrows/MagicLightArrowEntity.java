@@ -60,6 +60,15 @@ public class MagicLightArrowEntity extends AbstractArrowEntity
 		// an arrow. To deal damage 2 times in a row, we have to reset it.
 		entity.invulnerableTime = 0;
 		entity.hurt(DamageSource.MAGIC, 5.0F);
+
+		if (entity instanceof LivingEntity) {
+			LivingEntity livingentity = (LivingEntity) entity;
+
+			this.getBaseDamage();
+			if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
+				livingentity.setArrowCount(livingentity.getArrowCount() - 1);
+			}
+		}
 	}
 
 	private void applyResistanceAndWeakness(Entity entity) {

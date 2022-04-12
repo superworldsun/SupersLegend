@@ -188,6 +188,12 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
             super.onHitEntity(result);
         }
 
+        if (entity instanceof LivingEntity) {
+            LivingEntity livingentity = (LivingEntity) entity;
+            if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
+                livingentity.setArrowCount(livingentity.getArrowCount() + 0);
+            }
 
+        }
     }
 }

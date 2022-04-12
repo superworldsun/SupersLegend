@@ -104,7 +104,7 @@ public class TorchTowerTopLit extends Block implements IHasNoItem
 	}
 
 	public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-		if(entityIn instanceof ArrowEntity || entityIn instanceof AbstractArrowEntity)
+		if(entityIn instanceof ArrowEntity || entityIn instanceof AbstractArrowEntity || entityIn instanceof BoomerangEntity)
 		{
 			entityIn.setSecondsOnFire(15);
 		}

@@ -4,6 +4,7 @@ import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.util.Functions;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -12,6 +13,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -86,6 +88,20 @@ public class BombArrowEntity extends AbstractArrowEntity {
             BlockPos currentPos = this.blockPosition();
             this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_DEFUSE.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
             this.remove();
+        }
+    }
+
+    @Override
+    protected void onHitEntity(EntityRayTraceResult result) {
+        super.onHitEntity(result);
+        Entity entity = result.getEntity();
+        if (entity instanceof LivingEntity) {
+            LivingEntity livingentity = (LivingEntity) entity;
+
+            this.getBaseDamage();
+            if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
+                livingentity.setArrowCount(livingentity.getArrowCount() - 1);
+            }
         }
     }
 

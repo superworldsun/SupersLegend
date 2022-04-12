@@ -312,6 +312,15 @@ public class IceArrowEntity extends AbstractArrowEntity
             setBaseDamage(getBaseDamage() / 2);
         }
 
+        if (entity instanceof LivingEntity) {
+            LivingEntity livingentity = (LivingEntity) entity;
+
+            this.getBaseDamage();
+            if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
+                livingentity.setArrowCount(livingentity.getArrowCount() - 1);
+            }
+        }
+
         super.onHitEntity(rayTraceResult);
     }
 

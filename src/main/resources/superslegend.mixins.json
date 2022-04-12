@@ -9,6 +9,7 @@
     "MixinAbstractSkeletonEntity",
     "MixinMushroomBlock",
     "MixinFoxEntity",
+    "MixinFlowingFluid",
     "PlayerGetArrow"
   ],
   "minVersion": "0.8"
