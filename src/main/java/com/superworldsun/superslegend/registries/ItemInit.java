@@ -365,6 +365,8 @@ public class ItemInit
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick",
 			() -> new Item(new Item.Properties().stacksTo(15).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit",
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	/*public static final RegistryObject<Item> DEKU_NUTS = ITEMS.register("deku_nuts",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
 	public static final RegistryObject<Item> EMPTY_CONTAINER = ITEMS.register("empty_container",
