@@ -25,10 +25,6 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<PelletEntity>> PELLET = ENTITIES.register("pellet",
 			() -> EntityType.Builder.<PelletEntity>of(PelletEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/projectiles/pellet").toString()));
-
-	public static final RegistryObject<EntityType<PoisonArrowEntity>> POISON_ARROW = ENTITIES.register("poison_arrow",
-			() -> EntityType.Builder.<PoisonArrowEntity>of(PoisonArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
-					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/projectiles/arrows").toString()));
 	
 	public static final RegistryObject<EntityType<FireArrowEntity>> FIRE_ARROW = ENTITIES.register("fire_arrow",
 			() -> EntityType.Builder.<FireArrowEntity>of(FireArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
