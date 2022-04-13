@@ -251,10 +251,6 @@ public class ItemInit
 	public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
-	public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", SmallQuiver::new);
-	public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", MediumQuiver::new);
-	public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", BigQuiver::new);
-
 	public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag", SmallBombBag::new);
 
 	public static final RegistryObject<Item> BIG_BOMB_BAG = ITEMS.register("big_bomb_bag",
@@ -705,6 +701,12 @@ public class ItemInit
 			() -> new ArmorClimbingGearEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> CLIMBING_BOOTS = ITEMS.register("climbing_boots",
 			() -> new ArmorClimbingGearEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.APPAREL)));
+
+	//Back
+	public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", SmallQuiver::new);
+	public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", MediumQuiver::new);
+	public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", BigQuiver::new);
+
 
 	//Pendants
 

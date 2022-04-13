@@ -45,7 +45,7 @@ public class MediumQuiver extends Item {
 	{
 		super(new Properties()
 				.durability(STORAGE)
-				.tab(SupersLegendMain.RESOURCES));
+				.tab(SupersLegendMain.APPAREL));
 	}
 
 	@SubscribeEvent
