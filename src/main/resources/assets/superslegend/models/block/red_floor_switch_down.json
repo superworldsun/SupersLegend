@@ -1,4 +1,5 @@
 {
+    "parent": "block/cube_all",
     "textures": {
         "0": "superslegend:block/red_floor_switch_down",
         "particle": "superslegend:block/red_floor_switch_down"
