@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.registries.BlockInitNotInTab;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -38,7 +39,7 @@ public class WoodenPegBlock extends Block {
 				BlockPos currentPos = playerEntity.blockPosition();
 				world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.SHIELD_BLOCK, SoundCategory.PLAYERS, 1f, 1f);
 
-				world.setBlock(pos, BlockInit.HAMMERED_WOODEN_PEG_BLOCK.get().defaultBlockState(), 3);
+				world.setBlock(pos, BlockInitNotInTab.HAMMERED_WOODEN_PEG_BLOCK.get().defaultBlockState(), 3);
 			}
 
 		super.attack(state, world, pos, playerEntity);
