@@ -5,7 +5,6 @@ import com.superworldsun.superslegend.config.SupersLegendConfig;
 import com.superworldsun.superslegend.cooldowns.Cooldowns;
 import com.superworldsun.superslegend.cooldowns.CooldownsStorage;
 import com.superworldsun.superslegend.cooldowns.ICooldowns;
-import com.superworldsun.superslegend.entities.projectiles.arrows.PoisonArrowEntity;
 import com.superworldsun.superslegend.hookshotCap.Hook;
 import com.superworldsun.superslegend.hookshotCap.SyncToClient;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
@@ -104,6 +103,7 @@ public class SupersLegendMain
 		// otherwise if you don't
 		ItemInit.ITEMS.register(modEventBus);
 		BlockInit.BLOCKS.register(modEventBus);
+		//BlockItemInit.BLOCKS.register(modEventBus);
 		SoundInit.SOUNDS.register(modEventBus);
 		BiomeInit.BIOMES.register(modEventBus);
 		BiomeInit.registerBiomes();
@@ -148,7 +148,7 @@ public class SupersLegendMain
 				return;
 			}
 			
-			final Item.Properties properties = new Item.Properties().tab(SupersLegendMain.RESOURCES);
+			final Item.Properties properties = new Item.Properties().tab(SupersLegendMain.BLOCKS);
 			final BlockItem blockItem = new BlockItem(block, properties);
 			blockItem.setRegistryName(block.getRegistryName());
 			registry.register(blockItem);
@@ -173,8 +173,9 @@ public class SupersLegendMain
 			SupersLegendStructures.setupStructures();
 			SupersLegendConfiguredStructures.registerConfiguredStructures();
 		});
-		
-		DispenserBlock.registerBehavior(ItemInit.POISON_ARROW.get(), new ProjectileDispenseBehavior()
+
+		//HOW TO DISPENCER ARROWS
+		/*DispenserBlock.registerBehavior(ItemInit.POISON_ARROW.get(), new ProjectileDispenseBehavior()
 		{
 			@Override
 			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
@@ -183,7 +184,7 @@ public class SupersLegendMain
 				poisonarrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
 				return poisonarrowentity;
 			}
-		});
+		});*/
 	}
 
 	// STRUCTURE GEN CODE STARTS HERE!
@@ -272,8 +273,11 @@ public class SupersLegendMain
 	}
 	// STRUCTURE GEN CODE ENDS HERE!
 	// STRUCTURE GEN CODE ENDS HERE!
-	
+
+	//GROUPS
 	public static final ItemGroup RESOURCES = new SupersLegendItemGroup();
+	public static final ItemGroup APPAREL = new SupersLegendItemGroupApparel();
+	public static final ItemGroup BLOCKS = new SupersLegendItemGroupBlocks();
 	
 	// We need this code for custom bow models with pull animations
 	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -286,20 +290,6 @@ public class SupersLegendMain
 					(stack, world, entity) -> entity != null && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
 			register(ItemInit.CLAWSHOT.get(), new ResourceLocation("pulling"),
-					(stack, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-			
-			register(ItemInit.METAL_BOW.get(), new ResourceLocation("pull"), (stack, world, entity) ->
-			{
-				if (entity == null)
-				{
-					return 0.0F;
-				}
-				else
-				{
-					return entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
-				}
-			});
-			register(ItemInit.METAL_BOW.get(), new ResourceLocation("pulling"),
 					(stack, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 			
 			register(ItemInit.HEROS_BOW.get(), new ResourceLocation("pull"), (stack, world, entity) ->
