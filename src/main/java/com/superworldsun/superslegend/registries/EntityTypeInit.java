@@ -4,8 +4,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.*;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
-import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
-import com.superworldsun.superslegend.entities.projectiles.boomerang.RegularBoomerang;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.*;
 import com.superworldsun.superslegend.entities.projectiles.hooks.ClawshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
@@ -26,10 +25,6 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<PelletEntity>> PELLET = ENTITIES.register("pellet",
 			() -> EntityType.Builder.<PelletEntity>of(PelletEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/projectiles/pellet").toString()));
-
-	public static final RegistryObject<EntityType<PoisonArrowEntity>> POISON_ARROW = ENTITIES.register("poison_arrow",
-			() -> EntityType.Builder.<PoisonArrowEntity>of(PoisonArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
-					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/projectiles/arrows").toString()));
 	
 	public static final RegistryObject<EntityType<FireArrowEntity>> FIRE_ARROW = ENTITIES.register("fire_arrow",
 			() -> EntityType.Builder.<FireArrowEntity>of(FireArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
@@ -75,9 +70,21 @@ public class EntityTypeInit
 			() -> EntityType.Builder.<HookshotEntity>of(HookshotEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/hookshot").toString()));
 
-	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG = ENTITIES.register("regular_boomerang",
+	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG = ENTITIES.register("boomerang",
 			() -> EntityType.Builder.<BoomerangEntity>of(RegularBoomerang::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/boomerang").toString()));
+
+	public static final RegistryObject<EntityType<MagicBoomerangEntity>> MAGIC_BOOMERANG = ENTITIES.register("magic_boomerang",
+			() -> EntityType.Builder.<MagicBoomerangEntity>of(MagicBoomerang::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/magic_boomerang").toString()));
+
+	public static final RegistryObject<EntityType<WWBoomerangEntity>> WW_BOOMERANG = ENTITIES.register("ww_boomerang",
+			() -> EntityType.Builder.<WWBoomerangEntity>of(WWBoomerang::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/ww_boomerang").toString()));
+
+	public static final RegistryObject<EntityType<GaleBoomerangEntity>> GALE_BOOMERANG = ENTITIES.register("gale_boomerang",
+			() -> EntityType.Builder.<GaleBoomerangEntity>of(GaleBoomerang::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/gale_boomerang").toString()));
 
 	public static final RegistryObject<EntityType<MasterSwordSwordEntity>> MASTERSWORD_SWORD_ENTITY = ENTITIES.register("mastersword_sword",
 			() -> EntityType.Builder.<MasterSwordSwordEntity>of(MasterSwordSwordEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)

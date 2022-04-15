@@ -40,13 +40,13 @@ public enum ItemToolTiers implements IItemTier {
     MASTER_SWORD_DN  (0, 0, -2F, 10F, 0, () -> { return null; }),
     MASTER_SWORD_NF  (0, 0, -2F, 10F, 0, () -> { return null; }),
     MASTER_SWORD_FD  (0, 0, -2F, 10F, 0, () -> { return null; }),
-    TRUE_MASTER_SWORD(0, 0, -2F, 11F, 0, () -> { return null; }),
+    TRUE_MASTER_SWORD(0, 0, -2F, 11F, 0, () -> { return null; });
 
 
     //Example
-    LANZANITE        (4, 3031, 9.0F, 5.0F, 15, () -> {
-        return Ingredient.of(ItemInit.LANZANITE.get());
-    });
+    //LANZANITE        (4, 3031, 9.0F, 5.0F, 15, () -> {
+    //    return Ingredient.of(ItemInit.LANZANITE.get());
+    //});
 
     //Private values to store
     private final int harvestLevel;

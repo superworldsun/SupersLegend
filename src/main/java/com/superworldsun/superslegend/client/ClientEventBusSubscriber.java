@@ -43,10 +43,12 @@ public class ClientEventBusSubscriber
 		RenderTypeLookup.setRenderLayer(BlockInit.FALSE_SHADOW_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.HIDDEN_SHADOW_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.TOMBSTONE_BLOCK.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.SPIKED_PEG_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.STONE_PATH_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.STONE_TILE_BLOCK.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(BlockInit.RUST_PLATE.get(), RenderType.translucent());
-		RenderTypeLookup.setRenderLayer(BlockInit.RUST_BUTTON.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(BlockInit.BLUE_FLOOR_SWITCH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.YELLOW_FLOOR_SWITCH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.RED_FLOOR_SWITCH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.DINS_FLAME.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(BlockInit.FARORES_FLAME.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.NAYRUS_FLAME.get(), RenderType.translucent());
@@ -59,7 +61,6 @@ public class ClientEventBusSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.TP_BOKOBLIN.get(), TPBokoblinRender::new);
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.PELLET.get(), PelletRender::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.POISON_ARROW.get(), PoisonArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.FIRE_ARROW.get(), FireArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.ICE_ARROW.get(), IceArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.SHOCK_ARROW.get(), ShockArrowRender::new);

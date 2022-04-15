@@ -35,6 +35,22 @@ public class PropertiesInit {
             .randomTicks()
             .requiresCorrectToolForDrops();
 
+    public static final Block.Properties HAMMERED_RUSTED_PEG = Block.Properties.of(Material.WOOD)
+            .strength(1.0F, 1.0F)
+            .sound(SoundType.ANCIENT_DEBRIS)
+            .harvestLevel(1)
+            .harvestTool(ToolType.PICKAXE)
+            .randomTicks()
+            .requiresCorrectToolForDrops();
+
+    public static final Block.Properties HAMMERED_SPIKED_PEG = Block.Properties.of(Material.WOOD)
+            .strength(1.0F, 1.0F)
+            .sound(SoundType.WOOD)
+            .harvestLevel(1)
+            .harvestTool(ToolType.AXE)
+            .randomTicks()
+            .requiresCorrectToolForDrops();
+
     public static final Block.Properties QUICK_SAND = Block.Properties.of(Material.SAND)
             .strength(1.0F, 1.0F)
             .sound(SoundType.SAND)

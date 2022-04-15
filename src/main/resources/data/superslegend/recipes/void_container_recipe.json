@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#C#",
+        "CDC",
+        "#C#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:fermented_spider_eye"
+        },
+        "C": {
+            "item": "minecraft:coal"
+        },
+        "D": {
+            "item": "superslegend:heart_container"
+        }
+    },
+    "result": {
+        "item": "superslegend:void_container",
+        "count": 1
+    }
+}
