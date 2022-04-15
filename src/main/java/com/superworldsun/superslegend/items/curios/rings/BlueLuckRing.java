@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.items.curios.rings;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.util.ITooltipFlag;
