@@ -161,7 +161,7 @@ public class ItemInit
 			() -> new BiggornsSword(ItemToolTiers.BIGGORONS_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
 	public static final RegistryObject<SwordItem> GODDESS_SWORD = ITEMS.register("goddess_sword",
-			() -> new SwordItem(ItemToolTiers.GODDESS_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new SwordItem(ItemToolTiers.GODDESS_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> GODDESS_LONGSWORD = ITEMS.register("goddess_longsword",
 			() -> new SwordItem(ItemToolTiers.GODDESS_LONGSWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> GODDESS_WHITE_SWORD = ITEMS.register("goddess_white_sword",
@@ -214,7 +214,6 @@ public class ItemInit
 	public static final RegistryObject<ShieldItem> SACRED_SHIELD = ITEMS.register("sacred_shield",
 			() -> new SacredShieldItem(new Item.Properties()));
 	public static final RegistryObject<Item> MIRROR_SHIELD = ITEMS.register("mirror_shield", MirrorShield::new);
-
 	public static final RegistryObject<Item> DEKU_SEEDS = ITEMS.register("deku_seeds",
 			() -> new DekuSeed(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
@@ -294,7 +293,7 @@ public class ItemInit
 	public static final RegistryObject<Item> EXTINGUISHEDLANTERN = ITEMS.register("extinguishedlantern",
 			() -> new ExtinguishedLantern(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> OIL = ITEMS.register("oil_bottle",
-			() -> new Oil(new Item.Properties().stacksTo(64).tab(SupersLegendMain.RESOURCES)));
+			() -> new Oil(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BLUE_CANDLE = ITEMS.register("blue_candle",
 			() -> new BlueCandle(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> RED_CANDLE = ITEMS.register("red_candle",
@@ -303,10 +302,6 @@ public class ItemInit
 			() -> new HerosSecretStash(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<BookOfMudora> BOOK_OF_MUDORA = ITEMS.register("book_of_mudora",
 			() -> new BookOfMudora(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<SilverScale> SILVER_SCALE = ITEMS.register("silver_scale",
-			() -> new SilverScale(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<GoldenScale> GOLDEN_SCALE = ITEMS.register("golden_scale",
-			() -> new GoldenScale(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<RocsFeather> ROCS_FEATHER = ITEMS.register("rocs_feather",
 			() -> new RocsFeather(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> FISHING_ROD = ITEMS.register("fishing_rod",
@@ -358,9 +353,10 @@ public class ItemInit
 	public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick",
-			() -> new Item(new Item.Properties().stacksTo(15).tab(SupersLegendMain.RESOURCES)));
+			() -> new DekuStick(new Item.Properties().stacksTo(15).tab(SupersLegendMain.RESOURCES)));
+
 	public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new DekuStickLit(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	/*public static final RegistryObject<Item> DEKU_NUTS = ITEMS.register("deku_nuts",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
 	public static final RegistryObject<Item> EMPTY_CONTAINER = ITEMS.register("empty_container",
@@ -776,6 +772,12 @@ public class ItemInit
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> SWIMMERS_RING = ITEMS.register("swimmers_ring",
 			() -> new SwimmersRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
+
+	//CHARMS
+	public static final RegistryObject<SilverScale> SILVER_SCALE = ITEMS.register("silver_scale",
+			() -> new SilverScale(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<GoldenScale> GOLDEN_SCALE = ITEMS.register("golden_scale",
+			() -> new GoldenScale(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 
 	//BUCKETS
 	public static final RegistryObject<Item> POISON_BUCKET = ITEMS.register("poison_bucket", () -> new BucketItem(FluidInit.POISON_SOURCE, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
