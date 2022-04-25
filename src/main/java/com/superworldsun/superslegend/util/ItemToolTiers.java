@@ -22,15 +22,14 @@ public enum ItemToolTiers implements IItemTier {
     GUARDIAN_SWORD   (0, 0, -2F, 5F, 0, () -> { return null; }),
     ANCIENT_BATTLE_AXE   (0, 0, -2F, 5F, 0, () -> { return null; }),
     GUARDIAN_SPEAR   (0, 0, -2F, 5F, 0, () -> { return null; }),
-
     MAGIC_HAMMER     (0, 0, -2F, 4F, 0, () -> { return null; }),
     MEGATON_HAMMER   (0, 0, -2F, 8F, 0, () -> { return null; }),
     SKULL_HAMMER     (0, 0, -2F, 10F, 0, () -> { return null; }),
 
     //MASTER SWORDS
-    GODDESS_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
-    GODDESS_LONGSWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
-    GODDESS_WHITE_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
+    GODDESS_SWORD     (0, 0, -2F, 3F, 0, () -> { return null; }),
+    GODDESS_LONGSWORD     (0, 0, -2F, 3F, 0, () -> { return null; }),
+    GODDESS_WHITE_SWORD     (0, 0, -2F, 4F, 0, () -> { return null; }),
 
     MASTER_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
     MASTER_SWORD_V2  (0, 0, -2F, 8F, 0, () -> { return null; }),
