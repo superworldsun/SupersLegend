@@ -2,6 +2,8 @@ package com.superworldsun.superslegend.items.items;
 
 import java.util.List;
 import java.util.Random;
+
+import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -21,6 +23,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class MagicCape extends Item
 {
@@ -29,21 +33,20 @@ public class MagicCape extends Item
 	{
 		super(properties);
 	}
+
+	//Should last about 17 seconds with this rate 0.058f
+	float manaCost = 0.058F;
 	
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
+		 boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
 		 @SuppressWarnings("unused")
 		ItemStack stack = player.getItemInHand(hand);
-		  
-		 if(player.isCrouching() && player.getFoodData().getFoodLevel()!= 0)
+
+		 if(player.isCrouching() && hasMana)
 	     {
-				player.addEffect(new EffectInstance(Effect.byId(15), 60, 99, false, false));
-				player.addEffect(new EffectInstance(Effect.byId(11), 3, 99, false, false));
-				player.addEffect(new EffectInstance(Effect.byId(14), 3, 99, false, false));
-				player.addEffect(new EffectInstance(Effect.byId(18), 3, 99, false, false));
-				player.addEffect(new EffectInstance(Effect.byId(4), 3, 2, false, false));
-				player.causeFoodExhaustion(0.25f);
-				
+			 	player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 3, 99, false, false, false));
+			 	player.addEffect(new EffectInstance(Effects.INVISIBILITY, 3, 99, false, false, false));
 				player.getCooldowns().addCooldown(this, 8);
 				
 				/*Random rand = player.world.rand;
@@ -59,14 +62,12 @@ public class MagicCape extends Item
 		        BlockPos currentPos = player.blockPosition();
 				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.MAGIC_CAPE_ON.get(), SoundCategory.PLAYERS, 1f, 1f);
 	     }
-		 if(!player.isCrouching() && player.getFoodData().getFoodLevel()!= 0)
+		 if(!player.isCrouching() && hasMana)
 				
 				{
-	        		player.removeEffect(Effect.byId(15));
-	        		player.removeEffect(Effect.byId(11));
 	        		player.removeEffect(Effect.byId(14));
-	        		player.removeEffect(Effect.byId(18));
-	        		
+	        		player.removeEffect(Effect.byId(11));
+
 	        		player.getCooldowns().addCooldown(this, 8);
 	        		
 	        		
@@ -88,38 +89,39 @@ public class MagicCape extends Item
 	 
 		 return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand)); 
 	 }
-	
+
+	 //TODO 1: LOOK INTO SEEING IF THERES A BETTER MORE EFFICIENT WAY TO RUN THIS ITEM
+	 //TODO 2: ALLOW THE PLAYERS SHADOW TO BE SHOWN WHEN INVISIBLE.
+	 //TODO 3: ALLOW THE PLAYER TO MOVE THROUGH OTHER ENTITIES WITHOUT BUMPING/PUSHING
+	 //TODO 4: MAKE IT SO ALL MOBS CANT SEE THE PLAYER WHEN WEARING IT
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
-	{		
-		if(!world.isClientSide && ((PlayerEntity) entity).getFoodData().getFoodLevel()!= 0)
+	{
+		PlayerEntity player = (PlayerEntity) entity;
+		boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
+		if(hasMana)
 			
 			{
-			EffectInstance effect = ((PlayerEntity) entity).getEffect(Effects.BLINDNESS);
+			EffectInstance effect = ((PlayerEntity) entity).getEffect(Effects.INVISIBILITY);
         	if (effect != null && effect.getAmplifier() == 99) 
         		
         		{
-        		((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(15), 60, 99, false, false));
-        		((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(11), 3, 99, false, false));
-        		((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(14), 3, 99, false, false));
-        		((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(18), 3, 99, false, false));
-        		((PlayerEntity) entity).addEffect(new EffectInstance(Effect.byId(4), 3, 2, false, false));
-        		((PlayerEntity) entity).causeFoodExhaustion(0.25f);
+					player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 3, 99, false, false, false));
+					player.addEffect(new EffectInstance(Effects.INVISIBILITY, 3, 99, false, false, false));
+					player.shouldRender(1f,1f,1f);
+					ManaProvider.get(player).spendMana(manaCost);
         		}
 			}
-		
-
 	}
-	
 
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.RED + "Allows you to slip through many obsticals seamlessly"));
+		list.add(new StringTextComponent(TextFormatting.RED + "Allows you to slip through many obsticals easier"));
 		list.add(new StringTextComponent(TextFormatting.DARK_RED + "Grants invincibility & invisibility"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Sneak + Right-click to cloak"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to uncloak"));
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Magic on use"));
 	}  
 	
 	/*public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
