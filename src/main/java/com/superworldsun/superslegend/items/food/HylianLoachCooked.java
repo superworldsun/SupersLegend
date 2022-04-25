@@ -9,7 +9,7 @@ public class HylianLoachCooked extends Item {
 
 
     public HylianLoachCooked(Properties properties) {
-        super(properties.food(new Food.Builder().saturationMod(0.4f).nutrition(2).meat().build()));
+        super(properties.food(new Food.Builder().saturationMod(0.9f).nutrition(9).meat().build()));
     }
 
     @Override
