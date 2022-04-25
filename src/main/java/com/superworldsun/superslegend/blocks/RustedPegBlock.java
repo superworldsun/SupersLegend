@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.BlockInitNotInTab;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.block.Block;
@@ -36,7 +37,7 @@ public class RustedPegBlock extends Block {
 			BlockPos currentPos = playerEntity.blockPosition();
 			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ZOMBIE_ATTACK_IRON_DOOR, SoundCategory.PLAYERS, 1f, 1f);
 
-			world.setBlock(pos, BlockInitNotInTab.HAMMERED_RUSTED_PEG_BLOCK.get().defaultBlockState(), 3);
+			world.setBlock(pos, BlockInit.HAMMERED_RUSTED_PEG_BLOCK.get().defaultBlockState(), 3);
 		}
 
 		if (playerEntity.isHolding(ItemInit.MAGIC_HAMMER.get()))
