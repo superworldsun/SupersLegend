@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.util.events;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.HeartEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.AncientArrowEntity;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.SelectInteractionMessage;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -30,6 +31,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -84,6 +86,17 @@ public class EntityEventHandler {
             event.setCanceled(true);
         }
     }
+
+    //TODO MAKE A CONFIG TO TURN THIS OFF FOR PLAYERS UPON DEATH.
+    @SubscribeEvent
+    public void onMobDrops(LivingDropsEvent event) {
+        Entity sourceEntity = event.getSource().getDirectEntity();
+        if (sourceEntity instanceof AncientArrowEntity) {
+            event.getDrops().clear();
+        }
+    }
+
+
 
     @SubscribeEvent
     public void cooldown(LivingEntityUseItemEvent.Start event) {
