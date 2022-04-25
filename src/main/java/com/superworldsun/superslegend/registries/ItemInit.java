@@ -253,11 +253,9 @@ public class ItemInit
 
 	public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag", SmallBombBag::new);
 
-	public static final RegistryObject<Item> BIG_BOMB_BAG = ITEMS.register("big_bomb_bag",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BIG_BOMB_BAG = ITEMS.register("big_bomb_bag", MediumBombBag::new);
 
-	public static final RegistryObject<Item> BIGGEST_BOMB_BAG = ITEMS.register("biggest_bomb_bag",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BIGGEST_BOMB_BAG = ITEMS.register("biggest_bomb_bag", BigBombBag::new);
 
 	public static final RegistryObject<Item> WALLET = ITEMS.register("wallet",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));

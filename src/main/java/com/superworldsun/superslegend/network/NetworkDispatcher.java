@@ -31,5 +31,6 @@ public class NetworkDispatcher {
         networkChannel.registerMessage(6, SyncLearnedSongsMessage.class, SyncLearnedSongsMessage::encode, SyncLearnedSongsMessage::decode, SyncLearnedSongsMessage::receive, Optional.of(PLAY_TO_CLIENT));
         networkChannel.registerMessage(7, PlaySongMessage.class, PlaySongMessage::encode, PlaySongMessage::decode, PlaySongMessage::receive, Optional.of(PLAY_TO_SERVER));
         networkChannel.registerMessage(8, RocksFeatherMessage.class, RocksFeatherMessage::encode, RocksFeatherMessage::decode, RocksFeatherMessage::receive, Optional.of(PLAY_TO_SERVER));
+        networkChannel.registerMessage(9, DropBombMessage.class, DropBombMessage::encode, DropBombMessage::decode, DropBombMessage::receive, Optional.of(PLAY_TO_SERVER));
     }
 }

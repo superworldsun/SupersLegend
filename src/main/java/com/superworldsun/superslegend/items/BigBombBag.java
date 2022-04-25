@@ -1,16 +1,12 @@
 package com.superworldsun.superslegend.items;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.container.SmallBombContainer;
-import com.superworldsun.superslegend.container.SmallQuiverContainer;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.ItemNBTHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -33,15 +29,14 @@ import top.theillusivec4.curios.api.CuriosApi;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Objects;
-
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 
-public class SmallBombBag extends Item {
-	public static int STORAGE = 30;
+public class BigBombBag extends Item {
+	public static int STORAGE = 50;
 	public static final String TAG_STORED_ITEM = "storedItem";
 	public static final String TAG_COUNT = "itemCount";
 
-	public SmallBombBag()
+	public BigBombBag()
 	{
 		super(new Properties()
 				.durability(STORAGE)
@@ -52,7 +47,7 @@ public class SmallBombBag extends Item {
 	public static void onItemPickup(EntityItemPickupEvent event) {
 		ItemStack stack = event.getItem().getItem();
 
-		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BOMB_BAG.get(), (LivingEntity) event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BIGGEST_BOMB_BAG.get(), (LivingEntity) event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 		int count = ItemNBTHelper.getInt(stack0, TAG_COUNT, 0);
 		if (!stack0.isEmpty() && count < STORAGE && stack.sameItem(ItemInit.BOMB.get().getDefaultInstance())) {
 			if((stack.getCount() + count) > STORAGE) {
