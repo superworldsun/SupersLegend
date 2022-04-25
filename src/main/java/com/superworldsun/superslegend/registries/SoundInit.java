@@ -26,6 +26,11 @@ public class SoundInit
 	public static final RegistryObject<SoundEvent> RUPEE_RED = register("item.rupee_red");
 	public static final RegistryObject<SoundEvent> RUPEE_SILVER = register("item.rupee_silver");
 	public static final RegistryObject<SoundEvent> BOOK_OF_MUDORA = register("item.book_of_mudora");
+	public static final RegistryObject<SoundEvent> HEART = register("item.heart");
+	public static final RegistryObject<SoundEvent> FIRE_IGNITE = register("item.fire_ignite");
+	public static final RegistryObject<SoundEvent> MAGIC_ARROW_HIT_FIRE = register("item.magic_arrow_hit_fire");
+	public static final RegistryObject<SoundEvent> MAGIC_ARROW_HIT_ICE = register("item.magic_arrow_hit_ice");
+	public static final RegistryObject<SoundEvent> MAGIC_ARROW_HIT_LIGHT = register("item.magic_arrow_hit_light");
 	public static final RegistryObject<SoundEvent> ARROW_HIT_FIRE = register("item.arrow_hit_fire");
 	public static final RegistryObject<SoundEvent> ARROW_HIT_ICE = register("item.arrow_hit_ice");
 	public static final RegistryObject<SoundEvent> ARROW_HIT_SHOCK = register("item.arrow_hit_shock");
