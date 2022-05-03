@@ -150,7 +150,7 @@ public class MaskGoronmask extends Item implements IPlayerModelChanger, IEntityR
 
     @Override
     public float getRenderScale(PlayerEntity player) {
-        return 1.5F;
+        return 1.0F;
     }
 
     @Override
