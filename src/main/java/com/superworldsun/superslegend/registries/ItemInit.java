@@ -712,49 +712,28 @@ public class ItemInit
 	public static final RegistryObject<Item> GOLDEN_GAUNTLETS = ITEMS.register("golden_gauntlets",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));*/
 
-	//Rings
-	public static final RegistryObject<Item> BLUE_RING = ITEMS.register("blue_ring",
-			() -> new BlueRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> RED_RING = ITEMS.register("red_ring",
-			() -> new RedRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> GREEN_RING = ITEMS.register("green_ring",
-			() -> new GreenRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> POWER_RING_L1 = ITEMS.register("power_ring_l1",
-			() -> new PowerRingL1(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> POWER_RING_L2 = ITEMS.register("power_ring_l2",
-			() -> new PowerRingL2(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> POWER_RING_L3 = ITEMS.register("power_ring_l3",
-			() -> new PowerRingL3(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> ARMOR_RING_L1 = ITEMS.register("armor_ring_l1",
-			() -> new ArmorRingL1(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> ARMOR_RING_L2 = ITEMS.register("armor_ring_l2",
-			() -> new ArmorRingL2(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> ARMOR_RING_L3 = ITEMS.register("armor_ring_l3",
-			() -> new ArmorRingL3(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> CURSED_RING = ITEMS.register("cursed_ring",
-			() -> new CursedRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> HEART_RING_1 = ITEMS.register("heart_ring_l1",
-			() -> new HeartRingL1(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> HEART_RING_L2 = ITEMS.register("heart_ring_l2",
-			() -> new HeartRingL2(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> GREEN_LUCK_RING = ITEMS.register("green_luck_ring",
-			() -> new GreenLuckRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> BLUE_LUCK_RING = ITEMS.register("blue_luck_ring",
-			() -> new BlueLuckRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> GOLD_LUCK_RING = ITEMS.register("gold_luck_ring",
-			() -> new GoldLuckRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> RED_LUCK_RING = ITEMS.register("red_luck_ring",
-			() -> new RedLuckRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> STEADFAST_RING = ITEMS.register("steadfast_ring",
-			() -> new SteadfastRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> GREEN_HOLY_RING = ITEMS.register("green_holy_ring",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> BLUE_HOLY_RING = ITEMS.register("blue_holy_ring",
-			() -> new BlueHolyRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> RED_HOLY_RING = ITEMS.register("red_holy_ring",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> SWIMMERS_RING = ITEMS.register("swimmers_ring",
-			() -> new SwimmersRing(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
+	// Rings
+	public static final RegistryObject<Item> BLUE_RING = ITEMS.register("blue_ring", BlueRing::new);
+	public static final RegistryObject<Item> RED_RING = ITEMS.register("red_ring", RedRing::new);
+	public static final RegistryObject<Item> GREEN_RING = ITEMS.register("green_ring", GreenRing::new);
+	public static final RegistryObject<Item> POWER_RING_L1 = ITEMS.register("power_ring_l1", PowerRingL1::new);
+	public static final RegistryObject<Item> POWER_RING_L2 = ITEMS.register("power_ring_l2", PowerRingL2::new);
+	public static final RegistryObject<Item> POWER_RING_L3 = ITEMS.register("power_ring_l3", PowerRingL3::new);
+	public static final RegistryObject<Item> ARMOR_RING_L1 = ITEMS.register("armor_ring_l1", ArmorRingL1::new);
+	public static final RegistryObject<Item> ARMOR_RING_L2 = ITEMS.register("armor_ring_l2", ArmorRingL2::new);
+	public static final RegistryObject<Item> ARMOR_RING_L3 = ITEMS.register("armor_ring_l3", ArmorRingL3::new);
+	public static final RegistryObject<Item> CURSED_RING = ITEMS.register("cursed_ring", CursedRing::new);
+	public static final RegistryObject<Item> HEART_RING_1 = ITEMS.register("heart_ring_l1", HeartRingL1::new);
+	public static final RegistryObject<Item> HEART_RING_L2 = ITEMS.register("heart_ring_l2", HeartRingL2::new);
+	public static final RegistryObject<Item> GREEN_LUCK_RING = ITEMS.register("green_luck_ring", GreenLuckRing::new);
+	public static final RegistryObject<Item> BLUE_LUCK_RING = ITEMS.register("blue_luck_ring", BlueLuckRing::new);
+	public static final RegistryObject<Item> GOLD_LUCK_RING = ITEMS.register("gold_luck_ring", GoldLuckRing::new);
+	public static final RegistryObject<Item> RED_LUCK_RING = ITEMS.register("red_luck_ring", RedLuckRing::new);
+	public static final RegistryObject<Item> STEADFAST_RING = ITEMS.register("steadfast_ring", SteadfastRing::new);
+	public static final RegistryObject<Item> GREEN_HOLY_RING = ITEMS.register("green_holy_ring", GreenHolyRing::new);
+	public static final RegistryObject<Item> BLUE_HOLY_RING = ITEMS.register("blue_holy_ring", BlueHolyRing::new);
+	public static final RegistryObject<Item> RED_HOLY_RING = ITEMS.register("red_holy_ring", RedHolyRing::new);
+	public static final RegistryObject<Item> SWIMMERS_RING = ITEMS.register("swimmers_ring", SwimmersRing::new);
 
 	//CHARMS
 	public static final RegistryObject<SilverScale> SILVER_SCALE = ITEMS.register("silver_scale",
