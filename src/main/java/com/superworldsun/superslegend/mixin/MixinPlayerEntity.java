@@ -21,7 +21,6 @@ import com.superworldsun.superslegend.light.ILightReceiver;
 import com.superworldsun.superslegend.registries.EffectInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
