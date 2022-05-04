@@ -1,48 +1,31 @@
 package com.superworldsun.superslegend.registries;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.*;
 import com.superworldsun.superslegend.items.armors.*;
-import com.superworldsun.superslegend.items.cookingpot.CookingPotFood;
 import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
-import com.superworldsun.superslegend.items.food.HylianLoach;
-import com.superworldsun.superslegend.items.food.HylianLoachCooked;
-import com.superworldsun.superslegend.items.food.HyruleBass;
-import com.superworldsun.superslegend.items.food.HyruleBassCooked;
+import com.superworldsun.superslegend.items.food.*;
 import com.superworldsun.superslegend.items.items.*;
 import com.superworldsun.superslegend.items.weapons.*;
-import com.superworldsun.superslegend.items.weapons.SlingShot;
-import com.superworldsun.superslegend.util.cookingpot.FoodCategory;
 import com.superworldsun.superslegend.util.ItemToolTiers;
+import com.superworldsun.superslegend.util.cookingpot.FoodCategory;
+
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.Util;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistryEntry;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
-
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ItemInit
 {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SupersLegendMain.MOD_ID);
-
-	public static List<Item> getCurios() {
-		return ITEMS.getEntries().stream()
-				.filter(RegistryObject::isPresent)
-				.map(RegistryObject::get)
-				.filter(item -> item instanceof ICurioItem)
-				.map(item -> (Item) item)
-				.collect(Collectors.toList());
-	}
+	
 	public static final RegistryObject<Rupee> RUPEE = ITEMS.register("rupee",
 			() -> new Rupee(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<BlueRupee> BLUE_RUPEE = ITEMS.register("blue_rupee",
