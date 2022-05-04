@@ -23,11 +23,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-// TODO 1: LOOK INTO SEEING IF THERES A BETTER MORE EFFICIENT WAY TO RUN THIS ITEM
-// TODO 2: ALLOW THE PLAYERS SHADOW TO BE SHOWN WHEN INVISIBLE.
-// TODO 3: ALLOW THE PLAYER TO MOVE THROUGH OTHER ENTITIES WITHOUT BUMPING/PUSHING
-// TODO 4: MAKE IT SO ALL MOBS CANT SEE THE PLAYER WHEN WEARING IT
-
 public class MagicCape extends Item
 {
 	// make a config for that?
@@ -67,7 +62,7 @@ public class MagicCape extends Item
 		{
 			player.getCooldowns().addCooldown(this, 8);
 			// Integer.MAX_VALUE is essentially infinity in this case
-			player.addEffect(new EffectInstance(EffectInit.CLOAKED.get(), Integer.MAX_VALUE, 0, false, false));
+			player.addEffect(new EffectInstance(EffectInit.CLOAKED.get(), Integer.MAX_VALUE, 0, false, false, true));
 			
 			/*
 			 * Random rand = player.world.rand; for (int i = 0; i < 45; i++) { player.world.addParticle(ParticleTypes.CLOUD, player.posX + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 2)

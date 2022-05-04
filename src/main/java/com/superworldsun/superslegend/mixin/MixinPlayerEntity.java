@@ -18,8 +18,10 @@ import com.superworldsun.superslegend.light.AbstractLightEmitter;
 import com.superworldsun.superslegend.light.EntityLightEmitter;
 import com.superworldsun.superslegend.light.ILightEmitterContainer;
 import com.superworldsun.superslegend.light.ILightReceiver;
+import com.superworldsun.superslegend.registries.EffectInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
@@ -156,6 +158,21 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	public AxisAlignedBB getBoundingBoxForCulling()
 	{
 		return getBoundingBoxForPose(getPose());
+	}
+	
+	@Override
+	protected void pushEntities()
+	{
+		if (!hasEffect(EffectInit.CLOAKED.get()))
+		{
+			super.pushEntities();
+		}
+	}
+	
+	@Override
+	public boolean isPushable()
+	{
+		return !hasEffect(EffectInit.CLOAKED.get()) && super.isPushable();
 	}
 	
 	@Override
