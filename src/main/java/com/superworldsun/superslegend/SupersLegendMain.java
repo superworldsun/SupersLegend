@@ -83,7 +83,6 @@ public class SupersLegendMain
 	public static final String MOD_ID = "superslegend";
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final ArrayList<BlockPos> toRemove = new ArrayList<BlockPos>();
-	public static final HashMap<UUID, BlockPos> affectedblocks = new HashMap();
 	// This sub-class below is the start where we'll add registry and stuff
 	// later on
 	public SupersLegendMain()

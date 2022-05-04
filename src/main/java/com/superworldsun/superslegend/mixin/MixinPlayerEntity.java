@@ -1,15 +1,7 @@
 package com.superworldsun.superslegend.mixin;
 
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.interfaces.*;
-import com.superworldsun.superslegend.items.items.Lantern;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.*;
-import net.minecraftforge.fml.common.thread.SidedThreadGroups;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -18,12 +10,22 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.superworldsun.superslegend.interfaces.IEntityResizer;
+import com.superworldsun.superslegend.interfaces.IHoveringEntity;
+import com.superworldsun.superslegend.interfaces.IJumpingEntity;
+import com.superworldsun.superslegend.interfaces.IResizableEntity;
 import com.superworldsun.superslegend.light.AbstractLightEmitter;
 import com.superworldsun.superslegend.light.EntityLightEmitter;
 import com.superworldsun.superslegend.light.ILightEmitterContainer;
 import com.superworldsun.superslegend.light.ILightReceiver;
+import com.superworldsun.superslegend.registries.EffectInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MoverType;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -32,21 +34,18 @@ import net.minecraft.util.math.AxisAlignedBB;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(PlayerEntity.class)
-public abstract class MixinPlayerEntity extends LivingEntity
-		implements IResizableEntity, IHoveringEntity, IJumpingEntity, ILightReceiver, ILightEmitterContainer
+public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, IJumpingEntity, ILightReceiver, ILightEmitterContainer
 {
-	@Shadow public abstract Iterable<ItemStack> getHandSlots();
-
 	private float targetScale = 1.0F;
 	private float scale = 1.0F;
 	private float targetRenderScale = 1.0F;
 	private float renderScale = 1.0F;
 	private float prevRenderScale = 1.0F;
-
+	
 	private int hoverTime;
 	private int hoverHeight;
 	private boolean jumpedFromGround;
-
+	
 	private boolean isLit;
 	private EntityLightEmitter lightEmitter = new EntityLightEmitter(this::getCommandSenderWorld, this::getLookAngle, this::position, this);
 	
@@ -79,97 +78,64 @@ public abstract class MixinPlayerEntity extends LivingEntity
 	}
 	
 	@Inject(method = "tick", at = @At("HEAD"))
-	private void injectTick(CallbackInfo ci) {
-		if (Thread.currentThread().getThreadGroup() != SidedThreadGroups.SERVER) {
-			Minecraft mcinstance;
-			mcinstance = Minecraft.getInstance();
-			AtomicBoolean shouldremove = new AtomicBoolean(true);
-
-			try {
-				if (Thread.currentThread().getThreadGroup() != SidedThreadGroups.SERVER) {
-					getHandSlots().forEach(stack ->{
-						if (stack.getItem() instanceof Lantern) {
-							if (stack.getDamageValue() != stack.getMaxDamage()) {
-								if (!getEntity().isInWater()) {
-									shouldremove.set(false);
-									if (!SupersLegendMain.affectedblocks.containsValue(getEntity().blockPosition())) {
-
-										if (SupersLegendMain.affectedblocks.containsKey(getUUID())) {
-											SupersLegendMain.affectedblocks.forEach((uuid, blockPos) -> {
-												getEntity().level.getLightEngine().checkBlock(blockPos);
-											});
-											SupersLegendMain.affectedblocks.replace(getUUID(), getEntity().blockPosition());
-										} else {
-											SupersLegendMain.affectedblocks.put(getUUID(), getEntity().blockPosition());
-										}
-
-										getEntity().level.getLightEngine().onBlockEmissionIncrease(getEntity().blockPosition(), 10);
-									}
-								}
-							} else {
-
-							}
-						}
-					});
-					if (shouldremove.get()) {
-						if (SupersLegendMain.affectedblocks.containsKey(getUUID())) {
-							SupersLegendMain.affectedblocks.forEach((uuid, blockPos) -> {
-								getEntity().level.getLightEngine().checkBlock(blockPos);
-							});
-						}
-					}
-				}
-			} catch (Exception exception) {
-
-			}
-
-
-		}
+	private void injectTick(CallbackInfo ci)
+	{
 		targetScale = 1.0F;
 		targetRenderScale = 1.0F;
-
+		
 		getArmorSlots().forEach(stack ->
 		{
-			if (stack.getItem() instanceof IEntityResizer) {
+			if (stack.getItem() instanceof IEntityResizer)
+			{
 				targetScale *= ((IEntityResizer) stack.getItem()).getScale((PlayerEntity) getEntity());
 				targetRenderScale *= ((IEntityResizer) stack.getItem()).getRenderScale((PlayerEntity) getEntity());
 			}
 		});
-//Check if is Curios.
-		ItemInit.getCurios().forEach(stack ->
+		
+		CuriosApi.getCuriosHelper().getEquippedCurios((PlayerEntity) getEntity()).ifPresent(curios ->
 		{
-			if (stack.getItem() instanceof IEntityResizer) {
-				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(stack.getItem(), (PlayerEntity) getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-				if(!stack0.isEmpty()) {
-					targetScale *= ((IEntityResizer) stack.getItem()).getScale((PlayerEntity) getEntity());
-					targetRenderScale *= ((IEntityResizer) stack.getItem()).getRenderScale((PlayerEntity) getEntity());
+			for (int i = 0; i < curios.getSlots(); i++)
+			{
+				ItemStack curioStack = curios.getStackInSlot(i);
+				
+				if (!curioStack.isEmpty() && curioStack.getItem() instanceof IEntityResizer)
+				{
+					targetScale *= ((IEntityResizer) curioStack.getItem()).getScale((PlayerEntity) getEntity());
+					targetRenderScale *= ((IEntityResizer) curioStack.getItem()).getRenderScale((PlayerEntity) getEntity());
 				}
-				}
+			}
 		});
-
+		
 		prevRenderScale = renderScale;
-
-		if (targetRenderScale > renderScale) {
+		
+		if (targetRenderScale > renderScale)
+		{
 			renderScale = Math.min(targetRenderScale, renderScale + 0.05F);
 		}
-
-		if (targetRenderScale < renderScale) {
+		
+		if (targetRenderScale < renderScale)
+		{
 			renderScale = Math.max(targetRenderScale, renderScale - 0.05F);
 		}
-
-		if (targetScale > scale) {
+		
+		if (targetScale > scale)
+		{
 			setScale(Math.min(targetScale, scale + 0.05F));
 		}
-
-		if (targetScale < scale) {
+		
+		if (targetScale < scale)
+		{
 			setScale(Math.max(targetScale, scale - 0.05F));
 		}
-
+		
 		// Increase movement if we are bigger, decrease if we are smaller
-		if (scale > 1) {
+		if (scale > 1)
+		{
 			float bonusSpeed = scale - 1;
 			move(MoverType.SELF, getDeltaMovement().multiply(bonusSpeed, bonusSpeed, bonusSpeed));
-		} else if (scale < 1) {
+		}
+		else if (scale < 1)
+		{
 			float bonusSpeed = (scale - 1) / 2;
 			setBoundingBox(getBoundingBox().move(getDeltaMovement().multiply(bonusSpeed, bonusSpeed, bonusSpeed)));
 		}
@@ -195,10 +161,26 @@ public abstract class MixinPlayerEntity extends LivingEntity
 	}
 	
 	@Override
+	protected void pushEntities()
+	{
+		if (!hasEffect(EffectInit.CLOAKED.get()))
+		{
+			super.pushEntities();
+		}
+	}
+	
+	@Override
+	public boolean isPushable()
+	{
+		return !hasEffect(EffectInit.CLOAKED.get()) && super.isPushable();
+	}
+	
+	@Override
 	public float getScaleForRender(float partialTick)
 	{
 		return prevRenderScale + (renderScale - prevRenderScale) * partialTick;
 	}
+	
 	@Override
 	public int getHoverTime()
 	{
@@ -214,7 +196,7 @@ public abstract class MixinPlayerEntity extends LivingEntity
 	@Override
 	public int increaseHoverTime()
 	{
-		return ++hoverTime;
+		return hoverTime++;
 	}
 	
 	@Override
@@ -228,12 +210,16 @@ public abstract class MixinPlayerEntity extends LivingEntity
 	{
 		return hoverHeight;
 	}
-
+	
 	@Override
-	public boolean jumpedFromBlock() { return jumpedFromGround; }
-
+	public boolean jumpedFromBlock()
+	{
+		return jumpedFromGround;
+	}
+	
 	@Override
-	public void setJumpedFromBlock(boolean state) {
+	public void setJumpedFromBlock(boolean state)
+	{
 		jumpedFromGround = state;
 	}
 	
@@ -248,7 +234,7 @@ public abstract class MixinPlayerEntity extends LivingEntity
 	{
 		return jumping;
 	}
-
+	
 	@Override
 	public void receiveLight()
 	{
