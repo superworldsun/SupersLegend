@@ -1,14 +1,5 @@
 package com.superworldsun.superslegend.mixin;
 
-import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.items.Lantern;
-import com.superworldsun.superslegend.registries.ItemInit;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -33,6 +24,7 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import top.theillusivec4.curios.api.CuriosApi;
 
@@ -52,8 +44,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 	 * @author
 	 */
 	@Overwrite
-	private void renderHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand,
-			ModelRenderer handOverlay)
+	private void renderHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand, ModelRenderer handOverlay)
 	{
 		chooseCurrentModel(player);
 		PlayerModel<AbstractClientPlayerEntity> model = getModel();
@@ -78,8 +69,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 	}
 	
 	@Inject(method = "render", at = @At("HEAD"))
-	public void injectRender(AbstractClientPlayerEntity player, float rotationYaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer renderBuffer,
-			int light, CallbackInfo ci)
+	public void injectRender(AbstractClientPlayerEntity player, float rotationYaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer renderBuffer, int light, CallbackInfo ci)
 	{
 		LightRayRenderer.render(((ILightEmitterContainer) player).getLightEmitter(), partialTicks, matrix, renderBuffer, light);
 		chooseCurrentModel(player);
@@ -95,14 +85,17 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 				ci.setReturnValue(((IPlayerModelChanger) stack.getItem()).getPlayerTexture(player));
 			}
 		});
-//Check if is Curios.
-		ItemInit.getCurios().forEach(stack ->
+		
+		CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curios ->
 		{
-			if (stack instanceof IPlayerModelChanger)
+			for (int i = 0; i < curios.getSlots(); i++)
 			{
-				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(stack.getItem(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-				if(!stack0.isEmpty())
-				ci.setReturnValue(((IPlayerModelChanger) stack0.getItem()).getPlayerTexture(player));
+				ItemStack curioStack = curios.getStackInSlot(i);
+				
+				if (!curioStack.isEmpty() && curioStack.getItem() instanceof IPlayerModelChanger)
+				{
+					ci.setReturnValue(((IPlayerModelChanger) curioStack.getItem()).getPlayerTexture(player));
+				}
 			}
 		});
 	}
@@ -136,17 +129,20 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 				model = ((IPlayerModelChanger) stack.getItem()).getPlayerModel(player);
 			}
 		});
-//Check if is Curios.
-		ItemInit.getCurios().forEach(stack ->
+		
+		CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curios ->
 		{
-			if (stack instanceof IPlayerModelChanger)
+			for (int i = 0; i < curios.getSlots(); i++)
 			{
-				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(stack.getItem(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-				if(!stack0.isEmpty())
-				model = ((IPlayerModelChanger) stack0.getItem()).getPlayerModel(player);
+				ItemStack curioStack = curios.getStackInSlot(i);
+				
+				if (!curioStack.isEmpty() && curioStack.getItem() instanceof IPlayerModelChanger)
+				{
+					model = ((IPlayerModelChanger) curioStack.getItem()).getPlayerModel(player);
+				}
 			}
 		});
-
+		
 		if (model != baseModel)
 		{
 			if (layers.contains(armorLayer))

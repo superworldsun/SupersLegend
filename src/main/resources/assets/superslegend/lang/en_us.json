@@ -399,6 +399,7 @@
   "block.superslegend.rust_plate": "Rust Plate",
   "block.superslegend.pointer_block": "Pointer Block",
   "block.superslegend.gossip_stone_block.silent": "The stone is Silent",
-  "screen.ocarina.song_played": "You played the %s"
+  "screen.ocarina.song_played": "You played the %s",
+  "effect.superslegend.cloaked": "Cloaked"
 }
 
