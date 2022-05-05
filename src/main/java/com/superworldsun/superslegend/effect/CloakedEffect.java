@@ -4,7 +4,9 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.items.MagicCape;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.EffectInit;
+import com.superworldsun.superslegend.registries.ItemInit;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -79,8 +81,14 @@ public class CloakedEffect extends Effect
 	{
 		if (event.getPlayer().hasEffect(EffectInit.CLOAKED.get()))
 		{
-			// completely disables render of the player (including armor, held items, etc)
-			event.setCanceled(true);
+			Minecraft client = Minecraft.getInstance();
+			
+			// if the client player is using lens of truth, he will see cloaked players anyway
+			if (!client.player.isUsingItem() || client.player.getItemInHand(client.player.getUsedItemHand()).getItem() != ItemInit.LENS_OF_TRUTH.get())
+			{
+				// completely disables render of the player (including armor, held items, etc)
+				event.setCanceled(true);
+			}
 		}
 	}
 }
