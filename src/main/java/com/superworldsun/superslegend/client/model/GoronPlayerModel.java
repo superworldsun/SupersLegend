@@ -486,13 +486,27 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		modelRenderer.yRot = y;
 		modelRenderer.zRot = z;
 	}
-	
+
+	/*@Override
+	public void renderFirstPersonHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand, ModelRenderer handOverlay,
+									  ResourceLocation texture)
+	{
+		hand.xRot = 0;
+		hand.y = 1.5F;
+		hand.render(matrix, buffer.getBuffer(RenderType.entitySolid(texture)), color, OverlayTexture.NO_OVERLAY);
+		handOverlay.xRot = 0;
+		handOverlay.y = 1.5F;
+		handOverlay.render(matrix, buffer.getBuffer(RenderType.entityTranslucent(texture)), color, OverlayTexture.NO_OVERLAY);
+	}*/
+
 	@Override
 	public void renderFirstPersonHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand, ModelRenderer handOverlay,
 			ResourceLocation texture)
 	{
 		hand.xRot = 0;
-		hand.y = 1.5F;
+		hand.x = 0.0F;
+		hand.y = -7.0F;
+		hand.z = 0.0F;
 		hand.render(matrix, buffer.getBuffer(RenderType.entitySolid(texture)), color, OverlayTexture.NO_OVERLAY);
 		handOverlay.xRot = 0;
 		handOverlay.y = 1.5F;
