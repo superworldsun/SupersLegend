@@ -416,8 +416,7 @@ public class ItemInit
 			() -> new MaskDongerosmaskEffects(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> MASK_MASKOFSCENTS = ITEMS.register("mask_maskofscents",
 			() -> new ScentsMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> MASK_GORONMASK = ITEMS.register("mask_goronmask",
-			() -> new MaskGoronmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
+	public static final RegistryObject<Item> MASK_GORONMASK = ITEMS.register("mask_goronmask", GoronMask::new);
 	public static final RegistryObject<Item> MASK_ROMANISMASK = ITEMS.register("mask_romanismask",
 			() -> new MaskRomanismask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> MASK_TROUPELEADERSMASK = ITEMS.register("mask_troupeleadersmask",
