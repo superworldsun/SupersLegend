@@ -15,6 +15,8 @@ import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -22,6 +24,7 @@ import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3d;
@@ -31,12 +34,14 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -48,6 +53,63 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 	public GoronMask()
 	{
 		super(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL));
+	}
+	
+	@Override
+	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
+	{
+		livingEntity.clearFire();
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	{
+		super.appendHoverText(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.DARK_RED + "The face of a Goron"));
+		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "Your skin is like stone and cannot stay withered"));
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public PlayerModel<AbstractClientPlayerEntity> getPlayerModel(AbstractClientPlayerEntity player)
+	{
+		return new GoronPlayerModel();
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public ResourceLocation getPlayerTexture(AbstractClientPlayerEntity player)
+	{
+		return new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/goron_player.png");
+	}
+	
+	@Override
+	public float getScale(PlayerEntity player)
+	{
+		return 1.5F;
+	}
+	
+	@Override
+	public float getRenderScale(PlayerEntity player)
+	{
+		return 1.0F;
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@SubscribeEvent
+	public static void onRenderPlayer(RenderPlayerEvent.Pre event)
+	{
+		ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GORONMASK.get(), event.getPlayer()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		
+		if (!maskStack.isEmpty())
+		{
+			// this code removes visual fire from player
+			DataParameter<Byte> dataSharedFlagsId = ObfuscationReflectionHelper.getPrivateValue(Entity.class, null, "field_184240_ax");
+			byte sharedData = event.getPlayer().getEntityData().get(dataSharedFlagsId);
+			event.getPlayer().getEntityData().set(dataSharedFlagsId, (byte) (sharedData & -2));
+			event.getPlayer().clearFire();
+		}
 	}
 	
 	@SubscribeEvent
@@ -145,40 +207,5 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 		{
 			attributeInstance.addPermanentModifier(modifier);
 		}
-	}
-	
-	@OnlyIn(Dist.CLIENT)
-	@Override
-	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
-	{
-		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.DARK_RED + "The face of a Goron"));
-		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "Your skin is like stone and cannot stay withered"));
-	}
-	
-	@OnlyIn(Dist.CLIENT)
-	@Override
-	public PlayerModel<AbstractClientPlayerEntity> getPlayerModel(AbstractClientPlayerEntity player)
-	{
-		return new GoronPlayerModel();
-	}
-	
-	@OnlyIn(Dist.CLIENT)
-	@Override
-	public ResourceLocation getPlayerTexture(AbstractClientPlayerEntity player)
-	{
-		return new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/goron_player.png");
-	}
-	
-	@Override
-	public float getScale(PlayerEntity player)
-	{
-		return 1.5F;
-	}
-	
-	@Override
-	public float getRenderScale(PlayerEntity player)
-	{
-		return 1.0F;
 	}
 }

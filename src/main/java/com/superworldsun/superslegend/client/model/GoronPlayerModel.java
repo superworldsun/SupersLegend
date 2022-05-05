@@ -232,9 +232,9 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			// this.rightArm.x = -MathHelper.cos(this.body.yRot) * 4.0F;
 			// this.leftArm.z = -MathHelper.sin(this.body.yRot) * 4.0F;
 			// this.leftArm.x = MathHelper.cos(this.body.yRot) * 4.0F;
-			// this.rightArm.yRot += this.body.yRot;
-			// this.leftArm.yRot += this.body.yRot;
-			// this.leftArm.xRot += this.body.yRot;
+			this.rightArm.yRot += this.body.yRot;
+			this.leftArm.yRot += this.body.yRot;
+			this.leftArm.xRot += this.body.yRot;
 			f = 1.0F - this.attackTime;
 			f = f * f;
 			f = f * f;
@@ -275,11 +275,12 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		}
 		
 		this.body.yRot = 0F;
-		// this.rightArm.z = 1F;
-		// this.rightArm.x = -6F;
-		// this.leftArm.z = 1F;
-		// this.leftArm.x = 6F;
+		this.rightArm.z = 1F;
+		this.rightArm.x = -6F;
+		this.leftArm.z = 1F;
+		this.leftArm.x = 6F;
 		float f = 1.0F;
+		
 		if (flag)
 		{
 			f = (float) player.getDeltaMovement().lengthSqr();
@@ -294,16 +295,13 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		
 		this.leftArm.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + (float) Math.PI) * 2.0F * p_225597_3_ * 0.5F / f;
 		this.rightArm.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 2.0F * p_225597_3_ * 0.5F / f;
-		// this.rightArm.zRot = 90.0F;
-		// this.leftArm.zRot = -90.0F;
-		// this.rightArm.x = -12.0F;
-		// this.leftArm.x = 12.0F;
 		this.rightLeg.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 1.4F * p_225597_3_ / f;
 		this.leftLeg.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + (float) Math.PI) * 1.4F * p_225597_3_ / f;
 		this.rightLeg.yRot = 0.0F;
 		this.leftLeg.yRot = 0.0F;
 		this.rightLeg.zRot = 0.0F;
 		this.leftLeg.zRot = 0.0F;
+		
 		if (this.riding)
 		{
 			this.rightArm.xRot += (-(float) Math.PI / 5F);
@@ -316,22 +314,24 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			this.leftLeg.zRot = -0.07853982F;
 		}
 		
-		// this.rightArm.yRot = 0.0F;
-		// this.leftArm.yRot = 0.0F;
+		this.rightArm.yRot = 0.0F;
+		this.leftArm.yRot = 0.0F;
 		boolean flag2 = player.getMainArm() == HandSide.RIGHT;
 		boolean flag3 = flag2 ? this.leftArmPose.isTwoHanded() : this.rightArmPose.isTwoHanded();
-		// if (flag2 != flag3)
-		// {
-		// this.poseLeftArm(player);
-		// this.poseRightArm(player);
-		// }
-		// else
-		// {
-		// this.poseRightArm(player);
-		// this.poseLeftArm(player);
-		// }
+		
+		if (flag2 != flag3)
+		{
+			this.poseLeftArm(player);
+			this.poseRightArm(player);
+		}
+		else
+		{
+			this.poseRightArm(player);
+			this.poseLeftArm(player);
+		}
 		
 		this.setupAttackAnimation(player, p_225597_4_);
+		
 		if (this.crouching)
 		{
 			// this.body.xRot = 0.5F;
@@ -359,13 +359,15 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			// this.rightArm.y = 0.0F;
 		}
 		
-		// ModelHelper.bobArms(this.rightArm, this.leftArm, p_225597_4_);
+		ModelHelper.bobArms(this.rightArm, this.leftArm, p_225597_4_);
+		
 		if (this.swimAmount > 0.0F)
 		{
 			float f1 = p_225597_2_ % 26.0F;
 			HandSide handside = this.getAttackArm(player);
 			float f2 = handside == HandSide.RIGHT && this.attackTime > 0.0F ? 0.0F : this.swimAmount;
 			float f3 = handside == HandSide.LEFT && this.attackTime > 0.0F ? 0.0F : this.swimAmount;
+			
 			if (f1 < 14.0F)
 			{
 				this.leftArm.xRot = this.rotlerpRad(f3, this.leftArm.xRot, 0.0F);
@@ -486,10 +488,10 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		modelRenderer.yRot = y;
 		modelRenderer.zRot = z;
 	}
-
+	
 	/*@Override
 	public void renderFirstPersonHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand, ModelRenderer handOverlay,
-									  ResourceLocation texture)
+			ResourceLocation texture)
 	{
 		hand.xRot = 0;
 		hand.y = 1.5F;
@@ -498,7 +500,7 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		handOverlay.y = 1.5F;
 		handOverlay.render(matrix, buffer.getBuffer(RenderType.entityTranslucent(texture)), color, OverlayTexture.NO_OVERLAY);
 	}*/
-
+	
 	@Override
 	public void renderFirstPersonHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand, ModelRenderer handOverlay,
 			ResourceLocation texture)
@@ -517,10 +519,11 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 	public void renderThirdPersonItem(LivingEntity livingEntity, ItemStack itemStack, TransformType transformType, HandSide handSide, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer,
 			int light)
 	{
-		matrixStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
-		matrixStack.mulPose(Vector3f.YP.rotationDegrees(165F));
 		boolean leftHand = handSide == HandSide.LEFT;
-		matrixStack.translate((leftHand ? -1 : 1) / 16D, 0.125D, -1.3D);
+		int sideShift = leftHand ? -1 : 1;
+		matrixStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
+		matrixStack.mulPose(Vector3f.YP.rotationDegrees(180F - sideShift * 15));
+		matrixStack.translate(sideShift / 16D, 0.125D, -1.3D);
 		Minecraft.getInstance().getItemInHandRenderer().renderItem(livingEntity, itemStack, transformType, leftHand, matrixStack, renderTypeBuffer, light);
 	}
 }
