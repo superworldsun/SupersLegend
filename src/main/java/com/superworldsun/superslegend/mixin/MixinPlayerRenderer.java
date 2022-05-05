@@ -57,7 +57,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 		
 		if (model instanceof IHandRenderer)
 		{
-			((IHandRenderer) model).renderHand(matrix, buffer, color, player, hand, handOverlay, texture);
+			((IHandRenderer) model).renderFirstPersonHand(matrix, buffer, color, player, hand, handOverlay, texture);
 		}
 		else
 		{

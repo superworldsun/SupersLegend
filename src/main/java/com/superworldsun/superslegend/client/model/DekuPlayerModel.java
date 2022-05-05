@@ -3,16 +3,21 @@ package com.superworldsun.superslegend.client.model;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.interfaces.IHandRenderer;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3f;
 
 public class DekuPlayerModel extends PlayerModel<AbstractClientPlayerEntity> implements IHandRenderer
 {
@@ -267,10 +272,8 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayerEntity> imp
 				this.rightArm.xRot = MathHelper.lerp(f2, this.rightArm.xRot, 0.0F);
 				this.leftArm.yRot = this.rotlerpRad(f3, this.leftArm.yRot, (float) Math.PI);
 				this.rightArm.yRot = MathHelper.lerp(f2, this.rightArm.yRot, (float) Math.PI);
-				this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot,
-						(float) Math.PI + 1.8707964F * this.quadraticArmUpdate(f1) / this.quadraticArmUpdate(14.0F));
-				this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot,
-						(float) Math.PI - 1.8707964F * this.quadraticArmUpdate(f1) / this.quadraticArmUpdate(14.0F));
+				this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot, (float) Math.PI + 1.8707964F * this.quadraticArmUpdate(f1) / this.quadraticArmUpdate(14.0F));
+				this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot, (float) Math.PI - 1.8707964F * this.quadraticArmUpdate(f1) / this.quadraticArmUpdate(14.0F));
 			}
 			else if (f1 >= 14.0F && f1 < 22.0F)
 			{
@@ -412,8 +415,8 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayerEntity> imp
 	}
 	
 	@Override
-	public void renderHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand,
-			ModelRenderer handOverlay, ResourceLocation texture)
+	public void renderFirstPersonHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand, ModelRenderer handOverlay,
+			ResourceLocation texture)
 	{
 		hand.xRot = 0;
 		hand.y = 7.5F;
@@ -421,5 +424,16 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayerEntity> imp
 		handOverlay.xRot = 0;
 		handOverlay.y = 7.5F;
 		handOverlay.render(matrix, buffer.getBuffer(RenderType.entityTranslucent(texture)), color, OverlayTexture.NO_OVERLAY);
+	}
+	
+	@Override
+	public void renderThirdPersonItem(LivingEntity livingEntity, ItemStack itemStack, TransformType transformType, HandSide handSide, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer,
+			int light)
+	{
+		matrixStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
+		matrixStack.mulPose(Vector3f.YP.rotationDegrees(170F));
+		boolean leftHand = handSide == HandSide.LEFT;
+		matrixStack.translate((leftHand ? -1 : 1) / 16D, 0.125D, -0.625D);
+		Minecraft.getInstance().getItemInHandRenderer().renderItem(livingEntity, itemStack, transformType, leftHand, matrixStack, renderTypeBuffer, light);
 	}
 }
