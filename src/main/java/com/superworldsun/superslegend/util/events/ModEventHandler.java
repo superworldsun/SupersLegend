@@ -5,10 +5,13 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.HeartEntity;
 import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import com.superworldsun.superslegend.entities.MagicJarEntity;
+import com.superworldsun.superslegend.entities.TPBokoblinEntity;
+import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -76,6 +79,12 @@ public class ModEventHandler {
             }
         }
     }
+
+    @SubscribeEvent
+    public static void addEntityAttributes(EntityAttributeCreationEvent event) {
+        event.put(EntityTypeInit.TP_BOKOBLIN.get(), TPBokoblinEntity.setCustomAttributes().build());
+    }
+
 
     @SubscribeEvent
     public static void interModComms(InterModEnqueueEvent e){

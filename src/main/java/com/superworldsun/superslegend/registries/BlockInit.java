@@ -48,19 +48,18 @@ public class BlockInit
 	public static final RegistryObject<Block> TORCH_TOWER_TOP_UNLIT = BLOCKS.register("torch_tower_top_unlit", () -> new TorchTowerTopUnlit(PropertiesInit.TORCH_TOWER_TOP_UNLIT));
 	public static final RegistryObject<Block> TORCH_TOWER_TOP_LIT = BLOCKS.register("torch_tower_top_lit", () -> new TorchTowerTopLit(PropertiesInit.TORCH_TOWER_TOP_LIT));
 	public static final RegistryObject<Block> MASTER_ORE_BLOCK = BLOCKS.register("master_ore_block", () -> new Block(PropertiesInit.WRECKAGE));
-
 	public static final RegistryObject<Block> BLUE_FLOOR_SWITCH = BLOCKS.register("blue_floor_switch"
 			, () -> new BlueFloorSwitch(BlueFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL)
 					.strength(5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
-
 	public static final RegistryObject<Block> YELLOW_FLOOR_SWITCH = BLOCKS.register("yellow_floor_switch"
 			, () -> new YellowFloorSwitch(YellowFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL)
 			.strength(5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
-
 	public static final RegistryObject<Block> RED_FLOOR_SWITCH = BLOCKS.register("red_floor_switch"
 			, () -> new RedFloorSwitch(RedFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL)
 					.strength(5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
-
+	public static final RegistryObject<Block> RUSTED_FLOOR_SWITCH = BLOCKS.register("rusted_floor_switch"
+			, () -> new RustedFloorSwitch(RustedFloorSwitch.SensitivityMod.ENDERDRAGON, AbstractBlock.Properties.of(Material.METAL)
+					.strength(5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
 	public static final RegistryObject<Block> WOODEN_PEG_BLOCK = BLOCKS.register("wooden_peg_block", () -> new WoodenPegBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUSTED_PEG_BLOCK = BLOCKS.register("rusted_peg_block", () -> new RustedPegBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> SPIKED_PEG_BLOCK = BLOCKS.register("spiked_peg_block", () -> new SpikedPegBlock(PropertiesInit.WRECKAGE));

@@ -1,8 +1,8 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "0": "superslegend:block/yellow_floor_switch",
-        "particle": "superslegend:block/yellow_floor_switch"
+        "0": "superslegend:block/rusted_floor_switch",
+        "particle": "superslegend:block/rusted_floor_switch"
     },
     "elements": [
         {

@@ -1,19 +1,19 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "0": "superslegend:block/yellow_floor_switch",
-        "particle": "superslegend:block/yellow_floor_switch"
+        "0": "superslegend:block/rusted_floor_switch",
+        "particle": "superslegend:block/rusted_floor_switch"
     },
     "elements": [
         {
             "name": "BUTTON",
             "from": [2, 1, 2],
-            "to": [14, 5, 14],
+            "to": [14, 2, 14],
             "faces": {
-                "north": {"uv": [4, 6, 7, 7], "texture": "#0"},
-                "east": {"uv": [7, 0, 10, 1], "texture": "#0"},
-                "south": {"uv": [7, 1, 10, 2], "texture": "#0"},
-                "west": {"uv": [7, 2, 10, 3], "texture": "#0"},
+                "north": {"uv": [4, 6, 7, 6.25], "texture": "#0"},
+                "east": {"uv": [7, 0, 10, 0.25], "texture": "#0"},
+                "south": {"uv": [7, 1, 10, 1.25], "texture": "#0"},
+                "west": {"uv": [7, 2, 10, 2.25], "texture": "#0"},
                 "up": {"uv": [7, 3, 4, 0], "texture": "#0"},
                 "down": {"uv": [7, 3, 4, 6], "texture": "#0"}
             }

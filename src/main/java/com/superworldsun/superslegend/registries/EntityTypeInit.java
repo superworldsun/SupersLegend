@@ -126,7 +126,7 @@ public class EntityTypeInit
 	//MOBS
 
 	public static final RegistryObject<EntityType<TPBokoblinEntity>> TP_BOKOBLIN = ENTITIES.register("tp_bokoblin",
-			() -> EntityType.Builder.<TPBokoblinEntity>of(TPBokoblinEntity::new, EntityClassification.MONSTER).sized(2.0F, 1.0F)
+			() -> EntityType.Builder.<TPBokoblinEntity>of(TPBokoblinEntity::new, EntityClassification.MONSTER).sized(1.0F, 3.0F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/tp_bokoblin").toString()));
 
 }
