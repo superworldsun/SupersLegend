@@ -779,7 +779,13 @@ public class ItemInit
 			() -> new MusicDiscItem(1, SoundInit.STONE_TOWER_TEMPLE_ILLUSION_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
 
 	public static final RegistryObject<Item> SONG_OF_STORMS_SHEET = ITEMS.register("song_of_storms_sheet", () -> new SongSheet(OcarinaSongInit.SONG_OF_STORMS));
-	
+
+
+	//MobEggs
+	//public static final RegistryObject<TPBokoblinSpawnEgg> TP_BOKOBLIN_EGG = ITEMS.register("tp_bokoblin_egg",
+	//		() -> new TPBokoblinSpawnEgg(new Item.Properties().stacksTo(64).tab(SupersLegendMain.RESOURCES)));
+
+
 	//Recommended way to calculate fair hunger/saturation values dynamically based on ingredients
 	//Take the minimum and maximum hunger/sat for each possible food category in a recipe
 	//(for example, meat skewers...so just meat, so this makes it easy for this example)
