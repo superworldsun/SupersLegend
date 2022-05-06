@@ -1,9 +1,10 @@
 {
     "parent": "superslegend:item/deku_shield",
 "textures": {
-		"0": "superslegend:item/deku_shield_blocking",
-		"particle": "superslegend:item/deku_shield_blocking"
+		"0": "superslegend:item/deku_shield",
+		"particle": "superslegend:item/deku_shield"
 	},
+	"gui_light": "front",
 	"elements": [
 		{
 			"from": [3, 4, 7],
@@ -174,19 +175,27 @@
 			"scale": [1.1, 1.1, 1.07]
 		},
 		"firstperson_righthand": {
-			"rotation": [0, -4, 0],
-			"translation": [-4, 0.25, 2.5]
+			"rotation": [0, 0, 5],
+			"translation": [-4, 1, 1],
+			"scale": [1.1, 1.1, 1.1]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, -8, 0],
-			"translation": [-3.25, 0.25, 0]
+			"rotation": [0, 0, 5],
+			"translation": [-4, 1, 1],
+			"scale": [1.1, 1.1, 1.1]
 		},
 		"ground": {
-			"translation": [0, 3.5, 0],
-			"scale": [0.98242, 0.98242, 0.98242]
+			"translation": [0, 6, 0],
+			"scale": [1.1, 1.1, 1.1]
 		},
 		"gui": {
-			"rotation": [0, -180, 0]
+			"rotation": [-170, 18, -180],
+			"translation": [0, 0.5, 0],
+			"scale": [1.1, 1.1, 1.1]
+		},
+		"fixed": {
+			"translation": [0, 1, 0],
+			"scale": [1.1, 1.1, 1.1]
 		}
 	}
 }
