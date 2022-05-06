@@ -331,8 +331,7 @@ public class ItemInit
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> QUAKE_MEDALLION = ITEMS.register("quake_medallion",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
-	public static final RegistryObject<Item> FIRE_ROD = ITEMS.register("fire_rod",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> FIRE_ROD = ITEMS.register("fire_rod", FireRod::new);
 	public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick",

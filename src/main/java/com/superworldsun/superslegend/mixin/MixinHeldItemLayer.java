@@ -36,7 +36,7 @@ public abstract class MixinHeldItemLayer<T extends LivingEntity, M extends Entit
 			if (!itemStack.isEmpty())
 			{
 				matrixStack.pushPose();
-				this.getParentModel().translateToHand(handSide, matrixStack);
+				getParentModel().translateToHand(handSide, matrixStack);
 				((IHandRenderer) getParentModel()).renderThirdPersonItem(livingEntity, itemStack, transformType, handSide, matrixStack, renderTypeBuffer, light);
 				matrixStack.popPose();
 			}
