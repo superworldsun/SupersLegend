@@ -3,15 +3,13 @@ package com.superworldsun.superslegend.registries;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.*;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
-import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
+import com.superworldsun.superslegend.entities.projectiles.bombs.*;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.*;
-import com.superworldsun.superslegend.entities.projectiles.hooks.ClawshotEntity;
-import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
-import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
+import com.superworldsun.superslegend.entities.projectiles.hooks.*;
+import com.superworldsun.superslegend.entities.projectiles.magic.*;
 import com.superworldsun.superslegend.entities.projectiles.mastersword.MasterSwordSwordEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -121,7 +119,8 @@ public class EntityTypeInit
   public static final RegistryObject<EntityType<FaroresWindEntity>> FARORES_WIND = ENTITIES.register("farores_wind",
 			() -> EntityType.Builder.<FaroresWindEntity>of(FaroresWindEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/farores_wind").toString()));
-
+	
+	public static final RegistryObject<EntityType<FireballEntity>> FIREBALL = ENTITIES.register("fireball", FireballEntity::createEntityType);
 
 	//MOBS
 
