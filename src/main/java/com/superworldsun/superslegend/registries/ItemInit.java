@@ -11,6 +11,8 @@ import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.food.*;
 import com.superworldsun.superslegend.items.items.*;
 import com.superworldsun.superslegend.items.weapons.*;
+import com.superworldsun.superslegend.songs.OcarinaSong;
+import com.superworldsun.superslegend.songs.songs.*;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import com.superworldsun.superslegend.util.cookingpot.FoodCategory;
 
@@ -111,6 +113,30 @@ public class ItemInit
 			() -> new HeartContainer(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
 			() -> new VoidContainer(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+
+
+	//Songs
+	public static final RegistryObject<Item> ZELDAS_LULLABY_SHEET = ITEMS.register("zeldas_lullaby_sheet", () -> new SongSheet(OcarinaSongInit.ZELDAS_LULLABY));
+	public static final RegistryObject<Item> EPONAS_SONG_SHEET = ITEMS.register("eponas_song_sheet", () -> new SongSheet(OcarinaSongInit.EPONAS_SONG));
+	public static final RegistryObject<Item> SARIAS_SONG_SHEET = ITEMS.register("sarias_song_sheet", () -> new SongSheet(OcarinaSongInit.SARIAS_SONG));
+	public static final RegistryObject<Item> SONG_OF_TIME_SHEET = ITEMS.register("song_of_time_sheet", () -> new SongSheet(OcarinaSongInit.SONG_OF_TIME));
+	public static final RegistryObject<Item> SUNS_SONG_SHEET = ITEMS.register("suns_song_sheet", () -> new SongSheet(OcarinaSongInit.SUNS_SONG));
+	public static final RegistryObject<Item> SONG_OF_STORMS_SHEET = ITEMS.register("song_of_storms_sheet", () -> new SongSheet(OcarinaSongInit.SONG_OF_STORMS));
+	public static final RegistryObject<Item> MINUET_OF_FOREST_SHEET = ITEMS.register("minuet_of_forest_sheet", () -> new SongSheet(OcarinaSongInit.MINUET_OF_FOREST));
+	public static final RegistryObject<Item> BOLERO_OF_FIRE_SHEET = ITEMS.register("bolero_of_fire_sheet", () -> new SongSheet(OcarinaSongInit.BOLERO_OF_FIRE));
+	public static final RegistryObject<Item> SERENADE_OF_WATER_SHEET = ITEMS.register("serenade_of_water_sheet", () -> new SongSheet(OcarinaSongInit.SERENADE_OF_WATER));
+	public static final RegistryObject<Item> NOCTURNE_OF_SHADOW_SHEET = ITEMS.register("nocturne_of_shadow_sheet", () -> new SongSheet(OcarinaSongInit.NOCTURNE_OF_SHADOW));
+	public static final RegistryObject<Item> REQUIEM_OF_SPIRIT_SHEET = ITEMS.register("requiem_of_spirit_sheet", () -> new SongSheet(OcarinaSongInit.REQUIEM_OF_SPIRIT));
+	public static final RegistryObject<Item> SONG_OF_SOARING_SHEET = ITEMS.register("song_of_soaring_sheet", () -> new SongSheet(OcarinaSongInit.SONG_OF_SOARING));
+	public static final RegistryObject<Item> INVERTED_SONG_OF_TIME_SHEET = ITEMS.register("inverted_song_of_time_sheet", () -> new SongSheet(OcarinaSongInit.INVERTED_SONG_OF_TIME));
+	public static final RegistryObject<Item> SONATA_OF_AWAKENING_SHEET = ITEMS.register("sonata_of_awakening_sheet", () -> new SongSheet(OcarinaSongInit.SONATA_OF_AWAKENING));
+	public static final RegistryObject<Item> SONG_OF_DOUBLE_TIME_SHEET = ITEMS.register("song_of_double_time_sheet", () -> new SongSheet(OcarinaSongInit.SONG_OF_DOUBLE_TIME));
+	public static final RegistryObject<Item> PRELUDE_OF_LIGHT_SHEET = ITEMS.register("prelude_of_light_sheet", () -> new SongSheet(OcarinaSongInit.PRELUDE_OF_LIGHT));
+	public static final RegistryObject<Item> GORON_LULLABY_SHEET = ITEMS.register("goron_lullaby_sheet", () -> new SongSheet(OcarinaSongInit.GORON_LULLABY));
+	public static final RegistryObject<Item> OATH_TO_ORDER_SHEET = ITEMS.register("oath_to_order_sheet", () -> new SongSheet(OcarinaSongInit.OATH_TO_ORDER));
+	public static final RegistryObject<Item> NEW_WAVE_BOSSA_NOVA_SHEET = ITEMS.register("new_wave_bossa_sheet", () -> new SongSheet(OcarinaSongInit.NEW_WAVE_BOSSA_NOVA));
+	public static final RegistryObject<Item> ELEGY_OF_EMPTYNESS_SHEET = ITEMS.register("elegy_of_emptyness_sheet", () -> new SongSheet(OcarinaSongInit.ELEGY_OF_EMPTYNESS));
+	public static final RegistryObject<Item> SONG_OF_HEALING_SHEET = ITEMS.register("song_of_healing_sheet", () -> new SongSheet(OcarinaSongInit.SONG_OF_HEALING));
 
 	/*public static final RegistryObject<Item> SPINNER = ITEMS.register("spinner",
 			() -> new SpinnerItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
@@ -776,9 +802,6 @@ public class ItemInit
 
 	public static final RegistryObject<Item> STONE_TOWER_TEMPLE_ILLUSION_DISC = ITEMS.register("stone_tower_temple_illusion_disc",
 			() -> new MusicDiscItem(1, SoundInit.STONE_TOWER_TEMPLE_ILLUSION_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-
-	public static final RegistryObject<Item> SONG_OF_STORMS_SHEET = ITEMS.register("song_of_storms_sheet", () -> new SongSheet(OcarinaSongInit.SONG_OF_STORMS));
-
 
 	//MobEggs
 	//public static final RegistryObject<TPBokoblinSpawnEgg> TP_BOKOBLIN_EGG = ITEMS.register("tp_bokoblin_egg",

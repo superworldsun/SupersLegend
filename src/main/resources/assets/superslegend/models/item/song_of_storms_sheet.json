@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+	"layer0": "superslegend:item/song_of_storms_sheet"
+  }
+}
