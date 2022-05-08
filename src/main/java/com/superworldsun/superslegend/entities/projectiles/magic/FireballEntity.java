@@ -28,6 +28,10 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class FireballEntity extends DamagingProjectileEntity
 {
+	// 5 seconds of max flight time
+	protected int maxAge = 100;
+	protected int age;
+	
 	public FireballEntity(Vector3d postition, Vector3d motion, World world, PlayerEntity owner)
 	{
 		super(EntityTypeInit.FIREBALL.get(), world);
@@ -46,8 +50,9 @@ public class FireballEntity extends DamagingProjectileEntity
 	{
 		int particlesDensity = 40;
 		int secondsOnFire = 3;
-		float explosionRadius = 2F;
-		float particlesSpeed = 1F;
+		// 0 radius means no damage, only visual effects
+		float explosionRadius = 0F;
+		float particlesSpeed = 0.4F;
 		float particlesSpread = 0.2F;
 		float effectRadius = 4F;
 		// 50% of blocks will be set on fire
@@ -108,6 +113,14 @@ public class FireballEntity extends DamagingProjectileEntity
 	@Override
 	public void tick()
 	{
+		if (age > maxAge)
+		{
+			remove();
+			return;
+		}
+		
+		age++;
+		
 		int particlesDensity = 3;
 		float particlesSpeed = 0.1F;
 		float particlesSpread = 0.2F;
