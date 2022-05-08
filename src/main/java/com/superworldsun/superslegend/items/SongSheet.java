@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.items;
 
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.Supplier;
 
 import com.superworldsun.superslegend.SupersLegendMain;
@@ -13,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class SongSheet extends Item
@@ -26,21 +28,25 @@ public class SongSheet extends Item
 	}
 	
 	@Override
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
+	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand)
 	{
-		Set<OcarinaSong> learnedSongs = LearnedSongsProvider.get(playerIn).getLearnedSongs();
+		Set<OcarinaSong> learnedSongs = LearnedSongsProvider.get(playerEntity).getLearnedSongs();
 		
-		if (!learnedSongs.contains(songSupplier.get()))
+		if (!world.isClientSide)
 		{
-			if (!worldIn.isClientSide)
-			{
+			if (!learnedSongs.contains(songSupplier.get()))
+			{				
 				learnedSongs.add(songSupplier.get());
-				LearnedSongsProvider.sync((ServerPlayerEntity) playerIn);
+				LearnedSongsProvider.sync((ServerPlayerEntity) playerEntity);
+				playerEntity.sendMessage(new TranslationTextComponent("item.superslegend.song_sheet.learned", songSupplier.get().getLocalizedName()), UUID.randomUUID());
+				return ActionResult.success(playerEntity.getItemInHand(hand));
 			}
-			
-			return ActionResult.success(playerIn.getItemInHand(handIn));
+			else
+			{
+				playerEntity.sendMessage(new TranslationTextComponent("item.superslegend.song_sheet.already_know"), UUID.randomUUID());
+			}
 		}
 		
-		return ActionResult.fail(playerIn.getItemInHand(handIn));
+		return ActionResult.fail(playerEntity.getItemInHand(hand));
 	}
 }
