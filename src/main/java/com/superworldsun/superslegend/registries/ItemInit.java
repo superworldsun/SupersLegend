@@ -137,6 +137,8 @@ public class ItemInit
 	public static final RegistryObject<Item> NEW_WAVE_BOSSA_NOVA_SHEET = ITEMS.register("new_wave_bossa_sheet", () -> new SongSheet(OcarinaSongInit.NEW_WAVE_BOSSA_NOVA));
 	public static final RegistryObject<Item> ELEGY_OF_EMPTYNESS_SHEET = ITEMS.register("elegy_of_emptyness_sheet", () -> new SongSheet(OcarinaSongInit.ELEGY_OF_EMPTYNESS));
 	public static final RegistryObject<Item> SONG_OF_HEALING_SHEET = ITEMS.register("song_of_healing_sheet", () -> new SongSheet(OcarinaSongInit.SONG_OF_HEALING));
+	public static final RegistryObject<Item> ALL_SONGS_SHEET = ITEMS.register("all_songs_sheet", AllSongsSheet::new);
+	public static final RegistryObject<Item> AMNEISA_SHEET = ITEMS.register("amneisa_sheet", AmnesiaSheet::new);
 
 	/*public static final RegistryObject<Item> SPINNER = ITEMS.register("spinner",
 			() -> new SpinnerItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
