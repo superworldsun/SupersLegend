@@ -121,6 +121,7 @@ public class EntityTypeInit
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/farores_wind").toString()));
 	
 	public static final RegistryObject<EntityType<FireballEntity>> FIREBALL = ENTITIES.register("fireball", FireballEntity::createEntityType);
+	public static final RegistryObject<EntityType<IceballEntity>> ICEBALL = ENTITIES.register("iceball", IceballEntity::createEntityType);
 
 	//MOBS
 

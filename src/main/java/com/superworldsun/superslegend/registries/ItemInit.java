@@ -11,8 +11,6 @@ import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.food.*;
 import com.superworldsun.superslegend.items.items.*;
 import com.superworldsun.superslegend.items.weapons.*;
-import com.superworldsun.superslegend.songs.OcarinaSong;
-import com.superworldsun.superslegend.songs.songs.*;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import com.superworldsun.superslegend.util.cookingpot.FoodCategory;
 
@@ -360,8 +358,7 @@ public class ItemInit
 	public static final RegistryObject<Item> QUAKE_MEDALLION = ITEMS.register("quake_medallion",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
 	public static final RegistryObject<Item> FIRE_ROD = ITEMS.register("fire_rod", FireRod::new);
-	public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod", IceRod::new);
 	public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick",
 			() -> new DekuStick(new Item.Properties().stacksTo(15).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit",
