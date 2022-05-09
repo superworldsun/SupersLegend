@@ -7,6 +7,8 @@ import com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.TagInit;
 
+import net.minecraft.block.AbstractFireBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -19,6 +21,7 @@ import net.minecraft.item.UseAction;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -48,7 +51,7 @@ public class FireRod extends Item
 				// per use
 				float manacost = 2F;
 				
-				if (ManaProvider.get(playerEntity).getMana() >= manacost)
+				if (ManaProvider.get(playerEntity).getMana() >= manacost || playerEntity.abilities.instabuild)
 				{
 					float fireballSpeed = 0.5F;
 					Vector3d playerLookVec = playerEntity.getLookAngle();
@@ -93,9 +96,9 @@ public class FireRod extends Item
 			float manacost = 0.025F;
 			PlayerEntity player = (PlayerEntity) livingEntity;
 			
-			if (ManaProvider.get(player).getMana() < manacost)
+			if (ManaProvider.get(player).getMana() < manacost && !player.abilities.instabuild)
 			{
-				// no effect in not enough mana
+				// no effect in not enough mana and not in creative mod
 				return;
 			}
 			
@@ -139,6 +142,16 @@ public class FireRod extends Item
 						// replaces meltable blocks with air
 						world.setBlock(hitPos, Blocks.AIR.defaultBlockState(), 3);
 					}
+					else
+					{
+						BlockPos firePos = hitPos.relative(blockRayTraceResult.getDirection());						
+						// sets other blocks on fire
+						if (AbstractFireBlock.canBePlacedAt(world, firePos, blockRayTraceResult.getDirection()))
+						{
+							BlockState fireBlockState = AbstractFireBlock.getState(world, firePos);
+							world.setBlock(firePos, fireBlockState, 11);
+						}
+					}
 				}
 			}
 			
@@ -154,7 +167,11 @@ public class FireRod extends Item
 				entityRayTraceResult.getEntity().setSecondsOnFire(secondsOnFire);
 			}
 			
-			ManaProvider.get(player).spendMana(manacost);
+			// only spend mana in survival mode
+			if (!player.abilities.instabuild)
+			{
+				ManaProvider.get(player).spendMana(manacost);
+			}
 			
 			// plays sound 4 times per second
 			if (timeInUse % 5 == 0)

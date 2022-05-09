@@ -9,6 +9,8 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.TagInit;
 
+import net.minecraft.block.AbstractFireBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -19,6 +21,8 @@ import net.minecraft.entity.projectile.DamagingProjectileEntity;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
@@ -48,58 +52,66 @@ public class FireballEntity extends DamagingProjectileEntity
 	@Override
 	protected void onHit(RayTraceResult rayTraceResult)
 	{
-		int particlesDensity = 40;
-		int secondsOnFire = 3;
-		// 0 radius means no damage, only visual effects
-		float explosionRadius = 0F;
-		float particlesSpeed = 0.4F;
-		float particlesSpread = 0.2F;
-		float effectRadius = 4F;
-		// 50% of blocks will be set on fire
-		float fireChance = 0.5F;
-		level.explode(this, getX(), getY(), getZ(), explosionRadius, Explosion.Mode.NONE);
-		
-		for (int i = 0; i < particlesDensity; i++)
+		if (!level.isClientSide)
 		{
-			double particleX = getX() + (random.nextFloat() * 2 - 1) * particlesSpread;
-			double particleY = getY() + (random.nextFloat() * 2 - 1) * particlesSpread;
-			double particleZ = getZ() + (random.nextFloat() * 2 - 1) * particlesSpread;
-			double particleMotionX = (random.nextFloat() * 2 - 1) * particlesSpeed;
-			double particleMotionY = (random.nextFloat() * 2 - 1) * particlesSpeed;
-			double particleMotionZ = (random.nextFloat() * 2 - 1) * particlesSpeed;
-			IParticleData particle = random.nextBoolean() ? ParticleTypes.FLAME : ParticleTypes.SMOKE;
-			level.addParticle(particle, particleX, particleY, particleZ, particleMotionX, particleMotionY, particleMotionZ);
-		}
-		
-		// we want to only attack living entities
-		Predicate<Entity> canHit = e -> e instanceof LivingEntity;
-		Predicate<Entity> isInRadius = e -> distanceTo(e) <= effectRadius;
-		List<Entity> entitiesInRadius = level.getEntities(this, getBoundingBox().inflate(effectRadius), canHit.and(isInRadius));
-		entitiesInRadius.forEach(entity ->
-		{
-			entity.setSecondsOnFire(secondsOnFire);
-		});
-		
-		// here we are searching for blocks in radius
-		for (int x = (int) -effectRadius; x <= effectRadius; x++)
-		{
-			for (int y = (int) -effectRadius; y <= effectRadius; y++)
+			int particlesDensity = 40;
+			int secondsOnFire = 3;
+			// 0 radius means no damage, only visual effects
+			float explosionRadius = 0F;
+			float particlesSpeed = 0.4F;
+			float particlesSpread = 0.2F;
+			float effectRadius = 4F;
+			// 50% of blocks will be set on fire
+			float fireChance = 0.5F;
+			level.explode(this, getX(), getY(), getZ(), explosionRadius, Explosion.Mode.NONE);
+			
+			for (int i = 0; i < particlesDensity; i++)
 			{
-				for (int z = (int) -effectRadius; z <= effectRadius; z++)
+				double particleX = getX() + (random.nextFloat() * 2 - 1) * particlesSpread;
+				double particleY = getY() + (random.nextFloat() * 2 - 1) * particlesSpread;
+				double particleZ = getZ() + (random.nextFloat() * 2 - 1) * particlesSpread;
+				double particleMotionX = (random.nextFloat() * 2 - 1) * particlesSpeed;
+				double particleMotionY = (random.nextFloat() * 2 - 1) * particlesSpeed;
+				double particleMotionZ = (random.nextFloat() * 2 - 1) * particlesSpeed;
+				IParticleData particle = random.nextBoolean() ? ParticleTypes.FLAME : ParticleTypes.SMOKE;
+				level.addParticle(particle, particleX, particleY, particleZ, particleMotionX, particleMotionY, particleMotionZ);
+			}
+			
+			// we want to only attack living entities
+			Predicate<Entity> canHit = e -> e instanceof LivingEntity;
+			Predicate<Entity> isInRadius = e -> distanceTo(e) <= effectRadius;
+			List<Entity> entitiesInRadius = level.getEntities(this, getBoundingBox().inflate(effectRadius), canHit.and(isInRadius));
+			entitiesInRadius.forEach(entity ->
+			{
+				entity.setSecondsOnFire(secondsOnFire);
+			});
+			
+			// here we are searching for blocks in radius
+			for (int x = (int) -effectRadius; x <= effectRadius; x++)
+			{
+				for (int y = (int) -effectRadius; y <= effectRadius; y++)
 				{
-					BlockPos pos = blockPosition().north(x).above(y).east(z);
-					
-					// if the block is in radius
-					if (blockPosition().distSqr(pos) <= effectRadius * effectRadius)
+					for (int z = (int) -effectRadius; z <= effectRadius; z++)
 					{
-						if (level.getBlockState(pos).is(TagInit.CAN_MELT))
+						BlockPos pos = blockPosition().north(x).above(y).east(z);
+						
+						// if the block is in radius
+						if (blockPosition().distSqr(pos) <= effectRadius * effectRadius)
 						{
-							// replaces meltable blocks with air
-							level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-						}
-						else if (level.getBlockState(pos).isCollisionShapeFullBlock(level, pos) && level.getBlockState(pos.above()).is(Blocks.AIR) && random.nextFloat() < fireChance)
-						{
-							level.setBlock(pos.above(), Blocks.FIRE.defaultBlockState(), 3);
+							if (level.getBlockState(pos).is(TagInit.CAN_MELT))
+							{
+								// replaces meltable blocks with air
+								level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+							}
+							else if (level.getBlockState(pos).isCollisionShapeFullBlock(level, pos) && level.getBlockState(pos.above()).is(Blocks.AIR) && random.nextFloat() < fireChance)
+							{
+								// sets other blocks on fire
+								if (AbstractFireBlock.canBePlacedAt(level, pos.above(), Direction.UP))
+								{
+									BlockState fireBlockState = AbstractFireBlock.getState(level, pos.above());
+									level.setBlock(pos.above(), fireBlockState, 11);
+								}
+							}
 						}
 					}
 				}
@@ -108,6 +120,12 @@ public class FireballEntity extends DamagingProjectileEntity
 		
 		// removes fireball from the world to prevent multiple explosions
 		remove();
+	}
+	
+	@Override
+	protected float getInertia()
+	{
+		return 1F;
 	}
 	
 	@Override
@@ -138,6 +156,12 @@ public class FireballEntity extends DamagingProjectileEntity
 		}
 		
 		super.tick();
+	}
+	
+	@Override
+	public boolean hurt(DamageSource damageSource, float damage)
+	{
+		return false;
 	}
 	
 	@Nullable
