@@ -46,10 +46,10 @@ public class SupersLegendConfig
 	private SupersLegendConfig(ForgeConfigSpec.Builder configSpecBuilder) {
 		//General
 		playerMaxHealth = configSpecBuilder
-				.comment("Whether to enable dynamic hand/entity lighting for torches/etc")
-				.defineInRange("playerMaxHealth", 20.0D, 1.0D, 20.0D);
+				.comment("Players health they will start with. One Minecraft heart is 2, and a full bar is 20. Its Recommended you only use Even numbers.")
+				.defineInRange("playerMaxHealth", 20D, 1D, 40D);
 		explosivegriefing = configSpecBuilder
-				.comment("Whether bombs/etc cause block destruction")
+				.comment("Whether bombs will cause block destruction")
 				.define("explosivegriefing", true);
 
 		RegularBoomerangRange = configSpecBuilder
