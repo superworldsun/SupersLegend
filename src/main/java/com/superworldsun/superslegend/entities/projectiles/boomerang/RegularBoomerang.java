@@ -40,7 +40,6 @@ public class RegularBoomerang extends BoomerangEntity {
 
     @Override
     public void beforeTurnAround(PlayerEntity player) {
-        // Following is diamond boomerang only
         // Follows where the entity is looking
         if (!isBouncing && SupersLegendConfig.getInstance().RegularBoomerangFollows.get()) {
             double x = -MathHelper.sin((player.yRot * 3.141593F) / 180F);

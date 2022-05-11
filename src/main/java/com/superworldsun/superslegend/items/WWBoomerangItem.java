@@ -17,14 +17,9 @@ import net.minecraft.world.World;
 public class WWBoomerangItem extends Item {
 
 
-    public WWBoomerangItem(Properties p_i48487_1_) {
-        super(p_i48487_1_);
+    public WWBoomerangItem(Properties properties) {
+        super(properties);
     }
-
-    /*@Override
-    protected boolean isInGroup(ItemGroup group) {
-        return SupersLegendConfig.COMMON.boomerangsEnabled.get() && super.isInGroup(group);
-    }*/
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {

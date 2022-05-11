@@ -29,9 +29,14 @@ public class SupersLegendConfig
 	public final ForgeConfigSpec.IntValue MagicBoomerangRange;
 	public final ForgeConfigSpec.IntValue MagicBoomerangDamage;
 	public final ForgeConfigSpec.BooleanValue MagicBoomerangFollows;
+	public final ForgeConfigSpec.IntValue WWBoomerangRange;
+	public final ForgeConfigSpec.IntValue WWBoomerangDamage;
+	public final ForgeConfigSpec.BooleanValue WWBoomerangFollows;
+	public final ForgeConfigSpec.IntValue GaleBoomerangRange;
+	public final ForgeConfigSpec.IntValue GaleBoomerangDamage;
+	public final ForgeConfigSpec.BooleanValue GaleBoomerangFollows;
 	public final ForgeConfigSpec.BooleanValue breaksTorches;
 	public final ForgeConfigSpec.BooleanValue breaksFlowers;
-	//public final ForgeConfigSpec.BooleanValue breaksGrass;
 	public final ForgeConfigSpec.BooleanValue breaksTallGrass;
 	public final ForgeConfigSpec.BooleanValue activatesLevers;
 	public final ForgeConfigSpec.BooleanValue activatesButtons;
@@ -59,13 +64,33 @@ public class SupersLegendConfig
 
 		MagicBoomerangRange = configSpecBuilder
 				.comment("The maximum range of travel before returning to player.")
-				.defineInRange("MagicBoomerangRange", 55, 1, 200);
+				.defineInRange("MagicBoomerangRange", 20, 1, 200);
 		MagicBoomerangDamage = configSpecBuilder
 				.comment("The amount of damage that is done when hitting any living entity.")
 				.defineInRange("MagicBoomerangDamage", 6, 1, 500);
 		MagicBoomerangFollows = configSpecBuilder
 				.comment("The Magic Boomerang will follow your mouse till it hits it's range limit.")
 				.define("MagicBoomerangFollows", false);
+
+		WWBoomerangRange = configSpecBuilder
+				.comment("The maximum range of travel before returning to player.")
+				.defineInRange("WWBoomerangRange", 40, 1, 200);
+		WWBoomerangDamage = configSpecBuilder
+				.comment("The amount of damage that is done when hitting any living entity.")
+				.defineInRange("WWBoomerangDamage", 5, 1, 500);
+		WWBoomerangFollows = configSpecBuilder
+				.comment("The WW Boomerang will follow your mouse till it hits it's range limit.")
+				.define("WWBoomerangFollows", true);
+
+		GaleBoomerangRange = configSpecBuilder
+				.comment("The maximum range of travel before returning to player.")
+				.defineInRange("GaleBoomerangRange", 40, 1, 200);
+		GaleBoomerangDamage = configSpecBuilder
+				.comment("The amount of damage that is done when hitting any living entity.")
+				.defineInRange("GaleBoomerangDamage", 5, 1, 500);
+		GaleBoomerangFollows = configSpecBuilder
+				.comment("The Gale Boomerang will follow your mouse till it hits it's range limit.")
+				.define("GaleBoomerangFollows", true);
 
 		turnAroundItem = configSpecBuilder
 				.comment("Comes back to the player after picking up items.")
@@ -97,7 +122,6 @@ public class SupersLegendConfig
 		activatesTripWire = configSpecBuilder
 				.comment("Can boomerang activate/trigger tripwire(s).")
 				.define("activatesTripWire", true);
-
 
 	}
 

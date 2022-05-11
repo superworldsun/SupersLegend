@@ -16,18 +16,18 @@ public class WWBoomerang extends WWBoomerangEntity {
 
     public WWBoomerang(EntityType<WWBoomerangEntity> type, World world) {
         super(type, world);
-        this.timeBeforeTurnAround = SupersLegendConfig.getInstance().RegularBoomerangRange.get() <= 0 ? 20 : SupersLegendConfig.getInstance().RegularBoomerangRange.get();
+        this.timeBeforeTurnAround = SupersLegendConfig.getInstance().WWBoomerangRange.get() <= 0 ? 20 : SupersLegendConfig.getInstance().WWBoomerangRange.get();
     }
 
     public WWBoomerang(World worldIn, PlayerEntity entity, ItemStack itemstack, Hand hand) {
         super(EntityTypeInit.WW_BOOMERANG.get(), worldIn, entity, itemstack, hand);
-        this.timeBeforeTurnAround = SupersLegendConfig.getInstance().RegularBoomerangRange.get() <= 0 ? 20 : SupersLegendConfig.getInstance().RegularBoomerangRange.get();
+        this.timeBeforeTurnAround = SupersLegendConfig.getInstance().WWBoomerangRange.get() <= 0 ? 20 : SupersLegendConfig.getInstance().WWBoomerangRange.get();
     }
 
     @Override
     protected int getDamage(Entity hitEntity, PlayerEntity player) {
-        if (SupersLegendConfig.getInstance().RegularBoomerangDamage.get() > 0) {
-            return SupersLegendConfig.getInstance().RegularBoomerangDamage.get();
+        if (SupersLegendConfig.getInstance().WWBoomerangDamage.get() > 0) {
+            return SupersLegendConfig.getInstance().WWBoomerangDamage.get();
         }
 
         return 0;
@@ -42,7 +42,7 @@ public class WWBoomerang extends WWBoomerangEntity {
     public void beforeTurnAround(PlayerEntity player) {
         // Following is diamond boomerang only
         // Follows where the entity is looking
-        if (!isBouncing && SupersLegendConfig.getInstance().RegularBoomerangFollows.get()) {
+        if (!isBouncing && SupersLegendConfig.getInstance().WWBoomerangFollows.get()) {
             double x = -MathHelper.sin((player.yRot * 3.141593F) / 180F);
             double z = MathHelper.cos((player.yRot * 3.141593F) / 180F);
 

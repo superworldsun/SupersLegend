@@ -16,18 +16,18 @@ public class GaleBoomerang extends GaleBoomerangEntity {
 
     public GaleBoomerang(EntityType<GaleBoomerangEntity> type, World world) {
         super(type, world);
-        this.timeBeforeTurnAround = SupersLegendConfig.getInstance().RegularBoomerangRange.get() <= 0 ? 20 : SupersLegendConfig.getInstance().RegularBoomerangRange.get();
+        this.timeBeforeTurnAround = SupersLegendConfig.getInstance().GaleBoomerangRange.get() <= 0 ? 20 : SupersLegendConfig.getInstance().GaleBoomerangRange.get();
     }
 
     public GaleBoomerang(World worldIn, PlayerEntity entity, ItemStack itemstack, Hand hand) {
         super(EntityTypeInit.GALE_BOOMERANG.get(), worldIn, entity, itemstack, hand);
-        this.timeBeforeTurnAround = SupersLegendConfig.getInstance().RegularBoomerangRange.get() <= 0 ? 20 : SupersLegendConfig.getInstance().RegularBoomerangRange.get();
+        this.timeBeforeTurnAround = SupersLegendConfig.getInstance().GaleBoomerangRange.get() <= 0 ? 20 : SupersLegendConfig.getInstance().GaleBoomerangRange.get();
     }
 
     @Override
     protected int getDamage(Entity hitEntity, PlayerEntity player) {
-        if (SupersLegendConfig.getInstance().RegularBoomerangDamage.get() > 0) {
-            return SupersLegendConfig.getInstance().RegularBoomerangDamage.get();
+        if (SupersLegendConfig.getInstance().GaleBoomerangDamage.get() > 0) {
+            return SupersLegendConfig.getInstance().GaleBoomerangDamage.get();
         }
 
         return 0;
@@ -42,7 +42,7 @@ public class GaleBoomerang extends GaleBoomerangEntity {
     public void beforeTurnAround(PlayerEntity player) {
         // Following is diamond boomerang only
         // Follows where the entity is looking
-        if (!isBouncing && SupersLegendConfig.getInstance().RegularBoomerangFollows.get()) {
+        if (!isBouncing && SupersLegendConfig.getInstance().GaleBoomerangFollows.get()) {
             double x = -MathHelper.sin((player.yRot * 3.141593F) / 180F);
             double z = MathHelper.cos((player.yRot * 3.141593F) / 180F);
 
