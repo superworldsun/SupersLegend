@@ -54,7 +54,7 @@ public class SupersLegendConfig
 
 		RegularBoomerangRange = configSpecBuilder
 				.comment("The maximum range of travel before returning to player.")
-				.defineInRange("RegularBoomerangRange", 25, 1, 200);
+				.defineInRange("RegularBoomerangRange", 28, 1, 200);
 		RegularBoomerangDamage = configSpecBuilder
 				.comment("The amount of damage that is done when hitting any living entity.")
 				.defineInRange("RegularBoomerangDamage", 5, 1, 500);
@@ -64,7 +64,7 @@ public class SupersLegendConfig
 
 		MagicBoomerangRange = configSpecBuilder
 				.comment("The maximum range of travel before returning to player.")
-				.defineInRange("MagicBoomerangRange", 20, 1, 200);
+				.defineInRange("MagicBoomerangRange", 19, 1, 200);
 		MagicBoomerangDamage = configSpecBuilder
 				.comment("The amount of damage that is done when hitting any living entity.")
 				.defineInRange("MagicBoomerangDamage", 6, 1, 500);
