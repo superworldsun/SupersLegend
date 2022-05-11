@@ -41,7 +41,7 @@ public class MagicBoomerang extends MagicBoomerangEntity {
     @Override
     public void beforeTurnAround(PlayerEntity player) {
         // Follows where the entity is looking
-        if (!isBouncing && SupersLegendConfig.getInstance().RegularBoomerangFollows.get()) {
+        if (!isBouncing && SupersLegendConfig.getInstance().MagicBoomerangFollows.get()) {
             double x = -MathHelper.sin((player.yRot * 3.141593F) / 180F);
             double z = MathHelper.cos((player.yRot * 3.141593F) / 180F);
 
