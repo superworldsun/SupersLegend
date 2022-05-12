@@ -112,6 +112,10 @@ public class ItemInit
 	public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
 			() -> new VoidContainer(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
+	public static final RegistryObject<Item> UNAPPRAISED_RING = ITEMS.register("unappraised_ring",
+			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> APPRAISED_RING_BOX = ITEMS.register("appraised_ring_box",
+			() -> new AppraisedRingBox(new Item.Properties().stacksTo(64).tab(SupersLegendMain.RESOURCES)));
 
 	//Songs
 	public static final RegistryObject<Item> ZELDAS_LULLABY_SHEET = ITEMS.register("zeldas_lullaby_sheet", () -> new SongSheet(OcarinaSongInit.ZELDAS_LULLABY));
@@ -745,7 +749,7 @@ public class ItemInit
 	public static final RegistryObject<Item> ARMOR_RING_L2 = ITEMS.register("armor_ring_l2", ArmorRingL2::new);
 	public static final RegistryObject<Item> ARMOR_RING_L3 = ITEMS.register("armor_ring_l3", ArmorRingL3::new);
 	public static final RegistryObject<Item> CURSED_RING = ITEMS.register("cursed_ring", CursedRing::new);
-	public static final RegistryObject<Item> HEART_RING_1 = ITEMS.register("heart_ring_l1", HeartRingL1::new);
+	public static final RegistryObject<Item> HEART_RING_L1 = ITEMS.register("heart_ring_l1", HeartRingL1::new);
 	public static final RegistryObject<Item> HEART_RING_L2 = ITEMS.register("heart_ring_l2", HeartRingL2::new);
 	public static final RegistryObject<Item> GREEN_LUCK_RING = ITEMS.register("green_luck_ring", GreenLuckRing::new);
 	public static final RegistryObject<Item> BLUE_LUCK_RING = ITEMS.register("blue_luck_ring", BlueLuckRing::new);
@@ -756,6 +760,7 @@ public class ItemInit
 	public static final RegistryObject<Item> BLUE_HOLY_RING = ITEMS.register("blue_holy_ring", BlueHolyRing::new);
 	public static final RegistryObject<Item> RED_HOLY_RING = ITEMS.register("red_holy_ring", RedHolyRing::new);
 	public static final RegistryObject<Item> SWIMMERS_RING = ITEMS.register("swimmers_ring", SwimmersRing::new);
+	//When Adding Rings, Remember to Add them to AppraisedRingBox
 
 	//CHARMS
 	public static final RegistryObject<SilverScale> SILVER_SCALE = ITEMS.register("silver_scale",
