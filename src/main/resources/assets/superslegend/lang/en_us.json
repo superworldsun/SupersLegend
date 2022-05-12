@@ -79,6 +79,7 @@
   "item.superslegend.heart_piece": "Heart Piece",
   "item.superslegend.heart_container": "Heart Container",
   "item.superslegend.void_container": "Void Container",
+  "item.superslegend.appraised_ring_box": "Appraised Ring Box",
   "item.superslegend.rupee_pouch": "Rupee Pouch",
   "item.superslegend.wallet": "Wallet",
   "item.superslegend.medium_wallet": "Medium Wallet",
@@ -127,6 +128,7 @@
   "item.superslegend.cooked_hylian_loach": "Cooked Hylian Loach",
   "item.superslegend.moon_pearl": "Moon Pearl",
   "item.superslegend.heros_secret_stash": "Hero's Secret Stash",
+
   "block.superslegend.torch_tower": "Torch Tower",
   "block.superslegend.rupee_block": "Rupee Block",
   "block.superslegend.blue_rupee_block": "Blue Rupee Block",
