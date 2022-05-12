@@ -35,12 +35,11 @@ public class HeartRingL1 extends RingItem
 		
 		PlayerEntity player = (PlayerEntity) livingEntity;
 		// Get the Ring as an ItemStack
-		ItemStack ring = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.HEART_RING_1.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		ItemStack ring = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.HEART_RING_L1.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 		
 		// Check if player is wearing it.
 		if (!ring.isEmpty())
 		{
-			
 			if (player.getHealth() < player.getMaxHealth() && player.tickCount % 600 == 0)
 			{
 				player.heal(2.0f);
