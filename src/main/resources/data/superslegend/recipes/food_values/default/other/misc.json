@@ -1,0 +1,11 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "superslegend:goat_butter",
+	"minecraft:wheat",
+	"minecraft:sugar"
+  ],
+  "values": {
+    "OTHER": 1.0
+  }
+}

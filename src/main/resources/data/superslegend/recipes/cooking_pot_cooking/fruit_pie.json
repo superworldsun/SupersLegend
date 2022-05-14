@@ -1,0 +1,53 @@
+{
+  "type": "superslegend:cooking_pot_cooking",
+  "requirements": [
+    {
+      "type": "must_contain_ingredient",
+      "ingredient": [
+        {
+          "item": "superslegend:goat_butter"
+        }
+      ],
+      "quantity": 1
+    },
+	{
+      "type": "must_contain_ingredient",
+      "ingredient": [
+        {
+          "item": "minecraft:sugar"
+        },
+        {
+          "item": "minecraft:sugar_cane"
+        }
+      ],
+      "quantity": 1
+    },
+	{
+      "type": "must_contain_ingredient",
+      "ingredient": [
+        {
+          "item": "minecraft:wheat"
+        }
+      ],
+      "quantity": 1
+    },
+    {
+      "type": "category_min",
+      "category": "FRUIT",
+      "min": 2.0
+    },
+	{
+      "type": "category_max",
+      "category": "MEAT",
+      "max": 0.0
+    },
+	{
+      "type": "category_max",
+      "category": "MUSHROOM",
+      "max": 0.0
+    }
+  ],
+  "result": "superslegend:fruit_pie",
+  "priority": 10,
+  "cookingtime": 200
+}
