@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.entities.projectiles.boomerang;
 
 import com.superworldsun.superslegend.config.SupersLegendConfig;
-import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -36,12 +35,11 @@ public class RegularBoomerang extends BoomerangEntity {
 
     @Override
     public DamageSource causeNewDamage(BoomerangEntity entityboomerang, Entity entity) {
-        return (new IndirectEntityDamageSource("regular_boomerang", entityboomerang, entity)).setProjectile();
+        return (new IndirectEntityDamageSource("boomerang", entityboomerang, entity)).setProjectile();
     }
 
     @Override
     public void beforeTurnAround(PlayerEntity player) {
-        // Following is diamond boomerang only
         // Follows where the entity is looking
         if (!isBouncing && SupersLegendConfig.getInstance().RegularBoomerangFollows.get()) {
             double x = -MathHelper.sin((player.yRot * 3.141593F) / 180F);

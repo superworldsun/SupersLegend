@@ -331,6 +331,11 @@
 		"subtitle": "superslegend.subtitle.lens_of_truth_off",
 		"sounds": [ "superslegend:item/lens_of_truth_off" ]
 	},
+	"item.floor_switch": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.floor_switch",
+		"sounds": [ "superslegend:item/floor_switch" ]
+	},
 	"item.rupee_green": {
 		"category": "player",
 		"subtitle": "superslegend.subtitle.rupee_green",
@@ -355,6 +360,31 @@
 		"category": "player",
 		"subtitle": "superslegend.subtitle.book_of_mudora",
 		"sounds": [ "superslegend:item/book_of_mudora" ]
+	},
+	"item.heart": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.heart",
+		"sounds": [ "superslegend:item/heart" ]
+	},
+	"item.fire_ignite": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.fire_ignite",
+		"sounds": [ "superslegend:item/fire_ignite" ]
+	},
+	"item.magic_arrow_hit_fire": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.magic_arrow_hit_fire",
+		"sounds": [ "superslegend:item/magic_arrow_hit_fire" ]
+	},
+	"item.magic_arrow_hit_ice": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.magic_arrow_hit_ice",
+		"sounds": [ "superslegend:item/magic_arrow_hit_ice" ]
+	},
+	"item.magic_arrow_hit_light": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.magic_arrow_hit_light",
+		"sounds": [ "superslegend:item/magic_arrow_hit_light" ]
 	},
 	"item.arrow_hit_fire": {
 		"category": "player",

@@ -30,10 +30,10 @@ public class WindSet extends Item
 	{
 		ItemStack stack = player.getItemInHand(hand);
 		
-		addOrDrop(player, ItemInit.HERO_OF_WIND_CAP);
-		addOrDrop(player, ItemInit.HERO_OF_WIND_TUNIC);
-		addOrDrop(player, ItemInit.HERO_OF_WIND_LEGGINGS);
-		addOrDrop(player, ItemInit.HERO_OF_WIND_BOOTS);
+		//addOrDrop(player, ItemInit.HERO_OF_WIND_CAP);
+		//addOrDrop(player, ItemInit.HERO_OF_WIND_TUNIC);
+		//addOrDrop(player, ItemInit.HERO_OF_WIND_LEGGINGS);
+		//addOrDrop(player, ItemInit.HERO_OF_WIND_BOOTS);
 
 		if (!player.abilities.instabuild)
 		{

@@ -39,8 +39,7 @@ public class OcarinaScreen extends Screen
 		minecraft.getTextureManager().bind(TEXTURE);
 		blit(matrixStack, (width - 156) / 2, (int) ((height * .67 - 30) / 2), 0, 0, 156, 30);
 		int controlsWidth = 11 * 5 + 6 * 4 + 3 * 5;
-		KeyBinding[] keys = { minecraft.options.keyUp, minecraft.options.keyLeft, minecraft.options.keyRight, minecraft.options.keyDown,
-				minecraft.options.keyJump };
+		KeyBinding[] keys = { minecraft.options.keyUp, minecraft.options.keyLeft, minecraft.options.keyRight, minecraft.options.keyDown, minecraft.options.keyJump };
 		
 		for (KeyBinding key : keys)
 		{
@@ -132,7 +131,7 @@ public class OcarinaScreen extends Screen
 		{
 			ILearnedSongs learnedSongs = LearnedSongsProvider.get(minecraft.player);
 			
-			if (/* learnedSongs.getLearnedSongs().contains(song) && */song.getPattern().equals(playedNotes))
+			if (learnedSongs.getLearnedSongs().contains(song) && song.getPattern().equals(playedNotes))
 			{
 				LearnedSongsProvider.get(minecraft.player).setCurrentSong(null);
 				playedSong = song;

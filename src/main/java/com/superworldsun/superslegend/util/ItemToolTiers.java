@@ -22,15 +22,14 @@ public enum ItemToolTiers implements IItemTier {
     GUARDIAN_SWORD   (0, 0, -2F, 5F, 0, () -> { return null; }),
     ANCIENT_BATTLE_AXE   (0, 0, -2F, 5F, 0, () -> { return null; }),
     GUARDIAN_SPEAR   (0, 0, -2F, 5F, 0, () -> { return null; }),
-
     MAGIC_HAMMER     (0, 0, -2F, 4F, 0, () -> { return null; }),
     MEGATON_HAMMER   (0, 0, -2F, 8F, 0, () -> { return null; }),
     SKULL_HAMMER     (0, 0, -2F, 10F, 0, () -> { return null; }),
 
     //MASTER SWORDS
-    GODDESS_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
-    GODDESS_LONGSWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
-    GODDESS_WHITE_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
+    GODDESS_SWORD     (0, 0, -2F, 3F, 0, () -> { return null; }),
+    GODDESS_LONGSWORD     (0, 0, -2F, 3F, 0, () -> { return null; }),
+    GODDESS_WHITE_SWORD     (0, 0, -2F, 4F, 0, () -> { return null; }),
 
     MASTER_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
     MASTER_SWORD_V2  (0, 0, -2F, 8F, 0, () -> { return null; }),
@@ -40,13 +39,13 @@ public enum ItemToolTiers implements IItemTier {
     MASTER_SWORD_DN  (0, 0, -2F, 10F, 0, () -> { return null; }),
     MASTER_SWORD_NF  (0, 0, -2F, 10F, 0, () -> { return null; }),
     MASTER_SWORD_FD  (0, 0, -2F, 10F, 0, () -> { return null; }),
-    TRUE_MASTER_SWORD(0, 0, -2F, 11F, 0, () -> { return null; }),
+    TRUE_MASTER_SWORD(0, 0, -2F, 11F, 0, () -> { return null; });
 
 
     //Example
-    LANZANITE        (4, 3031, 9.0F, 5.0F, 15, () -> {
-        return Ingredient.of(ItemInit.LANZANITE.get());
-    });
+    //LANZANITE        (4, 3031, 9.0F, 5.0F, 15, () -> {
+    //    return Ingredient.of(ItemInit.LANZANITE.get());
+    //});
 
     //Private values to store
     private final int harvestLevel;

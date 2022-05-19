@@ -1,13 +1,9 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.registries.BlockInit;
-import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.SwordItem;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -19,7 +15,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import org.omg.PortableInterceptor.SUCCESSFUL;
 
 import java.util.Random;
 
@@ -33,15 +28,6 @@ public class HammeredWoodenPegBlock extends Block
 		super(properties);
 	}
 
-	/*@SuppressWarnings("deprecation")
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random)
-	{
-
-		world.setBlock(pos, BlockInit.WOODEN_PEG_BLOCK.get().defaultBlockState(), 3);
-
-		return;
-	}*/
-
 	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
 	{
@@ -53,18 +39,6 @@ public class HammeredWoodenPegBlock extends Block
 		}
 		super.randomTick(state, worldIn, pos, random);
 	}
-
-
-	/*@SuppressWarnings("deprecation")
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		//if (random.nextInt(3) == 1)
-		{
-			world.setBlock(pos, BlockInit.WOODEN_PEG_BLOCK.get().defaultBlockState(), 1);
-		}
-			super.randomTick(state, world, pos, random);
-
-	}*/
-	//stackInHand.getItem() instanceof SwordItem
 
 	@SuppressWarnings("deprecation")
 	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
