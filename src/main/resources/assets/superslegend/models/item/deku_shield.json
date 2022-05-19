@@ -165,28 +165,38 @@
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [0, -90, 0],
-			"translation": [2.25, -1.5, 1.25],
-			"scale": [1.1, 1.1, 1.07]
+			"translation": [2.75, -1.5, 1.25],
+			"scale": [1.1, 1.1, 1.1]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [0, -90, 0],
-			"translation": [2.25, -1.5, 1.25],
-			"scale": [1.1, 1.1, 1.07]
+			"translation": [2.75, -1.5, 1.25],
+			"scale": [1.1, 1.1, 1.1]
 		},
 		"firstperson_righthand": {
-			"translation": [1.25, -1.5, 0]
+			"rotation": [0, 0, -3],
+			"translation": [0, -1.25, 0.5],
+			"scale": [1.1, 1.1, 1.1]
 		},
 		"firstperson_lefthand": {
-			"translation": [2.75, -1.75, 0]
+			"rotation": [0, 0, -3],
+			"translation": [0, -1.25, 0.5],
+			"scale": [1.1, 1.1, 1.1]
 		},
 		"ground": {
-			"translation": [0, 3.5, 0],
-			"scale": [0.98242, 0.98242, 0.98242]
+			"translation": [0, 6, 0],
+			"scale": [1.1, 1.1, 1.1]
 		},
 		"gui": {
-			"rotation": [0, -180, 0]
+			"rotation": [-170, 18, -180],
+			"translation": [0, 0.5, 0],
+			"scale": [1.1, 1.1, 1.1]
+		},
+		"fixed": {
+			"translation": [0, 1, 0],
+			"scale": [1.1, 1.1, 1.1]
 		}
-    },
+	},
     "overrides": [
         {
             "predicate": {

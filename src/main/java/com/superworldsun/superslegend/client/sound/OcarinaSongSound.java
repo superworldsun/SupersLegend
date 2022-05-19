@@ -6,7 +6,6 @@ import com.superworldsun.superslegend.songs.OcarinaSong;
 import net.minecraft.client.audio.TickableSound;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 
 public class OcarinaSongSound extends TickableSound
 {

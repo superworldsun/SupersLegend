@@ -4,16 +4,12 @@ import java.util.function.Supplier;
 
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
 
-import com.superworldsun.superslegend.network.NetworkDispatcher;
-import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
-import org.lwjgl.glfw.GLFW;
 import top.theillusivec4.curios.api.CuriosApi;
 
 public class MaskAbilityMessage
@@ -59,20 +55,24 @@ public class MaskAbilityMessage
 				ctx.enqueueWork(() -> ((IMaskAbility) helmetItem).stopUsingAbility(player));
 			}
 		}
-
-		//Check if is Curios.
-		ItemInit.getCurios().forEach(stack ->
+		
+		CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curios ->
 		{
-			if (stack.getItem() instanceof IMaskAbility) {
-				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(stack.getItem(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-				if(!stack0.isEmpty()) {
+			for (int i = 0; i < curios.getSlots(); i++)
+			{
+				ItemStack curioStack = curios.getStackInSlot(i);
+				
+				if (!curioStack.isEmpty() && curioStack.getItem() instanceof IMaskAbility)
+				{
+					IMaskAbility mask = (IMaskAbility) curioStack.getItem();
+					
 					if (message.started)
 					{
-						ctx.enqueueWork(() -> ((IMaskAbility) stack.getItem()).startUsingAbility(player));
+						ctx.enqueueWork(() -> mask.startUsingAbility(player));
 					}
 					else
 					{
-						ctx.enqueueWork(() -> ((IMaskAbility) stack.getItem()).stopUsingAbility(player));
+						ctx.enqueueWork(() -> mask.stopUsingAbility(player));
 					}
 				}
 			}

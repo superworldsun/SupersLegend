@@ -2,7 +2,6 @@
   "replace": "false",
   "values":
   [
-    "superslegend:mask_clay",
     "superslegend:mask_postmanshat",
     "superslegend:mask_allnightmask",
     "superslegend:mask_blastmask",
@@ -32,7 +31,6 @@
     "superslegend:mask_maskoftruth",
     "superslegend:mask_sunmask",
     "superslegend:mask_hawkeyemask",
-    "superslegend:mask_heroscharm",
     "superslegend:gnat_hat"
   ]
 }

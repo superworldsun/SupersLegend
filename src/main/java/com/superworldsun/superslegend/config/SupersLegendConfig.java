@@ -26,9 +26,17 @@ public class SupersLegendConfig
 	public final ForgeConfigSpec.IntValue RegularBoomerangRange;
 	public final ForgeConfigSpec.IntValue RegularBoomerangDamage;
 	public final ForgeConfigSpec.BooleanValue RegularBoomerangFollows;
+	public final ForgeConfigSpec.IntValue MagicBoomerangRange;
+	public final ForgeConfigSpec.IntValue MagicBoomerangDamage;
+	public final ForgeConfigSpec.BooleanValue MagicBoomerangFollows;
+	public final ForgeConfigSpec.IntValue WWBoomerangRange;
+	public final ForgeConfigSpec.IntValue WWBoomerangDamage;
+	public final ForgeConfigSpec.BooleanValue WWBoomerangFollows;
+	public final ForgeConfigSpec.IntValue GaleBoomerangRange;
+	public final ForgeConfigSpec.IntValue GaleBoomerangDamage;
+	public final ForgeConfigSpec.BooleanValue GaleBoomerangFollows;
 	public final ForgeConfigSpec.BooleanValue breaksTorches;
 	public final ForgeConfigSpec.BooleanValue breaksFlowers;
-	//public final ForgeConfigSpec.BooleanValue breaksGrass;
 	public final ForgeConfigSpec.BooleanValue breaksTallGrass;
 	public final ForgeConfigSpec.BooleanValue activatesLevers;
 	public final ForgeConfigSpec.BooleanValue activatesButtons;
@@ -38,11 +46,52 @@ public class SupersLegendConfig
 	private SupersLegendConfig(ForgeConfigSpec.Builder configSpecBuilder) {
 		//General
 		playerMaxHealth = configSpecBuilder
-				.comment("Whether to enable dynamic hand/entity lighting for torches/etc")
-				.defineInRange("playerMaxHealth", 20.0D, 1.0D, 20.0D);
+				.comment("Players health they will start with. One Minecraft heart is 2, and a full bar is 20. Its Recommended you only use Even numbers.")
+				.defineInRange("playerMaxHealth", 20D, 1D, 40D);
 		explosivegriefing = configSpecBuilder
-				.comment("Whether bombs/etc cause block destruction")
+				.comment("Whether bombs will cause block destruction")
 				.define("explosivegriefing", true);
+
+		RegularBoomerangRange = configSpecBuilder
+				.comment("The maximum range of travel before returning to player.")
+				.defineInRange("RegularBoomerangRange", 28, 1, 200);
+		RegularBoomerangDamage = configSpecBuilder
+				.comment("The amount of damage that is done when hitting any living entity.")
+				.defineInRange("RegularBoomerangDamage", 5, 1, 500);
+		RegularBoomerangFollows = configSpecBuilder
+				.comment("The Regular Boomerang will follow your mouse till it hits it's range limit.")
+				.define("RegularBoomerangFollows", false);
+
+		MagicBoomerangRange = configSpecBuilder
+				.comment("The maximum range of travel before returning to player.")
+				.defineInRange("MagicBoomerangRange", 19, 1, 200);
+		MagicBoomerangDamage = configSpecBuilder
+				.comment("The amount of damage that is done when hitting any living entity.")
+				.defineInRange("MagicBoomerangDamage", 6, 1, 500);
+		MagicBoomerangFollows = configSpecBuilder
+				.comment("The Magic Boomerang will follow your mouse till it hits it's range limit.")
+				.define("MagicBoomerangFollows", false);
+
+		WWBoomerangRange = configSpecBuilder
+				.comment("The maximum range of travel before returning to player.")
+				.defineInRange("WWBoomerangRange", 40, 1, 200);
+		WWBoomerangDamage = configSpecBuilder
+				.comment("The amount of damage that is done when hitting any living entity.")
+				.defineInRange("WWBoomerangDamage", 5, 1, 500);
+		WWBoomerangFollows = configSpecBuilder
+				.comment("The WW Boomerang will follow your mouse till it hits it's range limit.")
+				.define("WWBoomerangFollows", true);
+
+		GaleBoomerangRange = configSpecBuilder
+				.comment("The maximum range of travel before returning to player.")
+				.defineInRange("GaleBoomerangRange", 40, 1, 200);
+		GaleBoomerangDamage = configSpecBuilder
+				.comment("The amount of damage that is done when hitting any living entity.")
+				.defineInRange("GaleBoomerangDamage", 5, 1, 500);
+		GaleBoomerangFollows = configSpecBuilder
+				.comment("The Gale Boomerang will follow your mouse till it hits it's range limit.")
+				.define("GaleBoomerangFollows", true);
+
 		turnAroundItem = configSpecBuilder
 				.comment("Comes back to the player after picking up items.")
 				.define("turnAroundItem", true);
@@ -52,15 +101,6 @@ public class SupersLegendConfig
 		turnAroundButton = configSpecBuilder
 				.comment("Comes back to player after hitting a button.")
 				.define("turnAroundButton", true);
-		RegularBoomerangRange = configSpecBuilder
-				.comment("The maximum range of travel before returning to player.")
-				.defineInRange("RegularBoomerangRange", 30, 1, 200);
-		RegularBoomerangDamage = configSpecBuilder
-				.comment("The amount of damage that is done when hitting any living entity.")
-				.defineInRange("RegularBoomerangDamage", 5, 1, 500);
-		RegularBoomerangFollows = configSpecBuilder
-				.comment("The Regular Boomerang will follow your mouse till it hits it's range limit.")
-				.define("RegularBoomerangFollows", true);
 		breaksTorches = configSpecBuilder
 				.comment("Can boomerang break torches.")
 				.define("breaksTorches", true);
@@ -82,7 +122,6 @@ public class SupersLegendConfig
 		activatesTripWire = configSpecBuilder
 				.comment("Can boomerang activate/trigger tripwire(s).")
 				.define("activatesTripWire", true);
-
 
 	}
 

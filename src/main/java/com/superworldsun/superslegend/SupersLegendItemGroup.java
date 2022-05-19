@@ -21,4 +21,13 @@ public class SupersLegendItemGroup extends ItemGroup
 	{
 		return new ItemStack(ItemInit.TRIFORCE.get());
 	}
+
+	//TODO implement this in future updates, for less classes and more organized tabs
+	/*public static final ItemGroup SUPERSLEGEND_TAB = new ItemGroup("SupersLegend") {
+		@Override
+		public ItemStack makeIcon() {
+			return new ItemStack(ItemInit.TRIFORCE.get());
+		}
+
+	};*/
 }
