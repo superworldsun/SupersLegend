@@ -1,12 +1,24 @@
 package com.superworldsun.superslegend.entities.projectiles.hooks;
 
+import static com.superworldsun.superslegend.items.HookshotItem.sprite;
+import static com.superworldsun.superslegend.items.LongshotItem.spriteL;
+import static com.superworldsun.superslegend.util.HookBlockList.hookableBlocks;
+import static com.superworldsun.superslegend.util.HookBlockList.setHookableBlocks;
+
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.items.LongshotItem;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.boss.dragon.EnderDragonPartEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,23 +30,19 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.event.TickEvent.PlayerTickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-
-import static com.superworldsun.superslegend.items.LongshotItem.spriteL;
-import static com.superworldsun.superslegend.util.HookBlockList.hookableBlocks;
-import static com.superworldsun.superslegend.util.HookBlockList.setHookableBlocks;
-
-
+@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class LongshotEntity extends AbstractArrowEntity {
 
     /**
@@ -51,6 +59,7 @@ public class LongshotEntity extends AbstractArrowEntity {
     private Entity hookedEntity;
     private ItemStack stack;
     private boolean motionUp = false;
+    private double prevDistance = 30D;
 
 
     public LongshotEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity owner, World world) {
@@ -118,79 +127,83 @@ public class LongshotEntity extends AbstractArrowEntity {
                 }
 
                 if (owner.getMainHandItem() == stack || owner.getOffhandItem() == stack) {
-                    if (isPulling) { //Movement start
-                        Entity target = owner;
-                        Entity origin = this;
+					if (isPulling) { //Movement start
+						Entity target = owner;
+						Entity origin = this;
 
-                        if (owner.isCrouching() && hookedEntity != null) {
-                            target = hookedEntity;
-                            origin = owner;
-                            owner.setNoGravity(true);
-                        }
+						if (owner.isCrouching() && hookedEntity != null) {
+							target = hookedEntity;
+							origin = owner;
+							owner.setNoGravity(true);
+						}
 
-                        double brakeZone = ((6D * (maxSpeed)) / 10); //5
-                        double pullSpeed = (maxSpeed) / 9D;
-                        Vector3d distance = origin.position().subtract(target.position().add(0, target.getBbHeight() / 2, 0));
-                        double reduction = (pullSpeed * distance.length() / brakeZone); //Get motion reduction.
-                        Vector3d motion = distance.normalize().multiply(reduction, reduction, reduction); //Get last motion.
+						double brakeZone = ((6D * (maxSpeed)) / 10); //5
+						double pullSpeed = (maxSpeed) / 9D;
+						Vector3d distance = origin.position().subtract(target.position().add(0, target.getBbHeight() / 2, 0));
+						double reduction = (pullSpeed); //Get motion reduction.
+						Vector3d motion = distance.normalize().multiply(reduction, reduction, reduction); //Get last motion.
 
-                        //In case the movement is at ground level.
-                        if (Math.abs(distance.y) < 0.1D) {
-                            motion = new Vector3d(motion.x, 0, motion.z);
-                        }
-                        //In case the movement is only upwards.
-                        else if (new Vector3d(distance.x, 0, distance.z).length() < new Vector3d(target.getBbWidth() / 2, 0, target.getBbWidth() / 2).length() / 1.4) {
-                            motion = new Vector3d(0, motion.y, 0);
-                            motionUp = true;
-                        }
+						//In case the movement is at ground level.
+						if (Math.abs(distance.y) < 0.1D) {
+							motion = new Vector3d(motion.x, 0, motion.z);
+						}
+						//In case the movement is only upwards.
+						else if (new Vector3d(distance.x, 0, distance.z).length() < new Vector3d(target.getBbWidth() / 2, 0, target.getBbWidth() / 2).length() / 1.4) {
+							motion = new Vector3d(0, motion.y, 0);
+							motionUp = true;
+						}
 
-                        target.fallDistance = 0; //Cancel Fall Damage
+						target.fallDistance = 0; //Cancel Fall Damage
 
-                        target.setDeltaMovement(motion); //Set motion.
-                        target.hurtMarked = true; //Make motion works, this is necessary.
+						target.setDeltaMovement(motion); //Set motion.
+						target.hurtMarked = true; //Make motion works, this is necessary.
 
-                        //Makes you off the hook early if entity.
-                        if(hookedEntity != null){
-                            if (new Vector3d(distance.x, distance.y, distance.z).length() < 1.2D){
-                                kill();
-                                spriteL = false;
-                                HookModel.get(owner).setHasHook(false);
-                            }
-                            //Timer if the entity if too BIG.
-                            if(tickCount > 50){
-                                kill();
-                                spriteL = false;
-                                HookModel.get(owner).setHasHook(false);
-                            }
-                        }
-                        //Makes you off the hook early if block.
-                        if(hookedEntity == null) {
-                            if (new Vector3d(0, distance.y, 0).length() < 1D && motionUp) {
-                                motionUp = false;
-                                spriteL = false;
-                                HookModel.get(owner).setHasHook(false);
-                                kill();
+						//Makes you off the hook early if entity.
+						System.out.println(distance.length());
+						System.out.println(prevDistance);
+						if(hookedEntity != null){
+							motion = owner.getDeltaMovement();
+							if (distance.length() > prevDistance && prevDistance < 1){
+								kill();
+								sprite = false;
+								HookModel.get(owner).setHasHook(false);
+							}
+							//Timer if the entity if too BIG.
+							if(tickCount > 50){
+								kill();
+								sprite = false;
+								HookModel.get(owner).setHasHook(false);
+							}
+						}
+						//Makes you off the hook early if block.
+						if(hookedEntity == null) {
+							motion = owner.getDeltaMovement();
+							if (distance.length() > prevDistance && prevDistance < 1){
+								kill();
+								sprite = false;
+								HookModel.get(owner).setHasHook(false);
+							} else if (new Vector3d(distance.x, 0, distance.z).length() < 0.3D) {
+								kill();
+								sprite = false;
+								HookModel.get(owner).setHasHook(false);
 
-                            } else if (new Vector3d(distance.x, 0, distance.z).length() < 1D) {
-                                kill();
-                                spriteL = false;
-                                HookModel.get(owner).setHasHook(false);
+							}
+						}
+						prevDistance = distance.length();
 
-                            }
-                        }
-                        //Take the entity if it is an item and check that it is in your inventory to kill the hook.
-                        if(hookedEntity instanceof ItemEntity){
-                            if(owner.inventory.add(((ItemEntity) hookedEntity).getItem())) {
-                                spriteL = false;
-                                HookModel.get(owner).setHasHook(false);
-                                kill();
+						//Take the entity if it is an item and check that it is in your inventory to kill the hook.
+						if(hookedEntity instanceof ItemEntity){
+							if(owner.inventory.add(((ItemEntity) hookedEntity).getItem())) {
+								sprite = false;
+								HookModel.get(owner).setHasHook(false);
+								kill();
 
-                            }
-                        }
+							}
+						}
 
-                    }
+					}
 
-                } else {
+				} else {
                     spriteL = false;
                     HookModel.get(owner).setHasHook(false);
                     kill();
@@ -206,15 +219,16 @@ public class LongshotEntity extends AbstractArrowEntity {
         return ItemStack.EMPTY;
     }
 
-    @Override
     public void kill() {
-        if (!level.isClientSide && owner != null) {
-            HookModel.get(owner).setHasHook(false);
-            owner.setNoGravity(false);
-        }
-
-        super.kill();
-    }
+		if (!level.isClientSide && owner != null) {
+			HookModel.get(owner).setHasHook(false);
+			owner.setNoGravity(false);
+			owner.setPose(Pose.STANDING);
+			owner.setDeltaMovement(0, 0, 0);
+		}
+		owner.hurtMarked = true;
+		super.kill();
+	}
 
     /**
      * This function is used to make the hook go slower or faster in water.
@@ -331,5 +345,22 @@ public class LongshotEntity extends AbstractArrowEntity {
     public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
+
+	@SubscribeEvent
+	public static void onPlayerTick(PlayerTickEvent event) {
+		PlayerEntity player = event.player;
+		if (true) {
+			double maxRange = 15;
+			List<LongshotEntity> entities = player.level.getEntitiesOfClass(LongshotEntity.class, new AxisAlignedBB(player.blockPosition().offset(-maxRange, -maxRange, -maxRange), player.blockPosition().offset(maxRange, maxRange, maxRange)));
+			for(LongshotEntity entity : entities) {
+				if(entity.getOwner() == player) {
+					if (entity.isPulling) {
+						player.setPose(Pose.SWIMMING);
+						player.setSwimming(true);
+					}
+				}
+			}
+		}
+	}
 
 }

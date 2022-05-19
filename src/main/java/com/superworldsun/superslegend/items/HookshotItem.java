@@ -6,11 +6,14 @@ import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -26,7 +29,7 @@ public class HookshotItem extends Item {
      * needCharge makes the hookshot work with load. If you disable it, it will continue to load but the animation will remain. This can be changed below.
      */
     public static boolean sprite;
-    boolean needCharge = true;
+    boolean needCharge = false;
 
     public HookshotItem(Properties properties) {
         super(properties);
@@ -46,7 +49,8 @@ public class HookshotItem extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, World world, LivingEntity player) {
-         return super.finishUsingItem(itemStack, world, player);
+    	
+    	return super.finishUsingItem(itemStack, world, player);
     }
 
     //Item animation.
@@ -65,6 +69,7 @@ public class HookshotItem extends Item {
         ItemStack stack = player.getItemInHand(player.getUsedItemHand());
         //Get Charge
         int i = this.getUseDuration(itemStack) - remainingUseTicks;
+        
 
         if (!world.isClientSide) {
             if (!HookModel.get((PlayerEntity) player).getHasHook()) {
@@ -95,6 +100,7 @@ public class HookshotItem extends Item {
         return 72000;
     }
 
+    
     //Get charge.
     public static float getPowerForTime(int p_185059_0_) {
         float f = (float)p_185059_0_ / 20.0F;
@@ -105,11 +111,18 @@ public class HookshotItem extends Item {
 
         return f;
     }
+    
 
     //Set Repair Item.
     @Override
     public boolean isValidRepairItem(ItemStack itemStack, ItemStack ingredient) {
         return ingredient.getItem() == Items.IRON_INGOT;
+    }
+    
+    @Override
+    public void onUseTick(World world, LivingEntity entity, ItemStack itemStack, int remainingTicks) {
+    	entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 1, 255, false, false, false));
+    	entity.setDeltaMovement(0, 0, 0);
     }
 
 }
