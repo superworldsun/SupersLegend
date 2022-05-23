@@ -10,6 +10,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -25,7 +27,7 @@ public class ClawshotItem extends Item {
      * needCharge makes the hookshot work with load. If you disable it, it will continue to load but the animation will remain. This can be changed below.
     */
     public static boolean spriteC;
-    boolean needCharge = true;
+    boolean needCharge = false;
 
     public ClawshotItem(Properties properties) {
         super(properties);
@@ -109,4 +111,9 @@ public class ClawshotItem extends Item {
         return ingredient.getItem() == Items.IRON_INGOT;
     }
 
+    @Override
+    public void onUseTick(World world, LivingEntity entity, ItemStack itemStack, int remainingTicks) {
+    	entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 1, 255, false, false, false));
+    	entity.setDeltaMovement(0, 0, 0);
+    }
 }
