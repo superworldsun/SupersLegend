@@ -1,12 +1,26 @@
 package com.superworldsun.superslegend.entities.projectiles.hooks;
 
+import static com.superworldsun.superslegend.items.HookshotItem.sprite;
+import static com.superworldsun.superslegend.util.HookBlockList.hookableBlocks;
+import static com.superworldsun.superslegend.util.HookBlockList.setHookableBlocks;
+
+import java.lang.reflect.Field;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.items.HookshotItem;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.boss.dragon.EnderDragonPartEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,317 +32,347 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.TickEvent.Phase;
+import net.minecraftforge.event.TickEvent.PlayerTickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-
-import static com.superworldsun.superslegend.items.HookshotItem.sprite;
-import static com.superworldsun.superslegend.util.HookBlockList.hookableBlocks;
-import static com.superworldsun.superslegend.util.HookBlockList.setHookableBlocks;
-
+@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class HookshotEntity extends AbstractArrowEntity {
 
-    /**
-     * useBlockList serves to enable or disable the block list that can be hooked on the hook.
-     * isPulling activates the player's movement. Do not touch this value.
-     * motionUp lets you know when the player goes up to get off the hook. Do not touch this value.
-     */
-    private static final DataParameter<Integer> HOOKED_ENTITY_ID = EntityDataManager.defineId(HookshotEntity.class, DataSerializers.INT);
-    boolean useBlockList = true;
-    private double maxRange = 0D;
-    private double maxSpeed = 0D;
-    private boolean isPulling = false;
-    private PlayerEntity owner;
-    private Entity hookedEntity;
-    private ItemStack stack;
-    private boolean motionUp = false;
+	/**
+	 * useBlockList serves to enable or disable the block list that can be hooked on the hook.
+	 * isPulling activates the player's movement. Do not touch this value.
+	 * motionUp lets you know when the player goes up to get off the hook. Do not touch this value.
+	 */
+	private static final DataParameter<Integer> HOOKED_ENTITY_ID = EntityDataManager.defineId(HookshotEntity.class, DataSerializers.INT);
+	boolean useBlockList = true;
+	private double maxRange = 0D;
+	private double maxSpeed = 0D;
+	private boolean isPulling = false;
+	private PlayerEntity owner;
+	private Entity hookedEntity;
+	private ItemStack stack;
+	private boolean motionUp = false;
+	private double prevDistance = 30.D;
 
 
-    public HookshotEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity owner, World world) {
-        super(type, owner, world);
-        this.setSoundEvent(SoundInit.HOOKSHOT_TARGET.get());
-        this.setNoGravity(true);
-        this.setBaseDamage(0);
-    }
+	public HookshotEntity(EntityType<? extends AbstractArrowEntity> type, LivingEntity owner, World world) {
+		super(type, owner, world);
+		this.setSoundEvent(SoundInit.HOOKSHOT_TARGET.get());
+		this.setNoGravity(true);
+		this.setBaseDamage(0);
+	}
 
-    public HookshotEntity(EntityType<HookshotEntity> hookshotEntityEntityType, World world) {
-        super(EntityTypeInit.HOOKSHOT_ENTITY.get(), world);
-    }
+	public HookshotEntity(EntityType<HookshotEntity> hookshotEntityEntityType, World world) {
+		super(EntityTypeInit.HOOKSHOT_ENTITY.get(), world);
+	}
 
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(HOOKED_ENTITY_ID, 0);
-    }
+	@Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(HOOKED_ENTITY_ID, 0);
+	}
 
-    /**
-     * This is where everything related to movement happens.
-     */
-    @Override
-    public void tick() {
-        super.tick();
+	/**
+	 * This is where everything related to movement happens.
+	 */
+	@Override
+	public void tick() {
+		super.tick();
+		if(this.tickCount % 3 == 0)
+		{
+			BlockPos currentPos = this.blockPosition();
+			this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOOKSHOT_EXTENDED.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
+		}
 
-        if(this.tickCount % 3 == 0)
-        {
-            BlockPos currentPos = this.blockPosition();
-            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOOKSHOT_EXTENDED.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
-        }
+		if (getOwner() instanceof PlayerEntity) {
+			owner = (PlayerEntity) getOwner();
 
-        if (getOwner() instanceof PlayerEntity) {
-            owner = (PlayerEntity) getOwner();
+			if (isPulling && tickCount % 2 == 0) { //This is the sound that sounds when the hook is moving you.
+				//level.playSound(null, owner.blockPosition(), SoundEvents.AXE_STRIP, SoundCategory.PLAYERS, 1F, 1F);
+			}
+			if (!level.isClientSide) {
+				if (this.hookedEntity != null) { //In case the mob you are hooked to dies while you go towards it ..
+					if (this.hookedEntity.removed) {
+						this.hookedEntity = null;
+						onRemovedFromWorld();
+					} else {
+						this.absMoveTo(this.hookedEntity.getX(), this.hookedEntity.getY(0.8D), this.hookedEntity.getZ());
+					}
+				}
 
-            if (isPulling && tickCount % 2 == 0) { //This is the sound that sounds when the hook is moving you.
-                //level.playSound(null, owner.blockPosition(), SoundEvents.AXE_STRIP, SoundCategory.PLAYERS, 1F, 1F);
-            }
-            if (!level.isClientSide) {
-                if (this.hookedEntity != null) { //In case the mob you are hooked to dies while you go towards it ..
-                    if (this.hookedEntity.removed) {
-                        this.hookedEntity = null;
-                        onRemovedFromWorld();
-                    } else {
-                        this.absMoveTo(this.hookedEntity.getX(), this.hookedEntity.getY(0.8D), this.hookedEntity.getZ());
-                    }
-                }
+				if (owner != null) { //Reasons to remove the hook.
+					if (owner.isDeadOrDying() || !HookModel.get(owner).getHasHook() ||
+							!HookModel.get(owner).getHasHook() ||
+							owner.distanceTo(this) > maxRange ||
+							!(owner.getMainHandItem().getItem() instanceof HookshotItem ||
+									owner.getOffhandItem().getItem() instanceof HookshotItem) ||
+							!HookModel.get(owner).getHasHook()) {
 
-                if (owner != null) { //Reasons to remove the hook.
-                    if (owner.isDeadOrDying() || !HookModel.get(owner).getHasHook() ||
-                            !HookModel.get(owner).getHasHook() ||
-                            owner.distanceTo(this) > maxRange ||
-                            !(owner.getMainHandItem().getItem() instanceof HookshotItem ||
-                                    owner.getOffhandItem().getItem() instanceof HookshotItem) ||
-                            !HookModel.get(owner).getHasHook()) {
+						sprite = false;
+						kill();
 
-                        sprite = false;
-                        kill();
+					}
+				} else {
+					sprite = false;
+					kill();
+				}
 
-                    }
-                } else {
-                    sprite = false;
-                    kill();
-                }
+				if (owner.getMainHandItem() == stack || owner.getOffhandItem() == stack) {
+					if (isPulling) { //Movement start
+						Entity target = owner;
+						Entity origin = this;
 
-                if (owner.getMainHandItem() == stack || owner.getOffhandItem() == stack) {
-                    if (isPulling) { //Movement start
-                        Entity target = owner;
-                        Entity origin = this;
+						if (owner.isCrouching() && hookedEntity != null) {
+							target = hookedEntity;
+							origin = owner;
+							owner.setNoGravity(true);
+						}
 
-                        if (owner.isCrouching() && hookedEntity != null) {
-                            target = hookedEntity;
-                            origin = owner;
-                            owner.setNoGravity(true);
-                        }
+						double brakeZone = ((6D * (maxSpeed)) / 10); //5
+						double pullSpeed = (maxSpeed) / 9D;
+						Vector3d distance = origin.position().subtract(target.position().add(0, target.getBbHeight() / 2, 0));
+						double reduction = (pullSpeed); //Get motion reduction.
+						Vector3d motion = distance.normalize().multiply(reduction, reduction, reduction); //Get last motion.
 
-                        double brakeZone = ((6D * (maxSpeed)) / 10); //5
-                        double pullSpeed = (maxSpeed) / 9D;
-                        Vector3d distance = origin.position().subtract(target.position().add(0, target.getBbHeight() / 2, 0));
-                        double reduction = (pullSpeed * distance.length() / brakeZone); //Get motion reduction.
-                        Vector3d motion = distance.normalize().multiply(reduction, reduction, reduction); //Get last motion.
+						//In case the movement is at ground level.
+						if (Math.abs(distance.y) < 0.1D) {
+							motion = new Vector3d(motion.x, 0, motion.z);
+						}
+						//In case the movement is only upwards.
+						else if (new Vector3d(distance.x, 0, distance.z).length() < new Vector3d(target.getBbWidth() / 2, 0, target.getBbWidth() / 2).length() / 1.4) {
+							motion = new Vector3d(0, motion.y, 0);
+							motionUp = true;
+						}
 
-                        //In case the movement is at ground level.
-                        if (Math.abs(distance.y) < 0.1D) {
-                            motion = new Vector3d(motion.x, 0, motion.z);
-                        }
-                        //In case the movement is only upwards.
-                        else if (new Vector3d(distance.x, 0, distance.z).length() < new Vector3d(target.getBbWidth() / 2, 0, target.getBbWidth() / 2).length() / 1.4) {
-                            motion = new Vector3d(0, motion.y, 0);
-                            motionUp = true;
-                        }
+						target.fallDistance = 0; //Cancel Fall Damage
 
-                        target.fallDistance = 0; //Cancel Fall Damage
+						target.setDeltaMovement(motion); //Set motion.
+						target.hurtMarked = true; //Make motion works, this is necessary.
 
-                        target.setDeltaMovement(motion); //Set motion.
-                        target.hurtMarked = true; //Make motion works, this is necessary.
+						//Makes you off the hook early if entity.
+						
+						if(hookedEntity != null){
+							motion = owner.getDeltaMovement();
+							if (distance.length() > prevDistance && prevDistance < 1){
+								kill();
+								sprite = false;
+								HookModel.get(owner).setHasHook(false);
+							}
+							//Timer if the entity if too BIG.
+							if(tickCount > 50){
+								kill();
+								sprite = false;
+								HookModel.get(owner).setHasHook(false);
+							}
+						}
+						//Makes you off the hook early if block.
+						if(hookedEntity == null) {
+							motion = owner.getDeltaMovement();
+							if (distance.length() > prevDistance && prevDistance < 1){
+								kill();
+								sprite = false;
+								HookModel.get(owner).setHasHook(false);
+							} else if (new Vector3d(distance.x, 0, distance.z).length() < 0.3D) {
+								kill();
+								sprite = false;
+								HookModel.get(owner).setHasHook(false);
 
-                        //Makes you off the hook early if entity.
-                        if(hookedEntity != null){
-                            if (new Vector3d(distance.x, distance.y, distance.z).length() < 1.2D){
-                                kill();
-                                sprite = false;
-                                HookModel.get(owner).setHasHook(false);
-                            }
-                            //Timer if the entity if too BIG.
-                            if(tickCount > 50){
-                                kill();
-                                sprite = false;
-                                HookModel.get(owner).setHasHook(false);
-                            }
-                        }
-                        //Makes you off the hook early if block.
-                        if(hookedEntity == null) {
-                            if (new Vector3d(0, distance.y, 0).length() < 1D && motionUp) {
-                                motionUp = false;
-                                sprite = false;
-                                HookModel.get(owner).setHasHook(false);
-                                kill();
+							}
+						}
+						prevDistance = distance.length();
 
-                            } else if (new Vector3d(distance.x, 0, distance.z).length() < 1D) {
-                                kill();sprite = false;
-                                HookModel.get(owner).setHasHook(false);
+						//Take the entity if it is an item and check that it is in your inventory to kill the hook.
+						if(hookedEntity instanceof ItemEntity){
+							if(owner.inventory.add(((ItemEntity) hookedEntity).getItem())) {
+								sprite = false;
+								HookModel.get(owner).setHasHook(false);
+								kill();
 
-                            }
-                        }
+							}
+						}
 
-                        //Take the entity if it is an item and check that it is in your inventory to kill the hook.
-                        if(hookedEntity instanceof ItemEntity){
-                            if(owner.inventory.add(((ItemEntity) hookedEntity).getItem())) {
-                                sprite = false;
-                                HookModel.get(owner).setHasHook(false);
-                                kill();
+					}
 
-                            }
-                        }
+				} else {
+					sprite = false;
+					HookModel.get(owner).setHasHook(false);
+					kill();
 
-                    }
+				}
+			}
+		}
+	}
 
-                } else {
-                    sprite = false;
-                    HookModel.get(owner).setHasHook(false);
-                    kill();
+	//Prevents a crash. Name self-explanatory.
+	@Override
+	protected ItemStack getPickupItem() {
+		return ItemStack.EMPTY;
+	}
 
-                }
-            }
-        }
-    }
+	@Override
+	public void kill() {
+		if (!level.isClientSide && owner != null) {
+			HookModel.get(owner).setHasHook(false);
+			owner.setNoGravity(false);
+			owner.setPose(Pose.STANDING);
+			owner.setDeltaMovement(0, 0, 0);
+		}
+		owner.hurtMarked = true;
+		super.kill();
+	}
 
-    //Prevents a crash. Name self-explanatory.
-    @Override
-    protected ItemStack getPickupItem() {
-        return ItemStack.EMPTY;
-    }
+	/**
+	 * This function is used to make the hook go slower or faster in water.
+	 * Currently it has no value.
+	 */
+	@Override
+	protected float getWaterInertia() {
+		return 1.0F;
+	}
 
-    @Override
-    public void kill() {
-        if (!level.isClientSide && owner != null) {
-            HookModel.get(owner).setHasHook(false);
-            owner.setNoGravity(false);
-        }
+	/**
+	 * This function is used to detect when the hook hits an object.
+	 * It is also used to collect items from the ground.
+	 * @param blockHitResult
+	 */
+	@Override
+	protected void onHitBlock(BlockRayTraceResult blockHitResult) {
+		super.onHitBlock(blockHitResult);
+		isPulling = true;
+		setHookableBlocks(); //Loads the list of blocks to which it can be hooked.
 
-        super.kill();
-    }
+		if (!level.isClientSide && owner != null && hookedEntity == null) {
+			owner.setNoGravity(true);
 
-    /**
-     * This function is used to make the hook go slower or faster in water.
-     * Currently it has no value.
-     */
-    @Override
-    protected float getWaterInertia() {
-        return 1.0F;
-    }
+			//Initialization of the list of ItemEntities found on the floor
+			// and selection of the size of the Bounding Box in which to search for them.
+			List<ItemEntity> list = level.getEntitiesOfClass(ItemEntity.class, this.getBoundingBox().expandTowards(1D, 0.5D, 1D));
 
-    /**
-     * This function is used to detect when the hook hits an object.
-     * It is also used to collect items from the ground.
-     * @param blockHitResult
-     */
-    @Override
-    protected void onHitBlock(BlockRayTraceResult blockHitResult) {
-        super.onHitBlock(blockHitResult);
-        isPulling = true;
-        setHookableBlocks(); //Loads the list of blocks to which it can be hooked.
+			if (useBlockList) { //If this value is "FALSE" all blocks will be hooked.
+				//If the block is not in the list, the hook does not hook.
+				AbstractBlock block = (AbstractBlock) level.getBlockState(blockHitResult.getBlockPos()).getBlock();
+				try {
+					Field blockMaterial = AbstractBlock.class.getDeclaredField("material");
+					blockMaterial.setAccessible(true);
+					if (!hookableBlocks.contains(block) && blockMaterial.get(block) != Material.WOOD) {
+						HookModel.get(owner).setHasHook(false);
+						isPulling = false;
+						onRemovedFromWorld();
+					}
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+				//Catch ItemEntities from ground.
+				if(list != null && list.size() > 0){
+					for (Entity entity : list) {
+						hookedEntity = entity;
+					}
+					HookModel.get(owner).setHasHook(true);
+					isPulling = true;
+					onRemovedFromWorld();
+				}
+			}
+		}
+	}
 
-        if (!level.isClientSide && owner != null && hookedEntity == null) {
-            owner.setNoGravity(true);
+	/**
+	 * This function is used to detect when the hook hits an entity.
+	 * @param entityHitResult
+	 */
+	@Override
+	protected void onHitEntity(EntityRayTraceResult entityHitResult) {
+		if (!level.isClientSide && owner != null && entityHitResult.getEntity() != owner) {
+			if((entityHitResult.getEntity() instanceof LivingEntity || entityHitResult.getEntity() instanceof EnderDragonPartEntity) && hookedEntity == null) {
+				hookedEntity = entityHitResult.getEntity();
+				entityData.set(HOOKED_ENTITY_ID, hookedEntity.getId() + 1);
+				isPulling = true;
+				owner.setNoGravity(true);
 
-            //Initialization of the list of ItemEntities found on the floor
-            // and selection of the size of the Bounding Box in which to search for them.
-            List<ItemEntity> list = level.getEntitiesOfClass(ItemEntity.class, this.getBoundingBox().expandTowards(1D, 0.5D, 1D));
-
-            if (useBlockList) { //If this value is "FALSE" all blocks will be hooked.
-                //If the block is not in the list, the hook does not hook.
-                if (!hookableBlocks.contains(level.getBlockState(blockHitResult.getBlockPos()).getBlock())) {
-                    HookModel.get(owner).setHasHook(false);
-                    isPulling = false;
-                    onRemovedFromWorld();
-                }
-                //Catch ItemEntities from ground.
-                if(list != null && list.size() > 0){
-                    for (Entity entity : list) {
-                        hookedEntity = entity;
-                    }
-                    HookModel.get(owner).setHasHook(true);
-                    isPulling = true;
-                    onRemovedFromWorld();
-                }
-            }
-        }
-    }
-
-    /**
-     * This function is used to detect when the hook hits an entity.
-     * @param entityHitResult
-     */
-    @Override
-    protected void onHitEntity(EntityRayTraceResult entityHitResult) {
-        if (!level.isClientSide && owner != null && entityHitResult.getEntity() != owner) {
-          if((entityHitResult.getEntity() instanceof LivingEntity || entityHitResult.getEntity() instanceof EnderDragonPartEntity) && hookedEntity == null) {
-                hookedEntity = entityHitResult.getEntity();
-                entityData.set(HOOKED_ENTITY_ID, hookedEntity.getId() + 1);
-                isPulling = true;
-                owner.setNoGravity(true);
-
-          }
-        }
-    }
-
-
-    @Override
-    public void readAdditionalSaveData(CompoundNBT tag) {
-        super.readAdditionalSaveData(tag);
-        maxRange = tag.getDouble("maxRange");
-        maxSpeed = tag.getDouble("maxSpeed");
-        isPulling = tag.getBoolean("isPulling");
-        stack = ItemStack.of(tag.getCompound("hookshotItem"));
-
-        if (level.getEntity(tag.getInt("owner")) instanceof PlayerEntity)
-            owner = (PlayerEntity) level.getEntity(tag.getInt("owner"));
-    }
-
+			}
+		}
+	}
 
 
-    @Override
-    public void addAdditionalSaveData(CompoundNBT tag) {
-        super.addAdditionalSaveData(tag);
-        tag.putDouble("maxRange", maxRange);
-        tag.putDouble("maxSpeed", maxSpeed);
-        tag.putBoolean("isPulling", isPulling);
-        tag.put("hookshotItem", stack.save(new CompoundNBT()));
-        tag.putInt("owner", owner.getId());
-    }
+	@Override
+	public void readAdditionalSaveData(CompoundNBT tag) {
+		super.readAdditionalSaveData(tag);
+		maxRange = tag.getDouble("maxRange");
+		maxSpeed = tag.getDouble("maxSpeed");
+		isPulling = tag.getBoolean("isPulling");
+		stack = ItemStack.of(tag.getCompound("hookshotItem"));
 
-    /**
-     * Used to get the properties from the item.
-     */
-    public void setProperties(ItemStack stack, double maxRange, double maxVelocity, float pitch, float yaw, float roll, float modifierZ) {
-        float f = 0.017453292F;
-        float x = -MathHelper.sin(yaw * f) * MathHelper.cos(pitch * f);
-        float y = -MathHelper.sin((pitch + roll) * f);
-        float z = MathHelper.cos(yaw * f) * MathHelper.cos(pitch * f);
-        this.shoot(x, y, z, modifierZ, 0);
+		if (level.getEntity(tag.getInt("owner")) instanceof PlayerEntity)
+			owner = (PlayerEntity) level.getEntity(tag.getInt("owner"));
+	}
 
-        this.stack = stack;
-        this.maxRange = maxRange;
-        this.maxSpeed = maxVelocity;
-    }
 
-    //Disable ChangeDimensions.
-    @Override
-    public boolean canChangeDimensions() {
-        return false;
-    }
 
-    //Make the entity appear in the level.
-    @Override
-    @Nonnull
-    public IPacket<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
+	@Override
+	public void addAdditionalSaveData(CompoundNBT tag) {
+		super.addAdditionalSaveData(tag);
+		tag.putDouble("maxRange", maxRange);
+		tag.putDouble("maxSpeed", maxSpeed);
+		tag.putBoolean("isPulling", isPulling);
+		tag.put("hookshotItem", stack.save(new CompoundNBT()));
+		tag.putInt("owner", owner.getId());
+	}
+
+	/**
+	 * Used to get the properties from the item.
+	 */
+	public void setProperties(ItemStack stack, double maxRange, double maxVelocity, float pitch, float yaw, float roll, float modifierZ) {
+		float f = 0.017453292F;
+		float x = -MathHelper.sin(yaw * f) * MathHelper.cos(pitch * f);
+		float y = -MathHelper.sin((pitch + roll) * f);
+		float z = MathHelper.cos(yaw * f) * MathHelper.cos(pitch * f);
+		this.shoot(x, y, z, modifierZ, 0);
+
+		this.stack = stack;
+		this.maxRange = maxRange;
+		this.maxSpeed = maxVelocity;
+	}
+
+	//Disable ChangeDimensions.
+	@Override
+	public boolean canChangeDimensions() {
+		return false;
+	}
+
+	//Make the entity appear in the level.
+	@Override
+	@Nonnull
+	public IPacket<?> getAddEntityPacket() {
+		return NetworkHooks.getEntitySpawningPacket(this);
+	}
+
+	@SubscribeEvent
+	public static void onPlayerTick(PlayerTickEvent event) {
+		PlayerEntity player = event.player;
+		if (true) {
+			double maxRange = 15;
+			List<HookshotEntity> entities = player.level.getEntitiesOfClass(HookshotEntity.class, new AxisAlignedBB(player.blockPosition().offset(-maxRange, -maxRange, -maxRange), player.blockPosition().offset(maxRange, maxRange, maxRange)));
+			for(HookshotEntity entity : entities) {
+				if(entity.getOwner() == player) {
+					if (entity.isPulling) {
+						player.setPose(Pose.SWIMMING);
+						player.setSwimming(true);
+					}
+				}
+			}
+		}
+	}
 
 }

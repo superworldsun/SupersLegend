@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# #",
+        "i#i",
+        "iCi"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:smooth_stone"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "C": {
+            "item": "minecraft:coal"
+        }
+    },
+    "result": {
+        "item": "superslegend:cooking_pot",
+        "count": 1
+    }
+}
