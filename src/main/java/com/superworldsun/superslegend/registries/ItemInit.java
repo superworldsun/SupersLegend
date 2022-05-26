@@ -423,8 +423,7 @@ public class ItemInit
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASK_POSTMANSHAT = ITEMS.register("mask_postmanshat",
 			() -> new MaskPostmanshat(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
-	public static final RegistryObject<Item> MASK_ALLNIGHTMASK = ITEMS.register("mask_allnightmask",
-			() -> new MaskAllnightmask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
+	public static final RegistryObject<Item> MASK_ALLNIGHTMASK = ITEMS.register("mask_allnightmask", AllNightMask::new);
 	public static final RegistryObject<Item> MASK_BLASTMASK = ITEMS.register("mask_blastmask",
 			() -> new BlastMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> MASK_STONEMASK = ITEMS.register("mask_stonemask",
