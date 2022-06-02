@@ -98,7 +98,8 @@ public class EntityEventHandler {
                     }
     }
 
-    @SubscribeEvent
+    //BROKEN, DOSENT WORK PROPERLY, AND CRASHES GAME WHEN OPENED FROM BUILT JAR
+    /*@SubscribeEvent
     public void addToInventory(GuiScreenEvent event)
     {
         if(event.getGui() instanceof InventoryScreen)
@@ -113,5 +114,5 @@ public class EntityEventHandler {
             ((List<IGuiEventListener>) ObfuscationReflectionHelper.getPrivateValue(Screen.class, event.getGui(),
                     "children")).add(openSelectButton);
         }
-    }
+    }*/
 }
