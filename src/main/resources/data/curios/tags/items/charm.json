@@ -3,7 +3,9 @@
   "values":
   [
     "superslegend:silver_scale",
-    "superslegend:golden_scale"
-
+    "superslegend:golden_scale",
+    "superslegend:triforce_power",
+    "superslegend:triforce_wisdom",
+    "superslegend:triforce_courage"
   ]
 }
