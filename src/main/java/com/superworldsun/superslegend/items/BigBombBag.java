@@ -1,15 +1,25 @@
 package com.superworldsun.superslegend.items;
 
+import java.util.List;
+import java.util.Objects;
+
+import javax.annotation.Nullable;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.ItemNBTHelper;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -17,18 +27,12 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.text.WordUtils;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
-import org.apache.commons.lang3.tuple.Pair;
 import top.theillusivec4.curios.api.CuriosApi;
-
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Objects;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 
 public class BigBombBag extends Item {
@@ -122,6 +126,7 @@ public class BigBombBag extends Item {
 		return super.use(worldIn, playerIn, handIn);
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(@Nullable ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, @Nullable ITooltipFlag flagIn) {
 		if (getContents(stack) != null && getContents(stack) != null) {

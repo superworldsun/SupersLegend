@@ -5,16 +5,12 @@ import com.superworldsun.superslegend.config.SupersLegendConfig;
 import com.superworldsun.superslegend.cooldowns.Cooldowns;
 import com.superworldsun.superslegend.cooldowns.CooldownsStorage;
 import com.superworldsun.superslegend.cooldowns.ICooldowns;
-import com.superworldsun.superslegend.hookshotCap.Hook;
 import com.superworldsun.superslegend.hookshotCap.SyncToClient;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
 import com.superworldsun.superslegend.interfaces.IHasNoItem;
-import com.superworldsun.superslegend.items.SacredShieldItem;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldState;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldStorage;
-import com.superworldsun.superslegend.items.items.MagicMirror;
-import com.superworldsun.superslegend.items.weapons.SlingShot;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
@@ -23,16 +19,8 @@ import com.superworldsun.superslegend.songs.ILearnedSongs;
 import com.superworldsun.superslegend.songs.LearnedSongs;
 import com.superworldsun.superslegend.songs.LearnedSongsStorage;
 import com.superworldsun.superslegend.util.ClientHandler;
-import com.superworldsun.superslegend.util.events.EntityEventHandler;
-import com.superworldsun.superslegend.util.events.ModEventHandler;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.dispenser.IPosition;
-import net.minecraft.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.*;
-import net.minecraft.item.Item.Properties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -115,13 +103,7 @@ public class SupersLegendMain
 		OcarinaSongInit.REGISTRY.register(modEventBus);
 		EffectInit.REGISTRY.register(modEventBus);
 		RecipeSerializerInit.RECIPE_SERIALIZERS.register(modEventBus);
-		MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
-		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
-		MinecraftForge.EVENT_BUS.register(new Hook());
-		MinecraftForge.EVENT_BUS.register(new SacredShieldItem(new Properties()));
-		MinecraftForge.EVENT_BUS.register(new SlingShot(new Properties()));
-		MinecraftForge.EVENT_BUS.register(new MagicMirror(new Properties()));
-
+		
 		//The structure gen listeners must use MinecraftForge.EVENT_BUS and
 		// not MLJavaModLoadingContext.get().getModEventBus(), otherwise, you will cause MC to crash
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
@@ -238,7 +220,9 @@ public class SupersLegendMain
 			 */
 			try {
 				if(GETCODEC_METHOD == null) GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
-				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(serverWorld.getChunkSource().generator));
+				@SuppressWarnings("unchecked")
+				Codec<? extends ChunkGenerator> codec = (Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(serverWorld.getChunkSource().getGenerator());
+				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey(codec);
 				if(cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
 			}
 			catch(Exception e){
@@ -263,12 +247,12 @@ public class SupersLegendMain
 			 * already added your default structure spacing to some dimensions. You would need to override the spacing with .put(...)
 			 * And if you want to do dimension blacklisting, you need to remove the spacing entry entirely from the map below to prevent generation safely.
 			 */
-			Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
+			Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().getGenerator().getSettings().structureConfig());
 			tempMap.putIfAbsent(SupersLegendStructures.FAIRY_FOUNTAIN.get(),
 					DimensionStructuresSettings.DEFAULTS.get(SupersLegendStructures.FAIRY_FOUNTAIN.get()));
 			tempMap.putIfAbsent(SupersLegendStructures.GRAVEYARD.get(),
 					DimensionStructuresSettings.DEFAULTS.get(SupersLegendStructures.GRAVEYARD.get()));
-			serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
+			serverWorld.getChunkSource().getGenerator().getSettings().structureConfig = tempMap;
 		}
 	}
 	// STRUCTURE GEN CODE ENDS HERE!

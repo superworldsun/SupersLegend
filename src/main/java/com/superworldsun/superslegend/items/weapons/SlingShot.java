@@ -54,7 +54,7 @@ public class SlingShot extends BowItem {
 	}
 	
 	@SubscribeEvent
-	public void onUsing(LivingEntityUseItemEvent event) {
+	public static void onUsing(LivingEntityUseItemEvent event) {
 		if(event.getItem().getItem() instanceof SlingShot) {
 			if(event.getEntityLiving().isUsingItem()) {
 				if(event.getDuration() == 72000) {

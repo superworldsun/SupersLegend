@@ -25,6 +25,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -132,6 +134,7 @@ public class SmallQuiver extends Item {
 		return super.use(worldIn, playerIn, handIn);
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(@Nullable ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, @Nullable ITooltipFlag flagIn) {
 		if (getContents(stack) != null && getContents(stack) != null) {
