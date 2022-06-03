@@ -42,7 +42,7 @@ public class SacredShieldItem extends ExtendedShieldItem
 	}
 	
 	@SubscribeEvent
-    public void onAttachCapabilities(AttachCapabilitiesEvent event) {
+    public static void onAttachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
         if (event.getObject() instanceof ItemStack) {
         	ItemStack stack = (ItemStack) event.getObject();
         	

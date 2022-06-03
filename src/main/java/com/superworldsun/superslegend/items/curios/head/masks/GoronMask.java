@@ -140,7 +140,7 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 			return;
 		}
 		
-		// Only if we have boots
+		// Only if we have the mask
 		ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GORONMASK.get(), event.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 		
 		if (!maskStack.isEmpty())

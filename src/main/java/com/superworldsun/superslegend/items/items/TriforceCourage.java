@@ -23,6 +23,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -35,7 +37,6 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class TriforceCourage extends Item implements ICurioItem
 {
-
 	public TriforceCourage(Properties properties)
 	{
 		super(properties);
@@ -50,6 +51,27 @@ public class TriforceCourage extends Item implements ICurioItem
 		return map;
 	}
 
+	/*public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
+	 {
+		 @SuppressWarnings("unused")
+		ItemStack stack = player.getItemInHand(hand);
+		 BlockPos currentPos = player.blockPosition();
+		 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
+					player.addEffect(new EffectInstance(Effect.byId(1), 600, 0, false, true));
+					player.addEffect(new EffectInstance(Effect.byId(11), 600, 0, false, false));
+					player.getCooldowns().addCooldown(this, 10);
+
+		return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
+	}*/
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	{
+		super.appendHoverText(stack, world, list, flag);				
+		list.add(new StringTextComponent(TextFormatting.GREEN + "This will give you the Courage to fight for what you beleive in."));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
+	}   
 
 	@SubscribeEvent
 	public static void onLivingHurt(LivingAttackEvent event)
@@ -105,26 +127,5 @@ public class TriforceCourage extends Item implements ICurioItem
 			}
 		}
 	}
-
-	/*public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
-	 {
-		 @SuppressWarnings("unused")
-		ItemStack stack = player.getItemInHand(hand);
-		 BlockPos currentPos = player.blockPosition();
-		 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
-					player.addEffect(new EffectInstance(Effect.byId(1), 600, 0, false, true));
-					player.addEffect(new EffectInstance(Effect.byId(11), 600, 0, false, false));
-					player.getCooldowns().addCooldown(this, 10);
-
-		return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
-	}*/
-
-	@Override
-	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
-	{
-		super.appendHoverText(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.GREEN + "This will give you the Courage to fight for what you beleive in."));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
-	}   
 } 
 

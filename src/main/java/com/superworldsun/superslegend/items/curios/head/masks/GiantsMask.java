@@ -56,6 +56,7 @@ public class GiantsMask extends Item implements IEntityResizer, ICurioItem
         return true;
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public void render(String identifier, int index, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, LivingEntity livingEntity, float limbSwing, float limbSwingAmount,
                        float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, ItemStack stack)
