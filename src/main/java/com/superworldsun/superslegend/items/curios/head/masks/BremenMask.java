@@ -101,7 +101,12 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem
 		UUID slowId = UUID.fromString("7176f8ab-df6b-4065-9232-3c314fadb655");
 		AttributeModifier modifier = player.getAttribute(Attributes.MOVEMENT_SPEED).getModifier(slowId);
 		ModifiableAttributeInstance movespeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
-		movespeed.removeModifier(modifier);
+		
+		if (modifier != null)
+		{
+			movespeed.removeModifier(modifier);
+		}
+		
 		IMaskAbility.super.stopUsingAbility(player);
 	}
 	
