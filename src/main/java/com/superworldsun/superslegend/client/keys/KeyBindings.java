@@ -46,9 +46,15 @@ public class KeyBindings
 		@SubscribeEvent
 		public static void onKeyInput(InputEvent.KeyInputEvent event)
 		{
+			Minecraft client = Minecraft.getInstance();
+			
+			if (client.player == null || client.screen != null)
+			{
+				return;
+			}
+			
 			if (event.getKey() == MASK_ABILITY.getKey().getValue())
 			{
-				Minecraft client = Minecraft.getInstance();
 				Item helmetItem = client.player.getItemBySlot(EquipmentSlotType.HEAD).getItem();
 				
 				CuriosApi.getCuriosHelper().getEquippedCurios(client.player).ifPresent(curios ->
@@ -97,7 +103,6 @@ public class KeyBindings
 			}
 			else if (event.getKey() == DROP_BOMB.getKey().getValue())
 			{
-				Minecraft client = Minecraft.getInstance();
 				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BOMB_BAG.get(), client.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 				ItemStack stack1 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BIG_BOMB_BAG.get(), client.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 				ItemStack stack2 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BIGGEST_BOMB_BAG.get(), client.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
