@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 public class MagicJarDropEvents
 {
 	@SubscribeEvent
-	public static void onEntityKilledSpawnMagicJar(LivingDeathEvent event)
+	public static void onLivingDeath(LivingDeathEvent event)
 	{
 		Random random = new Random();
 		// Check if player killed the entity
