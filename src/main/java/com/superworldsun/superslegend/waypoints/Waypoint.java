@@ -29,14 +29,14 @@ public class Waypoint
 	{
 		CompoundNBT nbt = new CompoundNBT();
 		nbt.putString("name", name);
-		NBTUtil.writeBlockPos(statuePos);
+		nbt.put("pos", NBTUtil.writeBlockPos(statuePos));
 		return nbt;
 	}
 	
 	public static Waypoint readFromNBT(CompoundNBT nbt)
 	{
 		String name = nbt.getString("name");
-		BlockPos statuePos = NBTUtil.readBlockPos(nbt);
+		BlockPos statuePos = NBTUtil.readBlockPos(nbt.getCompound("pos"));
 		return new Waypoint(name, statuePos);
 	}
 }

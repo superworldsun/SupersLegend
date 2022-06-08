@@ -11,6 +11,9 @@ public class Waypoints implements IWaypoints
 {
 	private final Map<BlockPos, Waypoint> waypoints = new HashMap<>();
 	
+	/**
+	 * ONLY for reading, for adding use {@link Waypoints#addWaypoint(Waypoint)}
+	 */
 	@Override
 	public List<Waypoint> getWaypoints()
 	{
@@ -45,5 +48,11 @@ public class Waypoints implements IWaypoints
 	public int getMaxWaypoints()
 	{
 		return 10;
+	}
+	
+	@Override
+	public Waypoint getWaypoint(BlockPos blockPos)
+	{
+		return waypoints.get(blockPos);
 	}
 }

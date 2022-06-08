@@ -38,5 +38,6 @@ public class NetworkDispatcher
 		networkChannel.registerMessage(11, ShowWaystonesScreenMessage.class, ShowWaystonesScreenMessage::encode, ShowWaystonesScreenMessage::decode, ShowWaystonesScreenMessage::receive, Optional.of(PLAY_TO_CLIENT));
 		networkChannel.registerMessage(12, SetWaypointNameMessage.class, SetWaypointNameMessage::encode, SetWaypointNameMessage::decode, SetWaypointNameMessage::receive, Optional.of(PLAY_TO_SERVER));
 		networkChannel.registerMessage(13, AttemptTeleportationMessage.class, AttemptTeleportationMessage::encode, AttemptTeleportationMessage::decode, AttemptTeleportationMessage::receive, Optional.of(PLAY_TO_SERVER));
+		networkChannel.registerMessage(14, RemoveWaypointMessage.class, RemoveWaypointMessage::encode, RemoveWaypointMessage::decode, RemoveWaypointMessage::receive, Optional.of(PLAY_TO_SERVER));
 	}
 }

@@ -24,7 +24,7 @@ public class WaypointsStorage implements IStorage<IWaypoints>
 	{
 		CompoundNBT nbt = (CompoundNBT) inbt;
 		ListNBT waypointsListNbt = nbt.getList("waypoints", new CompoundNBT().getId());
-		instance.getWaypoints().clear();
-		waypointsListNbt.forEach(waypointNbt -> instance.getWaypoints().add(Waypoint.readFromNBT((CompoundNBT) waypointNbt)));
+		instance.getWaypoints().forEach(waypoint -> instance.removeWaypoint(waypoint));
+		waypointsListNbt.forEach(waypointNbt -> instance.addWaypoint(Waypoint.readFromNBT((CompoundNBT) waypointNbt)));
 	}
 }
