@@ -428,6 +428,13 @@
   "screen.ocarina.song_played": "You played the %s",
   "effect.superslegend.cloaked": "Cloaked",
   "item.superslegend.song_sheet.learned": "You have learned the %s",
-  "item.superslegend.song_sheet.already_know": "You already know this song"
+  "item.superslegend.song_sheet.already_know": "You already know this song",
+  "screen.waipoints.enter_name": "Enter Owl Statue name:",
+  "block.superslegend.owl_statue.saved": "You can now warp to %s",
+  "block.superslegend.owl_statue.maximum": "You can only soar to %d Owl Statues",
+  "song.superslegend.song_of_soaring.no_statues": "You have no place to warp to",
+  "screen.waypoints.title": "Soar to where?",
+  "screen.waypoints.remove_tooltip": "Hold shift and click to delete",
+  "screen.waypoints.remove_tooltip_shift": "Click to delete"
 }
 

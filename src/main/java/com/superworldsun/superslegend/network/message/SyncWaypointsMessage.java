@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.network.message;
 
 import java.util.function.Supplier;
 
+import com.superworldsun.superslegend.client.screen.WaypointsScreen;
 import com.superworldsun.superslegend.waypoints.WaypointsProvider;
 
 import net.minecraft.client.Minecraft;
@@ -45,11 +46,16 @@ public class SyncWaypointsMessage
 		ctx.setPacketHandled(true);
 		ctx.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> handlePacket(message, ctx)));
 	}
-
+	
 	@OnlyIn(Dist.CLIENT)
 	private static void handlePacket(SyncWaypointsMessage message, Context ctx)
 	{
 		Minecraft client = Minecraft.getInstance();
 		WaypointsProvider.WAYPOINTS_CAPABILITY.readNBT(WaypointsProvider.get(client.player), null, message.nbt);
+		
+		if (client.screen instanceof WaypointsScreen)
+		{
+			client.setScreen(new WaypointsScreen());
+		}
 	}
 }

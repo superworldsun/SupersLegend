@@ -25,7 +25,7 @@ public class WaypointsServerData extends WorldSavedData
 		waypoints.clear();
 		waypointsListNbt.forEach(waypointNbt -> addWaypoint(Waypoint.readFromNBT((CompoundNBT) waypointNbt)));
 	}
-
+	
 	@Override
 	public CompoundNBT save(CompoundNBT nbt)
 	{
@@ -49,6 +49,12 @@ public class WaypointsServerData extends WorldSavedData
 	private void addWaypoint(Waypoint waypoint)
 	{
 		waypoints.put(waypoint.getStatuePosition(), waypoint);
+	}
+	
+	public void removeWaypoint(BlockPos waypointPos)
+	{
+		waypoints.remove(waypointPos);
+		setDirty();
 	}
 	
 	public static WaypointsServerData instance()

@@ -1,16 +1,20 @@
 package com.superworldsun.superslegend.client.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.tile.OwlStatueTileEntity;
 import com.superworldsun.superslegend.client.model.OpenOwlStatueModel;
 import com.superworldsun.superslegend.client.model.OwlStatueModel;
 import com.superworldsun.superslegend.waypoints.WaypointsProvider;
 
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 
@@ -30,16 +34,19 @@ public class OwlStatueRenderer extends TileEntityRenderer<OwlStatueTileEntity>
 	{
 		Minecraft client = Minecraft.getInstance();
 		matrixStack.pushPose();
+		Direction blockFacing = te.getBlockState().getValue(HorizontalBlock.FACING);
 		matrixStack.translate(0.5D, 1.5D, 0.5D);
-		matrixStack.mulPose(Vector3f.XP.rotationDegrees(180F));
+		matrixStack.mulPose(Vector3f.XP.rotationDegrees(180));
+		matrixStack.mulPose(Vector3f.YP.rotationDegrees(blockFacing.toYRot()));
+		IVertexBuilder vertexBuffer = buffer.getBuffer(RenderType.entityCutout(TEXTURE));
 		
-		if (WaypointsProvider.get(client.player).getWaypoints().contains(te.getBlockPos()))
+		if (WaypointsProvider.get(client.player).getWaypoint(te.getBlockPos().relative(blockFacing)) != null)
 		{
-			openStatueModel.render(matrixStack, buffer.getBuffer(closedStatueModel.renderType(TEXTURE)), combinedLight, combinedOverlay);
+			openStatueModel.render(matrixStack, vertexBuffer, combinedLight, combinedOverlay);
 		}
 		else
 		{
-			closedStatueModel.render(matrixStack, buffer.getBuffer(closedStatueModel.renderType(TEXTURE)), combinedLight, combinedOverlay);
+			closedStatueModel.render(matrixStack, vertexBuffer, combinedLight, combinedOverlay);
 		}
 		
 		matrixStack.popPose();
