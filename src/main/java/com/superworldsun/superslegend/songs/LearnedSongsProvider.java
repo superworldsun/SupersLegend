@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -19,6 +20,7 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -34,7 +36,7 @@ public class LearnedSongsProvider implements ICapabilitySerializable<CompoundNBT
 	public static final Capability<ILearnedSongs> LEARNED_SONGS_CAPABILITY = null;
 	
 	@SubscribeEvent
-	public static void attachCapability(AttachCapabilitiesEvent<Entity> event)
+	public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event)
 	{
 		// We add learned songs data only to players
 		if (!(event.getObject() instanceof PlayerEntity))
@@ -46,7 +48,7 @@ public class LearnedSongsProvider implements ICapabilitySerializable<CompoundNBT
 	}
 	
 	@SubscribeEvent
-	public static void playerJoinWorld(EntityJoinWorldEvent event)
+	public static void onEntityJoinWorld(EntityJoinWorldEvent event)
 	{
 		// We add learned songs data only to players, means we only sync it for players
 		if (!(event.getEntity() instanceof PlayerEntity))
@@ -62,6 +64,13 @@ public class LearnedSongsProvider implements ICapabilitySerializable<CompoundNBT
 		
 		PlayerEntity player = (PlayerEntity) event.getEntity();
 		LearnedSongsProvider.sync((ServerPlayerEntity) player);
+	}
+	
+	@SubscribeEvent
+	public static void onPlayerClone(PlayerEvent.Clone event)
+	{
+		INBT originalNBT = LEARNED_SONGS_CAPABILITY.writeNBT(LearnedSongsProvider.get(event.getOriginal()), null);
+		LEARNED_SONGS_CAPABILITY.readNBT(LearnedSongsProvider.get(event.getPlayer()), null, originalNBT);
 	}
 	
 	@Override
