@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.health;
+package com.superworldsun.superslegend.events;
 
 import java.util.UUID;
 
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class MaxHealthHandler
+public class MaxHealthEvents
 {
 	public static final UUID BASE_HEALTH_MODIFIER_ID = UUID.fromString("6ed6de9f-a743-4bee-8e59-8a56d54bb054");
 	
@@ -31,8 +31,7 @@ public class MaxHealthHandler
 		
 		PlayerEntity player = (PlayerEntity) event.getEntity();
 		ModifiableAttributeInstance maxHealth = player.getAttribute(Attributes.MAX_HEALTH);
-		AttributeModifier baseHealthModifier = new AttributeModifier(BASE_HEALTH_MODIFIER_ID, "Base", SupersLegendConfig.getInstance().playerMaxHealth() - 20,
-				Operation.ADDITION);
+		AttributeModifier baseHealthModifier = new AttributeModifier(BASE_HEALTH_MODIFIER_ID, "Base", SupersLegendConfig.getInstance().playerMaxHealth() - 20, Operation.ADDITION);
 		
 		// Add base modifier only if not added yet
 		if (!maxHealth.hasModifier(baseHealthModifier))

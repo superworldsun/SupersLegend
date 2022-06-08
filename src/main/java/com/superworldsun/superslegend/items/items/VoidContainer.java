@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.items.items;
 
-import com.superworldsun.superslegend.health.MaxHealthHandler;
-
+import com.superworldsun.superslegend.events.MaxHealthEvents;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
@@ -27,7 +26,7 @@ public class VoidContainer extends Item
 	{
 		ItemStack itemstack = player.getItemInHand(hand);
 		AttributeModifier heartsModifier = player.getAttribute(Attributes.MAX_HEALTH).getModifier(HeartContainer.HEARTS_MODIFIER_ID);
-		AttributeModifier baseModifier = player.getAttribute(Attributes.MAX_HEALTH).getModifier(MaxHealthHandler.BASE_HEALTH_MODIFIER_ID);
+		AttributeModifier baseModifier = player.getAttribute(Attributes.MAX_HEALTH).getModifier(MaxHealthEvents.BASE_HEALTH_MODIFIER_ID);
 		double playerBaseHealth = player.getAttribute(Attributes.MAX_HEALTH).getBaseValue();
 		
 		// Can't use if max health will go below 0 (base + hearts, bonuses from other mods don't count)
