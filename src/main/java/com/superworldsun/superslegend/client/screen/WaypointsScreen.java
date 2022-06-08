@@ -43,8 +43,20 @@ public class WaypointsScreen extends Screen
 		for (int i = 0; i < waypoints.size(); i++)
 		{
 			Waypoint waypoint = waypoints.get(i);
-			ITextComponent buttonText = new StringTextComponent(waypoint.getName());
-			Button waypointButton = new Button(buttonsLeft + i % 2 * 120, buttonsTop + i / 2 * 25, 100, 20, buttonText, button -> attemtTeleporting(waypoint));
+			String buttonText = waypoint.getName();
+			
+			if (font.width(buttonText) > 98)
+			{
+				while (font.width(buttonText + "...") > 98)
+				{
+					buttonText = buttonText.substring(0, buttonText.length() - 1);
+				}
+				
+				buttonText += "...";
+			}
+			
+			ITextComponent buttonTextComponent = new StringTextComponent(buttonText);
+			Button waypointButton = new Button(buttonsLeft + i % 2 * 120, buttonsTop + i / 2 * 25, 100, 20, buttonTextComponent, button -> attemtTeleporting(waypoint));
 			addButton(waypointButton);
 			this.waypointsButtons.add(waypointButton);
 			this.waypoints.add(waypoint);

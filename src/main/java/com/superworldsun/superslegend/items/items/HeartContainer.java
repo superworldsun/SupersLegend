@@ -3,8 +3,7 @@ package com.superworldsun.superslegend.items.items;
 import java.util.UUID;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.health.MaxHealthHandler;
-
+import com.superworldsun.superslegend.events.MaxHealthEvents;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -37,7 +36,7 @@ public class HeartContainer extends Item
 	{
 		ItemStack itemstack = player.getItemInHand(hand);
 		AttributeModifier heartsModifier = player.getAttribute(Attributes.MAX_HEALTH).getModifier(HEARTS_MODIFIER_ID);
-		AttributeModifier baseModifier = player.getAttribute(Attributes.MAX_HEALTH).getModifier(MaxHealthHandler.BASE_HEALTH_MODIFIER_ID);
+		AttributeModifier baseModifier = player.getAttribute(Attributes.MAX_HEALTH).getModifier(MaxHealthEvents.BASE_HEALTH_MODIFIER_ID);
 		double playerBaseHealth = player.getAttribute(Attributes.MAX_HEALTH).getBaseValue();
 		
 		// Can't use if already have 40 or more maximum health (base + hearts, bonuses from other mods don't count)
