@@ -128,7 +128,7 @@ public class GossipStoneBlock extends Block
 		return new GossipStoneTileEntity();
 	}
 	
-	@OnlyIn(value = Dist.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	private void showGossipStoneScreen(BlockPos pos)
 	{
 		Minecraft client = Minecraft.getInstance();

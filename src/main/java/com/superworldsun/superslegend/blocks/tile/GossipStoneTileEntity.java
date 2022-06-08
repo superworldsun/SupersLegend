@@ -1,12 +1,13 @@
 package com.superworldsun.superslegend.blocks.tile;
 
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.TileEntityInit;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
@@ -17,7 +18,6 @@ import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
 
 public class GossipStoneTileEntity extends TileEntity
@@ -63,8 +63,9 @@ public class GossipStoneTileEntity extends TileEntity
 	
 	public ITextComponent getMessage(PlayerEntity player)
 	{
-		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_MASKOFTRUTH.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-		if (message.isEmpty() || !stack0.isEmpty())
+		ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_MASKOFTRUTH.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		
+		if (message.isEmpty() || !maskStack.isEmpty())
 		{
 			return new TranslationTextComponent("block.superslegend.gossip_stone_block.silent");
 		}
