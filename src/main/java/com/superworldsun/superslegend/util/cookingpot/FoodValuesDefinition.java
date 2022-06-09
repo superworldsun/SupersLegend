@@ -145,7 +145,7 @@ public class FoodValuesDefinition extends AbstractCookingPotRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return RecipeSerializerInit.FOOD_VALUES;
+        return RecipeSerializerInit.FOOD_VALUES.get();
     }
 
     @Override

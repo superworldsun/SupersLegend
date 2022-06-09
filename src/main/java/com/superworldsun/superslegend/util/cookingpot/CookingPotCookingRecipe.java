@@ -107,7 +107,7 @@ public class CookingPotCookingRecipe extends AbstractCookingPotRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return RecipeSerializerInit.COOKING_POT_COOKING;
+        return RecipeSerializerInit.COOKING_POT_COOKING.get();
     }
 
     @Override
