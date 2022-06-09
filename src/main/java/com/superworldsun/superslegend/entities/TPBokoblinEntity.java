@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
@@ -124,5 +125,10 @@ public class TPBokoblinEntity extends CreatureEntity
 	public static void addEntityAttributes(EntityAttributeCreationEvent event)
 	{
 		event.put(EntityTypeInit.TP_BOKOBLIN.get(), TPBokoblinEntity.setCustomAttributes().build());
+	}
+	
+	public static EntityType<TPBokoblinEntity> createEntityType()
+	{
+		return EntityType.Builder.<TPBokoblinEntity>of(TPBokoblinEntity::new, EntityClassification.MONSTER).sized(1.0F, 3.0F).build(SupersLegendMain.MOD_ID + ":tp_bokoblin");
 	}
 }

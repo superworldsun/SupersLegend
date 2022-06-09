@@ -1,8 +1,10 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.WitherSkeletonEntity;
@@ -73,4 +75,9 @@ public class SilverArrowEntity extends AbstractArrowEntity
             this.setDamageValue(this.getDamage()*1.5);
         }
     }*/
+	
+	public static EntityType<SilverArrowEntity> createEntityType()
+	{
+		return EntityType.Builder.<SilverArrowEntity>of(SilverArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":silver_arrow");
+	}
 }

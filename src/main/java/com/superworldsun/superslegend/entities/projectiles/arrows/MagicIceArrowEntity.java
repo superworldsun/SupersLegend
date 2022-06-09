@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
@@ -11,6 +12,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -353,5 +355,9 @@ public class MagicIceArrowEntity extends AbstractArrowEntity
 
 		return true;
 	}
-
+	
+	public static EntityType<MagicIceArrowEntity> createEntityType()
+	{
+		return EntityType.Builder.<MagicIceArrowEntity>of(MagicIceArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":magic_ice_arrow");
+	}
 }

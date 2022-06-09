@@ -1,12 +1,13 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.registries.TagInit;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -115,5 +116,10 @@ public class MagicLightArrowEntity extends AbstractArrowEntity
 			setBaseDamage(getBaseDamage() * 2);
 		if (TagInit.RESISTANT_TO_LIGHT.contains(entity.getType()))
 			setBaseDamage(getBaseDamage() / 2);
+	}
+	
+	public static EntityType<MagicLightArrowEntity> createEntityType()
+	{
+		return EntityType.Builder.<MagicLightArrowEntity>of(MagicLightArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":magic_light_arrow");
 	}
 }

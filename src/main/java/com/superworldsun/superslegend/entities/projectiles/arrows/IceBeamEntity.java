@@ -1,8 +1,11 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.SoundInit;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.CompoundNBT;
@@ -22,7 +25,7 @@ public class IceBeamEntity extends Entity
     }
 
     public boolean canBeCollidedWith() {
-        return !this.removed;
+        return isAlive();
     }
 
     @Override
@@ -107,8 +110,9 @@ public class IceBeamEntity extends Entity
     protected void addAdditionalSaveData(CompoundNBT p_213281_1_) {
 
     }
+	
+	public static EntityType<IceBeamEntity> createEntityType()
+	{
+		return EntityType.Builder.<IceBeamEntity>of(IceBeamEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":ice_beam");
+	}
 }
-
-
-
-     

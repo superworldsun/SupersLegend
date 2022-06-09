@@ -2,19 +2,14 @@ package com.superworldsun.superslegend.entities;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class FaroresWindEntity extends Entity {
@@ -40,7 +35,7 @@ public class FaroresWindEntity extends Entity {
 
     @Override
     public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-        if (this.level.isClientSide || this.removed) return false;
+        if (this.level.isClientSide || !isAlive()) return false;
         if (this.isInvulnerableTo(p_70097_1_)) {
             return false;
         } else {
@@ -73,5 +68,9 @@ public class FaroresWindEntity extends Entity {
     public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
-
+	
+	public static EntityType<FaroresWindEntity> createEntityType()
+	{
+		return EntityType.Builder.<FaroresWindEntity>of(FaroresWindEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":farores_wind");
+	}
 }

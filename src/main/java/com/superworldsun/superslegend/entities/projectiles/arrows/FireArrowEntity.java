@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -7,6 +9,7 @@ import com.superworldsun.superslegend.registries.TagInit;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -14,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -163,5 +167,10 @@ public class FireArrowEntity extends AbstractArrowEntity
 
 	private boolean isEmptyBlock(Direction dir) {
 		return level.isEmptyBlock(this.blockPosition().relative(dir));
+	}
+	
+	public static EntityType<FireArrowEntity> createEntityType()
+	{
+		return EntityType.Builder.<FireArrowEntity>of(FireArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":fire_arrow");
 	}
 }

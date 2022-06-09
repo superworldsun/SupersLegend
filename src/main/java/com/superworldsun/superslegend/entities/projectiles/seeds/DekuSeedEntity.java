@@ -1,8 +1,10 @@
 package com.superworldsun.superslegend.entities.projectiles.seeds;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -15,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class DekuSeedEntity extends AbstractArrowEntity
-{	
+{
 	public DekuSeedEntity(EntityType<? extends DekuSeedEntity> type, World world)
 	{
 		super(type, world);
@@ -68,12 +70,17 @@ public class DekuSeedEntity extends AbstractArrowEntity
 		
 		if (result.getEntity() instanceof LivingEntity)
 		{
-			LivingEntity target = (LivingEntity) result.getEntity();			
+			LivingEntity target = (LivingEntity) result.getEntity();
 			
 			if (!level.isClientSide && getPierceLevel() <= 0)
 			{
 				target.setArrowCount(target.getArrowCount() - 1);
 			}
 		}
+	}
+	
+	public static EntityType<DekuSeedEntity> createEntityType()
+	{
+		return EntityType.Builder.<DekuSeedEntity>of(DekuSeedEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":pellet");
 	}
 }

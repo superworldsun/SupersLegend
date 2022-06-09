@@ -1,9 +1,12 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -76,7 +79,10 @@ public class ShockArrowEntity extends AbstractArrowEntity {
 
         entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 50, false, true));
 
-    }
-
-
+	}
+	
+	public static EntityType<ShockArrowEntity> createEntityType()
+	{
+		return EntityType.Builder.<ShockArrowEntity>of(ShockArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":shock_arrow");
+	}
 }

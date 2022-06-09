@@ -1,8 +1,10 @@
 package com.superworldsun.superslegend.entities.projectiles.boomerang;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.config.SupersLegendConfig;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -52,4 +54,9 @@ public class WWBoomerang extends WWBoomerangEntity {
             this.setDeltaMovement(motionX, motionY, motionZ);
         }
     }
+	
+	public static EntityType<WWBoomerangEntity> createEntityType()
+	{
+		return EntityType.Builder.<WWBoomerangEntity>of(WWBoomerang::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":ww_boomerang");
+	}
 }

@@ -1,6 +1,9 @@
 package com.superworldsun.superslegend.entities.projectiles.bombs;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
@@ -19,5 +22,9 @@ public class EntityBomb extends AbstractEntityBomb {
     public EntityBomb(LivingEntity shooter, World world) {
         super(EntityTypeInit.BOMB.get(), shooter, world, SECONDS_TO_EXPLODE, SECONDS_TO_FLASH_RAPIDLY, EXPLOSION_POWER, BOUNCE_DAMPENING_FACTOR);
     }
-
+	
+	public static EntityType<EntityBomb> createEntityType()
+	{
+		return EntityType.Builder.<EntityBomb>of(EntityBomb::new, EntityClassification.MISC).sized(0.25F, 0.25F).build(SupersLegendMain.MOD_ID + ":bomb");
+	}
 }

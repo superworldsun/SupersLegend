@@ -1,9 +1,12 @@
 package com.superworldsun.superslegend.entities;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,8 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-
-import javax.annotation.Nonnull;
 
 public class MagicJarEntity extends Entity {
 
@@ -105,7 +106,7 @@ public class MagicJarEntity extends Entity {
 
     @Override
     public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-        if (this.level.isClientSide || this.removed) return false;
+        if (this.level.isClientSide || !isAlive()) return false;
         if (this.isInvulnerableTo(p_70097_1_)) {
             return false;
         } else {
@@ -161,5 +162,9 @@ public class MagicJarEntity extends Entity {
     public int getValue() {
         return this.value;
     }
-
+	
+	public static EntityType<MagicJarEntity> createEntityType()
+	{
+		return EntityType.Builder.<MagicJarEntity>of(MagicJarEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":magic_jar");
+	}
 }
