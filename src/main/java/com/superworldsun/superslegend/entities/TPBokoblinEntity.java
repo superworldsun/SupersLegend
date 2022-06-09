@@ -32,9 +32,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Bus.MOD)
-public class TPBokoblinEntity<T extends CreatureEntity> extends CreatureEntity
+public class TPBokoblinEntity extends CreatureEntity
 {
-	public TPBokoblinEntity(EntityType<? extends CreatureEntity> type, World world)
+	public TPBokoblinEntity(EntityType<TPBokoblinEntity> type, World world)
 	{
 		super(type, world);
 	}
