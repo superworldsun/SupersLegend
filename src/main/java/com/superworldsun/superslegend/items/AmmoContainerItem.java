@@ -15,7 +15,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShootableItem;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -28,7 +27,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
-public class AmmoContainerItem extends Item
+public abstract class AmmoContainerItem extends Item
 {
 	protected final int capacity;
 	
@@ -109,11 +108,6 @@ public class AmmoContainerItem extends Item
 		return Pair.of(contained, count);
 	}
 	
-	public boolean canHoldItem(ItemStack itemStack)
-	{
-		return ItemTags.ARROWS.contains(itemStack.getItem());
-	}
-	
 	private boolean containsSameItem(ItemStack itemStack, ItemStack arrowsStack)
 	{
 		Pair<ItemStack, Integer> quiverContents = getContents(itemStack);
@@ -133,6 +127,8 @@ public class AmmoContainerItem extends Item
 		return false;
 	}
 	
+	public abstract boolean canHoldItem(ItemStack itemStack);
+	
 	@SubscribeEvent
 	public static void onArrowLoose(ArrowLooseEvent event)
 	{
@@ -144,8 +140,8 @@ public class AmmoContainerItem extends Item
 				
 				if (!curioStack.isEmpty() && curioStack.getItem() instanceof AmmoContainerItem)
 				{
-					AmmoContainerItem quiverItem = (AmmoContainerItem) curioStack.getItem();
-					Pair<ItemStack, Integer> quiverContents = quiverItem.getContents(curioStack);
+					AmmoContainerItem ammoContainerItem = (AmmoContainerItem) curioStack.getItem();
+					Pair<ItemStack, Integer> quiverContents = ammoContainerItem.getContents(curioStack);
 					
 					if (quiverContents == null)
 					{
@@ -163,7 +159,7 @@ public class AmmoContainerItem extends Item
 					
 					if (shootableItem.getSupportedHeldProjectiles().test(quiverContents.getLeft()))
 					{
-						quiverItem.setCount(curioStack, arrowsCount - 1);
+						ammoContainerItem.setCount(curioStack, arrowsCount - 1);
 					}
 				}
 			}
@@ -183,28 +179,28 @@ public class AmmoContainerItem extends Item
 				
 				if (!curioStack.isEmpty() && curioStack.getItem() instanceof AmmoContainerItem)
 				{
-					AmmoContainerItem quiverItem = (AmmoContainerItem) curioStack.getItem();
-					Pair<ItemStack, Integer> quiverContents = quiverItem.getContents(curioStack);
+					AmmoContainerItem ammoContainerItem = (AmmoContainerItem) curioStack.getItem();
+					Pair<ItemStack, Integer> quiverContents = ammoContainerItem.getContents(curioStack);
 					
-					if (!quiverItem.containsSameItem(curioStack, pickedStack))
+					if (!ammoContainerItem.containsSameItem(curioStack, pickedStack))
 					{
 						continue;
 					}
 					
 					int arrowsCount = quiverContents == null ? 0 : quiverContents.getRight();
 					
-					if (arrowsCount < quiverItem.capacity && quiverItem.canHoldItem(pickedStack))
+					if (arrowsCount < ammoContainerItem.capacity && ammoContainerItem.canHoldItem(pickedStack))
 					{
-						if (pickedStack.getCount() + arrowsCount > quiverItem.capacity)
+						if (pickedStack.getCount() + arrowsCount > ammoContainerItem.capacity)
 						{
 							int newCount = pickedStack.getCount() + arrowsCount;
-							pickedStack.setCount(quiverItem.capacity - arrowsCount);
-							quiverItem.setItemStack(curioStack, pickedStack);
-							pickedStack.setCount(newCount - quiverItem.capacity);
+							pickedStack.setCount(ammoContainerItem.capacity - arrowsCount);
+							ammoContainerItem.setItemStack(curioStack, pickedStack);
+							pickedStack.setCount(newCount - ammoContainerItem.capacity);
 						}
 						else
 						{
-							quiverItem.setItemStack(curioStack, pickedStack);
+							ammoContainerItem.setItemStack(curioStack, pickedStack);
 							pickedStack.setCount(0);
 							float soundPitch = (random.nextFloat() - random.nextFloat()) * 1.4F + 2.0F;
 							event.getEntity().level.playSound(null, event.getEntity(), SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, soundPitch);
