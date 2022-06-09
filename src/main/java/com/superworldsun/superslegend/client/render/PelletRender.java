@@ -3,7 +3,8 @@ package com.superworldsun.superslegend.client.render;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.entities.projectiles.arrows.PelletEntity;
+import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
+
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -14,7 +15,7 @@ import net.minecraft.util.math.vector.Matrix3f;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class PelletRender extends EntityRenderer<PelletEntity> {
+public class PelletRender extends EntityRenderer<DekuSeedEntity> {
     protected static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/arrows/pellet.png");
     private static final RenderType RENDER_TYPE = RenderType.entityCutoutNoCull(TEXTURE);
 
@@ -23,12 +24,12 @@ public class PelletRender extends EntityRenderer<PelletEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(PelletEntity entity) {
+    public ResourceLocation getTextureLocation(DekuSeedEntity entity) {
         return TEXTURE;
     }
 
     @Override
-    public void render(PelletEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+    public void render(DekuSeedEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 
         matrixStackIn.pushPose();
         float scale = 0.5f;

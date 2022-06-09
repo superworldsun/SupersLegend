@@ -8,6 +8,8 @@ import com.superworldsun.superslegend.entities.projectiles.boomerang.*;
 import com.superworldsun.superslegend.entities.projectiles.hooks.*;
 import com.superworldsun.superslegend.entities.projectiles.magic.*;
 import com.superworldsun.superslegend.entities.projectiles.mastersword.MasterSwordSwordEntity;
+import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
+
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -20,8 +22,8 @@ public class EntityTypeInit
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, SupersLegendMain.MOD_ID);
 
 
-	public static final RegistryObject<EntityType<PelletEntity>> PELLET = ENTITIES.register("pellet",
-			() -> EntityType.Builder.<PelletEntity>of(PelletEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
+	public static final RegistryObject<EntityType<DekuSeedEntity>> PELLET = ENTITIES.register("pellet",
+			() -> EntityType.Builder.<DekuSeedEntity>of(DekuSeedEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F)
 					.build(new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/projectiles/pellet").toString()));
 	
 	public static final RegistryObject<EntityType<FireArrowEntity>> FIRE_ARROW = ENTITIES.register("fire_arrow",
