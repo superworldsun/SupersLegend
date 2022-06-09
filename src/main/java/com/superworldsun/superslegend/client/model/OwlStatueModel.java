@@ -93,10 +93,6 @@ public class OwlStatueModel extends Model
 	@Override
 	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha)
 	{
-	}
-	
-	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay)
-	{
 		Owl_Statue.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 	

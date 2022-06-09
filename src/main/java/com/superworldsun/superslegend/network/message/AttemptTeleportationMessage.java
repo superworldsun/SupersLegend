@@ -1,20 +1,16 @@
 package com.superworldsun.superslegend.network.message;
 
-import java.util.UUID;
 import java.util.function.Supplier;
 
 import com.superworldsun.superslegend.waypoints.Waypoint;
 import com.superworldsun.superslegend.waypoints.WaypointsProvider;
 import com.superworldsun.superslegend.waypoints.WaypointsServerData;
 
-import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
-import net.minecraft.command.impl.TeleportCommand;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class AttemptTeleportationMessage
@@ -51,7 +47,7 @@ public class AttemptTeleportationMessage
 		{
 			Waypoint waypoint = WaypointsServerData.instance().getWaypoint(message.pos);
 			
-			if(waypoint == null)
+			if (waypoint == null)
 			{
 				WaypointsProvider.get(player).removeWaypoint(message.pos);
 			}
@@ -59,7 +55,8 @@ public class AttemptTeleportationMessage
 			{
 				MinecraftServer server = player.getLevel().getServer();
 				String playerName = player.getName().getString();
-				new Commands(Commands.EnvironmentType.ALL).performCommand(server.createCommandSourceStack(), "tp " + playerName + " " + message.pos.getX() + " " + message.pos.getY() + " " + message.pos.getZ());
+				String command = "tp " + playerName + " " + message.pos.getX() + " " + message.pos.getY() + " " + message.pos.getZ();
+				new Commands(Commands.EnvironmentType.ALL).performCommand(server.createCommandSourceStack(), command);
 			}
 		});
 	}
