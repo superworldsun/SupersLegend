@@ -1,18 +1,32 @@
 package com.superworldsun.superslegend.items;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.tags.ItemTags;
+import java.util.List;
+import java.util.Objects;
 
-public abstract class QuiverItem extends BagItem
+import javax.annotation.Nullable;
+
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+
+public class QuiverItem extends AmmoContainerItem
 {
-	public QuiverItem(Properties properties)
+	public QuiverItem(int capacity)
 	{
-		super(properties);
+		super(capacity);
 	}
 	
 	@Override
-	public boolean canHoldItem(ItemStack stack)
+	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
 	{
-		return ItemTags.ARROWS.contains(stack.getItem());
+		if (getContents(stack) != null)
+		{
+			tooltip.add(new StringTextComponent(TextFormatting.AQUA + Objects.requireNonNull(getContents(stack)).getRight().toString()));
+			tooltip.add(new StringTextComponent(TextFormatting.WHITE + getContents(stack).getLeft().getHoverName().getString()));
+			tooltip.add(new StringTextComponent(TextFormatting.YELLOW + "Right click to get arrows."));
+		}
 	}
 }
