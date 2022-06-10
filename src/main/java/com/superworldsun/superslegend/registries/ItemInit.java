@@ -6,6 +6,7 @@ import java.util.Map;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.*;
 import com.superworldsun.superslegend.items.armors.*;
+import com.superworldsun.superslegend.items.block.*;
 import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.food.*;
@@ -138,6 +139,12 @@ public class ItemInit
 
 	/*public static final RegistryObject<Item> SPINNER = ITEMS.register("spinner",
 			() -> new SpinnerItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
+	
+	// SPECIAL BLOCK ITEMS
+	
+	public static final RegistryObject<Item> SHADOW_BLOCK = ITEMS.register("shadow_block", ShadowBlockItem::new);
+	public static final RegistryObject<Item> HIDDEN_SHADOW_BLOCK = ITEMS.register("hidden_shadow_block", HiddenShadowBlockItem::new);
+	public static final RegistryObject<Item> FALSE_SHADOW_BLOCK = ITEMS.register("false_shadow_block", FalseShadowBlockItem::new);
 	
 	// FOOD
 	
