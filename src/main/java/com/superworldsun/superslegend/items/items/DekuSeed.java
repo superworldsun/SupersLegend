@@ -18,7 +18,6 @@ public class DekuSeed extends ArrowItem
 	@Override
 	public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter)
 	{
-		DekuSeedEntity pellet = new DekuSeedEntity(worldIn, shooter);
-		return pellet;
+		return new DekuSeedEntity(worldIn, shooter);
 	}
 }
