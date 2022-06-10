@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.items;
 
 import com.superworldsun.superslegend.events.MaxHealthEvents;
 import com.superworldsun.superslegend.registries.SoundInit;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -12,7 +13,14 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.List;
 
 public class VoidContainer extends Item
 {
@@ -20,7 +28,7 @@ public class VoidContainer extends Item
 	{
 		super(properties);
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	{
@@ -56,8 +64,16 @@ public class VoidContainer extends Item
 			{
 				player.setHealth(player.getMaxHealth());
 			}
-			
 			return ActionResult.consume(itemstack);
 		}
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	{
+		super.appendHoverText(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.BLACK + "Decreases Maximum Health"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 	}
 }
