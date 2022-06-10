@@ -1,7 +1,8 @@
 package com.superworldsun.superslegend.items.items;
 
 import com.superworldsun.superslegend.api.IPelletAmo;
-import com.superworldsun.superslegend.entities.projectiles.arrows.PelletEntity;
+import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -21,7 +22,7 @@ public class DekuSeed extends ArrowItem implements IPelletAmo {
 
 	@Override
 	public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
-		PelletEntity pellet = new PelletEntity(worldIn, shooter);
+		DekuSeedEntity pellet = new DekuSeedEntity(worldIn, shooter);
 		return pellet;
 	}
 

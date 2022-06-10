@@ -5,8 +5,12 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
+import com.superworldsun.superslegend.registries.ItemInit;
+
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -17,6 +21,19 @@ public class QuiverItem extends AmmoContainerItem
 	public QuiverItem(int capacity)
 	{
 		super(capacity);
+	}
+	
+	@Override
+	public boolean canHoldItem(ItemStack itemStack)
+	{
+		Item ammoItem = itemStack.getItem();
+		
+		if (ammoItem == ItemInit.MAGIC_FIRE_ARROW.get() || ammoItem == ItemInit.MAGIC_ICE_ARROW.get() || ammoItem == ItemInit.MAGIC_LIGHT_ARROW.get())
+		{
+			return false;
+		}
+		
+		return ItemTags.ARROWS.contains(ammoItem);
 	}
 	
 	@Override

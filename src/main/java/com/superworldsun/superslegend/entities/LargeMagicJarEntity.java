@@ -1,9 +1,12 @@
 package com.superworldsun.superslegend.entities;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -103,7 +106,7 @@ public class LargeMagicJarEntity extends Entity {
 
     @Override
     public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-        if (this.level.isClientSide || this.removed) return false;
+        if (this.level.isClientSide || !isAlive()) return false;
         if (this.isInvulnerableTo(p_70097_1_)) {
             return false;
         } else {
@@ -159,5 +162,9 @@ public class LargeMagicJarEntity extends Entity {
     public int getValue() {
         return this.value;
     }
-
+	
+	public static EntityType<LargeMagicJarEntity> createEntityType()
+	{
+		return EntityType.Builder.<LargeMagicJarEntity>of(LargeMagicJarEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":large_magic_jar");
+	}
 }

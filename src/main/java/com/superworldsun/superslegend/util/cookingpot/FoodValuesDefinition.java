@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableSortedSet;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.RecipeTypeInit;
 import com.superworldsun.superslegend.registries.RecipeSerializerInit;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -55,7 +56,7 @@ public class FoodValuesDefinition extends AbstractCookingPotRecipe {
         if (item == null || item == Items.AIR) {
             return FoodValues.create();
         }
-        List<FoodValuesDefinition> allDefs = recipeManager.getAllRecipesFor(CookingPotRecipeTypes.FOOD_VALUES_RECIPE_TYPE);
+        List<FoodValuesDefinition> allDefs = recipeManager.getAllRecipesFor(RecipeTypeInit.FOOD_VALUES_RECIPE_TYPE);
         Optional<FoodValuesDefinition> itemDef = allDefs.stream()
                 .filter(def -> !def.isTag() && def.getNames().stream().anyMatch(name -> name.equals(item.getRegistryName())))
                 .findFirst();
@@ -110,7 +111,7 @@ public class FoodValuesDefinition extends AbstractCookingPotRecipe {
                 return Float.compare(v1, v2);
             }
         });
-        List<FoodValuesDefinition> allDefs = recipeManager.getAllRecipesFor(CookingPotRecipeTypes.FOOD_VALUES_RECIPE_TYPE);
+        List<FoodValuesDefinition> allDefs = recipeManager.getAllRecipesFor(RecipeTypeInit.FOOD_VALUES_RECIPE_TYPE);
         allDefs.stream().filter(def -> !def.isTag()).forEach(itemDef -> itemDef.getNames().forEach(name -> {
             Item item = ForgeRegistries.ITEMS.getValue(name);
             if (item != null && item != Items.AIR && itemDef.getFoodValues().has(category)) {
@@ -145,12 +146,12 @@ public class FoodValuesDefinition extends AbstractCookingPotRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return RecipeSerializerInit.FOOD_VALUES;
+        return RecipeSerializerInit.FOOD_VALUES.get();
     }
 
     @Override
     public IRecipeType<?> getType() {
-        return CookingPotRecipeTypes.FOOD_VALUES_RECIPE_TYPE;
+        return RecipeTypeInit.FOOD_VALUES_RECIPE_TYPE;
     }
 
     public static class FoodCategoryMatchedItems {

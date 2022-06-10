@@ -4,8 +4,8 @@ import java.util.function.Predicate;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.api.IPelletAmo;
-import com.superworldsun.superslegend.entities.projectiles.arrows.PelletEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.SilverArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
 import com.superworldsun.superslegend.items.items.DekuSeed;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -39,7 +39,7 @@ public class SlingShot extends BowItem {
 		return stack -> stack.getItem() instanceof IPelletAmo;
 	}
 
-	public PelletEntity customArrow(PelletEntity pellet) {
+	public DekuSeedEntity customArrow(DekuSeedEntity pellet) {
 		return pellet;
 	}
 
@@ -93,7 +93,7 @@ public class SlingShot extends BowItem {
 					boolean flag1 = player.abilities.instabuild || (ammoItem.getItem() instanceof DekuSeed && ((DekuSeed) ammoItem.getItem()).isInfinite(ammoItem, stack, player));
 					if (!worldIn.isClientSide) {
 						DekuSeed DekuSeed = (DekuSeed) (ammoItem.getItem() instanceof DekuSeed ? ammoItem.getItem() : ItemInit.DEKU_SEEDS.get());
-						PelletEntity shot = (PelletEntity) DekuSeed.createArrow(worldIn, ammoItem, player);
+						DekuSeedEntity shot = (DekuSeedEntity) DekuSeed.createArrow(worldIn, ammoItem, player);
 						shot.shootFromRotation(player, player.xRot, player.yRot, 0.0F, f * 3.0F, 1.0F);
 						worldIn.addFreshEntity(shot);
 					}

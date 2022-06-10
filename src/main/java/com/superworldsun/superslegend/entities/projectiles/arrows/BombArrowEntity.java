@@ -1,10 +1,14 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import static com.superworldsun.superslegend.util.Functions.repeat;
+
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
-import com.superworldsun.superslegend.util.Functions;
+
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -17,8 +21,6 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-
-import static com.superworldsun.superslegend.util.Functions.repeat;
 
 public class BombArrowEntity extends AbstractArrowEntity {
 
@@ -110,5 +112,10 @@ public class BombArrowEntity extends AbstractArrowEntity {
             repeat(3, () -> this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D));
         }
     }
+	
+	public static EntityType<BombArrowEntity> createEntityType()
+	{
+		return EntityType.Builder.<BombArrowEntity>of(BombArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":bomb_arrow");
+	}
 }
 

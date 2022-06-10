@@ -16,6 +16,7 @@ import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Pose;
@@ -101,7 +102,7 @@ public class LongshotEntity extends AbstractArrowEntity {
             }
             if (!level.isClientSide) {
                 if (this.hookedEntity != null) { //In case the mob you are hooked to dies while you go towards it ..
-                    if (this.hookedEntity.removed) {
+                    if (!this.hookedEntity.isAlive()) {
                         this.hookedEntity = null;
                         onRemovedFromWorld();
                     } else {
@@ -362,5 +363,9 @@ public class LongshotEntity extends AbstractArrowEntity {
 			}
 		}
 	}
-
+	
+	public static EntityType<LongshotEntity> createEntityType()
+	{
+		return EntityType.Builder.<LongshotEntity>of(LongshotEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":longshot");
+	}
 }

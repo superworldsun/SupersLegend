@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
@@ -32,9 +33,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Bus.MOD)
-public class TPBokoblinEntity<T extends CreatureEntity> extends CreatureEntity
+public class TPBokoblinEntity extends CreatureEntity
 {
-	public TPBokoblinEntity(EntityType<? extends CreatureEntity> type, World world)
+	public TPBokoblinEntity(EntityType<TPBokoblinEntity> type, World world)
 	{
 		super(type, world);
 	}
@@ -124,5 +125,10 @@ public class TPBokoblinEntity<T extends CreatureEntity> extends CreatureEntity
 	public static void addEntityAttributes(EntityAttributeCreationEvent event)
 	{
 		event.put(EntityTypeInit.TP_BOKOBLIN.get(), TPBokoblinEntity.setCustomAttributes().build());
+	}
+	
+	public static EntityType<TPBokoblinEntity> createEntityType()
+	{
+		return EntityType.Builder.<TPBokoblinEntity>of(TPBokoblinEntity::new, EntityClassification.MONSTER).sized(1.0F, 3.0F).build(SupersLegendMain.MOD_ID + ":tp_bokoblin");
 	}
 }

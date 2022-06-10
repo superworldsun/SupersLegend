@@ -1,9 +1,11 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -69,4 +71,9 @@ public class AncientArrowEntity extends AbstractArrowEntity
         BlockPos currentPos = entity.blockPosition();
         entity.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), sound, SoundCategory.PLAYERS, 1f, 1f);
     }
+	
+	public static EntityType<AncientArrowEntity> createEntityType()
+	{
+		return EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":ancient_arrow");
+	}
 }

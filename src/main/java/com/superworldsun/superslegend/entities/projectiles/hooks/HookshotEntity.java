@@ -10,6 +10,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.entities.projectiles.arrows.IceBeamEntity;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.items.HookshotItem;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
@@ -18,6 +19,7 @@ import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Pose;
@@ -39,9 +41,6 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -104,7 +103,7 @@ public class HookshotEntity extends AbstractArrowEntity {
 			}
 			if (!level.isClientSide) {
 				if (this.hookedEntity != null) { //In case the mob you are hooked to dies while you go towards it ..
-					if (this.hookedEntity.removed) {
+					if (isAlive()) {
 						this.hookedEntity = null;
 						onRemovedFromWorld();
 					} else {
@@ -374,5 +373,9 @@ public class HookshotEntity extends AbstractArrowEntity {
 			}
 		}
 	}
-
+	
+	public static EntityType<HookshotEntity> createEntityType()
+	{
+		return EntityType.Builder.<HookshotEntity>of(HookshotEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":hookshot");
+	}
 }

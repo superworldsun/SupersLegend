@@ -1,7 +1,10 @@
 package com.superworldsun.superslegend.entities;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -101,7 +104,7 @@ public class HeartEntity extends Entity {
 
     @Override
     public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-        if (this.level.isClientSide || this.removed) return false;
+        if (this.level.isClientSide || !isAlive()) return false;
         if (this.isInvulnerableTo(p_70097_1_)) {
             return false;
         } else {
@@ -158,5 +161,9 @@ public class HeartEntity extends Entity {
     public int getValue() {
         return this.value;
     }
-
+	
+	public static EntityType<HeartEntity> createEntityType()
+	{
+		return EntityType.Builder.<HeartEntity>of(HeartEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":heart");
+	}
 }
