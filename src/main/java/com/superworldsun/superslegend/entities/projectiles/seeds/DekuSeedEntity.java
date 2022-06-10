@@ -19,7 +19,7 @@ public class DekuSeedEntity extends SeedEntity
 	
 	public DekuSeedEntity(World worldIn, LivingEntity shooter)
 	{
-		super(EntityTypeInit.PELLET.get(), shooter, worldIn);
+		super(EntityTypeInit.DEKU_SEED.get(), shooter, worldIn);
 	}
 	
 	@Override
@@ -30,6 +30,6 @@ public class DekuSeedEntity extends SeedEntity
 	
 	public static EntityType<DekuSeedEntity> createEntityType()
 	{
-		return EntityType.Builder.<DekuSeedEntity>of(DekuSeedEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":pellet");
+		return EntityType.Builder.<DekuSeedEntity>of(DekuSeedEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":deku_seed");
 	}
 }

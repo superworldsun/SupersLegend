@@ -28,7 +28,7 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<MagicFireArrowEntity>> MAGIC_FIRE_ARROW = ENTITIES.register("magic_fire_arrow", MagicFireArrowEntity::createEntityType);
 	public static final RegistryObject<EntityType<MagicIceArrowEntity>> MAGIC_ICE_ARROW = ENTITIES.register("magic_ice_arrow", MagicIceArrowEntity::createEntityType);
 	public static final RegistryObject<EntityType<MagicLightArrowEntity>> MAGIC_LIGHT_ARROW = ENTITIES.register("magic_light_arrow", MagicLightArrowEntity::createEntityType);
-	public static final RegistryObject<EntityType<DekuSeedEntity>> PELLET = ENTITIES.register("pellet", DekuSeedEntity::createEntityType);
+	public static final RegistryObject<EntityType<DekuSeedEntity>> DEKU_SEED = ENTITIES.register("deku_seed", DekuSeedEntity::createEntityType);
 	public static final RegistryObject<EntityType<IceBeamEntity>> ICE_BEAM = ENTITIES.register("ice_beam", IceBeamEntity::createEntityType);
 	public static final RegistryObject<EntityType<HookshotEntity>> HOOKSHOT_ENTITY = ENTITIES.register("hookshot", HookshotEntity::createEntityType);
 	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG = ENTITIES.register("boomerang", RegularBoomerang::createEntityType);
