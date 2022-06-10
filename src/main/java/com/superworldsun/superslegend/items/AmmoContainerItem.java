@@ -105,7 +105,7 @@ public abstract class AmmoContainerItem extends Item
 		int count = ItemNBTHelper.getInt(itemStack, "itemCount", 0);
 		return Pair.of(contained, count);
 	}
-
+	
 	public int getCapacity()
 	{
 		return capacity;
@@ -135,7 +135,13 @@ public abstract class AmmoContainerItem extends Item
 	@SubscribeEvent
 	public static void onArrowLoose(ArrowLooseEvent event)
 	{
-		CuriosApi.getCuriosHelper().getEquippedCurios(event.getEntityLiving()).ifPresent(curios ->
+		// do not consume arrows from containers in creative mode
+		if (event.getPlayer().abilities.instabuild)
+		{
+			return;
+		}
+		
+		CuriosApi.getCuriosHelper().getEquippedCurios(event.getPlayer()).ifPresent(curios ->
 		{
 			for (int i = 0; i < curios.getSlots(); i++)
 			{
