@@ -1,7 +1,5 @@
 package com.superworldsun.superslegend.items;
 
-import java.util.Objects;
-
 import javax.annotation.Nullable;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -29,7 +27,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public abstract class AmmoContainerItem extends Item
 {
-	protected final int capacity;
+	private final int capacity;
 	
 	public AmmoContainerItem(int capacity)
 	{
@@ -55,7 +53,7 @@ public abstract class AmmoContainerItem extends Item
 		
 		if (!playerIn.level.isClientSide)
 		{
-			for (int i = 0; i < Objects.requireNonNull(contents).getRight(); i++)
+			for (int i = 0; i < contents.getRight(); i++)
 			{
 				ItemEntity itemEntity = new ItemEntity(playerIn.level, playerIn.getX(), playerIn.getEyeY() - 0.3, playerIn.getZ(), contents.getLeft());
 				itemEntity.setDeltaMovement(0, 0.1, 0);
@@ -90,7 +88,7 @@ public abstract class AmmoContainerItem extends Item
 		}
 		
 		ItemNBTHelper.setInt(itemStack, "itemCount", count);
-		itemStack.setDamageValue(capacity - count);
+		itemStack.setDamageValue(getCapacity() - count);
 	}
 	
 	@Nullable
@@ -107,8 +105,13 @@ public abstract class AmmoContainerItem extends Item
 		int count = ItemNBTHelper.getInt(itemStack, "itemCount", 0);
 		return Pair.of(contained, count);
 	}
+
+	public int getCapacity()
+	{
+		return capacity;
+	}
 	
-	private boolean containsSameItem(ItemStack itemStack, ItemStack arrowsStack)
+	public boolean containsSameItem(ItemStack itemStack, ItemStack arrowsStack)
 	{
 		Pair<ItemStack, Integer> quiverContents = getContents(itemStack);
 		
@@ -189,14 +192,14 @@ public abstract class AmmoContainerItem extends Item
 					
 					int arrowsCount = quiverContents == null ? 0 : quiverContents.getRight();
 					
-					if (arrowsCount < ammoContainerItem.capacity && ammoContainerItem.canHoldItem(pickedStack))
+					if (arrowsCount < ammoContainerItem.getCapacity() && ammoContainerItem.canHoldItem(pickedStack))
 					{
-						if (pickedStack.getCount() + arrowsCount > ammoContainerItem.capacity)
+						if (pickedStack.getCount() + arrowsCount > ammoContainerItem.getCapacity())
 						{
 							int newCount = pickedStack.getCount() + arrowsCount;
-							pickedStack.setCount(ammoContainerItem.capacity - arrowsCount);
+							pickedStack.setCount(ammoContainerItem.getCapacity() - arrowsCount);
 							ammoContainerItem.setItemStack(curioStack, pickedStack);
-							pickedStack.setCount(newCount - ammoContainerItem.capacity);
+							pickedStack.setCount(newCount - ammoContainerItem.getCapacity());
 						}
 						else
 						{

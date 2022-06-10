@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.recipe.AmmoContainersFillingRecipe;
 import com.superworldsun.superslegend.util.cookingpot.CookingPotCookingRecipe;
 import com.superworldsun.superslegend.util.cookingpot.FoodValuesDefinition;
 
@@ -16,4 +17,5 @@ public class RecipeSerializerInit
 	
 	public static final RegistryObject<IRecipeSerializer<?>> COOKING_POT_COOKING = RECIPE_SERIALIZERS.register("cooking_pot_cooking", CookingPotCookingRecipe.Serializer::new);
 	public static final RegistryObject<IRecipeSerializer<?>> FOOD_VALUES = RECIPE_SERIALIZERS.register("food_values", FoodValuesDefinition.Serializer::new);
+	public static final RegistryObject<IRecipeSerializer<?>> AMMO_CONTAINERS_FILLING = RECIPE_SERIALIZERS.register("ammo_containers_filling", AmmoContainersFillingRecipe.Serializer::new);
 }
