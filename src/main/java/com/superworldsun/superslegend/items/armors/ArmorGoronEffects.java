@@ -2,7 +2,6 @@ package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.armor.GoronArmorModel;
-import com.superworldsun.superslegend.client.model.armor.ZoraArmorModel;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
@@ -13,18 +12,22 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class ArmorGoronEffects extends NonEnchantArmor
 {
     private static final Map<EquipmentSlotType, BipedModel<?>> MODELS_CACHE = new HashMap<>();
@@ -65,9 +68,53 @@ public class ArmorGoronEffects extends NonEnchantArmor
     	if (!world.isClientSide)
     	{
             boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().getItem() == ItemInit.GORON_TUNIC.get();
-            if(isChestplateOn) player.addEffect(new EffectInstance(Effect.byId(12), 10, 0, false, false));
-            
-            player.clearFire();
+
+            if (isChestplateOn)
+            {
+                player.clearFire();
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingHurt(LivingHurtEvent event)
+    {
+        if (!(event.getEntity() instanceof PlayerEntity))
+        {
+            return;
+        }
+        PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+        boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().getItem() == ItemInit.GORON_TUNIC.get();
+
+        if (isChestplateOn)
+        {
+            if (event.getSource() == DamageSource.LAVA)
+            {
+                event.setAmount(event.getAmount() / 3);
+            }
+            if (event.getSource() == DamageSource.IN_FIRE)
+            {
+                event.setAmount(event.getAmount() / 3);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingAttack(LivingAttackEvent event)
+    {
+        if (!(event.getEntity() instanceof PlayerEntity))
+        {
+            return;
+        }
+        PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+        boolean isChestplateOn = player.getItemBySlot(EquipmentSlotType.CHEST).getItem().getItem() == ItemInit.GORON_TUNIC.get();
+
+        if (isChestplateOn)
+        {
+            if (event.getSource() == DamageSource.HOT_FLOOR)
+            {
+                event.setCanceled(true);
+            }
         }
     }
 }
