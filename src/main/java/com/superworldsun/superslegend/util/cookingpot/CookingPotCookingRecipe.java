@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.util.cookingpot;
 
 import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonObject;
+import com.superworldsun.superslegend.registries.RecipeTypeInit;
 import com.superworldsun.superslegend.registries.RecipeSerializerInit;
 import com.superworldsun.superslegend.util.cookingpot.requirement.IRequirement;
 import net.minecraft.item.ItemStack;
@@ -60,7 +61,7 @@ public class CookingPotCookingRecipe extends AbstractCookingPotRecipe {
 
     @Nullable
     public static CookingPotCookingRecipe getRecipeFor(CookingPotCookingRecipeInput input, Random random, RecipeManager recipeManager) {
-        List<CookingPotCookingRecipe> recipes = recipeManager.getAllRecipesFor(CookingPotRecipeTypes.COOKING_POT_COOKING_RECIPE_TYPE);
+        List<CookingPotCookingRecipe> recipes = recipeManager.getAllRecipesFor(RecipeTypeInit.COOKING_POT_COOKING_RECIPE_TYPE);
         recipes.sort(Comparator.comparing(CookingPotCookingRecipe::getPriority).reversed());
         List<CookingPotCookingRecipe> matchedRecipes = new ArrayList<>();
         boolean isFirst = true;
@@ -112,7 +113,7 @@ public class CookingPotCookingRecipe extends AbstractCookingPotRecipe {
 
     @Override
     public IRecipeType<?> getType() {
-        return CookingPotRecipeTypes.COOKING_POT_COOKING_RECIPE_TYPE;
+        return RecipeTypeInit.COOKING_POT_COOKING_RECIPE_TYPE;
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<CookingPotCookingRecipe> {
