@@ -26,6 +26,7 @@ public class AppraisedRingBox extends Item
 		super(new Properties().tab(SupersLegendMain.RESOURCES));
 	}
 
+	//TODO Add an open sound on use
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	{
@@ -39,7 +40,6 @@ public class AppraisedRingBox extends Item
 		return ActionResult.success(stack);
 	}
 
-	//Note: do not use @OnlyIn(Dist.CLIENT), it does nothing and is not required
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{

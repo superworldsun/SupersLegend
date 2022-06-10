@@ -12,6 +12,7 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -38,12 +39,6 @@ public class SilverArrowEntity extends AbstractArrowEntity
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    @Override
-    protected void doPostHurtEffects(LivingEntity living) {
-        if(living instanceof WitherSkeletonEntity)
-            this.setBaseDamage(this.getBaseDamage() * 100);
-        super.doPostHurtEffects(living);
-    }
 
     @Override
     protected void onHitEntity(EntityRayTraceResult result) {
@@ -51,10 +46,13 @@ public class SilverArrowEntity extends AbstractArrowEntity
         Entity entity = result.getEntity();
         if (entity instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity) entity;
-
-            this.getBaseDamage();
             if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
                 livingentity.setArrowCount(livingentity.getArrowCount() - 1);
+            }
+        }
+        if (entity instanceof WitherSkeletonEntity) {
+            {
+                this.setBaseDamage(this.getBaseDamage() * 10);
             }
         }
     }

@@ -68,8 +68,6 @@ public class ItemInit
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> TRIFORCE_COURAGE_SHARD = ITEMS.register("triforce_courage_shard",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	/*public static final RegistryObject<Item> RUPEE_POUCH = ITEMS.register("rupee_pouch",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
 	public static final RegistryObject<Item> ODOLWAS_REMAINS = ITEMS.register("odolwas_remains",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> GOHTS_REMAINS = ITEMS.register("gohts_remains",
@@ -91,20 +89,16 @@ public class ItemInit
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> ANCIENT_SPRING = ITEMS.register("ancient_spring",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-
 	/*public static final RegistryObject<Item> MOON_TEAR = ITEMS.register("moon_tear",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
-
 	public static final RegistryObject<Item> MASTER_ORE_CHUNK = ITEMS.register("master_ore_chunk"
 			, () -> new Item(new Item.Properties().rarity(Rarity.RARE).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASTER_ORE = ITEMS.register("master_ore"
 			, () -> new Item(new Item.Properties().rarity(Rarity.EPIC).tab(SupersLegendMain.RESOURCES)));
-
 	/*public static final RegistryObject<Item> MASTER_SWORD_BLADE = ITEMS.register("master_sword_blade",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASTER_SWORLD_HILT = ITEMS.register("master_sword_hilt",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
-	
 	public static final RegistryObject<Item> HEART_PIECE = ITEMS.register("heart_piece",
 			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> HEART_CONTAINER = ITEMS.register("heart_container",

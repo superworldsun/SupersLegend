@@ -81,7 +81,7 @@ public class HookshotItem extends Item {
                 //Get Entity, set properties and spawn in the world.
                 HookshotEntity hookshot = new HookshotEntity(EntityTypeInit.HOOKSHOT_ENTITY.get(), player, world);
                 hookshot.setProperties(stack, maxRange, maxSpeed, player.xRot, player.yRot, 0f, 1.5f * (float) (maxSpeed / 10));
-                world.addFreshEntity(hookshot);
+                 world.addFreshEntity(hookshot);
                 sprite = true;
             }
 
