@@ -218,8 +218,7 @@ public class ItemInit
 			() -> new LynelBowX3(1, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<LynelBowX5> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
 			() -> new LynelBowX5(1, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot",
-			() -> new SlingShot(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot", SlingShot::new);
 	public static final RegistryObject<DekuShield> DEKU_SHIELD = ITEMS.register("deku_shield",
 			() -> new DekuShield(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<ShieldItem> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
