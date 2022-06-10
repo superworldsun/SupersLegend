@@ -21,10 +21,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
 
-@EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
+@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public abstract class AmmoContainerItem extends Item
 {
 	private final int capacity;
