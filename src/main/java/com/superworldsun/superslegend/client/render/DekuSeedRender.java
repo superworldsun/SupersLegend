@@ -15,11 +15,11 @@ import net.minecraft.util.math.vector.Matrix3f;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class PelletRender extends EntityRenderer<DekuSeedEntity> {
+public class DekuSeedRender extends EntityRenderer<DekuSeedEntity> {
     protected static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/arrows/pellet.png");
     private static final RenderType RENDER_TYPE = RenderType.entityCutoutNoCull(TEXTURE);
 
-    public PelletRender(EntityRendererManager renderManager) {
+    public DekuSeedRender(EntityRendererManager renderManager) {
         super(renderManager);
     }
 

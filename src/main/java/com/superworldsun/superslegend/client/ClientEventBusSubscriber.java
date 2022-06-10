@@ -62,7 +62,7 @@ public class ClientEventBusSubscriber
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.TP_BOKOBLIN.get(), TPBokoblinRender::new);
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.DEKU_SEED.get(), PelletRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.DEKU_SEED.get(), DekuSeedRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.FIRE_ARROW.get(), FireArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.ICE_ARROW.get(), IceArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.SHOCK_ARROW.get(), ShockArrowRender::new);
