@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class DekuSeedRender extends SeedRenderer<DekuSeedEntity>
 {
-	private static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/arrows/pellet.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/seeds/deku_seed.png");
 	
 	public DekuSeedRender(EntityRendererManager renderManager)
 	{
