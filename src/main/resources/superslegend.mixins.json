@@ -10,7 +10,6 @@
     "MixinMushroomBlock",
     "MixinFoxEntity",
     "MixinFlowingFluid",
-    "PlayerGetArrow",
     "MixinHeldItemLayer"
   ],
   "minVersion": "0.8"
