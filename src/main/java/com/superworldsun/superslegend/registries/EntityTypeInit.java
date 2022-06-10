@@ -28,7 +28,6 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<MagicFireArrowEntity>> MAGIC_FIRE_ARROW = ENTITIES.register("magic_fire_arrow", MagicFireArrowEntity::createEntityType);
 	public static final RegistryObject<EntityType<MagicIceArrowEntity>> MAGIC_ICE_ARROW = ENTITIES.register("magic_ice_arrow", MagicIceArrowEntity::createEntityType);
 	public static final RegistryObject<EntityType<MagicLightArrowEntity>> MAGIC_LIGHT_ARROW = ENTITIES.register("magic_light_arrow", MagicLightArrowEntity::createEntityType);
-	public static final RegistryObject<EntityType<DekuSeedEntity>> DEKU_SEED = ENTITIES.register("deku_seed", DekuSeedEntity::createEntityType);
 	public static final RegistryObject<EntityType<IceBeamEntity>> ICE_BEAM = ENTITIES.register("ice_beam", IceBeamEntity::createEntityType);
 	public static final RegistryObject<EntityType<HookshotEntity>> HOOKSHOT_ENTITY = ENTITIES.register("hookshot", HookshotEntity::createEntityType);
 	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG = ENTITIES.register("boomerang", RegularBoomerang::createEntityType);
@@ -47,6 +46,15 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<FireballEntity>> FIREBALL = ENTITIES.register("fireball", FireballEntity::createEntityType);
 	public static final RegistryObject<EntityType<IceballEntity>> ICEBALL = ENTITIES.register("iceball", IceballEntity::createEntityType);
 	
+	// SEEDS
+	
+	public static final RegistryObject<EntityType<DekuSeedEntity>> DEKU_SEED = ENTITIES.register("deku_seed", DekuSeedEntity::createEntityType);
+	public static final RegistryObject<EntityType<WheatSeedEntity>> WHEAT_SEED = ENTITIES.register("wheat_seed", WheatSeedEntity::createEntityType);
+	public static final RegistryObject<EntityType<BeetrootSeedEntity>> BEETROOT_SEED = ENTITIES.register("beetroot_seed", BeetrootSeedEntity::createEntityType);
+	public static final RegistryObject<EntityType<MelonSeedEntity>> MELON_SEED = ENTITIES.register("melon_seed", MelonSeedEntity::createEntityType);
+	public static final RegistryObject<EntityType<PumpkinSeedEntity>> PUMPKIN_SEED = ENTITIES.register("pumpkin_seed", PumpkinSeedEntity::createEntityType);
+	public static final RegistryObject<EntityType<CocoaBeanEntity>> COCOA_BEAN = ENTITIES.register("cocoa_bean", CocoaBeanEntity::createEntityType);
+
 	// MOBS
 	
 	public static final RegistryObject<EntityType<TPBokoblinEntity>> TP_BOKOBLIN = ENTITIES.register("tp_bokoblin", TPBokoblinEntity::createEntityType);

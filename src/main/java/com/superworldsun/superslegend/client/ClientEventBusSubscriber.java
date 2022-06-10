@@ -3,7 +3,7 @@ package com.superworldsun.superslegend.client;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.screen.CookingPotScreen;
 import com.superworldsun.superslegend.client.render.*;
-import com.superworldsun.superslegend.client.render.seeds.DekuSeedRender;
+import com.superworldsun.superslegend.client.render.seeds.*;
 import com.superworldsun.superslegend.client.screen.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
 import com.superworldsun.superslegend.registries.BlockInit;
@@ -64,6 +64,11 @@ public class ClientEventBusSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.TP_BOKOBLIN.get(), TPBokoblinRender::new);
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.DEKU_SEED.get(), DekuSeedRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MELON_SEED.get(), MelonSeedRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.PUMPKIN_SEED.get(), PumpkinSeedRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.WHEAT_SEED.get(), WheatSeedRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.BEETROOT_SEED.get(), BeetrootSeedRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.COCOA_BEAN.get(), CocoaBeanRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.FIRE_ARROW.get(), FireArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.ICE_ARROW.get(), IceArrowRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.SHOCK_ARROW.get(), ShockArrowRender::new);
