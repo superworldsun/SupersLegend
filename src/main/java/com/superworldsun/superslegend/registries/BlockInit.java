@@ -57,9 +57,7 @@ public class BlockInit
 	public static final RegistryObject<Block> RED_FLOOR_SWITCH = BLOCKS.register("red_floor_switch"
 			, () -> new RedFloorSwitch(RedFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL)
 					.strength(5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
-	public static final RegistryObject<Block> RUSTED_FLOOR_SWITCH = BLOCKS.register("rusted_floor_switch"
-			, () -> new RustedFloorSwitch(RustedFloorSwitch.SensitivityMod.ENDERDRAGON, AbstractBlock.Properties.of(Material.METAL)
-					.strength(5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
+	public static final RegistryObject<Block> RUSTED_FLOOR_SWITCH = BLOCKS.register("rusted_floor_switch", RustedFloorSwitch::new);
 	public static final RegistryObject<Block> WOODEN_PEG_BLOCK = BLOCKS.register("wooden_peg_block", () -> new WoodenPegBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUSTED_PEG_BLOCK = BLOCKS.register("rusted_peg_block", () -> new RustedPegBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> SPIKED_PEG_BLOCK = BLOCKS.register("spiked_peg_block", () -> new SpikedPegBlock(PropertiesInit.WRECKAGE));
