@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.client;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.screen.CookingPotScreen;
 import com.superworldsun.superslegend.client.render.*;
+import com.superworldsun.superslegend.client.render.seeds.DekuSeedRender;
 import com.superworldsun.superslegend.client.screen.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
 import com.superworldsun.superslegend.registries.BlockInit;
