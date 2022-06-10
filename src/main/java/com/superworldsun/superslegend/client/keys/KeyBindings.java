@@ -29,14 +29,15 @@ import top.theillusivec4.curios.api.CuriosApi;
 public class KeyBindings
 {
 	public static final KeyBinding MASK_ABILITY = new KeyBinding("key.mask_ability", GLFW.GLFW_KEY_B, "key.categories." + SupersLegendMain.MOD_ID);
-	public static final KeyBinding SELECT_INVENTORY = new KeyBinding("key.select_inventory", GLFW.GLFW_KEY_C, "key.categories." + SupersLegendMain.MOD_ID);
+	//Dosent work as intended and is incomplete
+	//public static final KeyBinding SELECT_INVENTORY = new KeyBinding("key.select_inventory", GLFW.GLFW_KEY_C, "key.categories." + SupersLegendMain.MOD_ID);
 	public static final KeyBinding DROP_BOMB = new KeyBinding("key.drop_bomb", GLFW.GLFW_KEY_N, "key.categories." + SupersLegendMain.MOD_ID);
 	
 	@SubscribeEvent
 	public static void onClientSetup(FMLClientSetupEvent event)
 	{
 		ClientRegistry.registerKeyBinding(MASK_ABILITY);
-		ClientRegistry.registerKeyBinding(SELECT_INVENTORY);
+		//ClientRegistry.registerKeyBinding(SELECT_INVENTORY);
 		ClientRegistry.registerKeyBinding(DROP_BOMB);
 	}
 	
@@ -97,10 +98,10 @@ public class KeyBindings
 					}
 				}
 			}
-			else if (SELECT_INVENTORY.isDown())
+			/*else if (SELECT_INVENTORY.isDown())
 			{
 				NetworkDispatcher.networkChannel.sendToServer(new SelectInteractionMessage(0, true));
-			}
+			}*/
 			else if (event.getKey() == DROP_BOMB.getKey().getValue())
 			{
 				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BOMB_BAG.get(), client.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);

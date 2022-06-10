@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -8,12 +9,16 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.songs.LearnedSongsProvider;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
@@ -26,7 +31,16 @@ public class SongSheet extends Item
 		super(new Item.Properties().tab(SupersLegendMain.RESOURCES).stacksTo(1));
 		this.songSupplier = songSupplier;
 	}
-	
+
+	@Override
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	{
+		super.appendHoverText(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.GOLD + "Right click to Learn Song"));
+	}
+
+	//TODO add config to have this item consumed on use
+	//TODO add a sound when item is used
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand)
 	{

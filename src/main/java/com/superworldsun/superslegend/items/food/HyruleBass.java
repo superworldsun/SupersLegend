@@ -13,13 +13,13 @@ public class HyruleBass extends Item
 	{
 		super(new Properties().tab(SupersLegendMain.RESOURCES).food(new Food.Builder().saturationMod(0.3f).nutrition(1).meat().build()));
 	}
-	
+
 	@Override
 	public UseAction getUseAnimation(ItemStack stack)
 	{
 		return UseAction.EAT;
 	}
-	
+
 	@Override
 	public int getUseDuration(ItemStack p_77626_1_)
 	{

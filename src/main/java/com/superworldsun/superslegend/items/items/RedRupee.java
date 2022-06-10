@@ -24,14 +24,13 @@ public class RedRupee extends Item{
 	{
 		super(properties);
 	}
-	
+
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
 		ItemStack stack = player.getItemInHand(hand);
 		
 		if(stack.getCount() >= 5)
 		 {
-			
 			 stack.shrink(5);
 			
 			 player.addItem(new ItemStack(ItemInit.SILVER_RUPEE.get()));
@@ -39,16 +38,13 @@ public class RedRupee extends Item{
 			 BlockPos currentPos = player.blockPosition();
 			 player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_RED.get(), SoundCategory.PLAYERS, 1f, 1f);
 		 }
-		        
 	return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
-		
 	}
-	
-	
+
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.RED + "20 rupee"));
-	}   
+		list.add(new StringTextComponent(TextFormatting.RED + "20 Rupee"));
+	}
 } 
