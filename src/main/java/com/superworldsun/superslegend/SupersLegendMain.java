@@ -18,11 +18,9 @@ import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.songs.ILearnedSongs;
 import com.superworldsun.superslegend.songs.LearnedSongs;
 import com.superworldsun.superslegend.songs.LearnedSongsStorage;
-import com.superworldsun.superslegend.util.ClientHandler;
 import com.superworldsun.superslegend.waypoints.IWaypoints;
 import com.superworldsun.superslegend.waypoints.WaypointsStorage;
 import com.superworldsun.superslegend.waypoints.Waypoints;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -47,7 +45,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkDirection;
@@ -59,8 +56,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Method;
 import java.util.*;
-
-import static net.minecraft.item.ItemModelsProperties.register;
 
 @Mod(SupersLegendMain.MOD_ID)
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -85,8 +80,7 @@ public class SupersLegendMain
 		// and notify Forge of it
 		SupersLegendStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 		modEventBus.addListener(this::setup);
-		modEventBus.addListener(this::doClientStuff);
-
+		
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupersLegendConfig.SPEC, "superslegend.toml");
 
 		// Remember to register items before blocks, problems can occur
@@ -266,114 +260,4 @@ public class SupersLegendMain
 	public static final ItemGroup RESOURCES = new SupersLegendItemGroup();
 	public static final ItemGroup APPAREL = new SupersLegendItemGroupApparel();
 	public static final ItemGroup BLOCKS = new SupersLegendItemGroupBlocks();
-	
-	// We need this code for custom bow models with pull animations
-	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-	public static class RegistryEvents
-	{
-		@SubscribeEvent
-		public static void setModelProperties(FMLClientSetupEvent event)
-		{
-			register(ItemInit.LENS_OF_TRUTH.get(), new ResourceLocation("using"),
-					(stack, world, entity) -> entity != null && entity.getUseItem() == stack ? 1.0F : 0.0F);
-
-			register(ItemInit.CLAWSHOT.get(), new ResourceLocation("pulling"),
-					(stack, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-			
-			register(ItemInit.HEROS_BOW.get(), new ResourceLocation("pull"), (stack, world, entity) ->
-			{
-				if (entity == null)
-				{
-					return 0.0F;
-				}
-				else
-				{
-					return entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
-				}
-			});
-			register(ItemInit.HEROS_BOW.get(), new ResourceLocation("pulling"),
-					(stack, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-
-			register(ItemInit.FAIRY_BOW.get(), new ResourceLocation("pull"), (stack, world, entity) ->
-			{
-				if (entity == null)
-				{
-					return 0.0F;
-				}
-				else
-				{
-					return entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
-				}
-			});
-			register(ItemInit.FAIRY_BOW.get(), new ResourceLocation("pulling"),
-					(stack, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-
-
-			register(ItemInit.LYNEL_BOW_X3.get(), new ResourceLocation("pull"), (stack, world, entity) ->
-			{
-				if (entity == null)
-				{
-					return 0.0F;
-				}
-				else
-				{
-					return entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
-				}
-			});
-			register(ItemInit.LYNEL_BOW_X3.get(), new ResourceLocation("pulling"),
-					(stack, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-			
-			register(ItemInit.LYNEL_BOW_X5.get(), new ResourceLocation("pull"), (stack, world, entity) ->
-			{
-				if (entity == null)
-				{
-					return 0.0F;
-				}
-				else
-				{
-					return entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
-				}
-			});
-			register(ItemInit.LYNEL_BOW_X5.get(), new ResourceLocation("pulling"),
-					(stack, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-			
-			register(ItemInit.DEKU_SHIELD.get(), new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_,
-					p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isUsingItem() && p_239421_2_.getUseItem() == p_239421_0_ ? 1.0F : 0.0F);
-			
-			register(ItemInit.HYLIAN_SHIELD.get(), new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_,
-					p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isUsingItem() && p_239421_2_.getUseItem() == p_239421_0_ ? 1.0F : 0.0F);
-
-			register(ItemInit.SACRED_SHIELD.get(), new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_,
-					p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isUsingItem() && p_239421_2_.getUseItem() == p_239421_0_ ? 1.0F : 0.0F);
-
-			register(ItemInit.MIRROR_SHIELD.get(), new ResourceLocation("blocking"), (p_239421_0_, p_239421_1_,
-					p_239421_2_) -> p_239421_2_ != null && p_239421_2_.isUsingItem() && p_239421_2_.getUseItem() == p_239421_0_ ? 1.0F : 0.0F);
-			
-			register(ItemInit.FISHING_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) ->
-			{
-				if (p_239422_2_ == null)
-				{
-					return 0.0F;
-				}
-				else
-				{
-					boolean flag = p_239422_2_.getMainHandItem() == p_239422_0_;
-					boolean flag1 = p_239422_2_.getOffhandItem() == p_239422_0_;
-					if (p_239422_2_.getMainHandItem().getItem() instanceof FishingRodItem)
-					{
-						flag1 = false;
-					}
-					
-					return (flag || flag1) && p_239422_2_ instanceof PlayerEntity && ((PlayerEntity) p_239422_2_).fishing != null ? 1.0F : 0.0F;
-				}
-			});
-		}
-
-
-	}
-	private void doClientStuff(final FMLClientSetupEvent event) {
-		RendererManagerInit.init();
-		ClientHandler.setupClient();
-
-	}
 }

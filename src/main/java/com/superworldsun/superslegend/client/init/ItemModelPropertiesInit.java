@@ -1,0 +1,100 @@
+package com.superworldsun.superslegend.client.init;
+
+import static com.superworldsun.superslegend.items.ClawshotItem.spriteC;
+import static com.superworldsun.superslegend.items.HookshotItem.sprite;
+import static com.superworldsun.superslegend.items.LongshotItem.spriteL;
+
+import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.items.ClawshotItem;
+import com.superworldsun.superslegend.items.HookshotItem;
+import com.superworldsun.superslegend.items.LongshotItem;
+import com.superworldsun.superslegend.registries.ItemInit;
+
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.FishingRodItem;
+import net.minecraft.item.IItemPropertyGetter;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemModelsProperties;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+
+@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+public class ItemModelPropertiesInit
+{
+	private static final IItemPropertyGetter IN_USE = (stack, world, entity) -> entity != null && entity.getUseItem() == stack ? 1.0F : 0.0F;
+	private static final IItemPropertyGetter USE_PROGRESS = (stack, world, entity) -> entity != null && entity.getUseItem() == stack ? getUseProgress(stack, entity) : 0.0F;
+	
+	@SubscribeEvent
+	public static void onClientSetup(FMLClientSetupEvent event)
+	{
+		ItemModelsProperties.register(ItemInit.LENS_OF_TRUTH.get(), new ResourceLocation("using"), IN_USE);
+		ItemModelsProperties.register(ItemInit.CLAWSHOT.get(), new ResourceLocation("pulling"), IN_USE);
+		ItemModelsProperties.register(ItemInit.HEROS_BOW.get(), new ResourceLocation("pull"), USE_PROGRESS);
+		ItemModelsProperties.register(ItemInit.HEROS_BOW.get(), new ResourceLocation("pulling"), IN_USE);
+		ItemModelsProperties.register(ItemInit.FAIRY_BOW.get(), new ResourceLocation("pull"), USE_PROGRESS);
+		ItemModelsProperties.register(ItemInit.FAIRY_BOW.get(), new ResourceLocation("pulling"), IN_USE);
+		ItemModelsProperties.register(ItemInit.LYNEL_BOW_X3.get(), new ResourceLocation("pull"), USE_PROGRESS);
+		ItemModelsProperties.register(ItemInit.LYNEL_BOW_X3.get(), new ResourceLocation("pulling"), IN_USE);
+		ItemModelsProperties.register(ItemInit.LYNEL_BOW_X5.get(), new ResourceLocation("pull"), USE_PROGRESS);
+		ItemModelsProperties.register(ItemInit.LYNEL_BOW_X5.get(), new ResourceLocation("pulling"), IN_USE);
+		ItemModelsProperties.register(ItemInit.DEKU_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
+		ItemModelsProperties.register(ItemInit.HYLIAN_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
+		ItemModelsProperties.register(ItemInit.SACRED_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
+		ItemModelsProperties.register(ItemInit.MIRROR_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
+		
+		ItemModelsProperties.register(ItemInit.FISHING_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) ->
+		{
+			if (p_239422_2_ == null)
+			{
+				return 0.0F;
+			}
+			else
+			{
+				boolean flag = p_239422_2_.getMainHandItem() == p_239422_0_;
+				boolean flag1 = p_239422_2_.getOffhandItem() == p_239422_0_;
+				if (p_239422_2_.getMainHandItem().getItem() instanceof FishingRodItem)
+				{
+					flag1 = false;
+				}
+				
+				return (flag || flag1) && p_239422_2_ instanceof PlayerEntity && ((PlayerEntity) p_239422_2_).fishing != null ? 1.0F : 0.0F;
+			}
+		});
+		
+		registerFishingRodModelProperties(ItemInit.HOOKSHOT.get());
+		registerFishingRodModelProperties(ItemInit.LONGSHOT.get());
+		registerFishingRodModelProperties(ItemInit.CLAWSHOT.get());
+	}
+	
+	private static float getUseProgress(ItemStack itemStack, LivingEntity entity)
+	{
+		return (itemStack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
+	}
+	
+	public static void registerFishingRodModelProperties(Item hookshot)
+	{
+		ItemModelsProperties.register(hookshot, new ResourceLocation("cast"), (heldStack, world, livingEntity) ->
+		{
+			if (livingEntity == null)
+			{
+				return 0.0F;
+			}
+			else
+			{
+				boolean isMainhand = livingEntity.getMainHandItem() == heldStack;
+				boolean isOffHand = livingEntity.getOffhandItem() == heldStack;
+				if (livingEntity.getMainHandItem().getItem() instanceof HookshotItem || livingEntity.getMainHandItem().getItem() instanceof LongshotItem
+						|| livingEntity.getMainHandItem().getItem() instanceof ClawshotItem)
+				{
+					isOffHand = false;
+				}
+				return (isMainhand || isOffHand) && livingEntity instanceof PlayerEntity && (sprite || spriteL || spriteC) ? 1.0F : 0.0F;
+			}
+		});
+	}
+}
