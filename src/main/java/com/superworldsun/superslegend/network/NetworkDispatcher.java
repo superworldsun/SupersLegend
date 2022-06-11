@@ -32,7 +32,7 @@ public class NetworkDispatcher
 		networkChannel.registerMessage(5, SyncMenuMessage.class, SyncMenuMessage::encode, SyncMenuMessage::decode, SyncMenuMessage::handle, Optional.of(PLAY_TO_CLIENT));
 		networkChannel.registerMessage(6, SyncLearnedSongsMessage.class, SyncLearnedSongsMessage::encode, SyncLearnedSongsMessage::decode, SyncLearnedSongsMessage::receive, Optional.of(PLAY_TO_CLIENT));
 		networkChannel.registerMessage(7, PlaySongMessage.class, PlaySongMessage::encode, PlaySongMessage::decode, PlaySongMessage::receive, Optional.of(PLAY_TO_SERVER));
-		networkChannel.registerMessage(8, RocksFeatherMessage.class, RocksFeatherMessage::encode, RocksFeatherMessage::decode, RocksFeatherMessage::receive, Optional.of(PLAY_TO_SERVER));
+		networkChannel.registerMessage(8, DoubleJumpMessage.class, DoubleJumpMessage::encode, DoubleJumpMessage::decode, DoubleJumpMessage::receive, Optional.of(PLAY_TO_SERVER));
 		networkChannel.registerMessage(9, DropBombMessage.class, DropBombMessage::encode, DropBombMessage::decode, DropBombMessage::receive, Optional.of(PLAY_TO_SERVER));
 		networkChannel.registerMessage(10, SyncWaypointsMessage.class, SyncWaypointsMessage::encode, SyncWaypointsMessage::decode, SyncWaypointsMessage::receive, Optional.of(PLAY_TO_CLIENT));
 		networkChannel.registerMessage(11, ShowWaystonesScreenMessage.class, ShowWaystonesScreenMessage::encode, ShowWaystonesScreenMessage::decode, ShowWaystonesScreenMessage::receive, Optional.of(PLAY_TO_CLIENT));

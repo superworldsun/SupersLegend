@@ -33,7 +33,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShootableItem;
+import net.minecraft.potion.Effects;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraftforge.common.ForgeHooks;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(PlayerEntity.class)
@@ -144,7 +148,6 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 		}
 	}
 	
-
 	@Inject(method = "getProjectile", at = @At(value = "HEAD"), cancellable = true)
 	private void injectGetProjectile(ItemStack weaponStack, CallbackInfoReturnable<ItemStack> callbackInfo)
 	{
@@ -198,6 +201,34 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 				}
 			}
 		});
+	}
+	
+	@Override
+	public void doubleJump()
+	{
+		PlayerEntity player = (PlayerEntity) (Object) this;
+		double jumpStrength = 0.5;
+		
+		if (player.hasEffect(Effects.JUMP))
+		{
+			jumpStrength += 0.1 * (player.getEffect(Effects.JUMP).getAmplifier() + 1);
+		}
+		
+		Vector3d movementVector = player.getDeltaMovement();
+		Vector3d jumpVector = new Vector3d(0, jumpStrength - movementVector.y, 0);
+		player.setDeltaMovement(movementVector.add(jumpVector));
+		player.hasImpulse = true;
+		player.awardStat(Stats.JUMP);
+		ForgeHooks.onLivingJump(player);
+		
+		if (player.isSprinting())
+		{
+			player.causeFoodExhaustion(0.2F);
+		}
+		else
+		{
+			player.causeFoodExhaustion(0.05F);
+		}
 	}
 	
 	@Override

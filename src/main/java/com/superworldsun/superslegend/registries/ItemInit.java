@@ -477,8 +477,7 @@ public class ItemInit
 	
 	// ARMORS
 	
-	public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape",
-			() -> new RocsCapeEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.APPAREL)));
+	public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape", RocsCape::new);
 	public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap",
 			() -> new KokiriArmor(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> KOKIRI_TUNIC = ITEMS.register("kokiri_tunic",
