@@ -3,6 +3,14 @@
   "textures": {
     "1": "superslegend:item/deku_leaf"
   },
+    "overrides": [
+		{
+			"predicate": {
+				"no_magic": 1
+			},
+			"model": "superslegend:item/deku_leaf_no_magic"
+		}
+	],
   "gui_light": "front",
   "elements": [
     {

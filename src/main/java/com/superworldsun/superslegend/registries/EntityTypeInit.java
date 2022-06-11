@@ -45,6 +45,7 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<FaroresWindEntity>> FARORES_WIND = ENTITIES.register("farores_wind", FaroresWindEntity::createEntityType);
 	public static final RegistryObject<EntityType<FireballEntity>> FIREBALL = ENTITIES.register("fireball", FireballEntity::createEntityType);
 	public static final RegistryObject<EntityType<IceballEntity>> ICEBALL = ENTITIES.register("iceball", IceballEntity::createEntityType);
+	public static final RegistryObject<EntityType<GustEntity>> GUST = ENTITIES.register("gust", GustEntity::createEntityType);
 	
 	// SEEDS
 	

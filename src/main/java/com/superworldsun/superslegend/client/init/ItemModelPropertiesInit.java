@@ -8,6 +8,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.ClawshotItem;
 import com.superworldsun.superslegend.items.HookshotItem;
 import com.superworldsun.superslegend.items.LongshotItem;
+import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.entity.LivingEntity;
@@ -28,6 +29,7 @@ public class ItemModelPropertiesInit
 {
 	private static final IItemPropertyGetter IN_USE = (stack, world, entity) -> entity != null && entity.getUseItem() == stack ? 1.0F : 0.0F;
 	private static final IItemPropertyGetter USE_PROGRESS = (stack, world, entity) -> entity != null && entity.getUseItem() == stack ? getUseProgress(stack, entity) : 0.0F;
+	private static final IItemPropertyGetter NO_MAGIC = (stack, world, entity) -> entity instanceof PlayerEntity && ManaProvider.get((PlayerEntity) entity).getMana() < 0.1F ? 1.0F : 0.0F;
 	
 	@SubscribeEvent
 	public static void onClientSetup(FMLClientSetupEvent event)
@@ -46,6 +48,7 @@ public class ItemModelPropertiesInit
 		ItemModelsProperties.register(ItemInit.HYLIAN_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
 		ItemModelsProperties.register(ItemInit.SACRED_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
 		ItemModelsProperties.register(ItemInit.MIRROR_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
+		ItemModelsProperties.register(ItemInit.DEKU_LEAF.get(), new ResourceLocation("no_magic"), NO_MAGIC);
 		
 		ItemModelsProperties.register(ItemInit.FISHING_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) ->
 		{
