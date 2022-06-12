@@ -61,6 +61,7 @@ public class TermometerHud
 			renderBackground(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY);
 			renderDangerousColdLevel(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY);
 			renderDangerousHeatLevel(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY);
+			renderOverlay(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY);
 			renderArrow(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY, event.getPartialTicks(), temperature);
 			// we need to switch texture back to vanilla one
 			minecraft.getTextureManager().bind(AbstractGui.GUI_ICONS_LOCATION);
@@ -75,12 +76,17 @@ public class TermometerHud
 	
 	private static void renderDangerousColdLevel(AbstractGui gui, MatrixStack matrixStack, int termometerX, int termometerY, int termometerSizeX, int termometerSizeY)
 	{
-		blitCircular(gui, matrixStack, termometerX, termometerY, 33, 0, termometerSizeX, termometerSizeY, false, 0.3F);
+		blitCircular(gui, matrixStack, termometerX, termometerY, 33, 0, termometerSizeX, termometerSizeY, false, 0.31F);
 	}
 	
 	private static void renderDangerousHeatLevel(AbstractGui gui, MatrixStack matrixStack, int termometerX, int termometerY, int termometerSizeX, int termometerSizeY)
 	{
-		blitCircular(gui, matrixStack, termometerX, termometerY, 66, 0, termometerSizeX, termometerSizeY, true, 0.3F);
+		blitCircular(gui, matrixStack, termometerX, termometerY, 66, 0, termometerSizeX, termometerSizeY, true, 0.31F);
+	}
+	
+	private static void renderOverlay(AbstractGui gui, MatrixStack matrixStack, int termometerX, int termometerY, int termometerSizeX, int termometerSizeY)
+	{
+		gui.blit(matrixStack, termometerX, termometerY, 99, 0, termometerSizeX, termometerSizeY);
 	}
 	
 	private static void renderArrow(AbstractGui gui, MatrixStack matrixStack, int termometerX, int termometerY, int termometerSizeX, int termometerSizeY, float partialTicks, float temperature)
@@ -119,7 +125,7 @@ public class TermometerHud
 		matrixStack.translate(termometerX + termometerSizeX / 2, termometerY + termometerSizeY / 2, 0);
 		matrixStack.mulPose(Vector3f.ZP.rotationDegrees(arrowRotationAnimation));
 		matrixStack.translate(-termometerX - termometerSizeX / 2, -termometerY - termometerSizeY / 2, 0);
-		gui.blit(matrixStack, termometerX, termometerY, 99, 0, termometerSizeX, termometerSizeY);
+		gui.blit(matrixStack, termometerX, termometerY, 132, 0, termometerSizeX, termometerSizeY);
 		matrixStack.popPose();
 		prev_arrow_rotation = arrow_rotation;
 	}
