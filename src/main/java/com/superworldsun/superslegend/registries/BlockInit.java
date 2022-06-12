@@ -57,18 +57,17 @@ public class BlockInit
 	public static final RegistryObject<Block> RED_FLOOR_SWITCH = BLOCKS.register("red_floor_switch"
 			, () -> new RedFloorSwitch(RedFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL)
 					.strength(5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
-	public static final RegistryObject<Block> RUSTED_FLOOR_SWITCH = BLOCKS.register("rusted_floor_switch"
-			, () -> new RustedFloorSwitch(RustedFloorSwitch.SensitivityMod.ENDERDRAGON, AbstractBlock.Properties.of(Material.METAL)
-					.strength(5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
+	public static final RegistryObject<Block> RUSTED_FLOOR_SWITCH = BLOCKS.register("rusted_floor_switch", RustedFloorSwitch::new);
 	public static final RegistryObject<Block> WOODEN_PEG_BLOCK = BLOCKS.register("wooden_peg_block", () -> new WoodenPegBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RUSTED_PEG_BLOCK = BLOCKS.register("rusted_peg_block", () -> new RustedPegBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> SPIKED_PEG_BLOCK = BLOCKS.register("spiked_peg_block", () -> new SpikedPegBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> HAMMERED_WOODEN_PEG_BLOCK = BLOCKS.register("hammered_wooden_peg_block", () -> new HammeredWoodenPegBlock(PropertiesInit.HAMMERED_WOODEN_PEG));
 	public static final RegistryObject<Block> HAMMERED_RUSTED_PEG_BLOCK = BLOCKS.register("hammered_rusted_peg_block", () -> new HammeredRustedPegBlock(PropertiesInit.HAMMERED_RUSTED_PEG));
 	public static final RegistryObject<Block> HAMMERED_SPIKED_PEG_BLOCK = BLOCKS.register("hammered_spiked_peg_block", () -> new HammeredSpikedPegBlock(PropertiesInit.HAMMERED_SPIKED_PEG));
-	public static final RegistryObject<Block> SHADOW_BLOCK = BLOCKS.register("shadow_block", () -> new Block(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> SHADOW_BLOCK = BLOCKS.register("shadow_block", ShadowBlock::new);
 	public static final RegistryObject<Block> FALSE_SHADOW_BLOCK = BLOCKS.register("false_shadow_block", FalseShadowBlock::new);
 	public static final RegistryObject<Block> HIDDEN_SHADOW_BLOCK = BLOCKS.register("hidden_shadow_block", HiddenShadowBlock::new);
+	public static final RegistryObject<Block> SHADOW_MODEL_BLOCK = BLOCKS.register("shadow_model_block", ShadowModelBlock::new);
 	public static final RegistryObject<Block> TOMBSTONE_BLOCK = BLOCKS.register("tombstone_block", () -> new TombstoneBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> STONE_PATH_BLOCK = BLOCKS.register("stone_path_block", () -> new StonePathBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> STONE_TILE_BLOCK = BLOCKS.register("stone_tile_block", () -> new StoneTileBlock(PropertiesInit.WRECKAGE));

@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.mixin;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -9,11 +10,13 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IHoveringEntity;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.interfaces.IResizableEntity;
+import com.superworldsun.superslegend.items.AmmoContainerItem;
 import com.superworldsun.superslegend.light.AbstractLightEmitter;
 import com.superworldsun.superslegend.light.EntityLightEmitter;
 import com.superworldsun.superslegend.light.ILightEmitterContainer;
@@ -29,7 +32,12 @@ import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShootableItem;
+import net.minecraft.potion.Effects;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraftforge.common.ForgeHooks;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(PlayerEntity.class)
@@ -137,6 +145,89 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 		{
 			float bonusSpeed = (scale - 1) / 2;
 			setBoundingBox(getBoundingBox().move(getDeltaMovement().multiply(bonusSpeed, bonusSpeed, bonusSpeed)));
+		}
+	}
+	
+	@Inject(method = "getProjectile", at = @At(value = "HEAD"), cancellable = true)
+	private void injectGetProjectile(ItemStack weaponStack, CallbackInfoReturnable<ItemStack> callbackInfo)
+	{
+		if (!(weaponStack.getItem() instanceof ShootableItem))
+		{
+			return;
+		}
+		
+		PlayerEntity player = (PlayerEntity) (Object) this;
+		ShootableItem shootableItem = (ShootableItem) weaponStack.getItem();
+		
+		CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curios ->
+		{
+			for (int i = 0; i < curios.getSlots(); i++)
+			{
+				ItemStack curioStack = curios.getStackInSlot(i);
+				
+				if (!curioStack.isEmpty() && curioStack.getItem() instanceof AmmoContainerItem)
+				{
+					AmmoContainerItem quiverItem = (AmmoContainerItem) curioStack.getItem();
+					Pair<ItemStack, Integer> quiverContents = quiverItem.getContents(curioStack);
+					
+					if (quiverContents == null)
+					{
+						continue;
+					}
+					
+					int arrowsCount = quiverContents.getRight();
+					
+					if (arrowsCount == 0)
+					{
+						continue;
+					}
+					
+					ItemStack arrowsStack = quiverContents.getLeft();
+					
+					// if our weapon can shoot items inside of the quiver
+					if (shootableItem.getSupportedHeldProjectiles().test(arrowsStack))
+					{
+						if (player.level.isClientSide())
+						{
+							callbackInfo.setReturnValue(ItemStack.EMPTY);
+						}
+						else
+						{
+							callbackInfo.setReturnValue(arrowsStack);
+						}
+						
+						return;
+					}
+				}
+			}
+		});
+	}
+	
+	@Override
+	public void doubleJump()
+	{
+		PlayerEntity player = (PlayerEntity) (Object) this;
+		double jumpStrength = 0.5;
+		
+		if (player.hasEffect(Effects.JUMP))
+		{
+			jumpStrength += 0.1 * (player.getEffect(Effects.JUMP).getAmplifier() + 1);
+		}
+		
+		Vector3d movementVector = player.getDeltaMovement();
+		Vector3d jumpVector = new Vector3d(0, jumpStrength - movementVector.y, 0);
+		player.setDeltaMovement(movementVector.add(jumpVector));
+		player.hasImpulse = true;
+		player.awardStat(Stats.JUMP);
+		ForgeHooks.onLivingJump(player);
+		
+		if (player.isSprinting())
+		{
+			player.causeFoodExhaustion(0.2F);
+		}
+		else
+		{
+			player.causeFoodExhaustion(0.05F);
 		}
 	}
 	

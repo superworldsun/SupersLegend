@@ -4,9 +4,10 @@ import java.time.Duration;
 import java.time.Instant;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-
 import com.superworldsun.superslegend.entities.projectiles.bombs.AbstractEntityBomb;
 import com.superworldsun.superslegend.util.RenderUtil;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -24,7 +25,10 @@ public class BombRender<T extends AbstractEntityBomb> extends SpriteRenderer<T> 
         this.itemRenderer = itemRendererIn;
     }
 
-
+    public BombRender(EntityRendererManager renderManagerIn) {
+        this(renderManagerIn, Minecraft.getInstance().getItemRenderer());
+    }
+    
     @Override
     public void render(T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn)
     {

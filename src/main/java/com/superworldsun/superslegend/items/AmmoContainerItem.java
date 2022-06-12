@@ -21,10 +21,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
 
-@EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
+@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public abstract class AmmoContainerItem extends Item
 {
 	private final int capacity;
@@ -105,7 +105,7 @@ public abstract class AmmoContainerItem extends Item
 		int count = ItemNBTHelper.getInt(itemStack, "itemCount", 0);
 		return Pair.of(contained, count);
 	}
-
+	
 	public int getCapacity()
 	{
 		return capacity;
@@ -135,7 +135,13 @@ public abstract class AmmoContainerItem extends Item
 	@SubscribeEvent
 	public static void onArrowLoose(ArrowLooseEvent event)
 	{
-		CuriosApi.getCuriosHelper().getEquippedCurios(event.getEntityLiving()).ifPresent(curios ->
+		// do not consume arrows from containers in creative mode
+		if (event.getPlayer().abilities.instabuild)
+		{
+			return;
+		}
+		
+		CuriosApi.getCuriosHelper().getEquippedCurios(event.getPlayer()).ifPresent(curios ->
 		{
 			for (int i = 0; i < curios.getSlots(); i++)
 			{

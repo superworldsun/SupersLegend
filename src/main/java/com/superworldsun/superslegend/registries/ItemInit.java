@@ -6,6 +6,7 @@ import java.util.Map;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.*;
 import com.superworldsun.superslegend.items.armors.*;
+import com.superworldsun.superslegend.items.block.*;
 import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.food.*;
@@ -139,6 +140,12 @@ public class ItemInit
 	/*public static final RegistryObject<Item> SPINNER = ITEMS.register("spinner",
 			() -> new SpinnerItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
 	
+	// SPECIAL BLOCK ITEMS
+	
+	public static final RegistryObject<Item> SHADOW_BLOCK = ITEMS.register("shadow_block", ShadowBlockItem::new);
+	public static final RegistryObject<Item> HIDDEN_SHADOW_BLOCK = ITEMS.register("hidden_shadow_block", HiddenShadowBlockItem::new);
+	public static final RegistryObject<Item> FALSE_SHADOW_BLOCK = ITEMS.register("false_shadow_block", FalseShadowBlockItem::new);
+	
 	// FOOD
 	
 	public static final RegistryObject<Item> HYRULE_BASS = ITEMS.register("hyrule_bass", HyruleBass::new);
@@ -212,8 +219,7 @@ public class ItemInit
 			() -> new LynelBowX3(1, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<LynelBowX5> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
 			() -> new LynelBowX5(1, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot",
-			() -> new SlingShot(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot", SlingShot::new);
 	public static final RegistryObject<DekuShield> DEKU_SHIELD = ITEMS.register("deku_shield",
 			() -> new DekuShield(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<ShieldItem> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
@@ -248,14 +254,9 @@ public class ItemInit
 	public static final RegistryObject<Item> LETTER = ITEMS.register("letter", Letter::new);
 	public static final RegistryObject<Item> RED_LETTER = ITEMS.register("red_letter", Letter::new);
 
-	public static final RegistryObject<Item> BULLET_BAG = ITEMS.register("bullet_bag",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-
-	public static final RegistryObject<Item> BIG_BULLET_BAG = ITEMS.register("big_bullet_bag",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-
-	public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> BULLET_BAG = ITEMS.register("bullet_bag", SmallBulletBag::new);
+	public static final RegistryObject<Item> BIG_BULLET_BAG = ITEMS.register("big_bullet_bag", MediumBulletBag::new);
+	public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag", BigBulletBag::new);
 
 	public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag", SmallBombBag::new);
 
@@ -371,8 +372,7 @@ public class ItemInit
 			() -> new FaroresWind(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<NayrusLove> NAYRUS_LOVE = ITEMS.register("nayrus_love",
 			() -> new NayrusLove(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<DekuLeaf> DEKU_LEAF = ITEMS.register("deku_leaf",
-			() -> new DekuLeaf(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<DekuLeaf> DEKU_LEAF = ITEMS.register("deku_leaf", DekuLeaf::new);
 	public static final RegistryObject<LensOfTruth> LENS_OF_TRUTH = ITEMS.register("lens_of_truth",
 			() -> new LensOfTruth(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<FairyOcarina> FAIRY_OCARINA = ITEMS.register("fairy_ocarina",
@@ -476,8 +476,7 @@ public class ItemInit
 	
 	// ARMORS
 	
-	public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape",
-			() -> new RocsCapeEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.APPAREL)));
+	public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape", RocsCape::new);
 	public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap",
 			() -> new KokiriArmor(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> KOKIRI_TUNIC = ITEMS.register("kokiri_tunic",

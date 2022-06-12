@@ -2,12 +2,8 @@ package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.tile.FalseShadowTileEntity;
-import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
-import com.superworldsun.superslegend.registries.PropertiesInit;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
@@ -24,25 +20,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
-public class FalseShadowBlock extends Block
+public class FalseShadowBlock extends ShadowBlock
 {
-
-	public FalseShadowBlock()
-	{
-		super(PropertiesInit.WRECKAGE.noCollission());
-	}
-	@Override
-	public BlockRenderType getRenderShape(BlockState state)
-	{
-		return BlockRenderType.INVISIBLE;
-	}
-	
-	@Override
-	public boolean hasTileEntity(BlockState state)
-	{
-		return true;
-	}
-	
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world)
 	{
@@ -55,6 +34,30 @@ public class FalseShadowBlock extends Block
 		return VoxelShapes.empty();
 	}
 	
+	public boolean propagatesSkylightDown(BlockState p_200123_1_, IBlockReader p_200123_2_, BlockPos p_200123_3_)
+	{
+		return true;
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public float getShadeBrightness(BlockState p_220080_1_, IBlockReader p_220080_2_, BlockPos p_220080_3_)
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public VoxelShape getVisualShape(BlockState p_230322_1_, IBlockReader p_230322_2_, BlockPos p_230322_3_, ISelectionContext p_230322_4_)
+	{
+		return VoxelShapes.empty();
+	}
+	
+	@Override
+	public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_, ISelectionContext p_220071_4_)
+	{
+		return VoxelShapes.empty();
+	}
+	
 	@OnlyIn(value = Dist.CLIENT)
 	@SubscribeEvent
 	public static void onDrawBlockHighlight(DrawHighlightEvent.HighlightBlock event)
@@ -62,8 +65,8 @@ public class FalseShadowBlock extends Block
 		Minecraft client = Minecraft.getInstance();
 		
 		// Applied only to false shadow blocks
-		if (client.level.getBlockState(event.getTarget().getBlockPos()).getBlock() != BlockInit.FALSE_SHADOW_BLOCK.get())
-		{  
+		if (!(client.level.getBlockState(event.getTarget().getBlockPos()).getBlock() instanceof FalseShadowBlock))
+		{
 			return;
 		}
 		

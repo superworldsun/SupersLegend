@@ -18,21 +18,19 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
-public class HudAdditions
+public class ManaHud
 {
-	private static final ResourceLocation MAGIC_ICONS = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/magic.png");
+	private static final ResourceLocation MANA_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/magic.png");
 	// Used for rendering mana when player is dead
 	private static int lastTickMana;
 	
 	@SubscribeEvent
 	public static void onRenderGameOverlay(RenderGameOverlayEvent.Post event)
 	{
-		// Render magic right after food
+		// render magic right after food
 		if (event.getType() == ElementType.FOOD)
 		{
 			Minecraft minecraft = Minecraft.getInstance();
-			minecraft.getTextureManager().bind(MAGIC_ICONS);
-			IngameGui gui = minecraft.gui;
 			PlayerEntity player = minecraft.player;
 			
 			if (player == null)
@@ -40,42 +38,43 @@ public class HudAdditions
 				return;
 			}
 			
+			IngameGui gui = minecraft.gui;
 			RenderSystem.enableBlend();
-			int width = event.getWindow().getGuiScaledWidth();
-			int height = event.getWindow().getGuiScaledHeight();
-			int left = width / 2 + 91;
-			int top = height - ForgeIngameGui.right_height;
+			int manaX = event.getWindow().getGuiScaledWidth() / 2 + 91;
+			int manaY = event.getWindow().getGuiScaledHeight() - ForgeIngameGui.right_height;
 			ForgeIngameGui.right_height += 10;
 			
-			int level = 0;
+			int mana = 0;
 			
-			// This checks are for crash fix when rendering mana of dead player
+			// these checks are for crash fix when rendering mana of dead player
 			if (player.isAlive())
 			{
-				level = (int) ManaProvider.get(player).getMana();
-				lastTickMana = level;
+				mana = (int) ManaProvider.get(player).getMana();
+				lastTickMana = mana;
 			}
 			else
 			{
-				level = lastTickMana;
+				mana = lastTickMana;
 			}
+			
+			minecraft.getTextureManager().bind(MANA_TEXTURE);
 			
 			for (int i = 0; i < 10; ++i)
 			{
-				int idx = i * 2 + 1;
-				int x = left - i * 8 - 9;
-				int y = top;
-				int icon = 9;
+				int crystalNumber = i * 2 + 1;
+				int crystalX = manaX - i * 8 - 9;
+				int crystalY = manaY;
 				
-				gui.blit(event.getMatrixStack(), x, y, 0, 0, 9, 9);
+				gui.blit(event.getMatrixStack(), crystalX, crystalY, 0, 0, 9, 9);
 				
-				if (idx < level)
-					gui.blit(event.getMatrixStack(), x, y, icon, 0, 9, 9);
-				else if (idx == level)
-					gui.blit(event.getMatrixStack(), x, y, icon + 9, 0, 9, 9);
+				if (crystalNumber <= mana)
+				{
+					int crystalIcon = crystalNumber == mana ? 18 : 9;
+					gui.blit(event.getMatrixStack(), crystalX, crystalY, crystalIcon, 0, 9, 9);
+				}
 			}
 			
-			// We need to switch texture back to vanilla one
+			// we need to switch texture back to vanilla one
 			minecraft.getTextureManager().bind(AbstractGui.GUI_ICONS_LOCATION);
 			RenderSystem.disableBlend();
 		}
