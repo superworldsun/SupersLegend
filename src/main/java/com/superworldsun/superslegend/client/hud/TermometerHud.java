@@ -83,7 +83,7 @@ public class TermometerHud
 	{
 		Minecraft minecraft = Minecraft.getInstance();
 		ClientPlayerEntity player = minecraft.player;
-		double coldResistance = player.getAttributeValue(AttributeInit.COLD_RESISTANCE.get());
+		double coldResistance = player.getAttributeValue(AttributeInit.COLD_RESISTANCE.get()) - 1;
 		float targetColdLevel = 0.31F;
 		
 		if (coldResistance < 0.0D)
@@ -118,7 +118,7 @@ public class TermometerHud
 	{
 		Minecraft minecraft = Minecraft.getInstance();
 		ClientPlayerEntity player = minecraft.player;
-		double heatResistance = player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get());
+		double heatResistance = player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get()) - 1;
 		float targetHeatLevel = 0.31F;
 		
 		if (heatResistance < 0.0D)

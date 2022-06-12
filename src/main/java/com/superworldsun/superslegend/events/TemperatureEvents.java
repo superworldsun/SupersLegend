@@ -41,8 +41,8 @@ public class TemperatureEvents
 		BlockPos playerPos = event.player.blockPosition();
 		Biome currentBiome = event.player.level.getBiome(playerPos);
 		float temperature = currentBiome.getTemperature(playerPos);
-		double coldResistance = event.player.getAttributeValue(AttributeInit.COLD_RESISTANCE.get());
-		double heatResistance = event.player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get());
+		double coldResistance = event.player.getAttributeValue(AttributeInit.COLD_RESISTANCE.get()) - 1;
+		double heatResistance = event.player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get()) - 1;
 		
 		if (coldResistance < 1.0D && temperature < 0.0F)
 		{
@@ -96,7 +96,7 @@ public class TemperatureEvents
 		if (event.getItemStack().getItem() == item && event.getSlotType() == slotType)
 		{
 			UUID modifierId = getAttributeModifierIdForSlot(slotType);
-			event.addModifier(AttributeInit.COLD_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.ADDITION));
+			event.addModifier(AttributeInit.COLD_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.MULTIPLY_BASE));
 		}
 	}
 	
@@ -105,7 +105,7 @@ public class TemperatureEvents
 	// if (event.getItemStack().getItem() == item && event.getSlotType() == slotType)
 	// {
 	// UUID modifierId = getModifierIdForSlot(slotType);
-	// event.addModifier(AttributeInit.HEAT_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.ADDITION));
+	// event.addModifier(AttributeInit.HEAT_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.MULTIPLY_BASE));
 	// }
 	// }
 	
