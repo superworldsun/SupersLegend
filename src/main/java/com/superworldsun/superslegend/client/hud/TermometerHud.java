@@ -14,18 +14,15 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -36,16 +33,6 @@ public class TermometerHud
 	private static final ResourceLocation TERMOMETER_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/termometer.png");
 	private static float prev_arrow_rotation;
 	private static float arrow_rotation;
-	
-	@SubscribeEvent
-	public static void test(PlayerTickEvent event)
-	{
-		PlayerEntity player = event.player;
-		BlockPos playerPos = player.blockPosition();
-		Biome currentBiome = player.level.getBiome(playerPos);
-		float temperature = currentBiome.getTemperature(playerPos);
-		player.sendMessage(new StringTextComponent("temperature: " + temperature), null);
-	}
 	
 	@SubscribeEvent
 	public static void onRenderGameOverlay(RenderGameOverlayEvent.Post event)
