@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.AttributeInit;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
@@ -33,6 +34,10 @@ public class TermometerHud
 	private static final ResourceLocation TERMOMETER_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/termometer.png");
 	private static float prev_arrow_rotation;
 	private static float arrow_rotation;
+	private static float prev_heat_level;
+	private static float heat_level = 0.31F;
+	private static float prev_cold_level;
+	private static float cold_level = 0.31F;
 	
 	@SubscribeEvent
 	public static void onRenderGameOverlay(RenderGameOverlayEvent.Post event)
@@ -59,8 +64,8 @@ public class TermometerHud
 			int termometerY = event.getWindow().getGuiScaledHeight() - 2 - termometerSizeY;
 			minecraft.getTextureManager().bind(TERMOMETER_TEXTURE);
 			renderBackground(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY);
-			renderDangerousColdLevel(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY);
-			renderDangerousHeatLevel(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY);
+			renderDangerousColdLevel(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY, event.getPartialTicks());
+			renderDangerousHeatLevel(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY, event.getPartialTicks());
 			renderOverlay(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY);
 			renderArrow(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY, event.getPartialTicks(), temperature);
 			// we need to switch texture back to vanilla one
@@ -74,14 +79,74 @@ public class TermometerHud
 		gui.blit(matrixStack, termometerX, termometerY, 0, 0, termometerSizeX, termometerSizeY);
 	}
 	
-	private static void renderDangerousColdLevel(AbstractGui gui, MatrixStack matrixStack, int termometerX, int termometerY, int termometerSizeX, int termometerSizeY)
+	private static void renderDangerousColdLevel(AbstractGui gui, MatrixStack matrixStack, int termometerX, int termometerY, int termometerSizeX, int termometerSizeY, float partialTicks)
 	{
-		blitCircular(gui, matrixStack, termometerX, termometerY, 33, 0, termometerSizeX, termometerSizeY, false, 0.31F);
+		Minecraft minecraft = Minecraft.getInstance();
+		ClientPlayerEntity player = minecraft.player;
+		double coldResistance = player.getAttributeValue(AttributeInit.COLD_RESISTANCE.get());
+		float targetColdLevel = 0.31F;
+		
+		if (coldResistance < 0.0D)
+		{
+			targetColdLevel += 0.19F * Math.abs(coldResistance);
+		}
+		else if (coldResistance > 0.0D)
+		{
+			targetColdLevel -= targetColdLevel * coldResistance;
+		}
+		
+		if (cold_level < targetColdLevel)
+		{
+			cold_level += 0.01F;
+		}
+		else if (cold_level > targetColdLevel)
+		{
+			cold_level -= 0.01F;
+		}
+		
+		if (Math.abs(cold_level - targetColdLevel) < 0.01F)
+		{
+			cold_level = targetColdLevel;
+		}
+		
+		float coldLevelAnimation = MathHelper.lerp(partialTicks, prev_cold_level, cold_level);
+		blitCircular(gui, matrixStack, termometerX, termometerY, 33, 0, termometerSizeX, termometerSizeY, false, coldLevelAnimation);
+		prev_cold_level = cold_level;
 	}
 	
-	private static void renderDangerousHeatLevel(AbstractGui gui, MatrixStack matrixStack, int termometerX, int termometerY, int termometerSizeX, int termometerSizeY)
+	private static void renderDangerousHeatLevel(AbstractGui gui, MatrixStack matrixStack, int termometerX, int termometerY, int termometerSizeX, int termometerSizeY, float partialTicks)
 	{
-		blitCircular(gui, matrixStack, termometerX, termometerY, 66, 0, termometerSizeX, termometerSizeY, true, 0.31F);
+		Minecraft minecraft = Minecraft.getInstance();
+		ClientPlayerEntity player = minecraft.player;
+		double heatResistance = player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get());
+		float targetHeatLevel = 0.31F;
+		
+		if (heatResistance < 0.0D)
+		{
+			targetHeatLevel += 0.19F * Math.abs(heatResistance);
+		}
+		else if (heatResistance > 0.0D)
+		{
+			targetHeatLevel -= targetHeatLevel * heatResistance;
+		}
+		
+		if (heat_level < targetHeatLevel)
+		{
+			heat_level += 0.01F;
+		}
+		else if (heat_level > targetHeatLevel)
+		{
+			heat_level -= 0.01F;
+		}
+		
+		if (Math.abs(heat_level - targetHeatLevel) < 0.01F)
+		{
+			heat_level = targetHeatLevel;
+		}
+		
+		float heatLevelAnimation = MathHelper.lerp(partialTicks, prev_heat_level, heat_level);
+		blitCircular(gui, matrixStack, termometerX, termometerY, 66, 0, termometerSizeX, termometerSizeY, true, heatLevelAnimation);
+		prev_heat_level = heat_level;
 	}
 	
 	private static void renderOverlay(AbstractGui gui, MatrixStack matrixStack, int termometerX, int termometerY, int termometerSizeX, int termometerSizeY)
