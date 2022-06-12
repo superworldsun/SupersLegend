@@ -100,6 +100,7 @@ public class SupersLegendMain
 		OcarinaSongInit.REGISTRY.register(modEventBus);
 		EffectInit.REGISTRY.register(modEventBus);
 		RecipeSerializerInit.RECIPE_SERIALIZERS.register(modEventBus);
+		AttributeInit.ATTRIBUTES.register(modEventBus);
 		
 		//The structure gen listeners must use MinecraftForge.EVENT_BUS and
 		// not MLJavaModLoadingContext.get().getModEventBus(), otherwise, you will cause MC to crash
