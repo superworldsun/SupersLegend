@@ -154,9 +154,15 @@ public class OwlStatueBlock extends Block
 	}
 	
 	@Override
-	public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_, ISelectionContext p_220071_4_)
+	public VoxelShape getCollisionShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos, ISelectionContext selectionContext)
 	{
 		return VoxelShapes.box(0, 0, 0, 1, 1.25, 1);
+	}
+	
+	@Override
+	public VoxelShape getOcclusionShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos)
+	{
+		return VoxelShapes.empty();
 	}
 	
 	@OnlyIn(Dist.CLIENT)
