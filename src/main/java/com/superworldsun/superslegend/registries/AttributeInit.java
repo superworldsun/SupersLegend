@@ -12,11 +12,11 @@ public class AttributeInit
 {
 	public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, SupersLegendMain.MOD_ID);
 	
-	public static final RegistryObject<Attribute> HEAT_RESISTANCE = rangedAttribute("heat_resistance", 0.0D, -1.0D, 1.0D);
-	public static final RegistryObject<Attribute> COLD_RESISTANCE = rangedAttribute("cold_resistance", 0.0D, -1.0D, 1.0D);
+	public static final RegistryObject<Attribute> HEAT_RESISTANCE = rangedAttribute("player", "heat_resistance", 1.0D, 0.0D, 2.0D);
+	public static final RegistryObject<Attribute> COLD_RESISTANCE = rangedAttribute("player", "cold_resistance", 1.0D, 0.0D, 2.0D);
 	
-	private static RegistryObject<Attribute> rangedAttribute(String name, double defaultValue, double minValue, double maxValue)
+	private static RegistryObject<Attribute> rangedAttribute(String category, String name, double defaultValue, double minValue, double maxValue)
 	{
-		return ATTRIBUTES.register(name, () -> new RangedAttribute(name, defaultValue, minValue, maxValue).setSyncable(true));
+		return ATTRIBUTES.register(name, () -> new RangedAttribute(category + "." + name, defaultValue, minValue, maxValue).setSyncable(true));
 	}
 }

@@ -435,6 +435,12 @@
   "song.superslegend.song_of_soaring.no_statues": "You have no place to warp to",
   "screen.waypoints.title": "Soar to where?",
   "screen.waypoints.remove_tooltip": "Hold shift and click to delete",
-  "screen.waypoints.remove_tooltip_shift": "Click to delete"
+  "screen.waypoints.remove_tooltip_shift": "Click to delete",
+  "player.cold_resistance": "Cold Resistance",
+  "player.heat_resistance": "Heat Resistance",
+  "death.attack.cold": "%1$s froze to death",
+  "death.attack.cold.player": "%1$s froze to death whilst fighting %2$s",
+  "death.attack.heat": "%1$s died from heatstroke",
+  "death.attack.heat.player": "%1$s died from heatstroke whilst fighting %2$s"  
 }
 
