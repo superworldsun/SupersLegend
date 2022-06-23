@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.AttributeInit;
+import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
@@ -89,6 +90,11 @@ public class TemperatureEvents
 		addColdResistance(event, Items.LEATHER_BOOTS, 0.1F, EquipmentSlotType.FEET);
 		addColdResistance(event, Items.LEATHER_HELMET, 0.1F, EquipmentSlotType.HEAD);
 		addColdResistance(event, Items.LEATHER_LEGGINGS, 0.2F, EquipmentSlotType.LEGS);
+
+		addHeatResistance(event, ItemInit.DESERT_VOE_CHESTPLATE.get(), 0.4F, EquipmentSlotType.CHEST);
+		addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
+		addHeatResistance(event, ItemInit.DESERT_VOE_HELMET.get(), 0.1F, EquipmentSlotType.HEAD);
+		addHeatResistance(event, ItemInit.DESERT_VOE_LEGGINGS.get(), 0.2F, EquipmentSlotType.LEGS);
 	}
 	
 	private static void addColdResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType)
@@ -100,14 +106,14 @@ public class TemperatureEvents
 		}
 	}
 	
-	// private static void addHeatResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType)
-	// {
-	// if (event.getItemStack().getItem() == item && event.getSlotType() == slotType)
-	// {
-	// UUID modifierId = getModifierIdForSlot(slotType);
-	// event.addModifier(AttributeInit.HEAT_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.MULTIPLY_BASE));
-	// }
-	// }
+	private static void addHeatResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType)
+	{
+		if (event.getItemStack().getItem() == item && event.getSlotType() == slotType)
+		{
+			UUID modifierId = getAttributeModifierIdForSlot(slotType);
+			event.addModifier(AttributeInit.HEAT_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.MULTIPLY_BASE));
+		}
+	}
 	
 	private static UUID getAttributeModifierIdForSlot(EquipmentSlotType slotType)
 	{
