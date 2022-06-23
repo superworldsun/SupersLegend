@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.projectiles.seeds.BeetrootSeedEntity;
 import com.superworldsun.superslegend.entities.projectiles.seeds.CocoaBeanEntity;
+import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
 import com.superworldsun.superslegend.entities.projectiles.seeds.MelonSeedEntity;
 import com.superworldsun.superslegend.entities.projectiles.seeds.PumpkinSeedEntity;
 import com.superworldsun.superslegend.entities.projectiles.seeds.WheatSeedEntity;
@@ -19,7 +20,6 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
@@ -129,7 +129,7 @@ public class SlingShot extends BowItem
 			return new CocoaBeanEntity(world, player);
 		}
 		
-		return new ArrowEntity(world, player);
+		return new DekuSeedEntity(world, player);
 	}
 	
 	public static float getPowerForTime(int timeInUse)

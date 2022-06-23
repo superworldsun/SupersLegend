@@ -29,11 +29,6 @@ public abstract class SeedEntity extends AbstractArrowEntity
 		setBaseDamage(2.0D);
 	}
 	
-	protected SoundEvent getDefaultHitGroundSoundEvent()
-	{
-		return SoundEvents.BAMBOO_BREAK;
-	}
-	
 	@Override
 	public IPacket<?> getAddEntityPacket()
 	{
@@ -49,6 +44,12 @@ public abstract class SeedEntity extends AbstractArrowEntity
 		{
 			remove();
 		}
+	}
+	
+	@Override
+	protected SoundEvent getDefaultHitGroundSoundEvent()
+	{
+		return SoundEvents.BAMBOO_BREAK;
 	}
 	
 	@Override

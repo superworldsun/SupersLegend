@@ -696,7 +696,11 @@ public class ItemInit
 			() -> new ArmorClimbingGearEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> CLIMBING_BOOTS = ITEMS.register("climbing_boots",
 			() -> new ArmorClimbingGearEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.APPAREL)));
-
+	public static final RegistryObject<Item> DESERT_VOE_HELMET = ITEMS.register("desert_voe_helmet", () -> new DesertVoeArmor(EquipmentSlotType.HEAD));
+	public static final RegistryObject<Item> DESERT_VOE_CHESTPLATE = ITEMS.register("desert_voe_chestplate", () -> new DesertVoeArmor(EquipmentSlotType.CHEST));
+	public static final RegistryObject<Item> DESERT_VOE_LEGGINGS = ITEMS.register("desert_voe_leggings", () -> new DesertVoeArmor(EquipmentSlotType.LEGS));
+	public static final RegistryObject<Item> DESERT_VOE_BOOTS = ITEMS.register("desert_voe_boots", () -> new DesertVoeArmor(EquipmentSlotType.FEET));
+	
 	//Back
 	public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", SmallQuiver::new);
 	public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", MediumQuiver::new);
