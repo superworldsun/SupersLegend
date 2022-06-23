@@ -2,12 +2,14 @@ package com.superworldsun.superslegend.events;
 
 import java.util.UUID;
 
+import com.google.common.util.concurrent.AtomicDouble;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.AttributeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -39,9 +41,7 @@ public class TemperatureEvents
 			return;
 		}
 		
-		BlockPos playerPos = event.player.blockPosition();
-		Biome currentBiome = event.player.level.getBiome(playerPos);
-		float temperature = currentBiome.getTemperature(playerPos);
+		float temperature = getTemperatureAroundPlayer(event.player);
 		double coldResistance = event.player.getAttributeValue(AttributeInit.COLD_RESISTANCE.get()) - 1;
 		double heatResistance = event.player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get()) - 1;
 		
@@ -90,11 +90,43 @@ public class TemperatureEvents
 		addColdResistance(event, Items.LEATHER_BOOTS, 0.1F, EquipmentSlotType.FEET);
 		addColdResistance(event, Items.LEATHER_HELMET, 0.1F, EquipmentSlotType.HEAD);
 		addColdResistance(event, Items.LEATHER_LEGGINGS, 0.2F, EquipmentSlotType.LEGS);
-
+		
 		addHeatResistance(event, ItemInit.DESERT_VOE_CHESTPLATE.get(), 0.4F, EquipmentSlotType.CHEST);
 		addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
 		addHeatResistance(event, ItemInit.DESERT_VOE_HELMET.get(), 0.1F, EquipmentSlotType.HEAD);
 		addHeatResistance(event, ItemInit.DESERT_VOE_LEGGINGS.get(), 0.2F, EquipmentSlotType.LEGS);
+	}
+	
+	public static float getTemperatureAroundPlayer(PlayerEntity player)
+	{
+		BlockPos playerPos = player.blockPosition();
+		
+		if (playerPos.getY() <= 40)
+		{
+			return 0.5F;
+		}
+		
+		// make it lower if it affects performance
+		int range = 8;
+		AtomicDouble temperature = new AtomicDouble();
+		
+		BlockPos.betweenClosed(playerPos.offset(-range, 0, -range), playerPos.offset(range, 0, range)).forEach(blockPos ->
+		{
+			Biome currentBiome = player.level.getBiome(blockPos);
+			temperature.addAndGet(currentBiome.getTemperature(blockPos));
+		});
+		
+		int blocksCount = (range * 2 + 1) * (range * 2 + 1);
+		temperature.set(temperature.get() / blocksCount);
+		
+		if (playerPos.getY() < 64)
+		{
+			float temperatureChange = (playerPos.getY() - 40) / 24.0F;
+			temperature.set((temperature.get() - 0.5F) * temperatureChange + 0.5F);
+		}
+		
+		return temperature.floatValue();
+		
 	}
 	
 	private static void addColdResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType)
