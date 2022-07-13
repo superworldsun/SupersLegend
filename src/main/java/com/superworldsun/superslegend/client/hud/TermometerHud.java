@@ -16,10 +16,12 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
@@ -118,6 +120,12 @@ public class TermometerHud
 		Minecraft minecraft = Minecraft.getInstance();
 		ClientPlayerEntity player = minecraft.player;
 		double heatResistance = player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get()) - 1;
+		
+		if (player.level.dimension() == World.NETHER)
+		{
+			heatResistance = player.hasEffect(Effects.FIRE_RESISTANCE) ? 1.0F : 0.0F;
+		}
+		
 		float targetHeatLevel = 0.31F;
 		
 		if (heatResistance < 0.0D)

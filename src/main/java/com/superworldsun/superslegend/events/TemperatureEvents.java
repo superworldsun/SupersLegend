@@ -13,8 +13,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.TickEvent.Phase;
@@ -44,6 +46,11 @@ public class TemperatureEvents
 		float temperature = getTemperatureAroundPlayer(event.player);
 		double coldResistance = event.player.getAttributeValue(AttributeInit.COLD_RESISTANCE.get()) - 1;
 		double heatResistance = event.player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get()) - 1;
+		
+		if (event.player.level.dimension() == World.NETHER)
+		{
+			heatResistance = event.player.hasEffect(Effects.FIRE_RESISTANCE) ? 1.0F : 0.0F;
+		}
 		
 		if (coldResistance < 1.0D && temperature < 0.0F)
 		{
@@ -99,6 +106,11 @@ public class TemperatureEvents
 	
 	public static float getTemperatureAroundPlayer(PlayerEntity player)
 	{
+		if (player.level.dimension() == World.NETHER)
+		{
+			return 2.0F;
+		}
+		
 		BlockPos playerPos = player.blockPosition();
 		
 		if (playerPos.getY() <= 40)
