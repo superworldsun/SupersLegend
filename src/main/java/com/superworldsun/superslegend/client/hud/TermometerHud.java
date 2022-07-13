@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.events.TemperatureEvents;
 import com.superworldsun.superslegend.registries.AttributeInit;
 
 import net.minecraft.client.Minecraft;
@@ -15,12 +16,12 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
@@ -55,9 +56,7 @@ public class TermometerHud
 			
 			RenderSystem.enableBlend();
 			IngameGui gui = minecraft.gui;
-			BlockPos playerPos = player.blockPosition();
-			Biome currentBiome = player.level.getBiome(playerPos);
-			float temperature = currentBiome.getTemperature(playerPos);
+			float temperature = TemperatureEvents.getTemperatureAroundPlayer(player);
 			int termometerSizeX = 33;
 			int termometerSizeY = 33;
 			int termometerX = 2;
@@ -68,6 +67,8 @@ public class TermometerHud
 			renderDangerousHeatLevel(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY, event.getPartialTicks());
 			renderOverlay(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY);
 			renderArrow(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY, event.getPartialTicks(), temperature);
+			renderDebugInfo(gui, event.getMatrixStack(), termometerX, termometerY, termometerSizeX, termometerSizeY, event.getPartialTicks(), temperature);
+			
 			// we need to switch texture back to vanilla one
 			minecraft.getTextureManager().bind(AbstractGui.GUI_ICONS_LOCATION);
 			RenderSystem.disableBlend();
@@ -119,6 +120,12 @@ public class TermometerHud
 		Minecraft minecraft = Minecraft.getInstance();
 		ClientPlayerEntity player = minecraft.player;
 		double heatResistance = player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get()) - 1;
+		
+		if (player.level.dimension() == World.NETHER)
+		{
+			heatResistance = player.hasEffect(Effects.FIRE_RESISTANCE) ? 1.0F : 0.0F;
+		}
+		
 		float targetHeatLevel = 0.31F;
 		
 		if (heatResistance < 0.0D)
@@ -160,6 +167,7 @@ public class TermometerHud
 		float maxArrowRotationCritical = 125F;
 		float arrowShift = -50F;
 		float targetArrowRotation;
+		float arrowSpeed = 0.2F;
 		
 		if (temperature >= 0 && temperature <= 1)
 		{
@@ -178,11 +186,16 @@ public class TermometerHud
 		
 		if (arrow_rotation < targetArrowRotation)
 		{
-			arrow_rotation++;
+			arrow_rotation += arrowSpeed;
 		}
 		else if (arrow_rotation > targetArrowRotation)
 		{
-			arrow_rotation--;
+			arrow_rotation -= arrowSpeed;
+		}
+		
+		if (Math.abs(arrow_rotation - targetArrowRotation) < arrowSpeed)
+		{
+			arrow_rotation = targetArrowRotation;
 		}
 		
 		float arrowRotationAnimation = MathHelper.lerp(partialTicks, prev_arrow_rotation, arrow_rotation);
@@ -193,6 +206,12 @@ public class TermometerHud
 		gui.blit(matrixStack, termometerX, termometerY, 132, 0, termometerSizeX, termometerSizeY);
 		matrixStack.popPose();
 		prev_arrow_rotation = arrow_rotation;
+	}
+	
+	private static void renderDebugInfo(IngameGui gui, MatrixStack matrixStack, int termometerX, int termometerY, int termometerSizeX, int termometerSizeY, float partialTicks, float temperature)
+	{
+		// String formattedTemperature = String.format("%.2f", temperature);
+		// AbstractGui.drawCenteredString(matrixStack, gui.getFont(), formattedTemperature, termometerX + termometerSizeX / 2, termometerY - 10, 0xFFFFFF);
 	}
 	
 	private static void blitCircular(AbstractGui gui, MatrixStack matrixStack, float x, float y, float u, float v, float xSize, float ySize, boolean reverse, float fillPercentage)
