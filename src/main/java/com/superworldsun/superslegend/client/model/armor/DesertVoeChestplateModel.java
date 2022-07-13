@@ -1,8 +1,6 @@
 package com.superworldsun.superslegend.client.model.armor;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -26,17 +24,17 @@ public class DesertVoeChestplateModel extends BipedModel<LivingEntity>
 		
 		body = new ModelRenderer(this);
 		body.setPos(0.0F, 0.0F, 0.0F);
-		body.texOffs(0, 35).addBox(4.501F, -24.0F, -2.5F, 0.0F, 5.0F, 5.0F, 0.0F, false);
-		body.texOffs(28, 6).addBox(4.501F, -18.75F, -1.5F, 0.0F, 1.0F, 3.0F, 0.0F, false);
-		body.texOffs(50, 50).addBox(1.5F, -24.0F, 2.499F, 3.0F, 4.0F, 0.0F, 0.0F, false);
-		body.texOffs(12, 9).addBox(0.5F, -23.0F, 2.499F, 1.0F, 2.0F, 0.0F, 0.0F, false);
-		body.texOffs(38, 37).addBox(2.5F, -20.0F, 2.499F, 2.0F, 1.0F, 0.0F, 0.0F, false);
-		body.texOffs(38, 36).addBox(2.5F, -20.0F, -2.501F, 2.0F, 1.0F, 0.0F, 0.0F, false);
-		body.texOffs(50, 46).addBox(1.5F, -24.0F, -2.501F, 3.0F, 4.0F, 0.0F, 0.0F, false);
-		body.texOffs(5, 0).addBox(0.5F, -23.0F, -2.501F, 1.0F, 2.0F, 0.0F, 0.0F, false);
+		body.texOffs(0, 35).addBox(4.501F, 0.0F, -2.5F, 0.0F, 5.0F, 5.0F, 0.0F, false);
+		body.texOffs(28, 6).addBox(4.501F, 5.25F, -1.5F, 0.0F, 1.0F, 3.0F, 0.0F, false);
+		body.texOffs(50, 50).addBox(1.5F, 0.0F, 2.499F, 3.0F, 4.0F, 0.0F, 0.0F, false);
+		body.texOffs(12, 9).addBox(0.5F, 1.0F, 2.499F, 1.0F, 2.0F, 0.0F, 0.0F, false);
+		body.texOffs(38, 37).addBox(2.5F, 4.0F, 2.499F, 2.0F, 1.0F, 0.0F, 0.0F, false);
+		body.texOffs(38, 36).addBox(2.5F, 4.0F, -2.501F, 2.0F, 1.0F, 0.0F, 0.0F, false);
+		body.texOffs(50, 46).addBox(1.5F, 0.0F, -2.501F, 3.0F, 4.0F, 0.0F, 0.0F, false);
+		body.texOffs(5, 0).addBox(0.5F, 1.0F, -2.501F, 1.0F, 2.0F, 0.0F, 0.0F, false);
 		
 		Body_r1 = new ModelRenderer(this);
-		Body_r1.setPos(1.0F, -21.25F, -2.526F);
+		Body_r1.setPos(1.0F, 2.75F, -2.526F);
 		body.addChild(Body_r1);
 		setRotationAngle(Body_r1, 0.0F, 0.0F, -0.5236F);
 		Body_r1.texOffs(34, 24).addBox(-6.05F, -1.25F, 0.0F, 0.0F, 1.0F, 5.0F, 0.0F, false);
@@ -47,13 +45,13 @@ public class DesertVoeChestplateModel extends BipedModel<LivingEntity>
 		Body_r1.texOffs(24, 4).addBox(-6.05F, -1.25F, 0.0F, 5.0F, 1.0F, 0.0F, 0.0F, false);
 		
 		Body_r2 = new ModelRenderer(this);
-		Body_r2.setPos(-1.5758F, -19.2242F, -2.6475F);
+		Body_r2.setPos(-1.5758F, 4.7758F, -2.6475F);
 		body.addChild(Body_r2);
 		setRotationAngle(Body_r2, 0.0F, 0.0611F, 1.0036F);
 		Body_r2.texOffs(48, 23).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 1.0F, 0.0F, 0.0F, false);
 		
 		Body_r3 = new ModelRenderer(this);
-		Body_r3.setPos(-1.574F, -19.2222F, -2.2809F);
+		Body_r3.setPos(-1.574F, 4.7778F, -2.2809F);
 		body.addChild(Body_r3);
 		setRotationAngle(Body_r3, 0.0F, 0.0F, 1.0036F);
 		Body_r3.texOffs(32, 18).addBox(-5.5F, -0.5F, -0.275F, 9.0F, 1.0F, 0.0F, 0.0F, false);
@@ -61,14 +59,14 @@ public class DesertVoeChestplateModel extends BipedModel<LivingEntity>
 		Body_r3.texOffs(32, 19).addBox(-5.5F, -0.5F, 4.725F, 9.0F, 1.0F, 0.0F, 0.0F, false);
 		
 		Body_r4 = new ModelRenderer(this);
-		Body_r4.setPos(1.4186F, -15.6174F, -2.5559F);
+		Body_r4.setPos(1.4186F, 8.3826F, -2.5559F);
 		body.addChild(Body_r4);
 		setRotationAngle(Body_r4, 0.0F, 0.0F, 0.5672F);
 		Body_r4.texOffs(48, 7).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 1.0F, 0.0F, 0.0F, false);
 		Body_r4.texOffs(48, 17).addBox(-1.5F, -0.5F, 5.0F, 3.0F, 1.0F, 0.0F, 0.0F, false);
 		
 		Body_r5 = new ModelRenderer(this);
-		Body_r5.setPos(3.9934F, -14.4845F, -2.5559F);
+		Body_r5.setPos(3.9934F, 9.5155F, -2.5559F);
 		body.addChild(Body_r5);
 		setRotationAngle(Body_r5, 0.0F, 0.0F, 0.2618F);
 		Body_r5.texOffs(16, 23).addBox(-1.5F, -0.5F, 0.0F, 2.0F, 1.0F, 0.0F, 0.0F, false);
@@ -129,13 +127,6 @@ public class DesertVoeChestplateModel extends BipedModel<LivingEntity>
 		rightArm.texOffs(36, 9).addBox(-1.6F, 5.25F, -2.5F, 3.0F, 1.0F, 0.0F, 0.0F, false);
 		rightArm.texOffs(24, 1).addBox(1.4F, 5.25F, -2.5F, 0.0F, 1.0F, 5.0F, 0.0F, false);
 		rightArm.texOffs(24, 36).addBox(-1.6F, 5.25F, 2.499F, 3.0F, 1.0F, 0.0F, 0.0F, false);
-	}
-	
-	@Override
-	public void renderToBuffer(MatrixStack p_225598_1_, IVertexBuilder p_225598_2_, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_)
-	{
-		body.y += 24.0F;
-		super.renderToBuffer(p_225598_1_, p_225598_2_, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
 	}
 	
 	@Override
