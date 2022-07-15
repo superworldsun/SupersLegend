@@ -438,6 +438,7 @@
   "screen.waypoints.remove_tooltip_shift": "Click to delete",
   "player.cold_resistance": "Cold Resistance",
   "player.heat_resistance": "Heat Resistance",
+  "player.hell_heat_resistance": "Hell Heat Resistance",
   "death.attack.cold": "%1$s froze to death",
   "death.attack.cold.player": "%1$s froze to death whilst fighting %2$s",
   "death.attack.heat": "%1$s died from heatstroke",
