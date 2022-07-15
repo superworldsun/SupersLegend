@@ -31,6 +31,22 @@ public class TemperatureEvents
 	private static final DamageSource COLD_DAMAGE = new DamageSource("cold").bypassArmor();
 	
 	@SubscribeEvent
+	public static void onItemAttributeModifier(ItemAttributeModifierEvent event)
+	{
+		addColdResistance(event, Items.LEATHER_CHESTPLATE, 0.4F, EquipmentSlotType.CHEST);
+		addColdResistance(event, Items.LEATHER_BOOTS, 0.1F, EquipmentSlotType.FEET);
+		addColdResistance(event, Items.LEATHER_HELMET, 0.1F, EquipmentSlotType.HEAD);
+		addColdResistance(event, Items.LEATHER_LEGGINGS, 0.2F, EquipmentSlotType.LEGS);
+		
+		addHeatResistance(event, ItemInit.DESERT_VOE_CHESTPLATE.get(), 0.4F, EquipmentSlotType.CHEST);
+		addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
+		addHeatResistance(event, ItemInit.DESERT_VOE_HELMET.get(), 0.1F, EquipmentSlotType.HEAD);
+		addHeatResistance(event, ItemInit.DESERT_VOE_LEGGINGS.get(), 0.2F, EquipmentSlotType.LEGS);
+		
+		addHellHeatResistance(event, ItemInit.GORON_TUNIC.get(), 1.0F, EquipmentSlotType.CHEST);
+	}
+	
+	@SubscribeEvent
 	public static void onPlayerTick(PlayerTickEvent event)
 	{
 		if (event.phase == Phase.START)
@@ -38,18 +54,16 @@ public class TemperatureEvents
 			return;
 		}
 		
-		if (event.player.tickCount % 20 != 0)
-		{
-			return;
-		}
-		
 		float temperature = getTemperatureAroundPlayer(event.player);
 		double coldResistance = event.player.getAttributeValue(AttributeInit.COLD_RESISTANCE.get()) - 1;
-		double heatResistance = event.player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get()) - 1;
+		double heatResistance = getHeatResistance(event.player);
+		boolean hellHeat = event.player.level.dimension() == World.NETHER;
+		// in seconds
+		float damageFrequency = hellHeat ? 1.0F : 10.0F;
 		
-		if (event.player.level.dimension() == World.NETHER)
+		if (event.player.tickCount % (20 * damageFrequency) != 0)
 		{
-			heatResistance = event.player.hasEffect(Effects.FIRE_RESISTANCE) ? 1.0F : 0.0F;
+			return;
 		}
 		
 		if (coldResistance < 1.0D && temperature < 0.0F)
@@ -85,23 +99,29 @@ public class TemperatureEvents
 			
 			if (temperature > dangerousHeatTemperature)
 			{
-				event.player.hurt(HEAT_DAMAGE, 1.0F);
+				if (hellHeat)
+				{
+					event.player.setSecondsOnFire(1);
+					event.player.hurt(DamageSource.ON_FIRE, 1.0F);
+				}
+				else
+				{
+					event.player.hurt(HEAT_DAMAGE, 1.0F);
+				}
 			}
 		}
 	}
 	
-	@SubscribeEvent
-	public static void onItemAttributeModifier(ItemAttributeModifierEvent event)
+	public static float getHeatResistance(PlayerEntity player)
 	{
-		addColdResistance(event, Items.LEATHER_CHESTPLATE, 0.4F, EquipmentSlotType.CHEST);
-		addColdResistance(event, Items.LEATHER_BOOTS, 0.1F, EquipmentSlotType.FEET);
-		addColdResistance(event, Items.LEATHER_HELMET, 0.1F, EquipmentSlotType.HEAD);
-		addColdResistance(event, Items.LEATHER_LEGGINGS, 0.2F, EquipmentSlotType.LEGS);
-		
-		addHeatResistance(event, ItemInit.DESERT_VOE_CHESTPLATE.get(), 0.4F, EquipmentSlotType.CHEST);
-		addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
-		addHeatResistance(event, ItemInit.DESERT_VOE_HELMET.get(), 0.1F, EquipmentSlotType.HEAD);
-		addHeatResistance(event, ItemInit.DESERT_VOE_LEGGINGS.get(), 0.2F, EquipmentSlotType.LEGS);
+		if (player.level.dimension() == World.NETHER)
+		{
+			return (float) (player.hasEffect(Effects.FIRE_RESISTANCE) ? 1.0F : player.getAttributeValue(AttributeInit.HELL_HEAT_RESISTANCE.get()) - 1);
+		}
+		else
+		{
+			return (float) (player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get()) - 1);
+		}
 	}
 	
 	public static float getTemperatureAroundPlayer(PlayerEntity player)
@@ -156,6 +176,15 @@ public class TemperatureEvents
 		{
 			UUID modifierId = getAttributeModifierIdForSlot(slotType);
 			event.addModifier(AttributeInit.HEAT_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.MULTIPLY_BASE));
+		}
+	}
+	
+	private static void addHellHeatResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType)
+	{
+		if (event.getItemStack().getItem() == item && event.getSlotType() == slotType)
+		{
+			UUID modifierId = getAttributeModifierIdForSlot(slotType);
+			event.addModifier(AttributeInit.HELL_HEAT_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.MULTIPLY_BASE));
 		}
 	}
 	
