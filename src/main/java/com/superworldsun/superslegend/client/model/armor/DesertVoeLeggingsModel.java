@@ -106,6 +106,12 @@ public class DesertVoeLeggingsModel extends BipedModel<LivingEntity>
 	{
 		// if some model parts shouldn't be animated, you can reset rotations like so
 		setRotationAngle(body, 0.0F, 0.0F, 0.0F);
+		
+		if (crouching)
+		{
+			body.setPos(0.0F, 0.0F, 4.0F);
+		}
+		
 		super.renderToBuffer(p_225598_1_, p_225598_2_, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
 	}
 	
