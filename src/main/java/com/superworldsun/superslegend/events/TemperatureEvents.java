@@ -33,17 +33,23 @@ public class TemperatureEvents
 	@SubscribeEvent
 	public static void onItemAttributeModifier(ItemAttributeModifierEvent event)
 	{
-		addColdResistance(event, Items.LEATHER_CHESTPLATE, 0.4F, EquipmentSlotType.CHEST);
-		addColdResistance(event, Items.LEATHER_BOOTS, 0.1F, EquipmentSlotType.FEET);
-		addColdResistance(event, Items.LEATHER_HELMET, 0.1F, EquipmentSlotType.HEAD);
-		addColdResistance(event, Items.LEATHER_LEGGINGS, 0.2F, EquipmentSlotType.LEGS);
+		addColdResistance(event, Items.LEATHER_CHESTPLATE, 0.15F, EquipmentSlotType.CHEST);
+		addColdResistance(event, Items.LEATHER_BOOTS, 0.05F, EquipmentSlotType.FEET);
+		addColdResistance(event, Items.LEATHER_HELMET, 0.05F, EquipmentSlotType.HEAD);
+		addColdResistance(event, Items.LEATHER_LEGGINGS, 0.1F, EquipmentSlotType.LEGS);
 		
 		addHeatResistance(event, ItemInit.DESERT_VOE_CHESTPLATE.get(), 0.4F, EquipmentSlotType.CHEST);
 		addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
 		addHeatResistance(event, ItemInit.DESERT_VOE_HELMET.get(), 0.1F, EquipmentSlotType.HEAD);
 		addHeatResistance(event, ItemInit.DESERT_VOE_LEGGINGS.get(), 0.2F, EquipmentSlotType.LEGS);
 		
+		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_TUNIC.get(), 0.5F, EquipmentSlotType.CHEST);
+		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_BOOTS.get(), 0.5F, EquipmentSlotType.FEET);
+		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_HELMET.get(), 0.5F, EquipmentSlotType.HEAD);
+		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_LEGGINGS.get(), 0.5F, EquipmentSlotType.LEGS);
 		addHellHeatResistance(event, ItemInit.GORON_TUNIC.get(), 1.0F, EquipmentSlotType.CHEST);
+		//TODO add this for curio slot
+		//addHellHeatResistance(event, ItemInit.MASK_GORONMASK.get(), 1.0F, EquipmentSlotType.CHEST);
 	}
 	
 	@SubscribeEvent
