@@ -5,11 +5,14 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.GoronPlayerModel;
 import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
+import com.superworldsun.superslegend.registries.AttributeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
@@ -19,6 +22,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -43,6 +47,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
@@ -59,6 +64,14 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
 	{
 		livingEntity.clearFire();
+	}
+	
+	@Override
+	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack)
+	{
+		Multimap<Attribute, AttributeModifier> multimap = HashMultimap.create();
+		multimap.put(AttributeInit.HELL_HEAT_RESISTANCE.get(), new AttributeModifier(uuid, "Hardcoded Modifier", 0.5F, Operation.ADDITION));
+		return multimap;
 	}
 	
 	@OnlyIn(Dist.CLIENT)
