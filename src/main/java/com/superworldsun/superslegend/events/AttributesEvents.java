@@ -17,5 +17,6 @@ public class AttributesEvents
 	{
 		event.add(EntityType.PLAYER, AttributeInit.COLD_RESISTANCE.get());
 		event.add(EntityType.PLAYER, AttributeInit.HEAT_RESISTANCE.get());
+		event.add(EntityType.PLAYER, AttributeInit.HELL_HEAT_RESISTANCE.get());
 	}
 }
