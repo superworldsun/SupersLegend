@@ -21,7 +21,11 @@ public class DekuSeedEntity extends SeedEntity
 	{
 		super(EntityTypeInit.DEKU_SEED.get(), shooter, worldIn);
 	}
-	
+
+	protected float getWaterInertia() {
+		return 0.9F;
+	}
+
 	@Override
 	protected ItemStack getPickupItem()
 	{
