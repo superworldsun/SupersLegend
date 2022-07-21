@@ -328,8 +328,9 @@ public class ItemInit
 			() -> new MagicBoomerangItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> WW_BOOMERANG = ITEMS.register("ww_boomerang",
 			() -> new WWBoomerangItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> GALE_BOOMERANG = ITEMS.register("gale_boomerang",
-			() -> new GaleBoomerangItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	//UNDO CHANGES IN GALEBOOMERANG RENDER WHEN UNDOING THIS
+	//public static final RegistryObject<Item> GALE_BOOMERANG = ITEMS.register("gale_boomerang",
+	//		() -> new GaleBoomerangItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BOMB = ITEMS.register("bomb",
 			() -> new BombItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	//public static final RegistryObject<Item> WATER_BOMB = ITEMS.register("water_bomb",
@@ -709,7 +710,7 @@ public class ItemInit
 
 	//Pendants
 
-	public static final RegistryObject<Item> PENDANT_OF_COURAGE = ITEMS.register("pendant_of_courage",
+	/*public static final RegistryObject<Item> PENDANT_OF_COURAGE = ITEMS.register("pendant_of_courage",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> PENDANT_OF_WISDOM = ITEMS.register("pendant_of_wisdom",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
@@ -720,7 +721,7 @@ public class ItemInit
 	public static final RegistryObject<Item> PIRATES_CHARM = ITEMS.register("pirates_charm",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> SKULL_NECKLACE = ITEMS.register("skull_neklace",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
+			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));*/
 
 
 
