@@ -8,7 +8,7 @@ import org.apache.commons.lang3.tuple.ImmutableTriple;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.GoronPlayerModel;
+import com.superworldsun.superslegend.client.model.player.GoronPlayerModel;
 import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;

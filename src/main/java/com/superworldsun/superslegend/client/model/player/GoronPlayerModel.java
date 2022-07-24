@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.client.model;
+package com.superworldsun.superslegend.client.model.player;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
