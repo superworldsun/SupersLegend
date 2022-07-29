@@ -4,7 +4,8 @@ import javax.annotation.Nullable;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
-
+import net.minecraft.block.BlockState;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -14,8 +15,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -66,6 +66,27 @@ public class GustEntity extends DamagingProjectileEntity
 		{
 			remove();
 			return;
+		}
+		Vector3d vec3d1 = this.position();
+		Vector3d vec3d = this.position().add(this.getDeltaMovement());
+		RayTraceResult raytraceresult = this.level.clip(new RayTraceContext(vec3d1, vec3d, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.ANY, null));
+		if (raytraceresult != null) {
+			if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
+				BlockPos pos = new BlockPos(raytraceresult.getLocation());
+				BlockState state = level.getBlockState(pos);
+
+				if (state.getMaterial() == Material.PLANT) {
+					level.destroyBlock(pos, true);
+				}
+				if (state.getMaterial() == Material.REPLACEABLE_PLANT) {
+					level.destroyBlock(pos, true);
+				}
+			}
+		}
+
+		if (this.isUnderWater())
+		{
+			this.remove();
 		}
 		
 		age++;
@@ -123,5 +144,10 @@ public class GustEntity extends DamagingProjectileEntity
 	public static EntityType<GustEntity> createEntityType()
 	{
 		return EntityType.Builder.<GustEntity>of(GustEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":gust");
+	}
+
+	@Override
+	public boolean canChangeDimensions() {
+		return false;
 	}
 }
