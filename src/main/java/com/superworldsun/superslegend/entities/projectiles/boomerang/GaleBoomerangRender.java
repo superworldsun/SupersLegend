@@ -28,7 +28,7 @@ public class GaleBoomerangRender extends EntityRenderer<GaleBoomerangEntity> {
         super(renderManager);
     }
 
-    @Override
+    /*@Override
     public void render(GaleBoomerangEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         matrixStackIn.pushPose();
         matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(-entityYaw + 90.0f));
@@ -39,11 +39,11 @@ public class GaleBoomerangRender extends EntityRenderer<GaleBoomerangEntity> {
         matrixStackIn.popPose();
 
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-    }
+    }*/
 
-    private ItemStack getItemStackForRender(GaleBoomerangEntity entityIn) {
+    /*private ItemStack getItemStackForRender(GaleBoomerangEntity entityIn) {
         return new ItemStack(ItemInit.GALE_BOOMERANG.get());
-    }
+    }*/
 
     @Override
     public ResourceLocation getTextureLocation(GaleBoomerangEntity entity) {
