@@ -58,6 +58,11 @@ public class SlingShot extends BowItem
 			int i = getUseDuration(stack) - timeLeft;
 			i = ForgeEventFactory.onArrowLoose(stack, worldIn, player, i, !ammoStack.isEmpty() || infiniteAmmo);
 			
+			if(ammoStack.getItem() == Items.ARROW)
+			{
+				ammoStack = new ItemStack(ItemInit.DEKU_SEEDS.get());
+			}
+			
 			if (i < 0)
 			{
 				return;
@@ -65,11 +70,6 @@ public class SlingShot extends BowItem
 			
 			if (!ammoStack.isEmpty() || infiniteAmmo)
 			{
-				if (ammoStack.isEmpty())
-				{
-					ammoStack = new ItemStack(ItemInit.DEKU_SEEDS.get());
-				}
-				
 				float shotPower = getPowerForTime(i) * 0.5f;
 				
 				if (shotPower >= 0.1D)
