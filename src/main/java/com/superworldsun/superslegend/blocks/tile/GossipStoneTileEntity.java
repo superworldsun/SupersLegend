@@ -64,8 +64,8 @@ public class GossipStoneTileEntity extends TileEntity
 	public ITextComponent getMessage(PlayerEntity player)
 	{
 		ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_MASKOFTRUTH.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-		
-		if (message.isEmpty() || !maskStack.isEmpty())
+
+		if (message.isEmpty() || maskStack.isEmpty())
 		{
 			return new TranslationTextComponent("block.superslegend.gossip_stone_block.silent");
 		}
