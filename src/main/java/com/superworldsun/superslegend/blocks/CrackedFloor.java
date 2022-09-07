@@ -23,7 +23,7 @@ public class CrackedFloor extends Block {
     public void fallOn(World worldIn, BlockPos pos, Entity entityIn, float p_180658_4_) {
         super.fallOn(worldIn, pos, entityIn, p_180658_4_);
 
-        if (entityIn.isAlive())
+        if (entityIn.isAlive() && !entityIn.level.isClientSide)
         {
             worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 1);
             worldIn.playSound((PlayerEntity)null, pos, SoundEvents.CHAIN_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -35,7 +35,7 @@ public class CrackedFloor extends Block {
     public void stepOn(World worldIn, BlockPos pos, Entity entityIn) {
         super.stepOn(worldIn, pos, entityIn);
 
-        if(entityIn.isAlive() && entityIn.tickCount % 5 == 0)
+        if(entityIn.isAlive() && entityIn.tickCount % 5 == 0 && !entityIn.level.isClientSide)
         {
             worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 1);
 
