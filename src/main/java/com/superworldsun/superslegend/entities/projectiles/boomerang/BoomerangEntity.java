@@ -94,6 +94,16 @@ public abstract class BoomerangEntity extends Entity {
         return entity.getY() + entity.getEyeHeight() - 0.10000000149011612D;
     }
 
+    public void setEntityDeadWithPlayerDeadOrMissing() {
+        if (selfStack != null && !this.level.isClientSide) {
+            ItemEntity itementity = new ItemEntity(level, this.getX(), this.getY(), this.getZ(), selfStack);
+            itementity.setDefaultPickUpDelay();
+            itementity.setDeltaMovement(itementity.getDeltaMovement().add((double) ((level.random.nextFloat() - level.random.nextFloat()) * 0.1F), (double) (level.random.nextFloat() * 0.05F), (double) ((level.random.nextFloat() - level.random.nextFloat()) * 0.1F)));
+            level.addFreshEntity(itementity);
+        }
+        super.removeAfterChangingDimensions();
+    }
+
     @Override
     @Deprecated
     public void tick() {
@@ -101,6 +111,14 @@ public abstract class BoomerangEntity extends Entity {
 
         //BlockPos currentPos = this.getPosition();
         //this.world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOOMERANG_FLY_LOOP, SoundCategory.PLAYERS, 1f, 1f);
+
+        if(player == null){
+            setEntityDeadWithPlayerDeadOrMissing();
+        }
+
+        if(player != null && player.isDeadOrDying()){
+            setEntityDeadWithPlayerDeadOrMissing();
+        }
 
         if(this.tickCount % 11 == 0)
         {
