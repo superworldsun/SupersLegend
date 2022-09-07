@@ -79,7 +79,7 @@ public class DekuStickLit extends Item
 		{
 			BlockPos currentPos = player.blockPosition();
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.FIRE_IGNITE.get(), SoundCategory.PLAYERS, 1f, 1f);
-			worldIn.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 1);
+			worldIn.setBlockAndUpdate(blockpos, Blocks.AIR.defaultBlockState());
 
 			double xPos = (double) blockpos.getX() + 0.5;
 			double yPos = (double) blockpos.getY() + 0.3;
@@ -111,7 +111,7 @@ public class DekuStickLit extends Item
 		{
 			BlockPos currentPos = player.blockPosition();
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.FIRE_IGNITE.get(), SoundCategory.PLAYERS, 1f, 1f);
-			worldIn.setBlock(blockpos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState(), 1);
+			worldIn.setBlockAndUpdate(blockpos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState());
 
 			double xPos = (double) blockpos.getX() + 0.6;
 			double yPos = (double) blockpos.getY() + 0.3;
