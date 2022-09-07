@@ -15,6 +15,7 @@ import net.minecraft.potion.EffectType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -74,8 +75,7 @@ public class CloakedEffect extends Effect
 			((MobEntity) event.getEntityLiving()).setTarget(null);
 		}
 	}
-	
-	@OnlyIn(Dist.CLIENT)
+
 	@SubscribeEvent
 	public static void onPlayerRender(RenderPlayerEvent.Pre event)
 	{
@@ -89,6 +89,17 @@ public class CloakedEffect extends Effect
 				// completely disables render of the player (including armor, held items, etc)
 				event.setCanceled(true);
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerTickEvent(TickEvent.PlayerTickEvent event)
+	{
+		if (event.player != null && event.player.hasEffect(EffectInit.CLOAKED.get())) {
+			if(!event.player.inventory.contains(ItemInit.MAGIC_CAPE.get().getDefaultInstance())){
+				event.player.removeEffect(EffectInit.CLOAKED.get());
+			}
+
 		}
 	}
 }
