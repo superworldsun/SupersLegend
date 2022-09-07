@@ -25,7 +25,7 @@ public class CrackedFloor extends Block {
 
         if (entityIn.isAlive() && !entityIn.level.isClientSide)
         {
-            worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 1);
+            worldIn.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
             worldIn.playSound((PlayerEntity)null, pos, SoundEvents.CHAIN_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }
     }
@@ -37,7 +37,7 @@ public class CrackedFloor extends Block {
 
         if(entityIn.isAlive() && entityIn.tickCount % 5 == 0 && !entityIn.level.isClientSide)
         {
-            worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 1);
+            worldIn.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 
             worldIn.playSound((PlayerEntity)null, pos, SoundEvents.STONE_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }
