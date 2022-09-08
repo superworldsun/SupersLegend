@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items.items;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
@@ -63,7 +64,11 @@ public class DinsFire extends Item {
             List<LivingEntity> foundTarget =
                     world.getEntitiesOfClass(LivingEntity.class, targetBox, AVOID_PLAYERS);
 
-            if (!foundTarget.isEmpty() && hasMana && getUseDuration(itemStack) > 72000) {
+            SupersLegendMain.LOGGER.info(hasMana);
+            SupersLegendMain.LOGGER.info(!foundTarget.isEmpty());
+            SupersLegendMain.LOGGER.info(getUseDuration(itemStack));
+
+            if (!foundTarget.isEmpty() && hasMana && getUseDuration(itemStack) >= 72000) {
                world.playSound(player, player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundCategory.PLAYERS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
                for (LivingEntity living : foundTarget) {
                   ManaProvider.get(player).spendMana(manaCostArea);
