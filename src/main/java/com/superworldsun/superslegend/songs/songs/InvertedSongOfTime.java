@@ -44,6 +44,7 @@ public class InvertedSongOfTime extends OcarinaSong
 			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(1, (p_223561_0_, p_223561_1_) -> {
 			}), 1);
 			serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
+
 		} else {
 			player.sendMessage(new TranslationTextComponent("text.ocarina.inverted_second", player.getName()), UUID.randomUUID());
 
