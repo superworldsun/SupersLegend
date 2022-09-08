@@ -1,10 +1,6 @@
 package com.superworldsun.superslegend.items.items;
 
-import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
-import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.mana.ManaProvider;
-import com.superworldsun.superslegend.registries.EntityTypeInit;
-import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -14,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -22,7 +19,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -59,6 +56,7 @@ public class DinsFire extends Item {
          if (!world.isClientSide) {
             boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
 
+            fibonacci_sphere(player);
 
             AxisAlignedBB targetBox = new AxisAlignedBB(player.position(), player.position()).inflate(32);
 
@@ -81,6 +79,23 @@ public class DinsFire extends Item {
       return 72000;
    }
 
+   public void fibonacci_sphere(PlayerEntity player) {
+      int samples = 1000;
+      double phi = Math.PI * (3. - Math.sqrt(5.));
+
+      for(int i = 0; i < samples; i++) {
+         int i1 = samples - 1;
+         int y = 1 - (i / i1) *2;
+         double radius = Math.sqrt(1 - y * y);
+
+         double theta = phi * i;
+
+         double x = Math.cos(theta) * radius;
+         double z = Math.sin(theta) * radius;
+
+         ((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, player.getX() + x, player.getY() + y, player.getZ() + z, 1, 0.0, 0.0, 0.0, 0.1);
+      }
+   }
 
    // It's a filter that checks if the entity is a player, and if it is, it checks if the player is in creative mode or is
    // a spectator. If it is, it returns false, otherwise it returns true.
