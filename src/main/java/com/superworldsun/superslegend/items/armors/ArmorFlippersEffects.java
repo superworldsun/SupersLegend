@@ -45,7 +45,8 @@ public class ArmorFlippersEffects extends NonEnchantArmor
     public ArmorFlippersEffects(EquipmentSlotType slot, Properties properties) {
         super(ArmourInit.FLIPPERS, slot, properties);
     }
-
+    @OnlyIn(Dist.CLIENT)
+    @Override
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				

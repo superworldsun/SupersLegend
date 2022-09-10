@@ -39,7 +39,8 @@ public class MaskMajorasmask extends Item implements ICurioItem
     public MaskMajorasmask(Properties properties) {
         super(properties);
     }
-
+    @OnlyIn(Dist.CLIENT)
+    @Override
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
         super.appendHoverText(stack, world, list, flag);
         list.add(new StringTextComponent(TextFormatting.RED + "This Mask gives off a strong evil aura"));
