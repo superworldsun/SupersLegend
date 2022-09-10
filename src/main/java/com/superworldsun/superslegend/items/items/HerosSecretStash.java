@@ -22,6 +22,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 import net.minecraft.item.Item.Properties;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class HerosSecretStash extends Item
 {
@@ -51,8 +53,9 @@ public class HerosSecretStash extends Item
 		}
 		return new ActionResult<ItemStack>(ActionResultType.PASS, player.getItemInHand(hand));
 	}
-	 
-    @Override
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				

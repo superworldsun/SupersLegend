@@ -56,6 +56,8 @@ public class MaskStonemask extends Item implements ICurioItem
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
+    @Override
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
         super.appendHoverText(stack, world, list, flag);
         list.add(new StringTextComponent(TextFormatting.GRAY + "You wont be noticed, more than usual"));

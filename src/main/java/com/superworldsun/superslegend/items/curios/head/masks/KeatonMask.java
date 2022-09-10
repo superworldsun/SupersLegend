@@ -36,6 +36,7 @@ public class KeatonMask extends Item implements ICurioItem
     }
 
     @OnlyIn(Dist.CLIENT)
+    @Override
     public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
         super.appendHoverText(stack, world, list, flag);
         list.add(new StringTextComponent(TextFormatting.YELLOW + "This mask is popular with the children"));

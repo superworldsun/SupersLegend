@@ -21,6 +21,8 @@ import net.minecraft.world.World;
 import java.util.List;
 
 import net.minecraft.item.Item.Properties;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class BiggornsSword extends ItemCustomSword
 {
@@ -29,6 +31,7 @@ public class BiggornsSword extends ItemCustomSword
 		super(tier, attackDamageIn, attackSpeedIn, builder);
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{

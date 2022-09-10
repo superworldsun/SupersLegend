@@ -2,6 +2,8 @@ package com.superworldsun.superslegend.items.curios.rings;
 
 import java.util.List;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import com.superworldsun.superslegend.items.RingItem;
@@ -48,7 +50,8 @@ public class HeartRingL2 extends RingItem
 			}
 		}
 	}
-	
+
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{

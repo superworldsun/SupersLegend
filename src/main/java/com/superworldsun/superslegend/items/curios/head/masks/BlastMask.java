@@ -40,6 +40,8 @@ public class BlastMask extends Item implements IMaskAbility, ICurioItem {
         super(properties);
     }
 
+    @OnlyIn(Dist.CLIENT)
+    @Override
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag) {
         super.appendHoverText(stack, world, list, flag);
         list.add(new StringTextComponent(TextFormatting.GRAY + "Bomb Blastic"));
