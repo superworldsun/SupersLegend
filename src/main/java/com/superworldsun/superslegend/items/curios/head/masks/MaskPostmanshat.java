@@ -44,6 +44,7 @@ public class MaskPostmanshat extends Item implements ICurioItem
     }
 */
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
         super.appendHoverText(stack, world, list, flag);

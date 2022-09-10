@@ -55,7 +55,8 @@ public class ArmorGoronEffects extends NonEnchantArmor
     {
         return SupersLegendMain.MOD_ID + ":textures/models/armor/goron_armor.png";
     }
-
+    @OnlyIn(Dist.CLIENT)
+    @Override
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				
