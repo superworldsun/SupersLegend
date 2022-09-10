@@ -87,38 +87,38 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
 
     @Override
     public void tick() {
-        settingPositionOnUpdate = true;
-
-
-        Vector3d previousPosition = position();
-        super.tick();
-        Vector3d newPosition = position();
-
-        // Handle collisions
-        BlockRayTraceResult rayTraceResult = rayTrace(previousPosition, newPosition);
-        if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK)
-            onBlockImpact(rayTraceResult, previousPosition, newPosition);
-
         if (!this.level.isClientSide) {
+            settingPositionOnUpdate = true;
+
+
+            Vector3d previousPosition = position();
+            super.tick();
+            Vector3d newPosition = position();
+
+            // Handle collisions
+            BlockRayTraceResult rayTraceResult = rayTrace(previousPosition, newPosition);
+            if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK)
+                onBlockImpact(rayTraceResult, previousPosition, newPosition);
+
+
             if (this.ticksToExplode <= this.tickCount) {
                 explode();
             }
-        }
 
-        BlockRayTraceResult blockRTR = rayTrace(previousPosition, newPosition);
-        if(this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.LAVA.defaultBlockState()||
-                this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.FIRE.defaultBlockState()||
-                this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.SOUL_FIRE.defaultBlockState())
-        {
-            explode();
-        }
-        if(this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.WATER.defaultBlockState())
-        {
-            this.playSound(SoundInit.BOMB_DEFUSE.get(), 1.0F, 1.0F);
-            this.remove();
-        }
 
-        settingPositionOnUpdate = false;
+            BlockRayTraceResult blockRTR = rayTrace(previousPosition, newPosition);
+            if (this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.LAVA.defaultBlockState() ||
+                    this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.FIRE.defaultBlockState() ||
+                    this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.SOUL_FIRE.defaultBlockState()) {
+                explode();
+            }
+            if (this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.WATER.defaultBlockState()) {
+                this.playSound(SoundInit.BOMB_DEFUSE.get(), 1.0F, 1.0F);
+                this.remove();
+            }
+
+            settingPositionOnUpdate = false;
+        }
     }
 
     private void onBlockImpact(BlockRayTraceResult result, Vector3d previousPosition, Vector3d attemptedNewPosition) {
