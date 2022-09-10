@@ -21,6 +21,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -59,7 +61,7 @@ public class DinsFire extends Item {
 
             fibonacci_sphere(player);
 
-            AxisAlignedBB targetBox = new AxisAlignedBB(player.position(), player.position()).inflate(32);
+            AxisAlignedBB targetBox = new AxisAlignedBB(player.position(), player.position()).inflate(6);
 
             List<LivingEntity> foundTarget =
                     world.getEntitiesOfClass(LivingEntity.class, targetBox, AVOID_PLAYERS);
@@ -72,7 +74,7 @@ public class DinsFire extends Item {
                world.playSound(player, player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundCategory.PLAYERS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
                for (LivingEntity living : foundTarget) {
                   ManaProvider.get(player).spendMana(manaCostArea);
-                  living.setSecondsOnFire(100);
+                  living.setSecondsOnFire(6);
                }
             }
          }
@@ -158,6 +160,8 @@ public class DinsFire extends Item {
       return state.getBlock() == Blocks.CAMPFIRE && !state.getValue(BlockStateProperties.WATERLOGGED) && !state.getValue(BlockStateProperties.LIT);
    }
 
+   @OnlyIn(Dist.CLIENT)
+   @Override
 	public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				
