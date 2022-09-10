@@ -25,7 +25,7 @@ public class SongOfDoubleTime extends OcarinaSong
 {
 	public SongOfDoubleTime()
 	{
-		super("aaaaaaad");
+		super("rraadd");
 	}
 
 	static int worldTime;

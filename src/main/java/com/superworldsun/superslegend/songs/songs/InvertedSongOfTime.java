@@ -23,7 +23,7 @@ public class InvertedSongOfTime extends OcarinaSong
 {
 	public InvertedSongOfTime()
 	{
-		super("aaaaaaaa");
+		super("dardar");
 	}
 
 	@Override
