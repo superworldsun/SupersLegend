@@ -31,7 +31,7 @@ public class GoldenScale extends Item implements ICurioItem
 		super(properties);
 	}
 
-	@SubscribeEvent
+	@Override
 	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
 
 		if(!(livingEntity instanceof PlayerEntity)) return;
