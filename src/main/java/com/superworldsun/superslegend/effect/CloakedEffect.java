@@ -76,6 +76,7 @@ public class CloakedEffect extends Effect
 		}
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public static void onPlayerRender(RenderPlayerEvent.Pre event)
 	{
