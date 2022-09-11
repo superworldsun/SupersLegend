@@ -13,6 +13,7 @@ import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector3f;
 
 public class LightEmitterTileEntity extends TileEntity implements ITickableTileEntity
 {
@@ -42,7 +43,11 @@ public class LightEmitterTileEntity extends TileEntity implements ITickableTileE
 	
 	private Vector3d getLightDirecion()
 	{
-		return new Vector3d(getBlockState().getValue(LightEmitterBlock.FACING).step());
+		return new Vector3d(step(getBlockState().getValue(LightEmitterBlock.FACING)));
+	}
+
+	public Vector3f step(Direction direction) {
+		return new Vector3f((float)direction.getStepX(), (float)direction.getStepY(), (float)direction.getStepZ());
 	}
 	
 	public static TileEntityType<LightEmitterTileEntity> createType()
