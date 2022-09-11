@@ -7,15 +7,21 @@ import com.superworldsun.superslegend.util.VecUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.IPacket;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.time.Instant;
@@ -51,8 +57,6 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
      */
     private final double bounceDampeningFactor;
 
-    private boolean settingPositionOnUpdate = false;
-
     public AbstractEntityBomb(EntityType<? extends AbstractEntityBomb> type, World world, float secondsToExplode, float secondsToFlashRapidly, int explosionPower, double bounceDampeningFactor) {
         super(type, world);
         creationTimestamp = initCreationTimestamp(world);
@@ -82,13 +86,28 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
 
     @Override
     protected void onHit(RayTraceResult result) {
-        // Do nothing, we will do our own block impact detection
+        RayTraceResult.Type lvt_2_1_ = result.getType();
+        if (lvt_2_1_ == RayTraceResult.Type.ENTITY) {
+            this.onHitEntity((EntityRayTraceResult)result);
+        } else if (lvt_2_1_ == RayTraceResult.Type.BLOCK) {
+            this.onHitBlock((BlockRayTraceResult)result);
+        }
+    }
+    protected boolean inGround;
+
+    @Override
+    protected void onHitBlock(BlockRayTraceResult p_230299_1_) {
+        super.onHitBlock(p_230299_1_);
+        Vector3d vector3d = p_230299_1_.getLocation().subtract(this.getX(), this.getY(), this.getZ());
+        this.setDeltaMovement(vector3d);
+        Vector3d vector3d1 = vector3d.normalize().scale((double)0.05F);
+        this.setPosRaw(this.getX() - vector3d1.x, this.getY() - vector3d1.y, this.getZ() - vector3d1.z);
+        this.inGround = true;
     }
 
     @Override
     public void tick() {
         if (!this.level.isClientSide) {
-            settingPositionOnUpdate = true;
 
 
             Vector3d previousPosition = position();
@@ -100,11 +119,11 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
             if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK)
                 onBlockImpact(rayTraceResult, previousPosition, newPosition);
 
-
             if (this.ticksToExplode <= this.tickCount) {
                 explode();
             }
 
+            spawnParticles(previousPosition, newPosition);
 
             BlockRayTraceResult blockRTR = rayTrace(previousPosition, newPosition);
             if (this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.LAVA.defaultBlockState() ||
@@ -117,13 +136,29 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
                 this.remove();
             }
 
-            settingPositionOnUpdate = false;
+        }
+    }
+
+    public void spawnParticles(Vector3d currentPos, Vector3d newPos) {
+        if (!this.firstTick) {
+
+            double x = currentPos.x;
+            double y = currentPos.y;
+            double z = currentPos.z;
+            double dx = newPos.x - x;
+            double dy = newPos.y - y;
+            double dz = newPos.z - z;
+            int s = 4;
+            for (int i = 0; i < s; ++i) {
+                double j = i / (double) s;
+                ((ServerWorld) this.getCommandSenderWorld()).sendParticles(ParticleTypes.SMOKE, x + dx * j, 0.5 + y + dy * j, z + dz * j, 1, 0, 0.02, 0 ,0.01);
+            }
         }
     }
 
     private void onBlockImpact(BlockRayTraceResult result, Vector3d previousPosition, Vector3d attemptedNewPosition) {
-        setPos(this.getX(), this.getY(), this.getZ());
         setDeltaMovement(getDeltaMovement().multiply(0,0,0));
+        setPos(this.getX(), this.getY(), this.getZ());
     }
 
     @Override
@@ -156,26 +191,6 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
     @Override
     protected Item getDefaultItem() {
         return ItemInit.BOMB.get();
-    }
-
-    @Override
-    public void setPos(double x, double y, double z) {
-        if (this.level.isClientSide && !this.settingPositionOnUpdate)
-            handleRemotePositionUpdate(x, y, z);
-        else {
-            super.setPos(x, y, z);
-        }
-    }
-
-    private void handleRemotePositionUpdate(double x, double y, double z) {
-        /*
-         * Position updates from the server are inaccurate. If you always take them they
-         * cause jitter and weird positioning (like putting things underground). So only
-         * take updates that are significantly different.
-         */
-        if (Math.abs(getX() - x) > 2.0 || Math.abs(getY() - y) > 2.0 || Math.abs(getZ() - z) > 2.0) {
-            super.setPos(x, y, z);
-        }
     }
 
     private BlockRayTraceResult rayTrace(Vector3d position, Vector3d nextPosition) {
