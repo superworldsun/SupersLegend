@@ -26,6 +26,7 @@ import java.util.function.Function;
 public abstract class AbstractEntityBomb extends ProjectileItemEntity {
     //Bomb rendering, entity and logic code credited to Spelunkcraft contributor ntfwc
     private static final int TICKS_PER_SECOND = 20;
+    private static final double MOTION_STOP_THRESHOLD = 0.02;
 
     /**
      * This timestamp should be used only for rendering, so it is only available on
@@ -45,22 +46,29 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
     private final int ticksToFlashRapidly;
     private final int explosionPower;
 
+    /**
+     * How much to dampen the bounce. Lower values mean less bounce.
+     */
+    private final double bounceDampeningFactor;
+
     private boolean settingPositionOnUpdate = false;
 
-    public AbstractEntityBomb(EntityType<? extends AbstractEntityBomb> type, World world, float secondsToExplode, float secondsToFlashRapidly, int explosionPower) {
+    public AbstractEntityBomb(EntityType<? extends AbstractEntityBomb> type, World world, float secondsToExplode, float secondsToFlashRapidly, int explosionPower, double bounceDampeningFactor) {
         super(type, world);
         creationTimestamp = initCreationTimestamp(world);
         this.ticksToExplode = toTicks(secondsToExplode);
         this.ticksToFlashRapidly = toTicks(secondsToFlashRapidly);
         this.explosionPower = explosionPower;
+        this.bounceDampeningFactor = bounceDampeningFactor;
     }
 
-    public AbstractEntityBomb(EntityType<? extends AbstractEntityBomb> entityType, LivingEntity shooter, World world, float secondsToExplode, float secondsToFlashRapidly, int explosionPower) {
+    public AbstractEntityBomb(EntityType<? extends AbstractEntityBomb> entityType, LivingEntity shooter, World world, float secondsToExplode, float secondsToFlashRapidly, int explosionPower, double bounceDampeningFactor) {
         super(entityType, shooter, world);
         creationTimestamp = initCreationTimestamp(world);
         this.ticksToExplode = toTicks(secondsToExplode);
         this.ticksToFlashRapidly = toTicks(secondsToFlashRapidly);
         this.explosionPower = explosionPower;
+        this.bounceDampeningFactor = bounceDampeningFactor;
     }
 
     private Instant initCreationTimestamp(World world) {
@@ -87,6 +95,12 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
             super.tick();
             Vector3d newPosition = position();
 
+            // Handle collisions
+            BlockRayTraceResult rayTraceResult = rayTrace(previousPosition, newPosition);
+            if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK)
+                onBlockImpact(rayTraceResult, previousPosition, newPosition);
+
+
             if (this.ticksToExplode <= this.tickCount) {
                 explode();
             }
@@ -105,6 +119,11 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
 
             settingPositionOnUpdate = false;
         }
+    }
+
+    private void onBlockImpact(BlockRayTraceResult result, Vector3d previousPosition, Vector3d attemptedNewPosition) {
+        setPos(this.getX(), this.getY(), this.getZ());
+        setDeltaMovement(getDeltaMovement().multiply(0,0,0));
     }
 
     @Override
@@ -163,5 +182,14 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
         return level.clip(new RayTraceContext(position, nextPosition, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
     }
 
+    private static class BounceSolution {
+        Vector3d motion;
+        Vector3d position;
+
+        public BounceSolution(Vector3d motion, Vector3d position) {
+            this.motion = motion;
+            this.position = position;
+        }
+    }
 }
 
