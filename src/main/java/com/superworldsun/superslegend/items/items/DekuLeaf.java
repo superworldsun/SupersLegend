@@ -36,10 +36,11 @@ public class DekuLeaf extends Item
 	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand)
 	{
 		ItemStack heldItem = playerEntity.getItemInHand(hand);
-		
+		boolean hasMana = ManaProvider.get(playerEntity).getMana() >= manacost || playerEntity.abilities.instabuild;
+
 		if (playerEntity.isOnGround())
 		{
-			if (!world.isClientSide)
+			if (!world.isClientSide && hasMana)
 			{
 				float gustSpeed = 0.5F;
 				Vector3d playerLookVec = playerEntity.getLookAngle();
@@ -54,8 +55,7 @@ public class DekuLeaf extends Item
 		}
 		else
 		{
-			boolean hasMana = ManaProvider.get(playerEntity).getMana() >= manacost || playerEntity.abilities.instabuild;
-			
+
 			if (hasMana)
 			{
 				playerEntity.startUsingItem(hand);
