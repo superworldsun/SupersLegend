@@ -122,76 +122,8 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
     }
 
     private void onBlockImpact(BlockRayTraceResult result, Vector3d previousPosition, Vector3d attemptedNewPosition) {
-        BounceSolution solution = calculateBounceSolution(result, previousPosition, attemptedNewPosition);
-        setPos(solution.position.x, solution.position.y, solution.position.z);
-        setDeltaMovement(solution.motion);
-    }
-
-    /**
-     * Calculates a bounce solution. Will handle corner bounces correctly.
-     *
-     * @param initialRayResult The initial ray collision.
-     * @param previousPosition The previous position of the entity.
-     * @param attemptedNewPosition The position the entity attempted to reach that caused the collision.
-     * @return The bounce solution.
-     */
-    private BounceSolution calculateBounceSolution(BlockRayTraceResult initialRayResult, Vector3d previousPosition, Vector3d attemptedNewPosition) {
-        Function<BlockRayTraceResult, Vector3d> getDirectionVector = (rayTraceResult) -> new Vector3d(rayTraceResult.getDirection().step());
-
-        Vector3d directionVector1 = getDirectionVector.apply(initialRayResult);
-        Vector3d dampenedInitialMotionVector = getDeltaMovement().scale(this.bounceDampeningFactor);
-        Vector3d initialHitVec = initialRayResult.getLocation();
-        if (dampenedInitialMotionVector.length() < MOTION_STOP_THRESHOLD)
-        {
-            return new BounceSolution(dampenedInitialMotionVector, initialHitVec);
-        }
-        double remainingDistanceToTravel = initialHitVec.distanceTo(attemptedNewPosition) * this.bounceDampeningFactor;
-
-        BiFunction<Vector3d, Vector3d, Vector3d> calculateNextPosition = (hitVec, reflectionVector) -> hitVec.add(reflectionVector.normalize().scale(remainingDistanceToTravel));
-
-        Vector3d reflectionVector = VecUtil.calculateReflection(dampenedInitialMotionVector, directionVector1);
-        Vector3d nextPosition = calculateNextPosition.apply(initialHitVec, reflectionVector);
-
-        // Make sure we won't go into another block
-        BlockRayTraceResult rayResult = rayTrace(previousPosition, nextPosition);
-        if (rayResult.getType() != RayTraceResult.Type.BLOCK) {
-            return new BounceSolution(reflectionVector, nextPosition);
-        }
-
-        // We must have hit a corner. Try reflecting off combined direction vectors.
-        Vector3d directionVector2 = getDirectionVector.apply(rayResult);
-        Vector3d combinedDirectionVector = directionVector1.add(directionVector2).normalize();
-        reflectionVector = VecUtil.calculateReflection(dampenedInitialMotionVector, combinedDirectionVector);
-
-        Vector3d hitVec = VecUtil.getMiddle(initialHitVec, rayResult.getLocation());
-        nextPosition = calculateNextPosition.apply(hitVec, reflectionVector);
-
-        rayResult = rayTrace(previousPosition, nextPosition);
-        if (rayResult.getType() != RayTraceResult.Type.BLOCK) {
-            return new BounceSolution(reflectionVector, nextPosition);
-        }
-
-        // One more time for a 3 block corner
-        Vector3d directionVector3 = getDirectionVector.apply(rayResult);
-        combinedDirectionVector = directionVector1.add(directionVector2).add(directionVector3).normalize();
-        reflectionVector = VecUtil.calculateReflection(dampenedInitialMotionVector, combinedDirectionVector);
-
-        hitVec = VecUtil.getMiddle(hitVec, rayResult.getLocation());
-        nextPosition = calculateNextPosition.apply(hitVec, reflectionVector);
-
-        rayResult = rayTrace(previousPosition, nextPosition);
-        if (rayResult.getType() != RayTraceResult.Type.BLOCK) {
-            return new BounceSolution(reflectionVector, nextPosition);
-        }
-
-        // Fall back to inverting the motion
-        reflectionVector = dampenedInitialMotionVector.reverse();
-        nextPosition = calculateNextPosition.apply(initialHitVec, reflectionVector);
-        return new BounceSolution(reflectionVector, nextPosition);
-    }
-
-    private void setPositionToVec(Vector3d vector) {
-        setPos(vector.x, vector.y, vector.z);
+        setPos(this.getX(), this.getY(), this.getZ());
+        setDeltaMovement(getDeltaMovement().multiply(0,0,0));
     }
 
     @Override
