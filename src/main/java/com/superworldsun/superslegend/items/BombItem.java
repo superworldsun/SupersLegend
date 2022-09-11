@@ -30,7 +30,8 @@ public class BombItem extends Item {
             } else {
                 EntityBomb bombEntity = new EntityBomb(playerIn, worldIn);
                 float pitch = 0;
-                bombEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, pitch, 1.25F, 0.9F);
+                float throwingForce = 0.7F;
+                bombEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, pitch, throwingForce, 0.9F);
                 worldIn.playSound(null, playerIn.blockPosition(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
                 worldIn.addFreshEntity(bombEntity);
             }
