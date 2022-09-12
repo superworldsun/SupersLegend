@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.entities.projectiles.mastersword;
 import static net.minecraft.entity.CreatureAttribute.UNDEAD;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 
 import net.minecraft.entity.CreatureEntity;
@@ -26,12 +27,16 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+import java.util.Optional;
+
 public class MasterSwordSwordEntity extends AbstractArrowEntity
 {
     private float time;
     private double motionX;
     private double motionZ;
     private double motionY;
+    private float prevBoomerangRotation;
+    private static final DataParameter<Float> ROTATION = EntityDataManager.defineId(MasterSwordSwordEntity.class, DataSerializers.FLOAT);
 
     private static final DataParameter<Float> Time = EntityDataManager.defineId(MasterSwordSwordEntity.class, DataSerializers.FLOAT);
     public MasterSwordSwordEntity(EntityType<? extends MasterSwordSwordEntity> type, World world) {
@@ -44,6 +49,15 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
     public MasterSwordSwordEntity(World worldIn, LivingEntity shooter) {
         super(EntityTypeInit.MASTERSWORD_SWORD_ENTITY.get(), shooter, worldIn);
     }
+
+    public float getBoomerangRotation() {
+        return this.getEntityData().get(ROTATION);
+    }
+
+    public void setBoomerangRotation(float rotationIn) {
+        this.getEntityData().set(ROTATION, rotationIn);
+    }
+
 
 
     @Override
@@ -89,6 +103,7 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
     @Override
     protected void defineSynchedData() {
         this.getEntityData().define(Time, 0.0F);
+        this.getEntityData().define(ROTATION, 0.0F);
         super.defineSynchedData();
     }
 
@@ -118,6 +133,12 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
     @Override
     public void tick() {
         super.tick();
+
+        determineRotation();
+        prevBoomerangRotation = getBoomerangRotation();
+        for (this.setBoomerangRotation(this.getBoomerangRotation() + 36F); this.getBoomerangRotation() > 360F; this.setBoomerangRotation(this.getBoomerangRotation() - 360F)) {
+        }
+
         if (getTime() > 80f) {
             this.kill();
         }
@@ -134,6 +155,14 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
         }
     }
 
+    public void determineRotation() {
+        Vector3d motion = this.getDeltaMovement();
+
+        yRot = -57.29578F * (float) Math.atan2(motion.x, motion.z);
+        double d1 = Math.sqrt(motion.z * motion.z + motion.x * motion.x);
+        xRot = -57.29578F * (float) Math.atan2(motion.y, d1);
+    }
+
     @Override
     public void load(CompoundNBT compound) {
         super.load(compound);
@@ -142,12 +171,16 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
     @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         this.setTime(compound.getFloat("time"));
+        this.prevBoomerangRotation = compound.getFloat("PrevBoomerangRotation");
+        this.setBoomerangRotation(compound.getFloat("BoomerangRotation"));
         super.readAdditionalSaveData(compound);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         compound.putFloat("time", time);
+        compound.putFloat("PrevBoomerangRotation", prevBoomerangRotation);
+        compound.putFloat("BoomerangRotation", this.getBoomerangRotation());
         super.addAdditionalSaveData(compound);
     }
 
