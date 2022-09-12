@@ -9,6 +9,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
@@ -19,7 +21,9 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
+
 
 public class ShockArrowEntity extends AbstractArrowEntity {
 
@@ -59,6 +63,14 @@ public class ShockArrowEntity extends AbstractArrowEntity {
         Entity entity = result.getEntity();
         if (entity instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity) entity;
+
+            if(livingentity.level.isClientSide)
+                return;
+
+            if(livingentity instanceof CreeperEntity) {
+                LightningBoltEntity lightningBoltEntity = EntityType.LIGHTNING_BOLT.create((ServerWorld) livingentity.level);
+                livingentity.thunderHit((ServerWorld) livingentity.level, lightningBoltEntity);
+            }
 
             this.getBaseDamage();
             if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
