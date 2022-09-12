@@ -42,7 +42,7 @@ public class TermometerHud
 	@SubscribeEvent
 	public static void onRenderGameOverlay(RenderGameOverlayEvent.Post event)
 	{
-		if(!SupersLegendConfig.getInstance().temperature())
+		if(SupersLegendConfig.getInstance().temperature())
 			return;
 
 		// render termometer right after food

@@ -19,6 +19,7 @@ public class SupersLegendConfig
 
 	//General
 	private final ForgeConfigSpec.BooleanValue temperature;
+	private final ForgeConfigSpec.BooleanValue songSheetConsumed;
 	private final ForgeConfigSpec.BooleanValue shockArrowCreeper;
 	private final ForgeConfigSpec.DoubleValue playerMaxHealth;
 	private final ForgeConfigSpec.BooleanValue explosivegriefing;
@@ -54,6 +55,10 @@ public class SupersLegendConfig
 		temperature = configSpecBuilder
 				.comment("Activate the Temperature System.")
 				.define("temperature", true);
+
+		songSheetConsumed = configSpecBuilder
+				.comment("Consume the Song Sheet?")
+				.define("songSheetConsumed", true);
 
 		shockArrowCreeper = configSpecBuilder
 				.comment("Creepers transform into Charged Creepers with Shock Arrows.")
@@ -146,6 +151,7 @@ public class SupersLegendConfig
 	public boolean explosivegriefing() { return explosivegriefing.get(); }
 	public boolean temperature() { return temperature.get(); }
 	public boolean shockArrowCreeper() { return shockArrowCreeper.get(); }
+	public boolean songSheetConsumed() { return songSheetConsumed.get(); }
 	public boolean turnAroundItem() { return turnAroundItem.get(); }
 	public boolean turnAroundMob() { return turnAroundMob.get(); }
 	public boolean turnAroundButton() { return turnAroundButton.get(); }
