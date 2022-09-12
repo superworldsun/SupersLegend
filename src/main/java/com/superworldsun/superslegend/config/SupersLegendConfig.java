@@ -18,6 +18,7 @@ public class SupersLegendConfig
 	}
 
 	//General
+	private final ForgeConfigSpec.BooleanValue temperature;
 	private final ForgeConfigSpec.DoubleValue playerMaxHealth;
 	private final ForgeConfigSpec.BooleanValue explosivegriefing;
 	public final ForgeConfigSpec.BooleanValue turnAroundItem;
@@ -48,6 +49,11 @@ public class SupersLegendConfig
 		playerMaxHealth = configSpecBuilder
 				.comment("Players health they will start with. One Minecraft heart is 2, and a full bar is 20. Its Recommended you only use Even numbers.")
 				.defineInRange("playerMaxHealth", 20D, 1D, 40D);
+
+		temperature = configSpecBuilder
+				.comment("Activate the Temperature System.")
+				.define("temperature", true);
+
 		explosivegriefing = configSpecBuilder
 				.comment("Whether bombs will cause block destruction")
 				.define("explosivegriefing", true);
@@ -133,6 +139,7 @@ public class SupersLegendConfig
 	//General
 	public double playerMaxHealth() { return playerMaxHealth.get(); }
 	public boolean explosivegriefing() { return explosivegriefing.get(); }
+	public boolean temperature() { return temperature.get(); }
 	public boolean turnAroundItem() { return turnAroundItem.get(); }
 	public boolean turnAroundMob() { return turnAroundMob.get(); }
 	public boolean turnAroundButton() { return turnAroundButton.get(); }
