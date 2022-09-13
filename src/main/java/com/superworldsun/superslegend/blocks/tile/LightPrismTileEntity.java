@@ -64,13 +64,13 @@ public class LightPrismTileEntity extends TileEntity implements ITickableTileEnt
 		isLit = true;
 		level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(LightPrismBlock.LIT, true));
 	}
-	
+
 	@Override
 	public void stopReceivingLight()
 	{
 		isLit = false;
-		
-		if (lightEmitter.litObject instanceof ILightReceiver)
+
+		if (lightEmitter.litObject instanceof ILightReceiver && ((ILightReceiver) lightEmitter.litObject).isLit())
 		{
 			((ILightReceiver) lightEmitter.litObject).stopReceivingLight();
 		}

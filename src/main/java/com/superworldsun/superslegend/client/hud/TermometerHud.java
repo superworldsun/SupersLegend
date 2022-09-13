@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.client.hud;
 
+import com.superworldsun.superslegend.config.SupersLegendConfig;
 import org.lwjgl.opengl.GL11;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -41,6 +42,9 @@ public class TermometerHud
 	@SubscribeEvent
 	public static void onRenderGameOverlay(RenderGameOverlayEvent.Post event)
 	{
+		if(SupersLegendConfig.getInstance().temperature())
+			return;
+
 		// render termometer right after food
 		if (event.getType() == ElementType.FOOD)
 		{

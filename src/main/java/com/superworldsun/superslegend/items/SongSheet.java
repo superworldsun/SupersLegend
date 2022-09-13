@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.config.SupersLegendConfig;
 import com.superworldsun.superslegend.songs.LearnedSongsProvider;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
@@ -52,7 +53,10 @@ public class SongSheet extends Item
 		if (!world.isClientSide)
 		{
 			if (!learnedSongs.contains(songSupplier.get()))
-			{				
+			{
+				if(SupersLegendConfig.getInstance().songSheetConsumed())
+					playerEntity.getItemInHand(hand).shrink(1);
+
 				learnedSongs.add(songSupplier.get());
 				LearnedSongsProvider.sync((ServerPlayerEntity) playerEntity);
 				playerEntity.sendMessage(new TranslationTextComponent("item.superslegend.song_sheet.learned", songSupplier.get().getLocalizedName()), UUID.randomUUID());

@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.google.common.util.concurrent.AtomicDouble;
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.config.SupersLegendConfig;
 import com.superworldsun.superslegend.registries.AttributeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
@@ -59,6 +60,9 @@ public class TemperatureEvents
 		{
 			return;
 		}
+
+		if(SupersLegendConfig.getInstance().temperature())
+			return;
 		
 		float temperature = getTemperatureAroundPlayer(event.player);
 		double coldResistance = event.player.getAttributeValue(AttributeInit.COLD_RESISTANCE.get()) - 1;
