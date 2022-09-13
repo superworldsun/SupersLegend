@@ -12,6 +12,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
+import net.minecraft.potion.Effects;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -97,8 +98,10 @@ public class CloakedEffect extends Effect
 	public static void onPlayerTickEvent(TickEvent.PlayerTickEvent event)
 	{
 		if (event.player != null && event.player.hasEffect(EffectInit.CLOAKED.get())) {
+			event.player.setInvisible(event.player.hasEffect(EffectInit.CLOAKED.get()));
 			if(!event.player.inventory.contains(ItemInit.MAGIC_CAPE.get().getDefaultInstance())){
 				event.player.removeEffect(EffectInit.CLOAKED.get());
+				event.player.setInvisible(false);
 			}
 
 		}
