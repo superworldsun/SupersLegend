@@ -42,7 +42,7 @@ public class HookshotRender extends EntityRenderer<HookshotEntity> {
     @Override
     public void render(HookshotEntity hookshotEntity, float yaw, float tick, MatrixStack matrixStack, IRenderTypeBuffer provider, int light) {
 
-        PlayerEntity player = Minecraft.getInstance().player;
+        PlayerEntity player = (PlayerEntity) hookshotEntity.getOwner();
 
             if(player != null && !HookModel.get(player).getHasHook()) {
 

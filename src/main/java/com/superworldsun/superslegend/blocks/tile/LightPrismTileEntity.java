@@ -48,7 +48,8 @@ public class LightPrismTileEntity extends TileEntity implements ITickableTileEnt
 			rotation -= Math.PI * 2;
 			targetRotation -= Math.PI * 2;
 		}
-		
+		this.getUpdatePacket();
+		this.getUpdateTag();
 		lightEmitter.tick();
 	}
 	

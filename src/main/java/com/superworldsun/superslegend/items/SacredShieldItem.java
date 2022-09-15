@@ -77,7 +77,7 @@ public class SacredShieldItem extends ExtendedShieldItem
 					if(ticksToRegenerate == 0)
 					{
 						ticksToRegenerate = regenerateTime;
-						if(item.getDamageValue() > 0)
+						if(item.getDamageValue() > 0 && item.getDamageValue() != 50)
 						{
 							item.setDamageValue(item.getDamageValue() - 1);
 						}
