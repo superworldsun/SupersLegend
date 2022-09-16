@@ -24,7 +24,7 @@ public class LightPrismTileEntity extends TileEntity implements ITickableTileEnt
 	private float rotation;
 	public float targetRotation;
 	private boolean isLit;
-	
+
 	public LightPrismTileEntity()
 	{
 		super(TileEntityInit.LIGHT_PRISM.get());
@@ -124,7 +124,8 @@ public class LightPrismTileEntity extends TileEntity implements ITickableTileEnt
 	
 	private Vector3d getLightDirecion()
 	{
-		if (level.getBlockState(worldPosition).getValue(LightPrismBlock.LIT))
+
+		if (level.getBlockState(worldPosition).getBlock() == BlockInit.LIGHT_PRISM.get() && level.getBlockState(worldPosition).getValue(LightPrismBlock.LIT))
 		{
 			return new Vector3d(0, 0, 1).yRot(rotation);
 		}
