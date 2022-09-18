@@ -9,6 +9,18 @@ public class HookModel implements INBTSerializable<CompoundNBT> {
 
     private boolean hasHook;
 
+    private boolean keyUpIsDown = false;
+
+
+    public boolean getkeyUpIsDown() {
+        return keyUpIsDown;
+    }
+
+    public void setkeyUpIsDown(boolean bool) {
+
+        keyUpIsDown = bool;
+    }
+
     public boolean getHasHook() {
         return hasHook;
     }
@@ -39,6 +51,7 @@ public class HookModel implements INBTSerializable<CompoundNBT> {
 
         CompoundNBT compound = new CompoundNBT();
         compound.putBoolean("hasHook", hasHook);
+        compound.putBoolean("keyUpIsDown", keyUpIsDown);
 
         return compound;
     }
@@ -46,5 +59,6 @@ public class HookModel implements INBTSerializable<CompoundNBT> {
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
         hasHook = nbt.getBoolean("hasHook");
+        keyUpIsDown = nbt.getBoolean("keyUpIsDown");
     }
 }
