@@ -61,7 +61,7 @@ public class TemperatureEvents
 			return;
 		}
 
-		if(SupersLegendConfig.getInstance().temperature())
+		if(!SupersLegendConfig.getInstance().temperature())
 			return;
 		
 		float temperature = getTemperatureAroundPlayer(event.player);

@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.items;
 import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,6 +20,8 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 
 public class LongshotItem extends Item {
 
@@ -37,6 +40,11 @@ public class LongshotItem extends Item {
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
+        ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.GNAT_HAT.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        ItemStack maskStack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIANTSMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+
+        if(!maskStack.isEmpty() || !maskStack0.isEmpty())
+            return ActionResult.fail(itemstack);
 
         ActionResult<ItemStack> ret = ForgeEventFactory.onArrowNock(itemstack, world, player, hand, true);
         if (ret != null) return ret;

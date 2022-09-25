@@ -94,6 +94,23 @@ public class CloakedEffect extends Effect
 		}
 	}
 
+	@OnlyIn(Dist.CLIENT)
+	@SubscribeEvent
+	public static void onPlayerRender(RenderPlayerEvent.Post event)
+	{
+		if (event.getPlayer().hasEffect(EffectInit.CLOAKED.get()))
+		{
+			Minecraft client = Minecraft.getInstance();
+
+			// if the client player is using lens of truth, he will see cloaked players anyway
+			if (!client.player.isUsingItem() || client.player.getItemInHand(client.player.getUsedItemHand()).getItem() != ItemInit.LENS_OF_TRUTH.get())
+			{
+				// completely disables render of the player (including armor, held items, etc)
+				event.setCanceled(true);
+			}
+		}
+	}
+/*
 	@SubscribeEvent
 	public static void onPlayerTickEvent(TickEvent.PlayerTickEvent event)
 	{
@@ -105,5 +122,5 @@ public class CloakedEffect extends Effect
 			}
 
 		}
-	}
+	}*/
 }

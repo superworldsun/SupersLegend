@@ -211,11 +211,11 @@ public class ClawshotEntity extends AbstractArrowEntity {
 						else {
 							Entity target = owner;
 							Entity origin = this;
-							if(Minecraft.getInstance().options.keyShift.isDown()) {
+							if(owner.isShiftKeyDown()) {
 								//System.out.println("CROUCH");
 								kill();
 							}
-							if(Minecraft.getInstance().options.keyUp.isDown()) {
+							if(HookModel.get(owner).getkeyUpIsDown()) {
 								//System.out.println("W");
 								double pullSpeed = (maxSpeed) / 9D;
 								System.out.println(target.xRot);
