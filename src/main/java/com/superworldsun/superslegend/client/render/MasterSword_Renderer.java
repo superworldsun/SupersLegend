@@ -43,12 +43,8 @@ public class MasterSword_Renderer extends EntityRenderer<MasterSwordSwordEntity>
     @Override
     public void render(MasterSwordSwordEntity mastersword, float yaw, float tick, MatrixStack matrixStack, IRenderTypeBuffer provider, int light) {
         matrixStack.pushPose();
-        //rotate here
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(mastersword.yRot+180));
-        matrixStack.mulPose(Vector3f.XP.rotationDegrees(mastersword.xRot));
-        matrixStack.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(yaw, mastersword.xRotO, mastersword.xRot)));
-        //translating to center
-        matrixStack.translate(0,-1,0);
+        matrixStack.scale(3.0F, 0, 3.0F);
+        matrixStack.mulPose(Vector3f.YN.rotationDegrees(mastersword.getBoomerangRotation()));
         rendersword(tick, mastersword.tickCount, matrixStack, provider, light);
         matrixStack.popPose();
         super.render(mastersword, yaw, tick, matrixStack, provider, light);

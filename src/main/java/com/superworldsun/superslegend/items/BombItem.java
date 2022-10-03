@@ -22,10 +22,19 @@ public class BombItem extends Item {
     @Override
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         if(!worldIn.isClientSide) {
-            EntityBomb entity = new EntityBomb(EntityTypeInit.BOMB.get(), worldIn);
+            if(playerIn.isShiftKeyDown()){
+                EntityBomb entity = new EntityBomb(EntityTypeInit.BOMB.get(), worldIn);
                 entity.setPos(playerIn.getX(), playerIn.getY(), playerIn.getZ());
                 worldIn.playSound(null, playerIn.blockPosition(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
                 worldIn.addFreshEntity(entity);
+            } else {
+                EntityBomb bombEntity = new EntityBomb(playerIn, worldIn);
+                float pitch = 0;
+                float throwingForce = 0.7F;
+                bombEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, pitch, throwingForce, 0.9F);
+                worldIn.playSound(null, playerIn.blockPosition(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
+                worldIn.addFreshEntity(bombEntity);
+            }
             if(!playerIn.isCreative()) {
                 playerIn.getMainHandItem().shrink(1);
             }

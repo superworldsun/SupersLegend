@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.entities.projectiles.arrows;
 import static com.superworldsun.superslegend.util.Functions.repeat;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.config.SupersLegendConfig;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -59,7 +60,11 @@ public class BombArrowEntity extends AbstractArrowEntity {
         super.tick();
         if (this.inGround) {
             if (!this.isInWater())
-                level.explode(null, this.xo, this.yo, this.zo, 3.0f, Explosion.Mode.NONE);
+                if(SupersLegendConfig.getInstance().explosivegriefing()) {
+                    level.explode(null, this.xo, this.yo, this.zo, 3.0f, Explosion.Mode.DESTROY);
+                } else {
+                    level.explode(null, this.xo, this.yo, this.zo, 3.0f, Explosion.Mode.NONE);
+                }
             this.remove();
         }
         addSmokeToFlightPath();

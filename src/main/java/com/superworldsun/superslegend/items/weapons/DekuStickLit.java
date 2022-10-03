@@ -19,6 +19,9 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 import java.util.Random;
@@ -29,6 +32,7 @@ public class DekuStickLit extends Item
 		super(p_i48487_1_);
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
@@ -38,7 +42,7 @@ public class DekuStickLit extends Item
 
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-		if(!player.isCreative())
+		if(!player.isCreative() && !player.level.isClientSide)
 		{
 			stack.shrink(1);
 			entity.setSecondsOnFire(6);
@@ -57,7 +61,7 @@ public class DekuStickLit extends Item
 
 			entity.isOnFire();
 		}
-		if(player.isCreative())
+		if(player.isCreative() && !player.level.isClientSide)
 		{
 			entity.setSecondsOnFire(6);
 			entity.hurt(DamageSource.GENERIC, 8.0F);
@@ -74,67 +78,67 @@ public class DekuStickLit extends Item
 		ItemStack stack = context.getItemInHand();
 		Random rand = context.getLevel().getRandom();
 		RayTraceResult raytraceresult = getPlayerPOVHitResult(worldIn, player, RayTraceContext.FluidMode.NONE);
-		if (raytraceresult.getType() == RayTraceResult.Type.BLOCK && worldIn.getBlockState(((BlockRayTraceResult)raytraceresult).getBlockPos()).is(Blocks.COBWEB))
+		if (raytraceresult.getType() == RayTraceResult.Type.BLOCK && worldIn.getBlockState(((BlockRayTraceResult)raytraceresult).getBlockPos()).is(Blocks.COBWEB)  && !player.level.isClientSide)
 		{
 			BlockPos currentPos = player.blockPosition();
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.FIRE_IGNITE.get(), SoundCategory.PLAYERS, 1f, 1f);
-			worldIn.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 1);
+			worldIn.setBlockAndUpdate(blockpos, Blocks.AIR.defaultBlockState());
 
 			double xPos = (double) blockpos.getX() + 0.5;
 			double yPos = (double) blockpos.getY() + 0.3;
 			double zPos = (double) blockpos.getZ() + 0.5;
 			double xOffset = MathHelper.nextDouble(rand, -0.2, 0.2);
 			double zOffset = MathHelper.nextDouble(rand, -0.2, 0.2);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.0, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.1, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.15, 0.05);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.05, 0.15, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.05, 0.15, 0.05);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, -0.05, 0.15, -0.05);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.05, 0.15, -0.05);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, -0.05, 0.15, 0.05);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.1, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.0, 0.1);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.1, 0.0, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.0, -0.1);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, -0.1, 0.0, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.1, 0.1, 0.1);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.1, 0.1);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.1, 0.1, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, -0.1, 0.1, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.1, -0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.0, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.1, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.15, 0.05, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.05, 0.15, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.05, 0.15, 0.05, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, -0.05, 0.15, -0.05, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.05, 0.15, -0.05, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, -0.05, 0.15, 0.05, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.1, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.0, 0.1, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.1, 0.0, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.0, -0.1, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, -0.1, 0.0, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.1, 0.1, 0.1, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.1, 0.1, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.1, 0.1, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, -0.1, 0.1, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.1, -0.1, 0.1);
 
 			return ActionResultType.sidedSuccess(worldIn.isClientSide());
 		}
-		if (raytraceresult.getType() == RayTraceResult.Type.BLOCK && worldIn.getBlockState(((BlockRayTraceResult)raytraceresult).getBlockPos()).is(BlockInit.TORCH_TOWER_TOP_UNLIT.get()))
+		if (raytraceresult.getType() == RayTraceResult.Type.BLOCK && worldIn.getBlockState(((BlockRayTraceResult)raytraceresult).getBlockPos()).is(BlockInit.TORCH_TOWER_TOP_UNLIT.get())  && !player.level.isClientSide)
 		{
 			BlockPos currentPos = player.blockPosition();
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.FIRE_IGNITE.get(), SoundCategory.PLAYERS, 1f, 1f);
-			worldIn.setBlock(blockpos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState(), 1);
+			worldIn.setBlockAndUpdate(blockpos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState());
 
 			double xPos = (double) blockpos.getX() + 0.6;
 			double yPos = (double) blockpos.getY() + 0.3;
 			double zPos = (double) blockpos.getZ() + 0.6;
 			double xOffset = MathHelper.nextDouble(rand, -0.02, 0.02);
 			double zOffset = MathHelper.nextDouble(rand, -0.02, 0.02);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.0, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.02, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.015, 0.02);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.02, 0.015, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.02, 0.015, 0.02);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, -0.02, 0.015, -0.02);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.02, 0.015, -0.02);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, -0.02, 0.015, 0.02);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.02, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.0, 0.01);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.02, 0.0, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.0, -0.02);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, -0.02, 0.0, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.02, 0.02, 0.02);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.02, 0.02);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.02, 0.02, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, -0.02, 0.02, 0.0);
-			worldIn.addParticle(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 0.0, 0.02, -0.02);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.0, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.1, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.15, 0.05, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.05, 0.15, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.05, 0.15, 0.05, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, -0.05, 0.15, -0.05, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.05, 0.15, -0.05, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, -0.05, 0.15, 0.05, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.1, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.0, 0.1, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.1, 0.0, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.0, -0.1, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, -0.1, 0.0, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.1, 0.1, 0.1, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.1, 0.1, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.1, 0.1, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, -0.1, 0.1, 0.0, 0.1);
+			((ServerWorld) player.getCommandSenderWorld()).sendParticles(ParticleTypes.FLAME, xPos + xOffset, yPos, zPos + zOffset, 1, 0.0, 0.1, -0.1, 0.1);
 
 			return ActionResultType.sidedSuccess(worldIn.isClientSide());
 		}

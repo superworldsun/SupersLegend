@@ -78,7 +78,8 @@ public class AllNightMask extends Item implements ICurioItem
 	{
 		return HashMultimap.create();
 	}
-	
+
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{

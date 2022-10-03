@@ -331,32 +331,23 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		}
 		
 		this.setupAttackAnimation(player, p_225597_4_);
-		
+
 		if (this.crouching)
 		{
-			// this.body.xRot = 0.5F;
-			// this.rightArm.xRot += 0.0F;
-			// this.leftArm.xRot += 0.0F;
-			// this.rightLeg.z = 3.5F;
-			// this.leftLeg.z = 3.5F;
-			// this.rightLeg.y = 17.0F;
-			// this.leftLeg.y = 17.0F;
-			// this.head.y = -5.0F;
-			// this.body.y = 11.2F;
-			// this.leftArm.y = 0.0F;
-			// this.rightArm.y = 0.0F;
-		}
-		else
-		{
-			// this.body.xRot = 0.0F;
-			// this.rightLeg.z = -0.0F;
-			// this.leftLeg.z = -0.0F;
-			// this.rightLeg.y = 13.0F;
-			// this.leftLeg.y = 13.0F;
-			// this.head.y = -5.0F;
-			// this.body.y = 8.0F;
-			// this.leftArm.y = 0.0F;
-			// this.rightArm.y = 0.0F;
+			this.body.xRot = 0.5F;
+			this.rightArm.xRot += 0.4F;
+			this.leftArm.xRot += 0.4F;
+			this.rightLeg.z = 3.5F;
+			this.leftLeg.z = 3.5F;
+			this.rightLeg.y = 2.5F;
+			this.leftLeg.y = 2.5F;
+			this.head.y = -15.0F;
+			this.head.z = -5.0F;
+			this.body.y = -3.0F;
+			this.leftArm.y = -15.0F;
+			this.rightArm.y = -15.0F;
+			this.leftArm.z = -5.0F;
+			this.rightArm.z = -5.0F;
 		}
 		
 		ModelHelper.bobArms(this.rightArm, this.leftArm, p_225597_4_);

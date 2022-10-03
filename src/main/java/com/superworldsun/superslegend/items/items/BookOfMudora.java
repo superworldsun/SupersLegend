@@ -17,6 +17,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 
@@ -137,6 +139,8 @@ public class BookOfMudora extends Item{
 		return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 	}
 
+	@OnlyIn(Dist.CLIENT)
+	@Override
 	public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				

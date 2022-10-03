@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.config.SupersLegendConfig;
 import com.superworldsun.superslegend.songs.LearnedSongsProvider;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
@@ -21,6 +22,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SongSheet extends Item
 {
@@ -32,6 +35,7 @@ public class SongSheet extends Item
 		this.songSupplier = songSupplier;
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
@@ -49,7 +53,10 @@ public class SongSheet extends Item
 		if (!world.isClientSide)
 		{
 			if (!learnedSongs.contains(songSupplier.get()))
-			{				
+			{
+				if(SupersLegendConfig.getInstance().songSheetConsumed())
+					playerEntity.getItemInHand(hand).shrink(1);
+
 				learnedSongs.add(songSupplier.get());
 				LearnedSongsProvider.sync((ServerPlayerEntity) playerEntity);
 				playerEntity.sendMessage(new TranslationTextComponent("item.superslegend.song_sheet.learned", songSupplier.get().getLocalizedName()), UUID.randomUUID());

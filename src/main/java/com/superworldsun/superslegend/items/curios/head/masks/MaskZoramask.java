@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
+import java.util.List;
+
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.player.ZoraPlayerModel;
 import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
@@ -20,8 +22,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-
-import java.util.List;
 
 public class MaskZoramask extends Item implements IPlayerModelChanger, ICurioItem
 {

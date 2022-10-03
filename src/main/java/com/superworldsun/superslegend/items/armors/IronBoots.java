@@ -67,8 +67,9 @@ public class IronBoots extends NonEnchantArmor
 	{
 		return SupersLegendMain.MOD_ID + ":textures/models/armor/iron_boots.png";
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
+	@Override
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);

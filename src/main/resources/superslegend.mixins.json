@@ -5,11 +5,13 @@
   "refmap": "superslegend.refmap.json",
   "mixins": [
     "MixinPlayerEntity",
-    "MixinPlayerRenderer",
     "MixinAbstractSkeletonEntity",
     "MixinMushroomBlock",
     "MixinFoxEntity",
-    "MixinFlowingFluid",
+    "MixinFlowingFluid"
+  ],
+  "client": [
+    "MixinPlayerRenderer",
     "MixinHeldItemLayer"
   ],
   "minVersion": "0.8"

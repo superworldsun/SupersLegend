@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.Objects;
 
 import net.minecraft.item.Item.Properties;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class BluePotion extends Item
 {
@@ -156,6 +158,8 @@ public class BluePotion extends Item
 		 return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand)); 
 	 }*/
 
+	@OnlyIn(Dist.CLIENT)
+	@Override
 	public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				

@@ -53,8 +53,9 @@ public class PegasusBoots extends NonEnchantArmor
 	{
 		return SupersLegendMain.MOD_ID + ":textures/models/armor/pegasus_boots.png";
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
+	@Override
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);

@@ -36,10 +36,11 @@ public class DekuLeaf extends Item
 	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand)
 	{
 		ItemStack heldItem = playerEntity.getItemInHand(hand);
-		
+		boolean hasMana = ManaProvider.get(playerEntity).getMana() >= manacost || playerEntity.abilities.instabuild;
+
 		if (playerEntity.isOnGround())
 		{
-			if (!world.isClientSide)
+			if (!world.isClientSide && hasMana)
 			{
 				float gustSpeed = 0.5F;
 				Vector3d playerLookVec = playerEntity.getLookAngle();
@@ -54,8 +55,7 @@ public class DekuLeaf extends Item
 		}
 		else
 		{
-			boolean hasMana = ManaProvider.get(playerEntity).getMana() >= manacost || playerEntity.abilities.instabuild;
-			
+
 			if (hasMana)
 			{
 				playerEntity.startUsingItem(hand);
@@ -86,10 +86,15 @@ public class DekuLeaf extends Item
 			}
 			
 			player.fallDistance = 0F;
-			
+
+			// Making the player move in the direction they are looking.
+			Vector3d m = player.getDeltaMovement();
 			if (player.getDeltaMovement().y < -0.1)
 			{
-				player.setDeltaMovement(player.getDeltaMovement().x, -0.1, player.getDeltaMovement().z);
+				// Getting the direction the player is looking and moving them in that direction.
+				double x = Math.cos(Math.toRadians(player.yHeadRot + 90)) * 0.05;
+				double z = Math.sin(Math.toRadians(player.yHeadRot + 90)) * 0.05;
+				player.setDeltaMovement(new Vector3d(m.x + x, -0.05, m.z + z));
 			}
 			
 			int particlesDensity = 5;
