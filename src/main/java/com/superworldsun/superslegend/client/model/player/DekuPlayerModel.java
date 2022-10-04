@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.client.model;
+package com.superworldsun.superslegend.client.model.player;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.interfaces.IHandRenderer;
