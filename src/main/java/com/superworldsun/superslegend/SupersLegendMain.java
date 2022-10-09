@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend;
 
 import com.mojang.serialization.Codec;
-import com.superworldsun.superslegend.config.SupersLegendConfig;
+import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.cooldowns.Cooldowns;
 import com.superworldsun.superslegend.cooldowns.CooldownsStorage;
 import com.superworldsun.superslegend.cooldowns.ICooldowns;
@@ -21,6 +21,7 @@ import com.superworldsun.superslegend.songs.LearnedSongsStorage;
 import com.superworldsun.superslegend.waypoints.IWaypoints;
 import com.superworldsun.superslegend.waypoints.WaypointsStorage;
 import com.superworldsun.superslegend.waypoints.Waypoints;
+import com.superworldsun.superslegend.worldgen.world.OreGen;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -78,7 +79,7 @@ public class SupersLegendMain
 		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		// Our listener for setup, it will pick up on anything put into setup
 		// and notify Forge of it
-		SupersLegendStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
+		//SupersLegendStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 		modEventBus.addListener(this::setup);
 		
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupersLegendConfig.SPEC, "superslegend.toml");
@@ -108,6 +109,7 @@ public class SupersLegendMain
 		forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
 
 		// The comments for BiomeLoadingEvent and StructureSpawnListGatherEvent says to do HIGH for additions.
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGen::generateOres);
 		forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
 	}
 	
@@ -151,8 +153,8 @@ public class SupersLegendMain
 		// This is for thread-safe operations later on such as world-gen
 		event.enqueueWork(() ->
 		{
-			SupersLegendStructures.setupStructures();
-			SupersLegendConfiguredStructures.registerConfiguredStructures();
+			//SupersLegendStructures.setupStructures();
+			//SupersLegendConfiguredStructures.registerConfiguredStructures();
 		});
 
 		//HOW TO DISPENCER ARROWS
@@ -189,11 +191,11 @@ public class SupersLegendMain
 		 * RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName()) to get the biome's
 		 * registrykey. Then that can be fed into the dictionary to get the biome's types.
 		 */
-		event.getGeneration().getStructures().add(() -> SupersLegendConfiguredStructures.CONFIGURED_FAIRY_FOUNTAIN);
+		/*event.getGeneration().getStructures().add(() -> SupersLegendConfiguredStructures.CONFIGURED_FAIRY_FOUNTAIN);
 		if (event.getName().equals(new ResourceLocation("minecraft", "dark_forest"))||
 				event.getName().equals(new ResourceLocation("minecraft", "dark_forest_hills"))) {
 			event.getGeneration().getStructures().add(() -> SupersLegendConfiguredStructures.CONFIGURED_GRAVEYARD);
-		}
+		}*/
 	}
 
 	/**
@@ -246,12 +248,12 @@ public class SupersLegendMain
 			 * already added your default structure spacing to some dimensions. You would need to override the spacing with .put(...)
 			 * And if you want to do dimension blacklisting, you need to remove the spacing entry entirely from the map below to prevent generation safely.
 			 */
-			Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().getGenerator().getSettings().structureConfig());
+			/*Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().getGenerator().getSettings().structureConfig());
 			tempMap.putIfAbsent(SupersLegendStructures.FAIRY_FOUNTAIN.get(),
 					DimensionStructuresSettings.DEFAULTS.get(SupersLegendStructures.FAIRY_FOUNTAIN.get()));
 			tempMap.putIfAbsent(SupersLegendStructures.GRAVEYARD.get(),
 					DimensionStructuresSettings.DEFAULTS.get(SupersLegendStructures.GRAVEYARD.get()));
-			serverWorld.getChunkSource().getGenerator().getSettings().structureConfig = tempMap;
+			serverWorld.getChunkSource().getGenerator().getSettings().structureConfig = tempMap;*/
 		}
 	}
 	// STRUCTURE GEN CODE ENDS HERE!
