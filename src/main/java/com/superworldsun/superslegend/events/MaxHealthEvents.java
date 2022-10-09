@@ -3,7 +3,7 @@ package com.superworldsun.superslegend.events;
 import java.util.UUID;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.config.SupersLegendConfig;
+import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;

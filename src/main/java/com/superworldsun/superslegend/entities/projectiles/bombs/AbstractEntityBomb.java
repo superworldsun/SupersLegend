@@ -1,19 +1,15 @@
 package com.superworldsun.superslegend.entities.projectiles.bombs;
 
-import com.superworldsun.superslegend.config.SupersLegendConfig;
+import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
-import com.superworldsun.superslegend.util.VecUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.IPacket;
-import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
@@ -25,8 +21,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.time.Instant;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 @SuppressWarnings("EntityConstructor")
 public abstract class AbstractEntityBomb extends ProjectileItemEntity {

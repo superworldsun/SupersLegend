@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.config.SupersLegendConfig;
+import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;

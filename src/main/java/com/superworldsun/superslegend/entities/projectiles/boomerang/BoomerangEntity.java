@@ -9,7 +9,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.superworldsun.superslegend.config.SupersLegendConfig;
+import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.registries.SoundInit;
 
 import net.minecraft.block.AbstractButtonBlock;

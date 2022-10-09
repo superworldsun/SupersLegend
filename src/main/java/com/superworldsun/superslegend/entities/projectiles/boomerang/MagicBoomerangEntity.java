@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.boomerang;
 
 
-import com.superworldsun.superslegend.config.SupersLegendConfig;
+import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;

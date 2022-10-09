@@ -6,7 +6,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.config.SupersLegendConfig;
+import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.songs.LearnedSongsProvider;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 

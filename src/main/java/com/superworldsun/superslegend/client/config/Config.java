@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.config;
+package com.superworldsun.superslegend.client.config;
 
 import org.apache.commons.lang3.tuple.Pair;
 
