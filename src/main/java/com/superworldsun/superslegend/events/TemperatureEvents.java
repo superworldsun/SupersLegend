@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import com.google.common.util.concurrent.AtomicDouble;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.config.SupersLegendConfig;
+import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.registries.AttributeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
@@ -43,6 +43,11 @@ public class TemperatureEvents
 		addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
 		addHeatResistance(event, ItemInit.DESERT_VOE_HELMET.get(), 0.1F, EquipmentSlotType.HEAD);
 		addHeatResistance(event, ItemInit.DESERT_VOE_LEGGINGS.get(), 0.2F, EquipmentSlotType.LEGS);
+
+		addColdResistance(event, ItemInit.SNOWQUILL_TUNIC.get(), 0.4F, EquipmentSlotType.CHEST);
+		addColdResistance(event, ItemInit.SNOWQUILL_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
+		addColdResistance(event, ItemInit.SNOWQUILL_HEADDRESS.get(), 0.1F, EquipmentSlotType.HEAD);
+		addColdResistance(event, ItemInit.SNOWQUILL_TROUSERS.get(), 0.2F, EquipmentSlotType.LEGS);
 		
 		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_TUNIC.get(), 0.5F, EquipmentSlotType.CHEST);
 		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_BOOTS.get(), 0.5F, EquipmentSlotType.FEET);

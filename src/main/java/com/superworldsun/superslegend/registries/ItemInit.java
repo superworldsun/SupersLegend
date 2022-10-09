@@ -701,6 +701,10 @@ public class ItemInit
 	public static final RegistryObject<Item> DESERT_VOE_CHESTPLATE = ITEMS.register("desert_voe_chestplate", () -> new DesertVoeArmor(EquipmentSlotType.CHEST));
 	public static final RegistryObject<Item> DESERT_VOE_LEGGINGS = ITEMS.register("desert_voe_leggings", () -> new DesertVoeArmor(EquipmentSlotType.LEGS));
 	public static final RegistryObject<Item> DESERT_VOE_BOOTS = ITEMS.register("desert_voe_boots", () -> new DesertVoeArmor(EquipmentSlotType.FEET));
+	public static final RegistryObject<Item> SNOWQUILL_HEADDRESS = ITEMS.register("snowquill_headdress", () -> new ArmorSnowquill(EquipmentSlotType.HEAD));
+	public static final RegistryObject<Item> SNOWQUILL_TUNIC = ITEMS.register("snowquill_tunic", () -> new ArmorSnowquill(EquipmentSlotType.CHEST));
+	public static final RegistryObject<Item> SNOWQUILL_TROUSERS = ITEMS.register("snowquill_trousers", () -> new ArmorSnowquill(EquipmentSlotType.LEGS));
+	public static final RegistryObject<Item> SNOWQUILL_BOOTS = ITEMS.register("snowquill_boots", () -> new ArmorSnowquill(EquipmentSlotType.FEET));
 	
 	//Back
 	public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", SmallQuiver::new);
