@@ -6,10 +6,10 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class MasterSword_Model extends EntityModel<Entity> {
+public class MasterSwordModel extends EntityModel<Entity> {
     private final ModelRenderer bb_main;
 
-	public MasterSword_Model() {
+	public MasterSwordModel() {
         texWidth = 32;
         texHeight = 32;
 

@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.blocks.tile.ShadowTileEntity;
-import com.superworldsun.superslegend.interfaces.IHasNoItem;
 import com.superworldsun.superslegend.items.block.ShadowBlockItem;
 
 import net.minecraft.block.Block;
@@ -18,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
 // uing IHasNoItem so we can manually create a special block item
-public class ShadowBlock extends Block implements IHasNoItem
+public class ShadowBlock extends Block
 {
 	public ShadowBlock()
 	{

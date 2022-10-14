@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.items;
+package com.superworldsun.superslegend.items.shields;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 
@@ -19,7 +19,7 @@ public class MirrorShield extends ExtendedShieldItem
 	@Override
 	protected void onShieldBlock(World level, PlayerEntity player, LivingEntity attacker, Entity projectile, DamageSource damage)
 	{
-		if (projectile != null && projectile instanceof ProjectileEntity)
+		if (!level.isClientSide && projectile != null && projectile instanceof ProjectileEntity)
 		{
 			projectile.remove();
 			projectile = projectile.getType().create(level);

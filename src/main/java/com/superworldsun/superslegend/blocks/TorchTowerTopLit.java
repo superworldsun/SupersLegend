@@ -1,9 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.entities.projectiles.arrows.FireArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.MagicFireArrowEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
-import com.superworldsun.superslegend.interfaces.IHasNoItem;
 import com.superworldsun.superslegend.registries.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -31,7 +28,7 @@ import java.util.Random;
 
 import static com.superworldsun.superslegend.blocks.TorchTower.OUTPUT_POWER;
 
-public class TorchTowerTopLit extends Block implements IHasNoItem
+public class TorchTowerTopLit extends Block
 
 {
 	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 13.0D, 9.0D, 13.0D);

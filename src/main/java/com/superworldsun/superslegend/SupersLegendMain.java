@@ -8,7 +8,6 @@ import com.superworldsun.superslegend.cooldowns.ICooldowns;
 import com.superworldsun.superslegend.hookshotCap.SyncToClient;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
-import com.superworldsun.superslegend.interfaces.IHasNoItem;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldState;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldStorage;
 import com.superworldsun.superslegend.mana.IMana;
@@ -29,20 +28,14 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.FlatChunkGenerator;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.settings.DimensionStructuresSettings;
-import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
@@ -51,7 +44,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
-import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -116,25 +108,6 @@ public class SupersLegendMain
 	public static ResourceLocation locate(String name)
 	{
 		return new ResourceLocation(SupersLegendMain.MOD_ID, name);
-	}
-	
-	@SubscribeEvent
-	public static void createBlockItems(final RegistryEvent.Register<Item> event)
-	{
-		final IForgeRegistry<Item> registry = event.getRegistry();
-		
-		BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block ->
-		{
-			if(block instanceof IHasNoItem)
-			{
-				return;
-			}
-			
-			final Item.Properties properties = new Item.Properties().tab(SupersLegendMain.BLOCKS);
-			final BlockItem blockItem = new BlockItem(block, properties);
-			blockItem.setRegistryName(block.getRegistryName());
-			registry.register(blockItem);
-		});
 	}
 	
 	/* The FMLCommonSetupEvent (FML - Forge Mod Loader) */
