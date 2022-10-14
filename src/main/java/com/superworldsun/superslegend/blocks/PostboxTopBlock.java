@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.interfaces.IHasNoItem;
 import com.superworldsun.superslegend.registries.PropertiesInit;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +18,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class PostboxTopBlock extends Block implements IHasNoItem
+public class PostboxTopBlock extends Block
 {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	protected static final VoxelShape SHAPE = Block.box(0.0D, -16.0D, 2.0D, 16.0D, 5.0D, 14.0D);

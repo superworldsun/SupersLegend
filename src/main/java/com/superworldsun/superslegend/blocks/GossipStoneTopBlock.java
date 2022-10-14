@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.interfaces.IHasNoItem;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.PropertiesInit;
 
@@ -27,7 +26,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class GossipStoneTopBlock extends Block implements IHasNoItem
+public class GossipStoneTopBlock extends Block
 {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	protected static final VoxelShape SHAPE = Block.box(0.0D, -16.0D, 2.0D, 16.0D, 5.0D, 14.0D);

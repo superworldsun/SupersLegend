@@ -25,7 +25,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -76,7 +75,7 @@ public class CookingPotTileEntity extends TileEntity implements ITickableTileEnt
 
     public static TileEntityType<CookingPotTileEntity> createType()
     {
-        return TileEntityType.Builder.of(CookingPotTileEntity::new, BlockInit.COOKING_POT).build(null);
+        return TileEntityType.Builder.of(CookingPotTileEntity::new, BlockInit.COOKING_POT.get()).build(null);
     }
 
     @Override
