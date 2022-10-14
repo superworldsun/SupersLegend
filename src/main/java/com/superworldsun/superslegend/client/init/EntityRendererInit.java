@@ -49,7 +49,7 @@ public class EntityRendererInit
         RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MAGIC_BOOMERANG.get(), MagicBoomerangRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.WW_BOOMERANG.get(), WWBoomerangRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.GALE_BOOMERANG.get(), GaleBoomerangRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MASTERSWORD_SWORD_ENTITY.get(), MasterSword_Renderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MASTERSWORD_SWORD_ENTITY.get(), MasterSwordRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.BOMB.get(), BombRender::new);
 	}
 }
