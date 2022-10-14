@@ -38,76 +38,57 @@ public class ItemInit
 			() -> new GoldRupee(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
 	/*public static final RegistryObject<Item> SMALL_KEY = ITEMS.register("small_key",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			SimpleResourceItem::new);
 	public static final RegistryObject<Item> BIG_KEY = ITEMS.register("big_key",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			SimpleResourceItem::new);
 	public static final RegistryObject<Item> MAGICAL_KEY = ITEMS.register("magical_key",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
+			SimpleResourceItem::new);*/
 
 	/*public static final RegistryObject<Item> SMALL_LOCK = ITEMS.register("small_lock",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			SimpleResourceItem::new);
 	public static final RegistryObject<Item> BIG_LOCK = ITEMS.register("big_lock",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
+			SimpleResourceItem::new);*/
 
-	public static final RegistryObject<Item> ARROW_BUNDLE = ITEMS.register("arrow_bundle",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> FIRE_ARROW_BUNDLE = ITEMS.register("fire_arrow_bundle",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ICE_ARROW_BUNDLE = ITEMS.register("ice_arrow_bundle",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> SHOCK_ARROW_BUNDLE = ITEMS.register("shock_arrow_bundle",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> BOMB_ARROW_BUNDLE = ITEMS.register("bomb_arrow_bundle",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ANCIENT_ARROW_BUNDLE = ITEMS.register("ancient_arrow_bundle",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ARROW_BUNDLE = ITEMS.register("arrow_bundle", SimpleResourceItem::new);
+	public static final RegistryObject<Item> FIRE_ARROW_BUNDLE = ITEMS.register("fire_arrow_bundle", SimpleResourceItem::new);
+	public static final RegistryObject<Item> ICE_ARROW_BUNDLE = ITEMS.register("ice_arrow_bundle", SimpleResourceItem::new);
+	public static final RegistryObject<Item> SHOCK_ARROW_BUNDLE = ITEMS.register("shock_arrow_bundle", SimpleResourceItem::new);
+	public static final RegistryObject<Item> BOMB_ARROW_BUNDLE = ITEMS.register("bomb_arrow_bundle", SimpleResourceItem::new);
+	public static final RegistryObject<Item> ANCIENT_ARROW_BUNDLE = ITEMS.register("ancient_arrow_bundle", SimpleResourceItem::new);
 	
-	public static final RegistryObject<Item> TRIFORCE_POWER_SHARD = ITEMS.register("triforce_power_shard",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> TRIFORCE_WISDOM_SHARD = ITEMS.register("triforce_wisdom_shard",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> TRIFORCE_COURAGE_SHARD = ITEMS.register("triforce_courage_shard",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ODOLWAS_REMAINS = ITEMS.register("odolwas_remains",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> GOHTS_REMAINS = ITEMS.register("gohts_remains",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> GYORGS_REMAINS = ITEMS.register("gyorgs_remains",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> TWINMOLDS_REMAINS = ITEMS.register("twinmolds_remains",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> TRIFORCE_POWER_SHARD = ITEMS.register("triforce_power_shard", SimpleResourceItem::new);
+	public static final RegistryObject<Item> TRIFORCE_WISDOM_SHARD = ITEMS.register("triforce_wisdom_shard", SimpleResourceItem::new);
+	public static final RegistryObject<Item> TRIFORCE_COURAGE_SHARD = ITEMS.register("triforce_courage_shard", SimpleResourceItem::new);
+	public static final RegistryObject<Item> ODOLWAS_REMAINS = ITEMS.register("odolwas_remains", SimpleResourceItem::new);
+	public static final RegistryObject<Item> GOHTS_REMAINS = ITEMS.register("gohts_remains", SimpleResourceItem::new);
+	public static final RegistryObject<Item> GYORGS_REMAINS = ITEMS.register("gyorgs_remains", SimpleResourceItem::new);
+	public static final RegistryObject<Item> TWINMOLDS_REMAINS = ITEMS.register("twinmolds_remains", SimpleResourceItem::new);
 	
-	public static final RegistryObject<Item> ANCIENT_CORE = ITEMS.register("ancient_core",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ANCIENT_GEAR = ITEMS.register("ancient_gear",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ANCIENT_CORE_GIANT = ITEMS.register("ancient_core_giant",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ANCIENT_SCREW = ITEMS.register("ancient_screw",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ANCIENT_SHAFT = ITEMS.register("ancient_shaft",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ANCIENT_SPRING = ITEMS.register("ancient_spring",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> ANCIENT_CORE = ITEMS.register("ancient_core", SimpleResourceItem::new);
+	public static final RegistryObject<Item> ANCIENT_GEAR = ITEMS.register("ancient_gear", SimpleResourceItem::new);
+	public static final RegistryObject<Item> ANCIENT_CORE_GIANT = ITEMS.register("ancient_core_giant", SimpleResourceItem::new);
+	public static final RegistryObject<Item> ANCIENT_SCREW = ITEMS.register("ancient_screw", SimpleResourceItem::new);
+	public static final RegistryObject<Item> ANCIENT_SHAFT = ITEMS.register("ancient_shaft", SimpleResourceItem::new);
+	public static final RegistryObject<Item> ANCIENT_SPRING = ITEMS.register("ancient_spring", SimpleResourceItem::new);
 	/*public static final RegistryObject<Item> MOON_TEAR = ITEMS.register("moon_tear",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
+			SimpleResourceItem::new);*/
 	public static final RegistryObject<Item> MASTER_ORE_CHUNK = ITEMS.register("master_ore_chunk"
 			, () -> new Item(new Item.Properties().rarity(Rarity.RARE).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> MASTER_ORE = ITEMS.register("master_ore"
 			, () -> new Item(new Item.Properties().rarity(Rarity.EPIC).tab(SupersLegendMain.RESOURCES)));
 	/*public static final RegistryObject<Item> MASTER_SWORD_BLADE = ITEMS.register("master_sword_blade",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			SimpleResourceItem::new);
 	public static final RegistryObject<Item> MASTER_SWORLD_HILT = ITEMS.register("master_sword_hilt",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
+			SimpleResourceItem::new);*/
 	public static final RegistryObject<Item> HEART_PIECE = ITEMS.register("heart_piece",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			SimpleResourceItem::new);
 	public static final RegistryObject<Item> HEART_CONTAINER = ITEMS.register("heart_container",
 			() -> new HeartContainer(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
 			() -> new VoidContainer(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
 	public static final RegistryObject<Item> UNAPPRAISED_RING = ITEMS.register("unappraised_ring",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			SimpleResourceItem::new);
 	public static final RegistryObject<Item> APPRAISED_RING_BOX = ITEMS.register("appraised_ring_box",
 			() -> new AppraisedRingBox(new Item.Properties().stacksTo(64).tab(SupersLegendMain.RESOURCES)));
 
@@ -258,22 +239,13 @@ public class ItemInit
 	public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag", BigBulletBag::new);
 
 	public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag", SmallBombBag::new);
-
 	public static final RegistryObject<Item> BIG_BOMB_BAG = ITEMS.register("big_bomb_bag", MediumBombBag::new);
-
 	public static final RegistryObject<Item> BIGGEST_BOMB_BAG = ITEMS.register("biggest_bomb_bag", BigBombBag::new);
 
-	public static final RegistryObject<Item> WALLET = ITEMS.register("wallet",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-
-	public static final RegistryObject<Item> MEDIUM_WALLET = ITEMS.register("medium_wallet",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-
-	public static final RegistryObject<Item> GIANTS_WALLET = ITEMS.register("giants_wallet",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-
-	public static final RegistryObject<Item> COLOSSAL_WALLET = ITEMS.register("colossal_wallet",
-			() -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> WALLET = ITEMS.register("wallet", SimpleResourceItem::new);	
+	public static final RegistryObject<Item> MEDIUM_WALLET = ITEMS.register("medium_wallet", SimpleResourceItem::new);	
+	public static final RegistryObject<Item> GIANTS_WALLET = ITEMS.register("giants_wallet", SimpleResourceItem::new);	
+	public static final RegistryObject<Item> COLOSSAL_WALLET = ITEMS.register("colossal_wallet", SimpleResourceItem::new);
 
 	//Sets
 
@@ -379,9 +351,9 @@ public class ItemInit
 			() -> new FairyOcarina(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> OCARINA_OF_TIME = ITEMS.register("ocarina_of_time",
 			() -> new OcarinaOfTime(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> RED_JELLY = ITEMS.register("red_jelly", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> GREEN_JELLY = ITEMS.register("green_jelly", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> BLUE_JELLY = ITEMS.register("blue_jelly", () -> new Item(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> RED_JELLY = ITEMS.register("red_jelly", SimpleResourceItem::new);
+	public static final RegistryObject<Item> GREEN_JELLY = ITEMS.register("green_jelly", SimpleResourceItem::new);
+	public static final RegistryObject<Item> BLUE_JELLY = ITEMS.register("blue_jelly", SimpleResourceItem::new);
 	public static final RegistryObject<Item> RED_POTION_MIX = ITEMS.register("red_potion_mix",
 			() -> new RedPotionMix(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> GREEN_POTION_MIX = ITEMS.register("green_potion_mix",
