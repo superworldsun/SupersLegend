@@ -248,11 +248,11 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 	}
 	
 	@Override
-	public void setupAnim(AbstractClientPlayerEntity player, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_)
+	public void setupAnim(AbstractClientPlayerEntity player, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch)
 	{
 		boolean flag = player.getFallFlyingTicks() > 4;
 		boolean flag1 = player.isVisuallySwimming();
-		this.head.yRot = p_225597_5_ * ((float) Math.PI / 180F);
+		this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
 		
 		if (flag)
 		{
@@ -266,12 +266,12 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			}
 			else
 			{
-				this.head.xRot = this.rotlerpRad(this.swimAmount, this.head.xRot, p_225597_6_ * ((float) Math.PI / 180F));
+				this.head.xRot = this.rotlerpRad(this.swimAmount, this.head.xRot, headPitch * ((float) Math.PI / 180F));
 			}
 		}
 		else
 		{
-			this.head.xRot = p_225597_6_ * ((float) Math.PI / 180F);
+			this.head.xRot = headPitch * ((float) Math.PI / 180F);
 		}
 		
 		this.body.yRot = 0F;
@@ -293,10 +293,10 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			f = 1.0F;
 		}
 		
-		this.leftArm.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + (float) Math.PI) * 2.0F * p_225597_3_ * 0.5F / f;
-		this.rightArm.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 2.0F * p_225597_3_ * 0.5F / f;
-		this.rightLeg.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 1.4F * p_225597_3_ / f;
-		this.leftLeg.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + (float) Math.PI) * 1.4F * p_225597_3_ / f;
+		this.leftArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F / f;
+		this.rightArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / f;
+		this.rightLeg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / f;
+		this.leftLeg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / f;
 		this.rightLeg.yRot = 0.0F;
 		this.leftLeg.yRot = 0.0F;
 		this.rightLeg.zRot = 0.0F;
@@ -330,8 +330,8 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			this.poseLeftArm(player);
 		}
 		
-		this.setupAttackAnimation(player, p_225597_4_);
-
+		this.setupAttackAnimation(player, ageInTicks);
+		
 		if (this.crouching)
 		{
 			this.body.xRot = 0.5F;
@@ -350,11 +350,11 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 			this.rightArm.z = -5.0F;
 		}
 		
-		ModelHelper.bobArms(this.rightArm, this.leftArm, p_225597_4_);
+		ModelHelper.bobArms(this.rightArm, this.leftArm, ageInTicks);
 		
 		if (this.swimAmount > 0.0F)
 		{
-			float f1 = p_225597_2_ % 26.0F;
+			float f1 = limbSwing % 26.0F;
 			HandSide handside = this.getAttackArm(player);
 			float f2 = handside == HandSide.RIGHT && this.attackTime > 0.0F ? 0.0F : this.swimAmount;
 			float f3 = handside == HandSide.LEFT && this.attackTime > 0.0F ? 0.0F : this.swimAmount;
@@ -389,8 +389,8 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 				this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot, (float) Math.PI);
 			}
 			
-			this.leftLeg.xRot = MathHelper.lerp(this.swimAmount, this.leftLeg.xRot, 0.3F * MathHelper.cos(p_225597_2_ * 0.33333334F + (float) Math.PI));
-			this.rightLeg.xRot = MathHelper.lerp(this.swimAmount, this.rightLeg.xRot, 0.3F * MathHelper.cos(p_225597_2_ * 0.33333334F));
+			this.leftLeg.xRot = MathHelper.lerp(this.swimAmount, this.leftLeg.xRot, 0.3F * MathHelper.cos(limbSwing * 0.33333334F + (float) Math.PI));
+			this.rightLeg.xRot = MathHelper.lerp(this.swimAmount, this.rightLeg.xRot, 0.3F * MathHelper.cos(limbSwing * 0.33333334F));
 		}
 		
 		this.hat.copyFrom(this.head);
@@ -468,6 +468,7 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		
 	}
 	
+	@Override
 	protected Iterable<ModelRenderer> bodyParts()
 	{
 		return ImmutableList.of(this.body, this.rightArm, this.leftArm, this.rightLeg, this.leftLeg);
@@ -479,18 +480,6 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		modelRenderer.yRot = y;
 		modelRenderer.zRot = z;
 	}
-	
-	/*@Override
-	public void renderFirstPersonHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand, ModelRenderer handOverlay,
-			ResourceLocation texture)
-	{
-		hand.xRot = 0;
-		hand.y = 1.5F;
-		hand.render(matrix, buffer.getBuffer(RenderType.entitySolid(texture)), color, OverlayTexture.NO_OVERLAY);
-		handOverlay.xRot = 0;
-		handOverlay.y = 1.5F;
-		handOverlay.render(matrix, buffer.getBuffer(RenderType.entityTranslucent(texture)), color, OverlayTexture.NO_OVERLAY);
-	}*/
 	
 	@Override
 	public void renderFirstPersonHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand, ModelRenderer handOverlay,
@@ -514,7 +503,7 @@ public class GoronPlayerModel extends PlayerModel<AbstractClientPlayerEntity> im
 		int sideShift = leftHand ? -1 : 1;
 		matrixStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
 		matrixStack.mulPose(Vector3f.YP.rotationDegrees(180F - sideShift * 15));
-		matrixStack.translate(sideShift / 16D, 0.125D, -1.3D);
+		matrixStack.translate(sideShift * 0.0625F, 0.125D, -1.3D);
 		Minecraft.getInstance().getItemInHandRenderer().renderItem(livingEntity, itemStack, transformType, leftHand, matrixStack, renderTypeBuffer, light);
 	}
 }
