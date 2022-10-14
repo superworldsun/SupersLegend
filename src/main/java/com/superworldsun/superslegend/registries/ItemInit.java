@@ -11,6 +11,7 @@ import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.food.*;
 import com.superworldsun.superslegend.items.items.*;
+import com.superworldsun.superslegend.items.shields.*;
 import com.superworldsun.superslegend.items.weapons.*;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import com.superworldsun.superslegend.util.cookingpot.FoodCategory;

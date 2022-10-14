@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.items.items;
+package com.superworldsun.superslegend.items.shields;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
