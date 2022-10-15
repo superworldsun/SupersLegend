@@ -30,10 +30,10 @@ public class EngineersSet extends Item
 	{
 		ItemStack stack = player.getItemInHand(hand);
 		
-		addOrDrop(player, ItemInit.ENGINEERS_HAT);
-		addOrDrop(player, ItemInit.ENGINEERS_SHIRT);
-		addOrDrop(player, ItemInit.ENGINEERS_PANTS);
-		addOrDrop(player, ItemInit.ENGINEERS_BOOTS);
+		//addOrDrop(player, ItemInit.ENGINEERS_HAT);
+		//addOrDrop(player, ItemInit.ENGINEERS_SHIRT);
+		//addOrDrop(player, ItemInit.ENGINEERS_PANTS);
+		//addOrDrop(player, ItemInit.ENGINEERS_BOOTS);
 
 		if (!player.abilities.instabuild)
 		{
