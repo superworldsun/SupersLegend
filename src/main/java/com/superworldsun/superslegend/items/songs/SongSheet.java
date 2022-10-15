@@ -24,8 +24,12 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderTooltipEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-public class SongSheet extends Item
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
+public abstract class SongSheet extends Item
 {
 	private final Supplier<OcarinaSong> songSupplier;
 	
@@ -34,17 +38,30 @@ public class SongSheet extends Item
 		super(new Item.Properties().tab(SupersLegendMain.RESOURCES).stacksTo(1));
 		this.songSupplier = songSupplier;
 	}
-
+	
+	@OnlyIn(Dist.CLIENT)
+	@SubscribeEvent
+	public static void onPreRenderTooltip(RenderTooltipEvent.PostBackground event)
+	{
+		if (event.getStack().getItem() instanceof SongSheet)
+		{
+			
+		}
+	}
+	
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
+		addSongDescription(list);
+		list.add(new StringTextComponent(""));
+		list.add(new StringTextComponent(""));
 		list.add(new StringTextComponent(TextFormatting.GOLD + "Right click to Learn Song"));
 	}
-
-	//TODO add config to have this item consumed on use
-	//TODO add a sound when item is used
+	
+	// TODO add config to have this item consumed on use
+	// TODO add a sound when item is used
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand)
 	{
@@ -54,9 +71,9 @@ public class SongSheet extends Item
 		{
 			if (!learnedSongs.contains(songSupplier.get()))
 			{
-				if(SupersLegendConfig.getInstance().songSheetConsumed())
+				if (SupersLegendConfig.getInstance().songSheetConsumed())
 					playerEntity.getItemInHand(hand).shrink(1);
-
+				
 				learnedSongs.add(songSupplier.get());
 				LearnedSongsProvider.sync((ServerPlayerEntity) playerEntity);
 				playerEntity.sendMessage(new TranslationTextComponent("item.superslegend.song_sheet.learned", songSupplier.get().getLocalizedName()), UUID.randomUUID());
@@ -70,4 +87,6 @@ public class SongSheet extends Item
 		
 		return ActionResult.fail(playerEntity.getItemInHand(hand));
 	}
+	
+	protected abstract void addSongDescription(List<ITextComponent> list);
 }
