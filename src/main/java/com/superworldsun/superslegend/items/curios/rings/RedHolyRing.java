@@ -40,10 +40,10 @@ public class RedHolyRing extends RingItem
 		{
 			PlayerEntity player = (PlayerEntity) event.getEntityLiving();			
 			// Get the Ring as an ItemStack
-			ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BLUE_HOLY_RING.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+			//ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BLUE_HOLY_RING.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 			
 			// Check if player is wearing it.
-			if (!stack.isEmpty())
+			//if (!stack.isEmpty())
 			{
 				if (event.getSource() == DamageSource.LIGHTNING_BOLT)
 				{
