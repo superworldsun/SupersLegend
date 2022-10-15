@@ -36,9 +36,9 @@ public class TriforceWisdom extends Item
 		        {
 		   		 BlockPos currentPos = player.blockPosition();
 				 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
-					player.addEffect(new EffectInstance(Effect.byId(16), 1200, 0, false, true));
-					player.addEffect(new EffectInstance(Effect.byId(13), 1200, 0, false, true));
-					player.getCooldowns().addCooldown(this, 10);
+					player.addEffect(new EffectInstance(Effect.byId(16), 6000, 0, false, true));
+					player.addEffect(new EffectInstance(Effect.byId(13), 6000, 0, false, true));
+					player.getCooldowns().addCooldown(this, 100);
 		        }
 		        return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 	 }

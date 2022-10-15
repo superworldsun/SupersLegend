@@ -14,7 +14,10 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -46,18 +49,18 @@ public class TriforceCourage extends Item implements ICurioItem
 		return map;
 	}
 
-	/*public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {
 		 @SuppressWarnings("unused")
 		ItemStack stack = player.getItemInHand(hand);
 		 BlockPos currentPos = player.blockPosition();
 		 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
-					player.addEffect(new EffectInstance(Effect.byId(1), 600, 0, false, true));
-					player.addEffect(new EffectInstance(Effect.byId(11), 600, 0, false, false));
-					player.getCooldowns().addCooldown(this, 10);
+					player.addEffect(new EffectInstance(Effect.byId(1), 6000, 0, false, true));
+					player.addEffect(new EffectInstance(Effect.byId(11), 6000, 0, false, false));
+					player.getCooldowns().addCooldown(this, 100);
 
 		return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
-	}*/
+	}
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
@@ -68,7 +71,7 @@ public class TriforceCourage extends Item implements ICurioItem
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 	}
 
-	@SubscribeEvent
+	/*@SubscribeEvent
 	public static void onLivingHurt(LivingAttackEvent event)
 	{
 		// Check if it is the Player who takes damage.
@@ -121,6 +124,6 @@ public class TriforceCourage extends Item implements ICurioItem
 
 			}
 		}
-	}
+	}*/
 } 
 

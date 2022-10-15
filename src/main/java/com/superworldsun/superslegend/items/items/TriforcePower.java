@@ -36,11 +36,11 @@ public class TriforcePower extends Item
 		 {
 			 BlockPos currentPos = player.blockPosition();
 			 world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
-					player.addEffect(new EffectInstance(Effect.byId(20), 44, 0, false, false));
-					player.addEffect(new EffectInstance(Effect.byId(19), 200, 0, false, false));
-					player.addEffect(new EffectInstance(Effect.byId(5), 600, 0, false, true));
-					player.addEffect(new EffectInstance(Effect.byId(3), 400, 0, false, false));
-					player.getCooldowns().addCooldown(this, 10);
+					//player.addEffect(new EffectInstance(Effect.byId(20), 44, 0, false, false));
+					//player.addEffect(new EffectInstance(Effect.byId(19), 6000, 0, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(5), 6000, 0, false, true));
+					player.addEffect(new EffectInstance(Effect.byId(3), 6000, 0, false, false));
+					player.getCooldowns().addCooldown(this, 100);
 		 }
 	 			return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 	 }
@@ -50,7 +50,7 @@ public class TriforcePower extends Item
 		public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 		{
 			super.appendHoverText(stack, world, list, flag);				
-			list.add(new StringTextComponent(TextFormatting.RED + "This gives the you Power, but at what cost?"));
+			list.add(new StringTextComponent(TextFormatting.RED + "This gives the you Power to destroy"));
 			list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 		}   
 }

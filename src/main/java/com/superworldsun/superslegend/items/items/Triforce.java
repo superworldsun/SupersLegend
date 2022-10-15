@@ -37,13 +37,13 @@ public class Triforce extends Item
 		 BlockPos currentPos = player.blockPosition();
 		        {
 		        	world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
-					player.addEffect(new EffectInstance(Effect.byId(1), 300, 0, false, false));
-					player.addEffect(new EffectInstance(Effect.byId(11), 300, 0, false, false));
-					player.addEffect(new EffectInstance(Effect.byId(5), 300, 0, false, true));
-					player.addEffect(new EffectInstance(Effect.byId(3), 300, 0, false, false));
-					player.addEffect(new EffectInstance(Effect.byId(16), 900, 0, false, false));
-					player.addEffect(new EffectInstance(Effect.byId(13), 900, 0, false, false));
-					player.getCooldowns().addCooldown(this, 10);
+					player.addEffect(new EffectInstance(Effect.byId(1), 6000, 0, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(11), 6000, 0, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(5), 6000, 0, false, true));
+					player.addEffect(new EffectInstance(Effect.byId(3), 6000, 0, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(16), 6000, 0, false, false));
+					player.addEffect(new EffectInstance(Effect.byId(13), 6000, 0, false, false));
+					player.getCooldowns().addCooldown(this, 100);
 		        }
 				return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 		}
