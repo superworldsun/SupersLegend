@@ -35,7 +35,7 @@ public class ItemModelPropertiesInit
 	public static void onClientSetup(FMLClientSetupEvent event)
 	{
 		ItemModelsProperties.register(ItemInit.LENS_OF_TRUTH.get(), new ResourceLocation("using"), IN_USE);
-		ItemModelsProperties.register(ItemInit.CLAWSHOT.get(), new ResourceLocation("pulling"), IN_USE);
+		//ItemModelsProperties.register(ItemInit.CLAWSHOT.get(), new ResourceLocation("pulling"), IN_USE);
 		ItemModelsProperties.register(ItemInit.HEROS_BOW.get(), new ResourceLocation("pull"), USE_PROGRESS);
 		ItemModelsProperties.register(ItemInit.HEROS_BOW.get(), new ResourceLocation("pulling"), IN_USE);
 		ItemModelsProperties.register(ItemInit.FAIRY_BOW.get(), new ResourceLocation("pull"), USE_PROGRESS);
@@ -71,7 +71,7 @@ public class ItemModelPropertiesInit
 		
 		registerFishingRodModelProperties(ItemInit.HOOKSHOT.get());
 		registerFishingRodModelProperties(ItemInit.LONGSHOT.get());
-		registerFishingRodModelProperties(ItemInit.CLAWSHOT.get());
+		//registerFishingRodModelProperties(ItemInit.CLAWSHOT.get());
 	}
 	
 	private static float getUseProgress(ItemStack itemStack, LivingEntity entity)
