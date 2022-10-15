@@ -39,10 +39,10 @@ public class TemperatureEvents
 		addColdResistance(event, Items.LEATHER_HELMET, 0.05F, EquipmentSlotType.HEAD);
 		addColdResistance(event, Items.LEATHER_LEGGINGS, 0.1F, EquipmentSlotType.LEGS);
 		
-		addHeatResistance(event, ItemInit.DESERT_VOE_CHESTPLATE.get(), 0.4F, EquipmentSlotType.CHEST);
+		addHeatResistance(event, ItemInit.DESERT_VOE_SPAULDER.get(), 0.4F, EquipmentSlotType.CHEST);
 		addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
-		addHeatResistance(event, ItemInit.DESERT_VOE_HELMET.get(), 0.1F, EquipmentSlotType.HEAD);
-		addHeatResistance(event, ItemInit.DESERT_VOE_LEGGINGS.get(), 0.2F, EquipmentSlotType.LEGS);
+		addHeatResistance(event, ItemInit.DESERT_VOE_HEADBAND.get(), 0.1F, EquipmentSlotType.HEAD);
+		addHeatResistance(event, ItemInit.DESERT_VOE_TROUSERS.get(), 0.2F, EquipmentSlotType.LEGS);
 
 		addColdResistance(event, ItemInit.SNOWQUILL_TUNIC.get(), 0.4F, EquipmentSlotType.CHEST);
 		addColdResistance(event, ItemInit.SNOWQUILL_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
