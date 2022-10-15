@@ -1,6 +1,8 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.MagicBoomerangEntity;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.WWBoomerangEntity;
 import com.superworldsun.superslegend.registries.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -101,7 +103,8 @@ public class TorchTowerTopLit extends Block
 	}
 
 	public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-		if(entityIn instanceof ArrowEntity || entityIn instanceof AbstractArrowEntity || entityIn instanceof BoomerangEntity)
+		if(entityIn instanceof ArrowEntity || entityIn instanceof AbstractArrowEntity || entityIn instanceof BoomerangEntity
+		|| entityIn instanceof MagicBoomerangEntity || entityIn instanceof WWBoomerangEntity)
 		{
 			entityIn.setSecondsOnFire(15);
 		}

@@ -3,6 +3,8 @@ package com.superworldsun.superslegend.blocks;
 import com.superworldsun.superslegend.entities.projectiles.arrows.FireArrowEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.MagicFireArrowEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.MagicBoomerangEntity;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.WWBoomerangEntity;
 import com.superworldsun.superslegend.registries.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -71,15 +73,8 @@ public class TorchTowerTopUnlit extends Block
 			worldIn.setBlock(pos , BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState(), 1);
 		}
 
-		if(entityIn instanceof ArrowEntity || entityIn instanceof AbstractArrowEntity)
-		{
-			if (entityIn.isOnFire())
-			{
-				worldIn.setBlock(pos , BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState(), 1);
-			}
-		}
-
-		if(entityIn instanceof BoomerangEntity)
+		if(entityIn instanceof ArrowEntity || entityIn instanceof AbstractArrowEntity || entityIn instanceof BoomerangEntity
+			|| entityIn instanceof MagicBoomerangEntity || entityIn instanceof WWBoomerangEntity)
 		{
 			if (entityIn.isOnFire())
 			{
