@@ -15,8 +15,8 @@ public class BlockInit
 {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SupersLegendMain.MOD_ID);
 
-	public static final RegistryObject<Block> CRACKED_FLOOR = BLOCKS.register("cracked_floor", () -> new CrackedFloor(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> QUICK_SAND = BLOCKS.register("quick_sand", () -> new QuickSand(PropertiesInit.QUICK_SAND));
+	//public static final RegistryObject<Block> CRACKED_FLOOR = BLOCKS.register("cracked_floor", () -> new CrackedFloor(PropertiesInit.WRECKAGE));
+	//public static final RegistryObject<Block> QUICK_SAND = BLOCKS.register("quick_sand", () -> new QuickSand(PropertiesInit.QUICK_SAND));
 	public static final RegistryObject<Block> RUPEE_BLOCK = BLOCKS.register("rupee_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> BLUE_RUPEE_BLOCK = BLOCKS.register("blue_rupee_block", () -> new Block(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> RED_RUPEE_BLOCK = BLOCKS.register("red_rupee_block", () -> new Block(PropertiesInit.WRECKAGE));
