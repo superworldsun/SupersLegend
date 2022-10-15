@@ -12,6 +12,9 @@ import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.food.*;
 import com.superworldsun.superslegend.items.items.*;
 import com.superworldsun.superslegend.items.shields.*;
+import com.superworldsun.superslegend.items.songs.AllSongsSheet;
+import com.superworldsun.superslegend.items.songs.AmnesiaSheet;
+import com.superworldsun.superslegend.items.songs.SongSheet;
 import com.superworldsun.superslegend.items.weapons.*;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import com.superworldsun.superslegend.util.cookingpot.FoodCategory;
@@ -81,8 +84,7 @@ public class ItemInit
 			SimpleResourceItem::new);
 	public static final RegistryObject<Item> MASTER_SWORLD_HILT = ITEMS.register("master_sword_hilt",
 			SimpleResourceItem::new);*/
-	public static final RegistryObject<Item> HEART_PIECE = ITEMS.register("heart_piece",
-			SimpleResourceItem::new);
+	public static final RegistryObject<Item> HEART_PIECE = ITEMS.register("heart_piece", SimpleResourceItem::new);
 	public static final RegistryObject<Item> HEART_CONTAINER = ITEMS.register("heart_container",
 			() -> new HeartContainer(new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
@@ -118,13 +120,7 @@ public class ItemInit
 	public static final RegistryObject<Item> AMNEISA_SHEET = ITEMS.register("amneisa_sheet", AmnesiaSheet::new);
 
 	/*public static final RegistryObject<Item> SPINNER = ITEMS.register("spinner",
-			() -> new SpinnerItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
-	
-	// SPECIAL BLOCK ITEMS
-	
-	public static final RegistryObject<Item> SHADOW_BLOCK = ITEMS.register("shadow_block", ShadowBlockItem::new);
-	public static final RegistryObject<Item> HIDDEN_SHADOW_BLOCK = ITEMS.register("hidden_shadow_block", HiddenShadowBlockItem::new);
-	public static final RegistryObject<Item> FALSE_SHADOW_BLOCK = ITEMS.register("false_shadow_block", FalseShadowBlockItem::new);
+			() -> new SpinnerItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/	
 	
 	// FOOD
 	
@@ -803,21 +799,7 @@ public class ItemInit
 			.saturationMod(7.37F).alwaysEat().build());
 	public static final Item FRUIT_PIE = register(ITEMS, "fruit_pie", CookingPotFood.builder().nutrition(6)
 			.saturationMod(2F).alwaysEat().build());*/
-
-	//For cooking pots
-
-
-	/*public static final RegistryObject<Item> RUPEE_BLOCK = ITEMS.register("rupee_block",
-			() -> new BlockItem(BlockItemInit.RUPEE_BLOCK.get(), new Item.Properties().tab(SupersLegendMain.BLOCKS)));
-	public static final RegistryObject<Item> BLUE_RUPEE_BLOCK = ITEMS.register("blue_rupee_block",
-			() -> new BlockItem(BlockItemInit.BLUE_RUPEE_BLOCK.get(), new Item.Properties().tab(SupersLegendMain.BLOCKS)));
-	public static final RegistryObject<Item> RED_RUPEE_BLOCK = ITEMS.register("red_rupee_block",
-			() -> new BlockItem(BlockItemInit.RED_RUPEE_BLOCK.get(), new Item.Properties().tab(SupersLegendMain.BLOCKS)));
-	public static final RegistryObject<Item> SILVER_RUPEE_BLOCK = ITEMS.register("silver_rupee_block",
-			() -> new BlockItem(BlockItemInit.SILVER_RUPEE_BLOCK.get(), new Item.Properties().tab(SupersLegendMain.BLOCKS)));
-	public static final RegistryObject<Item> GOLD_RUPEE_BLOCK = ITEMS.register("gold_rupee_block",
-			() -> new BlockItem(BlockItemInit.GOLD_RUPEE_BLOCK.get(), new Item.Properties().tab(SupersLegendMain.BLOCKS)));*/
-
+	
 	//Blocks
 	//public static final RegistryObject<Item> CRACKED_FLOOR = ITEMS.register("cracked_floor", () -> new ModBlockItem(BlockInit.CRACKED_FLOOR));
 	//public static final RegistryObject<Item> QUICK_SAND = ITEMS.register("quick_sand", () -> new ModBlockItem(BlockInit.QUICK_SAND));
@@ -864,6 +846,9 @@ public class ItemInit
 	public static final RegistryObject<Item> BLOCK_OF_TIME = ITEMS.register("block_of_time", () -> new ModBlockItem(BlockInit.BLOCK_OF_TIME));
 	public static final RegistryObject<Item> OWL_STATUE = ITEMS.register("owl_statue", () -> new ModBlockItem(BlockInit.OWL_STATUE));
 	public static final RegistryObject<Item> COOKING_POT = ITEMS.register("cooking_pot", () -> new ModBlockItem(BlockInit.COOKING_POT));
+	public static final RegistryObject<Item> SHADOW_BLOCK = ITEMS.register("shadow_block", ShadowBlockItem::new);
+	public static final RegistryObject<Item> HIDDEN_SHADOW_BLOCK = ITEMS.register("hidden_shadow_block", HiddenShadowBlockItem::new);
+	public static final RegistryObject<Item> FALSE_SHADOW_BLOCK = ITEMS.register("false_shadow_block", FalseShadowBlockItem::new);
 
 	public static final Map<FoodCategory, Item> foodCategoryItems = Util.make(new EnumMap<FoodCategory, Item>(FoodCategory.class), map ->
 	{

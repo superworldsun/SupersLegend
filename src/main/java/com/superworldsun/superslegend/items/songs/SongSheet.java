@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.items;
+package com.superworldsun.superslegend.items.songs;
 
 import java.util.List;
 import java.util.Set;
