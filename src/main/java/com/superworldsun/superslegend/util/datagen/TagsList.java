@@ -25,8 +25,8 @@ public class TagsList {
             tag(Tags.Items.APPRAISAL_LIST).add(ItemInit.ARMOR_RING_L1.get());
             tag(Tags.Items.APPRAISAL_LIST).add(ItemInit.HEART_RING_L1.get());
             tag(Tags.Items.APPRAISAL_LIST).add(ItemInit.GREEN_HOLY_RING.get());
-            tag(Tags.Items.APPRAISAL_LIST).add(ItemInit.BLUE_HOLY_RING.get());
-            tag(Tags.Items.APPRAISAL_LIST).add(ItemInit.RED_HOLY_RING.get());
+            //tag(Tags.Items.APPRAISAL_LIST).add(ItemInit.BLUE_HOLY_RING.get());
+            //tag(Tags.Items.APPRAISAL_LIST).add(ItemInit.RED_HOLY_RING.get());
             tag(Tags.Items.APPRAISAL_LIST).add(ItemInit.GREEN_LUCK_RING.get());
             tag(Tags.Items.APPRAISAL_LIST).add(ItemInit.BLUE_LUCK_RING.get());
             tag(Tags.Items.APPRAISAL_LIST).add(ItemInit.GOLD_LUCK_RING.get());
