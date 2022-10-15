@@ -10,6 +10,7 @@ import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldState;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldStorage;
+import com.superworldsun.superslegend.loot.VanillaMobDrops;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
@@ -78,6 +79,8 @@ public class SupersLegendMain
 
 		// Remember to register items before blocks, problems can occur
 		// otherwise if you don't
+		VanillaMobDrops customloot = new VanillaMobDrops();
+		MinecraftForge.EVENT_BUS.register(customloot);
 		ItemInit.ITEMS.register(modEventBus);
 		BlockInit.BLOCKS.register(modEventBus);
 		//BlockItemInit.BLOCKS.register(modEventBus);
