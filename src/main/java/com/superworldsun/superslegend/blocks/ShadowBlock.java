@@ -16,12 +16,11 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
-// uing IHasNoItem so we can manually create a special block item
 public class ShadowBlock extends Block
 {
 	public ShadowBlock()
 	{
-		super(Block.Properties.of(Material.METAL).strength(4.0F, 3.25F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops());
+		super(Block.Properties.of(Material.METAL).noOcclusion().strength(4.0F, 3.25F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops());
 	}
 	
 	@Override
