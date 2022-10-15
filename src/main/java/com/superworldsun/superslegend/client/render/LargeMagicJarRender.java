@@ -19,7 +19,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class LargeMagicJarRender extends EntityRenderer<LargeMagicJarEntity> {
-    protected static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/magic_jar.png");
+    protected static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/large_magic_jar.png");
     private static final RenderType RENDER_TYPE = RenderType.entityCutoutNoCull(TEXTURE);
 
     public LargeMagicJarRender(EntityRendererManager renderManager) {
@@ -47,7 +47,7 @@ public class LargeMagicJarRender extends EntityRenderer<LargeMagicJarEntity> {
         //Rotation
         p_225623_4_.mulPose(Vector3f.YP.rotationDegrees(180.0F));
         //Scale the entity. //A little bigger than the normal Magic Jar.
-        p_225623_4_.scale(0.4F, 0.4F, 0.4F);
+        p_225623_4_.scale(0.7F, 0.7F, 0.7F);
         IVertexBuilder ivertexbuilder = p_225623_5_.getBuffer(RENDER_TYPE);
         MatrixStack.Entry matrixstack$entry = p_225623_4_.last();
         Matrix4f matrix4f = matrixstack$entry.pose();

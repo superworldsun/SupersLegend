@@ -26,7 +26,7 @@ public class MagicJarEntity extends Entity {
     public int age;
     public int throwTime;
     //Default amount of healing.
-    public int value = 1;
+    public int value = 3;
     private int health = 5;
 
     public MagicJarEntity(World p_i1585_1_, double p_i1585_2_, double p_i1585_4_, double p_i1585_6_) {
@@ -85,7 +85,7 @@ public class MagicJarEntity extends Entity {
 
         ++this.tickCount;
         ++this.age;
-        if (this.age >= 6000) {
+        if (this.age >= 400) {
             this.remove();
         }
 

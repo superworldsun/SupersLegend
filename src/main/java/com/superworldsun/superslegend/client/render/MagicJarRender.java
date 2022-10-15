@@ -46,7 +46,7 @@ public class MagicJarRender extends EntityRenderer<MagicJarEntity> {
         //Rotation
         p_225623_4_.mulPose(Vector3f.YP.rotationDegrees(180.0F));
         //Scale the entity.
-        p_225623_4_.scale(0.3F, 0.3F, 0.3F);
+        p_225623_4_.scale(0.6F, 0.6F, 0.6F);
         IVertexBuilder ivertexbuilder = p_225623_5_.getBuffer(RENDER_TYPE);
         MatrixStack.Entry matrixstack$entry = p_225623_4_.last();
         Matrix4f matrix4f = matrixstack$entry.pose();
