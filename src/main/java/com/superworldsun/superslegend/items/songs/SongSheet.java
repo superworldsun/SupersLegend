@@ -10,6 +10,8 @@ import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.songs.LearnedSongsProvider;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -17,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -41,11 +44,51 @@ public abstract class SongSheet extends Item
 	
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public static void onPreRenderTooltip(RenderTooltipEvent.PostBackground event)
+	public static void onPreRenderTooltip(RenderTooltipEvent.PostText event)
 	{
 		if (event.getStack().getItem() instanceof SongSheet)
 		{
+			SongSheet songSheet = (SongSheet) event.getStack().getItem();
+			String notes = songSheet.getSong().getPattern();
+			ResourceLocation texture = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/ocarina.png");
+			Minecraft.getInstance().getTextureManager().bind(texture);
+			int notesIconsWidth = notes.length() * 11 + (notes.length() - 1) * 2;
+			int x = event.getX() + (event.getWidth() - notesIconsWidth) / 2;
+			int y = event.getY() + event.getHeight() - 16;
 			
+			for (int i = event.getLines().size() - 1; i > 0; i--)
+			{
+				if (event.getLines().get(i).getString().isEmpty())
+				{
+					break;
+				}
+				
+				y -= 10;
+			}
+			
+			for (int i = 0; i < notes.length(); i++)
+			{
+				int noteX = x + 13 * i;
+				int noteU = 0;
+				
+				switch (notes.charAt(i))
+				{
+					case 'a':
+						noteU = 44;
+						break;
+					case 'd':
+						noteU = 33;
+						break;
+					case 'r':
+						noteU = 22;
+						break;
+					case 'l':
+						noteU = 11;
+						break;
+				}
+				
+				AbstractGui.blit(event.getMatrixStack(), noteX, y, 0, noteU, 30, 11, 11, 256, 256);
+			}
 		}
 	}
 	
@@ -86,6 +129,11 @@ public abstract class SongSheet extends Item
 		}
 		
 		return ActionResult.fail(playerEntity.getItemInHand(hand));
+	}
+	
+	public OcarinaSong getSong()
+	{
+		return songSupplier.get();
 	}
 	
 	protected abstract void addSongDescription(List<ITextComponent> list);
