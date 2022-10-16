@@ -6,7 +6,6 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -19,7 +18,7 @@ public class SkullHammer extends HammerItem
 {
 	public SkullHammer()
 	{
-		super(ItemToolTiers.SKULL_HAMMER, 2, -3.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES));
+		super(ItemToolTiers.SKULL_HAMMER, 2, new Properties().tab(SupersLegendMain.RESOURCES));
 	}
 	
 	@Override

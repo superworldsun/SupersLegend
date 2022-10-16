@@ -37,13 +37,12 @@ public abstract class HammerItem extends TieredItem implements IVanishable
 {
 	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 	
-	public HammerItem(IItemTier itemTier, int attackDamageBonus, float attackSpeedBonus, Properties properties)
+	public HammerItem(IItemTier itemTier, int attackDamageBonus, Properties properties)
 	{
 		super(itemTier, properties);
 		float attackDamage = attackDamageBonus + itemTier.getAttackDamageBonus();
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", attackDamage, AttributeModifier.Operation.ADDITION));
-		builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", attackSpeedBonus, AttributeModifier.Operation.ADDITION));
 		defaultModifiers = builder.build();
 	}
 	
@@ -100,7 +99,11 @@ public abstract class HammerItem extends TieredItem implements IVanishable
 			// can't click when on cooldown
 			event.setCanceled(true);
 			event.setSwingHand(false);
+			return;
 		}
+		
+		HammerItem hammerItem = (HammerItem) mainHandItem;
+		minecraft.player.getCooldowns().addCooldown(mainHandItem, hammerItem.getLeftClickCooldown());
 	}
 	
 	@Override

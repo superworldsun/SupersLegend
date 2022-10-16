@@ -16,7 +16,7 @@ public class MagicHammer extends HammerItem
 {
 	public MagicHammer()
 	{
-		super(ItemToolTiers.MAGIC_HAMMER, 2, -2.6f, new Properties().tab(SupersLegendMain.RESOURCES));
+		super(ItemToolTiers.MAGIC_HAMMER, 2, new Properties().tab(SupersLegendMain.RESOURCES));
 	}
 	
 	@Override
