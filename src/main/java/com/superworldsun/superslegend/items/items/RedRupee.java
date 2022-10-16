@@ -19,6 +19,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.RegistryObject;
 
 public class RedRupee extends Item{
 
@@ -27,20 +28,35 @@ public class RedRupee extends Item{
 		super(properties);
 	}
 
+	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
-	 {
+	{
 		ItemStack stack = player.getItemInHand(hand);
-		
-		if(stack.getCount() >= 5)
-		 {
-			 stack.shrink(5);
-			
-			 player.addItem(new ItemStack(ItemInit.SILVER_RUPEE.get()));
+		if(stack.getCount() < 5)
+		{
 
-			 BlockPos currentPos = player.blockPosition();
-			 player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_RED.get(), SoundCategory.PLAYERS, 1f, 1f);
-		 }
-	return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
+		}
+		else if(stack.getCount() >= 5)
+		{
+			addOrDrop(player, ItemInit.SILVER_RUPEE);
+
+			BlockPos currentPos = player.blockPosition();
+			player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_RED.get(), SoundCategory.PLAYERS, 1f, 1f);
+
+			if (!player.abilities.instabuild)
+			{
+				stack.shrink(5);
+			}
+		}
+		return ActionResult.success(stack);
+	}
+
+	private void addOrDrop(PlayerEntity player, RegistryObject<SilverRupee> itemSupplier)
+	{
+		if (!player.addItem(new ItemStack(itemSupplier.get())))
+		{
+			player.spawnAtLocation(itemSupplier.get());
+		}
 	}
 
 	@OnlyIn(Dist.CLIENT)
