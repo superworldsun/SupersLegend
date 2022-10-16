@@ -1,8 +1,8 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.registries.BlockInit;
-import com.superworldsun.superslegend.registries.BlockInitNotInTab;
 import com.superworldsun.superslegend.registries.ItemInit;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;

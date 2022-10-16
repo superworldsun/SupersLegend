@@ -1,8 +1,8 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.registries.BlockInit;
-import com.superworldsun.superslegend.registries.BlockInitNotInTab;
 import com.superworldsun.superslegend.registries.ItemInit;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,7 +12,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
