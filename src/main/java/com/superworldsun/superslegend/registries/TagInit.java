@@ -19,6 +19,9 @@ public class TagInit
 	public static final IOptionalNamedTag<EntityType<?>> RESISTANT_TO_FIRE = EntityTypeTags.createOptional(new ResourceLocation(SupersLegendMain.MOD_ID, "resistant_to_fire"));
 	public static final IOptionalNamedTag<EntityType<?>> RESISTANT_TO_ICE = EntityTypeTags.createOptional(new ResourceLocation(SupersLegendMain.MOD_ID, "resistant_to_ice"));
 	public static final IOptionalNamedTag<EntityType<?>> RESISTANT_TO_LIGHT = EntityTypeTags.createOptional(new ResourceLocation(SupersLegendMain.MOD_ID, "resistant_to_light"));
+	
 	public static final IOptionalNamedTag<Block> CAN_MELT = BlockTags.createOptional(new ResourceLocation(SupersLegendMain.MOD_ID, "can_melt"));
+	public static final IOptionalNamedTag<Block> FRAGILE = BlockTags.createOptional(new ResourceLocation(SupersLegendMain.MOD_ID, "fragile"));
+	
 	public static final IOptionalNamedTag<Item> PELLETS = ItemTags.createOptional(new ResourceLocation(SupersLegendMain.MOD_ID, "pellets"));
 }

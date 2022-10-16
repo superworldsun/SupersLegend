@@ -302,13 +302,9 @@ public class ItemInit
 	//add back in ItemModelPropertiesInit
 	/*public static final RegistryObject<Item> CLAWSHOT = ITEMS.register("clawshot",
 			() -> new ClawshotItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
-	public static final RegistryObject<Item> MAGIC_HAMMER = ITEMS.register("magic_hammer",
-			() -> new MagicHammer(ItemToolTiers.MAGIC_HAMMER, 2, -2.6f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> MEGATON_HAMMER = ITEMS.register("megaton_hammer",
-			() -> new MegatonHammer(ItemToolTiers.MEGATON_HAMMER, 2, -2.8f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<SkullHammer> SKULL_HAMMER = ITEMS.register("skull_hammer",
-		() -> new SkullHammer(ItemToolTiers.SKULL_HAMMER, 2, -3.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-
+	public static final RegistryObject<Item> MAGIC_HAMMER = ITEMS.register("magic_hammer", MagicHammer::new);
+	public static final RegistryObject<Item> MEGATON_HAMMER = ITEMS.register("megaton_hammer", MegatonHammer::new);
+	public static final RegistryObject<SkullHammer> SKULL_HAMMER = ITEMS.register("skull_hammer", SkullHammer::new);
 
 	/*public static final RegistryObject<Item> BOMBOS_MEDALLION = ITEMS.register("bombos_medallion",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
