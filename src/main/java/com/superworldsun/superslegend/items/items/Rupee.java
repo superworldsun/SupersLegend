@@ -9,7 +9,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -19,6 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.RegistryObject;
 
 public class Rupee extends Item
 {
@@ -27,20 +27,52 @@ public class Rupee extends Item
 		super(properties);
 	}
 
+	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
-	 {
+	{
+		ItemStack stack = player.getItemInHand(hand);
+		if(stack.getCount() < 5)
+		{
+
+		}
+		if(stack.getCount() >= 5)
+		{
+
+			addOrDrop(player, ItemInit.BLUE_RUPEE);
+
+			BlockPos currentPos = player.blockPosition();
+			player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_GREEN.get(), SoundCategory.PLAYERS, 1f, 1f);
+
+			if (!player.abilities.instabuild)
+			{
+				stack.shrink(5);
+			}
+		}
+		return ActionResult.success(stack);
+	}
+
+	private void addOrDrop(PlayerEntity player, RegistryObject<BlueRupee> itemSupplier)
+	{
+		if (!player.addItem(new ItemStack(itemSupplier.get())))
+		{
+			player.spawnAtLocation(itemSupplier.get());
+		}
+	}
+
+	/*public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
+	{
 		ItemStack stack = player.getItemInHand(hand);
 		if(stack.getCount() >= 5)
-		 {
-			 stack.shrink(5);
-			
-			 player.addItem(new ItemStack(ItemInit.BLUE_RUPEE.get()));
+		{
+			stack.shrink(5);
 
-			 BlockPos currentPos = player.blockPosition();
- 	         player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_GREEN.get(), SoundCategory.PLAYERS, 1f, 1f);
-		 }
-	return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
-	}
+			player.addItem(new ItemStack(ItemInit.BLUE_RUPEE.get()));
+
+			BlockPos currentPos = player.blockPosition();
+			player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.RUPEE_GREEN.get(), SoundCategory.PLAYERS, 1f, 1f);
+		}
+		return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
+	}*/
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
