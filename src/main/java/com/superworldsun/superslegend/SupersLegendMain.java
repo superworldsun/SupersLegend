@@ -2,9 +2,6 @@ package com.superworldsun.superslegend;
 
 import com.mojang.serialization.Codec;
 import com.superworldsun.superslegend.client.config.SupersLegendConfig;
-import com.superworldsun.superslegend.cooldowns.Cooldowns;
-import com.superworldsun.superslegend.cooldowns.CooldownsStorage;
-import com.superworldsun.superslegend.cooldowns.ICooldowns;
 import com.superworldsun.superslegend.hookshotCap.SyncToClient;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
@@ -117,7 +114,6 @@ public class SupersLegendMain
 	private void setup(final FMLCommonSetupEvent event)
 	{
 		CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana::new);
-		CapabilityManager.INSTANCE.register(ICooldowns.class, new CooldownsStorage(), Cooldowns::new);
 		CapabilityManager.INSTANCE.register(ILearnedSongs.class, new LearnedSongsStorage(), LearnedSongs::new);
 		CapabilityManager.INSTANCE.register(HookModel.class, new HookStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });
 		CapabilityManager.INSTANCE.register(SacredShieldState.class, new SacredShieldStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });
