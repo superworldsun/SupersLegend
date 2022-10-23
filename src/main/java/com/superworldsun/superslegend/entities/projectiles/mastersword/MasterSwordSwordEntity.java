@@ -14,7 +14,6 @@ import net.minecraft.entity.monster.WitherSkeletonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -54,22 +53,6 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
 	{
 		return null;
 	}
-	
-	@Override
-	protected void doPostHurtEffects(LivingEntity living)
-	{
-		if (living instanceof WitherSkeletonEntity)
-		{
-			setBaseDamage(getBaseDamage() * 100);
-		}
-		
-		super.doPostHurtEffects(living);
-	}
-	
-	/*
-	 * @Override protected void arrowHit(LivingEntity entity) { super.arrowHit(entity); if(entity.isEntityUndead()){ this.setDamageValue(this.getDamage()*20); } if(!entity.isEntityUndead()) {
-	 * this.setDamageValue(this.getDamage()*1.5); } }
-	 */
 	
 	@Override
 	public boolean isNoGravity()
@@ -121,12 +104,6 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
 	}
 	
 	@Override
-	public void load(CompoundNBT compound)
-	{
-		super.load(compound);
-	}
-	
-	@Override
 	public void playerTouch(PlayerEntity player)
 	{
 	}
@@ -142,33 +119,18 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
 			{
 				LivingEntity lentity = (CreatureEntity) result.getEntity();
 				
-				if (lentity.getMobType().equals(UNDEAD))
+				if (lentity instanceof WitherSkeletonEntity)
 				{
-					lentity.hurt(DamageSource.arrow(this, lentity), (float) (this.getBaseDamage() * 2));
+					setBaseDamage(getBaseDamage() * 100);
 				}
-				else
+				else if (lentity.getMobType().equals(UNDEAD))
 				{
-					lentity.hurt(DamageSource.arrow(this, lentity), (float) (this.getBaseDamage()));
+					setBaseDamage(getBaseDamage() * 2);
 				}
-				
-				remove();
-				super.onHitEntity(result);
-				return;
 			}
 			
 			entity.hurt(DamageSource.arrow(this, entity), (float) (this.getBaseDamage()));
 			remove();
-			super.onHitEntity(result);
-		}
-		
-		if (entity instanceof LivingEntity)
-		{
-			LivingEntity livingentity = (LivingEntity) entity;
-			
-			if (!this.level.isClientSide && this.getPierceLevel() <= 0)
-			{
-				livingentity.setArrowCount(livingentity.getArrowCount() + 0);
-			}
 		}
 	}
 	
