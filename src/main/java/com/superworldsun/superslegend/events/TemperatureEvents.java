@@ -17,6 +17,7 @@ import net.minecraft.item.Items;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
@@ -43,7 +44,7 @@ public class TemperatureEvents
 		addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
 		addHeatResistance(event, ItemInit.DESERT_VOE_HEADBAND.get(), 0.1F, EquipmentSlotType.HEAD);
 		addHeatResistance(event, ItemInit.DESERT_VOE_TROUSERS.get(), 0.2F, EquipmentSlotType.LEGS);
-
+		
 		addColdResistance(event, ItemInit.SNOWQUILL_TUNIC.get(), 0.4F, EquipmentSlotType.CHEST);
 		addColdResistance(event, ItemInit.SNOWQUILL_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
 		addColdResistance(event, ItemInit.SNOWQUILL_HEADDRESS.get(), 0.1F, EquipmentSlotType.HEAD);
@@ -54,8 +55,8 @@ public class TemperatureEvents
 		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_HELMET.get(), 0.5F, EquipmentSlotType.HEAD);
 		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_LEGGINGS.get(), 0.5F, EquipmentSlotType.LEGS);
 		addHellHeatResistance(event, ItemInit.GORON_TUNIC.get(), 1.0F, EquipmentSlotType.CHEST);
-		//TODO add this for curio slot
-		//addHellHeatResistance(event, ItemInit.MASK_GORONMASK.get(), 1.0F, EquipmentSlotType.CHEST);
+		// TODO add this for curio slot
+		// addHellHeatResistance(event, ItemInit.MASK_GORONMASK.get(), 1.0F, EquipmentSlotType.CHEST);
 	}
 	
 	@SubscribeEvent
@@ -65,8 +66,8 @@ public class TemperatureEvents
 		{
 			return;
 		}
-
-		if(!SupersLegendConfig.getInstance().temperature())
+		
+		if (!SupersLegendConfig.getInstance().temperature())
 			return;
 		
 		float temperature = getTemperatureAroundPlayer(event.player);
@@ -141,6 +142,7 @@ public class TemperatureEvents
 	
 	public static float getTemperatureAroundPlayer(PlayerEntity player)
 	{
+		// temperature is always +2 in the nether
 		if (player.level.dimension() == World.NETHER)
 		{
 			return 2.0F;
@@ -148,15 +150,18 @@ public class TemperatureEvents
 		
 		BlockPos playerPos = player.blockPosition();
 		
+		// temperature is always +0.5 deep underground
 		if (playerPos.getY() <= 40)
 		{
 			return 0.5F;
 		}
 		
+		// temperature is calculated in a range around player
 		// make it lower if it affects performance
 		int range = 8;
 		AtomicDouble temperature = new AtomicDouble();
 		
+		// gathers temperature info around player
 		BlockPos.betweenClosed(playerPos.offset(-range, 0, -range), playerPos.offset(range, 0, range)).forEach(blockPos ->
 		{
 			Biome currentBiome = player.level.getBiome(blockPos);
@@ -166,6 +171,12 @@ public class TemperatureEvents
 		int blocksCount = (range * 2 + 1) * (range * 2 + 1);
 		temperature.set(temperature.get() / blocksCount);
 		
+		// temperature also changes over day
+		long time = player.level.getDayTime() % 24000;
+		float changeOverDay = 0.2F;
+		temperature.addAndGet(MathHelper.cos((float) ((time - 7000) / 12000F * Math.PI)) * changeOverDay);
+		
+		// temperature is lower underground
 		if (playerPos.getY() < 64)
 		{
 			float temperatureChange = (playerPos.getY() - 40) / 24.0F;
