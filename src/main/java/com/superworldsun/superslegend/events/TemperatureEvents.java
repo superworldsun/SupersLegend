@@ -174,7 +174,14 @@ public class TemperatureEvents
 		// temperature also changes over day
 		long time = player.level.getDayTime() % 24000;
 		float changeOverDay = 0.2F;
-		temperature.addAndGet(MathHelper.cos((float) ((time - 7000) / 12000F * Math.PI)) * changeOverDay);
+		float timeTemperatureBonus = MathHelper.cos((float) ((time - 7000) / 12000F * Math.PI)) * changeOverDay;
+		// temperature deos not increase in shade
+		boolean addTimeTemperatureBonus = timeTemperatureBonus <= 0 || player.level.canSeeSky(playerPos);
+		
+		if (addTimeTemperatureBonus)
+		{
+			temperature.addAndGet(timeTemperatureBonus);
+		}
 		
 		// temperature is lower underground
 		if (playerPos.getY() < 64)
