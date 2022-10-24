@@ -29,38 +29,26 @@ public class MasterSword extends ItemCustomSword
 	
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
-		if (playerIn.getHealth() >= playerIn.getMaxHealth() || playerIn.isCreative())
+		if (!playerIn.getCooldowns().isOnCooldown(this))
 		{
-			playerIn.swing(handIn);
-			
-			if (!worldIn.isClientSide && !playerIn.isCreative() && !playerIn.isHurt())
+			if (playerIn.getHealth() >= playerIn.getMaxHealth() || playerIn.isCreative())
 			{
-				playerIn.getCooldowns().addCooldown(this, 20);
-				BlockPos currentPos = playerIn.blockPosition();
-				worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW.get(), SoundCategory.PLAYERS, 3f, 1f);
-				MasterSwordSwordEntity sword = new MasterSwordSwordEntity(playerIn.level, playerIn);
-				sword.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
-				playerIn.level.addFreshEntity(sword);
+				if (!worldIn.isClientSide)
+				{
+					BlockPos currentPos = playerIn.blockPosition();
+					worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW.get(), SoundCategory.PLAYERS, 3f, 1f);
+					MasterSwordSwordEntity sword = new MasterSwordSwordEntity(playerIn.level, playerIn);
+					sword.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
+					playerIn.level.addFreshEntity(sword);
+				}
 			}
-			else if (!worldIn.isClientSide && playerIn.isCreative())
+			else
 			{
-				playerIn.getCooldowns().addCooldown(this, 20);
-				BlockPos currentPos = playerIn.blockPosition();
-				worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW.get(), SoundCategory.PLAYERS, 3f, 1f);
-				MasterSwordSwordEntity sword = new MasterSwordSwordEntity(playerIn.level, playerIn);
-				sword.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
-				playerIn.level.addFreshEntity(sword);
-			}
-		}
-		else
-		{
-			playerIn.swing(handIn);
-			
-			if (!playerIn.getCooldowns().isOnCooldown(this))
-			{
-				playerIn.getCooldowns().addCooldown(this, 20);
 				playerIn.sendMessage(new StringTextComponent(TextFormatting.DARK_RED + "You could not muster the power to manifest a sword, try again with full health!"), null);
 			}
+			
+			playerIn.getCooldowns().addCooldown(this, 20);
+			playerIn.swing(handIn);
 		}
 		
 		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));

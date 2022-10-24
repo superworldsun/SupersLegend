@@ -17,7 +17,7 @@ import net.minecraft.util.math.vector.Vector3f;
 
 public class LightEmitterTileEntity extends TileEntity implements ITickableTileEntity
 {
-	public final AbstractLightEmitter lightEmitter = new BlockLightEmitter(this::getLevel, this::getLightDirecion, this::getBlockPos);
+	public final AbstractLightEmitter lightEmitter = new BlockLightEmitter(this::getLevel, this::getLightDirection, this::getBlockPos);
 	
 	public LightEmitterTileEntity(Direction direction)
 	{
@@ -41,13 +41,21 @@ public class LightEmitterTileEntity extends TileEntity implements ITickableTileE
 		return INFINITE_EXTENT_AABB;
 	}
 	
-	private Vector3d getLightDirecion()
+	private Vector3d getLightDirection()
 	{
-		return new Vector3d(step(getBlockState().getValue(LightEmitterBlock.FACING)));
+		if (getBlockState().getValue(LightEmitterBlock.LIT))
+		{
+			return new Vector3d(step(getBlockState().getValue(LightEmitterBlock.FACING)));
+		}
+		else
+		{
+			return Vector3d.ZERO;
+		}
 	}
-
-	public Vector3f step(Direction direction) {
-		return new Vector3f((float)direction.getStepX(), (float)direction.getStepY(), (float)direction.getStepZ());
+	
+	public Vector3f step(Direction direction)
+	{
+		return new Vector3f(direction.getStepX(), direction.getStepY(), direction.getStepZ());
 	}
 	
 	public static TileEntityType<LightEmitterTileEntity> createType()

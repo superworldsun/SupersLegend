@@ -2,6 +2,9 @@ package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.blocks.tile.OwlStatueTileEntity;
 import com.superworldsun.superslegend.client.screen.WaypointCreationScreen;
+import com.superworldsun.superslegend.network.NetworkDispatcher;
+import com.superworldsun.superslegend.network.message.ShowWaystoneCreationScreenMessage;
+import com.superworldsun.superslegend.network.message.SyncWaypointsMessage;
 import com.superworldsun.superslegend.waypoints.IWaypoints;
 import com.superworldsun.superslegend.waypoints.Waypoint;
 import com.superworldsun.superslegend.waypoints.WaypointsProvider;
@@ -36,6 +39,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.network.PacketDistributor;
 
 public class OwlStatueBlock extends Block
 {
@@ -61,53 +65,56 @@ public class OwlStatueBlock extends Block
 	@Override
 	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
 	{
-		BlockPos waypointPos = blockPos.relative(blockState.getValue(FACING));
-		Waypoint waypoint = WaypointsServerData.instance().getWaypoint(waypointPos);
-		IWaypoints savedWaypoints = WaypointsProvider.get(player);
-		
-		// if a waypoint exist on server
-		if (waypoint != null)
+		if (!world.isClientSide())
 		{
-			// if it is not saved by player
-			if (savedWaypoints.getWaypoint(waypointPos) == null)
+			BlockPos waypointPos = blockPos.relative(blockState.getValue(FACING));
+			Waypoint waypoint = WaypointsServerData.instance().getWaypoint(waypointPos);
+			IWaypoints savedWaypoints = WaypointsProvider.get(player);
+			
+			// if a waypoint exist on server
+			if (waypoint != null)
 			{
-				if (!world.isClientSide)
+				// if it is not saved by player
+				if (savedWaypoints.getWaypoint(waypointPos) == null)
 				{
-					// if already maximum waypoints
-					if (savedWaypoints.getWaypoints().size() == savedWaypoints.getMaxWaypoints())
+					if (!world.isClientSide)
 					{
-						player.sendMessage(new TranslationTextComponent("block.superslegend.owl_statue.maximum", savedWaypoints.getMaxWaypoints()), null);
-					}
-					else
-					{
-						savedWaypoints.addWaypoint(waypoint);
-						WaypointsProvider.sync((ServerPlayerEntity) player);
-						player.sendMessage(new TranslationTextComponent("block.superslegend.owl_statue.saved", waypoint.getName()), null);
+						// if already maximum waypoints
+						if (savedWaypoints.getWaypoints().size() == savedWaypoints.getMaxWaypoints())
+						{
+							player.sendMessage(new TranslationTextComponent("block.superslegend.owl_statue.maximum", savedWaypoints.getMaxWaypoints()), null);
+						}
+						else
+						{
+							savedWaypoints.addWaypoint(waypoint);
+							WaypointsProvider.sync((ServerPlayerEntity) player);
+							player.sendMessage(new TranslationTextComponent("block.superslegend.owl_statue.saved", waypoint.getName()), null);
+						}
 					}
 				}
-				
-				return ActionResultType.SUCCESS;
+			}
+			else
+			{
+				NetworkDispatcher.networkChannel.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) player), new ShowWaystoneCreationScreenMessage(waypointPos));
 			}
 		}
-		else
-		{
-			DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> showWaypointCreationScreen(waypointPos));
-			return ActionResultType.SUCCESS;
-		}
 		
-		return ActionResultType.FAIL;
+		return ActionResultType.SUCCESS;
 	}
 	
 	@Override
 	public void destroy(IWorld world, BlockPos blockPos, BlockState blockState)
 	{
-		BlockPos waypointPos = blockPos.relative(blockState.getValue(FACING));
-		Waypoint waypoint = WaypointsServerData.instance().getWaypoint(waypointPos);
-		
-		// if a waypoint exist on server
-		if (waypoint != null)
+		if (!world.isClientSide())
 		{
-			WaypointsServerData.instance().removeWaypoint(waypointPos);
+			BlockPos waypointPos = blockPos.relative(blockState.getValue(FACING));
+			Waypoint waypoint = WaypointsServerData.instance().getWaypoint(waypointPos);
+			
+			// if a waypoint exist on server
+			if (waypoint != null)
+			{
+				WaypointsServerData.instance().removeWaypoint(waypointPos);
+			}
 		}
 	}
 	

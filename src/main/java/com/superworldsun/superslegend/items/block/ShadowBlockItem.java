@@ -71,6 +71,12 @@ public class ShadowBlockItem extends BlockItem
 		return super.use(world, playerEntity, hand);
 	}
 	
+	@Override
+	public boolean isFoil(ItemStack itemStack)
+	{
+		return itemStack.hasTag() && itemStack.getTag().contains("disguise");
+	}
+	
 	public void saveDisguiseInStack(ItemStack itemStack, @Nullable BlockState disguise)
 	{
 		itemStack.getOrCreateTag().putInt("disguise", Block.getId(disguise));

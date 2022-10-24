@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.recipe;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.superworldsun.superslegend.items.AmmoContainerItem;
+import com.superworldsun.superslegend.items.ammobags.AmmoContainerItem;
 import com.superworldsun.superslegend.registries.RecipeSerializerInit;
 
 import net.minecraft.inventory.CraftingInventory;

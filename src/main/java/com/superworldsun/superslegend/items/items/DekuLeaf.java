@@ -37,7 +37,7 @@ public class DekuLeaf extends Item
 	{
 		ItemStack heldItem = playerEntity.getItemInHand(hand);
 		boolean hasMana = ManaProvider.get(playerEntity).getMana() >= manacost || playerEntity.abilities.instabuild;
-
+		
 		if (playerEntity.isOnGround())
 		{
 			if (!world.isClientSide && hasMana)
@@ -55,7 +55,7 @@ public class DekuLeaf extends Item
 		}
 		else
 		{
-
+			
 			if (hasMana)
 			{
 				playerEntity.startUsingItem(hand);
@@ -79,22 +79,19 @@ public class DekuLeaf extends Item
 		
 		if (!player.isFallFlying() && !player.isOnGround() && !player.isInWater() && hasMana)
 		{
+			Vector3d movement = player.getDeltaMovement();
+			player.fallDistance = 0F;
+			
+			// slows fall speed
+			if (player.getDeltaMovement().y < -0.1)
+			{
+				player.setDeltaMovement(new Vector3d(movement.x, -0.05, movement.z));
+			}
+			
 			// do not spend mana in creeative mode
 			if (!player.abilities.instabuild)
 			{
 				ManaProvider.get(player).spendMana(manacost);
-			}
-			
-			player.fallDistance = 0F;
-
-			// Making the player move in the direction they are looking.
-			Vector3d m = player.getDeltaMovement();
-			if (player.getDeltaMovement().y < -0.1)
-			{
-				// Getting the direction the player is looking and moving them in that direction.
-				double x = Math.cos(Math.toRadians(player.yHeadRot + 90)) * 0.05;
-				double z = Math.sin(Math.toRadians(player.yHeadRot + 90)) * 0.05;
-				player.setDeltaMovement(new Vector3d(m.x + x, -0.05, m.z + z));
 			}
 			
 			int particlesDensity = 5;

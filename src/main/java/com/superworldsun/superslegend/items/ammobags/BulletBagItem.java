@@ -1,7 +1,6 @@
-package com.superworldsun.superslegend.items;
+package com.superworldsun.superslegend.items.ammobags;
 
 import java.util.List;
-import java.util.Objects;
 
 import javax.annotation.Nullable;
 
@@ -32,7 +31,7 @@ public class BulletBagItem extends AmmoContainerItem
 	{
 		if (getContents(stack) != null)
 		{
-			tooltip.add(new StringTextComponent(TextFormatting.AQUA + Objects.requireNonNull(getContents(stack)).getRight().toString()));
+			tooltip.add(new StringTextComponent(TextFormatting.AQUA + getContents(stack).getRight().toString()));
 			tooltip.add(new StringTextComponent(TextFormatting.WHITE + getContents(stack).getLeft().getHoverName().getString()));
 			tooltip.add(new StringTextComponent(TextFormatting.YELLOW + "Right click to get pellets."));
 		}
