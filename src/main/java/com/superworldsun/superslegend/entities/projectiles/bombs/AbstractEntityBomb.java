@@ -131,6 +131,10 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
             }
 
         }
+        else
+        {
+        	super.tick();
+        }
     }
 
     public void spawnParticles(Vector3d currentPos, Vector3d newPos) {
