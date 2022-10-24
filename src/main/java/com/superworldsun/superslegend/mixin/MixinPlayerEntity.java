@@ -16,7 +16,7 @@ import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IHoveringEntity;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.interfaces.IResizableEntity;
-import com.superworldsun.superslegend.items.AmmoContainerItem;
+import com.superworldsun.superslegend.items.ammobags.AmmoContainerItem;
 import com.superworldsun.superslegend.light.AbstractLightEmitter;
 import com.superworldsun.superslegend.light.EntityLightEmitter;
 import com.superworldsun.superslegend.light.ILightEmitterContainer;

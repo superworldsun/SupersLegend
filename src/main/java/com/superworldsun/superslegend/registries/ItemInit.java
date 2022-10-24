@@ -5,6 +5,15 @@ import java.util.Map;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.*;
+import com.superworldsun.superslegend.items.ammobags.BigBombBag;
+import com.superworldsun.superslegend.items.ammobags.BigBulletBag;
+import com.superworldsun.superslegend.items.ammobags.BigQuiver;
+import com.superworldsun.superslegend.items.ammobags.MediumBombBag;
+import com.superworldsun.superslegend.items.ammobags.MediumBulletBag;
+import com.superworldsun.superslegend.items.ammobags.MediumQuiver;
+import com.superworldsun.superslegend.items.ammobags.SmallBombBag;
+import com.superworldsun.superslegend.items.ammobags.SmallBulletBag;
+import com.superworldsun.superslegend.items.ammobags.SmallQuiver;
 import com.superworldsun.superslegend.items.armors.*;
 import com.superworldsun.superslegend.items.block.*;
 import com.superworldsun.superslegend.items.curios.head.masks.*;

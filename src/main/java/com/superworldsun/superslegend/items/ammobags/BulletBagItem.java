@@ -1,10 +1,10 @@
-package com.superworldsun.superslegend.items;
+package com.superworldsun.superslegend.items.ammobags;
 
 import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.TagInit;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -12,12 +12,10 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class BombBagItem extends AmmoContainerItem
+public class BulletBagItem extends AmmoContainerItem
 {
-	public BombBagItem(int capacity)
+	public BulletBagItem(int capacity)
 	{
 		super(capacity);
 	}
@@ -25,18 +23,17 @@ public class BombBagItem extends AmmoContainerItem
 	@Override
 	public boolean canHoldItem(ItemStack itemStack)
 	{
-		return itemStack.getItem() == ItemInit.BOMB.get();
+		return TagInit.PELLETS.contains(itemStack.getItem());
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void appendHoverText(@Nullable ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, @Nullable ITooltipFlag flagIn)
+	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
 	{
-		if (getContents(stack) != null && getContents(stack) != null)
+		if (getContents(stack) != null)
 		{
 			tooltip.add(new StringTextComponent(TextFormatting.AQUA + getContents(stack).getRight().toString()));
 			tooltip.add(new StringTextComponent(TextFormatting.WHITE + getContents(stack).getLeft().getHoverName().getString()));
-			tooltip.add(new StringTextComponent(TextFormatting.YELLOW + "Right click to get bombs."));
+			tooltip.add(new StringTextComponent(TextFormatting.YELLOW + "Right click to get pellets."));
 		}
 	}
 }

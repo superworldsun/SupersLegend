@@ -7,7 +7,7 @@ import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
-import com.superworldsun.superslegend.items.BombBagItem;
+import com.superworldsun.superslegend.items.ammobags.BombBagItem;
 import com.superworldsun.superslegend.registries.SoundInit;
 
 import net.minecraft.entity.player.ServerPlayerEntity;

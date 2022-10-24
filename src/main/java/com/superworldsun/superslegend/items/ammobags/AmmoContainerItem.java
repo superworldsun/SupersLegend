@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.items;
+package com.superworldsun.superslegend.items.ammobags;
 
 import javax.annotation.Nullable;
 
