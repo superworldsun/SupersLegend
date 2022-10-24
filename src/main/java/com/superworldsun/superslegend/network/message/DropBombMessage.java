@@ -1,32 +1,32 @@
 package com.superworldsun.superslegend.network.message;
 
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.superworldsun.superslegend.entities.projectiles.bombs.EntityBomb;
-import com.superworldsun.superslegend.interfaces.IMaskAbility;
-import com.superworldsun.superslegend.items.*;
-import com.superworldsun.superslegend.registries.EntityTypeInit;
-import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.items.BombBagItem;
 import com.superworldsun.superslegend.registries.SoundInit;
+
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkEvent;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
-
-import java.util.function.Supplier;
 
 public class DropBombMessage
 {
 	private boolean started;
-
+	
 	public DropBombMessage(boolean started)
 	{
 		this.started = started;
 	}
-
+	
 	private DropBombMessage()
 	{
 	}
@@ -48,42 +48,27 @@ public class DropBombMessage
 		NetworkEvent.Context ctx = ctxSupplier.get();
 		ServerPlayerEntity player = ctx.getSender();
 		ctx.setPacketHandled(true);
-		ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BOMB_BAG.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-		ItemStack stack1 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BIG_BOMB_BAG.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-		ItemStack stack2 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BIGGEST_BOMB_BAG.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-		if(!stack0.isEmpty()) {
+		Predicate<ItemStack> stackFilter = stack -> stack.getItem() instanceof BombBagItem;
+		ItemStack bombBag = CuriosApi.getCuriosHelper().findEquippedCurio(stackFilter, player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+		
+		if (!bombBag.isEmpty())
+		{
 			if (message.started)
 			{
-				if(SmallBombBag.getContents(stack0).getRight() != 0) {
-					EntityBomb entity = new EntityBomb(EntityTypeInit.BOMB.get(), player.level);
-					entity.setPos(player.getX(), player.getY(), player.getZ());
-					player.level.playSound(null, player.blockPosition(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
-					player.level.addFreshEntity(entity);
-					SmallBombBag.setCount(stack0, -1);
-				}
-			}
-		}
-		else if(!stack1.isEmpty()) {
-			if (message.started)
-			{
-				if(MediumBombBag.getContents(stack1).getRight() != 0) {
-					EntityBomb entity = new EntityBomb(EntityTypeInit.BOMB.get(), player.level);
-					entity.setPos(player.getX(), player.getY(), player.getZ());
-					player.level.playSound(null, player.blockPosition(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
-					player.level.addFreshEntity(entity);
-					MediumBombBag.setCount(stack1, -1);
-				}
-			}
-		}
-		else if(!stack2.isEmpty()) {
-			if (message.started)
-			{
-				if(BigBombBag.getContents(stack2).getRight() != 0) {
-					EntityBomb entity = new EntityBomb(EntityTypeInit.BOMB.get(), player.level);
-					entity.setPos(player.getX(), player.getY(), player.getZ());
-					player.level.playSound(null, player.blockPosition(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
-					player.level.addFreshEntity(entity);
-					BigBombBag.setCount(stack2, -1);
+				BombBagItem bombBagItem = (BombBagItem) bombBag.getItem();
+				Pair<ItemStack, Integer> bagContents = bombBagItem.getContents(bombBag);
+				int bombsCount = bagContents.getRight();
+				
+				if (bombsCount != 0)
+				{
+					World level = player.level;
+					EntityBomb bombEntity = new EntityBomb(player, level);
+					float pitch = 0;
+					float throwingForce = 0.7F;
+					bombEntity.shootFromRotation(player, player.xRot, player.yRot, pitch, throwingForce, 0.9F);
+					level.playSound(null, player.blockPosition(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
+					level.addFreshEntity(bombEntity);
+					bombBagItem.setCount(bombBag, bombsCount - 1);
 				}
 			}
 		}

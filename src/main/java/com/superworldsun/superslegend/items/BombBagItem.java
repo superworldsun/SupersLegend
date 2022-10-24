@@ -1,22 +1,42 @@
 package com.superworldsun.superslegend.items;
 
-import com.superworldsun.superslegend.registries.ItemInit;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.tags.ItemTags;
+import java.util.List;
 
-public abstract class BombBagItem extends BagItem
+import javax.annotation.Nullable;
+
+import com.superworldsun.superslegend.registries.ItemInit;
+
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+public class BombBagItem extends AmmoContainerItem
 {
-	public BombBagItem(Properties properties)
+	public BombBagItem(int capacity)
 	{
-		super(properties);
+		super(capacity);
 	}
 	
 	@Override
-	public boolean canHoldItem(ItemStack stack)
+	public boolean canHoldItem(ItemStack itemStack)
 	{
-		Item item = stack.getItem();
-		return item == ItemInit.BOMB.get();
+		return itemStack.getItem() == ItemInit.BOMB.get();
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void appendHoverText(@Nullable ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, @Nullable ITooltipFlag flagIn)
+	{
+		if (getContents(stack) != null && getContents(stack) != null)
+		{
+			tooltip.add(new StringTextComponent(TextFormatting.AQUA + getContents(stack).getRight().toString()));
+			tooltip.add(new StringTextComponent(TextFormatting.WHITE + getContents(stack).getLeft().getHoverName().getString()));
+			tooltip.add(new StringTextComponent(TextFormatting.YELLOW + "Right click to get bombs."));
+		}
 	}
 }
