@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "superslegend:master_ore_block"
-    },
-    "result": "superslegend:master_ore_chunk",
-    "experience": 10,
-    "cookingtime": 10000
-}
