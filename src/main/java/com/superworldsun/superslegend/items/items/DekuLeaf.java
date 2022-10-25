@@ -79,12 +79,13 @@ public class DekuLeaf extends Item
 		
 		if (!player.isFallFlying() && !player.isOnGround() && !player.isInWater() && hasMana)
 		{
-			Vector3d movement = player.getDeltaMovement();
 			player.fallDistance = 0F;
 			
 			// slows fall speed
 			if (player.getDeltaMovement().y < -0.1)
 			{
+				// TODO: manually move player on keyboard input
+				Vector3d movement = player.getDeltaMovement();
 				player.setDeltaMovement(new Vector3d(movement.x, -0.05, movement.z));
 			}
 			
