@@ -6,7 +6,7 @@ import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
 
-public class ElegyOfEmptinessSheet extends SongSheet
+public class ElegyOfEmptinessSheet extends SongSheetItem
 {
 	public ElegyOfEmptinessSheet()
 	{

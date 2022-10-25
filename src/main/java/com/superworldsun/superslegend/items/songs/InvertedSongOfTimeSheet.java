@@ -6,7 +6,7 @@ import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
 
-public class InvertedSongOfTimeSheet extends SongSheet
+public class InvertedSongOfTimeSheet extends SongSheetItem
 {
 	public InvertedSongOfTimeSheet()
 	{

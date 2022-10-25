@@ -6,7 +6,7 @@ import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
 
-public class NocturneOfShadowSheet extends SongSheet
+public class NocturneOfShadowSheet extends SongSheetItem
 {
 	public NocturneOfShadowSheet()
 	{

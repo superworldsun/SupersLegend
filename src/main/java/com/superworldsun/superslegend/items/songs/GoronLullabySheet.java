@@ -6,7 +6,7 @@ import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
 
-public class GoronLullabySheet extends SongSheet
+public class GoronLullabySheet extends SongSheetItem
 {
 	public GoronLullabySheet()
 	{

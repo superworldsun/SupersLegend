@@ -6,7 +6,7 @@ import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
 
-public class MinuetOfForestSheet extends SongSheet
+public class MinuetOfForestSheet extends SongSheetItem
 {
 	public MinuetOfForestSheet()
 	{

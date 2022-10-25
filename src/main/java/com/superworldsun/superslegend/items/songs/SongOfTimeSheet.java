@@ -6,7 +6,7 @@ import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
 
-public class SongOfTimeSheet extends SongSheet
+public class SongOfTimeSheet extends SongSheetItem
 {
 	public SongOfTimeSheet()
 	{

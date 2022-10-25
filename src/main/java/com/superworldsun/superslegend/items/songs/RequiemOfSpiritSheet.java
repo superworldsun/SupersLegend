@@ -6,7 +6,7 @@ import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
 
-public class RequiemOfSpiritSheet extends SongSheet
+public class RequiemOfSpiritSheet extends SongSheetItem
 {
 	public RequiemOfSpiritSheet()
 	{

@@ -6,7 +6,7 @@ import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
 
-public class PreludeOfLightSheet extends SongSheet
+public class PreludeOfLightSheet extends SongSheetItem
 {
 	public PreludeOfLightSheet()
 	{

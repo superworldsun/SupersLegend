@@ -32,11 +32,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
-public abstract class SongSheet extends Item
+public abstract class SongSheetItem extends Item
 {
 	private final Supplier<OcarinaSong> songSupplier;
 	
-	public SongSheet(Supplier<OcarinaSong> songSupplier)
+	public SongSheetItem(Supplier<OcarinaSong> songSupplier)
 	{
 		super(new Item.Properties().tab(SupersLegendMain.RESOURCES).stacksTo(1));
 		this.songSupplier = songSupplier;
@@ -46,9 +46,9 @@ public abstract class SongSheet extends Item
 	@SubscribeEvent
 	public static void onPreRenderTooltip(RenderTooltipEvent.PostText event)
 	{
-		if (event.getStack().getItem() instanceof SongSheet)
+		if (event.getStack().getItem() instanceof SongSheetItem)
 		{
-			SongSheet songSheet = (SongSheet) event.getStack().getItem();
+			SongSheetItem songSheet = (SongSheetItem) event.getStack().getItem();
 			String notes = songSheet.getSong().getPattern();
 			ResourceLocation texture = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/ocarina.png");
 			Minecraft.getInstance().getTextureManager().bind(texture);
