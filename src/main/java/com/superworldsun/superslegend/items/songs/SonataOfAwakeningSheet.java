@@ -5,6 +5,8 @@ import java.util.List;
 import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public class SonataOfAwakeningSheet extends SongSheetItem
 {
@@ -16,7 +18,6 @@ public class SonataOfAwakeningSheet extends SongSheetItem
 	@Override
 	protected void addSongDescription(List<ITextComponent> list)
 	{
-		// TODO Auto-generated method stub
-		
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Playing this will wake the heaviest of sleepers"));
 	}
 }

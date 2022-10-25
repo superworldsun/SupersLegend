@@ -40,6 +40,8 @@ public class SongOfHealing extends OcarinaSong
 				LivingEntity livingEntity = (LivingEntity) entity;
 				livingEntity.removeEffect(Effects.POISON);
 				livingEntity.removeEffect(Effects.WITHER);
+				livingEntity.removeEffect(Effects.WEAKNESS);
+				livingEntity.removeEffect(Effects.BLINDNESS);
 				
 				entity.getArmorSlots().forEach(stack ->
 				{

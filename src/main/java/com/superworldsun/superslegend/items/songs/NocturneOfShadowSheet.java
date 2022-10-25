@@ -10,7 +10,7 @@ public class NocturneOfShadowSheet extends SongSheetItem
 {
 	public NocturneOfShadowSheet()
 	{
-		super(OcarinaSongInit.SERENADE_OF_WATER);
+		super(OcarinaSongInit.NOCTURNE_OF_SHADOW);
 	}
 	
 	@Override

@@ -10,7 +10,7 @@ public class MinuetOfForestSheet extends SongSheetItem
 {
 	public MinuetOfForestSheet()
 	{
-		super(OcarinaSongInit.SONG_OF_STORMS);
+		super(OcarinaSongInit.MINUET_OF_FOREST);
 	}
 	
 	@Override
