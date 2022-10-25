@@ -5,6 +5,8 @@ import java.util.List;
 import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public class SongOfHealingSheet extends SongSheet
 {
@@ -16,7 +18,7 @@ public class SongOfHealingSheet extends SongSheet
 	@Override
 	protected void addSongDescription(List<ITextComponent> list)
 	{
-		// TODO Auto-generated method stub
-		
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Playing this will cure the weak"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "and destroy curses"));
 	}
 }
