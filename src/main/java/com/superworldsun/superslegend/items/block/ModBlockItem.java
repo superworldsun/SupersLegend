@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.items;
+package com.superworldsun.superslegend.items.block;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 
