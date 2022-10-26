@@ -13,6 +13,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -25,11 +26,13 @@ import net.minecraft.world.server.ServerWorld;
 public class RoyalTileBlock extends Block
 {
 	private static final VoxelShape SHAPE = Block.box(0D, 0D, 0D, 16D, 16D, 0.5D);
+	// only for model rotation
+	public static final DirectionProperty ROTATION = DirectionProperty.create("rotation", Direction.Plane.HORIZONTAL);
 	
 	public RoyalTileBlock()
 	{
 		super(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().noCollission().strength(0.5F));
-		registerDefaultState(stateDefinition.any().setValue(POWERED, false).setValue(FACING, Direction.SOUTH));
+		registerDefaultState(stateDefinition.any().setValue(POWERED, false).setValue(FACING, Direction.SOUTH).setValue(ROTATION, Direction.SOUTH));
 	}
 	
 	public void activate(World world, BlockState blockState, BlockPos blockPos)
@@ -116,7 +119,7 @@ public class RoyalTileBlock extends Block
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
 	{
-		builder.add(POWERED).add(FACING);
+		builder.add(POWERED).add(FACING).add(ROTATION);
 	}
 	
 	@Override
@@ -128,6 +131,6 @@ public class RoyalTileBlock extends Block
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
-		return defaultBlockState().setValue(FACING, context.getClickedFace());
+		return defaultBlockState().setValue(FACING, context.getClickedFace()).setValue(ROTATION, context.getHorizontalDirection());
 	}
 }
