@@ -1,6 +1,8 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.blocks.tile.LightEmitterTileEntity;
+import com.superworldsun.superslegend.light.AbstractLightEmitter;
+import com.superworldsun.superslegend.light.ILightReceiver;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -32,9 +34,26 @@ public class LightEmitterBlock extends Block
 	{
 		if (!world.isClientSide)
 		{
-			if (blockState.getValue(LIT) != world.hasNeighborSignal(blockPos))
+			boolean hasSignal = world.hasNeighborSignal(blockPos);
+			
+			if (blockState.getValue(LIT) != hasSignal)
 			{
-				world.setBlock(blockPos, blockState.cycle(LIT), 2);
+				world.setBlockAndUpdate(blockPos, blockState.cycle(LIT));
+				
+				if (!hasSignal)
+				{
+					TileEntity tileEntity = world.getBlockEntity(blockPos);
+					
+					if (tileEntity instanceof LightEmitterTileEntity)
+					{
+						AbstractLightEmitter emitter = ((LightEmitterTileEntity) tileEntity).lightEmitter;
+						
+						if (emitter.litObject instanceof ILightReceiver)
+						{
+							((ILightReceiver) emitter.litObject).stopReceivingLight();
+						}
+					}
+				}
 			}
 		}
 	}
