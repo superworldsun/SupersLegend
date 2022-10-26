@@ -36,7 +36,8 @@
 		},
 		"facing=south": {
 			"model": "superslegend:block/royal_tile",
-			"x": 270
+			"x": 90,
+			"y": 180
 		},
 		"facing=east": {
 			"model": "superslegend:block/royal_tile",
