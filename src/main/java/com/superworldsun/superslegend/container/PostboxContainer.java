@@ -13,6 +13,8 @@ import net.minecraft.network.PacketBuffer;
 
 public class PostboxContainer extends Container
 {
+	private final PostboxInventory postboxInventory;
+	
 	public PostboxContainer(int windowId, PlayerInventory playerInventory, PostboxInventory postboxInventory)
 	{
 		super(ContainerInit.POSTBOX.get(), windowId);
@@ -37,6 +39,8 @@ public class PostboxContainer extends Container
 				addSlot(new Slot(postboxInventory, j + i * 3, 62 + j * 18, 18 + i * 18));
 			}
 		}
+		
+		this.postboxInventory = postboxInventory;
 	}
 	
 	public PostboxContainer(int windowId, PlayerInventory playerInventory, PacketBuffer additionalData)
@@ -47,7 +51,7 @@ public class PostboxContainer extends Container
 	@Override
 	public boolean stillValid(PlayerEntity player)
 	{
-		return player.isAlive();
+		return postboxInventory.stillValid(player);
 	}
 	
 	@Override
