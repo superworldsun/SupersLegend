@@ -52,9 +52,12 @@ public abstract class SongSheetItem extends Item
 			String notes = songSheet.getSong().getPattern();
 			ResourceLocation texture = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/ocarina.png");
 			Minecraft.getInstance().getTextureManager().bind(texture);
-			int notesIconsWidth = notes.length() * 11 + (notes.length() - 1) * 2;
+			int noteWidth = 11;
+			int notesSpacing = 3;
+			int notesIconsWidth = notes.length() * noteWidth + (notes.length() - 1) * notesSpacing;
 			int x = event.getX() + (event.getWidth() - notesIconsWidth) / 2;
-			int y = event.getY() + event.getHeight() - 16;
+			int y = event.getY() + event.getHeight() - 36;
+			AbstractGui.blit(event.getMatrixStack(), x - 3, y - 10, 0, 20, 0, notesIconsWidth + 6, 30, 256, 256);
 			
 			for (int i = event.getLines().size() - 1; i > 0; i--)
 			{
@@ -68,26 +71,34 @@ public abstract class SongSheetItem extends Item
 			
 			for (int i = 0; i < notes.length(); i++)
 			{
-				int noteX = x + 13 * i;
+				int noteX = x + (noteWidth + notesSpacing) * i;
+				int noteY = y;
 				int noteU = 0;
 				
 				switch (notes.charAt(i))
 				{
 					case 'a':
 						noteU = 44;
+						noteY += 22;
 						break;
 					case 'd':
 						noteU = 33;
+						noteY += 18;
 						break;
 					case 'r':
 						noteU = 22;
+						noteY += 14;
 						break;
 					case 'l':
 						noteU = 11;
+						noteY += 7;
+						break;
+					case 'u':
+						noteY += 4;
 						break;
 				}
 				
-				AbstractGui.blit(event.getMatrixStack(), noteX, y, 0, noteU, 30, 11, 11, 256, 256);
+				AbstractGui.blit(event.getMatrixStack(), noteX, noteY, 0, noteU, 30, noteWidth, noteWidth, 256, 256);
 			}
 		}
 	}
@@ -96,8 +107,9 @@ public abstract class SongSheetItem extends Item
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		super.appendHoverText(stack, world, list, flag);
 		addSongDescription(list);
+		list.add(new StringTextComponent(""));
+		list.add(new StringTextComponent(""));
 		list.add(new StringTextComponent(""));
 		list.add(new StringTextComponent(""));
 		list.add(new StringTextComponent(TextFormatting.GOLD + "Right click to Learn Song"));
