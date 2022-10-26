@@ -8,7 +8,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-public class GoronLullabySheet extends SongSheet
+public class GoronLullabySheet extends SongSheetItem
 {
 	public GoronLullabySheet()
 	{

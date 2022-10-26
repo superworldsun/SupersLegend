@@ -8,7 +8,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-public class SunsSongSheet extends SongSheet
+public class SunsSongSheet extends SongSheetItem
 {
 	public SunsSongSheet()
 	{

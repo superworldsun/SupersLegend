@@ -12,6 +12,7 @@ import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
@@ -54,8 +55,7 @@ public class PostboxBlock extends Block
 	@Override
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
 	{
-		return facing == Direction.DOWN && !canSurvive(stateIn, worldIn, currentPos) ? Blocks.AIR.defaultBlockState()
-				: super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return facing == Direction.DOWN && !canSurvive(stateIn, worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 	
 	@Override
@@ -92,6 +92,14 @@ public class PostboxBlock extends Block
 	public void destroy(IWorld world, BlockPos pos, BlockState state)
 	{
 		world.setBlock(pos.above(), Blocks.AIR.defaultBlockState(), 3);
+	}
+	
+	@Override
+	public void onRemove(BlockState oldBlockState, World world, BlockPos blockPos, BlockState blockState, boolean flag)
+	{
+		PostboxTileEntity postbox = (PostboxTileEntity) world.getBlockEntity(blockPos);
+		InventoryHelper.dropContents(world, blockPos, postbox.inventory);
+		world.removeBlockEntity(blockPos);
 	}
 	
 	@Override

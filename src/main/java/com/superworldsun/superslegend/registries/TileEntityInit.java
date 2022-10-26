@@ -24,4 +24,5 @@ public class TileEntityInit
 	public static final RegistryObject<TileEntityType<OwlStatueTileEntity>> OWL_STATUE = TILES.register("owl_statue", OwlStatueTileEntity::createType);
 	public static final RegistryObject<TileEntityType<CookingPotTileEntity>> COOKING_POT = TILES.register("cooking_pot", CookingPotTileEntity::createType);
 	public static final RegistryObject<TileEntityType<ShadowTileEntity>> SHADOW = TILES.register("shadow", ShadowTileEntity::createType);
+	public static final RegistryObject<TileEntityType<SunSwitchTileEntity>> SUN_SWITCH = TILES.register("sun_switch", SunSwitchTileEntity::createType);
 }

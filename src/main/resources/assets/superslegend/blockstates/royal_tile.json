@@ -1,5 +1,57 @@
 {
-    "variants": {
-        "": { "model": "superslegend:block/royal_tile" }
-    }
+	"variants": {
+		"facing=up,rotation=south": {
+			"model": "superslegend:block/royal_tile"
+		},
+		"facing=up,rotation=north": {
+			"model": "superslegend:block/royal_tile",
+			"y": 180
+		},
+		"facing=up,rotation=west": {
+			"model": "superslegend:block/royal_tile",
+			"y": 90
+		},
+		"facing=up,rotation=east": {
+			"model": "superslegend:block/royal_tile",
+			"y": 270
+		},
+		"facing=down,rotation=south": {
+			"model": "superslegend:block/royal_tile",
+			"x": 180
+		},
+		"facing=down,rotation=north": {
+			"model": "superslegend:block/royal_tile",
+			"x": 180,
+			"y": 180
+		},
+		"facing=down,rotation=west": {
+			"model": "superslegend:block/royal_tile",
+			"x": 180,
+			"y": 90
+		},
+		"facing=down,rotation=east": {
+			"model": "superslegend:block/royal_tile",
+			"x": 180,
+			"y": 270
+		},
+		"facing=south": {
+			"model": "superslegend:block/royal_tile",
+			"x": 90,
+			"y": 180
+		},
+		"facing=east": {
+			"model": "superslegend:block/royal_tile",
+			"x": 90,
+			"y": 90
+		},
+		"facing=west": {
+			"model": "superslegend:block/royal_tile",
+			"x": 90,
+			"y": 270
+		},
+		"facing=north": {
+			"model": "superslegend:block/royal_tile",
+			"x": 90
+		}
+	}
 }

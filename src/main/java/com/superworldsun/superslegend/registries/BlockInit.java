@@ -102,7 +102,8 @@ public class BlockInit
 	public static final RegistryObject<Block> BLOCK_OF_TIME = BLOCKS.register("block_of_time", TimeBlock::new);
 	public static final RegistryObject<Block> OWL_STATUE = BLOCKS.register("owl_statue", () -> new OwlStatueBlock(PropertiesInit.WRECKAGE));
 	//public static final RegistryObject<Block> COOKING_POT = BLOCKS.register("cooking_pot", CookingPotBlock::new);
-
+	public static final RegistryObject<Block> SUN_SWITCH = BLOCKS.register("sun_switch", SunSwitchBlock::new);
+	
 	//For cooking pot
 	public static final RegistryObject<Block> COOKING_POT = BLOCKS.register("cooking_pot", () -> new SimpleCookingPotBlock());
 }

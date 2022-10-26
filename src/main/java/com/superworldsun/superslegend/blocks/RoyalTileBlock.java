@@ -1,33 +1,38 @@
 package com.superworldsun.superslegend.blocks;
 
+import static net.minecraft.state.properties.BlockStateProperties.FACING;
+import static net.minecraft.state.properties.BlockStateProperties.POWERED;
+
 import java.util.Random;
+
+import com.superworldsun.superslegend.util.BlockShapeHelper;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
-import net.minecraft.state.BooleanProperty;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class RoyalTileBlock extends Block
 {
-	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-	protected static final VoxelShape SHAPE = Block.box(0D, 0D, 0D, 16D, 1D, 16D);
+	private static final VoxelShape SHAPE = Block.box(0D, 0D, 0D, 16D, 16D, 0.5D);
+	// only for model rotation
+	public static final DirectionProperty ROTATION = DirectionProperty.create("rotation", Direction.Plane.HORIZONTAL);
 	
 	public RoyalTileBlock()
 	{
 		super(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().noCollission().strength(0.5F));
-		registerDefaultState(stateDefinition.any().setValue(POWERED, false));
+		registerDefaultState(stateDefinition.any().setValue(POWERED, false).setValue(FACING, Direction.SOUTH).setValue(ROTATION, Direction.SOUTH));
 	}
 	
 	public void activate(World world, BlockState blockState, BlockPos blockPos)
@@ -59,7 +64,7 @@ public class RoyalTileBlock extends Block
 	@Override
 	public VoxelShape getShape(BlockState blockState, IBlockReader world, BlockPos blockPos, ISelectionContext context)
 	{
-		return SHAPE;
+		return BlockShapeHelper.rotateShape(Direction.SOUTH, blockState.getValue(FACING), SHAPE);
 	}
 	
 	@Override
@@ -76,18 +81,20 @@ public class RoyalTileBlock extends Block
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
-	public void onRemove(BlockState blockState, World world, BlockPos blockPos, BlockState newBlockState, boolean p_196243_5_)
+	public void onRemove(BlockState blockState, World world, BlockPos blockPos, BlockState newBlockState, boolean flag)
 	{
-		if (!p_196243_5_ && !blockState.is(newBlockState.getBlock()))
+		if (!flag && !blockState.is(newBlockState.getBlock()))
 		{
 			if (getSignalForState(blockState) > 0)
 			{
 				updateNeighbours(world, blockPos);
 			}
 			
-			super.onRemove(blockState, world, blockPos, newBlockState, p_196243_5_);
+			if (blockState.hasTileEntity() && (!blockState.is(newBlockState.getBlock()) || !newBlockState.hasTileEntity()))
+			{
+				world.removeBlockEntity(blockPos);
+			}
 		}
 	}
 	
@@ -100,7 +107,7 @@ public class RoyalTileBlock extends Block
 	@Override
 	public int getDirectSignal(BlockState blockState, IBlockReader world, BlockPos blockPos, Direction direction)
 	{
-		return direction == Direction.UP ? this.getSignalForState(blockState) : 0;
+		return direction == Direction.UP ? getSignalForState(blockState) : 0;
 	}
 	
 	@Override
@@ -112,7 +119,7 @@ public class RoyalTileBlock extends Block
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
 	{
-		builder.add(POWERED);
+		builder.add(POWERED).add(FACING).add(ROTATION);
 	}
 	
 	@Override
@@ -120,9 +127,10 @@ public class RoyalTileBlock extends Block
 	{
 		return PushReaction.DESTROY;
 	}
-
+	
 	@Override
-	public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_, ISelectionContext p_220071_4_) {
-		return VoxelShapes.box(0,0,0,1,0.2,1);
+	public BlockState getStateForPlacement(BlockItemUseContext context)
+	{
+		return defaultBlockState().setValue(FACING, context.getClickedFace()).setValue(ROTATION, context.getHorizontalDirection());
 	}
 }

@@ -6,7 +6,7 @@ import com.superworldsun.superslegend.registries.OcarinaSongInit;
 
 import net.minecraft.util.text.ITextComponent;
 
-public class OathToOrderSheet extends SongSheet
+public class OathToOrderSheet extends SongSheetItem
 {
 	public OathToOrderSheet()
 	{
