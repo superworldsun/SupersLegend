@@ -1,3 +1,7 @@
 {
-    "parent": "superslegend:block/owl_statue"
+    "parent": "item/generated",
+    "textures":
+    {
+        "layer0": "superslegend:item/owl_statue"
+    }
 }
