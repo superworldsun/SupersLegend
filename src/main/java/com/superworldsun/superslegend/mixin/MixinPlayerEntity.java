@@ -17,6 +17,7 @@ import com.superworldsun.superslegend.interfaces.IHoveringEntity;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.interfaces.IResizableEntity;
 import com.superworldsun.superslegend.items.ammobags.AmmoContainerItem;
+import com.superworldsun.superslegend.items.shields.MirrorShield;
 import com.superworldsun.superslegend.light.AbstractLightEmitter;
 import com.superworldsun.superslegend.light.EntityLightEmitter;
 import com.superworldsun.superslegend.light.ILightEmitterContainer;
@@ -54,7 +55,7 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	private boolean jumpedFromGround;
 	
 	private boolean isLit;
-	private EntityLightEmitter lightEmitter = new EntityLightEmitter(this::getCommandSenderWorld, this::getLookAngle, this::position, this);
+	private EntityLightEmitter lightEmitter = new EntityLightEmitter(() -> level, this::getLightRayVector, this::getLightRayPosition, this);
 	
 	// This constructor is fake and never used
 	protected MixinPlayerEntity()
@@ -146,6 +147,8 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 			float bonusSpeed = (scale - 1) / 2;
 			setBoundingBox(getBoundingBox().move(getDeltaMovement().multiply(bonusSpeed, bonusSpeed, bonusSpeed)));
 		}
+		
+		lightEmitter.tick();
 	}
 	
 	@Inject(method = "getProjectile", at = @At(value = "HEAD"), cancellable = true)
@@ -335,6 +338,11 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	public void stopReceivingLight()
 	{
 		isLit = false;
+		
+		if (lightEmitter.litObject instanceof ILightReceiver && ((ILightReceiver) lightEmitter.litObject).isLit())
+		{
+			((ILightReceiver) lightEmitter.litObject).stopReceivingLight();
+		}
 	}
 	
 	@Override
@@ -347,6 +355,21 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	public AbstractLightEmitter getLightEmitter()
 	{
 		return lightEmitter;
+	}
+	
+	private Vector3d getLightRayVector()
+	{
+		if (isLit && isBlocking() && getItemInHand(getUsedItemHand()).getItem() instanceof MirrorShield)
+		{
+			return getLookAngle();
+		}
+		
+		return Vector3d.ZERO;
+	}
+	
+	private Vector3d getLightRayPosition()
+	{
+		return position().add(0, getEyeHeight() * 0.8, 0);
 	}
 	
 	private void setScale(float scale)
