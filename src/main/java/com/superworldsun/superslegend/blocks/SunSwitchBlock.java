@@ -22,7 +22,7 @@ import net.minecraft.world.IBlockReader;
 
 public class SunSwitchBlock extends Block
 {
-	private static final VoxelShape SHAPE = Block.box(0D, 0D, 0D, 16D, 16D, 0.5D);
+	private static final VoxelShape SHAPE = Block.box(0D, 0D, 0D, 16D, 16D, 1D);
 	// only for model rotation
 	public static final DirectionProperty ROTATION = DirectionProperty.create("rotation", Direction.Plane.HORIZONTAL);
 	
