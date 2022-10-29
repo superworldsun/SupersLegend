@@ -33,12 +33,6 @@ public enum ItemToolTiers implements IItemTier {
 
     MASTER_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
     MASTER_SWORD_V2  (0, 0, -2F, 8F, 0, () -> { return null; }),
-    MASTER_SWORD_D   (0, 0, -2F, 9F, 0, () -> { return null; }),
-    MASTER_SWORD_N   (0, 0, -2F, 9F, 0, () -> { return null; }),
-    MASTER_SWORD_F   (0, 0, -2F, 9F, 0, () -> { return null; }),
-    MASTER_SWORD_DN  (0, 0, -2F, 10F, 0, () -> { return null; }),
-    MASTER_SWORD_NF  (0, 0, -2F, 10F, 0, () -> { return null; }),
-    MASTER_SWORD_FD  (0, 0, -2F, 10F, 0, () -> { return null; }),
     TRUE_MASTER_SWORD(0, 0, -2F, 11F, 0, () -> { return null; });
 
 
