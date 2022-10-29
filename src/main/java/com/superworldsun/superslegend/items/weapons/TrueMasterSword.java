@@ -16,16 +16,16 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+
 import java.util.List;
 
-public class MasterSwordV2 extends ItemCustomSword
+public class TrueMasterSword extends ItemCustomSword
 {
-
-	public MasterSwordV2(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder)
+	public TrueMasterSword(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder)
 	{
 		super(tier, attackDamageIn, attackSpeedIn, builder);
 	}
-
+	
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
 		if (!playerIn.getCooldowns().isOnCooldown(this))
@@ -45,19 +45,19 @@ public class MasterSwordV2 extends ItemCustomSword
 			{
 				playerIn.sendMessage(new StringTextComponent(TextFormatting.DARK_RED + "You could not muster the power to manifest a beam, try again with full health!"), null);
 			}
-
+			
 			playerIn.getCooldowns().addCooldown(this, 20);
 			playerIn.swing(handIn);
 		}
-
+		
 		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
 	}
-
+	
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.RED + "A Tempered Blade of Evil's Bane"));
+		list.add(new StringTextComponent(TextFormatting.YELLOW + "The True Blade of Evil's Bane"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Right-Click to Fire a Beam at full HP"));
 	}
 }

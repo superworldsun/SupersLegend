@@ -44,7 +44,7 @@ public class MasterSword extends ItemCustomSword
 			}
 			else
 			{
-				playerIn.sendMessage(new StringTextComponent(TextFormatting.DARK_RED + "You could not muster the power to manifest a sword, try again with full health!"), null);
+				playerIn.sendMessage(new StringTextComponent(TextFormatting.DARK_RED + "You could not muster the power to manifest a beam, try again with full health!"), null);
 			}
 			
 			playerIn.getCooldowns().addCooldown(this, 20);
@@ -54,47 +54,11 @@ public class MasterSword extends ItemCustomSword
 		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
 	}
 	
-	// public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
-	// {
-	// if (entity instanceof PlayerEntity && !world.isRemote)
-	// {
-	// PlayerEntity player = (PlayerEntity) entity;
-	// ItemStack equipped = player.getHeldItemMainhand();
-	//
-	// if (!world.isRemote)
-	// {
-	// if (stack == equipped && !player.shouldHeal())
-	// {
-	// if (player.swingArm(Hand.MAIN_HAND))
-	// {
-	// EntityArrowFire firearrow = new EntityArrowFire(player.world, player);
-	// firearrow.shootFromRotation(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
-	// player.world.addEntity(firearrow);
-	// }
-	// }
-	// }
-	// }
-	// }
-	//
-	// @Override
-	// public boolean onEntitySwing(ItemStack stack, LivingEntity playerIn)
-	// {
-	// if (playerIn.getHealth() >= playerIn.getMaxHealth())
-	// {
-	//
-	// EntityArrowFire firearrow = new EntityArrowFire(playerIn.world, playerIn);
-	// firearrow.shootFromRotation(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-	// playerIn.world.addEntity(firearrow);
-	// }
-	//
-	// return true;
-	// }
-	
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.DARK_RED + "A Tempered Blade of Evil's Bane"));
+		list.add(new StringTextComponent(TextFormatting.WHITE + "The Blade of Evil's Bane"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Right-Click to Fire a Beam at full HP"));
 	}
 }
