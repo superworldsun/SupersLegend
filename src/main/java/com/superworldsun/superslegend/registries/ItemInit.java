@@ -20,6 +20,7 @@ import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.food.*;
 import com.superworldsun.superslegend.items.items.*;
+import com.superworldsun.superslegend.items.weapons.GuardianSword;
 import com.superworldsun.superslegend.items.shields.*;
 import com.superworldsun.superslegend.items.songs.*;
 import com.superworldsun.superslegend.items.weapons.*;
@@ -176,8 +177,8 @@ public class ItemInit
 	public static final RegistryObject<SwordItem> TRUE_MASTER_SWORD = ITEMS.register("true_master_sword",
 			() -> new TrueMasterSword(ItemToolTiers.TRUE_MASTER_SWORD, 2, -2.2f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
-	public static final RegistryObject<SwordItem> GUARDIAN_SWORD = ITEMS.register("guardian_sword",
-			() -> new SwordItem(ItemToolTiers.GUARDIAN_SWORD, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<GuardianSword> GUARDIAN_SWORD = ITEMS.register("guardian_sword",
+			() -> new GuardianSword(ItemToolTiers.GUARDIAN_SWORD, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	/*public static final RegistryObject<Item> GUARDIAN_SHIELD = ITEMS.register("guardian_shield",
 			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
 	/*public static final RegistryObject<SwordItem> ANCIENT_BATTLE_AXE = ITEMS.register("ancient_battle_axe",
