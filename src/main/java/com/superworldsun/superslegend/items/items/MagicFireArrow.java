@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 public class MagicFireArrow extends MagicArrow
 {
 	@Override
-	public AbstractArrowEntity createArrow(World world, ItemStack stack, LivingEntity shooter)
+	public AbstractArrowEntity createMagicArrow(World world, ItemStack stack, LivingEntity shooter)
 	{
 		return new MagicFireArrowEntity(world, shooter);
 	}
