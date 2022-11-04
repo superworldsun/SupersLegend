@@ -3,9 +3,18 @@ package com.superworldsun.superslegend.items;
 import com.superworldsun.superslegend.SupersLegendMain;
 
 import com.superworldsun.superslegend.registries.ItemInit;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.List;
 
 public class SpoilsBagItem extends BagItem
 {
@@ -25,5 +34,13 @@ public class SpoilsBagItem extends BagItem
 			|| item == ItemInit.RED_JELLY.get() || item == ItemInit.GREEN_JELLY.get() || item == ItemInit.BLUE_JELLY.get()
 			|| item == ItemInit.TRIFORCE_COURAGE_SHARD.get() || item == ItemInit.TRIFORCE_WISDOM_SHARD.get()
 			|| item == ItemInit.TRIFORCE_POWER_SHARD.get();
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	{
+		super.appendHoverText(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.DARK_PURPLE + "Holds your spoils"));
 	}
 }
