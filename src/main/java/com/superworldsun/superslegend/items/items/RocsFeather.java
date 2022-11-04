@@ -78,6 +78,11 @@ public class RocsFeather extends Item
 					NetworkDispatcher.networkChannel.sendToServer(new DoubleJumpMessage());
 					((IJumpingEntity) player).doubleJump();
 				}
+				else if (player.getOffhandItem().getItem() instanceof RocsFeather)
+				{
+					NetworkDispatcher.networkChannel.sendToServer(new DoubleJumpMessage());
+					((IJumpingEntity) player).doubleJump();
+				}
 			}
 		}
 	}
