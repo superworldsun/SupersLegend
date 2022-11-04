@@ -13,7 +13,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
@@ -36,6 +38,11 @@ public class ShockArrowEntity extends AbstractArrowEntity {
         super(EntityTypeInit.SHOCK_ARROW.get(), shooter, worldIn);
         this.setBaseDamage(this.getBaseDamage() + 2.0F);
     }
+
+    public ShockArrowEntity(World worldIn, double x, double y, double z) {
+        super(EntityTypeInit.SHOCK_ARROW.get(), x, y, z, worldIn);
+    }
+
 
     @Override
     protected ItemStack getPickupItem() {
@@ -60,19 +67,85 @@ public class ShockArrowEntity extends AbstractArrowEntity {
 
     @Override
     protected void onHitEntity(EntityRayTraceResult result) {
-        super.onHitEntity(result);
         Entity entity = result.getEntity();
-        if (entity instanceof LivingEntity) {
-            LivingEntity livingentity = (LivingEntity) entity;
+        LivingEntity livingentity = (LivingEntity) entity;
+        if(livingentity instanceof LivingEntity)
+        {
+            System.out.println("living entity hit");
+            int armorPartsEquipped = 0;
 
+            if (livingentity.getItemBySlot(EquipmentSlotType.HEAD).getItem() == Items.IRON_HELMET)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.HEAD).getItem() == Items.GOLDEN_HELMET)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.HEAD).getItem() == Items.CHAINMAIL_HELMET)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.HEAD).getItem() == Items.NETHERITE_HELMET)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.HEAD).getItem() == Items.CHAINMAIL_HELMET)
+                armorPartsEquipped++;
+
+            if (livingentity.getItemBySlot(EquipmentSlotType.CHEST).getItem() == Items.IRON_CHESTPLATE)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.CHEST).getItem() == Items.GOLDEN_CHESTPLATE)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.CHEST).getItem() == Items.CHAINMAIL_CHESTPLATE)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.CHEST).getItem() == Items.NETHERITE_CHESTPLATE)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.CHEST).getItem() == Items.CHAINMAIL_CHESTPLATE)
+                armorPartsEquipped++;
+
+            if (livingentity.getItemBySlot(EquipmentSlotType.LEGS).getItem() == Items.IRON_LEGGINGS)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.LEGS).getItem() == Items.GOLDEN_LEGGINGS)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.LEGS).getItem() == Items.CHAINMAIL_LEGGINGS)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.LEGS).getItem() == Items.NETHERITE_LEGGINGS)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.LEGS).getItem() == Items.CHAINMAIL_LEGGINGS)
+                armorPartsEquipped++;
+
+            if (livingentity.getItemBySlot(EquipmentSlotType.FEET).getItem() == Items.IRON_BOOTS)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.FEET).getItem() == Items.GOLDEN_BOOTS)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.FEET).getItem() == Items.CHAINMAIL_BOOTS)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.FEET).getItem() == Items.NETHERITE_BOOTS)
+                armorPartsEquipped++;
+            if (livingentity.getItemBySlot(EquipmentSlotType.FEET).getItem() == Items.CHAINMAIL_BOOTS)
+                armorPartsEquipped++;
+
+            if (entity.isAlive())
+            {
+                if (armorPartsEquipped == 1)
+                {
+                    this.setBaseDamage(this.getBaseDamage() * 3.0F);
+                }
+                else if (armorPartsEquipped == 2)
+                {
+                    this.setBaseDamage(this.getBaseDamage() * 4.0F);
+                }
+                else if (armorPartsEquipped == 3)
+                {
+                    this.setBaseDamage(this.getBaseDamage() * 5.0F);
+                }
+                else if (armorPartsEquipped == 4)
+                {
+                    this.setBaseDamage(this.getBaseDamage() * 6.5F);
+                }
+            }
+        }
+        super.onHitEntity(result);
+        if (entity instanceof LivingEntity) {
             if(livingentity.level.isClientSide)
                 return;
-
             if(livingentity instanceof CreeperEntity && SupersLegendConfig.getInstance().shockArrowCreeper()) {
                 LightningBoltEntity lightningBoltEntity = EntityType.LIGHTNING_BOLT.create((ServerWorld) livingentity.level);
                 livingentity.thunderHit((ServerWorld) livingentity.level, lightningBoltEntity);
             }
-
             this.getBaseDamage();
             if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
                 livingentity.setArrowCount(livingentity.getArrowCount() - 1);
