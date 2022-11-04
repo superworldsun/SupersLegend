@@ -2,6 +2,7 @@ package com.superworldsun.superslegend;
 
 import com.mojang.serialization.Codec;
 import com.superworldsun.superslegend.client.config.SupersLegendConfig;
+import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.hookshotCap.SyncToClient;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
@@ -19,6 +20,11 @@ import com.superworldsun.superslegend.waypoints.IWaypoints;
 import com.superworldsun.superslegend.waypoints.WaypointsStorage;
 import com.superworldsun.superslegend.waypoints.Waypoints;
 import com.superworldsun.superslegend.worldgen.world.OreGen;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.dispenser.IPosition;
+import net.minecraft.dispenser.ProjectileDispenseBehavior;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -130,16 +136,56 @@ public class SupersLegendMain
 		});
 
 		//HOW TO DISPENCER ARROWS
-		/*DispenserBlock.registerBehavior(ItemInit.POISON_ARROW.get(), new ProjectileDispenseBehavior()
+		DispenserBlock.registerBehavior(ItemInit.FIRE_ARROW.get(), new ProjectileDispenseBehavior()
 		{
 			@Override
 			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
 			{
-				PoisonArrowEntity poisonarrowentity = new PoisonArrowEntity(worldIn, position.x(), position.y(), position.z());
-				poisonarrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
-				return poisonarrowentity;
+				FireArrowEntity firearrowentity = new FireArrowEntity(worldIn, position.x(), position.y(), position.z());
+				firearrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
+				return firearrowentity;
 			}
-		});*/
+		});
+		DispenserBlock.registerBehavior(ItemInit.ICE_ARROW.get(), new ProjectileDispenseBehavior()
+		{
+			@Override
+			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
+			{
+				IceArrowEntity icearrowentity = new IceArrowEntity(worldIn, position.x(), position.y(), position.z());
+				icearrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
+				return icearrowentity;
+			}
+		});
+		DispenserBlock.registerBehavior(ItemInit.SHOCK_ARROW.get(), new ProjectileDispenseBehavior()
+		{
+			@Override
+			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
+			{
+				ShockArrowEntity shockarrowentity = new ShockArrowEntity(worldIn, position.x(), position.y(), position.z());
+				shockarrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
+				return shockarrowentity;
+			}
+		});
+		DispenserBlock.registerBehavior(ItemInit.ANCIENT_ARROW.get(), new ProjectileDispenseBehavior()
+		{
+			@Override
+			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
+			{
+				AncientArrowEntity ancientarrowentity = new AncientArrowEntity(worldIn, position.x(), position.y(), position.z());
+				ancientarrowentity.pickup = AncientArrowEntity.PickupStatus.ALLOWED;
+				return ancientarrowentity;
+			}
+		});
+		DispenserBlock.registerBehavior(ItemInit.SILVER_ARROW.get(), new ProjectileDispenseBehavior()
+		{
+			@Override
+			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
+			{
+				SilverArrowEntity silverarrowentity = new SilverArrowEntity(worldIn, position.x(), position.y(), position.z());
+				silverarrowentity.pickup = SilverArrowEntity.PickupStatus.ALLOWED;
+				return silverarrowentity;
+			}
+		});
 	}
 
 	// STRUCTURE GEN CODE STARTS HERE!
