@@ -30,6 +30,10 @@ public class AncientArrowEntity extends AbstractArrowEntity
         this.setBaseDamage(this.getBaseDamage() + 30.0F);
     }
 
+    public AncientArrowEntity(World worldIn, double x, double y, double z) {
+        super(EntityTypeInit.ANCIENT_ARROW.get(), x, y, z, worldIn);
+    }
+
     @Override
     protected ItemStack getPickupItem() {
         return new ItemStack(ItemInit.ANCIENT_ARROW.get());

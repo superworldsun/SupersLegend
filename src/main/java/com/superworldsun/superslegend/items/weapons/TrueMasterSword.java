@@ -25,7 +25,7 @@ public class TrueMasterSword extends ItemCustomSword
 	{
 		super(tier, attackDamageIn, attackSpeedIn, builder);
 	}
-	
+
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
 		if (!playerIn.getCooldowns().isOnCooldown(this))
@@ -35,7 +35,7 @@ public class TrueMasterSword extends ItemCustomSword
 				if (!worldIn.isClientSide)
 				{
 					BlockPos currentPos = playerIn.blockPosition();
-					worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW.get(), SoundCategory.PLAYERS, 3f, 1f);
+					worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.SWORD_BEAM_SUMMON.get(), SoundCategory.PLAYERS, 0.5f, 1f);
 					MasterSwordSwordEntity sword = new MasterSwordSwordEntity(playerIn.level, playerIn);
 					sword.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
 					playerIn.level.addFreshEntity(sword);
@@ -45,11 +45,11 @@ public class TrueMasterSword extends ItemCustomSword
 			{
 				playerIn.sendMessage(new StringTextComponent(TextFormatting.DARK_RED + "You could not muster the power to manifest a beam, try again with full health!"), null);
 			}
-			
+
 			playerIn.getCooldowns().addCooldown(this, 20);
 			playerIn.swing(handIn);
 		}
-		
+
 		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
 	}
 	

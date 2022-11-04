@@ -44,7 +44,11 @@ public class Lantern extends Item
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Provides light on held"));
 		list.add(new StringTextComponent(TextFormatting.RED + "Runs out of fuel, use carefully"));
 	}
-	
+
+	//TODO Make it so the item can be toggled on and off so its not always using fuel when it hand
+
+	//TODO Fix bug where other players cant see light source made
+
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity user, int tick, boolean p_77663_5_)
 	{

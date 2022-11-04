@@ -7,12 +7,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.WitherSkeletonEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -29,6 +28,10 @@ public class SilverArrowEntity extends AbstractArrowEntity
         this.setBaseDamage(this.getBaseDamage() + 2.0F);
     }
 
+    public SilverArrowEntity(World worldIn, double x, double y, double z) {
+        super(EntityTypeInit.SILVER_ARROW.get(), x, y, z, worldIn);
+    }
+
     @Override
     protected ItemStack getPickupItem() {
         return new ItemStack(ItemInit.SILVER_ARROW.get());
@@ -39,20 +42,19 @@ public class SilverArrowEntity extends AbstractArrowEntity
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-
     @Override
     protected void onHitEntity(EntityRayTraceResult result) {
-        super.onHitEntity(result);
         Entity entity = result.getEntity();
+        if (entity instanceof MonsterEntity) {
+            {
+                this.setBaseDamage(this.getBaseDamage() * 4f);
+            }
+        }
+        super.onHitEntity(result);
         if (entity instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity) entity;
             if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
                 livingentity.setArrowCount(livingentity.getArrowCount() - 1);
-            }
-        }
-        if (entity instanceof WitherSkeletonEntity) {
-            {
-                this.setBaseDamage(this.getBaseDamage() * 10);
             }
         }
     }

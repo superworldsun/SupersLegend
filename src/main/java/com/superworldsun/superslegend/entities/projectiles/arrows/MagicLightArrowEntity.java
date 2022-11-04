@@ -113,7 +113,7 @@ public class MagicLightArrowEntity extends AbstractArrowEntity
 
 	private void applyResistanceAndWeakness(Entity entity) {
 		if (TagInit.WEAK_TO_LIGHT.contains(entity.getType()))
-			setBaseDamage(getBaseDamage() * 2);
+			setBaseDamage(getBaseDamage() * 8);
 		if (TagInit.RESISTANT_TO_LIGHT.contains(entity.getType()))
 			setBaseDamage(getBaseDamage() / 2);
 	}

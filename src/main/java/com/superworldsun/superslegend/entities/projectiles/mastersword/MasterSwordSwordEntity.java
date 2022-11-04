@@ -5,6 +5,7 @@ import static net.minecraft.entity.CreatureAttribute.UNDEAD;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -16,7 +17,9 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -86,7 +89,13 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
 		
 		for (boomerangRotation = boomerangRotation + 36F; boomerangRotation > 360F; boomerangRotation = boomerangRotation - 360F)
 			;
-		
+
+		if(this.tickCount % 5 == 0)
+		{
+			BlockPos currentPos = this.blockPosition();
+			this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.SWORD_BEAM_LOOP.get(), SoundCategory.PLAYERS, 0.4f, 1.0f);
+		}
+
 		if (tickCount > 80)
 		{
 			remove();
