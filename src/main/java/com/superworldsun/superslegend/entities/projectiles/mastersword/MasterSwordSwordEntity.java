@@ -16,6 +16,7 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -33,6 +34,10 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
 	public MasterSwordSwordEntity(World worldIn, LivingEntity shooter)
 	{
 		super(EntityTypeInit.MASTERSWORD_SWORD_ENTITY.get(), shooter, worldIn);
+	}
+
+	protected SoundEvent getDefaultHitGroundSoundEvent() {
+		return null;
 	}
 	
 	@Override

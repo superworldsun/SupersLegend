@@ -20,9 +20,11 @@ import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.food.*;
 import com.superworldsun.superslegend.items.items.*;
+import com.superworldsun.superslegend.items.weapons.GuardianSword;
 import com.superworldsun.superslegend.items.shields.*;
 import com.superworldsun.superslegend.items.songs.*;
 import com.superworldsun.superslegend.items.weapons.*;
+import com.superworldsun.superslegend.items.weapons.TrueMasterSword;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import com.superworldsun.superslegend.util.cookingpot.FoodCategory;
 
@@ -145,7 +147,7 @@ public class ItemInit
 	// WEAPONS & TOOLS
 	
 	public static final RegistryObject<SwordItem> KOKIRI_SWORD = ITEMS.register("kokiri_sword",
-			() -> new SwordItem(ItemToolTiers.KOKIRI_SWORD, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new SwordItem(ItemToolTiers.KOKIRI_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> RAZOR_SWORD = ITEMS.register("razor_sword",
 			() -> new SwordItem(ItemToolTiers.RAZOR_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> GILDED_SWORD = ITEMS.register("gilded_sword",
@@ -155,9 +157,9 @@ public class ItemInit
 			() -> new SwordItem(ItemToolTiers.GREAT_FAIRYS_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
 
 	public static final RegistryObject<GiantsKnife> GIANTS_KNIFE = ITEMS.register("giants_knife",
-			() -> new GiantsKnife(ItemToolTiers.GIANTS_KNIFE, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new GiantsKnife(ItemToolTiers.GIANTS_KNIFE, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<GiantsKnife> BROKEN_GIANTS_KNIFE = ITEMS.register("broken_giants_knife",
-			() -> new GiantsKnife(ItemToolTiers.BROKEN_GIANTS_KNIFE, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new GiantsKnife(ItemToolTiers.BROKEN_GIANTS_KNIFE, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> BIGGORONS_SWORD = ITEMS.register("biggorons_sword",
 			() -> new BiggornsSword(ItemToolTiers.BIGGORONS_SWORD, 2, -2.5f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
@@ -171,24 +173,12 @@ public class ItemInit
 	public static final RegistryObject<SwordItem> MASTER_SWORD = ITEMS.register("master_sword",
 			() -> new MasterSword(ItemToolTiers.MASTER_SWORD, 2, -2.4f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> MASTER_SWORD_V2 = ITEMS.register("master_sword_v2",
-			() -> new MasterSword(ItemToolTiers.MASTER_SWORD_V2, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	/*public static final RegistryObject<SwordItem> MASTER_SWORD_D = ITEMS.register("master_sword_d",
-			() -> new MasterSword(ItemToolTiers.MASTER_SWORD_D, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<SwordItem> MASTER_SWORD_N = ITEMS.register("master_sword_n",
-			() -> new MasterSword(ItemToolTiers.MASTER_SWORD_N, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<SwordItem> MASTER_SWORD_F = ITEMS.register("master_sword_f",
-			() -> new MasterSword(ItemToolTiers.MASTER_SWORD_F, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<SwordItem> MASTER_SWORD_DN = ITEMS.register("master_sword_dn",
-			() -> new MasterSword(ItemToolTiers.MASTER_SWORD_DN, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<SwordItem> MASTER_SWORD_NF = ITEMS.register("master_sword_nf",
-			() -> new MasterSword(ItemToolTiers.MASTER_SWORD_NF, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<SwordItem> MASTER_SWORD_FD = ITEMS.register("master_sword_fd",
-			() -> new MasterSword(ItemToolTiers.MASTER_SWORD_FD, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/
+			() -> new MasterSwordV2(ItemToolTiers.MASTER_SWORD_V2, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<SwordItem> TRUE_MASTER_SWORD = ITEMS.register("true_master_sword",
-			() -> new MasterSword(ItemToolTiers.TRUE_MASTER_SWORD, 2, -2.2f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+			() -> new TrueMasterSword(ItemToolTiers.TRUE_MASTER_SWORD, 2, -2.2f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 
-	public static final RegistryObject<SwordItem> GUARDIAN_SWORD = ITEMS.register("guardian_sword",
-			() -> new SwordItem(ItemToolTiers.GUARDIAN_SWORD, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<GuardianSword> GUARDIAN_SWORD = ITEMS.register("guardian_sword",
+			() -> new GuardianSword(ItemToolTiers.GUARDIAN_SWORD, 2, -2.3f, new Item.Properties().tab(SupersLegendMain.RESOURCES)));
 	/*public static final RegistryObject<Item> GUARDIAN_SHIELD = ITEMS.register("guardian_shield",
 			() -> new ShieldItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
 	/*public static final RegistryObject<SwordItem> ANCIENT_BATTLE_AXE = ITEMS.register("ancient_battle_axe",
