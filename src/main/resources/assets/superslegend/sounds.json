@@ -426,6 +426,16 @@
 		"subtitle": "superslegend.subtitle.boomerang_throw",
 		"sounds": [ "superslegend:item/boomerang_throw" ]
 	},
+	"item.sword_beam_summon": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.sword_beam_summon",
+		"sounds": [ "superslegend:item/sword_beam_summon" ]
+	},
+	"item.sword_beam_loop": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.sword_beam_loop",
+		"sounds": [ "superslegend:item/sword_beam_loop" ]
+	},
 	"item.bomb_fuse": {
 		"category": "entity",
 		"subtitle": "superslegend.subtitle.bomb_fuse",

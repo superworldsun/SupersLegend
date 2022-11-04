@@ -39,6 +39,8 @@ public class SoundInit
 	public static final RegistryObject<SoundEvent> HOVER_BOOTS = register("item.hover_boots");
 	public static final RegistryObject<SoundEvent> BOOMERANG_FLY_LOOP = register("item.boomerang_fly_loop");
 	public static final RegistryObject<SoundEvent> BOOMERANG_THROW = register("item.boomerang_throw");
+	public static final RegistryObject<SoundEvent> SWORD_BEAM_SUMMON = register("item.sword_beam_summon");
+	public static final RegistryObject<SoundEvent> SWORD_BEAM_LOOP = register("item.sword_beam_loop");
 	public static final RegistryObject<SoundEvent> BOMB_FUSE = register("item.bomb_fuse");
 	public static final RegistryObject<SoundEvent> BOMB_DEFUSE = register("item.bomb_defuse");
 	public static final RegistryObject<SoundEvent> HOOKSHOT_SET = register("item.hookshot_set");

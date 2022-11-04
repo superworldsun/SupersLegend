@@ -35,7 +35,7 @@ public class MasterSwordV2 extends ItemCustomSword
 				if (!worldIn.isClientSide)
 				{
 					BlockPos currentPos = playerIn.blockPosition();
-					worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW.get(), SoundCategory.PLAYERS, 3f, 1f);
+					worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.SWORD_BEAM_SUMMON.get(), SoundCategory.PLAYERS, 0.5f, 1f);
 					MasterSwordSwordEntity sword = new MasterSwordSwordEntity(playerIn.level, playerIn);
 					sword.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
 					playerIn.level.addFreshEntity(sword);
