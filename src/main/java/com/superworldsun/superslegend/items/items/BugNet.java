@@ -29,6 +29,8 @@ public class BugNet extends Item
 		super(properties);
 	}
 
+	//TODO make it so when a entity is bottled, their Data is saved.(name, health, effects, anger, etc)
+
 	@Override
 	public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity entity, Hand hand)
 	{

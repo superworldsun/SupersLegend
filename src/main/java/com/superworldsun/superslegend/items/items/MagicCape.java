@@ -34,7 +34,10 @@ public class MagicCape extends Item
 	{
 		super(properties);
 	}
-	
+	//TODO Players hand isnt invisible in first person
+
+	//TODO Make sure it works in multiplayer with other players
+
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	{
