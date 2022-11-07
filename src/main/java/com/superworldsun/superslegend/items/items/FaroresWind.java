@@ -41,6 +41,18 @@ public class FaroresWind extends Item {
         super(properties);
     }
 
+    //TODO DD CHARGE BEFORE USE
+
+    //TODO Right now theres 2 types of Shift+Right Click, one when looking at a block and wone when looking at the air.
+    // Make it so when a S+R C is made it marks the block the player is standing on and not the Block the player is looking at.
+    // Then if there already is a waypoint and the S+R C again, it will remove that waypoint.
+
+    //TODO <<<NOT A PRIORITY>>>
+    // Overhaul the system, when player right clicks it will pull up a small gui that will give them options.
+    // If a player has no warp: Create Warp, cancel
+    // If a player has a warp : Teleport to way point, remove way point, cancel
+    // when the player teleports to the waypoint it should remove their waypoint they had set
+
     //Set the location in the item
     public ActionResultType useOn(ItemUseContext context)
     {

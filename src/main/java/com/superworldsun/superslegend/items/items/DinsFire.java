@@ -46,6 +46,10 @@ public class DinsFire extends Item {
       return UseAction.BOW;
    }
 
+   //TODO The fire attack can be used with a instant right click instead of the full charged right click
+
+   //TODO Remove right clicking block to start fire, was old effect
+
    float manaCostArea = 0.50F;
 
    /**
@@ -167,6 +171,6 @@ public class DinsFire extends Item {
 		super.appendHoverText(stack, world, list, flag);				
 		list.add(new StringTextComponent(TextFormatting.RED + "Through Din, you can set the world ablaze"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Magic on use"));
 	}
 }

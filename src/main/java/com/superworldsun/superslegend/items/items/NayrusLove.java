@@ -31,6 +31,8 @@ public class NayrusLove extends Item
 		super(properties);
 	}
 
+	//TODO DD CHARGE BEFORE USE
+
 	float manaCost = 8.00F;
 
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)

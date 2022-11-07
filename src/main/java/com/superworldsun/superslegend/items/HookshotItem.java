@@ -37,7 +37,13 @@ public class HookshotItem extends Item {
     public HookshotItem(Properties properties) {
         super(properties);
     }
-
+    //TODO 1 Currently the hookshot forces you on a fixed Y axis when held, the player dosent fall
+    //TODO 2 Sometimes the model will randomly swap to the fired model and have no hook in the model when it should
+    //TODO 3 When you fire the hook it will go on forever if you are to chase it at fast speeds such as flying, maybe have it removed after a while if not connected to block
+    //TODO 4 the Chain part looks really dark near the hook instead of the same color as the rest of the chain
+    //TODO 5 the chain flicks up and down when you hook a block and are going towards it.
+    //TODO 6 the chain looks like it comes from your stomach and could look more like its coming out of the item in hand
+    //TODO 7 the off hand dosent look the same as main hand, needs to be redone
     //Let you shoot.
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {

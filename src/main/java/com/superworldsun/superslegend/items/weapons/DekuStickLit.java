@@ -32,6 +32,14 @@ public class DekuStickLit extends Item
 		super(p_i48487_1_);
 	}
 
+	//TODO Find new sound for when item breaks
+
+	//TODO Make a Tick count so the item will break after set amount of time of existing,
+	// if posible to have it so it still breaks when on ground, chest, or not in hand
+
+	//TODO At some point make a block or method that makes it so when cobwebs are on fire,
+	// the fire will spread to nearby connecting cobwebs and will spread the burning
+
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)

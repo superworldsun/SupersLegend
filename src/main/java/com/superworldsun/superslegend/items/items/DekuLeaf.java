@@ -31,7 +31,10 @@ public class DekuLeaf extends Item
 	{
 		super(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES));
 	}
-	
+
+	//TODO Show the Model of the leaf when the player has magic in creative mode always,
+	// if a player has no magic and is in creative mode it will show the leaf as the no magic model
+
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand)
 	{

@@ -40,6 +40,8 @@ public class TriforceCourage extends Item implements ICurioItem
 		super(properties);
 	}
 
+	//TODO eventually make into curio item with abilties
+
 	@Override
 	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(String identifier, ItemStack stack)
 	{
