@@ -10,10 +10,8 @@ import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
@@ -101,6 +99,12 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
 
     @Override
     public void tick() {
+        if(this.tickCount % 11 == 0)
+        {
+            BlockPos currentPos = this.blockPosition();
+            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
+        }
+
         if (!this.level.isClientSide) {
 
 
@@ -118,13 +122,14 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
             }
 
             spawnParticles(previousPosition, newPosition);
-
+            //TODO Bomb dosent blow up when in flowing lava, only source blocks
             BlockRayTraceResult blockRTR = rayTrace(previousPosition, newPosition);
             if (this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.LAVA.defaultBlockState() ||
                     this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.FIRE.defaultBlockState() ||
                     this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.SOUL_FIRE.defaultBlockState()) {
                 explode();
             }
+            //TODO bomb dosent remove when in flowing water, only source blocks
             if (this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.WATER.defaultBlockState()) {
                 this.playSound(SoundInit.BOMB_DEFUSE.get(), 1.0F, 1.0F);
                 this.remove();
