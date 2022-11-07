@@ -27,7 +27,7 @@ public class WWBoomerangItem extends Item {
             WWBoomerangEntity wwboomerangEntity = new WWBoomerang(world, player, player.getItemInHand(hand), hand);
 
             BlockPos currentPos = player.blockPosition();
-            world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOOMERANG_THROW.get(), SoundCategory.PLAYERS, 0.6f, 1.0f);
+            world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.WW_BOOMERANG_FLY_LOOP.get(), SoundCategory.PLAYERS, 0.6f, 1.0f);
 
             world.addFreshEntity(wwboomerangEntity);
             player.setItemInHand(hand, ItemStack.EMPTY);
