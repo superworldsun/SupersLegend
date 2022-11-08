@@ -22,9 +22,12 @@ public class MagicHammer extends HammerItem
 	@Override
 	protected int getLeftClickCooldown()
 	{
-		return 40;
+		return 12;
 	}
-	
+
+	//TODO When breaking plants there is no particle effect or sound played
+	//TODO Add blocks to the Init, list isnt full
+	//TODO Add a sound for when the hammer hits a block & entity
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{

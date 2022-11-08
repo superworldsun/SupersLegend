@@ -32,6 +32,8 @@ public class DekuStick extends Item
 		super(p_i48487_1_);
 	}
 
+	//TODO Find new sound for when item breaks
+
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)

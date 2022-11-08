@@ -40,6 +40,11 @@ public class LensOfTruth extends Item
 	{
 		super(properties);
 	}
+
+	//TODO Cannot use in creative mode at all if players magic is empty from survival
+
+	//TODO Make it so when the item is held with right click it shows a model change
+	// in the players arm for third person etc, the blocking animation would be perfect
 	
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent

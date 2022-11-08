@@ -40,7 +40,13 @@ public class FireRod extends Item
 	{
 		super(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES));
 	}
-	
+
+	//TODO Always creates a fire at the block looked at as soon as a right click is made and is a bit spammy,
+	// should be more random for when fire is created and should be held longer to make a fire
+
+	//TODO Fire should melt thin snow layers super easily with held right click
+
+	//TODO Change the fire ball explosion sound
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand)
 	{

@@ -416,15 +416,25 @@
 		"subtitle": "superslegend.subtitle.hover_boots",
 		"sounds": [ "superslegend:item/hover_boots" ]
 	},
-	"item.boomerang_fly_loop": {
+	"item.oot_boomerang_fly_loop": {
 		"category": "entity",
-		"subtitle": "superslegend.subtitle.boomerang_fly_loop",
-		"sounds": [ "superslegend:item/boomerang_fly_loop" ]
+		"subtitle": "superslegend.subtitle.oot_boomerang_fly_loop",
+		"sounds": [ "superslegend:item/oot_boomerang_fly_loop" ]
 	},
-	"item.boomerang_throw": {
+	"item.oot_boomerang_throw": {
 		"category": "entity",
-		"subtitle": "superslegend.subtitle.boomerang_throw",
-		"sounds": [ "superslegend:item/boomerang_throw" ]
+		"subtitle": "superslegend.subtitle.oot_boomerang_throw",
+		"sounds": [ "superslegend:item/oot_boomerang_throw" ]
+	},
+	"item.alttp_boomerang_fly_loop": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.alttp_boomerang_fly_loop",
+		"sounds": [ "superslegend:item/alttp_boomerang_fly_loop" ]
+	},
+	"item.ww_boomerang_fly_loop": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.ww_boomerang_fly_loop",
+		"sounds": [ "superslegend:item/ww_boomerang_fly_loop" ]
 	},
 	"item.sword_beam_summon": {
 		"category": "entity",

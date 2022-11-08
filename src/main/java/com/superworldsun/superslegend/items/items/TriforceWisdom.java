@@ -28,6 +28,8 @@ public class TriforceWisdom extends Item
 	{
 		super(properties);
 	}
+
+	//TODO eventually make into curio item with abilties
 	
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	 {

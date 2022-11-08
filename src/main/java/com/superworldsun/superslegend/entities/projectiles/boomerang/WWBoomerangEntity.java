@@ -105,10 +105,10 @@ public abstract class WWBoomerangEntity extends Entity {
             setEntityDeadWithPlayerDeadOrMissing();
         }
 
-        if(this.tickCount % 11 == 0)
+        if(this.tickCount % 6 == 0)
         {
             BlockPos currentPos = this.blockPosition();
-            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOOMERANG_FLY_LOOP.get(), SoundCategory.PLAYERS, 0.4f, 1.0f);
+            this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.WW_BOOMERANG_FLY_LOOP.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
         }
 
         Vector3d vec3d1 = this.position();

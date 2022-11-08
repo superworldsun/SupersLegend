@@ -26,7 +26,7 @@ public class MagicBoomerangItem extends Item
 		{
 			MagicBoomerangEntity boomerangEntity = new MagicBoomerang(world, player, player.getItemInHand(hand), hand);			
 			BlockPos currentPos = player.blockPosition();
-			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOOMERANG_THROW.get(), SoundCategory.PLAYERS, 0.6f, 1.0f);
+			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ALTTP_BOOMERANG_FLY_LOOP.get(), SoundCategory.PLAYERS, 0.6f, 1.0f);
 			double speedMultiplier = 2D;
 			boomerangEntity.setDeltaMovement(boomerangEntity.getDeltaMovement().multiply(speedMultiplier, speedMultiplier, speedMultiplier));
 			world.addFreshEntity(boomerangEntity);

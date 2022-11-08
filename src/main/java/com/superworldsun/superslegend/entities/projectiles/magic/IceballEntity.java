@@ -63,9 +63,9 @@ public class IceballEntity extends DamagingProjectileEntity
 			float explosionRadius = 0F;
 			float particlesSpeed = 0.4F;
 			float particlesSpread = 0.2F;
-			float effectRadius = 4F;
-			// 50% of blocks will be covered in snow
-			float snowChance = 0.5F;
+			float effectRadius = 3F;
+			// 20% of blocks will be covered in snow
+			float snowChance = 0.2F;
 			float damage = 5F;
 			level.explode(this, getX(), getY(), getZ(), explosionRadius, Explosion.Mode.NONE);
 			

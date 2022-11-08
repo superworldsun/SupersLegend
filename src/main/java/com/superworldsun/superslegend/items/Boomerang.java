@@ -30,7 +30,7 @@ public class Boomerang extends Item {
             BoomerangEntity boomerangEntity = new RegularBoomerang(world, player, player.getItemInHand(hand), hand);
 
             BlockPos currentPos = player.blockPosition();
-            world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOOMERANG_THROW.get(), SoundCategory.PLAYERS, 0.6f, 1.0f);
+            world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ALTTP_BOOMERANG_FLY_LOOP.get(), SoundCategory.PLAYERS, 0.6f, 1.0f);
 
             world.addFreshEntity(boomerangEntity);
             player.setItemInHand(hand, ItemStack.EMPTY);

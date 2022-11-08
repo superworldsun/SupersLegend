@@ -25,6 +25,12 @@ public class MagneticGlove extends Item
 		super(properties);
 	}
 
+    //TODO Add mechanic that will pull players towards glove user when wearing metal armor, the more they have the harder the pull
+
+    //TODO Add some sound for when item is in use
+
+    //TODO Model for offhand is inconsistent with mainhand?
+
     public static int getCooldown(ItemStack stack) {
         return stack.getOrCreateTag().getInt("Cooldown");
     }
