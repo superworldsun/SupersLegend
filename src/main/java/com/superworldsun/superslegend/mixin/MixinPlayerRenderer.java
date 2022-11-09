@@ -40,9 +40,6 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 		super(null, null, 0);
 	}
 	
-	/**
-	 * @author
-	 */
 	@Overwrite
 	private void renderHand(MatrixStack matrix, IRenderTypeBuffer buffer, int color, AbstractClientPlayerEntity player, ModelRenderer hand, ModelRenderer handOverlay)
 	{
@@ -71,7 +68,10 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 	@Inject(method = "render", at = @At("HEAD"))
 	public void injectRender(AbstractClientPlayerEntity player, float rotationYaw, float partialTicks, MatrixStack matrix, IRenderTypeBuffer renderBuffer, int light, CallbackInfo ci)
 	{
+		matrix.pushPose();
+		matrix.translate(-player.getX(), -player.getY(), -player.getZ());
 		LightRayRenderer.render(((ILightEmitterContainer) player).getLightEmitter(), partialTicks, matrix, renderBuffer, light);
+		matrix.popPose();
 		chooseCurrentModel(player);
 	}
 	
@@ -100,9 +100,6 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 		});
 	}
 	
-	/**
-	 * @author
-	 */
 	@Overwrite
 	protected void scale(AbstractClientPlayerEntity player, MatrixStack matrix, float partialTicks)
 	{

@@ -38,7 +38,7 @@ public class LightRayRenderer
 		
 		if (lightDirection.y != 0)
 		{
-			matrixStack.mulPose(Vector3f.ZN.rotation(-(float) Math.atan2(lightDirection.y, lightDirection.x)));
+			matrixStack.mulPose(Vector3f.ZN.rotation((float) -(Math.asin(lightDirection.y))));
 		}
 		
 		matrixStack.translate(0, -0.5, -0.5);
@@ -46,20 +46,17 @@ public class LightRayRenderer
 		float raySize = (float) emitter.lightVector.length();
 		matrixStack.scale(prevRaySize + (raySize - prevRaySize) * partialTicks, 1, 1);
 		float outerRayWidth = 14;
-		float innerRayWidth = 6;
-		
+		float innerRayWidth = 6;		
 		float outerRayOffset = ((16F - outerRayWidth) / 2F) / 16F;
 		matrixStack.translate(0, outerRayOffset, outerRayOffset);
 		matrixStack.scale(1, outerRayWidth / 16F, outerRayWidth / 16F);
 		drawCubeQuads(matrixStack, renderBuffer, RenderType.beaconBeam(TEXTURE_OUTER, true), combinedLight);
 		matrixStack.scale(1, 16F / outerRayWidth, 16F / outerRayWidth);
-		matrixStack.translate(0, -outerRayOffset, -outerRayOffset);
-		
+		matrixStack.translate(0, -outerRayOffset, -outerRayOffset);		
 		float innerRayOffset = ((16F - innerRayWidth) / 2F) / 16F;
 		matrixStack.translate(0, innerRayOffset, innerRayOffset);
 		matrixStack.scale(1, innerRayWidth / 16F, innerRayWidth / 16F);
-		drawCubeQuads(matrixStack, renderBuffer, RenderType.beaconBeam(TEXTURE_INNER, false), combinedLight);
-		
+		drawCubeQuads(matrixStack, renderBuffer, RenderType.beaconBeam(TEXTURE_INNER, false), combinedLight);		
 		matrixStack.popPose();
 	}
 	
@@ -84,22 +81,16 @@ public class LightRayRenderer
 		final Vector3d UP_FACE_MIDPOINT = new Vector3d(0.5, 1.0, 0.5);
 		final Vector3d DOWN_FACE_MIDPOINT = new Vector3d(0.5, 0.0, 0.5);
 		
-		addFace(Direction.EAST, matrixPos, matrixNormal, vertexBuilderBlockQuads, EAST_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight,
-				combinedLight);
-		addFace(Direction.WEST, matrixPos, matrixNormal, vertexBuilderBlockQuads, WEST_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight,
-				combinedLight);
-		addFace(Direction.NORTH, matrixPos, matrixNormal, vertexBuilderBlockQuads, NORTH_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight,
-				combinedLight);
-		addFace(Direction.SOUTH, matrixPos, matrixNormal, vertexBuilderBlockQuads, SOUTH_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight,
-				combinedLight);
-		addFace(Direction.UP, matrixPos, matrixNormal, vertexBuilderBlockQuads, UP_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight,
-				combinedLight);
-		addFace(Direction.DOWN, matrixPos, matrixNormal, vertexBuilderBlockQuads, DOWN_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight,
-				combinedLight);
+		addFace(Direction.EAST, matrixPos, matrixNormal, vertexBuilderBlockQuads, EAST_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight, combinedLight);
+		addFace(Direction.WEST, matrixPos, matrixNormal, vertexBuilderBlockQuads, WEST_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight, combinedLight);
+		addFace(Direction.NORTH, matrixPos, matrixNormal, vertexBuilderBlockQuads, NORTH_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight, combinedLight);
+		addFace(Direction.SOUTH, matrixPos, matrixNormal, vertexBuilderBlockQuads, SOUTH_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight, combinedLight);
+		addFace(Direction.UP, matrixPos, matrixNormal, vertexBuilderBlockQuads, UP_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight, combinedLight);
+		addFace(Direction.DOWN, matrixPos, matrixNormal, vertexBuilderBlockQuads, DOWN_FACE_MIDPOINT, WIDTH, HEIGHT, bottomLeftUV, UVwidth, UVheight, combinedLight);
 	}
 	
-	private static void addFace(Direction whichFace, Matrix4f matrixPos, Matrix3f matrixNormal, IVertexBuilder renderBuffer, Vector3d centrePos, float width,
-			float height, Vector2f bottomLeftUV, float texUwidth, float texVheight, int lightmapValue)
+	private static void addFace(Direction whichFace, Matrix4f matrixPos, Matrix3f matrixNormal, IVertexBuilder renderBuffer, Vector3d centrePos, float width, float height, Vector2f bottomLeftUV,
+			float texUwidth, float texVheight, int lightmapValue)
 	{
 		Vector3f leftToRightDirection, bottomToTopDirection;
 		
@@ -175,12 +166,12 @@ public class LightRayRenderer
 		
 		Vector3f normalVector = whichFace.step();
 		
-		addQuad(matrixPos, matrixNormal, renderBuffer, bottomLeftPos, bottomRightPos, topRightPos, topLeftPos, bottomLeftUVpos, bottomRightUVpos, topLeftUVpos,
-				topRightUVpos, normalVector, lightmapValue);
+		addQuad(matrixPos, matrixNormal, renderBuffer, bottomLeftPos, bottomRightPos, topRightPos, topLeftPos, bottomLeftUVpos, bottomRightUVpos, topLeftUVpos, topRightUVpos, normalVector,
+				lightmapValue);
 	}
 	
-	private static void addQuad(Matrix4f matrixPos, Matrix3f matrixNormal, IVertexBuilder renderBuffer, Vector3f blpos, Vector3f brpos, Vector3f trpos,
-			Vector3f tlpos, Vector2f blUVpos, Vector2f brUVpos, Vector2f trUVpos, Vector2f tlUVpos, Vector3f normalVector, int lightmapValue)
+	private static void addQuad(Matrix4f matrixPos, Matrix3f matrixNormal, IVertexBuilder renderBuffer, Vector3f blpos, Vector3f brpos, Vector3f trpos, Vector3f tlpos, Vector2f blUVpos,
+			Vector2f brUVpos, Vector2f trUVpos, Vector2f tlUVpos, Vector3f normalVector, int lightmapValue)
 	{
 		addVertex(matrixPos, matrixNormal, renderBuffer, blpos, blUVpos, normalVector, lightmapValue);
 		addVertex(matrixPos, matrixNormal, renderBuffer, brpos, brUVpos, normalVector, lightmapValue);
@@ -192,8 +183,7 @@ public class LightRayRenderer
 		addVertex(matrixPos, matrixNormal, renderBuffer, blpos, blUVpos, normalVector, lightmapValue);
 	}
 	
-	private static void addVertex(Matrix4f matrixPos, Matrix3f matrixNormal, IVertexBuilder renderBuffer, Vector3f pos, Vector2f uv, Vector3f normal,
-			int lightmap)
+	private static void addVertex(Matrix4f matrixPos, Matrix3f matrixNormal, IVertexBuilder renderBuffer, Vector3f pos, Vector2f uv, Vector3f normal, int lightmap)
 	{
 		renderBuffer.vertex(matrixPos, pos.x(), pos.y(), pos.z()).color(1F, 1F, 1F, 1F).uv(uv.x, uv.y).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(lightmap)
 				.normal(matrixNormal, normal.x(), normal.y(), normal.z()).endVertex();

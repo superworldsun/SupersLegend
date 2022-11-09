@@ -1,8 +1,13 @@
 package com.superworldsun.superslegend.items;
 
+import java.util.List;
+
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.ItemInit;
+
+import net.minecraft.block.CropsBlock;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -12,8 +17,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.List;
 
 public class BaitBagItem extends BagItem
 {
@@ -25,15 +28,12 @@ public class BaitBagItem extends BagItem
 	@Override
 	public boolean canHoldItem(ItemStack stack)
 	{
-		//TODO add so the bag can hold all types of food, crops, and seeds of any kind
 		Item item = stack.getItem();
-		return item == Items.WHEAT || item == Items.POTATO || item == Items.BEETROOT || item == Items.WHEAT_SEEDS
-			|| item == Items.PUMPKIN_SEEDS || item == Items.MELON_SEEDS || item == Items.BEETROOT_SEEDS
-			|| item == Items.GOLDEN_APPLE || item == Items.APPLE || item == Items.GOLDEN_CARROT
-			|| item == Items.BEEF || item == Items.COOKED_BEEF || item == Items.CHICKEN || item == Items.COOKED_CHICKEN
-			|| item == ItemInit.RED_JELLY.get();
+		boolean isCrops = item instanceof BlockItem && ((BlockItem) item).getBlock() instanceof CropsBlock;
+		boolean isFood = item.getFoodProperties() != null;
+		return isCrops || isFood || item == Items.WHEAT || item == ItemInit.RED_JELLY.get();
 	}
-
+	
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)

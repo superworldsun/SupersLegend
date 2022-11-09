@@ -20,7 +20,7 @@ public class EntityLightEmitter extends AbstractLightEmitter
 	@Override
 	protected RayTraceContext getLightRayTraceContext(Vector3d from, Vector3d to)
 	{
-		return new RayTraceContext(from, to, RayTraceContext.BlockMode.VISUAL, RayTraceContext.FluidMode.NONE, null);
+		return new RayTraceContext(from, to, RayTraceContext.BlockMode.VISUAL, RayTraceContext.FluidMode.NONE, sourceEntity);
 	}
 	
 	@Override
