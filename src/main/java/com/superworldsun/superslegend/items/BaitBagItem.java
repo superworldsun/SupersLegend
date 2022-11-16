@@ -31,7 +31,7 @@ public class BaitBagItem extends BagItem
 		Item item = stack.getItem();
 		boolean isCrops = item instanceof BlockItem && ((BlockItem) item).getBlock() instanceof CropsBlock;
 		boolean isFood = item.getFoodProperties() != null;
-		return isCrops || isFood || item == Items.WHEAT || item == ItemInit.RED_JELLY.get();
+		return isCrops || isFood || item == Items.WHEAT;
 	}
 	
 	@OnlyIn(Dist.CLIENT)
