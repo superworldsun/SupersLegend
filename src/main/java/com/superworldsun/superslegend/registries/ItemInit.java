@@ -843,7 +843,7 @@ public class ItemInit
 	public static final RegistryObject<Item> ROYAL_TILE = ITEMS.register("royal_tile", () -> new ModBlockItem(BlockInit.ROYAL_TILE));
 	public static final RegistryObject<Item> BLOCK_OF_TIME = ITEMS.register("block_of_time", () -> new ModBlockItem(BlockInit.BLOCK_OF_TIME));
 	public static final RegistryObject<Item> OWL_STATUE = ITEMS.register("owl_statue", () -> new ModBlockItem(BlockInit.OWL_STATUE));
-	public static final RegistryObject<Item> COOKING_POT = ITEMS.register("cooking_pot", () -> new ModBlockItem(BlockInit.COOKING_POT));
+	//public static final RegistryObject<Item> COOKING_POT = ITEMS.register("cooking_pot", () -> new ModBlockItem(BlockInit.COOKING_POT));
 	public static final RegistryObject<Item> SHADOW_BLOCK = ITEMS.register("shadow_block", ShadowBlockItem::new);
 	public static final RegistryObject<Item> HIDDEN_SHADOW_BLOCK = ITEMS.register("hidden_shadow_block", HiddenShadowBlockItem::new);
 	public static final RegistryObject<Item> FALSE_SHADOW_BLOCK = ITEMS.register("false_shadow_block", FalseShadowBlockItem::new);
