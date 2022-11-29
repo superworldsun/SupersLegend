@@ -47,8 +47,7 @@ public class BlockInit
 	public static final RegistryObject<Block> TORCH_TOWER_TOP_UNLIT = BLOCKS.register("torch_tower_top_unlit", () -> new TorchTowerTopUnlit(PropertiesInit.TORCH_TOWER_TOP_UNLIT));
 	public static final RegistryObject<Block> TORCH_TOWER_TOP_LIT = BLOCKS.register("torch_tower_top_lit", () -> new TorchTowerTopLit(PropertiesInit.TORCH_TOWER_TOP_LIT));
 	public static final RegistryObject<Block> MASTER_ORE_BLOCK = BLOCKS.register("master_ore_block", () -> new Block(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> BLUE_FLOOR_SWITCH = BLOCKS.register("blue_floor_switch"
-			, () -> new BlueFloorSwitch(BlueFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL)
+	public static final RegistryObject<Block> BLUE_FLOOR_SWITCH = BLOCKS.register("blue_floor_switch", () -> new BlueFloorSwitch(BlueFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL)
 					.strength(5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
 	public static final RegistryObject<Block> YELLOW_FLOOR_SWITCH = BLOCKS.register("yellow_floor_switch"
 			, () -> new YellowFloorSwitch(YellowFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL)
@@ -70,9 +69,9 @@ public class BlockInit
 	public static final RegistryObject<Block> TOMBSTONE_BLOCK = BLOCKS.register("tombstone_block", () -> new TombstoneBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> STONE_PATH_BLOCK = BLOCKS.register("stone_path_block", () -> new StonePathBlock(PropertiesInit.WRECKAGE));
 	public static final RegistryObject<Block> STONE_TILE_BLOCK = BLOCKS.register("stone_tile_block", () -> new StoneTileBlock(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> DINS_FLAME = BLOCKS.register("dins_flame", () -> new DinsFlame(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> FARORES_FLAME = BLOCKS.register("farores_flame", () -> new FaroresFlame(PropertiesInit.WRECKAGE));
-	public static final RegistryObject<Block> NAYRUS_FLAME = BLOCKS.register("nayrus_flame", () -> new NayrusFlame(PropertiesInit.WRECKAGE));
+	public static final RegistryObject<Block> DINS_FLAME = BLOCKS.register("dins_flame", () -> new DinsFlame(AbstractBlock.Properties.of(Material.FIRE).lightLevel((state) -> 15).noOcclusion()));
+	public static final RegistryObject<Block> FARORES_FLAME = BLOCKS.register("farores_flame", () -> new FaroresFlame(AbstractBlock.Properties.of(Material.FIRE).lightLevel((state) -> 15).noOcclusion()));
+	public static final RegistryObject<Block> NAYRUS_FLAME = BLOCKS.register("nayrus_flame", () -> new NayrusFlame(AbstractBlock.Properties.of(Material.FIRE).lightLevel((state) -> 15).noOcclusion()));
 	public static final RegistryObject<Block> PEDESTAL = BLOCKS.register("pedestal", PedestalBlock::new);
 	public static final RegistryObject<Block> FAN = BLOCKS.register("fan", FanBlock::new);
 	public static final RegistryObject<Block> SWITCHABLE_FAN = BLOCKS.register("switchable_fan", SwitchableFanBlock::new);
