@@ -40,6 +40,9 @@ public class BlockRenderLayerInit
 		RenderTypeLookup.setRenderLayer(BlockInit.DINS_FLAME.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.FARORES_FLAME.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.NAYRUS_FLAME.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.DINS_SACRED_PEDESTAL.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.FARORES_SACRED_PEDESTAL.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.NAYRUS_SACRED_PEDESTAL.get(), RenderType.cutout());
 		//RenderTypeLookup.setRenderLayer(BlockInit.RIDGED_WALL_RAIL.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(BlockInit.SUN_SWITCH.get(), RenderType.cutout());
 
