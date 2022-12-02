@@ -72,6 +72,7 @@ public class DekuMask extends Item implements IPlayerModelChanger, IEntityResize
         super.appendHoverText(stack, world, list, flag);
         list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "The face of a Deku"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "Your wooden skin is unlikely to be poisoned"));
+        list.add(new StringTextComponent(TextFormatting.RED + "Your wooden body will burn faster"));
     }
 
     @Override
