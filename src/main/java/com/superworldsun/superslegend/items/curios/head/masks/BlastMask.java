@@ -18,6 +18,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -40,13 +42,15 @@ public class BlastMask extends Item implements IMaskAbility, ICurioItem
 	{
 		super(properties);
 	}
-	
+
+	//TODO make it so "Press "B"" is dynamic and changes based on what key the player has set for Mask Abilities
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Bomb Blastic"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Press 'b' to Explode"));
 	}
 	
 	@Override
@@ -60,10 +64,19 @@ public class BlastMask extends Item implements IMaskAbility, ICurioItem
 		
 		Vector3d explosionPos = player.getEyePosition(1.0F).add(player.getLookAngle().multiply(0.5D, 0.5D, 0.5D));
 		player.level.explode(player, explosionPos.x, explosionPos.y, explosionPos.z, 2.0F, Mode.BREAK);
-		player.hurt(DamageSource.explosion(player), 2.0F);
 		// 200 ticks are 10 seconds
 		player.getCooldowns().addCooldown(ItemInit.MASK_BLASTMASK.get(), 200);
 		IMaskAbility.super.startUsingAbility(player);
+		if (!player.isBlocking())
+		{
+			player.hurt(DamageSource.explosion(player), 2.0F);
+		}
+		else if (player.isBlocking())
+		{
+			//TODO make it so when the player blocks the explosion, the shield takes damage
+			BlockPos currentPos = player.blockPosition();
+			player.playSound(SoundEvents.SHIELD_BLOCK, 1F, 1F);
+		}
 	}
 	
 	@Override
