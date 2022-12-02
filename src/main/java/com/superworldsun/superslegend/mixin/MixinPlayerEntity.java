@@ -378,10 +378,16 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 		updateEyeHeight();
 		refreshDimensions();
 	}
-	
+
 	private boolean canSwim()
 	{
-		return getItemBySlot(EquipmentSlotType.FEET).getItem() != ItemInit.IRON_BOOTS.get();
+		if (getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.IRON_BOOTS.get())
+			return false;
+
+		if (CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GORONMASK.get(), (PlayerEntity) (Object) this).isPresent())
+			return false;
+
+		return true;
 	}
 	
 	private void updateEyeHeight()
