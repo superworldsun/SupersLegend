@@ -72,6 +72,9 @@ public class BlockInit
 	public static final RegistryObject<Block> DINS_FLAME = BLOCKS.register("dins_flame", () -> new DinsFlame(AbstractBlock.Properties.of(Material.FIRE).lightLevel((state) -> 15).noOcclusion()));
 	public static final RegistryObject<Block> FARORES_FLAME = BLOCKS.register("farores_flame", () -> new FaroresFlame(AbstractBlock.Properties.of(Material.FIRE).lightLevel((state) -> 15).noOcclusion()));
 	public static final RegistryObject<Block> NAYRUS_FLAME = BLOCKS.register("nayrus_flame", () -> new NayrusFlame(AbstractBlock.Properties.of(Material.FIRE).lightLevel((state) -> 15).noOcclusion()));
+	public static final RegistryObject<Block> DINS_SACRED_PEDESTAL = BLOCKS.register("dins_sacred_pedestal", () -> new DinsSacredPedestal(AbstractBlock.Properties.of(Material.METAL).lightLevel((state) -> 11)));
+	public static final RegistryObject<Block> FARORES_SACRED_PEDESTAL = BLOCKS.register("farores_sacred_pedestal", () -> new FaroresSacredPedestal(AbstractBlock.Properties.of(Material.METAL).lightLevel((state) -> 11)));
+	public static final RegistryObject<Block> NAYRUS_SACRED_PEDESTAL = BLOCKS.register("nayrus_sacred_pedestal", () -> new NayrusSacredPedestal(AbstractBlock.Properties.of(Material.METAL).lightLevel((state) -> 11)));
 	public static final RegistryObject<Block> PEDESTAL = BLOCKS.register("pedestal", PedestalBlock::new);
 	public static final RegistryObject<Block> FAN = BLOCKS.register("fan", FanBlock::new);
 	public static final RegistryObject<Block> SWITCHABLE_FAN = BLOCKS.register("switchable_fan", SwitchableFanBlock::new);
