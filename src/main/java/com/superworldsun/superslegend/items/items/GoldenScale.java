@@ -57,6 +57,6 @@ public class GoldenScale extends Item implements ICurioItem
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.BLUE + "Allows you to stay underwater longer"));
+		list.add(new StringTextComponent(TextFormatting.GOLD + "Allows you to stay underwater even longer"));
 	}
 }
