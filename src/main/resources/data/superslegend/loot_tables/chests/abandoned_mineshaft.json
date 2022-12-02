@@ -1,0 +1,15 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls":1.0,
+         "entries":[
+            {
+               "type":"minecraft:item",
+               "weight":100,
+               "name":"superslegend:nocturne_of_shadow_sheet"
+            }
+         ]
+      }
+   ]
+}
