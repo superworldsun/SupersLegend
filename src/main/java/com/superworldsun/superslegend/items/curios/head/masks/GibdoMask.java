@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -17,6 +18,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -28,6 +33,8 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+import java.util.List;
+
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class GibdoMask extends Item implements ICurioItem
 {
@@ -38,6 +45,15 @@ public class GibdoMask extends Item implements ICurioItem
 
     public GibdoMask(Properties properties) {
         super(properties);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+    {
+        super.appendHoverText(stack, world, list, flag);
+        list.add(new StringTextComponent(TextFormatting.GREEN + "A mask that will allow you to blend in"));
+        list.add(new StringTextComponent(TextFormatting.GREEN + "with fellow undead monsters"));
     }
 
     @SubscribeEvent

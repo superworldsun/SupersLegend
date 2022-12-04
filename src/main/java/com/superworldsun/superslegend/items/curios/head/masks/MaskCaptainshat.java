@@ -47,7 +47,7 @@ public class MaskCaptainshat extends Item implements ICurioItem
 	{
 		super(properties);
 	}
-	
+
 	@SubscribeEvent
 	public static void onLivingSetAttackTarget(LivingSetAttackTargetEvent event)
 	{
@@ -123,6 +123,7 @@ public class MaskCaptainshat extends Item implements ICurioItem
 	{
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "Even through death, a leader stands"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Command the skeleton army to do your bidding"));
 	}
 	
 	@Override
