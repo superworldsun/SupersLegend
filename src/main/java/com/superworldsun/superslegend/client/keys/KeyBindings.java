@@ -106,7 +106,10 @@ public class KeyBindings
 				
 				if (hasBombBag)
 				{
-					NetworkDispatcher.networkChannel.sendToServer(new DropBombMessage());
+					if (event.getAction() == GLFW.GLFW_PRESS)
+					{
+						NetworkDispatcher.networkChannel.sendToServer(new DropBombMessage());
+					}
 				}
 			}
 		}
