@@ -186,35 +186,36 @@ public abstract class AmmoContainerItem extends Item
 			{
 				ItemStack curioStack = curios.getStackInSlot(i);
 				
-				if (!curioStack.isEmpty() && curioStack.getItem() instanceof AmmoContainerItem)
+				if (curioStack.isEmpty() || !(curioStack.getItem() instanceof AmmoContainerItem))
+					continue;
+				
+				AmmoContainerItem containerItem = (AmmoContainerItem) curioStack.getItem();
+				
+				if (!containerItem.canHoldItem(pickedStack))
+					continue;
+				
+				if (!containerItem.containsSameItem(curioStack, pickedStack))
+					continue;
+				
+				Pair<ItemStack, Integer> containerContents = containerItem.getContents(curioStack);
+				int ammoCount = containerContents == null ? 0 : containerContents.getRight();
+				
+				if (ammoCount >= containerItem.getCapacity())
+					continue;
+				
+				int pickedCount = pickedStack.getCount();
+				containerItem.setItemStack(curioStack, pickedStack);
+				
+				if (pickedCount + ammoCount > containerItem.getCapacity())
 				{
-					AmmoContainerItem ammoContainerItem = (AmmoContainerItem) curioStack.getItem();
-					Pair<ItemStack, Integer> quiverContents = ammoContainerItem.getContents(curioStack);
-					
-					if (!ammoContainerItem.containsSameItem(curioStack, pickedStack))
-					{
-						continue;
-					}
-					
-					int arrowsCount = quiverContents == null ? 0 : quiverContents.getRight();
-					
-					if (arrowsCount < ammoContainerItem.getCapacity() && ammoContainerItem.canHoldItem(pickedStack))
-					{
-						if (pickedStack.getCount() + arrowsCount > ammoContainerItem.getCapacity())
-						{
-							int newCount = pickedStack.getCount() + arrowsCount;
-							pickedStack.setCount(ammoContainerItem.getCapacity() - arrowsCount);
-							ammoContainerItem.setItemStack(curioStack, pickedStack);
-							pickedStack.setCount(newCount - ammoContainerItem.getCapacity());
-						}
-						else
-						{
-							ammoContainerItem.setItemStack(curioStack, pickedStack);
-							pickedStack.setCount(0);
-							float soundPitch = (random.nextFloat() - random.nextFloat()) * 1.4F + 2.0F;
-							event.getEntity().level.playSound(null, event.getEntity(), SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, soundPitch);
-						}
-					}
+					containerItem.setCount(curioStack, containerItem.getCapacity());
+					pickedStack.shrink(containerItem.getCapacity() - ammoCount);
+				}
+				else
+				{
+					containerItem.setCount(curioStack, pickedCount + ammoCount);
+					pickedStack.setCount(0);
+					event.getEntity().level.playSound(null, event.getEntity(), SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, (random.nextFloat() - random.nextFloat()) * 1.4F + 2.0F);
 				}
 			}
 		});
