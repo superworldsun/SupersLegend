@@ -737,35 +737,16 @@ public class ItemInit
 	/*public static final RegistryObject<Item> BUBBLEGLOOP_DISC = ITEMS.register("bubblegloop_disc",
 			() -> new MusicDiscItem(1, SoundInit.BUBBLEGLOOP_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));*/
 
-	public static final RegistryObject<Item> FOREST_TEMPLE_DISC = ITEMS.register("forest_temple_disc",
-			() -> new MusicDiscItem(1, SoundInit.FOREST_TEMPLE_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-
-	public static final RegistryObject<Item> FIRE_TEMPLE_DISC = ITEMS.register("fire_temple_disc",
-			() -> new MusicDiscItem(1, SoundInit.FIRE_TEMPLE_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-
-	public static final RegistryObject<Item> WATER_TEMPLE_DISC = ITEMS.register("water_temple_disc",
-			() -> new MusicDiscItem(1, SoundInit.WATER_TEMPLE_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-
-	public static final RegistryObject<Item> SHADOW_TEMPLE_DISC = ITEMS.register("shadow_temple_disc",
-			() -> new MusicDiscItem(1, SoundInit.SHADOW_TEMPLE_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-
-	public static final RegistryObject<Item> SPIRIT_TEMPLE_DISC = ITEMS.register("spirit_temple_disc",
-			() -> new MusicDiscItem(1, SoundInit.SPIRIT_TEMPLE_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-
-	public static final RegistryObject<Item> WOODFALL_TEMPLE_DISC = ITEMS.register("woodfall_temple_disc",
-			() -> new MusicDiscItem(1, SoundInit.WOODFALL_TEMPLE_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-
-	public static final RegistryObject<Item> SNOWHEAD_TEMPLE_DISC = ITEMS.register("snowhead_temple_disc",
-			() -> new MusicDiscItem(1, SoundInit.SNOWHEAD_TEMPLE_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-
-	public static final RegistryObject<Item> GREAT_BAY_TEMPLE_DISC = ITEMS.register("great_bay_temple_disc",
-			() -> new MusicDiscItem(1, SoundInit.GREAT_BAY_TEMPLE_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-
-	public static final RegistryObject<Item> STONE_TOWER_TEMPLE_REALITY_DISC_LAZY = ITEMS.register("stone_tower_temple_reality_disc",
-			() -> new MusicDiscItem(1, SoundInit.STONE_TOWER_TEMPLE_REALITY_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
-
-	public static final RegistryObject<Item> STONE_TOWER_TEMPLE_ILLUSION_DISC = ITEMS.register("stone_tower_temple_illusion_disc",
-			() -> new MusicDiscItem(1, SoundInit.STONE_TOWER_TEMPLE_ILLUSION_DISC::get, new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item> FOREST_TEMPLE_DISC = ITEMS.register("forest_temple_disc", () -> new MusicDisc(SoundInit.FOREST_TEMPLE_DISC));	
+	public static final RegistryObject<Item> FIRE_TEMPLE_DISC = ITEMS.register("fire_temple_disc", () -> new MusicDisc(SoundInit.FIRE_TEMPLE_DISC));	
+	public static final RegistryObject<Item> WATER_TEMPLE_DISC = ITEMS.register("water_temple_disc", () -> new MusicDisc(SoundInit.WATER_TEMPLE_DISC));	
+	public static final RegistryObject<Item> SHADOW_TEMPLE_DISC = ITEMS.register("shadow_temple_disc", () -> new MusicDisc(SoundInit.SHADOW_TEMPLE_DISC));	
+	public static final RegistryObject<Item> SPIRIT_TEMPLE_DISC = ITEMS.register("spirit_temple_disc", () -> new MusicDisc(SoundInit.SPIRIT_TEMPLE_DISC));	
+	public static final RegistryObject<Item> WOODFALL_TEMPLE_DISC = ITEMS.register("woodfall_temple_disc", () -> new MusicDisc(SoundInit.WOODFALL_TEMPLE_DISC));	
+	public static final RegistryObject<Item> SNOWHEAD_TEMPLE_DISC = ITEMS.register("snowhead_temple_disc", () -> new MusicDisc(SoundInit.SNOWHEAD_TEMPLE_DISC));	
+	public static final RegistryObject<Item> GREAT_BAY_TEMPLE_DISC = ITEMS.register("great_bay_temple_disc", () -> new MusicDisc(SoundInit.GREAT_BAY_TEMPLE_DISC));	
+	public static final RegistryObject<Item> STONE_TOWER_TEMPLE_REALITY_DISC = ITEMS.register("stone_tower_temple_reality_disc", () -> new MusicDisc(SoundInit.STONE_TOWER_TEMPLE_REALITY_DISC));	
+	public static final RegistryObject<Item> STONE_TOWER_TEMPLE_ILLUSION_DISC = ITEMS.register("stone_tower_temple_illusion_disc", () -> new MusicDisc(SoundInit.STONE_TOWER_TEMPLE_ILLUSION_DISC));
 
 	//MobEggs
 	//public static final RegistryObject<TPBokoblinSpawnEgg> TP_BOKOBLIN_EGG = ITEMS.register("tp_bokoblin_egg",
