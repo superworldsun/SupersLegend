@@ -3,7 +3,7 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.armor.AllNightMaskModel;
+import com.superworldsun.superslegend.client.keys.KeyBindings;
 import com.superworldsun.superslegend.client.model.armor.BlastMaskModel;
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
 import com.superworldsun.superslegend.registries.ItemInit;
@@ -19,7 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -42,15 +41,15 @@ public class BlastMask extends Item implements IMaskAbility, ICurioItem
 	{
 		super(properties);
 	}
-
-	//TODO make it so "Press "B"" is dynamic and changes based on what key the player has set for Mask Abilities
+	
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
+		String keybind = KeyBindings.MASK_ABILITY.getKey().getDisplayName().getString();
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Bomb Blastic"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Press 'b' to Explode"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Press '" + keybind + "' to Explode"));
 	}
 	
 	@Override
@@ -66,15 +65,15 @@ public class BlastMask extends Item implements IMaskAbility, ICurioItem
 		player.level.explode(player, explosionPos.x, explosionPos.y, explosionPos.z, 2.0F, Mode.BREAK);
 		// 200 ticks are 10 seconds
 		player.getCooldowns().addCooldown(ItemInit.MASK_BLASTMASK.get(), 200);
-		IMaskAbility.super.startUsingAbility(player);
+		
 		if (!player.isBlocking())
 		{
 			player.hurt(DamageSource.explosion(player), 2.0F);
 		}
 		else if (player.isBlocking())
 		{
-			//TODO make it so when the player blocks the explosion, the shield takes damage
-			BlockPos currentPos = player.blockPosition();
+			int shieldDamage = 1;
+			player.getUseItem().hurtAndBreak(shieldDamage, player, p -> p.broadcastBreakEvent(player.getUsedItemHand()));
 			player.playSound(SoundEvents.SHIELD_BLOCK, 1F, 1F);
 		}
 	}
@@ -90,7 +89,7 @@ public class BlastMask extends Item implements IMaskAbility, ICurioItem
 			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, ItemStack stack)
 	{
 		// put your model here
-		if (!(this.model instanceof AllNightMaskModel))
+		if (!(this.model instanceof BlastMaskModel))
 		{
 			model = new BlastMaskModel<>();
 		}
