@@ -33,6 +33,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 {
 	private PlayerModel<AbstractClientPlayerEntity> baseModel;
 	private LayerRenderer<AbstractClientPlayerEntity, PlayerModel<AbstractClientPlayerEntity>> armorLayer;
+	private LayerRenderer<AbstractClientPlayerEntity, PlayerModel<AbstractClientPlayerEntity>> capeLayer;
 	
 	// This constructor is fake and never used
 	protected MixinPlayerRenderer()
@@ -115,6 +116,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 		{
 			baseModel = model;
 			armorLayer = layers.get(0);
+			capeLayer = layers.get(4);
 		}
 		
 		model = baseModel;
@@ -145,6 +147,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 			if (layers.contains(armorLayer))
 			{
 				layers.remove(armorLayer);
+				layers.remove(capeLayer);
 			}
 		}
 		else
@@ -152,6 +155,7 @@ public abstract class MixinPlayerRenderer extends LivingRenderer<AbstractClientP
 			if (!layers.contains(armorLayer))
 			{
 				layers.add(armorLayer);
+				layers.add(capeLayer);
 			}
 		}
 	}
