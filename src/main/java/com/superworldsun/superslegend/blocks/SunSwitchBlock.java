@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.util.BlockShapeHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
@@ -19,6 +20,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 
 public class SunSwitchBlock extends Block
 {
@@ -66,6 +69,21 @@ public class SunSwitchBlock extends Block
 	public TileEntity createTileEntity(BlockState blockState, IBlockReader world)
 	{
 		return new SunSwitchTileEntity();
+	}
+	
+	@Override
+	public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos blockPos)
+	{
+		Direction facing = blockState.getValue(FACING);
+		BlockPos attachedBlockPos = blockPos.relative(facing.getOpposite());
+		BlockState attachedBlockState = world.getBlockState(attachedBlockPos);
+		return Block.isFaceFull(attachedBlockState.getBlockSupportShape(world, attachedBlockPos), facing);
+	}
+	
+	@Override
+	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, IWorld world, BlockPos blockPos, BlockPos blockPos2)
+	{
+		return !canSurvive(blockState, world, blockPos) ? Blocks.AIR.defaultBlockState() : blockState;
 	}
 	
 	@Override
