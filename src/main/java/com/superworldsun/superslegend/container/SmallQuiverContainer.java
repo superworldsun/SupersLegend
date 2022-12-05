@@ -6,7 +6,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.container.slot.BagSlot;
 import com.superworldsun.superslegend.container.slot.LockedSlot;
 import com.superworldsun.superslegend.inventory.BagInventory;
-import com.superworldsun.superslegend.items.BagItem;
+import com.superworldsun.superslegend.items.bags.BagItem;
 import com.superworldsun.superslegend.registries.ContainerInit;
 
 import com.superworldsun.superslegend.registries.ItemInit;

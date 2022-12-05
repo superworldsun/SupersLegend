@@ -100,6 +100,7 @@ public class PostboxBlock extends Block
 		PostboxTileEntity postbox = (PostboxTileEntity) world.getBlockEntity(blockPos);
 		InventoryHelper.dropContents(world, blockPos, postbox.inventory);
 		world.removeBlockEntity(blockPos);
+		world.setBlock(blockPos.above(), Blocks.AIR.defaultBlockState(), 3);
 	}
 	
 	@Override

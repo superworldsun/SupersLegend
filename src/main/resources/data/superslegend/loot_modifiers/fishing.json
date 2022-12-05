@@ -1,5 +1,5 @@
 {
-   "type":"superslegend:fishing",
+   "type":"superslegend:replace",
    "conditions":[
       {
          "condition":"forge:loot_table_id",

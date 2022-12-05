@@ -1,5 +1,5 @@
 {
-   "type":"superslegend:creeper_music_disc",
+   "type":"superslegend:replace",
    "conditions":[
       {
          "condition":"forge:loot_table_id",

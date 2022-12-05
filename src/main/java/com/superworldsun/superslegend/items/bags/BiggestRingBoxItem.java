@@ -1,13 +1,13 @@
-package com.superworldsun.superslegend.items.items;
+package com.superworldsun.superslegend.items.bags;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.LetterItem;
+import com.superworldsun.superslegend.items.RingItem;
 
 import net.minecraft.item.ItemStack;
 
-public class Letter extends LetterItem
+public class BiggestRingBoxItem extends BagItem
 {
-	public Letter()
+	public BiggestRingBoxItem()
 	{
 		super(new Properties().tab(SupersLegendMain.RESOURCES));
 	}
@@ -15,6 +15,6 @@ public class Letter extends LetterItem
 	@Override
 	public boolean canHoldItem(ItemStack stack)
 	{
-		return true;
+		return stack.getItem() instanceof RingItem;
 	}
 }

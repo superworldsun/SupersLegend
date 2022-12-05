@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.container.slot;
 
-import com.superworldsun.superslegend.items.BagItem;
+import com.superworldsun.superslegend.items.bags.BagItem;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
