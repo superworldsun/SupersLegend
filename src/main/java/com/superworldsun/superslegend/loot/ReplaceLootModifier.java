@@ -16,12 +16,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 
-public class GlobalLootModifier extends LootModifier
+public class ReplaceLootModifier extends LootModifier
 {
 	protected final TableLootEntry table;
 	protected final float chance;
 	
-	public GlobalLootModifier(ILootCondition[] conditions, TableLootEntry lootTable, float replaceChance)
+	public ReplaceLootModifier(ILootCondition[] conditions, TableLootEntry lootTable, float replaceChance)
 	{
 		super(conditions);
 		table = lootTable;
@@ -45,19 +45,19 @@ public class GlobalLootModifier extends LootModifier
 		}
 	}
 	
-	public static class Serializer extends GlobalLootModifierSerializer<GlobalLootModifier>
+	public static class Serializer extends GlobalLootModifierSerializer<ReplaceLootModifier>
 	{
 		@Override
-		public GlobalLootModifier read(ResourceLocation location, JsonObject object, ILootCondition[] lootConditions)
+		public ReplaceLootModifier read(ResourceLocation location, JsonObject object, ILootCondition[] lootConditions)
 		{
 			String resLoc = JSONUtils.getAsString(object, "table");
 			TableLootEntry table = (TableLootEntry) TableLootEntry.lootTableReference(new ResourceLocation(resLoc)).build();
 			float chance = JSONUtils.getAsFloat(object, "chance");
-			return new GlobalLootModifier(lootConditions, table, chance);
+			return new ReplaceLootModifier(lootConditions, table, chance);
 		}
 		
 		@Override
-		public JsonObject write(GlobalLootModifier instance)
+		public JsonObject write(ReplaceLootModifier instance)
 		{
 			JsonObject json = makeConditions(instance.conditions);
 			json.addProperty("table", instance.table.name.toString());
