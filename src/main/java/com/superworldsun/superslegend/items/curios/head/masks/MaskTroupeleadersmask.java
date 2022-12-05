@@ -5,13 +5,20 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.armor.AllNightMaskModel;
 import com.superworldsun.superslegend.client.model.armor.TroupeLeadersMaskModel;
+import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -19,6 +26,10 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -40,6 +51,29 @@ public class MaskTroupeleadersmask extends Item implements ICurioItem
     public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
         super.appendHoverText(stack, world, list, flag);
         list.add(new StringTextComponent(TextFormatting.GRAY + "A very depressing expression"));
+    }
+
+    @Override
+    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
+    {
+        PlayerEntity player = (PlayerEntity) livingEntity;
+
+        if(!player.isCrouching() && !player.isEyeInFluid(FluidTags.WATER))
+        {
+            double particleX = player.getX() + (player.getRandom().nextBoolean() ? -0.1D : 0);
+            double particleY = player.getY() + player.getRandom().nextFloat() * 0 - -1.7D;
+            double particleZ = player.getZ() + (player.getRandom().nextBoolean() ? -0.1D : 0);
+            player.level.addParticle(ParticleTypes.RAIN, particleX, particleY, particleZ, 0, 0, 0);
+            //player.level.addParticle(ParticleTypes.DRIPPING_WATER, particleX, particleY, particleZ, 0, 1.0D, 0);
+        }
+        if(player.isCrouching() && !player.isEyeInFluid(FluidTags.WATER))
+        {
+            double particleX = player.getX() + (player.getRandom().nextBoolean() ? -0.1D : 0);
+            double particleY = player.getY() + player.getRandom().nextFloat() * 0 - -1.2D;
+            double particleZ = player.getZ() + (player.getRandom().nextBoolean() ? -0.1D : 0);
+            player.level.addParticle(ParticleTypes.RAIN, particleX, particleY, particleZ, 0, 0, 0);
+            //player.level.addParticle(ParticleTypes.DRIPPING_WATER, particleX, particleY, particleZ, 0, 1.0D, 0);
+        }
     }
 
     @Override

@@ -53,7 +53,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class GoronMask extends Item implements IPlayerModelChanger, IEntityResizer, ICurioItem
 {
-	private static final UUID GORON_WATER_MODIFIER_ID = UUID.fromString("0fd3562e-c58f-4c6c-b912-d9d6c36bb5cb");
+	private static final UUID GORON_WATER_MODIFIER_ID = UUID.fromString("9198efe1-249e-4dc9-825b-e79aa2d3e2cf");
 	
 	public GoronMask()
 	{
@@ -80,7 +80,8 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 	{
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.DARK_RED + "The face of a Goron"));
-		list.add(new StringTextComponent(TextFormatting.DARK_GRAY + "Your skin is like stone and cannot stay withered"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Your skin is stone and cannot be burned"));
+		list.add(new StringTextComponent(TextFormatting.RED + "Not a strong swimmer"));
 	}
 	
 	@OnlyIn(Dist.CLIENT)
@@ -100,7 +101,7 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 	@Override
 	public float getScale(PlayerEntity player)
 	{
-		return 1.5F;
+		return 1.52F;
 	}
 	
 	@Override
@@ -143,7 +144,8 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 			}
 		}
 	}
-	
+
+	//TODO Make it so the player can last underwater longer. (make it so their air supply goes down slower)
 	@SubscribeEvent
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event)
 	{
@@ -152,26 +154,31 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 		{
 			return;
 		}
-		
+
 		// Only if we have the mask
 		ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GORONMASK.get(), event.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-		
+
 		if (!maskStack.isEmpty())
 		{
 			if (event.player.isInWater())
 			{
 				IJumpingEntity jumpingPlayer = (IJumpingEntity) event.player;
-				
+
 				if (!jumpingPlayer.isJumping())
 				{
 					Vector3d motion = event.player.getDeltaMovement();
-					event.player.setDeltaMovement(motion.x, -0.6, motion.z);
+					event.player.setDeltaMovement(motion.x, -0.5, motion.z);
 				}
-				
-				if (event.player.isOnGround())
+				if (jumpingPlayer.isJumping())
 				{
-					// +100%
-					addOrReplaceModifier(event.player, ForgeMod.SWIM_SPEED.get(), GORON_WATER_MODIFIER_ID, -1.0F, AttributeModifier.Operation.MULTIPLY_TOTAL);
+					Vector3d motion = event.player.getDeltaMovement();
+					event.player.setDeltaMovement(motion.x, -0.5, motion.z);
+				}
+
+				if (event.player.isOnGround() || !event.player.isOnGround())
+				{
+					// -70%
+					addOrReplaceModifier(event.player, ForgeMod.SWIM_SPEED.get(), GORON_WATER_MODIFIER_ID, -0.7F, Operation.MULTIPLY_TOTAL);
 				}
 				else
 				{
@@ -180,6 +187,8 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 			}
 			else
 			{
+				// -10%
+				addOrReplaceModifier(event.player, Attributes.MOVEMENT_SPEED, GORON_WATER_MODIFIER_ID, -0.1F, Operation.MULTIPLY_TOTAL);
 				removeModifier(event.player, ForgeMod.SWIM_SPEED.get(), GORON_WATER_MODIFIER_ID);
 			}
 		}
@@ -189,23 +198,23 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 			removeModifier(event.player, ForgeMod.SWIM_SPEED.get(), GORON_WATER_MODIFIER_ID);
 		}
 	}
-	
+
 	private static void removeModifier(PlayerEntity player, Attribute attribute, UUID id)
 	{
 		ModifiableAttributeInstance attributeInstance = player.getAttribute(attribute);
 		AttributeModifier modifier = attributeInstance.getModifier(id);
-		
+
 		if (modifier != null)
 		{
 			attributeInstance.removeModifier(modifier);
 		}
 	}
-	
-	private static void addOrReplaceModifier(PlayerEntity player, Attribute attribute, UUID id, float amount, AttributeModifier.Operation operation)
+
+	private static void addOrReplaceModifier(PlayerEntity player, Attribute attribute, UUID id, float amount, Operation operation)
 	{
 		ModifiableAttributeInstance attributeInstance = player.getAttribute(attribute);
 		AttributeModifier modifier = attributeInstance.getModifier(id);
-		
+
 		if (modifier != null && modifier.getAmount() != amount)
 		{
 			attributeInstance.removeModifier(modifier);
@@ -215,7 +224,7 @@ public class GoronMask extends Item implements IPlayerModelChanger, IEntityResiz
 		{
 			modifier = new AttributeModifier(id, id.toString(), amount, operation);
 		}
-		
+
 		if (modifier != null && !attributeInstance.hasModifier(modifier))
 		{
 			attributeInstance.addPermanentModifier(modifier);

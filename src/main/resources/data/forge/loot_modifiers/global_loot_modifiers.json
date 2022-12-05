@@ -1,6 +1,8 @@
 {
    "replace":false,
    "entries":[
-      "superslegend:fishing"
+      "superslegend:fishing",
+      "superslegend:creeper_music_disc",
+      "superslegend:abandoned_mineshaft"
    ]
 }

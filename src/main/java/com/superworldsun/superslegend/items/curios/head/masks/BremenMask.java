@@ -70,15 +70,18 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem
 			animal.goalSelector.addGoal(3, new FollowBremenMaskGoal(animal, 1.2D, false));
 		}
 	}
-	
+
+	//TODO make it so "Press "B"" is dynamic and changes based on what key the player has set for Mask Abilities
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.WHITE + "A mask animals would love!"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Press 'b' to have animals follow you"));
 	}
-	
+
+	//TODO make it so the player cant sprint when ability is in use
 	@Override
 	public void startUsingAbility(PlayerEntity player)
 	{
@@ -86,10 +89,10 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem
 		{
 			playMaskSound(player);
 		}
-		
+
 		UUID slowId = UUID.fromString("7176f8ab-df6b-4065-9232-3c314fadb655");
-		// -0.2 is 20% slower
-		AttributeModifier modifier = new AttributeModifier(slowId, "Bremen Mask Slow", -0.2, Operation.MULTIPLY_BASE);
+		// -0.3 is 30% slower
+		AttributeModifier modifier = new AttributeModifier(slowId, "Bremen Mask Slow", -0.3, Operation.MULTIPLY_BASE);
 		ModifiableAttributeInstance movespeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 		movespeed.addTransientModifier(modifier);
 		IMaskAbility.super.startUsingAbility(player);
@@ -122,7 +125,8 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem
 	{
 		return true;
 	}
-	
+
+	//TODO the mask is a bit small, it could probably be remade or made larger
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void render(String identifier, int index, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, LivingEntity livingEntity, float limbSwing, float limbSwingAmount,

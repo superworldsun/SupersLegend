@@ -45,7 +45,14 @@ public abstract class MixinMushroomBlock extends BushBlock
 				double particleY = pos.getY() + 0.2 + world.random.nextDouble() * 0.4 - 0.1;
 				double particleZ = pos.getZ() + 0.5 + world.random.nextDouble() * 0.4 - 0.2;
 				double particleMotionY = world.random.nextDouble() * 0.1 + 0.1;
-				world.addParticle(ParticleTypes.HAPPY_VILLAGER, particleX, particleY, particleZ, 0, particleMotionY, 0);
+				world.addParticle(ParticleTypes.MYCELIUM, particleX, particleY, particleZ, 0, particleMotionY, 0);
+				world.addParticle(ParticleTypes.MYCELIUM, particleX, particleY, particleZ, 0, particleMotionY, 0);
+				world.addParticle(ParticleTypes.MYCELIUM, particleX, particleY, particleZ, 0, particleMotionY, 1);
+				world.addParticle(ParticleTypes.MYCELIUM, particleX, particleY, particleZ, 0, particleMotionY, 1);
+				world.addParticle(ParticleTypes.MYCELIUM, particleX, particleY, particleZ, 0, particleMotionY, 2);
+				world.addParticle(ParticleTypes.MYCELIUM, particleX, particleY, particleZ, 0, particleMotionY, 2);
+				world.addParticle(ParticleTypes.MYCELIUM, particleX, particleY, particleZ, 0, particleMotionY, 3);
+				world.addParticle(ParticleTypes.MYCELIUM, particleX, particleY, particleZ, 0, particleMotionY, 3);
 			}
 		}
 	}

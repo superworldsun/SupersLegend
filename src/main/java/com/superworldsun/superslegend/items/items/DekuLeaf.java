@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 
 public class DekuLeaf extends Item
 {
-	private final float manacost = 0.1F;
+	private final float manacost = 0.02F;
 	
 	public DekuLeaf()
 	{

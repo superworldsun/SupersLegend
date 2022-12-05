@@ -37,9 +37,12 @@ public class BlockRenderLayerInit
 		RenderTypeLookup.setRenderLayer(BlockInit.YELLOW_FLOOR_SWITCH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.RED_FLOOR_SWITCH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.RUSTED_FLOOR_SWITCH.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(BlockInit.DINS_FLAME.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(BlockInit.DINS_FLAME.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.FARORES_FLAME.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(BlockInit.NAYRUS_FLAME.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(BlockInit.NAYRUS_FLAME.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.DINS_SACRED_PEDESTAL.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.FARORES_SACRED_PEDESTAL.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.NAYRUS_SACRED_PEDESTAL.get(), RenderType.cutout());
 		//RenderTypeLookup.setRenderLayer(BlockInit.RIDGED_WALL_RAIL.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(BlockInit.SUN_SWITCH.get(), RenderType.cutout());
 

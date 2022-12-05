@@ -835,6 +835,9 @@ public class ItemInit
 	public static final RegistryObject<Item> DINS_FLAME = ITEMS.register("dins_flame", () -> new ModBlockItem(BlockInit.DINS_FLAME));
 	public static final RegistryObject<Item> FARORES_FLAME = ITEMS.register("farores_flame", () -> new ModBlockItem(BlockInit.FARORES_FLAME));
 	public static final RegistryObject<Item> NAYRUS_FLAME = ITEMS.register("nayrus_flame", () -> new ModBlockItem(BlockInit.NAYRUS_FLAME));
+	public static final RegistryObject<Item> DINS_SACRED_PEDESTAL = ITEMS.register("dins_sacred_pedestal", () -> new ModBlockItem(BlockInit.DINS_SACRED_PEDESTAL));
+	public static final RegistryObject<Item> FARORES_SACRED_PEDESTAL = ITEMS.register("farores_sacred_pedestal", () -> new ModBlockItem(BlockInit.FARORES_SACRED_PEDESTAL));
+	public static final RegistryObject<Item> NAYRUS_SACRED_PEDESTAL = ITEMS.register("nayrus_sacred_pedestal", () -> new ModBlockItem(BlockInit.NAYRUS_SACRED_PEDESTAL));
 	public static final RegistryObject<Item> PEDESTAL = ITEMS.register("pedestal", () -> new ModBlockItem(BlockInit.PEDESTAL));
 	public static final RegistryObject<Item> FAN = ITEMS.register("fan", () -> new ModBlockItem(BlockInit.FAN));
 	public static final RegistryObject<Item> SWITCHABLE_FAN = ITEMS.register("switchable_fan", () -> new ModBlockItem(BlockInit.SWITCHABLE_FAN));
@@ -843,7 +846,7 @@ public class ItemInit
 	public static final RegistryObject<Item> ROYAL_TILE = ITEMS.register("royal_tile", () -> new ModBlockItem(BlockInit.ROYAL_TILE));
 	public static final RegistryObject<Item> BLOCK_OF_TIME = ITEMS.register("block_of_time", () -> new ModBlockItem(BlockInit.BLOCK_OF_TIME));
 	public static final RegistryObject<Item> OWL_STATUE = ITEMS.register("owl_statue", () -> new ModBlockItem(BlockInit.OWL_STATUE));
-	public static final RegistryObject<Item> COOKING_POT = ITEMS.register("cooking_pot", () -> new ModBlockItem(BlockInit.COOKING_POT));
+	//public static final RegistryObject<Item> COOKING_POT = ITEMS.register("cooking_pot", () -> new ModBlockItem(BlockInit.COOKING_POT));
 	public static final RegistryObject<Item> SHADOW_BLOCK = ITEMS.register("shadow_block", ShadowBlockItem::new);
 	public static final RegistryObject<Item> HIDDEN_SHADOW_BLOCK = ITEMS.register("hidden_shadow_block", HiddenShadowBlockItem::new);
 	public static final RegistryObject<Item> FALSE_SHADOW_BLOCK = ITEMS.register("false_shadow_block", FalseShadowBlockItem::new);

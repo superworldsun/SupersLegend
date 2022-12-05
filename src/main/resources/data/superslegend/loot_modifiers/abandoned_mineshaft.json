@@ -1,0 +1,11 @@
+{
+   "type":"superslegend:abandoned_mineshaft",
+   "conditions":[
+      {
+         "condition":"forge:loot_table_id",
+         "loot_table_id":"minecraft:chests/abandoned_mineshaft"
+      }
+   ],
+   "table":"superslegend:chest/abandoned_mineshaft",
+   "chance":1.0
+}

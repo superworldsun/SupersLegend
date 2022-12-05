@@ -40,7 +40,7 @@ public class ScentsMask extends Item implements ICurioItem
     public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
         super.appendHoverText(stack, world, list, flag);
         list.add(new StringTextComponent(TextFormatting.YELLOW + "This mask is said to"));
-        list.add(new StringTextComponent(TextFormatting.YELLOW + "enhance ones Piglike senses"));
+        list.add(new StringTextComponent(TextFormatting.YELLOW + "Enhance ones Pig-like senses to smell fungi"));
     }
 
     @Override
