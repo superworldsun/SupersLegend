@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.EffectInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
@@ -21,7 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.*;
@@ -96,8 +96,7 @@ public class MagicIceArrowEntity extends AbstractArrowEntity
 	{
 		super.doPostHurtEffects(entity);
 		playSound(SoundInit.MAGIC_ARROW_HIT_ICE.get(), 1f, 1f);
-		// TODO: create actual FREEZE effect
-		entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 70, 255));
+		entity.addEffect(new EffectInstance(EffectInit.FREEZE.get(), 70, 1, false, false, false));
 	}
 
 	private void applyResistanceAndWeakness(Entity entity) {
