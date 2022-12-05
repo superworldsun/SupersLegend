@@ -3,10 +3,12 @@ package com.superworldsun.superslegend.client.init;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.screen.BagScreen;
 import com.superworldsun.superslegend.client.screen.BigQuiverScreen;
+import com.superworldsun.superslegend.client.screen.BigRingBoxScreen;
 import com.superworldsun.superslegend.client.screen.CookingPotScreen;
 import com.superworldsun.superslegend.client.screen.LetterScreen;
 import com.superworldsun.superslegend.client.screen.MediumQuiverScreen;
 import com.superworldsun.superslegend.client.screen.PostboxScreen;
+import com.superworldsun.superslegend.client.screen.RingBoxScreen;
 import com.superworldsun.superslegend.client.screen.SelectScreen;
 import com.superworldsun.superslegend.client.screen.SmallBombBagScreen;
 import com.superworldsun.superslegend.client.screen.SmallQuiverScreen;
@@ -25,6 +27,8 @@ public class ScreenContainerInit
 	public static void onClientSetup(FMLClientSetupEvent event)
 	{
 		ScreenManager.register(ContainerInit.BAG.get(), BagScreen::new);
+		ScreenManager.register(ContainerInit.RING_BOX.get(), RingBoxScreen::new);
+		ScreenManager.register(ContainerInit.RING_BOX_BIG.get(), BigRingBoxScreen::new);
 		ScreenManager.register(ContainerInit.LETTER.get(), LetterScreen::new);
 		ScreenManager.register(ContainerInit.SMALL_QUIVER.get(), SmallQuiverScreen::new);
 		ScreenManager.register(ContainerInit.MEDIUM_QUIVER.get(), MediumQuiverScreen::new);

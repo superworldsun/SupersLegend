@@ -221,9 +221,12 @@ public class ItemInit
 	public static final RegistryObject<Item> SPOILS_BAG = ITEMS.register("spoils_bag", SpoilsBagItem::new);
 	public static final RegistryObject<Item> DELIVERY_BAG = ITEMS.register("delivery_bag", DeliveryBagItem::new);
 	public static final RegistryObject<Item> BAIT_BAG = ITEMS.register("bait_bag", BaitBagItem::new);
+	public static final RegistryObject<Item> RING_BOX = ITEMS.register("ring_box", RingBoxItem::new);
+	public static final RegistryObject<Item> BIG_RING_BOX = ITEMS.register("big_ring_box", BigRingBoxItem::new);
+	public static final RegistryObject<Item> BIGGEST_RING_BOX = ITEMS.register("biggest_ring_box", BiggestRingBoxItem::new);
 
-	public static final RegistryObject<Item> LETTER = ITEMS.register("letter", Letter::new);
-	public static final RegistryObject<Item> RED_LETTER = ITEMS.register("red_letter", Letter::new);
+	public static final RegistryObject<Item> LETTER = ITEMS.register("letter", LetterItem::new);
+	public static final RegistryObject<Item> RED_LETTER = ITEMS.register("red_letter", LetterItem::new);
 
 	/*public static final RegistryObject<Item> WALLET = ITEMS.register("wallet", SimpleResourceItem::new);
 	public static final RegistryObject<Item> MEDIUM_WALLET = ITEMS.register("medium_wallet", SimpleResourceItem::new);	
