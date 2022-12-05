@@ -1,15 +1,13 @@
 package com.superworldsun.superslegend.client.keys;
 
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.lwjgl.glfw.GLFW;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
+import com.superworldsun.superslegend.items.ammobags.BombBagItem;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.DropBombMessage;
 import com.superworldsun.superslegend.network.message.MaskAbilityMessage;
-import com.superworldsun.superslegend.network.message.SelectInteractionMessage;
-import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
@@ -104,20 +102,11 @@ public class KeyBindings
 			}*/
 			else if (event.getKey() == DROP_BOMB.getKey().getValue())
 			{
-				ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BOMB_BAG.get(), client.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-				ItemStack stack1 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BIG_BOMB_BAG.get(), client.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-				ItemStack stack2 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BIGGEST_BOMB_BAG.get(), client.player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+				boolean hasBombBag = CuriosApi.getCuriosHelper().findEquippedCurio(stack -> stack.getItem() instanceof BombBagItem, client.player).isPresent();
 				
-				if (!stack0.isEmpty() || !stack1.isEmpty() || !stack2.isEmpty())
+				if (hasBombBag)
 				{
-					if (event.getAction() == GLFW.GLFW_PRESS)
-					{
-						NetworkDispatcher.networkChannel.sendToServer(new DropBombMessage(true));
-					}
-					else if (event.getAction() == GLFW.GLFW_RELEASE)
-					{
-						NetworkDispatcher.networkChannel.sendToServer(new DropBombMessage(false));
-					}
+					NetworkDispatcher.networkChannel.sendToServer(new DropBombMessage());
 				}
 			}
 		}
