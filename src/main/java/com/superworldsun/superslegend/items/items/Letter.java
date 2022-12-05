@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.items.items;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.LetterItem;
+import com.superworldsun.superslegend.items.bags.LetterItem;
 
 import net.minecraft.item.ItemStack;
 

@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.items;
+package com.superworldsun.superslegend.items.bags;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.ItemInit;

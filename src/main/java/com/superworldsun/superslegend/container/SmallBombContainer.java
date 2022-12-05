@@ -3,7 +3,7 @@ package com.superworldsun.superslegend.container;
 import com.superworldsun.superslegend.container.slot.BagSlot;
 import com.superworldsun.superslegend.container.slot.LockedSlot;
 import com.superworldsun.superslegend.inventory.BagInventory;
-import com.superworldsun.superslegend.items.BagItem;
+import com.superworldsun.superslegend.items.bags.BagItem;
 import com.superworldsun.superslegend.registries.ContainerInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
