@@ -68,6 +68,7 @@ public class MaskHawkeyemask extends Item implements ICurioItem
 	{
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.WHITE + "A Mask often used by snipers"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants a tighter focus using bows"));
 	}
 	
 	@Override

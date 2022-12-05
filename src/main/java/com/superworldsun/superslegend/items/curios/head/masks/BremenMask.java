@@ -80,7 +80,7 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem
 		super.appendHoverText(stack, world, list, flag);
 		String keybind = KeyBindings.MASK_ABILITY.getKey().getDisplayName().getString();
 		list.add(new StringTextComponent(TextFormatting.WHITE + "A mask animals would love!"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Press '" + keybind + "' to have animals follow you"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold '" + keybind + "' to have animals follow you"));
 	}
 	
 	@Override
