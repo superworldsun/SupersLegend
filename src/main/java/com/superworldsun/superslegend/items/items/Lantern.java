@@ -44,11 +44,9 @@ public class Lantern extends Item
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Provides light on held"));
 		list.add(new StringTextComponent(TextFormatting.RED + "Runs out of fuel, use carefully"));
 	}
-
-	//TODO Make it so the item can be toggled on and off so its not always using fuel when it hand
-
-	//TODO Fix bug where other players cant see light source made
-
+	
+	// TODO Make it so the item can be toggled on and off so its not always using fuel when it hand
+	
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity user, int tick, boolean p_77663_5_)
 	{
@@ -106,50 +104,51 @@ public class Lantern extends Item
 	public static void onClientTick(ClientTickEvent event)
 	{
 		Minecraft minecraft = Minecraft.getInstance();
-		PlayerEntity player = minecraft.player;
+		PlayerEntity clientPlayer = minecraft.player;
 		
-		if (player == null)
-		{
+		if (clientPlayer == null)
 			return;
-		}
 		
-		boolean shouldRemove = true;
-		
-		for (ItemStack stack : player.getHandSlots())
+		minecraft.level.players().forEach(player ->
 		{
-			if (stack.getItem() instanceof Lantern)
+			boolean shouldRemove = true;
+			
+			for (ItemStack stack : player.getHandSlots())
 			{
-				if (stack.getDamageValue() != stack.getMaxDamage())
+				if (stack.getItem() instanceof Lantern)
 				{
-					if (!player.isInWater())
+					if (stack.getDamageValue() != stack.getMaxDamage())
 					{
-						shouldRemove = false;
-						
-						if (!LIT_BLOCKS.containsValue(player.blockPosition()))
+						if (!player.isInWater())
 						{
-							if (LIT_BLOCKS.containsKey(player.getUUID()))
-							{
-								LIT_BLOCKS.forEach((uuid, blockPos) -> player.level.getLightEngine().checkBlock(blockPos));
-								LIT_BLOCKS.replace(player.getUUID(), player.blockPosition());
-							}
-							else
-							{
-								LIT_BLOCKS.put(player.getUUID(), player.blockPosition());
-							}
+							shouldRemove = false;
 							
-							player.level.getLightEngine().onBlockEmissionIncrease(player.blockPosition(), 10);
+							if (!LIT_BLOCKS.containsValue(player.blockPosition()))
+							{
+								if (LIT_BLOCKS.containsKey(player.getUUID()))
+								{
+									LIT_BLOCKS.forEach((uuid, blockPos) -> player.level.getLightEngine().checkBlock(blockPos));
+									LIT_BLOCKS.replace(player.getUUID(), player.blockPosition());
+								}
+								else
+								{
+									LIT_BLOCKS.put(player.getUUID(), player.blockPosition());
+								}
+								
+								player.level.getLightEngine().onBlockEmissionIncrease(player.blockPosition(), 10);
+							}
 						}
 					}
 				}
 			}
-		}
-		
-		if (shouldRemove)
-		{
-			if (LIT_BLOCKS.containsKey(player.getUUID()))
+			
+			if (shouldRemove)
 			{
-				LIT_BLOCKS.forEach((uuid, blockPos) -> player.level.getLightEngine().checkBlock(blockPos));
+				if (LIT_BLOCKS.containsKey(player.getUUID()))
+				{
+					LIT_BLOCKS.forEach((uuid, blockPos) -> player.level.getLightEngine().checkBlock(blockPos));
+				}
 			}
-		}
+		});
 	}
 }
