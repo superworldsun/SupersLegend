@@ -90,7 +90,7 @@ public class ItemModelPropertiesInit
 	
 	private static float isNoMagic(ItemStack itemStack, @Nullable ClientWorld clientWorld, @Nullable LivingEntity livingEntity)
 	{
-		if (livingEntity.getType() != EntityType.PLAYER)
+		if (!(livingEntity instanceof PlayerEntity))
 			return 0F;
 		
 		PlayerEntity player = (PlayerEntity) livingEntity;
