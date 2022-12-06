@@ -58,12 +58,14 @@ public class MaskZoramask extends Item implements IPlayerModelChanger, IEntityRe
 		return new ZoraPlayerModel();
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public ResourceLocation getPlayerTexture(AbstractClientPlayerEntity player)
 	{
 		return new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/zora_player.png");
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{

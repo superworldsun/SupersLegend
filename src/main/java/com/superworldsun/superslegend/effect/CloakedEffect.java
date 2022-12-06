@@ -15,6 +15,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -102,18 +103,13 @@ public class CloakedEffect extends Effect
 	
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public static void onPlayerRender(RenderPlayerEvent.Post event)
+	public static void onHandRender(RenderHandEvent event)
 	{
-		if (event.getPlayer().hasEffect(EffectInit.CLOAKED.get()))
+		Minecraft minecraft = Minecraft.getInstance();
+		
+		if (minecraft.player.hasEffect(EffectInit.CLOAKED.get()))
 		{
-			Minecraft client = Minecraft.getInstance();
-			
-			// if the client player is using lens of truth, he will see cloaked players anyway
-			if (!client.player.isUsingItem() || client.player.getItemInHand(client.player.getUsedItemHand()).getItem() != ItemInit.LENS_OF_TRUTH.get())
-			{
-				// completely disables render of the player (including armor, held items, etc)
-				event.setCanceled(true);
-			}
+			event.setCanceled(true);
 		}
 	}
 }

@@ -40,11 +40,6 @@ public class LensOfTruth extends Item
 	{
 		super(properties);
 	}
-
-	//TODO Cannot use in creative mode at all if players magic is empty from survival
-
-	//TODO Make it so when the item is held with right click it shows a model change
-	// in the players arm for third person etc, the blocking animation would be perfect
 	
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
@@ -86,7 +81,7 @@ public class LensOfTruth extends Item
 	@Override
 	public UseAction getUseAnimation(ItemStack stack)
 	{
-		return UseAction.NONE;
+		return UseAction.BLOCK;
 	}
 	
 	@Override
@@ -95,28 +90,26 @@ public class LensOfTruth extends Item
 		ItemStack itemstack = player.getItemInHand(hand);
 		
 		// Can't use without mana (only in creative)
-		if (ManaProvider.get(player).getMana() < getManaCost() && !player.abilities.instabuild)
+		if (ManaProvider.get(player).getMana() >= getManaCost() || player.abilities.instabuild)
 		{
-			BlockPos currentPos = player.blockPosition();
-			player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ZELDA_ERROR.get(), SoundCategory.PLAYERS, 1f, 1f);
-			return ActionResult.fail(itemstack);
-		}
-		else
-		{
-			BlockPos currentPos = player.blockPosition();
-			player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.LENS_OF_TRUTH_ON.get(), SoundCategory.PLAYERS, 1f, 1f);
+			player.level.playSound(null, player, SoundInit.LENS_OF_TRUTH_ON.get(), SoundCategory.PLAYERS, 1f, 1f);
 			player.startUsingItem(hand);
 			return ActionResult.consume(itemstack);
 		}
+		else
+		{
+			player.level.playSound(null, player, SoundInit.ZELDA_ERROR.get(), SoundCategory.PLAYERS, 1f, 1f);
+			return ActionResult.fail(itemstack);
+		}
 	}
-
+	
 	@Override
 	public void releaseUsing(ItemStack stack, World world, LivingEntity player, int p_77615_4_)
 	{
 		BlockPos currentPos = player.blockPosition();
 		player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.LENS_OF_TRUTH_OFF.get(), SoundCategory.PLAYERS, 1f, 1f);
 	}
-
+	
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
@@ -138,8 +131,8 @@ public class LensOfTruth extends Item
 		
 		PlayerEntity player = (PlayerEntity) user;
 		
-		// Stop using if out of mana
-		if (ManaProvider.get(player).getMana() < getManaCost())
+		// Stop using if out of mana and not in creative mode
+		if (ManaProvider.get(player).getMana() < getManaCost() && !player.abilities.instabuild)
 		{
 			user.stopUsingItem();
 		}

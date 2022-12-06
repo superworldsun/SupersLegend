@@ -55,8 +55,6 @@ public class TemperatureEvents
 		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_HELMET.get(), 0.5F, EquipmentSlotType.HEAD);
 		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_LEGGINGS.get(), 0.5F, EquipmentSlotType.LEGS);
 		addHellHeatResistance(event, ItemInit.GORON_TUNIC.get(), 1.0F, EquipmentSlotType.CHEST);
-		// TODO add this for curio slot
-		// addHellHeatResistance(event, ItemInit.MASK_GORONMASK.get(), 1.0F, EquipmentSlotType.CHEST);
 	}
 	
 	@SubscribeEvent

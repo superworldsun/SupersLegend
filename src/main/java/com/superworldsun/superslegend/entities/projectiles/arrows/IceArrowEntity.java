@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.entities.projectiles.arrows;
 import java.util.List;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.EffectInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -331,8 +332,7 @@ public class IceArrowEntity extends AbstractArrowEntity
     {
         super.doPostHurtEffects(entity);
         playSound(SoundInit.ARROW_HIT_ICE.get(), 1f, 1f);
-        // TODO: create actual FREEZE effect
-        entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 70, 255));
+        entity.addEffect(new EffectInstance(EffectInit.FREEZE.get(), 70, 1, false, false, false));
     }
 
     private boolean shouldFall()

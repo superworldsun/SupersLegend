@@ -8,8 +8,11 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.projectiles.magic.GustEntity;
 import com.superworldsun.superslegend.mana.ManaProvider;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,7 +25,14 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.TickEvent.ClientTickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class DekuLeaf extends Item
 {
 	private final float manacost = 0.02F;
@@ -31,10 +41,28 @@ public class DekuLeaf extends Item
 	{
 		super(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES));
 	}
-
-	//TODO Show the Model of the leaf when the player has magic in creative mode always,
-	// if a player has no magic and is in creative mode it will show the leaf as the no magic model
-
+	
+	@OnlyIn(Dist.CLIENT)
+	@SubscribeEvent
+	public static void onClientTick(ClientTickEvent event)
+	{
+		Minecraft client = Minecraft.getInstance();
+		ClientPlayerEntity player = client.player;
+		
+		if (event.phase == TickEvent.Phase.END && player != null && player.input != null)
+		{
+			if (player.isUsingItem() && player.getUseItem().getItem() instanceof DekuLeaf)
+			{
+				// manually moving player tovards look vector if pressing "forward" key
+				if (player.input.up)
+				{
+					double speed = 0.2;
+					player.move(MoverType.SELF, player.getLookAngle().multiply(speed, 0, speed));
+				}
+			}
+		}
+	}
+	
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand)
 	{
@@ -58,7 +86,6 @@ public class DekuLeaf extends Item
 		}
 		else
 		{
-			
 			if (hasMana)
 			{
 				playerEntity.startUsingItem(hand);
@@ -87,7 +114,6 @@ public class DekuLeaf extends Item
 			// slows fall speed
 			if (player.getDeltaMovement().y < -0.1)
 			{
-				// TODO: manually move player on keyboard input
 				Vector3d movement = player.getDeltaMovement();
 				player.setDeltaMovement(new Vector3d(movement.x, -0.05, movement.z));
 			}
@@ -116,6 +142,7 @@ public class DekuLeaf extends Item
 		return 72000;
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(@Nonnull ItemStack stack, World world, @Nonnull List<ITextComponent> list, @Nonnull ITooltipFlag flag)
 	{
