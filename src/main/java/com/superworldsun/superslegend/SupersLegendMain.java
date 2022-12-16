@@ -32,6 +32,9 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.FlatChunkGenerator;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -75,7 +78,7 @@ public class SupersLegendMain
 		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		// Our listener for setup, it will pick up on anything put into setup
 		// and notify Forge of it
-		//SupersLegendStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
+		SupersLegendStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 		modEventBus.addListener(this::setup);
 		
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupersLegendConfig.SPEC, "superslegend.toml");
@@ -88,8 +91,8 @@ public class SupersLegendMain
 		BlockInit.BLOCKS.register(modEventBus);
 		//BlockItemInit.BLOCKS.register(modEventBus);
 		SoundInit.SOUNDS.register(modEventBus);
-		BiomeInit.BIOMES.register(modEventBus);
-		BiomeInit.registerBiomes();
+		//BiomeInit.BIOMES.register(modEventBus);
+		//BiomeInit.registerBiomes();
 		PaintingInit.PAINTING_TYPES.register(modEventBus);
 		EntityTypeInit.ENTITIES.register(modEventBus);
 		TileEntityInit.TILES.register(modEventBus);
@@ -131,8 +134,8 @@ public class SupersLegendMain
 		// This is for thread-safe operations later on such as world-gen
 		event.enqueueWork(() ->
 		{
-			//SupersLegendStructures.setupStructures();
-			//SupersLegendConfiguredStructures.registerConfiguredStructures();
+			SupersLegendStructures.setupStructures();
+			SupersLegendConfiguredStructures.registerConfiguredStructures();
 		});
 
 		//HOW TO DISPENCER ARROWS
@@ -210,10 +213,21 @@ public class SupersLegendMain
 		 * registrykey. Then that can be fed into the dictionary to get the biome's types.
 		 */
 		/*event.getGeneration().getStructures().add(() -> SupersLegendConfiguredStructures.CONFIGURED_FAIRY_FOUNTAIN);
+
 		if (event.getName().equals(new ResourceLocation("minecraft", "dark_forest"))||
-				event.getName().equals(new ResourceLocation("minecraft", "dark_forest_hills"))) {
-			event.getGeneration().getStructures().add(() -> SupersLegendConfiguredStructures.CONFIGURED_GRAVEYARD);
-		}*/
+				event.getName().equals(new ResourceLocation("minecraft", "dark_forest_hills")))
+			{
+				event.getGeneration().getStructures().add(() -> SupersLegendConfiguredStructures.CONFIGURED_GRAVEYARD);
+			}*/
+
+		if (event.getName().equals(new ResourceLocation("minecraft", "forest")) ||
+			event.getName().equals(new ResourceLocation("minecraft", "flower_forest")) ||
+			event.getName().equals(new ResourceLocation("minecraft", "taiga")) ||
+			event.getName().equals(new ResourceLocation("minecraft", "birch_forest")) ||
+			event.getName().equals(new ResourceLocation("minecraft", "dark_forest")))
+			{
+				event.getGeneration().getStructures().add(() -> SupersLegendConfiguredStructures.CONFIGURED_FARORES_TEMPLE);
+			}
 	}
 
 	/**
@@ -266,12 +280,18 @@ public class SupersLegendMain
 			 * already added your default structure spacing to some dimensions. You would need to override the spacing with .put(...)
 			 * And if you want to do dimension blacklisting, you need to remove the spacing entry entirely from the map below to prevent generation safely.
 			 */
-			/*Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().getGenerator().getSettings().structureConfig());
+			Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().getGenerator().getSettings().structureConfig());
+
 			tempMap.putIfAbsent(SupersLegendStructures.FAIRY_FOUNTAIN.get(),
 					DimensionStructuresSettings.DEFAULTS.get(SupersLegendStructures.FAIRY_FOUNTAIN.get()));
+
 			tempMap.putIfAbsent(SupersLegendStructures.GRAVEYARD.get(),
 					DimensionStructuresSettings.DEFAULTS.get(SupersLegendStructures.GRAVEYARD.get()));
-			serverWorld.getChunkSource().getGenerator().getSettings().structureConfig = tempMap;*/
+
+			tempMap.putIfAbsent(SupersLegendStructures.FARORES_TEMPLE.get(),
+					DimensionStructuresSettings.DEFAULTS.get(SupersLegendStructures.FARORES_TEMPLE.get()));
+
+			serverWorld.getChunkSource().getGenerator().getSettings().structureConfig = tempMap;
 		}
 	}
 	// STRUCTURE GEN CODE ENDS HERE!

@@ -3,6 +3,7 @@ package com.superworldsun.superslegend;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.superworldsun.superslegend.worldgen.structures.FairyFountainStructure;
+import com.superworldsun.superslegend.worldgen.structures.FaroresTempleStructure;
 import com.superworldsun.superslegend.worldgen.structures.GraveyardStructure;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -49,25 +50,32 @@ public class SupersLegendStructures {
             () -> (new FairyFountainStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> GRAVEYARD = DEFERRED_REGISTRY_STRUCTURE.register("graveyard",
             () -> (new GraveyardStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> FARORES_TEMPLE = DEFERRED_REGISTRY_STRUCTURE.register("farores_temp",
+            () -> (new FaroresTempleStructure(NoFeatureConfig.CODEC)));
 
     /**
      * This is where we set the rarity of your structures and determine if land conforms to it.
      * See the comments in below for more details.
      */
     public static void setupStructures() {
-        setupMapSpacingAndLand(
-                FAIRY_FOUNTAIN.get(), /* The instance of the structure */
+
+        setupMapSpacingAndLand(FAIRY_FOUNTAIN.get(), /* The instance of the structure */
                 new StructureSeparationSettings(18 /* average distance apart in chunks between spawn attempts */,
                         9 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         553181766 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
-        setupMapSpacingAndLand(
-                GRAVEYARD.get(), /* The instance of the structure */
+
+        setupMapSpacingAndLand(GRAVEYARD.get(), /* The instance of the structure */
                 new StructureSeparationSettings(24 /* average distance apart in chunks between spawn attempts */,
                         16 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         927414437 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
+        setupMapSpacingAndLand(FARORES_TEMPLE.get(), /* The instance of the structure */
+                new StructureSeparationSettings(16 /* average distance apart in chunks between spawn attempts */,
+                        10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        789414556 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
 
         // Add more structures here and so on
     }

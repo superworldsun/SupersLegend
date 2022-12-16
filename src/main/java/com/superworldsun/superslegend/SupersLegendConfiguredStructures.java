@@ -14,6 +14,7 @@ public class SupersLegendConfiguredStructures {
      */
     public static StructureFeature<?, ?> CONFIGURED_FAIRY_FOUNTAIN = SupersLegendStructures.FAIRY_FOUNTAIN.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_GRAVEYARD = SupersLegendStructures.GRAVEYARD.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_FARORES_TEMPLE = SupersLegendStructures.FARORES_TEMPLE.get().configured(IFeatureConfig.NONE);
 
     /**
      * Registers the configured structure which is what gets added to the biomes.
@@ -26,6 +27,7 @@ public class SupersLegendConfiguredStructures {
         Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;
         Registry.register(registry, new ResourceLocation(SupersLegendMain.MOD_ID, "configured_fairy_fountain"), CONFIGURED_FAIRY_FOUNTAIN);
         Registry.register(registry, new ResourceLocation(SupersLegendMain.MOD_ID, "configured_graveyard"), CONFIGURED_GRAVEYARD);
+        Registry.register(registry, new ResourceLocation(SupersLegendMain.MOD_ID, "configured_farores_temp"), CONFIGURED_FARORES_TEMPLE);
 
         /* Ok so, this part may be hard to grasp but basically, just add your structure to this to
          * prevent any sort of crash or issue with other mod's custom ChunkGenerators. If they use
@@ -44,5 +46,6 @@ public class SupersLegendConfiguredStructures {
          */
         FlatGenerationSettings.STRUCTURE_FEATURES.put(SupersLegendStructures.FAIRY_FOUNTAIN.get(), CONFIGURED_FAIRY_FOUNTAIN);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(SupersLegendStructures.GRAVEYARD.get(), CONFIGURED_GRAVEYARD);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(SupersLegendStructures.FARORES_TEMPLE.get(), CONFIGURED_FARORES_TEMPLE);
     }
 }
