@@ -228,6 +228,18 @@ public class SupersLegendMain
 			{
 				event.getGeneration().getStructures().add(() -> SupersLegendConfiguredStructures.CONFIGURED_FARORES_TEMPLE);
 			}
+
+		if (event.getName().equals(new ResourceLocation("minecraft", "desert")))
+		{
+			event.getGeneration().getStructures().add(() -> SupersLegendConfiguredStructures.CONFIGURED_NAYRUS_TEMPLE);
+		}
+
+		if (event.getName().equals(new ResourceLocation("minecraft", "badlands")) ||
+			event.getName().equals(new ResourceLocation("minecraft", "badlands_plateau")) ||
+			event.getName().equals(new ResourceLocation("minecraft", "modified_badlands_plateau")))
+		{
+			event.getGeneration().getStructures().add(() -> SupersLegendConfiguredStructures.CONFIGURED_DINS_TEMPLE);
+		}
 	}
 
 	/**

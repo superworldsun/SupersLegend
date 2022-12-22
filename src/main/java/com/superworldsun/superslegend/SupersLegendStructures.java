@@ -2,9 +2,7 @@ package com.superworldsun.superslegend;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.superworldsun.superslegend.worldgen.structures.FairyFountainStructure;
-import com.superworldsun.superslegend.worldgen.structures.FaroresTempleStructure;
-import com.superworldsun.superslegend.worldgen.structures.GraveyardStructure;
+import com.superworldsun.superslegend.worldgen.structures.*;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -52,6 +50,10 @@ public class SupersLegendStructures {
             () -> (new GraveyardStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> FARORES_TEMPLE = DEFERRED_REGISTRY_STRUCTURE.register("farores_temp",
             () -> (new FaroresTempleStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> NAYRUS_TEMPLE = DEFERRED_REGISTRY_STRUCTURE.register("nayrus_temp",
+            () -> (new NayrusTempleStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> DINS_TEMPLE = DEFERRED_REGISTRY_STRUCTURE.register("dins_temp",
+            () -> (new DinsTempleStructure(NoFeatureConfig.CODEC)));
 
     /**
      * This is where we set the rarity of your structures and determine if land conforms to it.
@@ -74,7 +76,19 @@ public class SupersLegendStructures {
         setupMapSpacingAndLand(FARORES_TEMPLE.get(), /* The instance of the structure */
                 new StructureSeparationSettings(16 /* average distance apart in chunks between spawn attempts */,
                         10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
-                        789414556 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                        532414726 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
+
+        setupMapSpacingAndLand(NAYRUS_TEMPLE.get(), /* The instance of the structure */
+                new StructureSeparationSettings(16 /* average distance apart in chunks between spawn attempts */,
+                        10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        663414589 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
+
+        setupMapSpacingAndLand(DINS_TEMPLE.get(), /* The instance of the structure */
+                new StructureSeparationSettings(16 /* average distance apart in chunks between spawn attempts */,
+                        10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        99414426 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
         // Add more structures here and so on
