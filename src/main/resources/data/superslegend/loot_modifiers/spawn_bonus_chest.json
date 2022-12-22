@@ -1,0 +1,11 @@
+{
+   "type":"superslegend:add",
+   "conditions":[
+      {
+         "condition":"forge:loot_table_id",
+         "loot_table_id":"minecraft:chests/spawn_bonus_chest"
+      }
+   ],
+   "table":"superslegend:chests/spawn_bonus_chest",
+   "chance":1.0
+}

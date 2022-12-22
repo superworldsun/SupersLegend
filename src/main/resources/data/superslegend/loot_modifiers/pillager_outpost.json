@@ -1,0 +1,11 @@
+{
+   "type":"superslegend:add",
+   "conditions":[
+      {
+         "condition":"forge:loot_table_id",
+         "loot_table_id":"minecraft:chests/pillager_outpost"
+      }
+   ],
+   "table":"superslegend:chests/pillager_outpost",
+   "chance":1.0
+}

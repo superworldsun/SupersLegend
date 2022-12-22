@@ -1,0 +1,35 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls":1.0,
+         "entries":[
+            {
+               "type":"minecraft:item",
+               "weight":37,
+               "name":"superslegend:new_wave_bossa_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":37,
+               "name":"superslegend:serenade_of_water_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":11,
+               "name":"superslegend:water_temple_disc"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":11,
+               "name":"superslegend:heart_piece"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":4,
+               "name":"superslegend:triforce_courage_shard"
+            }
+         ]
+      }
+   ]
+}

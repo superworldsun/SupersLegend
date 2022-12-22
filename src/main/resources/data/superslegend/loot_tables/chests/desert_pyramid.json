@@ -1,0 +1,74 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls": {
+            "min": 0.0,
+            "max": 2.0,
+            "type": "minecraft:uniform"
+         },
+         "entries":[
+            {
+               "type": "minecraft:item",
+               "weight": 55,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 1.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:requiem_of_spirit_sheet"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 25,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 1.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:suns_song_sheet"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 10,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 1.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:elegy_of_emptyness_sheet"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 10,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 1.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:silver_rupee"
+            }
+         ]
+      }
+   ]
+}

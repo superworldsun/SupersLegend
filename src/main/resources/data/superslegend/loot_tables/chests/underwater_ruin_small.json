@@ -4,19 +4,29 @@
       {
          "rolls": {
             "min": 1.0,
-            "max": 3.0,
+            "max": 2.0,
             "type": "minecraft:uniform"
          },
          "entries":[
             {
+               "type":"minecraft:item",
+               "weight":25,
+               "name":"superslegend:new_wave_bossa_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":25,
+               "name":"superslegend:serenade_of_water_sheet"
+            },
+            {
                "type": "minecraft:item",
-               "weight": 55,
+               "weight": 25,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 0.0,
-                        "max": 4.0,
+                        "min": 4.0,
+                        "max": 15.0,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -25,13 +35,13 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 34,
+               "weight": 13,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 0.0,
-                        "max": 2.0,
+                        "min": 1.0,
+                        "max": 5.0,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -40,13 +50,13 @@
             },
             {
                "type":"minecraft:item",
-               "weight":6,
+               "weight":10,
                "name":"superslegend:heart_piece"
             },
             {
                "type":"minecraft:item",
-               "weight":5,
-               "name":"superslegend:nocturne_of_shadow_sheet"
+               "weight":2,
+               "name":"superslegend:triforce_courage_shard"
             }
          ]
       }

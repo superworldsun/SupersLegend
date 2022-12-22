@@ -4,19 +4,19 @@
       {
          "rolls": {
             "min": 1.0,
-            "max": 3.0,
+            "max": 2.0,
             "type": "minecraft:uniform"
          },
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 55,
+               "weight": 30,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 0.0,
-                        "max": 4.0,
+                        "min": 4.0,
+                        "max": 19.0,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -25,13 +25,13 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 34,
+               "weight": 25,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 0.0,
-                        "max": 2.0,
+                        "min": 2.0,
+                        "max": 6.0,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -39,14 +39,34 @@
                "name": "superslegend:blue_rupee"
             },
             {
+               "type": "minecraft:item",
+               "weight": 15,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 4.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:red_rupee"
+            },
+            {
                "type":"minecraft:item",
-               "weight":6,
-               "name":"superslegend:heart_piece"
+               "weight":15,
+               "name":"superslegend:minuet_of_forest_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":10,
+               "name":"superslegend:sonata_of_awakening_sheet"
             },
             {
                "type":"minecraft:item",
                "weight":5,
-               "name":"superslegend:nocturne_of_shadow_sheet"
+               "name":"superslegend:heart_piece"
             }
          ]
       }

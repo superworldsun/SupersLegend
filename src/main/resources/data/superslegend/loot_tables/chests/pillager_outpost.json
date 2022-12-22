@@ -1,0 +1,40 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls":1.0,
+         "entries":[
+            {
+               "type":"minecraft:item",
+               "weight":70,
+               "name":"superslegend:song_of_soaring_sheet"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 20,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 2.0,
+                        "max": 6.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:red_rupee"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":20,
+               "name":"superslegend:heart_piece"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":5,
+               "name":"superslegend:triforce_wisdom_shard"
+            }
+         ]
+      }
+   ]
+}

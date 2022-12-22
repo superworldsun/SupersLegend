@@ -2,51 +2,57 @@
    "type":"minecraft:chest",
    "pools":[
       {
-         "rolls": {
-            "min": 1.0,
-            "max": 3.0,
-            "type": "minecraft:uniform"
-         },
+         "rolls":3.0,
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 55,
+               "weight": 35,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 0.0,
-                        "max": 4.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
-               "name": "superslegend:rupee"
-            },
-            {
-               "type": "minecraft:item",
-               "weight": 34,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 0.0,
+                        "min": 1.0,
                         "max": 2.0,
                         "type": "minecraft:uniform"
                      }
                   }
                ],
-               "name": "superslegend:blue_rupee"
+               "name": "superslegend:letter"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 35,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 2.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:red_letter"
             },
             {
                "type":"minecraft:item",
-               "weight":6,
-               "name":"superslegend:heart_piece"
+               "weight":10,
+               "name":"superslegend:oath_to_order_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":10,
+               "name":"superslegend:amneisa_sheet"
             },
             {
                "type":"minecraft:item",
                "weight":5,
-               "name":"superslegend:nocturne_of_shadow_sheet"
+               "name":"superslegend:song_of_double_time_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":5,
+               "name":"superslegend:inverted_song_of_time_sheet"
             }
          ]
       }

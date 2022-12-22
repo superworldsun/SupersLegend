@@ -1,0 +1,30 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls":1.0,
+         "entries":[
+            {
+               "type":"minecraft:item",
+               "weight":40,
+               "name":"superslegend:zeldas_lullaby_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":35,
+               "name":"superslegend:eponas_song_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":20,
+               "name":"superslegend:sarias_song_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":5,
+               "name":"superslegend:magic_fire_arrow"
+            }
+         ]
+      }
+   ]
+}

@@ -1,0 +1,11 @@
+{
+   "type":"superslegend:add",
+   "conditions":[
+      {
+         "condition":"forge:loot_table_id",
+         "loot_table_id":"minecraft:chests/end_city_treasure"
+      }
+   ],
+   "table":"superslegend:chests/end_city_treasure",
+   "chance":1.0
+}
