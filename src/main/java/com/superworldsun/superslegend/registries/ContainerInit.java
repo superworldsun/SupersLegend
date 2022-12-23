@@ -27,6 +27,7 @@ public class ContainerInit
 	public static final RegistryObject<ContainerType<SelectContainer>> SELECT_CONTAINER = CONTAINERS.register("select_container", () -> IForgeContainerType.create(SelectContainer::new));
 	public static final RegistryObject<ContainerType<RingBoxContainer>> RING_BOX = CONTAINERS.register("ring_box", () -> IForgeContainerType.create(RingBoxContainer::new));
 	public static final RegistryObject<ContainerType<BigRingBoxContainer>> RING_BOX_BIG = CONTAINERS.register("ring_box_big", () -> IForgeContainerType.create(BigRingBoxContainer::new));
+	public static final RegistryObject<ContainerType<BiggestRingBoxContainer>> RING_BOX_BIGGEST = CONTAINERS.register("ring_box_biggest", () -> IForgeContainerType.create(BiggestRingBoxContainer::new));
 	
 	public static final RegistryObject<ContainerType<CookingPotContainer>> COOKING_POT = CONTAINERS.register("cooking_pot", () ->
 			IForgeContainerType.<CookingPotContainer>create((windowId, inv, data) -> {
