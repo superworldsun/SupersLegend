@@ -221,9 +221,9 @@ public class ItemInit
 	public static final RegistryObject<Item> SPOILS_BAG = ITEMS.register("spoils_bag", SpoilsBagItem::new);
 	public static final RegistryObject<Item> DELIVERY_BAG = ITEMS.register("delivery_bag", DeliveryBagItem::new);
 	public static final RegistryObject<Item> BAIT_BAG = ITEMS.register("bait_bag", BaitBagItem::new);
-	public static final RegistryObject<Item> RING_BOX = ITEMS.register("ring_box", RingBoxItem::new);
-	public static final RegistryObject<Item> BIG_RING_BOX = ITEMS.register("big_ring_box", BigRingBoxItem::new);
-	public static final RegistryObject<Item> BIGGEST_RING_BOX = ITEMS.register("biggest_ring_box", BiggestRingBoxItem::new);
+	public static final RegistryObject<Item> RING_BOX_L1 = ITEMS.register("ring_box_l1", RingBoxItem::new);
+	public static final RegistryObject<Item> RING_BOX_L2 = ITEMS.register("ring_box_l2", BigRingBoxItem::new);
+	public static final RegistryObject<Item> RING_BOX_L3 = ITEMS.register("ring_box_l3", BiggestRingBoxItem::new);
 
 	public static final RegistryObject<Item> LETTER = ITEMS.register("letter", LetterItem::new);
 	public static final RegistryObject<Item> RED_LETTER = ITEMS.register("red_letter", LetterItem::new);
@@ -608,10 +608,8 @@ public class ItemInit
 			() -> new ArmorDarkEffects(EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> DARK_LEGGINGS = ITEMS.register("dark_leggings",
 			() -> new ArmorDarkEffects(EquipmentSlotType.LEGS, new Item.Properties().tab(SupersLegendMain.APPAREL)));
-
 	public static final RegistryObject<Item> DARK_BOOTS = ITEMS.register("dark_boots",
 			() -> new ArmorDarkEffects(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.APPAREL)));
-
 	public static final RegistryObject<Item> ZORA_ARMOR_CAP = ITEMS.register("zora_armor_cap",
 			() -> new ArmorZoraArmorEffects(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> ZORA_ARMOR_TUNIC = ITEMS.register("zora_armor_tunic",
@@ -818,8 +816,8 @@ public class ItemInit
 	public static final RegistryObject<Item> PEDESTAL = ITEMS.register("pedestal", () -> new ModBlockItem(BlockInit.PEDESTAL));
 	public static final RegistryObject<Item> FAN = ITEMS.register("fan", () -> new ModBlockItem(BlockInit.FAN));
 	public static final RegistryObject<Item> SWITCHABLE_FAN = ITEMS.register("switchable_fan", () -> new ModBlockItem(BlockInit.SWITCHABLE_FAN));
-	public static final RegistryObject<Item> LIGHT_EMITTER = ITEMS.register("light_emitter", () -> new ModBlockItem(BlockInit.LIGHT_EMITTER));
-	public static final RegistryObject<Item> LIGHT_PRISM = ITEMS.register("light_prism", () -> new ModBlockItem(BlockInit.LIGHT_PRISM));
+	//public static final RegistryObject<Item> LIGHT_EMITTER = ITEMS.register("light_emitter", () -> new ModBlockItem(BlockInit.LIGHT_EMITTER));
+	//public static final RegistryObject<Item> LIGHT_PRISM = ITEMS.register("light_prism", () -> new ModBlockItem(BlockInit.LIGHT_PRISM));
 	public static final RegistryObject<Item> ROYAL_TILE = ITEMS.register("royal_tile", () -> new ModBlockItem(BlockInit.ROYAL_TILE));
 	public static final RegistryObject<Item> BLOCK_OF_TIME = ITEMS.register("block_of_time", () -> new ModBlockItem(BlockInit.BLOCK_OF_TIME));
 	public static final RegistryObject<Item> OWL_STATUE = ITEMS.register("owl_statue", () -> new ModBlockItem(BlockInit.OWL_STATUE));
@@ -827,7 +825,7 @@ public class ItemInit
 	public static final RegistryObject<Item> SHADOW_BLOCK = ITEMS.register("shadow_block", ShadowBlockItem::new);
 	public static final RegistryObject<Item> HIDDEN_SHADOW_BLOCK = ITEMS.register("hidden_shadow_block", HiddenShadowBlockItem::new);
 	public static final RegistryObject<Item> FALSE_SHADOW_BLOCK = ITEMS.register("false_shadow_block", FalseShadowBlockItem::new);
-	public static final RegistryObject<Item> SUN_SWITCH = ITEMS.register("sun_switch", () -> new ModBlockItem(BlockInit.SUN_SWITCH));
+	//public static final RegistryObject<Item> SUN_SWITCH = ITEMS.register("sun_switch", () -> new SunSwitchItem(BlockInit.SUN_SWITCH));
 
 	public static final Map<FoodCategory, Item> foodCategoryItems = Util.make(new EnumMap<FoodCategory, Item>(FoodCategory.class), map ->
 	{
