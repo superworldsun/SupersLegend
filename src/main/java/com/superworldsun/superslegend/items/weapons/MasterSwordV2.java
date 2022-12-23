@@ -15,12 +15,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import java.util.List;
 
 public class MasterSwordV2 extends ItemCustomSword
 {
-
 	public MasterSwordV2(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder)
 	{
 		super(tier, attackDamageIn, attackSpeedIn, builder);
@@ -28,7 +28,7 @@ public class MasterSwordV2 extends ItemCustomSword
 
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
-		if (!playerIn.getCooldowns().isOnCooldown(this))
+		if (playerIn.isCrouching() && !playerIn.getCooldowns().isOnCooldown(this))
 		{
 			if (playerIn.getHealth() >= playerIn.getMaxHealth() || playerIn.isCreative())
 			{
@@ -43,7 +43,7 @@ public class MasterSwordV2 extends ItemCustomSword
 			}
 			else
 			{
-				playerIn.sendMessage(new StringTextComponent(TextFormatting.DARK_RED + "You could not muster the power to manifest a beam, try again with full health!"), null);
+				playerIn.displayClientMessage(new TranslationTextComponent(TextFormatting.RED + "Try again with full health!"), true);
 			}
 
 			playerIn.getCooldowns().addCooldown(this, 20);
