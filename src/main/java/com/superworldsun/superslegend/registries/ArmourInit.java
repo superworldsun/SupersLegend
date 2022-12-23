@@ -33,6 +33,8 @@ public class ArmourInit implements IArmorMaterial
 	public static final ArmourInit FLAMEBREAKER = new ArmourInit("flamebreaker").defence(1, 2, 3, 1);
 	public static final ArmourInit ANCIENT = new ArmourInit("ancient").defence(1, 3, 5, 1).toughness(3.0F);
 	public static final ArmourInit BARBARIAN = new ArmourInit("barbarian").defence(1, 1, 2, 1);
+	public static final ArmourInit SNOWQUILL = new ArmourInit("snowquill").defence(1, 2, 3, 1);
+	public static final ArmourInit DESERTVOE = new ArmourInit("desertvoe").defence(1, 2, 3, 1);
 	public static final ArmourInit CLIMBING = new ArmourInit("climbing").defence(1, 2, 3, 1);
 	public static final ArmourInit FLIPPERS = new ArmourInit("flippers");
 	public static final ArmourInit ROCSCAPE = new ArmourInit("rocscape").defence(0, 0, 2, 0);

@@ -24,7 +24,7 @@ public class DesertVoeArmor extends ArmorItem
 	public DesertVoeArmor(EquipmentSlotType slot)
 	{
 		// change armor material if needed
-		super(ArmourInit.MAGIC, slot, new Properties().tab(SupersLegendMain.APPAREL));
+		super(ArmourInit.DESERTVOE, slot, new Properties().tab(SupersLegendMain.APPAREL));
 	}
 	
 	@SuppressWarnings("unchecked")

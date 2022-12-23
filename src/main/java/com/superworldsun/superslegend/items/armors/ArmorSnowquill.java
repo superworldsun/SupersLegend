@@ -2,25 +2,25 @@ package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.armor.*;
+import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ArmorSnowquill extends ArmorItem
+public class ArmorSnowquill extends NonEnchantArmor
 {
 	private static final Map<EquipmentSlotType, BipedModel<?>> MODELS_CACHE = new HashMap<>();
 
 	public ArmorSnowquill(EquipmentSlotType slot)
 	{
 		// change armor material if needed
-		super(ArmourInit.MAGIC, slot, new Properties().tab(SupersLegendMain.APPAREL));
+		super(ArmourInit.SNOWQUILL, slot, new Properties().tab(SupersLegendMain.APPAREL));
 	}
 	
 	@SuppressWarnings("unchecked")
