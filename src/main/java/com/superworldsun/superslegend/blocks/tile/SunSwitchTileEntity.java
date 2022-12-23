@@ -21,7 +21,11 @@ public class SunSwitchTileEntity extends TileEntity implements ITickableTileEnti
 	{
 		super(TileEntityInit.SUN_SWITCH.get());
 	}
-	
+
+	//TODO had light shine on a sun block and broke the block it was sitting on and it crashed
+
+	//TODO crashed when i tried breaking the sun block itself with light on it
+
 	@Override
 	public void tick()
 	{
