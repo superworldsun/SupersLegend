@@ -1,95 +1,27 @@
 package com.superworldsun.superslegend.items.block;
 
-import javax.annotation.Nullable;
-
-import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.blocks.ShadowBlock;
 import com.superworldsun.superslegend.registries.BlockInit;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ShadowBlockItem extends BlockItem
+import java.util.List;
+
+public class ShadowBlockItem extends ShadowBlockBaseItem
 {
-	public ShadowBlockItem()
-	{
-		super(BlockInit.SHADOW_BLOCK.get(), new Item.Properties().tab(SupersLegendMain.BLOCKS));
-	}
-	
-	protected ShadowBlockItem(Block block)
-	{
-		super(block, new Item.Properties().tab(SupersLegendMain.BLOCKS));
-	}
-	
+	@OnlyIn(Dist.CLIENT)
 	@Override
-	public ActionResultType useOn(ItemUseContext useContext)
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		if (useContext.getPlayer().isCrouching())
-		{
-			BlockState clickedBlockState = useContext.getLevel().getBlockState(useContext.getClickedPos());
-			
-			if (clickedBlockState.getBlock() instanceof ShadowBlock)
-			{
-				return ActionResultType.FAIL;
-			}
-			
-			if (!Block.isShapeFullBlock(clickedBlockState.getShape(useContext.getLevel(), useContext.getClickedPos())))
-			{
-				return ActionResultType.FAIL;
-			}
-			
-			saveDisguiseInStack(useContext.getItemInHand(), useContext.getLevel().getBlockState(useContext.getClickedPos()));
-			return ActionResultType.SUCCESS;
-		}
-		
-		return super.useOn(useContext);
-	}
-	
-	@Override
-	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand)
-	{
-		if (playerEntity.isCrouching())
-		{
-			ItemStack stackInHand = playerEntity.getItemInHand(hand).getStack();
-			
-			if (stackInHand.hasTag())
-			{
-				stackInHand.setTag(null);
-				return ActionResult.success(stackInHand);
-			}
-		}
-		
-		return super.use(world, playerEntity, hand);
-	}
-	
-	@Override
-	public boolean isFoil(ItemStack itemStack)
-	{
-		return itemStack.hasTag() && itemStack.getTag().contains("disguise");
-	}
-	
-	public void saveDisguiseInStack(ItemStack itemStack, @Nullable BlockState disguise)
-	{
-		itemStack.getOrCreateTag().putInt("disguise", Block.getId(disguise));
-	}
-	
-	@Nullable
-	public BlockState loadDisguiseFromStack(ItemStack itemStack)
-	{
-		if (!itemStack.hasTag() || !itemStack.getTag().contains("disguise"))
-		{
-			return null;
-		}
-		
-		return Block.stateById(itemStack.getOrCreateTag().getInt("disguise"));
+		super.appendHoverText(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "This Block copies the looks of others"));
+		list.add(new StringTextComponent(TextFormatting.DARK_PURPLE + "Look at a block and Sneak+RightClick"));
+		list.add(new StringTextComponent(TextFormatting.DARK_PURPLE + "to copy its look."));
+		list.add(new StringTextComponent(TextFormatting.DARK_PURPLE + "Sneak+Right-Click the air to remove copy"));
 	}
 }

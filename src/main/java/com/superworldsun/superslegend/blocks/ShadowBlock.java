@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.blocks.tile.ShadowTileEntity;
-import com.superworldsun.superslegend.items.block.ShadowBlockItem;
+import com.superworldsun.superslegend.items.block.ShadowBlockBaseItem;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -46,9 +46,9 @@ public class ShadowBlock extends Block
 	{
 		ShadowTileEntity tileEntity = (ShadowTileEntity) world.getBlockEntity(blockPos);
 		
-		if (itemStack.getItem() instanceof ShadowBlockItem)
+		if (itemStack.getItem() instanceof ShadowBlockBaseItem)
 		{
-			ShadowBlockItem shadowBlockItem = (ShadowBlockItem) itemStack.getItem();
+			ShadowBlockBaseItem shadowBlockItem = (ShadowBlockBaseItem) itemStack.getItem();
 			tileEntity.setDisguise(shadowBlockItem.loadDisguiseFromStack(itemStack));
 		}
 	}
