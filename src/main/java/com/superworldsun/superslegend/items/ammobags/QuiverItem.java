@@ -14,6 +14,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class QuiverItem extends AmmoContainerItem
 {
@@ -34,7 +36,8 @@ public class QuiverItem extends AmmoContainerItem
 		
 		return ItemTags.ARROWS.contains(ammoItem);
 	}
-	
+
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
 	{

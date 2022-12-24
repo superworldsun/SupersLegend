@@ -40,7 +40,8 @@ public class OcarinaOfTime extends Item
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> showOcarinaScreen());
 		return ActionResult.success(player.getItemInHand(hand));
 	}
-	
+
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag)
 	{

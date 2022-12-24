@@ -13,6 +13,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ArmorZoraArmorEffects extends NonEnchantArmor
 {
@@ -22,6 +24,8 @@ public class ArmorZoraArmorEffects extends NonEnchantArmor
 		super(ArmourInit.ZORAARMOR, slot, properties);
 	}
 
+	@OnlyIn(Dist.CLIENT)
+	@Override
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				

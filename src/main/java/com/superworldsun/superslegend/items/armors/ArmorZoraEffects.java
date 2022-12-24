@@ -53,6 +53,8 @@ public class ArmorZoraEffects extends NonEnchantArmor
             return SupersLegendMain.MOD_ID + ":textures/models/armor/zora_armor.png";
     }
 
+    @OnlyIn(Dist.CLIENT)
+    @Override
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				

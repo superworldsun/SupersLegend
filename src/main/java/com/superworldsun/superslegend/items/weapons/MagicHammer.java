@@ -11,6 +11,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class MagicHammer extends HammerItem
 {
@@ -28,6 +30,7 @@ public class MagicHammer extends HammerItem
 	//TODO When breaking plants there is no particle effect or sound played
 	//TODO Add blocks to the Init, list isnt full
 	//TODO Add a sound for when the hammer hits a block & entity
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{

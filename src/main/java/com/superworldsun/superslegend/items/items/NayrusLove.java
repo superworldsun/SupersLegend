@@ -21,6 +21,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class NayrusLove extends Item
 {
@@ -89,8 +91,9 @@ public class NayrusLove extends Item
     {
         return duration;
     }*/
-	
 
+
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
@@ -98,5 +101,5 @@ public class NayrusLove extends Item
 		list.add(new StringTextComponent(TextFormatting.AQUA + "Grants invinciblity"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
-	}   
+	}
 }

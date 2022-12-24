@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.armor.GoronArmorModel;
 import com.superworldsun.superslegend.client.model.armor.PurpleArmorModel;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
@@ -49,6 +48,8 @@ public class ArmorPurpleEffects extends NonEnchantArmor
         return SupersLegendMain.MOD_ID + ":textures/models/armor/purple_armor.png";
     }
 
+    @OnlyIn(Dist.CLIENT)
+    @Override
     public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				

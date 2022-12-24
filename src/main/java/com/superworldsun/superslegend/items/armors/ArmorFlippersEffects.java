@@ -41,6 +41,7 @@ public class ArmorFlippersEffects extends NonEnchantArmor
         super(ArmourInit.FLIPPERS, slot, properties);
     }
 
+    @OnlyIn(Dist.CLIENT)
     @SuppressWarnings("unchecked")
     @Override
     public <M extends BipedModel<?>> M getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, M _default)
