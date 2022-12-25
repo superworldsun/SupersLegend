@@ -62,32 +62,32 @@ public class SupersLegendStructures {
     public static void setupStructures() {
 
         setupMapSpacingAndLand(FAIRY_FOUNTAIN.get(), /* The instance of the structure */
-                new StructureSeparationSettings(18 /* average distance apart in chunks between spawn attempts */,
-                        9 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                new StructureSeparationSettings(80 /* average distance apart in chunks between spawn attempts */,
+                        65 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         553181766 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
         setupMapSpacingAndLand(GRAVEYARD.get(), /* The instance of the structure */
-                new StructureSeparationSettings(24 /* average distance apart in chunks between spawn attempts */,
-                        16 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                new StructureSeparationSettings(80 /* average distance apart in chunks between spawn attempts */,
+                        65 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         927414437 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
         setupMapSpacingAndLand(FARORES_TEMPLE.get(), /* The instance of the structure */
-                new StructureSeparationSettings(16 /* average distance apart in chunks between spawn attempts */,
-                        10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                new StructureSeparationSettings(80 /* average distance apart in chunks between spawn attempts */,
+                        65 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         532414726 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
         setupMapSpacingAndLand(NAYRUS_TEMPLE.get(), /* The instance of the structure */
-                new StructureSeparationSettings(16 /* average distance apart in chunks between spawn attempts */,
-                        10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                new StructureSeparationSettings(80 /* average distance apart in chunks between spawn attempts */,
+                        65 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         663414589 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
         setupMapSpacingAndLand(DINS_TEMPLE.get(), /* The instance of the structure */
-                new StructureSeparationSettings(16 /* average distance apart in chunks between spawn attempts */,
-                        10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                new StructureSeparationSettings(80 /* average distance apart in chunks between spawn attempts */,
+                        65 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         99414426 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
