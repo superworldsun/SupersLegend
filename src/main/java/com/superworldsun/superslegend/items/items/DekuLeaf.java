@@ -48,13 +48,13 @@ public class DekuLeaf extends Item
 	{
 		Minecraft client = Minecraft.getInstance();
 		ClientPlayerEntity player = client.player;
-		
+
 		if (event.phase == TickEvent.Phase.END && player != null && player.input != null)
 		{
 			if (player.isUsingItem() && player.getUseItem().getItem() instanceof DekuLeaf)
 			{
 				// manually moving player tovards look vector if pressing "forward" key
-				if (player.input.up)
+				if (player.input.up && !player.isOnGround())
 				{
 					double speed = 0.2;
 					player.move(MoverType.SELF, player.getLookAngle().multiply(speed, 0, speed));
