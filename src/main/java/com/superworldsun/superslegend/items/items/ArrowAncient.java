@@ -8,6 +8,7 @@ import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -29,9 +30,12 @@ public class ArrowAncient extends ArrowItem {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new StringTextComponent("An arrow with an ancient power."));
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+    {
+        super.appendHoverText(stack, world, list, flag);
+        list.add(new StringTextComponent(TextFormatting.WHITE + "An arrow with an ancient power."));
+        list.add(new StringTextComponent(TextFormatting.WHITE + "To be struck with one is to be"));
+        list.add(new StringTextComponent(TextFormatting.WHITE + "consigned to oblivion in an instant."));
     }
 
 }
