@@ -34,9 +34,8 @@ public class MagicCape extends Item
 	{
 		super(properties);
 	}
-	//TODO Players hand isnt invisible in first person
 
-	//TODO Make sure it works in multiplayer with other players
+	//TODO Make sure it works in multiplayer with other players, other players can still see invisible player
 
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
@@ -87,10 +86,11 @@ public class MagicCape extends Item
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.RED + "Allows you to slip through many obsticals easier"));
+		list.add(new StringTextComponent(TextFormatting.RED + "Allows you to slip through many obstacles easier"));
 		list.add(new StringTextComponent(TextFormatting.DARK_RED + "Grants invincibility & invisibility"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Sneak + Right-click to cloak"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to uncloak"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Magic on use"));
+		list.add(new StringTextComponent(TextFormatting.RED + "Invisible doesn't work on other players [WIP]"));
 	}
 }
