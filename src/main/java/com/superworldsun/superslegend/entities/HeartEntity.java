@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.entities;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -138,11 +139,15 @@ public class HeartEntity extends Entity {
     @Override
     public void playerTouch(PlayerEntity player) {
         if (!this.level.isClientSide) {
-            if (this.throwTime == 0 && player.getHealth() != player.getMaxHealth()) {
-
+            if (this.throwTime == 0 && player.getHealth() != player.getMaxHealth())
+            {
                 player.heal(value);
-
+                player.heal(value);
+                this.playSound(SoundInit.HEART.get(), 1F, 1F);
                 this.remove();
+
+                //TODO for some reason its not accepting the value shown so the value is put in twice instead of once
+                //player.heal(value);
             }
 
         }
