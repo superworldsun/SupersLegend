@@ -23,6 +23,7 @@ public class VanillaMobDrops
 
 		Random random = new Random();
 
+		//This should make it so any type of monster from other mods should also drop rupees occasionally
 		if (event.getSource().getEntity() instanceof PlayerEntity && event.getEntityLiving() instanceof MonsterEntity &&
 				!(event.getEntityLiving() instanceof BlazeEntity) && !(event.getEntityLiving() instanceof CaveSpiderEntity) &&
 				!(event.getEntityLiving() instanceof CreeperEntity) && !(event.getEntityLiving() instanceof DrownedEntity) &&
@@ -38,12 +39,25 @@ public class VanillaMobDrops
 				!(event.getEntityLiving() instanceof StrayEntity) && !(event.getEntityLiving() instanceof VindicatorEntity) &&
 				!(event.getEntityLiving() instanceof WitchEntity) && !(event.getEntityLiving() instanceof WitherEntity) &&
 				!(event.getEntityLiving() instanceof WitherSkeletonEntity) && !(event.getEntityLiving() instanceof ZombieVillagerEntity) &&
-				!(event.getEntityLiving() instanceof ZombifiedPiglinEntity) && !(event.getEntityLiving() instanceof ZombieEntity)
-		) {
-			if(random.nextInt(8) == 0)
+				!(event.getEntityLiving() instanceof ZombifiedPiglinEntity) && !(event.getEntityLiving() instanceof ZombieEntity))
+		{
+			if(random.nextInt(7) == 0)
 				event.getEntityLiving().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
-			if(random.nextInt(15) == 0)
+			if(random.nextInt(14) == 0)
 				event.getEntityLiving().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(),1));
+		}
+	}
+
+	@SubscribeEvent
+	public void CustomLootRingDrop(LivingDropsEvent event) {
+
+		Random random = new Random();
+
+		//This should make it so any type of monster from other mods should also drop rupees occasionally
+		if (event.getSource().getEntity() instanceof PlayerEntity && event.getEntityLiving() instanceof MonsterEntity)
+		{
+			if(random.nextInt(45) == 0)
+				event.getEntityLiving().spawnAtLocation(new ItemStack(ItemInit.UNAPPRAISED_RING.get(), random.nextInt(3)));
 		}
 	}
 
@@ -52,8 +66,8 @@ public class VanillaMobDrops
 
 		Random random = new Random();
 
-		if (event.getSource().getEntity() instanceof PlayerEntity && (event.getEntityLiving() instanceof BlazeEntity)
-		) {
+		if (event.getSource().getEntity() instanceof PlayerEntity && (event.getEntityLiving() instanceof BlazeEntity))
+		{
 			if(random.nextInt(6) == 0)
 				event.getEntityLiving().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
 			if(random.nextInt(10) == 0)
@@ -68,8 +82,8 @@ public class VanillaMobDrops
 
 		Random random = new Random();
 
-		if (event.getSource().getEntity() instanceof PlayerEntity && (event.getEntityLiving() instanceof CaveSpiderEntity)
-		) {
+		if (event.getSource().getEntity() instanceof PlayerEntity && (event.getEntityLiving() instanceof CaveSpiderEntity))
+		{
 			if(random.nextInt(6) == 0)
 				event.getEntityLiving().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
 			if(random.nextInt(14) == 0)
@@ -84,8 +98,8 @@ public class VanillaMobDrops
 
 		Random random = new Random();
 
-		if (event.getSource().getEntity() instanceof PlayerEntity && (event.getEntityLiving() instanceof CreeperEntity)
-		) {
+		if (event.getSource().getEntity() instanceof PlayerEntity && (event.getEntityLiving() instanceof CreeperEntity))
+		{
 			if(random.nextInt(4) == 0)
 				event.getEntityLiving().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
 			if(random.nextInt(7) == 0)
