@@ -42,11 +42,11 @@ public class SongOfDoubleTime extends OcarinaSong
 		ServerWorld serverWorld = (ServerWorld) level;
 		MinecraftServer minecraftServer = serverWorld.getServer();
 
-		if(serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).get() != 40) {
+		if(serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).get() != 6) {
 			player.sendMessage(new TranslationTextComponent("text.ocarina.doubled", player.getName()), UUID.randomUUID());
 
-			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(40, (p_223561_0_, p_223561_1_) -> {
-			}), 40);
+			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(6, (p_223561_0_, p_223561_1_) -> {
+			}), 6);
 			serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
 			worldTime = 24000 * 3;
 		} else {
@@ -54,8 +54,8 @@ public class SongOfDoubleTime extends OcarinaSong
 			for(int i = 0; i < minecraftServer.getPlayerList().getPlayers().size(); i++){
 				minecraftServer.getPlayerList().getPlayers().get(i).sendMessage(new TranslationTextComponent("text.ocarina.doubled_second", player.getName()), UUID.randomUUID());
 			}
-			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(20, (p_223561_0_, p_223561_1_) -> {
-			}), 20);
+			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(3, (p_223561_0_, p_223561_1_) -> {
+			}), 3);
 			serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
 			worldTime = 0;
 		}
@@ -65,10 +65,10 @@ public class SongOfDoubleTime extends OcarinaSong
 	public static void onWorldTick(TickEvent.ServerTickEvent event) {
 		MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
 		worldTime = worldTime - 1;
-		if (worldTime <= 0 && server.getGameRules().getRule(RULE_RANDOMTICKING).get() == 40) {
+		if (worldTime <= 0 && server.getGameRules().getRule(RULE_RANDOMTICKING).get() == 6) {
 
-			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(20, (p_223561_0_, p_223561_1_) -> {
-			}), 20);
+			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(3, (p_223561_0_, p_223561_1_) -> {
+			}), 3);
 			server.getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, server);
 
 		}
