@@ -2,20 +2,15 @@ package com.superworldsun.superslegend.items.items;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.mana.ManaProvider;
-import net.minecraft.block.AbstractFireBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CampfireBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -48,20 +43,27 @@ public class DinsFire extends Item {
 
    //TODO The fire attack can be used with a instant right click instead of the full charged right click
 
-   //TODO Remove right clicking block to start fire, was old effect
+   //TODO The fire blast also sets the user on fire so it is set to clear fire, find a better solution if possible
 
-   float manaCostArea = 0.50F;
+   float manaCost = 6.0F;
 
    /**
     * If the player has enough mana, and the item has been used for more than 72000 ticks, then set all nearby entities on
     * fire
     */
    @Override
-   public void releaseUsing(ItemStack itemStack, World world, LivingEntity livingEntity, int remainingUseTicks) {
-      if(livingEntity instanceof PlayerEntity) {
-         PlayerEntity player = (PlayerEntity) livingEntity;
-         if (!world.isClientSide) {
-            boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
+   public void releaseUsing(ItemStack itemStack, World world, LivingEntity livingEntity, int remainingUseTicks)
+   {
+      float manacost = 6F;
+      PlayerEntity player = (PlayerEntity) livingEntity;
+      if (ManaProvider.get(player).getMana() >= manacost || player.abilities.instabuild)
+      {
+         if(livingEntity instanceof PlayerEntity)
+         {
+            if (!world.isClientSide)
+            {
+
+               boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
 
             fibonacci_sphere(player);
 
@@ -74,11 +76,18 @@ public class DinsFire extends Item {
             SupersLegendMain.LOGGER.info(!foundTarget.isEmpty());
             SupersLegendMain.LOGGER.info(getUseDuration(itemStack));
 
-            if (!foundTarget.isEmpty() && hasMana && getUseDuration(itemStack) >= 72000) {
-               world.playSound(player, player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundCategory.PLAYERS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-               for (LivingEntity living : foundTarget) {
-                  ManaProvider.get(player).spendMana(manaCostArea);
-                  living.setSecondsOnFire(6);
+            if (!foundTarget.isEmpty() && hasMana && getUseDuration(itemStack) >= 72000)
+               {
+                  world.playSound(player, player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundCategory.PLAYERS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
+                  for (LivingEntity living : foundTarget)
+                  {
+                     ManaProvider.get(player).spendMana(manaCost);
+                     // we need to sync mana after spending it because of server side check
+                     ManaProvider.sync((ServerPlayerEntity) player);
+                     player.getCooldowns().addCooldown(this, 16);
+                     living.setSecondsOnFire(6);
+                     player.clearFire();
+                  }
                }
             }
          }
@@ -122,46 +131,6 @@ public class DinsFire extends Item {
       ItemStack itemstack = player.getItemInHand(hand);
       player.startUsingItem(hand);
       return ActionResult.consume(itemstack);
-   }
-
-   /**
-    * Called when this item is used when targeting a Block
-    */
-
-   float manaCost = 3.00F;
-   public ActionResultType useOn(ItemUseContext context) {
-      boolean hasMana = ManaProvider.get(context.getPlayer()).getMana() >= manaCost || context.getPlayer().abilities.instabuild;
-      PlayerEntity playerentity = context.getPlayer();
-      World world = context.getLevel();
-      BlockPos blockpos = context.getClickedPos();
-      BlockState blockstate = world.getBlockState(blockpos);
-      if (CampfireBlock.canLight(blockstate) && hasMana) {
-         world.playSound(playerentity, blockpos, SoundEvents.FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-         world.setBlock(blockpos, blockstate.setValue(BlockStateProperties.LIT, Boolean.valueOf(true)), 11);
-         ManaProvider.get(context.getPlayer()).spendMana(manaCost);
-
-         return ActionResultType.sidedSuccess(world.isClientSide());
-      } else {
-         BlockPos blockpos1 = blockpos.relative(context.getClickedFace());
-         if (AbstractFireBlock.canBePlacedAt(world, blockpos1, context.getHorizontalDirection()) && hasMana) {
-            world.playSound(playerentity, blockpos1, SoundEvents.FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-            BlockState blockstate1 = AbstractFireBlock.getState(world, blockpos1);
-            world.setBlock(blockpos1, blockstate1, 11);
-            ManaProvider.get(context.getPlayer()).spendMana(manaCost);
-
-            return ActionResultType.sidedSuccess(world.isClientSide());
-         } else {
-            return ActionResultType.FAIL;
-         }
-      }
-   }
-
-   /**
-    * Checks the passed block state for a campfire block, if it is not waterlogged and not lit.
-    */
-   @SuppressWarnings("unused")
-   public static boolean isUnlitCampfire(BlockState state) {
-      return state.getBlock() == Blocks.CAMPFIRE && !state.getValue(BlockStateProperties.WATERLOGGED) && !state.getValue(BlockStateProperties.LIT);
    }
 
    @OnlyIn(Dist.CLIENT)
