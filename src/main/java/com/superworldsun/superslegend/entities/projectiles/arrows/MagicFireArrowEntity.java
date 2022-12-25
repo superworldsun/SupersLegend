@@ -3,6 +3,8 @@ package com.superworldsun.superslegend.entities.projectiles.arrows;
 import java.util.List;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.items.custom.ItemGuardianSword;
+import com.superworldsun.superslegend.items.shields.DekuShield;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -16,7 +18,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
@@ -49,6 +53,7 @@ public class MagicFireArrowEntity extends AbstractArrowEntity
 	protected void doPostHurtEffects(LivingEntity entity)
 	{
 		super.doPostHurtEffects(entity);
+		entity.setSecondsOnFire(6);
 		playSound(SoundInit.MAGIC_ARROW_HIT_FIRE.get(), 1f, 1f);
 	}
 	
@@ -83,7 +88,6 @@ public class MagicFireArrowEntity extends AbstractArrowEntity
 
 		Entity entity = rayTraceResult.getEntity();
 		if (entity.isAlive()) {
-			entity.setSecondsOnFire(6);
 			applyResistanceAndWeakness(entity);
 		}
 		if (entity instanceof LivingEntity) {
@@ -92,6 +96,17 @@ public class MagicFireArrowEntity extends AbstractArrowEntity
 			this.getBaseDamage();
 			if (!this.level.isClientSide && this.getPierceLevel() <= 0) {
 				livingentity.setArrowCount(livingentity.getArrowCount() - 1);
+			}
+		}
+
+		if(entity instanceof PlayerEntity)
+		{
+			PlayerEntity player = (PlayerEntity)entity;
+			{
+					if(player.getMainHandItem().getItem() instanceof DekuShield || player.getOffhandItem().getItem() instanceof DekuShield)
+					{
+						entity.setSecondsOnFire(6);
+					}
 			}
 		}
 	}
