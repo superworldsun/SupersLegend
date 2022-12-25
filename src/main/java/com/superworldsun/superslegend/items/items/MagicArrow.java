@@ -26,7 +26,7 @@ public abstract class MagicArrow extends ArrowItem
 {
 	public MagicArrow()
 	{
-		super(new Item.Properties().tab(SupersLegendMain.RESOURCES));
+		super(new Item.Properties().tab(SupersLegendMain.RESOURCES).stacksTo(1));
 	}
 	
 	@Override

@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.tags.FluidTags;
@@ -137,12 +138,19 @@ public class MagicJarEntity extends Entity {
     /**
      * This function allows the entity to be "consumed" and restore mana (player).
      */
+    //TODO add a custom sound effect for magic pick up
     @Override
     public void playerTouch(PlayerEntity player) {
-        if (!this.level.isClientSide) {
+        if (!this.level.isClientSide)
+        {
             IMana mana = ManaProvider.get(player);
-            if (this.throwTime == 0 && mana.getMana() != mana.getMaxMana()) {
-                mana.restoreMana(value);
+            if (this.throwTime == 0 && mana.getMana() != mana.getMaxMana())
+            {
+                ManaProvider.sync((ServerPlayerEntity) player);
+                ManaProvider.get(player).restoreMana(3);
+                ManaProvider.sync((ServerPlayerEntity) player);
+                //this.playSound(SoundInit.HEART.get(), 1F, 1F);
+                //mana.restoreMana(value);
                 this.remove();
             }
 
