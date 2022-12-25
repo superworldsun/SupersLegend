@@ -78,6 +78,33 @@ public class DekuStickLit extends Item
 		return true;
 	}
 
+	public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
+	{
+
+		if (stack.getDamageValue() < stack.getMaxDamage())
+			{
+				stack.setDamageValue(stack.getDamageValue() + 1);
+			}
+
+		if (stack.getDamageValue() == stack.getMaxDamage())
+			{
+					entity.playSound(SoundEvents.ITEM_BREAK, 1F, 1F);
+
+					Random rand = entity.level.random;
+					for (int i = 0; i < 10; i++)
+						{
+						entity.level.addParticle(new ItemParticleData(ParticleTypes.ITEM, new ItemStack(ItemInit.DEKU_STICK.get())),
+								entity.xo + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 0.2f,
+								entity.yo + rand.nextFloat() * 1 - -1,
+								entity.zo + (rand.nextBoolean() ? -1 : 1) * Math.pow(rand.nextFloat(), 1) * 0.2f,
+								0, 0.105D, 0);
+						}
+						stack.shrink(1);
+			}
+
+
+	}
+
 	public ActionResultType useOn(ItemUseContext context) {
 		PlayerEntity player = context.getPlayer();
 		World worldIn = context.getLevel();
