@@ -30,6 +30,7 @@ public class KeyBindings
 	//Dosent work as intended and is incomplete
 	//public static final KeyBinding SELECT_INVENTORY = new KeyBinding("key.select_inventory", GLFW.GLFW_KEY_C, "key.categories." + SupersLegendMain.MOD_ID);
 	public static final KeyBinding DROP_BOMB = new KeyBinding("key.drop_bomb", GLFW.GLFW_KEY_N, "key.categories." + SupersLegendMain.MOD_ID);
+	//public static final KeyBinding CRAWL = new KeyBinding("key.crawl", GLFW.GLFW_KEY_H, "key.categories." + SupersLegendMain.MOD_ID);
 	
 	@SubscribeEvent
 	public static void onClientSetup(FMLClientSetupEvent event)
@@ -37,6 +38,7 @@ public class KeyBindings
 		ClientRegistry.registerKeyBinding(MASK_ABILITY);
 		//ClientRegistry.registerKeyBinding(SELECT_INVENTORY);
 		ClientRegistry.registerKeyBinding(DROP_BOMB);
+		//ClientRegistry.registerKeyBinding(CRAWL);
 	}
 	
 	@EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
@@ -112,6 +114,17 @@ public class KeyBindings
 					}
 				}
 			}
+
+			//TODO make a keybind that when pressed it will make th player crawl
+			/*else if (event.getKey() == CRAWL.getKey().getValue())
+			{
+				if (event.getAction() == GLFW.GLFW_PRESS)
+				{
+					System.out.println("crawling");
+					client.player.isSwimming();
+					client.player.setSwimming(true);
+				}
+			}*/
 		}
 	}
 }
