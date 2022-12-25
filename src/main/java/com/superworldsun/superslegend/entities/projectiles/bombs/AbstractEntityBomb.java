@@ -105,6 +105,17 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
             this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_FUSE.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
         }
 
+        if (this.isOnFire())
+        {
+            explode();
+        }
+
+        if (this.isInWater())
+        {
+            this.playSound(SoundInit.BOMB_DEFUSE.get(), 1.0F, 1.0F);
+            this.remove();
+        }
+
         if (!this.level.isClientSide) {
 
 
@@ -120,21 +131,9 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
             if (this.ticksToExplode <= this.tickCount) {
                 explode();
             }
-
             spawnParticles(previousPosition, newPosition);
-            //TODO Bomb dosent blow up when in flowing lava, only source blocks
-            BlockRayTraceResult blockRTR = rayTrace(previousPosition, newPosition);
-            if (this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.LAVA.defaultBlockState() ||
-                    this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.FIRE.defaultBlockState() ||
-                    this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.SOUL_FIRE.defaultBlockState()) {
-                explode();
-            }
-            //TODO bomb dosent remove when in flowing water, only source blocks
-            if (this.level.getBlockState(blockRTR.getBlockPos()) == Blocks.WATER.defaultBlockState()) {
-                this.playSound(SoundInit.BOMB_DEFUSE.get(), 1.0F, 1.0F);
-                this.remove();
-            }
 
+            BlockRayTraceResult blockRTR = rayTrace(previousPosition, newPosition);
         }
         else
         {
