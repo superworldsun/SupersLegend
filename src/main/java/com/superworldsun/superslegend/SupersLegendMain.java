@@ -3,6 +3,7 @@ package com.superworldsun.superslegend;
 import com.mojang.serialization.Codec;
 import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
+import com.superworldsun.superslegend.events.AncientArrowDropEvents;
 import com.superworldsun.superslegend.hookshotCap.SyncToClient;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
@@ -87,6 +88,7 @@ public class SupersLegendMain
 		// otherwise if you don't
 		VanillaMobDrops customloot = new VanillaMobDrops();
 		MinecraftForge.EVENT_BUS.register(customloot);
+		MinecraftForge.EVENT_BUS.register(new AncientArrowDropEvents());
 		ItemInit.ITEMS.register(modEventBus);
 		BlockInit.BLOCKS.register(modEventBus);
 		//BlockItemInit.BLOCKS.register(modEventBus);
