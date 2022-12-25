@@ -317,7 +317,7 @@ public class ItemInit
 	public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick",
 			() -> new DekuStick(new Item.Properties().stacksTo(15).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit",
-			() -> new DekuStickLit(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+			() -> new DekuStickLit(new Item.Properties().stacksTo(1).durability(400).tab(SupersLegendMain.RESOURCES)));
 	/*public static final RegistryObject<Item> DEKU_NUTS = ITEMS.register("deku_nuts",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
 	public static final RegistryObject<Item> EMPTY_CONTAINER = ITEMS.register("empty_container",
@@ -782,7 +782,7 @@ public class ItemInit
 	public static final RegistryObject<Item> SILVER_RUPEE_BLOCK = ITEMS.register("silver_rupee_block", () -> new ModBlockItem(BlockInit.SILVER_RUPEE_BLOCK));
 	public static final RegistryObject<Item> GOLD_RUPEE_BLOCK = ITEMS.register("gold_rupee_block", () -> new ModBlockItem(BlockInit.GOLD_RUPEE_BLOCK));
 	public static final RegistryObject<Item> SPIKES_BLOCK = ITEMS.register("spikes_block", () -> new ModBlockItem(BlockInit.SPIKES_BLOCK));
-	public static final RegistryObject<Item> GOSSIP_STONE_BLOCK = ITEMS.register("gossip_stone_block", () -> new ModBlockItem(BlockInit.GOSSIP_STONE_BLOCK));
+	public static final RegistryObject<Item> GOSSIP_STONE_BLOCK = ITEMS.register("gossip_stone_block", () -> new GossipStoneItem(BlockInit.GOSSIP_STONE_BLOCK));
 	public static final RegistryObject<Item> BUSH_BLOCK = ITEMS.register("bush_block", () -> new ModBlockItem(BlockInit.BUSH_BLOCK));
 	public static final RegistryObject<Item> CHAIN_LINK_FENCE_BLOCK = ITEMS.register("chain_link_fence_block", () -> new ModBlockItem(BlockInit.CHAIN_LINK_FENCE_BLOCK));
 	public static final RegistryObject<Item> GRAPPLE_BLOCK = ITEMS.register("grapple_block", () -> new ModBlockItem(BlockInit.GRAPPLE_BLOCK));
@@ -791,7 +791,7 @@ public class ItemInit
 	public static final RegistryObject<Item> POT_BLOCK = ITEMS.register("pot_block", () -> new ModBlockItem(BlockInit.POT_BLOCK));
 	public static final RegistryObject<Item> JAR_BLOCK = ITEMS.register("jar_block", () -> new ModBlockItem(BlockInit.JAR_BLOCK));
 	public static final RegistryObject<Item> POSTBOX_BLOCK = ITEMS.register("postbox_block", () -> new ModBlockItem(BlockInit.POSTBOX_BLOCK));
-	public static final RegistryObject<Item> GRATE_BLOCK = ITEMS.register("grate_block", () -> new ModBlockItem(BlockInit.GRATE_BLOCK));
+	public static final RegistryObject<Item> GRATE_BLOCK = ITEMS.register("grate_block", () -> new GrateItem(BlockInit.GRATE_BLOCK));
 	public static final RegistryObject<Item> GRASS_PATCH_BLOCK = ITEMS.register("grass_patch_block", () -> new ModBlockItem(BlockInit.GRASS_PATCH_BLOCK));
 	public static final RegistryObject<Item> ODD_MUSHROOM = ITEMS.register("odd_mushroom", () -> new ModBlockItem(BlockInit.ODD_MUSHROOM));
 	public static final RegistryObject<Item> MAGIC_MUSHROOM = ITEMS.register("magic_mushroom", () -> new ModBlockItem(BlockInit.MAGIC_MUSHROOM));
@@ -801,9 +801,9 @@ public class ItemInit
 	public static final RegistryObject<Item> YELLOW_FLOOR_SWITCH = ITEMS.register("yellow_floor_switch", () -> new ModBlockItem(BlockInit.YELLOW_FLOOR_SWITCH));
 	public static final RegistryObject<Item> RED_FLOOR_SWITCH = ITEMS.register("red_floor_switch", () -> new ModBlockItem(BlockInit.RED_FLOOR_SWITCH));
 	public static final RegistryObject<Item> RUSTED_FLOOR_SWITCH = ITEMS.register("rusted_floor_switch", () -> new ModBlockItem(BlockInit.RUSTED_FLOOR_SWITCH));
-	public static final RegistryObject<Item> WOODEN_PEG_BLOCK = ITEMS.register("wooden_peg_block", () -> new ModBlockItem(BlockInit.WOODEN_PEG_BLOCK));
-	public static final RegistryObject<Item> RUSTED_PEG_BLOCK = ITEMS.register("rusted_peg_block", () -> new ModBlockItem(BlockInit.RUSTED_PEG_BLOCK));
-	public static final RegistryObject<Item> SPIKED_PEG_BLOCK = ITEMS.register("spiked_peg_block", () -> new ModBlockItem(BlockInit.SPIKED_PEG_BLOCK));
+	public static final RegistryObject<Item> WOODEN_PEG_BLOCK = ITEMS.register("wooden_peg_block", () -> new WoodenPegItem(BlockInit.WOODEN_PEG_BLOCK));
+	public static final RegistryObject<Item> RUSTED_PEG_BLOCK = ITEMS.register("rusted_peg_block", () -> new RustedPegItem(BlockInit.RUSTED_PEG_BLOCK));
+	public static final RegistryObject<Item> SPIKED_PEG_BLOCK = ITEMS.register("spiked_peg_block", () -> new SpikedPegItem(BlockInit.SPIKED_PEG_BLOCK));
 	public static final RegistryObject<Item> TOMBSTONE_BLOCK = ITEMS.register("tombstone_block", () -> new ModBlockItem(BlockInit.TOMBSTONE_BLOCK));
 	public static final RegistryObject<Item> STONE_PATH_BLOCK = ITEMS.register("stone_path_block", () -> new ModBlockItem(BlockInit.STONE_PATH_BLOCK));
 	public static final RegistryObject<Item> STONE_TILE_BLOCK = ITEMS.register("stone_tile_block", () -> new ModBlockItem(BlockInit.STONE_TILE_BLOCK));
@@ -818,7 +818,7 @@ public class ItemInit
 	public static final RegistryObject<Item> SWITCHABLE_FAN = ITEMS.register("switchable_fan", () -> new ModBlockItem(BlockInit.SWITCHABLE_FAN));
 	//public static final RegistryObject<Item> LIGHT_EMITTER = ITEMS.register("light_emitter", () -> new ModBlockItem(BlockInit.LIGHT_EMITTER));
 	//public static final RegistryObject<Item> LIGHT_PRISM = ITEMS.register("light_prism", () -> new ModBlockItem(BlockInit.LIGHT_PRISM));
-	public static final RegistryObject<Item> ROYAL_TILE = ITEMS.register("royal_tile", () -> new ModBlockItem(BlockInit.ROYAL_TILE));
+	public static final RegistryObject<Item> ROYAL_TILE = ITEMS.register("royal_tile", () -> new RoyalTileItem(BlockInit.ROYAL_TILE));
 	public static final RegistryObject<Item> BLOCK_OF_TIME = ITEMS.register("block_of_time", () -> new ModBlockItem(BlockInit.BLOCK_OF_TIME));
 	public static final RegistryObject<Item> OWL_STATUE = ITEMS.register("owl_statue", () -> new ModBlockItem(BlockInit.OWL_STATUE));
 	//public static final RegistryObject<Item> COOKING_POT = ITEMS.register("cooking_pot", () -> new ModBlockItem(BlockInit.COOKING_POT));
