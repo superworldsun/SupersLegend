@@ -96,7 +96,10 @@ public class MagicIceArrowEntity extends AbstractArrowEntity
 	{
 		super.doPostHurtEffects(entity);
 		playSound(SoundInit.MAGIC_ARROW_HIT_ICE.get(), 1f, 1f);
-		entity.addEffect(new EffectInstance(EffectInit.FREEZE.get(), 70, 1, false, false, false));
+		if (!entity.hasEffect(EffectInit.FREEZE.get()))
+		{
+			entity.addEffect(new EffectInstance(EffectInit.FREEZE.get(), 70, 1, false, false, false));
+		}
 	}
 
 	private void applyResistanceAndWeakness(Entity entity) {
