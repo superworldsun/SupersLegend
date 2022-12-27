@@ -9,6 +9,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -32,25 +33,34 @@ public class InvertedSongOfTime extends OcarinaSong
 		return SoundInit.INVERTED_SONG_OF_TIME.get();
 	}
 
+	//TODO Fix server crashing bug.
+	// When bug is fixed make it so this works on any instance, not just single player
 	@Override
 	public void onSongPlayed(PlayerEntity player, World level)
 	{
 		ServerWorld serverWorld = (ServerWorld) level;
 		MinecraftServer minecraftServer = serverWorld.getServer();
 
-		if(serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).get() != 1) {
-			player.sendMessage(new TranslationTextComponent("text.ocarina.inverted", player.getName()), UUID.randomUUID());
+		if (minecraftServer.isSingleplayer())
+		{
+			if (serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).get() != 1) {
+				player.sendMessage(new TranslationTextComponent("text.ocarina.inverted", player.getName()), UUID.randomUUID());
 
-			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(1, (p_223561_0_, p_223561_1_) -> {
-			}), 1);
-			serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
+				GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(1, (p_223561_0_, p_223561_1_) -> {
+				}), 1);
+				serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
 
-		} else {
-			player.sendMessage(new TranslationTextComponent("text.ocarina.inverted_second", player.getName()), UUID.randomUUID());
+			} else {
+				player.sendMessage(new TranslationTextComponent("text.ocarina.inverted_second", player.getName()), UUID.randomUUID());
 
-			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(3, (p_223561_0_, p_223561_1_) -> {
-			}), 3);
-			serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
+				GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(3, (p_223561_0_, p_223561_1_) -> {
+				}), 3);
+				serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
+			}
+		}
+		if (!minecraftServer.isSingleplayer())
+		{
+			player.displayClientMessage(new TranslationTextComponent(TextFormatting.RED + "You cant use this in a world with other players"), true);
 		}
 	}
 }

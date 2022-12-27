@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.play.server.SUpdateTimePacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -36,28 +37,39 @@ public class SongOfDoubleTime extends OcarinaSong
 		return SoundInit.SONG_OF_DOUBLE_TIME.get();
 	}
 
+	//TODO Fix server crashing bug, crash report says its line 55.
+	// When bug is fixed make it so this works on any instance, not just single player
 	@Override
 	public void onSongPlayed(PlayerEntity player, World level)
 	{
 		ServerWorld serverWorld = (ServerWorld) level;
 		MinecraftServer minecraftServer = serverWorld.getServer();
 
-		if(serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).get() != 6) {
-			player.sendMessage(new TranslationTextComponent("text.ocarina.doubled", player.getName()), UUID.randomUUID());
+		if (minecraftServer.isSingleplayer())
+		{
+			if (serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).get() != 6)
+				{
+				player.sendMessage(new TranslationTextComponent("text.ocarina.doubled", player.getName()), UUID.randomUUID());
 
-			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(6, (p_223561_0_, p_223561_1_) -> {
-			}), 6);
-			serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
-			worldTime = 24000 * 3;
-		} else {
+				GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(6, (p_223561_0_, p_223561_1_) -> {}), 6);
+				serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
+				worldTime = 24000 * 3;
+				}
+				else
+				{
 
-			for(int i = 0; i < minecraftServer.getPlayerList().getPlayers().size(); i++){
+				for(int i = 0; i < minecraftServer.getPlayerList().getPlayers().size(); i++){
 				minecraftServer.getPlayerList().getPlayers().get(i).sendMessage(new TranslationTextComponent("text.ocarina.doubled_second", player.getName()), UUID.randomUUID());
+				}
+				GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(3, (p_223561_0_, p_223561_1_) -> {
+				}), 3);
+				serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
+				worldTime = 0;
 			}
-			GameRules.IntegerValue integerValue = new GameRules.IntegerValue(GameRules.IntegerValue.create(3, (p_223561_0_, p_223561_1_) -> {
-			}), 3);
-			serverWorld.getServer().getGameRules().getRule(RULE_RANDOMTICKING).setFrom(integerValue, minecraftServer);
-			worldTime = 0;
+		}
+		if (!minecraftServer.isSingleplayer())
+		{
+			player.displayClientMessage(new TranslationTextComponent(TextFormatting.RED + "You cant use this in a world with other players"), true);
 		}
 	}
 
@@ -73,5 +85,4 @@ public class SongOfDoubleTime extends OcarinaSong
 
 		}
 	}
-
 }

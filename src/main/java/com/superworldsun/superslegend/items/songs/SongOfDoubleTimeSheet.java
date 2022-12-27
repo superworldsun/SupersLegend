@@ -20,5 +20,6 @@ public class SongOfDoubleTimeSheet extends SongSheetItem
 	{
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Playing this will accelerate the passage of time."));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Play a second time to return it to normal"));
+		list.add(new StringTextComponent(TextFormatting.RED + "Only works in single player"));
 	}
 }
