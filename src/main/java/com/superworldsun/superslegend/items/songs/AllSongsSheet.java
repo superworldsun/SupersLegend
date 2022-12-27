@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.songs;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.SupersLegendRegistries;
@@ -18,6 +19,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -46,6 +48,7 @@ public class AllSongsSheet extends Item
 		
 		if (!world.isClientSide)
 		{
+			playerEntity.sendMessage(new TranslationTextComponent("You have learned all available songs"), UUID.randomUUID());
 			SupersLegendRegistries.OCARINA_SONGS.forEach(song ->
 			{
 				if (!learnedSongs.contains(song))

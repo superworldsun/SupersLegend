@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.songs;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.songs.LearnedSongsProvider;
@@ -17,6 +18,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -44,6 +46,7 @@ public class AmnesiaSheet extends Item
 		
 		if (!world.isClientSide)
 		{
+			playerEntity.sendMessage(new TranslationTextComponent("You have forgotten all songs"), UUID.randomUUID());
 			learnedSongs.clear();
 			LearnedSongsProvider.sync((ServerPlayerEntity) playerEntity);
 		}
