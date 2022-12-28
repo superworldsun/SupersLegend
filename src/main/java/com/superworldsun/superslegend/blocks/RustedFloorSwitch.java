@@ -5,11 +5,9 @@ import java.util.Random;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AbstractPressurePlateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -20,15 +18,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ToolType;
 
 public class RustedFloorSwitch extends AbstractPressurePlateBlock
 {
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 	
-	public RustedFloorSwitch()
+	public RustedFloorSwitch(Properties properties)
 	{
-		super(AbstractBlock.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE));
+		super(properties);
 		registerDefaultState(stateDefinition.any().setValue(POWERED, false));
 	}
 	

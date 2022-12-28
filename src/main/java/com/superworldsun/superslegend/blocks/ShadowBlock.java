@@ -6,21 +6,18 @@ import com.superworldsun.superslegend.items.block.ShadowBlockBaseItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
 
 public class ShadowBlock extends Block
 {
-	public ShadowBlock()
+	public ShadowBlock(Properties properties)
 	{
-		super(Block.Properties.of(Material.METAL).noOcclusion().strength(4.0F, 3.25F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops());
+		super(properties);
 	}
 	
 	@Override

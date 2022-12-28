@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.registries.PropertiesInit;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -23,9 +22,9 @@ public class PostboxTopBlock extends Block
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	protected static final VoxelShape SHAPE = Block.box(0.0D, -16.0D, 2.0D, 16.0D, 5.0D, 14.0D);
 
-	public PostboxTopBlock()
+	public PostboxTopBlock(Properties properties)
 	{
-		super(PropertiesInit.WRECKAGE);
+		super(properties);
 		registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 	

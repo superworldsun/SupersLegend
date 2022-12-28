@@ -1,9 +1,7 @@
 package com.superworldsun.superslegend.blocks;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
@@ -19,9 +17,9 @@ public class TimeBlock extends Block
 	protected static final VoxelShape SHAPE_FULL = Block.box(0D, 0D, 0D, 16D, 16D, 16D);
 	protected static final VoxelShape SHAPE_HIDDEN = Block.box(0D, 0D, 0D, 0D, 0D, 0D);
 	
-	public TimeBlock()
+	public TimeBlock(Properties properties)
 	{
-		super(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(0.5F));
+		super(properties);
 		registerDefaultState(stateDefinition.any().setValue(HIDDEN, false));
 	}
 	

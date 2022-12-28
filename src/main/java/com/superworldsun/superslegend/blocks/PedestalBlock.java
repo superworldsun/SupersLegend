@@ -5,7 +5,6 @@ import com.superworldsun.superslegend.util.BlockShapeHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -23,16 +22,15 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
 
 public class PedestalBlock extends Block
 {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	protected static final VoxelShape SHAPE = Block.box(2, 0, 5, 14, 4, 11);
 	
-	public PedestalBlock()
+	public PedestalBlock(Properties properties)
 	{
-		super(Properties.of(Material.STONE).strength(10.0F, 1000.0F).harvestLevel(1).harvestTool(ToolType.PICKAXE));
+		super(properties);
 		registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 	

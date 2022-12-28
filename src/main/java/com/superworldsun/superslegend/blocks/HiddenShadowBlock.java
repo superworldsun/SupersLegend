@@ -22,6 +22,10 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
 public class HiddenShadowBlock extends ShadowBlock
 {
+	public HiddenShadowBlock(Properties properties) {
+		super(properties);
+	}
+
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world)
 	{
