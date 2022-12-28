@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEn
 import com.superworldsun.superslegend.entities.projectiles.boomerang.MagicBoomerangEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.WWBoomerangEntity;
 import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -86,7 +87,7 @@ public class TorchTowerTopUnlit extends Block
 	public ActionResultType use(BlockState blockstate, World worldIn, BlockPos pos, PlayerEntity playerentity, Hand hand, BlockRayTraceResult blocktrace) {
 		ItemStack itemstack = playerentity.getItemInHand(hand);
 		Item item = itemstack.getItem();
-		if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE)
+		if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE &&  item != ItemInit.BLUE_CANDLE.get() && item != ItemInit.RED_CANDLE.get())
 		{
 			return super.use(blockstate, worldIn, pos, playerentity, hand, blocktrace);
 		}
