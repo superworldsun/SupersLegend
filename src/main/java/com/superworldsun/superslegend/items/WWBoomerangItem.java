@@ -4,6 +4,7 @@ import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEn
 import com.superworldsun.superslegend.entities.projectiles.boomerang.RegularBoomerang;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.WWBoomerang;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.WWBoomerangEntity;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -14,7 +15,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class WWBoomerangItem extends Item {
+public class WWBoomerangItem extends NonEnchantItem {
 
 
     public WWBoomerangItem(Properties properties) {

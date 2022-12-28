@@ -144,7 +144,11 @@ public class SlingShot extends BowItem
 		
 		return power;
 	}
-	
+
+	public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+		return false;
+	}
+
 	@SubscribeEvent
 	public static void onLivingEntityUseItem(LivingEntityUseItemEvent event)
 	{

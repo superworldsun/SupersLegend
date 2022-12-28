@@ -62,6 +62,6 @@ public class TrueMasterSword extends ItemCustomSword
 	{
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.YELLOW + "The True Blade of Evil's Bane"));
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Right-Click to Fire a Beam at full HP"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Sneak+Right-Click to Fire a Beam at full HP"));
 	}
 }

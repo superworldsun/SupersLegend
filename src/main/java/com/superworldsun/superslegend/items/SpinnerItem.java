@@ -1,16 +1,14 @@
 package com.superworldsun.superslegend.items;
 
 import com.superworldsun.superslegend.entities.SpinnerEntity;
-import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.IDispenseItemBehavior;
-import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.state.properties.RailShape;
@@ -20,7 +18,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class SpinnerItem extends Item
+public class SpinnerItem extends NonEnchantItem
 {
     public SpinnerItem(Properties tab) {
         super(new Item.Properties());

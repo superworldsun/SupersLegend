@@ -36,7 +36,7 @@ public class RocsFeather extends Item
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.WHITE + "Holding this will grant better ground mobility"));
+		list.add(new StringTextComponent(TextFormatting.WHITE + "Holding this will grant a second jump"));
 	}
 	
 	@SubscribeEvent
