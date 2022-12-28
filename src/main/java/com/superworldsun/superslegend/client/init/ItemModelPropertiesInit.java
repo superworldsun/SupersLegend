@@ -51,7 +51,7 @@ public class ItemModelPropertiesInit
 		ItemModelsProperties.register(ItemInit.DEKU_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
 		ItemModelsProperties.register(ItemInit.HYLIAN_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
 		ItemModelsProperties.register(ItemInit.SACRED_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
-		ItemModelsProperties.register(ItemInit.MIRROR_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
+		//ItemModelsProperties.register(ItemInit.MIRROR_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
 		ItemModelsProperties.register(ItemInit.DEKU_LEAF.get(), new ResourceLocation("no_magic"), NO_MAGIC);
 		
 		ItemModelsProperties.register(ItemInit.FISHING_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) ->
@@ -72,9 +72,10 @@ public class ItemModelPropertiesInit
 				return (flag || flag1) && p_239422_2_ instanceof PlayerEntity && ((PlayerEntity) p_239422_2_).fishing != null ? 1.0F : 0.0F;
 			}
 		});
-		
-		registerFishingRodModelProperties(ItemInit.HOOKSHOT.get());
-		registerFishingRodModelProperties(ItemInit.LONGSHOT.get());
+
+		//TODO add these back with hookshot
+		//registerFishingRodModelProperties(ItemInit.HOOKSHOT.get());
+		//registerFishingRodModelProperties(ItemInit.LONGSHOT.get());
 		// registerFishingRodModelProperties(ItemInit.CLAWSHOT.get());
 	}
 	
