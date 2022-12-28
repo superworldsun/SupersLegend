@@ -47,6 +47,7 @@ public class RedLuckRing extends RingItem
 			{
 				// Don't do a Check to see if the damage comes from DamageSource.GENERIC. I don't know what mob/block uses the "GENERIC" damage in the game so I normally do a (event.getSource !=
 				// DamageSource.*Type*) if I don't want it to take less damage from something in particular.
+				//TODO Protection against the thorns enchantment doesn't seem to work
 				if (event.getSource() == DamageSource.CACTUS || event.getSource() == DamageSource.SWEET_BERRY_BUSH || event.getSource() == DamageSource.thorns(player)
 						|| event.getSource() == DamageSource.thorns(player.getEntity()) || event.getSource() == DamageSource.thorns(event.getEntity()))
 				{
