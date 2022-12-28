@@ -26,6 +26,8 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import top.theillusivec4.curios.api.CuriosApi;
 
 
 public class ShockArrowEntity extends AbstractArrowEntity {
@@ -117,27 +119,28 @@ public class ShockArrowEntity extends AbstractArrowEntity {
                 armorPartsEquipped++;
             if (livingentity.getItemBySlot(EquipmentSlotType.FEET).getItem() == Items.CHAINMAIL_BOOTS)
                 armorPartsEquipped++;
-
-            if (entity.isAlive())
+            ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.GREEN_HOLY_RING.get(), livingentity).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+            if (stack.isEmpty())
             {
-                if (armorPartsEquipped == 1)
-                {
-                    this.setBaseDamage(this.getBaseDamage() * 3.0F);
-                }
-                else if (armorPartsEquipped == 2)
-                {
-                    this.setBaseDamage(this.getBaseDamage() * 4.0F);
-                }
-                else if (armorPartsEquipped == 3)
-                {
-                    this.setBaseDamage(this.getBaseDamage() * 5.0F);
-                }
-                else if (armorPartsEquipped == 4)
-                {
-                    this.setBaseDamage(this.getBaseDamage() * 6.5F);
+                if (entity.isAlive()) {
+                    if (armorPartsEquipped == 1) {
+                        this.setBaseDamage(this.getBaseDamage() * 3.0F);
+                    } else if (armorPartsEquipped == 2) {
+                        this.setBaseDamage(this.getBaseDamage() * 4.0F);
+                    } else if (armorPartsEquipped == 3) {
+                        this.setBaseDamage(this.getBaseDamage() * 5.0F);
+                    } else if (armorPartsEquipped == 4) {
+                        this.setBaseDamage(this.getBaseDamage() * 6.5F);
+                    }
                 }
             }
+            if (!stack.isEmpty())
+            {
+                this.setBaseDamage(this.getBaseDamage() * 1.0F);
+            }
         }
+
+
         super.onHitEntity(result);
         if (entity instanceof LivingEntity) {
             if(livingentity.level.isClientSide)
@@ -160,11 +163,15 @@ public class ShockArrowEntity extends AbstractArrowEntity {
     	//LightningBoltEntity l1 = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, entity.world);
     	//l1.setLocationAndAngles(entity.getPosX(), entity.getPosY(), entity.getPosZ(), 0, 0);
     	//entity.world.addEntity(l1);
-
-        entity.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_SHOCK.get(), SoundCategory.PLAYERS, 1f, 1f);
-
-        entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 50, false, true));
-
+        ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.GREEN_HOLY_RING.get(), entity).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        if (!stack.isEmpty())
+        {
+        }
+        else
+        {
+            entity.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.ARROW_HIT_SHOCK.get(), SoundCategory.PLAYERS, 1f, 1f);
+            entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 50, false, true));
+        }
 	}
 	
 	public static EntityType<ShockArrowEntity> createEntityType()
