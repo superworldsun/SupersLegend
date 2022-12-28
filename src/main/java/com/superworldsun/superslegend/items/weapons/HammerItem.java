@@ -45,6 +45,10 @@ public abstract class HammerItem extends TieredItem implements IVanishable
 		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", attackDamage, AttributeModifier.Operation.ADDITION));
 		defaultModifiers = builder.build();
 	}
+
+	public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+		return false;
+	}
 	
 	@SubscribeEvent
 	public static void onPlayerLeftClickBlock(PlayerInteractEvent.LeftClickBlock event)

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ItemInit;
 
@@ -13,7 +14,6 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
@@ -32,7 +32,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
-public class LensOfTruth extends Item
+public class LensOfTruth extends NonEnchantItem
 {
 	private static final List<LivingEntity> RENDERED_ENTITIES = new ArrayList<>();
 	

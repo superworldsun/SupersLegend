@@ -40,7 +40,13 @@ public class SacredShieldItem extends ExtendedShieldItem
 	{
 		
 	}
-	
+
+	@Override
+	public boolean isBookEnchantable(ItemStack stack, ItemStack book)
+	{
+		return false;
+	}
+
 	@SubscribeEvent
     public static void onAttachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
         if (event.getObject() instanceof ItemStack) {

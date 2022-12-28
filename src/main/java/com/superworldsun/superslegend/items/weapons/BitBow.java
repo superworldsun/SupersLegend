@@ -76,6 +76,10 @@ public class BitBow extends BowItem
 		return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
 	}
 
+	public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+		return false;
+	}
+
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)

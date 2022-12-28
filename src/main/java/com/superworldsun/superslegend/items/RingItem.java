@@ -30,4 +30,8 @@ public abstract class RingItem extends Item implements ICurioItem
 	{
 		return new ICurio.SoundInfo(SoundEvents.ARMOR_EQUIP_GOLD, 1.0f, 1.0f);
 	}
+
+	public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+		return false;
+	}
 }

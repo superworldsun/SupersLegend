@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.TagInit;
 
@@ -21,7 +22,6 @@ import net.minecraft.item.UseAction;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -34,7 +34,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
-public class FireRod extends Item
+public class FireRod extends NonEnchantItem
 {
 	public FireRod()
 	{

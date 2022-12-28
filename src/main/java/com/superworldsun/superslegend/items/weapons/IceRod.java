@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.projectiles.magic.IceballEntity;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.mana.ManaProvider;
 
 import net.minecraft.block.BlockState;
@@ -32,7 +33,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
-public class IceRod extends Item
+public class IceRod extends NonEnchantItem
 {
 	public IceRod()
 	{

@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items.weapons;
 
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -26,7 +27,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.List;
 import java.util.Random;
 
-public class DekuStick extends Item
+public class DekuStick extends NonEnchantItem
 {
 	public DekuStick(Properties p_i48487_1_) {
 		super(p_i48487_1_);

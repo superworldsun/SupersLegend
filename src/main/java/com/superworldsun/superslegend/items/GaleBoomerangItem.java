@@ -2,11 +2,9 @@ package com.superworldsun.superslegend.items;
 
 import com.superworldsun.superslegend.entities.projectiles.boomerang.GaleBoomerang;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.GaleBoomerangEntity;
-import com.superworldsun.superslegend.entities.projectiles.boomerang.WWBoomerang;
-import com.superworldsun.superslegend.entities.projectiles.boomerang.WWBoomerangEntity;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -14,7 +12,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GaleBoomerangItem extends Item {
+public class GaleBoomerangItem extends NonEnchantItem {
 
 
     public GaleBoomerangItem(Properties p_i48487_1_) {

@@ -2,9 +2,9 @@ package com.superworldsun.superslegend.items;
 
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.RegularBoomerang;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -12,7 +12,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class Boomerang extends Item {
+public class Boomerang extends NonEnchantItem {
 
 
     public Boomerang(Properties p_i48487_1_) {

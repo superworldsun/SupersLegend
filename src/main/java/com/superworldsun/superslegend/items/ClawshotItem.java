@@ -2,12 +2,12 @@ package com.superworldsun.superslegend.items;
 
 import com.superworldsun.superslegend.entities.projectiles.hooks.ClawshotEntity;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
@@ -16,14 +16,13 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
 
-public class ClawshotItem extends Item {
+public class ClawshotItem extends NonEnchantItem {
 
     /**
      * sprite It is used to change the sprite of the item when used.
