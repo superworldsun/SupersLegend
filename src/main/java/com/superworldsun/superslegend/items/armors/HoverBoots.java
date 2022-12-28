@@ -3,26 +3,19 @@ package com.superworldsun.superslegend.items.armors;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.armor.HoverBootsModel;
 import com.superworldsun.superslegend.interfaces.IHoveringEntity;
-import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.util.PlayerUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent.Phase;
@@ -108,8 +101,8 @@ public class HoverBoots extends NonEnchantArmor
 			}
 
 			if (ok && !hoveringPlayer.jumpedFromBlock()) {
-				// 40 ticks are 2 seconds
-				if (hoveringPlayer.increaseHoverTime() < 40)
+				// 20 ticks are 1 seconds
+				if (hoveringPlayer.increaseHoverTime() < 22)
 				{
 					double motionY = event.player.getDeltaMovement().y;
 
@@ -119,6 +112,13 @@ public class HoverBoots extends NonEnchantArmor
 						event.player.setDeltaMovement(event.player.getDeltaMovement().x, 0, event.player.getDeltaMovement().z);
 						// Reset fall distance, we are not falling
 						event.player.fallDistance = 0;
+
+						Vector3d v = event.player.getDeltaMovement();
+						event.player.setDeltaMovement(v.x, v.y * -0.1D, v.z);
+
+						if(event.player.tickCount % 2 == 0) {
+							event.player.playSound(SoundInit.HOVER_BOOTS.get(), 1F, 1F);
+						}
 					}
 
 					// Prevent falling
