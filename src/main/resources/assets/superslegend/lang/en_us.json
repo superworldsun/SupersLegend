@@ -5,7 +5,7 @@
 
   "key.categories.superslegend": "SupersLegend",
   "key.mask_ability": "Mask Ability",
-  "key.drop_bomb": "Drop Bomb from Bag",
+  "key.drop_bomb": "Pull Bomb from Bomb Bag",
   
   "block.superslegend.cooking_pot": "Cooking Pot",
   
@@ -164,6 +164,7 @@
   "block.superslegend.blue_floor_switch": "Blue Floor Switch",
   "block.superslegend.yellow_floor_switch": "Yellow Floor Switch",
   "block.superslegend.red_floor_switch": "Red Floor Switch",
+  "block.superslegend.rusted_floor_switch": "Rusted Floor Switch",
   "block.superslegend.fan": "Fan",
   "block.superslegend.gossip_stone_block": "Gossip Stone",
   "block.superslegend.owl_statue": "Owl Statue",
@@ -196,12 +197,15 @@
   "block.superslegend.tombstone_block": "Tombstone Block",
   "block.superslegend.stone_path_block": "Stone Path Block",
   "block.superslegend.stone_tile_block": "Stone Tile Block",
+  "block.superslegend.dins_sacred_pedestal": "Dins Sacred Pedestal",
+  "block.superslegend.farores_sacred_pedestal": "Farores Sacred Pedestal",
+  "block.superslegend.nayrus_sacred_pedestal": "Nayrus Sacred Pedestal",
   "block.superslegend.dins_flame": "Dins Flame",
   "block.superslegend.farores_flame": "Farores Flame",
   "block.superslegend.nayrus_flame": "Nayrus Flame",
 
   "block.superslegend.magic_mushroom": "Magic Mushroom",
-  "block.superslegend.odd_mushroom": "Magic Mushroom",
+  "block.superslegend.odd_mushroom": "Odd Mushroom",
 
   "item.superslegend.kokiri_sword": "Kokiri Sword",
   "item.superslegend.razor_sword": "Razor Sword",
@@ -355,6 +359,10 @@
   "item.superslegend.purple_cap": "Purple Cap",
   "item.superslegend.purple_tunic": "Purple Tunic",
   "item.superslegend.purple_leggings": "Purple Leggings",
+  "item.superslegend.heros_new_cap": "Hero's New Cap",
+  "item.superslegend.heros_new_tunic": "Hero's New Tunic",
+  "item.superslegend.heros_new_leggings": "Hero's New Leggings",
+  "item.superslegend.heros_new_boots": "Hero's New Boots",
   "item.superslegend.desert_voe_headband": "Desert Voe Headband",
   "item.superslegend.desert_voe_spaulder": "Desert Voe Spaulder",
   "item.superslegend.desert_voe_trousers": "Desert Voe Trousers",
