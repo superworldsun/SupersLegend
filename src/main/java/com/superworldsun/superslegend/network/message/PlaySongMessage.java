@@ -26,7 +26,7 @@ public class PlaySongMessage
 	public static PlaySongMessage decode(PacketBuffer buf)
 	{
 		PlaySongMessage result = new PlaySongMessage();
-		result.song = SupersLegendRegistries.OCARINA_SONGS.getValue(new ResourceLocation(buf.readUtf()));
+		result.song = SupersLegendRegistries.OCARINA_SONGS.getValue(new ResourceLocation(buf.readUtf(32767)));
 		return result;
 	}
 	
