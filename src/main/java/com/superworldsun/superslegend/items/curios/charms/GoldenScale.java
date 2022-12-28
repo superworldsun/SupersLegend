@@ -1,7 +1,8 @@
-package com.superworldsun.superslegend.items.items;
+package com.superworldsun.superslegend.items.curios.charms;
 
 import java.util.List;
 
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -23,7 +24,7 @@ import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class GoldenScale extends Item implements ICurioItem
+public class GoldenScale extends NonEnchantItem implements ICurioItem
 {
 
 	public GoldenScale(Properties properties)
