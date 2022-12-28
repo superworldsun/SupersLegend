@@ -27,7 +27,7 @@ public class GiantsKnife extends ItemCustomSword
 {
 	public GiantsKnife(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder)
 	{
-		super(tier, attackDamageIn, attackSpeedIn, builder.defaultDurability(30));
+		super(tier, attackDamageIn, attackSpeedIn, builder);
 	}
 
 	@OnlyIn(Dist.CLIENT)
