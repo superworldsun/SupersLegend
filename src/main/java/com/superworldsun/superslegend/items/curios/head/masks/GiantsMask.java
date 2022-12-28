@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.armor.GiantsMaskModel;
 import com.superworldsun.superslegend.interfaces.IEntityResizer;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -17,7 +18,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -40,9 +40,10 @@ import java.util.List;
 import java.util.UUID;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class GiantsMask extends Item implements IEntityResizer, ICurioItem
+public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurioItem
 {
     private static final UUID GIANTS_MASK_REACH_MODIFIER_ID = UUID.fromString("dfb43a2f-8a3f-476b-8e4c-89f48601cda6");
+    private static final UUID GIANTS_MASK_DAMAGE_MODIFIER_ID = UUID.fromString("6925a147-19d6-4900-ae51-a330ff1a7e6b");
     private static final UUID GIANTS_MASK_SPEED_MODIFIER_ID = UUID.fromString("076fe501-e233-47e1-a568-8368c8a0f8b6");
     private static final UUID GIANTS_MASK_SWIM_MODIFIER_ID = UUID.fromString("47cd763b-9c10-4cc1-b77a-b4bf07ece942");
 
@@ -121,6 +122,7 @@ public class GiantsMask extends Item implements IEntityResizer, ICurioItem
             {
                 addOrReplaceModifier(event.player, ForgeMod.REACH_DISTANCE.get(), GIANTS_MASK_REACH_MODIFIER_ID, 4.0F, AttributeModifier.Operation.ADDITION);
                 //addOrReplaceModifier(event.player, ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "tool", -2D, AttributeModifier.Operation.ADDITION)
+                addOrReplaceModifier(event.player, Attributes.ATTACK_DAMAGE, GIANTS_MASK_DAMAGE_MODIFIER_ID, 2.0F, AttributeModifier.Operation.ADDITION);
                 addOrReplaceModifier(event.player, Attributes.MOVEMENT_SPEED, GIANTS_MASK_SPEED_MODIFIER_ID, -0.1F, AttributeModifier.Operation.MULTIPLY_TOTAL);
                 addOrReplaceModifier(event.player, ForgeMod.SWIM_SPEED.get(), GIANTS_MASK_SWIM_MODIFIER_ID, -0.5F, AttributeModifier.Operation.MULTIPLY_TOTAL);
                 event.player.maxUpStep = 2.0f;
@@ -128,6 +130,7 @@ public class GiantsMask extends Item implements IEntityResizer, ICurioItem
             else
             {
                 removeModifier(event.player, ForgeMod.REACH_DISTANCE.get(), GIANTS_MASK_REACH_MODIFIER_ID);
+                removeModifier(event.player, Attributes.ATTACK_DAMAGE, GIANTS_MASK_DAMAGE_MODIFIER_ID);
                 removeModifier(event.player, Attributes.MOVEMENT_SPEED, GIANTS_MASK_SPEED_MODIFIER_ID);
                 removeModifier(event.player, ForgeMod.SWIM_SPEED.get(), GIANTS_MASK_SWIM_MODIFIER_ID);
                 event.player.maxUpStep = 0.6f;
@@ -136,6 +139,7 @@ public class GiantsMask extends Item implements IEntityResizer, ICurioItem
         else
         {
             removeModifier(event.player, ForgeMod.REACH_DISTANCE.get(), GIANTS_MASK_REACH_MODIFIER_ID);
+            removeModifier(event.player, Attributes.ATTACK_DAMAGE, GIANTS_MASK_DAMAGE_MODIFIER_ID);
             removeModifier(event.player, Attributes.MOVEMENT_SPEED, GIANTS_MASK_SPEED_MODIFIER_ID);
             removeModifier(event.player, ForgeMod.SWIM_SPEED.get(), GIANTS_MASK_SWIM_MODIFIER_ID);
             event.player.maxUpStep = 0.6f;
