@@ -62,6 +62,6 @@ public class MasterSwordV2 extends ItemCustomSword
 	{
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.RED + "A Tempered Blade of Evil's Bane"));
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Right-Click to Fire a Beam at full HP"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Sneak+Right-Click to Fire a Beam at full HP"));
 	}
 }
