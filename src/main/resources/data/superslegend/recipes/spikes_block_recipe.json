@@ -1,20 +1,20 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        " i ",
-        "iii",
-        "OOO"
+        " # ",
+        "###",
+        "iii"
     ],
     "key": {
+        "#": {
+            "item": "minecraft:iron_bars"
+        },
         "i": {
             "item": "minecraft:iron_ingot"
-        },
-        "O": {
-            "item": "minecraft:oak_planks"
         }
     },
     "result": {
         "item": "superslegend:spikes_block",
-        "count": 3
+        "count": 2
     }
 }
