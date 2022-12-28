@@ -21,6 +21,7 @@ import com.superworldsun.superslegend.waypoints.IWaypoints;
 import com.superworldsun.superslegend.waypoints.WaypointsStorage;
 import com.superworldsun.superslegend.waypoints.Waypoints;
 import com.superworldsun.superslegend.worldgen.world.OreGen;
+import com.superworldsun.superslegend.worldgen.world.PlantGen;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
@@ -89,6 +90,7 @@ public class SupersLegendMain
 		VanillaMobDrops customloot = new VanillaMobDrops();
 		MinecraftForge.EVENT_BUS.register(customloot);
 		MinecraftForge.EVENT_BUS.register(new AncientArrowDropEvents());
+		MinecraftForge.EVENT_BUS.register(new PlantGen());
 		ItemInit.ITEMS.register(modEventBus);
 		BlockInit.BLOCKS.register(modEventBus);
 		//BlockItemInit.BLOCKS.register(modEventBus);
@@ -102,6 +104,7 @@ public class SupersLegendMain
 		FluidInit.FLUIDS.register(modEventBus);
 		LootInit.REGISTRY.register(modEventBus);
 		OcarinaSongInit.REGISTRY.register(modEventBus);
+		FeatureInit.FEATURES.register(modEventBus);
 		EffectInit.REGISTRY.register(modEventBus);
 		RecipeSerializerInit.RECIPE_SERIALIZERS.register(modEventBus);
 		AttributeInit.ATTRIBUTES.register(modEventBus);
@@ -124,6 +127,7 @@ public class SupersLegendMain
 	/* The FMLCommonSetupEvent (FML - Forge Mod Loader) */
 	private void setup(final FMLCommonSetupEvent event)
 	{
+		FeatureInit.Configured.registerConfiguredFeatures();
 		CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana::new);
 		CapabilityManager.INSTANCE.register(ILearnedSongs.class, new LearnedSongsStorage(), LearnedSongs::new);
 		CapabilityManager.INSTANCE.register(HookModel.class, new HookStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });
