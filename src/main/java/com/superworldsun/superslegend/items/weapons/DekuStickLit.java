@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items.weapons;
 
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -8,7 +9,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.particles.ItemParticleData;
@@ -26,7 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.List;
 import java.util.Random;
 
-public class DekuStickLit extends Item
+public class DekuStickLit extends NonEnchantItem
 {
 	public DekuStickLit(Properties p_i48487_1_) {
 		super(p_i48487_1_);
@@ -34,8 +34,7 @@ public class DekuStickLit extends Item
 
 	//TODO Find new sound for when item breaks
 
-	//TODO Make a Tick count so the item will break after set amount of time of existing,
-	// if posible to have it so it still breaks when on ground, chest, or not in hand
+	//TODO if posible to have it so it still breaks when on ground, chest, or not in hand
 
 	//TODO At some point make a block or method that makes it so when cobwebs are on fire,
 	// the fire will spread to nearby connecting cobwebs and will spread the burning
@@ -45,7 +44,7 @@ public class DekuStickLit extends Item
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.YELLOW + "A stick"));
+		list.add(new StringTextComponent(TextFormatting.RED + "A stick with fire on the end"));
 	}
 
 	@Override
