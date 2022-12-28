@@ -96,7 +96,7 @@ public class MasterSwordSwordEntity extends AbstractArrowEntity
 			this.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.SWORD_BEAM_LOOP.get(), SoundCategory.PLAYERS, 0.4f, 1.0f);
 		}
 
-		if (tickCount > 80)
+		if (tickCount > 40)
 		{
 			remove();
 		}
