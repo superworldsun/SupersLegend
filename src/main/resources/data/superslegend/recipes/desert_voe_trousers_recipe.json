@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "gLg",
+        "gKg"
+    ],
+    "key": {
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "L": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "K": {
+            "item": "minecraft:leather_leggings"
+        }
+    },
+    "result": {
+        "item": "superslegend:desert_voe_trousers",
+        "count": 1
+    }
+}

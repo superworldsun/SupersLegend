@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:paper"
+        }
+    },
+    "result": {
+        "item": "superslegend:letter",
+        "count": 1
+    }
+}

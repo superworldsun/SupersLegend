@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#KE"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:white_dye"
+        },
+        "K": {
+            "item": "superslegend:kokiri_tunic"
+        },
+        "E": {
+            "item": "minecraft:ender_eye"
+        }
+    },
+    "result": {
+        "item": "superslegend:heros_new_tunic",
+        "count": 1
+    }
+}

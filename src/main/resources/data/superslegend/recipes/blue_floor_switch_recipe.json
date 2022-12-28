@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#S#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "S": {
+            "item": "minecraft:stone_pressure_plate"
+        }
+    },
+    "result": {
+        "item": "superslegend:blue_floor_switch",
+        "count": 1
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "base": {
+        "item": "superslegend:purple_cap"
+    },
+    "addition": {
+        "item": "superslegend:purple_tunic"
+    },
+    "addition": {
+        "item": "superslegend:purple_leggings"
+    },
+    "result": {
+        "item": "superslegend:purple_set"
+    }
+}

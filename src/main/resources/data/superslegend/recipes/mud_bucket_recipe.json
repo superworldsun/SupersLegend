@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#P#",
+        "DBD",
+        "#D#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:coarse_dirt"
+        },
+        "P": {
+            "item": "minecraft:potion"
+        },
+        "D": {
+            "item": "minecraft:dirt"
+        },
+        "B": {
+            "item": "minecraft:bucket"
+        }
+    },
+    "result": {
+        "item": "superslegend:mud_bucket",
+        "count": 1
+    }
+}

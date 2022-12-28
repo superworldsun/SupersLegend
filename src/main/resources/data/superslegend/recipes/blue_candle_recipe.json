@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " #",
+        "iH",
+        " i"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:soul_torch"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "H": {
+            "item": "minecraft:honeycomb"
+        }
+    },
+    "result": {
+        "item": "superslegend:blue_candle",
+        "count": 1
+    }
+}

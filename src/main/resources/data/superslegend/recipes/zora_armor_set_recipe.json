@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "base": {
+        "item": "superslegend:zora_armor_cap"
+    },
+    "addition": {
+        "item": "superslegend:zora_armor_tunic"
+    },
+    "addition": {
+        "item": "superslegend:zora_armor_leggings"
+    },
+    "addition": {
+        "item": "superslegend:zora_armor_flippers"
+    },
+    "result": {
+        "item": "superslegend:zora_armor_set"
+    }
+}

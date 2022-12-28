@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "base": {
+        "item": "superslegend:goron_cap"
+    },
+    "addition": {
+        "item": "superslegend:goron_tunic"
+    },
+    "addition": {
+        "item": "superslegend:goron_leggings"
+    },
+    "result": {
+        "item": "superslegend:goron_set"
+    }
+}

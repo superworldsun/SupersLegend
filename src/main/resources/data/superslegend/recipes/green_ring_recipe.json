@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:red_ring"
+        },
+        {
+            "item": "superslegend:blue_ring"
+        }
+    ],
+    "result": {
+        "item": "superslegend:green_ring",
+        "count": 1
+    }
+}

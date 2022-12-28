@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#T#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:cobblestone"
+        },
+        "T": {
+            "item": "minecraft:target"
+        }
+    },
+    "result": {
+        "item": "superslegend:grapple_block",
+        "count": 4
+    }
+}

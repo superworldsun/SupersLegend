@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#L#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:white_wool"
+        },
+        "L": {
+            "item": "minecraft:leather_boots"
+        }
+    },
+    "result": {
+        "item": "superslegend:snowquill_boots",
+        "count": 1
+    }
+}

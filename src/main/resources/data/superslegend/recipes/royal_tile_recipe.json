@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " g ",
+        "gSg"
+    ],
+    "key": {
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "S": {
+            "item": "minecraft:stone_pressure_plate"
+        }
+    },
+    "result": {
+        "item": "superslegend:royal_tile",
+        "count": 1
+    }
+}

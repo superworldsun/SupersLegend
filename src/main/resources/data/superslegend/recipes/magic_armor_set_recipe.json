@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "base": {
+        "item": "superslegend:magic_armor_cap"
+    },
+    "addition": {
+        "item": "superslegend:magic_armor_tunic"
+    },
+    "addition": {
+        "item": "superslegend:magic_armor_leggings"
+    },
+    "addition": {
+        "item": "superslegend:magic_armor_boots"
+    },
+    "result": {
+        "item": "superslegend:magic_armor_set"
+    }
+}

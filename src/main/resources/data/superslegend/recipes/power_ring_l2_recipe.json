@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:power_ring_l1"
+        },
+        {
+            "item": "superslegend:power_ring_l1"
+        }
+    ],
+    "result": {
+        "item": "superslegend:power_ring_l2",
+        "count": 1
+    }
+}
