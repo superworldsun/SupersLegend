@@ -145,7 +145,7 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 		else if (scale < 1)
 		{
 			float bonusSpeed = (scale - 1) / 2;
-			setBoundingBox(getBoundingBox().move(getDeltaMovement().multiply(bonusSpeed, 1D, bonusSpeed)));
+			setBoundingBox(getBoundingBox().move(getDeltaMovement().multiply(bonusSpeed, bonusSpeed, bonusSpeed)));
 		}
 		
 		lightEmitter.tick();
