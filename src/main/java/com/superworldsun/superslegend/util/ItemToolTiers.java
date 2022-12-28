@@ -11,29 +11,29 @@ public enum ItemToolTiers implements IItemTier {
     // Harvest-level, durability, efficiency, attackdamage, enchantability, repair material
 
     //WEAPONS
-    KOKIRI_SWORD     (0, 0, -2F, 2F, 0, () -> { return null; }),
-    RAZOR_SWORD      (0, 200, -2F, 3F, 0, () -> { return null; }),
-    GILDED_SWORD     (0, 0, -2F, 4F, 0, () -> { return null; }),
-    GREAT_FAIRYS_SWORD(0, 0, -2F, 4F, 0, () -> { return null; }),
+    KOKIRI_SWORD     (0, 0, -2F, 2F, 0, () -> { return Ingredient.EMPTY; }),
+    RAZOR_SWORD      (0, 200, -2F, 3F, 0, () -> { return Ingredient.EMPTY; }),
+    GILDED_SWORD     (0, 0, -2F, 4F, 0, () -> { return Ingredient.EMPTY; }),
+    GREAT_FAIRYS_SWORD(0, 0, -2F, 4F, 0, () -> { return Ingredient.EMPTY; }),
 
-    GIANTS_KNIFE     (0, 0, -2F, 14F, 0, () -> { return null; }),
-    BROKEN_GIANTS_KNIFE(0, 0, -2F, 3F, 0, () -> { return null; }),
-    BIGGORONS_SWORD  (0, 0, -2F, 14F, 0, () -> { return null; }),
-    GUARDIAN_SWORD   (0, 0, -2F, 5F, 0, () -> { return null; }),
-    ANCIENT_BATTLE_AXE   (0, 0, -2F, 5F, 0, () -> { return null; }),
-    GUARDIAN_SPEAR   (0, 0, -2F, 5F, 0, () -> { return null; }),
-    MAGIC_HAMMER     (0, 0, -2F, 4F, 0, () -> { return null; }),
-    MEGATON_HAMMER   (0, 0, -2F, 8F, 0, () -> { return null; }),
-    SKULL_HAMMER     (0, 0, -2F, 11F, 0, () -> { return null; }),
+    GIANTS_KNIFE     (0, 0, -2F, 14F, 0, () -> { return Ingredient.EMPTY; }),
+    BROKEN_GIANTS_KNIFE(0, 0, -2F, 3F, 0, () -> { return Ingredient.EMPTY; }),
+    BIGGORONS_SWORD  (0, 0, -2F, 14F, 0, () -> { return Ingredient.EMPTY; }),
+    GUARDIAN_SWORD   (0, 0, -2F, 5F, 0, () -> { return Ingredient.EMPTY; }),
+    ANCIENT_BATTLE_AXE   (0, 0, -2F, 5F, 0, () -> { return Ingredient.EMPTY; }),
+    GUARDIAN_SPEAR   (0, 0, -2F, 5F, 0, () -> { return Ingredient.EMPTY; }),
+    MAGIC_HAMMER     (0, 0, -2F, 4F, 0, () -> { return Ingredient.EMPTY; }),
+    MEGATON_HAMMER   (0, 0, -2F, 8F, 0, () -> { return Ingredient.EMPTY; }),
+    SKULL_HAMMER     (0, 0, -2F, 11F, 0, () -> { return Ingredient.EMPTY; }),
 
     //MASTER SWORDS
-    GODDESS_SWORD     (0, 0, -2F, 3F, 0, () -> { return null; }),
-    GODDESS_LONGSWORD     (0, 0, -2F, 3F, 0, () -> { return null; }),
-    GODDESS_WHITE_SWORD     (0, 0, -2F, 4F, 0, () -> { return null; }),
+    GODDESS_SWORD     (0, 0, -2F, 3F, 0, () -> { return Ingredient.EMPTY; }),
+    GODDESS_LONGSWORD     (0, 0, -2F, 3F, 0, () -> { return Ingredient.EMPTY; }),
+    GODDESS_WHITE_SWORD     (0, 0, -2F, 4F, 0, () -> { return Ingredient.EMPTY; }),
 
-    MASTER_SWORD     (0, 0, -2F, 5F, 0, () -> { return null; }),
-    MASTER_SWORD_V2  (0, 0, -2F, 8F, 0, () -> { return null; }),
-    TRUE_MASTER_SWORD(0, 0, -2F, 11F, 0, () -> { return null; });
+    MASTER_SWORD     (0, 0, -2F, 5F, 0, () -> { return Ingredient.EMPTY; }),
+    MASTER_SWORD_V2  (0, 0, -2F, 8F, 0, () -> { return Ingredient.EMPTY; }),
+    TRUE_MASTER_SWORD(0, 0, -2F, 11F, 0, () -> { return Ingredient.EMPTY; });
 
 
     //Example
