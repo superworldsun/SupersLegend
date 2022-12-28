@@ -4,11 +4,14 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.armor.*;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
+import com.superworldsun.superslegend.registries.EffectInit;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +39,19 @@ public class ArmorSnowquill extends NonEnchantArmor
 		}
 		
 		return (M) MODELS_CACHE.get(armorSlot);
+	}
+
+	//TODO It dosent seem to actually remove the effect, effect might be made in a way that prevents a removal
+
+	//TODO, When the first todo is fixed, make it so the player must wear full set for unfreeze
+	@Override
+	public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
+	{
+		boolean hasEffect = player.hasEffect(EffectInit.FREEZE.get());
+			if (hasEffect)
+			{
+				player.removeEffect(EffectInit.FREEZE.get());
+			}
 	}
 
 	@Override
