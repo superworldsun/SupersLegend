@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items.items;
 
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -22,15 +23,13 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class ExtinguishedLantern extends Item
+public class ExtinguishedLantern extends NonEnchantItem
 {
 
 	public ExtinguishedLantern(Properties properties)
 	{
 		super(properties);
 	}
-
-
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
@@ -54,13 +53,13 @@ public class ExtinguishedLantern extends Item
 					} else {
 						stack.setCount(0);
 					}
-					player.setItemInHand(hand, new ItemStack(ItemInit.LANTERN.get()));
+					//TODO Turn back on when lantern is back
+					//player.setItemInHand(hand, new ItemStack(ItemInit.LANTERN.get()));
 				}
 			}
 		});
 		return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
 	}
-
 
 	@Override
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
@@ -71,7 +70,4 @@ public class ExtinguishedLantern extends Item
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 		return false;
 	}
-
-
-
 }
