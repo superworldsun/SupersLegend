@@ -12,10 +12,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.DebugPacketSender;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -107,6 +114,22 @@ public class TorchTowerTopLit extends Block
 		|| entityIn instanceof MagicBoomerangEntity || entityIn instanceof WWBoomerangEntity)
 		{
 			entityIn.setSecondsOnFire(15);
+		}
+	}
+	//TODO add some particles like a camp fire
+	public ActionResultType use(BlockState blockstate, World worldIn, BlockPos pos, PlayerEntity playerentity, Hand hand, BlockRayTraceResult blocktrace) {
+		ItemStack itemstack = playerentity.getItemInHand(hand);
+		Item item = itemstack.getItem();
+		if (item != Items.WATER_BUCKET)
+		{
+			return super.use(blockstate, worldIn, pos, playerentity, hand, blocktrace);
+		}
+		else
+		{
+			worldIn.setBlock(pos, BlockInit.TORCH_TOWER_TOP_UNLIT.get().defaultBlockState(), 1);
+			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+			return ActionResultType.sidedSuccess(worldIn.isClientSide);
 		}
 	}
 
