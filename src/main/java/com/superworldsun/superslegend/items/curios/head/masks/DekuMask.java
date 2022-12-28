@@ -3,11 +3,11 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.armor.AllNightMaskModel;
 import com.superworldsun.superslegend.client.model.armor.DekuMaskModel;
 import com.superworldsun.superslegend.client.model.player.DekuPlayerModel;
 import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -17,7 +17,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -40,7 +39,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.List;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class DekuMask extends Item implements IPlayerModelChanger, IEntityResizer, ICurioItem
+public class DekuMask extends NonEnchantItem implements IPlayerModelChanger, IEntityResizer, ICurioItem
 {
     @OnlyIn(Dist.CLIENT)
     private Object model;

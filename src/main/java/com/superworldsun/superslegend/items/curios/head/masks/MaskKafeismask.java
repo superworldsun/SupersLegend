@@ -3,14 +3,13 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.armor.AllNightMaskModel;
 import com.superworldsun.superslegend.client.model.armor.KafeisMaskModel;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -24,7 +23,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class MaskKafeismask extends Item implements ICurioItem
+public class MaskKafeismask extends NonEnchantItem implements ICurioItem
 {
     @OnlyIn(Dist.CLIENT)
     private Object model;

@@ -3,8 +3,8 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.armor.AllNightMaskModel;
 import com.superworldsun.superslegend.client.model.armor.StoneMaskModel;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -12,7 +12,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -26,7 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class MaskStonemask extends Item implements ICurioItem
+public class MaskStonemask extends NonEnchantItem implements ICurioItem
 {
     @OnlyIn(Dist.CLIENT)
     private Object model;

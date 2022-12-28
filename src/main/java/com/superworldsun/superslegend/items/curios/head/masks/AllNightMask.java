@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import com.google.common.collect.HashMultimap;
@@ -39,7 +40,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class AllNightMask extends Item implements ICurioItem
+public class AllNightMask extends NonEnchantItem implements ICurioItem
 {
 	@OnlyIn(Dist.CLIENT)
 	private Object model;

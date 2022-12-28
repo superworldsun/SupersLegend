@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 
 import java.util.List;
 
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -16,7 +17,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BowItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -34,7 +34,7 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class MaskHawkeyemask extends Item implements ICurioItem
+public class MaskHawkeyemask extends NonEnchantItem implements ICurioItem
 {
 	@OnlyIn(Dist.CLIENT)
 	private Object model;

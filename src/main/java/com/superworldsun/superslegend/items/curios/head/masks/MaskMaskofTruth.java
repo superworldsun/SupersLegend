@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 import java.util.List;
 import java.util.UUID;
 
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -19,7 +20,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
@@ -40,7 +40,7 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class MaskMaskofTruth extends Item implements ICurioItem
+public class MaskMaskofTruth extends NonEnchantItem implements ICurioItem
 {
 	@OnlyIn(Dist.CLIENT)
 	private Object model;

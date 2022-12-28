@@ -3,8 +3,8 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.model.armor.AllNightMaskModel;
 import com.superworldsun.superslegend.client.model.armor.GibdoMaskModel;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -14,7 +14,6 @@ import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.ResourceLocation;
@@ -36,7 +35,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.List;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class GibdoMask extends Item implements ICurioItem
+public class GibdoMask extends NonEnchantItem implements ICurioItem
 {
     @OnlyIn(Dist.CLIENT)
     private Object model;

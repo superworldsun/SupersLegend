@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import com.google.common.collect.HashMultimap;
@@ -10,6 +9,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.player.ZoraPlayerModel;
 import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
@@ -21,7 +21,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -41,7 +40,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class MaskZoramask extends Item implements IPlayerModelChanger, IEntityResizer, ICurioItem
+public class MaskZoramask extends NonEnchantItem implements IPlayerModelChanger, IEntityResizer, ICurioItem
 {
 	private static final UUID ZORA_WATER_MODIFIER_ID = UUID.fromString("734af1f7-e76b-47f0-ba52-5a1a12a9edd2");
 	float manaCost = 0.03F;

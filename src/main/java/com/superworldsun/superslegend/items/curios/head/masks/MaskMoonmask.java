@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -13,7 +13,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class MaskMoonmask extends Item implements ICurioItem {
+public class MaskMoonmask extends NonEnchantItem implements ICurioItem {
 
     public MaskMoonmask(Properties properties) {
         super(properties);

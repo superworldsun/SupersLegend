@@ -12,6 +12,7 @@ import com.superworldsun.superslegend.client.sound.BremenMaskSound;
 import com.superworldsun.superslegend.entities.ai.FollowBremenMaskGoal;
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
 
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -44,7 +45,7 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class BremenMask extends Item implements IMaskAbility, ICurioItem
+public class BremenMask extends NonEnchantItem implements IMaskAbility, ICurioItem
 {
 	@OnlyIn(Dist.CLIENT)
 	private Object model;

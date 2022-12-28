@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 import java.util.List;
 import java.util.UUID;
 
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import com.google.common.collect.HashMultimap;
@@ -51,7 +52,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class GoronMask extends Item implements IPlayerModelChanger, IEntityResizer, ICurioItem
+public class GoronMask extends NonEnchantItem implements IPlayerModelChanger, IEntityResizer, ICurioItem
 {
 	private static final UUID GORON_WATER_MODIFIER_ID = UUID.fromString("9198efe1-249e-4dc9-825b-e79aa2d3e2cf");
 	

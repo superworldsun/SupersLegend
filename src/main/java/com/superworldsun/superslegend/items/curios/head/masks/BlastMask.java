@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.keys.KeyBindings;
 import com.superworldsun.superslegend.client.model.armor.BlastMaskModel;
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -30,7 +31,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class BlastMask extends Item implements IMaskAbility, ICurioItem
+public class BlastMask extends NonEnchantItem implements IMaskAbility, ICurioItem
 {
 	@OnlyIn(Dist.CLIENT)
 	private Object model;

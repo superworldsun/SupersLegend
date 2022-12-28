@@ -2,12 +2,12 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HerosCharmMask extends Item implements ICurioItem {
+public class HerosCharmMask extends NonEnchantItem implements ICurioItem {
     private static final Map<EquipmentSlotType, BipedModel<?>> MODELS_CACHE = new HashMap<>();
 
     public HerosCharmMask(Properties properties) {
