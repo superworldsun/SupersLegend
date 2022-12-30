@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.hookshotCap;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookProvider;
+import com.superworldsun.superslegend.network.message.SyncHookShot;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,12 +31,12 @@ public class Hook
 	@SubscribeEvent
 	public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent e)
 	{
-		SyncToClient.send(e.getPlayer());
+		SyncHookShot.send(e.getPlayer());
 	}
 	
 	@SubscribeEvent
 	public static void onChangeDimension(PlayerEvent.PlayerChangedDimensionEvent e)
 	{
-		SyncToClient.send(e.getPlayer());
+		SyncHookShot.send(e.getPlayer());
 	}
 }

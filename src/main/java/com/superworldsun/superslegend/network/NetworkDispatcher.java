@@ -13,6 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
@@ -42,5 +43,6 @@ public class NetworkDispatcher
 		networkChannel.registerMessage(15, ShowWaystoneCreationScreenMessage.class, ShowWaystoneCreationScreenMessage::encode, ShowWaystoneCreationScreenMessage::decode, ShowWaystoneCreationScreenMessage::receive, Optional.of(PLAY_TO_CLIENT));
 		networkChannel.registerMessage(16, SyncFreezeEffectMessage.class, SyncFreezeEffectMessage::encode, SyncFreezeEffectMessage::decode, SyncFreezeEffectMessage::receive, Optional.of(PLAY_TO_CLIENT));
 		networkChannel.registerMessage(17, ToggleCrawlingMessage.class, ToggleCrawlingMessage::encode, ToggleCrawlingMessage::decode, ToggleCrawlingMessage::receive, Optional.of(PLAY_TO_SERVER));
+		networkChannel.registerMessage(18, SyncHookShot.class, SyncHookShot::encode, SyncHookShot::new, SyncHookShot::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
 	}
 }
