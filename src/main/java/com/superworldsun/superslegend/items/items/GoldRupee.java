@@ -24,6 +24,6 @@ public class GoldRupee extends Item{
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.GOLD + "200 Rupee"));
+		list.add(new StringTextComponent(TextFormatting.GOLD + "300 Rupee"));
 	}
 } 
