@@ -3,12 +3,10 @@ package com.superworldsun.superslegend;
 import com.mojang.serialization.Codec;
 import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
-import com.superworldsun.superslegend.events.AncientArrowDropEvents;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldState;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldStorage;
-import com.superworldsun.superslegend.loot.VanillaMobDrops;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
@@ -20,7 +18,6 @@ import com.superworldsun.superslegend.waypoints.IWaypoints;
 import com.superworldsun.superslegend.waypoints.WaypointsStorage;
 import com.superworldsun.superslegend.waypoints.Waypoints;
 import com.superworldsun.superslegend.worldgen.world.OreGen;
-import com.superworldsun.superslegend.worldgen.world.PlantGen;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
@@ -42,6 +39,7 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -68,18 +66,11 @@ public class SupersLegendMain
 		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		// Our listener for setup, it will pick up on anything put into setup
 		// and notify Forge of it
-		SupersLegendStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
-		modEventBus.addListener(this::setup);
-		
+		SupersLegendStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);		
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupersLegendConfig.SPEC, "superslegend.toml");
 
-		VanillaMobDrops customloot = new VanillaMobDrops();
-		MinecraftForge.EVENT_BUS.register(customloot);
-		MinecraftForge.EVENT_BUS.register(new AncientArrowDropEvents());
-		MinecraftForge.EVENT_BUS.register(new PlantGen());
 		ItemInit.ITEMS.register(modEventBus);
 		BlockInit.BLOCKS.register(modEventBus);
-		//BlockItemInit.BLOCKS.register(modEventBus);
 		SoundInit.SOUNDS.register(modEventBus);
 		//BiomeInit.BIOMES.register(modEventBus);
 		//BiomeInit.registerBiomes();
@@ -106,7 +97,8 @@ public class SupersLegendMain
 	}
 	
 	/* The FMLCommonSetupEvent (FML - Forge Mod Loader) */
-	private void setup(final FMLCommonSetupEvent event)
+	@SubscribeEvent
+	public static void setup(final FMLCommonSetupEvent event)
 	{
 		FeatureInit.Configured.registerConfiguredFeatures();
 		CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana::new);
