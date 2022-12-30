@@ -1,8 +1,9 @@
 package com.superworldsun.superslegend.items.bags;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.container.BiggestRingBoxContainer;
 import com.superworldsun.superslegend.items.RingItem;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -13,7 +14,7 @@ public class BiggestRingBoxItem extends BagItem
 {
 	public BiggestRingBoxItem()
 	{
-		super(new Properties().tab(SupersLegendMain.RESOURCES));
+		super(new Properties().tab(ItemGroupInit.RESOURCES));
 	}
 
 	@Override

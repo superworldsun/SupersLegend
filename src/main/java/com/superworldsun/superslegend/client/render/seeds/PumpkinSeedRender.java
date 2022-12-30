@@ -6,12 +6,10 @@ import com.superworldsun.superslegend.entities.projectiles.seeds.PumpkinSeedEnti
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-public class PumpkinSeedRender extends SeedRenderer<PumpkinSeedEntity>
-{
+public class PumpkinSeedRender extends SeedRenderer<PumpkinSeedEntity> {
 	private static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/seeds/pumpkin_seed.png");
-	
-	public PumpkinSeedRender(EntityRendererManager renderManager)
-	{
+
+	public PumpkinSeedRender(EntityRendererManager renderManager) {
 		super(renderManager, TEXTURE);
 	}
 }

@@ -24,217 +24,183 @@ import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
-public class TemperatureEvents
-{
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
+public class TemperatureEvents {
 	private static final DamageSource HEAT_DAMAGE = new DamageSource("heat").bypassArmor();
 	private static final DamageSource COLD_DAMAGE = new DamageSource("cold").bypassArmor();
-	
+	private static final float UNDERGROUND_TEMPERATURE = 0.5F;
+	private static final float NETHER_TEMPERATURE = 2.0F;
+
 	@SubscribeEvent
-	public static void onItemAttributeModifier(ItemAttributeModifierEvent event)
-	{
+	public static void onItemAttributeModifier(ItemAttributeModifierEvent event) {
 		addColdResistance(event, Items.LEATHER_CHESTPLATE, 0.15F, EquipmentSlotType.CHEST);
 		addColdResistance(event, Items.LEATHER_BOOTS, 0.05F, EquipmentSlotType.FEET);
 		addColdResistance(event, Items.LEATHER_HELMET, 0.05F, EquipmentSlotType.HEAD);
 		addColdResistance(event, Items.LEATHER_LEGGINGS, 0.1F, EquipmentSlotType.LEGS);
-		
+		// TODO:mod items should add their modifiers in their classes
 		addHeatResistance(event, ItemInit.DESERT_VOE_SPAULDER.get(), 0.4F, EquipmentSlotType.CHEST);
 		addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
 		addHeatResistance(event, ItemInit.DESERT_VOE_HEADBAND.get(), 0.1F, EquipmentSlotType.HEAD);
 		addHeatResistance(event, ItemInit.DESERT_VOE_TROUSERS.get(), 0.2F, EquipmentSlotType.LEGS);
-		
 		addColdResistance(event, ItemInit.SNOWQUILL_TUNIC.get(), 0.4F, EquipmentSlotType.CHEST);
 		addColdResistance(event, ItemInit.SNOWQUILL_BOOTS.get(), 0.1F, EquipmentSlotType.FEET);
 		addColdResistance(event, ItemInit.SNOWQUILL_HEADDRESS.get(), 0.1F, EquipmentSlotType.HEAD);
 		addColdResistance(event, ItemInit.SNOWQUILL_TROUSERS.get(), 0.2F, EquipmentSlotType.LEGS);
-		
 		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_TUNIC.get(), 0.5F, EquipmentSlotType.CHEST);
 		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_BOOTS.get(), 0.5F, EquipmentSlotType.FEET);
 		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_HELMET.get(), 0.5F, EquipmentSlotType.HEAD);
 		addHellHeatResistance(event, ItemInit.FLAMEBREAKER_LEGGINGS.get(), 0.5F, EquipmentSlotType.LEGS);
 		addHellHeatResistance(event, ItemInit.GORON_TUNIC.get(), 1.0F, EquipmentSlotType.CHEST);
 	}
-	
+
 	@SubscribeEvent
-	public static void onPlayerTick(PlayerTickEvent event)
-	{
-		if (event.phase == Phase.START)
-		{
+	public static void onPlayerTick(PlayerTickEvent event) {
+		if (event.phase == Phase.START) {
 			return;
 		}
-		
-		if (!SupersLegendConfig.getInstance().temperature())
+
+		if (!SupersLegendConfig.getInstance().temperature()) {
 			return;
-		
-		float temperature = getTemperatureAroundPlayer(event.player);
+		}
+
+		boolean isInNether = event.player.level.dimension() == World.NETHER;
+		float temperature = getTemperature(event.player);
+		float damageFrequency = isInNether ? 1.0F : 10.0F;
 		double coldResistance = event.player.getAttributeValue(AttributeInit.COLD_RESISTANCE.get()) - 1;
 		double heatResistance = getHeatResistance(event.player);
-		boolean hellHeat = event.player.level.dimension() == World.NETHER;
-		// in seconds
-		float damageFrequency = hellHeat ? 1.0F : 10.0F;
-		
-		if (event.player.tickCount % (20 * damageFrequency) != 0)
-		{
+
+		if (event.player.tickCount % (20 * damageFrequency) != 0) {
 			return;
 		}
-		
-		if (coldResistance < 1.0D && temperature < 0.0F)
-		{
+
+		if (coldResistance < 1.0D && temperature < 0.0F) {
 			float dangerousColdTemperature = 0.0F;
-			
-			if (coldResistance < 0.0D)
-			{
+
+			if (coldResistance < 0.0D) {
 				dangerousColdTemperature += 0.5D * Math.abs(coldResistance);
-			}
-			else if (coldResistance > 0.0D)
-			{
+			} else if (coldResistance > 0.0D) {
 				dangerousColdTemperature -= coldResistance;
 			}
-			
-			if (temperature < dangerousColdTemperature)
-			{
+
+			if (temperature < dangerousColdTemperature) {
 				event.player.hurt(COLD_DAMAGE, 1.0F);
 			}
-		}
-		else if (heatResistance < 1.0D && temperature > 1.0F)
-		{
+		} else if (heatResistance < 1.0D && temperature > 1.0F) {
 			float dangerousHeatTemperature = 1.0F;
-			
-			if (heatResistance < 0.0D)
-			{
+
+			if (heatResistance < 0.0D) {
 				dangerousHeatTemperature -= 0.5D * Math.abs(coldResistance);
-			}
-			else if (heatResistance > 0.0D)
-			{
+			} else if (heatResistance > 0.0D) {
 				dangerousHeatTemperature += heatResistance;
 			}
-			
-			if (temperature > dangerousHeatTemperature)
-			{
-				if (hellHeat)
-				{
+
+			if (temperature > dangerousHeatTemperature) {
+				if (isInNether) {
 					event.player.setSecondsOnFire(1);
 					event.player.hurt(DamageSource.ON_FIRE, 1.0F);
-				}
-				else
-				{
+				} else {
 					event.player.hurt(HEAT_DAMAGE, 1.0F);
 				}
 			}
 		}
 	}
-	
-	public static float getHeatResistance(PlayerEntity player)
-	{
-		if (player.level.dimension() == World.NETHER)
-		{
+
+	public static float getHeatResistance(PlayerEntity player) {
+		if (player.level.dimension() == World.NETHER) {
 			return (float) (player.hasEffect(Effects.FIRE_RESISTANCE) ? 1.0F : player.getAttributeValue(AttributeInit.HELL_HEAT_RESISTANCE.get()) - 1);
-		}
-		else
-		{
+		} else {
 			return (float) (player.getAttributeValue(AttributeInit.HEAT_RESISTANCE.get()) - 1);
 		}
 	}
-	
-	public static float getTemperatureAroundPlayer(PlayerEntity player)
-	{
-		// temperature is always +2 in the nether
-		if (player.level.dimension() == World.NETHER)
-		{
-			return 2.0F;
+
+	public static float getTemperature(PlayerEntity player) {
+		if (player.level.dimension() == World.NETHER) {
+			return NETHER_TEMPERATURE;
 		}
-		
+
 		BlockPos playerPos = player.blockPosition();
-		
-		// temperature is always +0.5 deep underground
-		if (playerPos.getY() <= 40)
-		{
-			return 0.5F;
+
+		if (playerPos.getY() <= 40) {
+			return UNDERGROUND_TEMPERATURE;
 		}
-		
-		// temperature is calculated in a range around player
-		// make it lower if it affects performance
-		int range = 8;
-		AtomicDouble temperature = new AtomicDouble();
-		
-		// gathers temperature info around player
-		BlockPos.betweenClosed(playerPos.offset(-range, 0, -range), playerPos.offset(range, 0, range)).forEach(blockPos ->
-		{
-			Biome currentBiome = player.level.getBiome(blockPos);
-			temperature.addAndGet(currentBiome.getTemperature(blockPos));
-		});
-		
-		int blocksCount = (range * 2 + 1) * (range * 2 + 1);
-		temperature.set(temperature.get() / blocksCount);
-		
-		// temperature also changes over day
-		long time = player.level.getDayTime() % 24000;
-		float changeOverDay = 0.2F;
-		float timeTemperatureBonus = MathHelper.cos((float) ((time - 7000) / 12000F * Math.PI)) * changeOverDay;
-		// temperature deos not increase in shade
-		boolean addTimeTemperatureBonus = timeTemperatureBonus <= 0 || player.level.canSeeSky(playerPos);
-		
-		if (addTimeTemperatureBonus)
-		{
-			temperature.addAndGet(timeTemperatureBonus);
-		}
-		
-		// temperature is lower underground
-		if (playerPos.getY() < 64)
-		{
-			float temperatureChange = (playerPos.getY() - 40) / 24.0F;
-			temperature.set((temperature.get() - 0.5F) * temperatureChange + 0.5F);
-		}
-		
+
+		AtomicDouble temperature = getTemperatureAround(player);
+		addTimeTemperatureBonus(player, temperature);
+		addUndergroundTemperatureBonus(player, temperature);
 		return temperature.floatValue();
-		
 	}
-	
-	private static void addColdResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType)
-	{
-		if (event.getItemStack().getItem() == item && event.getSlotType() == slotType)
-		{
+
+	private static void addUndergroundTemperatureBonus(PlayerEntity player, AtomicDouble temperature) {
+		if (player.blockPosition().getY() < 64) {
+			float temperatureChange = (player.blockPosition().getY() - 40) / 24.0F;
+			temperature.set((temperature.get() - UNDERGROUND_TEMPERATURE) * temperatureChange + UNDERGROUND_TEMPERATURE);
+		}
+	}
+
+	private static void addTimeTemperatureBonus(PlayerEntity player, AtomicDouble temperature) {
+		long dayTime = player.level.getDayTime() % 24000;
+		float maximumChange = 0.2F;
+		float temperatureBonus = MathHelper.cos((float) ((dayTime - 7000) / 12000F * Math.PI)) * maximumChange;
+		boolean inShade = !player.level.canSeeSky(player.blockPosition());
+		boolean canAddTimeTemperatureBonus = temperatureBonus <= 0 || !inShade;
+
+		if (canAddTimeTemperatureBonus) {
+			temperature.addAndGet(temperatureBonus);
+		}
+	}
+
+	private static AtomicDouble getTemperatureAround(PlayerEntity player) {
+		int calculationRange = 8;
+		AtomicDouble temperature = new AtomicDouble();
+
+		BlockPos.betweenClosed(player.blockPosition().offset(-calculationRange, 0, -calculationRange),
+				player.blockPosition().offset(calculationRange, 0, calculationRange)).forEach(blockPos -> {
+					Biome currentBiome = player.level.getBiome(blockPos);
+					temperature.addAndGet(currentBiome.getTemperature(blockPos));
+				});
+
+		int blocksCount = (calculationRange * 2 + 1) * (calculationRange * 2 + 1);
+		temperature.set(temperature.get() / blocksCount);
+		return temperature;
+	}
+
+	private static void addColdResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType) {
+		if (event.getItemStack().getItem() == item && event.getSlotType() == slotType) {
 			UUID modifierId = getAttributeModifierIdForSlot(slotType);
 			event.addModifier(AttributeInit.COLD_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.MULTIPLY_BASE));
 		}
 	}
-	
-	private static void addHeatResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType)
-	{
-		if (event.getItemStack().getItem() == item && event.getSlotType() == slotType)
-		{
+
+	private static void addHeatResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType) {
+		if (event.getItemStack().getItem() == item && event.getSlotType() == slotType) {
 			UUID modifierId = getAttributeModifierIdForSlot(slotType);
 			event.addModifier(AttributeInit.HEAT_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.MULTIPLY_BASE));
 		}
 	}
-	
-	private static void addHellHeatResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType)
-	{
-		if (event.getItemStack().getItem() == item && event.getSlotType() == slotType)
-		{
+
+	private static void addHellHeatResistance(ItemAttributeModifierEvent event, Item item, float resistance, EquipmentSlotType slotType) {
+		if (event.getItemStack().getItem() == item && event.getSlotType() == slotType) {
 			UUID modifierId = getAttributeModifierIdForSlot(slotType);
 			event.addModifier(AttributeInit.HELL_HEAT_RESISTANCE.get(), new AttributeModifier(modifierId, "Hardcoded Modifier", resistance, Operation.MULTIPLY_BASE));
 		}
 	}
-	
-	private static UUID getAttributeModifierIdForSlot(EquipmentSlotType slotType)
-	{
-		switch (slotType)
-		{
-			case CHEST:
-				return UUID.fromString("18232d9b-f2ab-4cea-b08e-c8fa5fd2e998");
-			case FEET:
-				return UUID.fromString("8a8bbcf6-5dd6-4061-92da-24fab53857ec");
-			case HEAD:
-				return UUID.fromString("99e134ee-24ef-464d-b633-f020161de704");
-			case LEGS:
-				return UUID.fromString("015147dc-5e50-4195-8c85-d8953cd9e38a");
-			case OFFHAND:
-				return UUID.fromString("103f5c43-7149-43da-b71b-d0bcbada5076");
-			default:
-				return UUID.fromString("163fad25-7e59-4e4b-bb77-0f85d1b8bd57");
+
+	private static UUID getAttributeModifierIdForSlot(EquipmentSlotType slotType) {
+		switch (slotType) {
+		case CHEST:
+			return UUID.fromString("18232d9b-f2ab-4cea-b08e-c8fa5fd2e998");
+		case FEET:
+			return UUID.fromString("8a8bbcf6-5dd6-4061-92da-24fab53857ec");
+		case HEAD:
+			return UUID.fromString("99e134ee-24ef-464d-b633-f020161de704");
+		case LEGS:
+			return UUID.fromString("015147dc-5e50-4195-8c85-d8953cd9e38a");
+		case OFFHAND:
+			return UUID.fromString("103f5c43-7149-43da-b71b-d0bcbada5076");
+		default:
+			return UUID.fromString("163fad25-7e59-4e4b-bb77-0f85d1b8bd57");
 		}
 	}
 }

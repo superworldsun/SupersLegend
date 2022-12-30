@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.client.model.armor.DesertVoeChestplateMode
 import com.superworldsun.superslegend.client.model.armor.DesertVoeHelmetModel;
 import com.superworldsun.superslegend.client.model.armor.DesertVoeLeggingsModel;
 import com.superworldsun.superslegend.registries.ArmourInit;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
@@ -24,7 +25,7 @@ public class DesertVoeArmor extends ArmorItem
 	public DesertVoeArmor(EquipmentSlotType slot)
 	{
 		// change armor material if needed
-		super(ArmourInit.DESERTVOE, slot, new Properties().tab(SupersLegendMain.APPAREL));
+		super(ArmourInit.DESERTVOE, slot, new Properties().tab(ItemGroupInit.APPAREL));
 	}
 	
 	@SuppressWarnings("unchecked")

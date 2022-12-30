@@ -13,6 +13,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.armor.AllNightMaskModel;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -49,7 +50,7 @@ public class AllNightMask extends NonEnchantItem implements ICurioItem
 	
 	public AllNightMask()
 	{
-		super(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL));
+		super(new Item.Properties().stacksTo(1).tab(ItemGroupInit.APPAREL));
 	}
 	
 	@Override

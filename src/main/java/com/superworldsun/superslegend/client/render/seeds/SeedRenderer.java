@@ -14,27 +14,23 @@ import net.minecraft.util.math.vector.Matrix3f;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class SeedRenderer<T extends SeedEntity> extends EntityRenderer<T>
-{
+public class SeedRenderer<T extends SeedEntity> extends EntityRenderer<T> {
 	private final ResourceLocation texture;
 	private final RenderType renderType;
-	
-	public SeedRenderer(EntityRendererManager renderManager, ResourceLocation texture)
-	{
+
+	public SeedRenderer(EntityRendererManager renderManager, ResourceLocation texture) {
 		super(renderManager);
 		this.texture = texture;
 		this.renderType = RenderType.entityCutoutNoCull(texture);
 	}
-	
+
 	@Override
-	public ResourceLocation getTextureLocation(T entity)
-	{
+	public ResourceLocation getTextureLocation(T entity) {
 		return texture;
 	}
-	
+
 	@Override
-	public void render(T entity, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int light)
-	{
+	public void render(T entity, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int light) {
 		matrixStack.pushPose();
 		float scale = 0.5f;
 		matrixStack.scale(scale, scale, scale);
@@ -51,9 +47,14 @@ public class SeedRenderer<T extends SeedEntity> extends EntityRenderer<T>
 		matrixStack.popPose();
 		super.render(entity, entityYaw, partialTicks, matrixStack, buffer, light);
 	}
-	
-	private static void vertex(IVertexBuilder vertexBuilder, Matrix4f pose, Matrix3f normal, int light, float x, float y, float u, float v)
-	{
-		vertexBuilder.vertex(pose, x - 0.5F, y - 0.25F, 0.0F).color(255, 255, 255, 255).uv(u, v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(light).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
+
+	private static void vertex(IVertexBuilder vertexBuilder, Matrix4f pose, Matrix3f normal, int light, float x, float y, float u, float v) {
+		vertexBuilder.vertex(pose, x - 0.5F, y - 0.25F, 0.0F)
+				.color(255, 255, 255, 255)
+				.uv(u, v)
+				.overlayCoords(OverlayTexture.NO_OVERLAY)
+				.uv2(light)
+				.normal(normal, 0.0F, 1.0F, 0.0F)
+				.endVertex();
 	}
 }

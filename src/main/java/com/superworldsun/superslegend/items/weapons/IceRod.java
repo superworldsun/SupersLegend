@@ -2,10 +2,10 @@ package com.superworldsun.superslegend.items.weapons;
 
 import java.util.function.Predicate;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.projectiles.magic.IceballEntity;
 import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -37,7 +37,7 @@ public class IceRod extends NonEnchantItem
 {
 	public IceRod()
 	{
-		super(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES));
+		super(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES));
 	}
 
 	//TODO Always creates a snow block where looked at as soon as a right click is made and is a bit spammy,

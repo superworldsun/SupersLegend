@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.items.bags;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.container.LetterContainer;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -13,7 +13,7 @@ public class LetterItem extends BagItem
 {
 	public LetterItem()
 	{
-		super(new Properties().tab(SupersLegendMain.RESOURCES));
+		super(new Properties().tab(ItemGroupInit.RESOURCES));
 	}
 	
 	@Override

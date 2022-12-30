@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.items.food;
 
-import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
@@ -11,7 +11,7 @@ public class HylianLoach extends Item
 {	
 	public HylianLoach()
 	{
-		super(new Properties().tab(SupersLegendMain.RESOURCES).food(new Food.Builder().saturationMod(0.4f).nutrition(2).meat().build()));
+		super(new Properties().tab(ItemGroupInit.RESOURCES).food(new Food.Builder().saturationMod(0.4f).nutrition(2).meat().build()));
 	}
 	
 	@Override

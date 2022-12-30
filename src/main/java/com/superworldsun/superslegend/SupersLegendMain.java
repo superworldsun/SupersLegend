@@ -2,14 +2,10 @@ package com.superworldsun.superslegend;
 
 import com.mojang.serialization.Codec;
 import com.superworldsun.superslegend.client.config.SupersLegendConfig;
-import com.superworldsun.superslegend.entities.projectiles.arrows.*;
-import com.superworldsun.superslegend.events.AncientArrowDropEvents;
-import com.superworldsun.superslegend.hookshotCap.SyncToClient;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldState;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldStorage;
-import com.superworldsun.superslegend.loot.VanillaMobDrops;
 import com.superworldsun.superslegend.mana.IMana;
 import com.superworldsun.superslegend.mana.Mana;
 import com.superworldsun.superslegend.mana.ManaStorage;
@@ -21,15 +17,7 @@ import com.superworldsun.superslegend.waypoints.IWaypoints;
 import com.superworldsun.superslegend.waypoints.WaypointsStorage;
 import com.superworldsun.superslegend.waypoints.Waypoints;
 import com.superworldsun.superslegend.worldgen.world.OreGen;
-import com.superworldsun.superslegend.worldgen.world.PlantGen;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.dispenser.IPosition;
-import net.minecraft.dispenser.ProjectileDispenseBehavior;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -44,15 +32,15 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -60,40 +48,22 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 @Mod(SupersLegendMain.MOD_ID)
-@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Bus.MOD)
 public class SupersLegendMain
 {
-	// Our instance, referenced in the below sub-class
-	public static SupersLegendMain instance;
-	// The strings for our name and modid + logger
-	public static SimpleChannel NETWORK;
-	public static final String NAME = "SupersLegend";
 	public static final String MOD_ID = "superslegend";
 	public static final Logger LOGGER = LogManager.getLogger();
-	public static final ArrayList<BlockPos> toRemove = new ArrayList<BlockPos>();
-	// This sub-class below is the start where we'll add registry and stuff
-	// later on
+
 	public SupersLegendMain()
 	{
-		instance = this;
-
 		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		// Our listener for setup, it will pick up on anything put into setup
 		// and notify Forge of it
-		SupersLegendStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
-		modEventBus.addListener(this::setup);
-		
+		SupersLegendStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);		
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupersLegendConfig.SPEC, "superslegend.toml");
 
-		// Remember to register items before blocks, problems can occur
-		// otherwise if you don't
-		VanillaMobDrops customloot = new VanillaMobDrops();
-		MinecraftForge.EVENT_BUS.register(customloot);
-		MinecraftForge.EVENT_BUS.register(new AncientArrowDropEvents());
-		MinecraftForge.EVENT_BUS.register(new PlantGen());
 		ItemInit.ITEMS.register(modEventBus);
 		BlockInit.BLOCKS.register(modEventBus);
-		//BlockItemInit.BLOCKS.register(modEventBus);
 		SoundInit.SOUNDS.register(modEventBus);
 		//BiomeInit.BIOMES.register(modEventBus);
 		//BiomeInit.registerBiomes();
@@ -119,13 +89,9 @@ public class SupersLegendMain
 		forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
 	}
 	
-	public static ResourceLocation locate(String name)
-	{
-		return new ResourceLocation(SupersLegendMain.MOD_ID, name);
-	}
-	
 	/* The FMLCommonSetupEvent (FML - Forge Mod Loader) */
-	private void setup(final FMLCommonSetupEvent event)
+	@SubscribeEvent
+	public static void setup(final FMLCommonSetupEvent event)
 	{
 		FeatureInit.Configured.registerConfiguredFeatures();
 		CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana::new);
@@ -134,66 +100,11 @@ public class SupersLegendMain
 		CapabilityManager.INSTANCE.register(SacredShieldState.class, new SacredShieldStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });
 		CapabilityManager.INSTANCE.register(IWaypoints.class, new WaypointsStorage(), Waypoints::new);
 
-		NETWORK = NetworkRegistry.newSimpleChannel(new ResourceLocation("superslegend", "main_channel"), () -> "1.0", s -> true, s -> true);
-		NETWORK.registerMessage(1, SyncToClient.class, SyncToClient::encode, SyncToClient::new, SyncToClient::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-
 		// This is for thread-safe operations later on such as world-gen
 		event.enqueueWork(() ->
 		{
 			SupersLegendStructures.setupStructures();
 			SupersLegendConfiguredStructures.registerConfiguredStructures();
-		});
-
-		//HOW TO DISPENCER ARROWS
-		DispenserBlock.registerBehavior(ItemInit.FIRE_ARROW.get(), new ProjectileDispenseBehavior()
-		{
-			@Override
-			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
-			{
-				FireArrowEntity firearrowentity = new FireArrowEntity(worldIn, position.x(), position.y(), position.z());
-				firearrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
-				return firearrowentity;
-			}
-		});
-		DispenserBlock.registerBehavior(ItemInit.ICE_ARROW.get(), new ProjectileDispenseBehavior()
-		{
-			@Override
-			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
-			{
-				IceArrowEntity icearrowentity = new IceArrowEntity(worldIn, position.x(), position.y(), position.z());
-				icearrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
-				return icearrowentity;
-			}
-		});
-		DispenserBlock.registerBehavior(ItemInit.SHOCK_ARROW.get(), new ProjectileDispenseBehavior()
-		{
-			@Override
-			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
-			{
-				ShockArrowEntity shockarrowentity = new ShockArrowEntity(worldIn, position.x(), position.y(), position.z());
-				shockarrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
-				return shockarrowentity;
-			}
-		});
-		DispenserBlock.registerBehavior(ItemInit.ANCIENT_ARROW.get(), new ProjectileDispenseBehavior()
-		{
-			@Override
-			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
-			{
-				AncientArrowEntity ancientarrowentity = new AncientArrowEntity(worldIn, position.x(), position.y(), position.z());
-				ancientarrowentity.pickup = AncientArrowEntity.PickupStatus.ALLOWED;
-				return ancientarrowentity;
-			}
-		});
-		DispenserBlock.registerBehavior(ItemInit.SILVER_ARROW.get(), new ProjectileDispenseBehavior()
-		{
-			@Override
-			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn)
-			{
-				SilverArrowEntity silverarrowentity = new SilverArrowEntity(worldIn, position.x(), position.y(), position.z());
-				silverarrowentity.pickup = SilverArrowEntity.PickupStatus.ALLOWED;
-				return silverarrowentity;
-			}
 		});
 	}
 
@@ -312,11 +223,4 @@ public class SupersLegendMain
 			serverWorld.getChunkSource().getGenerator().getSettings().structureConfig = tempMap;
 		}
 	}
-	// STRUCTURE GEN CODE ENDS HERE!
-	// STRUCTURE GEN CODE ENDS HERE!
-
-	//GROUPS
-	public static final ItemGroup RESOURCES = new SupersLegendItemGroup();
-	public static final ItemGroup APPAREL = new SupersLegendItemGroupApparel();
-	public static final ItemGroup BLOCKS = new SupersLegendItemGroupBlocks();
 }

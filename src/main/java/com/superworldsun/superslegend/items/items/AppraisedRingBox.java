@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.items.items;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -18,6 +17,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
+import com.superworldsun.superslegend.registries.ItemGroupInit;
+
 public class AppraisedRingBox extends Item
 {
 	public static final ITag.INamedTag<Item> itempool =
@@ -25,7 +26,7 @@ public class AppraisedRingBox extends Item
 
 	public AppraisedRingBox(Properties tab)
 	{
-		super(new Properties().tab(SupersLegendMain.RESOURCES));
+		super(new Properties().tab(ItemGroupInit.RESOURCES));
 	}
 
 	//TODO Add an open sound on use

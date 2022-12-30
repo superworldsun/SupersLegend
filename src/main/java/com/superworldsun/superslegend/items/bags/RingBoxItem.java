@@ -1,8 +1,8 @@
 package com.superworldsun.superslegend.items.bags;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.container.RingBoxContainer;
 import com.superworldsun.superslegend.items.RingItem;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -14,7 +14,7 @@ public class RingBoxItem extends BagItem
 {
 	public RingBoxItem()
 	{
-		super(new Properties().tab(SupersLegendMain.RESOURCES));
+		super(new Properties().tab(ItemGroupInit.RESOURCES));
 	}
 	
 	@Override

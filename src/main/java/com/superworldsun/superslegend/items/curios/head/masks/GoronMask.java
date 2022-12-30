@@ -14,6 +14,7 @@ import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
 import com.superworldsun.superslegend.registries.AttributeInit;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
@@ -58,7 +59,7 @@ public class GoronMask extends NonEnchantItem implements IPlayerModelChanger, IE
 	
 	public GoronMask()
 	{
-		super(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL));
+		super(new Item.Properties().stacksTo(1).tab(ItemGroupInit.APPAREL));
 	}
 	
 	@Override

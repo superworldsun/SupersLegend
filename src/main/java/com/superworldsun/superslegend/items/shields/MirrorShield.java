@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.items.shields;
 
-import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -13,7 +13,7 @@ public class MirrorShield extends ExtendedShieldItem
 {
 	public MirrorShield()
 	{
-		super(new Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES));
+		super(new Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES));
 	}
 	
 	@Override

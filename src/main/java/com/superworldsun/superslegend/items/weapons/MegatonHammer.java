@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.items.weapons;
 
 import java.util.List;
 
-import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -21,7 +21,7 @@ public class MegatonHammer extends HammerItem
 {
 	public MegatonHammer()
 	{
-		super(ItemToolTiers.MEGATON_HAMMER, 2, new Properties().tab(SupersLegendMain.RESOURCES));
+		super(ItemToolTiers.MEGATON_HAMMER, 2, new Properties().tab(ItemGroupInit.RESOURCES));
 	}
 	
 	@Override

@@ -8,6 +8,7 @@ import com.superworldsun.superslegend.hookshotCap.capabilities.HookProvider;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldCapability;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldProvider;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldState;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -32,7 +33,7 @@ public class SacredShieldItem extends ExtendedShieldItem
 	private static int regenerateTime = 200;
 	public SacredShieldItem(Properties properties)
 	{
-		super(properties.stacksTo(1).tab(SupersLegendMain.RESOURCES).durability(50));
+		super(properties.stacksTo(1).tab(ItemGroupInit.RESOURCES).durability(50));
 	}
 	
 	@Override

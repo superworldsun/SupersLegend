@@ -9,15 +9,14 @@ import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class EntityRendererInit
-{
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Bus.MOD, value = Dist.CLIENT)
+public class EntityRendererInit {
 	@SubscribeEvent
-	public static void onClientSetup(FMLClientSetupEvent event)
-	{
+	public static void onClientSetup(FMLClientSetupEvent event) {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.TP_BOKOBLIN.get(), TPBokoblinRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.DEKU_SEED.get(), DekuSeedRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MELON_SEED.get(), MelonSeedRender::new);
@@ -42,14 +41,14 @@ public class EntityRendererInit
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.FIREBALL.get(), EmptyRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.ICEBALL.get(), EmptyRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.GUST.get(), EmptyRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.HOOKSHOT_ENTITY.get(), HookshotRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.LONGSHOT_ENTITY.get(), LongshotRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.CLAWSHOT_ENTITY.get(), ClawshotRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.REGULAR_BOOMERANG.get(), BoomerangRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MAGIC_BOOMERANG.get(), MagicBoomerangRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.WW_BOOMERANG.get(), WWBoomerangRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.GALE_BOOMERANG.get(), GaleBoomerangRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MASTERSWORD_SWORD_ENTITY.get(), MasterSwordRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.HOOKSHOT_ENTITY.get(), HookshotRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.LONGSHOT_ENTITY.get(), LongshotRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.CLAWSHOT_ENTITY.get(), ClawshotRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.REGULAR_BOOMERANG.get(), BoomerangRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MAGIC_BOOMERANG.get(), MagicBoomerangRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.WW_BOOMERANG.get(), WWBoomerangRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.GALE_BOOMERANG.get(), GaleBoomerangRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MASTERSWORD_SWORD_ENTITY.get(), MasterSwordRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.BOMB.get(), BombRender::new);
 	}
 }

@@ -25,99 +25,83 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
-public abstract class CustomFluid extends ForgeFlowingFluid
-{
+public abstract class CustomFluid extends ForgeFlowingFluid {
 	private ResourceLocation overlayTexture;
-	
-	protected CustomFluid(ResourceLocation overlayTexture, Properties properties)
-	{
+
+	private CustomFluid(ResourceLocation overlayTexture, Properties properties) {
 		super(properties);
 		this.overlayTexture = overlayTexture;
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public static void onRenderGameOverlay(RenderBlockOverlayEvent event)
-	{
-		if (event.getOverlayType() != OverlayType.WATER)
-		{
+	public static void onRenderGameOverlay(RenderBlockOverlayEvent event) {
+		if (event.getOverlayType() != OverlayType.WATER) {
 			return;
 		}
-		
-		double d0 = event.getPlayer().getEyeY() - 0.11111111F;
-		BlockPos blockpos = new BlockPos(event.getPlayer().getX(), d0, event.getPlayer().getZ());
+
+		BlockPos blockpos = new BlockPos(event.getPlayer().getX(), event.getPlayer().getEyeY() - 0.11111111F, event.getPlayer().getZ());
 		FluidState fluidstate = event.getPlayer().level.getFluidState(blockpos);
 		Fluid fluid = fluidstate.getType();
-		
-		if (fluid instanceof CustomFluid)
-		{
+
+		if (fluid instanceof CustomFluid) {
 			event.setCanceled(true);
 			renderOverlay(event.getMatrixStack(), ((CustomFluid) fluid).overlayTexture);
 		}
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
-	private static void renderOverlay(MatrixStack matrix, ResourceLocation overlayTexture)
-	{
+	private static void renderOverlay(MatrixStack matrix, ResourceLocation overlayTexture) {
 		Minecraft client = Minecraft.getInstance();
 		RenderSystem.enableTexture();
 		client.getTextureManager().bind(overlayTexture);
 		BufferBuilder bufferbuilder = Tessellator.getInstance().getBuilder();
-		float f = client.player.getBrightness();
+		float brightness = client.player.getBrightness();
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
-		float f7 = -client.player.yRot / 64.0F;
-		float f8 = client.player.xRot / 64.0F;
+		float uOffset = -client.player.yRot / 64.0F;
+		float vOffset = client.player.xRot / 64.0F;
 		Matrix4f matrix4f = matrix.last().pose();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR_TEX);
-		bufferbuilder.vertex(matrix4f, -1.0F, -1.0F, -0.5F).color(f, f, f, 1.0F).uv(4.0F + f7, 4.0F + f8).endVertex();
-		bufferbuilder.vertex(matrix4f, 1.0F, -1.0F, -0.5F).color(f, f, f, 1.0F).uv(0.0F + f7, 4.0F + f8).endVertex();
-		bufferbuilder.vertex(matrix4f, 1.0F, 1.0F, -0.5F).color(f, f, f, 1.0F).uv(0.0F + f7, 0.0F + f8).endVertex();
-		bufferbuilder.vertex(matrix4f, -1.0F, 1.0F, -0.5F).color(f, f, f, 1.0F).uv(4.0F + f7, 0.0F + f8).endVertex();
+		bufferbuilder.vertex(matrix4f, -1.0F, -1.0F, -0.5F).color(brightness, brightness, brightness, 1.0F).uv(4.0F + uOffset, 4.0F + vOffset).endVertex();
+		bufferbuilder.vertex(matrix4f, 1.0F, -1.0F, -0.5F).color(brightness, brightness, brightness, 1.0F).uv(0.0F + uOffset, 4.0F + vOffset).endVertex();
+		bufferbuilder.vertex(matrix4f, 1.0F, 1.0F, -0.5F).color(brightness, brightness, brightness, 1.0F).uv(0.0F + uOffset, 0.0F + vOffset).endVertex();
+		bufferbuilder.vertex(matrix4f, -1.0F, 1.0F, -0.5F).color(brightness, brightness, brightness, 1.0F).uv(4.0F + uOffset, 0.0F + vOffset).endVertex();
 		bufferbuilder.end();
 		WorldVertexBufferUploader.end(bufferbuilder);
 		RenderSystem.disableBlend();
 	}
-	
-	public static class Flowing extends CustomFluid
-	{
-		public Flowing(ResourceLocation overlayTexture, Properties properties)
-		{
+
+	public static class Flowing extends CustomFluid {
+		public Flowing(ResourceLocation overlayTexture, Properties properties) {
 			super(overlayTexture, properties);
 			registerDefaultState(getStateDefinition().any().setValue(LEVEL, 7));
 		}
-		
-		protected void createFluidStateDefinition(StateContainer.Builder<Fluid, FluidState> builder)
-		{
+
+		protected void createFluidStateDefinition(StateContainer.Builder<Fluid, FluidState> builder) {
 			super.createFluidStateDefinition(builder);
 			builder.add(LEVEL);
 		}
-		
-		public int getAmount(FluidState state)
-		{
+
+		public int getAmount(FluidState state) {
 			return state.getValue(LEVEL);
 		}
-		
-		public boolean isSource(FluidState state)
-		{
+
+		public boolean isSource(FluidState state) {
 			return false;
 		}
 	}
-	
-	public static class Source extends CustomFluid
-	{
-		public Source(ResourceLocation overlayTexture, Properties properties)
-		{
+
+	public static class Source extends CustomFluid {
+		public Source(ResourceLocation overlayTexture, Properties properties) {
 			super(overlayTexture, properties);
 		}
-		
-		public int getAmount(FluidState state)
-		{
+
+		public int getAmount(FluidState state) {
 			return 8;
 		}
-		
-		public boolean isSource(FluidState state)
-		{
+
+		public boolean isSource(FluidState state) {
 			return true;
 		}
 	}

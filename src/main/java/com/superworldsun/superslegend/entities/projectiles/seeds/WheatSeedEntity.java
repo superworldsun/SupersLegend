@@ -10,46 +10,45 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
-public class WheatSeedEntity extends SeedEntity
-{
-	public WheatSeedEntity(EntityType<? extends WheatSeedEntity> type, World world)
-	{
+public class WheatSeedEntity extends SeedEntity {
+	private static final float HITBOX_HEIGHT = 0.5F;
+	private static final float HITBOX_WIDTH = 0.5F;
+	private static final float WATER_INERTIA = 0.3F;
+	private static final double BASE_DAMAGE = 0.5D;
+
+	public WheatSeedEntity(EntityType<? extends WheatSeedEntity> type, World world) {
 		super(type, world);
 	}
-	
-	public WheatSeedEntity(World worldIn, LivingEntity shooter)
-	{
+
+	public WheatSeedEntity(World worldIn, LivingEntity shooter) {
 		super(EntityTypeInit.WHEAT_SEED.get(), shooter, worldIn);
 	}
 
 	@Override
-	protected SoundEvent getDefaultHitGroundSoundEvent()
-	{
+	protected SoundEvent getDefaultHitGroundSoundEvent() {
 		return SoundEvents.CROP_BREAK;
 	}
 
 	@Override
-	public void onAddedToWorld()
-	{
+	public void onAddedToWorld() {
 		super.onAddedToWorld();
-		setBaseDamage(0.5D);
+		setBaseDamage(BASE_DAMAGE);
 	}
 
 	protected float getWaterInertia() {
-		return 0.3F;
+		return WATER_INERTIA;
 	}
 
 	@Override
-	protected ItemStack getPickupItem()
-	{
+	protected ItemStack getPickupItem() {
 		return new ItemStack(Items.WHEAT_SEEDS);
 	}
-	
-	public static EntityType<WheatSeedEntity> createEntityType()
-	{
-		return EntityType.Builder.<WheatSeedEntity>of(WheatSeedEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":wheat_seed");
+
+	public static EntityType<WheatSeedEntity> createEntityType() {
+		return EntityType.Builder.<WheatSeedEntity>of(WheatSeedEntity::new, EntityClassification.MISC)
+				.sized(HITBOX_WIDTH, HITBOX_HEIGHT)
+				.build(SupersLegendMain.MOD_ID + ":wheat_seed");
 	}
 }

@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.items.items;
 
 import java.util.List;
 
-import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -23,7 +23,7 @@ public class KokiriSet extends Item
 {
 	public KokiriSet()
 	{
-		super(new Properties().tab(SupersLegendMain.RESOURCES));
+		super(new Properties().tab(ItemGroupInit.RESOURCES));
 	}
 	
 	@Override

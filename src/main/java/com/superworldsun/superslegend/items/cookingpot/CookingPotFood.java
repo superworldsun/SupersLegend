@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.items.cookingpot;
 
 import com.google.common.collect.ImmutableList;
-import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.util.cookingpot.MathUtils;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
@@ -113,7 +113,7 @@ public class CookingPotFood extends Item {
     }
 
     public static class CookingPotFoodBuilder {
-        private Properties properties = new Properties().tab(SupersLegendMain.RESOURCES);
+        private Properties properties = new Properties().tab(ItemGroupInit.RESOURCES);
         private int maxStackSize = 64;
         private Rarity rarity = Rarity.COMMON;
         private Food.Builder foodBuilder = new Food.Builder();

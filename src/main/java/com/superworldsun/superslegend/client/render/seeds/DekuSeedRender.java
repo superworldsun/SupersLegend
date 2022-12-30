@@ -6,12 +6,10 @@ import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-public class DekuSeedRender extends SeedRenderer<DekuSeedEntity>
-{
+public class DekuSeedRender extends SeedRenderer<DekuSeedEntity> {
 	private static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/seeds/deku_seed.png");
-	
-	public DekuSeedRender(EntityRendererManager renderManager)
-	{
+
+	public DekuSeedRender(EntityRendererManager renderManager) {
 		super(renderManager, TEXTURE);
 	}
 }

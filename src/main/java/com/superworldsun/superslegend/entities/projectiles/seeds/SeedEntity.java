@@ -10,59 +10,50 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public abstract class SeedEntity extends AbstractArrowEntity
-{
-	public SeedEntity(EntityType<? extends SeedEntity> type, World world)
-	{
+public abstract class SeedEntity extends AbstractArrowEntity {
+	private static final double BASE_DAMAGE = 2.0D;
+
+	public SeedEntity(EntityType<? extends SeedEntity> type, World world) {
 		super(type, world);
 	}
-	
-	public SeedEntity(EntityType<? extends SeedEntity> entityType, LivingEntity shooter, World worldIn)
-	{
+
+	public SeedEntity(EntityType<? extends SeedEntity> entityType, LivingEntity shooter, World worldIn) {
 		super(entityType, shooter, worldIn);
 	}
-	
+
 	@Override
-	public void onAddedToWorld()
-	{
+	public void onAddedToWorld() {
 		super.onAddedToWorld();
-		setBaseDamage(2.0D);
+		setBaseDamage(BASE_DAMAGE);
 	}
-	
+
 	@Override
-	public IPacket<?> getAddEntityPacket()
-	{
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
-	
+
 	@Override
-	public void tick()
-	{
+	public void tick() {
 		super.tick();
-		
-		if (inGround)
-		{
+
+		if (inGround) {
 			remove();
 		}
 	}
-	
+
 	@Override
-	protected SoundEvent getDefaultHitGroundSoundEvent()
-	{
+	protected SoundEvent getDefaultHitGroundSoundEvent() {
 		return SoundEvents.BAMBOO_BREAK;
 	}
-	
+
 	@Override
-	protected void onHitEntity(EntityRayTraceResult result)
-	{
+	protected void onHitEntity(EntityRayTraceResult result) {
 		super.onHitEntity(result);
-		
-		if (result.getEntity() instanceof LivingEntity)
-		{
+
+		if (result.getEntity() instanceof LivingEntity) {
 			LivingEntity target = (LivingEntity) result.getEntity();
-			
-			if (!level.isClientSide && getPierceLevel() <= 0)
-			{
+
+			if (!level.isClientSide && getPierceLevel() <= 0) {
 				target.setArrowCount(target.getArrowCount() - 1);
 			}
 		}

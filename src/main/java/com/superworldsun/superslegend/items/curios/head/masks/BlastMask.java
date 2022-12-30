@@ -48,7 +48,7 @@ public class BlastMask extends NonEnchantItem implements IMaskAbility, ICurioIte
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		String keybind = KeyBindings.MASK_ABILITY.getKey().getDisplayName().getString();
+		String keybind = KeyBindings.KEY_USE_MASK.getKey().getDisplayName().getString();
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Bomb Blastic"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Press '" + keybind + "' to Explode"));
 	}

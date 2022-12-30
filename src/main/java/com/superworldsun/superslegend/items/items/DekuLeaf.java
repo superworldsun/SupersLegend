@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.projectiles.magic.GustEntity;
 import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
@@ -39,7 +40,7 @@ public class DekuLeaf extends Item
 	
 	public DekuLeaf()
 	{
-		super(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES));
+		super(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES));
 	}
 	
 	@OnlyIn(Dist.CLIENT)

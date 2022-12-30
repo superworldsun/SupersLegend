@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.DoubleJumpMessage;
 import com.superworldsun.superslegend.registries.ArmourInit;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
@@ -40,7 +41,7 @@ public class RocsCape extends NonEnchantArmor
 	
 	public RocsCape()
 	{
-		super(ArmourInit.ROCSCAPE, EquipmentSlotType.CHEST, new Item.Properties().tab(SupersLegendMain.APPAREL));
+		super(ArmourInit.ROCSCAPE, EquipmentSlotType.CHEST, new Item.Properties().tab(ItemGroupInit.APPAREL));
 	}
 	
 	@OnlyIn(Dist.CLIENT)

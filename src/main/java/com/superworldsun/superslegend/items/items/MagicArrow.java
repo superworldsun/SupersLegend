@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.items;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +27,7 @@ public abstract class MagicArrow extends ArrowItem
 {
 	public MagicArrow()
 	{
-		super(new Item.Properties().tab(SupersLegendMain.RESOURCES).stacksTo(1));
+		super(new Item.Properties().tab(ItemGroupInit.RESOURCES).stacksTo(1));
 	}
 	
 	@Override

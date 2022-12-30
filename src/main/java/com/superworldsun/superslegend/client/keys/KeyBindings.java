@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.client.keys;
 
+import java.util.function.Predicate;
+
 import org.lwjgl.glfw.GLFW;
 
 import com.superworldsun.superslegend.SupersLegendMain;
@@ -11,11 +13,10 @@ import com.superworldsun.superslegend.network.message.MaskAbilityMessage;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
+import net.minecraft.entity.Pose;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -24,107 +25,77 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @EventBusSubscriber(bus = Bus.MOD, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
-public class KeyBindings
-{
-	public static final KeyBinding MASK_ABILITY = new KeyBinding("key.mask_ability", GLFW.GLFW_KEY_B, "key.categories." + SupersLegendMain.MOD_ID);
-	//Dosent work as intended and is incomplete
-	//public static final KeyBinding SELECT_INVENTORY = new KeyBinding("key.select_inventory", GLFW.GLFW_KEY_C, "key.categories." + SupersLegendMain.MOD_ID);
-	public static final KeyBinding DROP_BOMB = new KeyBinding("key.drop_bomb", GLFW.GLFW_KEY_N, "key.categories." + SupersLegendMain.MOD_ID);
-	//public static final KeyBinding CRAWL = new KeyBinding("key.crawl", GLFW.GLFW_KEY_H, "key.categories." + SupersLegendMain.MOD_ID);
-	
+public class KeyBindings {
+	private static final String KEYS_CATEGORY = "key.categories." + SupersLegendMain.MOD_ID;
+	public static final KeyBinding KEY_USE_MASK = new KeyBinding("key.mask_ability", GLFW.GLFW_KEY_B, KEYS_CATEGORY);
+	public static final KeyBinding KEY_DROP_BOMB = new KeyBinding("key.drop_bomb", GLFW.GLFW_KEY_N, KEYS_CATEGORY);
+	public static final KeyBinding KEY_CRAWL = new KeyBinding("key.crawl", GLFW.GLFW_KEY_H, KEYS_CATEGORY);
+	// Dosent work as intended and is incomplete
+	// public static final KeyBinding SELECT_INVENTORY = new KeyBinding("key.select_inventory", GLFW.GLFW_KEY_C, "key.categories." + SupersLegendMain.MOD_ID);
+
 	@SubscribeEvent
-	public static void onClientSetup(FMLClientSetupEvent event)
-	{
-		ClientRegistry.registerKeyBinding(MASK_ABILITY);
-		//ClientRegistry.registerKeyBinding(SELECT_INVENTORY);
-		ClientRegistry.registerKeyBinding(DROP_BOMB);
-		//ClientRegistry.registerKeyBinding(CRAWL);
+	public static void onClientSetup(FMLClientSetupEvent event) {
+		ClientRegistry.registerKeyBinding(KEY_USE_MASK);
+		ClientRegistry.registerKeyBinding(KEY_DROP_BOMB);
+		ClientRegistry.registerKeyBinding(KEY_CRAWL);
+		// ClientRegistry.registerKeyBinding(SELECT_INVENTORY);
 	}
-	
+
 	@EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
-	private static class Events
-	{
+	private static class KeyboardInputEvents {
 		@SubscribeEvent
-		public static void onKeyInput(InputEvent.KeyInputEvent event)
-		{
-			Minecraft client = Minecraft.getInstance();
-			
-			if (client.player == null || client.screen != null)
-			{
+		public static void onKeyInput(KeyInputEvent event) {
+			Minecraft minecraft = Minecraft.getInstance();
+
+			if (minecraft.player == null || minecraft.screen != null) {
 				return;
 			}
-			
-			if (event.getKey() == MASK_ABILITY.getKey().getValue())
-			{
-				Item helmetItem = client.player.getItemBySlot(EquipmentSlotType.HEAD).getItem();
-				
-				CuriosApi.getCuriosHelper().getEquippedCurios(client.player).ifPresent(curios ->
-				{
-					for (int i = 0; i < curios.getSlots(); i++)
-					{
-						ItemStack curioStack = curios.getStackInSlot(i);
-						
-						if (!curioStack.isEmpty() && curioStack.getItem() instanceof IMaskAbility)
-						{
-							IMaskAbility mask = (IMaskAbility) curioStack.getItem();
-							
-							if (event.getAction() == GLFW.GLFW_PRESS)
-							{
-								mask.startUsingAbility(client.player);
-								NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(true));
-							}
-							else if (event.getAction() == GLFW.GLFW_RELEASE)
-							{
-								mask.stopUsingAbility(client.player);
-								NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(false));
-							}
-						}
-					}
-				});
-				
-				if (helmetItem instanceof IMaskAbility)
-				{
-					IMaskAbility mask = (IMaskAbility) helmetItem;
-					
-					if (event.getAction() == GLFW.GLFW_PRESS)
-					{
-						mask.startUsingAbility(client.player);
-						NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(true));
-					}
-					else if (event.getAction() == GLFW.GLFW_RELEASE)
-					{
-						mask.stopUsingAbility(client.player);
-						NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(false));
-					}
-				}
-			}
-			/*else if (SELECT_INVENTORY.isDown())
-			{
-				NetworkDispatcher.networkChannel.sendToServer(new SelectInteractionMessage(0, true));
-			}*/
-			else if (event.getKey() == DROP_BOMB.getKey().getValue())
-			{
-				boolean hasBombBag = CuriosApi.getCuriosHelper().findEquippedCurio(stack -> stack.getItem() instanceof BombBagItem, client.player).isPresent();
-				
-				if (hasBombBag)
-				{
-					if (event.getAction() == GLFW.GLFW_PRESS)
-					{
-						NetworkDispatcher.networkChannel.sendToServer(new DropBombMessage());
-					}
-				}
-			}
 
-			//TODO make a keybind that when pressed it will make th player crawl
-			/*else if (event.getKey() == CRAWL.getKey().getValue())
-			{
-				if (event.getAction() == GLFW.GLFW_PRESS)
-				{
-					System.out.println("crawling");
-					client.player.isSwimming();
-					client.player.setSwimming(true);
+			if (event.getKey() == KEY_USE_MASK.getKey().getValue()) {
+				useMaskKeyPressed(minecraft, event.getAction());
+			} else if (event.getKey() == KEY_DROP_BOMB.getKey().getValue()) {
+				dropBombKeyPressed(minecraft, event.getAction());
+			} else if (event.getKey() == KEY_CRAWL.getKey().getValue()) {
+				crawlKeyPressed(minecraft, event.getAction());
+			}
+			/*
+			 * else if (SELECT_INVENTORY.isDown()) { NetworkDispatcher.networkChannel.sendToServer(new SelectInteractionMessage(0, true)); }
+			 */
+		}
+
+		private static void crawlKeyPressed(Minecraft minecraft, int keyAction) {
+			if (keyAction == GLFW.GLFW_PRESS) {
+				if (minecraft.player.getForcedPose() != Pose.SWIMMING)
+					minecraft.player.setForcedPose(Pose.SWIMMING);
+				else
+					minecraft.player.setForcedPose(null);
+//				NetworkDispatcher.networkChannel.sendToServer(new ToggleCrawlingMessage());
+			}
+		}
+
+		private static void useMaskKeyPressed(Minecraft minecraft, int keyAction) {
+			Predicate<ItemStack> isMaskWithAbility = stack -> stack.getItem() instanceof IMaskAbility;
+			CuriosApi.getCuriosHelper().findEquippedCurio(isMaskWithAbility, minecraft.player).ifPresent(i -> {
+				ItemStack maskStack = i.getRight();
+				IMaskAbility mask = (IMaskAbility) maskStack.getItem();
+
+				if (keyAction == GLFW.GLFW_PRESS) {
+					mask.startUsingAbility(minecraft.player);
+					NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(true));
+				} else if (keyAction == GLFW.GLFW_RELEASE) {
+					mask.stopUsingAbility(minecraft.player);
+					NetworkDispatcher.networkChannel.sendToServer(new MaskAbilityMessage(false));
 				}
-			}*/
+			});
+		}
+
+		private static void dropBombKeyPressed(Minecraft minecraft, int keyAction) {
+			Predicate<ItemStack> isBombBag = stack -> stack.getItem() instanceof BombBagItem;
+			CuriosApi.getCuriosHelper().findEquippedCurio(isBombBag, minecraft.player).ifPresent(i -> {
+				if (keyAction == GLFW.GLFW_PRESS) {
+					NetworkDispatcher.networkChannel.sendToServer(new DropBombMessage());
+				}
+			});
 		}
 	}
 }
