@@ -28,7 +28,6 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -46,6 +45,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -56,21 +57,14 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 @Mod(SupersLegendMain.MOD_ID)
-@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Bus.MOD)
 public class SupersLegendMain
 {
-	// Our instance, referenced in the below sub-class
-	public static SupersLegendMain instance;
-	public static final String NAME = "SupersLegend";
 	public static final String MOD_ID = "superslegend";
 	public static final Logger LOGGER = LogManager.getLogger();
-	public static final ArrayList<BlockPos> toRemove = new ArrayList<BlockPos>();
-	// This sub-class below is the start where we'll add registry and stuff
-	// later on
+
 	public SupersLegendMain()
 	{
-		instance = this;
-
 		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		// Our listener for setup, it will pick up on anything put into setup
 		// and notify Forge of it
@@ -79,8 +73,6 @@ public class SupersLegendMain
 		
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupersLegendConfig.SPEC, "superslegend.toml");
 
-		// Remember to register items before blocks, problems can occur
-		// otherwise if you don't
 		VanillaMobDrops customloot = new VanillaMobDrops();
 		MinecraftForge.EVENT_BUS.register(customloot);
 		MinecraftForge.EVENT_BUS.register(new AncientArrowDropEvents());
@@ -111,11 +103,6 @@ public class SupersLegendMain
 		// The comments for BiomeLoadingEvent and StructureSpawnListGatherEvent says to do HIGH for additions.
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGen::generateOres);
 		forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
-	}
-	
-	public static ResourceLocation locate(String name)
-	{
-		return new ResourceLocation(SupersLegendMain.MOD_ID, name);
 	}
 	
 	/* The FMLCommonSetupEvent (FML - Forge Mod Loader) */
