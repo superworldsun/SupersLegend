@@ -40,7 +40,22 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 60,
+               "weight": 5,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 1.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:heart_piece"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 55,
                "functions": [
                   {
                      "function": "minecraft:set_count",

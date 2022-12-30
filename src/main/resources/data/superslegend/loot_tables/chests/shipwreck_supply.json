@@ -6,7 +6,7 @@
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 59,
+               "weight": 55,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -38,6 +38,11 @@
                "type":"minecraft:item",
                "weight":1,
                "name":"superslegend:triforce_courage_shard"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":4,
+               "name":"superslegend:heart_piece"
             }
          ]
       }
