@@ -1,14 +1,16 @@
 {
     "type": "minecraft:crafting_shapeless",
-    "base": {
-        "item": "superslegend:kokiri_cap"
-    },
-    "addition": {
-        "item": "superslegend:kokiri_tunic"
-    },
-    "addition": {
-        "item": "superslegend:kokiri_leggings"
-    },
+    "ingredients": [
+        {
+            "item": "superslegend:kokiri_cap"
+        },
+        {
+            "item": "superslegend:kokiri_tunic"
+        },
+        {
+            "item": "superslegend:kokiri_leggings"
+        }
+    ],
     "result": {
         "item": "superslegend:kokiri_set"
     }
