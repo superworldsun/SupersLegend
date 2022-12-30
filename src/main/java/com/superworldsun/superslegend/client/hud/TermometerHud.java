@@ -58,7 +58,7 @@ public class TermometerHud
 			
 			RenderSystem.enableBlend();
 			IngameGui gui = minecraft.gui;
-			float temperature = TemperatureEvents.getTemperatureAroundPlayer(player);
+			float temperature = TemperatureEvents.getTemperature(player);
 			int termometerSizeX = 33;
 			int termometerSizeY = 33;
 			int termometerX = 2;
