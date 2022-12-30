@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " m ",
+        "gmg",
+        " D "
+    ],
+    "key": {
+        "m": {
+            "item": "superslegend:master_ore"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        }
+    },
+    "result": {
+        "item": "superslegend:goddess_sword",
+        "count": 1
+    }
+}
