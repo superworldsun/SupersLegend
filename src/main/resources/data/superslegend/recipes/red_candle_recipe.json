@@ -1,18 +1,18 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        " T",
-        "GE",
-        " G"
+        " #",
+        "g/",
+        " g"
     ],
     "key": {
         "#": {
             "item": "minecraft:torch"
         },
-        "G": {
+        "g": {
             "item": "minecraft:gold_ingot"
         },
-        "E": {
+        "/": {
             "item": "minecraft:end_rod"
         }
     },

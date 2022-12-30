@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.blocks;
 
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.MushroomBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -9,7 +10,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 
-public class MagicMushroomBlock extends MushroomBlock
+public class MagicMushroomBlock extends MushroomBlock implements IGrowable
 
 {
 

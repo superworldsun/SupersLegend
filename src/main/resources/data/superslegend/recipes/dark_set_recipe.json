@@ -1,17 +1,19 @@
 {
     "type": "minecraft:crafting_shapeless",
-    "base": {
-        "item": "superslegend:dark_cap"
-    },
-    "addition": {
-        "item": "superslegend:dark_tunic"
-    },
-    "addition": {
-        "item": "superslegend:dark_leggings"
-    },
-    "addition": {
-        "item": "superslegend:dark_boots"
-    },
+    "ingredients": [
+        {
+            "item": "superslegend:dark_cap"
+        },
+        {
+            "item": "superslegend:dark_tunic"
+        },
+        {
+            "item": "superslegend:dark_leggings"
+        },
+        {
+            "item": "superslegend:dark_boots"
+        }
+    ],
     "result": {
         "item": "superslegend:dark_set"
     }

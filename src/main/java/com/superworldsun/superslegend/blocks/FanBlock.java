@@ -10,7 +10,6 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.block.IWaterLoggable;
-import net.minecraft.block.material.Material;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -24,7 +23,6 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
 
 public class FanBlock extends DirectionalBlock implements IWaterLoggable
 {
@@ -32,9 +30,9 @@ public class FanBlock extends DirectionalBlock implements IWaterLoggable
 			VoxelShapes.box(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D), VoxelShapes.box(0.0D, 0.0D, 0.0D, 0.0625D, 1.0D, 1.0D),
 			VoxelShapes.box(0.0D, 0.9375D, 0.0D, 1.0D, 1.0D, 1.0D), VoxelShapes.box(0.9375D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D));
 	
-	public FanBlock()
+	public FanBlock(Properties properties)
 	{
-		super(Properties.of(Material.STONE).strength(10.0F, 1000.0F).harvestLevel(1).harvestTool(ToolType.PICKAXE));
+		super(properties);
 		registerDefaultState(stateDefinition.any().setValue(FACING, Direction.UP).setValue(WATERLOGGED, false));
 	}
 	

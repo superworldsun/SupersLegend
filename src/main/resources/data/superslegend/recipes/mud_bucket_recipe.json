@@ -6,11 +6,13 @@
         "#D#"
     ],
     "key": {
-        "#": {
+        "#":
+        {
             "item": "minecraft:coarse_dirt"
         },
-        "P": {
-            "item": "minecraft:potion"
+        "P":
+        {
+            "type":"forge:nbt","item":"minecraft:potion","count":1,"nbt":"{Potion:\"minecraft:water\"}"
         },
         "D": {
             "item": "minecraft:dirt"

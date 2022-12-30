@@ -7,10 +7,8 @@ import java.util.Random;
 
 import com.superworldsun.superslegend.util.BlockShapeHelper;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
@@ -29,9 +27,9 @@ public class RoyalTileBlock extends Block
 	// only for model rotation
 	public static final DirectionProperty ROTATION = DirectionProperty.create("rotation", Direction.Plane.HORIZONTAL);
 	
-	public RoyalTileBlock()
+	public RoyalTileBlock(Properties properties)
 	{
-		super(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().noCollission().strength(0.5F));
+		super(properties);
 		registerDefaultState(stateDefinition.any().setValue(POWERED, false).setValue(FACING, Direction.SOUTH).setValue(ROTATION, Direction.SOUTH));
 	}
 	

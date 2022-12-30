@@ -10,7 +10,7 @@
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 55,
+               "weight": 50,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -67,6 +67,21 @@
                   }
                ],
                "name": "superslegend:silver_rupee"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 5,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 1.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:heart_piece"
             }
          ]
       }

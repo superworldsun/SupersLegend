@@ -10,7 +10,7 @@
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 55,
+               "weight": 48,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -42,6 +42,11 @@
                "type":"minecraft:item",
                "weight":10,
                "name":"superslegend:song_of_soaring_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":7,
+               "name":"superslegend:heart_piece"
             },
             {
                "type":"minecraft:item",

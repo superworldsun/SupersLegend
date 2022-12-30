@@ -25,18 +25,16 @@ public class DekuFlowerBlock extends Block
 	   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 	      return SHAPE;
 	   }
-	   
-	   @SuppressWarnings("deprecation")
+
+	@Override
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		      return facing == Direction.DOWN && !this.canSurvive(stateIn, worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		   }
+		return this.canSurvive(stateIn, worldIn, currentPos) ? this.defaultBlockState() : Blocks.AIR.defaultBlockState();
+	}
 
-		   /*public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		      return canSupportCenter(worldIn, pos.down(), Direction.UP);
-		   }*/
-
+	@Override
 	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		return !worldIn.isEmptyBlock(pos.below());
+		BlockPos blockpos = pos.below();
+		return worldIn.getBlockState(blockpos).isFaceSturdy(worldIn, blockpos, Direction.UP);
 	}
 
 

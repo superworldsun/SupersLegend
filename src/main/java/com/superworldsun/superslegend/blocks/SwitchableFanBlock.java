@@ -11,6 +11,10 @@ import net.minecraft.world.World;
 
 public class SwitchableFanBlock extends FanBlock
 {
+	public SwitchableFanBlock(Properties properties) {
+		super(properties);
+	}
+
 	@Override
 	public void neighborChanged(BlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos, boolean flag)
 	{
