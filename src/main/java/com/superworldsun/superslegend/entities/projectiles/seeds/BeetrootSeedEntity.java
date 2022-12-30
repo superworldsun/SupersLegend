@@ -10,26 +10,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
-public class BeetrootSeedEntity extends SeedEntity
-{
-	public BeetrootSeedEntity(EntityType<? extends BeetrootSeedEntity> type, World world)
-	{
+public class BeetrootSeedEntity extends SeedEntity {
+	private static final float HITBOX_HEIGHT = 0.5F;
+	private static final float HITBOX_WIDTH = 0.5F;
+
+	public BeetrootSeedEntity(EntityType<? extends BeetrootSeedEntity> type, World world) {
 		super(type, world);
 	}
-	
-	public BeetrootSeedEntity(World worldIn, LivingEntity shooter)
-	{
+
+	public BeetrootSeedEntity(World worldIn, LivingEntity shooter) {
 		super(EntityTypeInit.BEETROOT_SEED.get(), shooter, worldIn);
 	}
-	
+
 	@Override
-	protected ItemStack getPickupItem()
-	{
+	protected ItemStack getPickupItem() {
 		return new ItemStack(Items.BEETROOT_SEEDS);
 	}
-	
-	public static EntityType<BeetrootSeedEntity> createEntityType()
-	{
-		return EntityType.Builder.<BeetrootSeedEntity>of(BeetrootSeedEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":beetroot_seed");
+
+	public static EntityType<BeetrootSeedEntity> createEntityType() {
+		return EntityType.Builder.<BeetrootSeedEntity>of(BeetrootSeedEntity::new, EntityClassification.MISC)
+				.sized(HITBOX_WIDTH, HITBOX_HEIGHT)
+				.build(SupersLegendMain.MOD_ID + ":beetroot_seed");
 	}
 }

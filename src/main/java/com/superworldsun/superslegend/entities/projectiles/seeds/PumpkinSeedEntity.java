@@ -10,26 +10,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
-public class PumpkinSeedEntity extends SeedEntity
-{
-	public PumpkinSeedEntity(EntityType<? extends PumpkinSeedEntity> type, World world)
-	{
+public class PumpkinSeedEntity extends SeedEntity {
+	private static final float HITBOX_HEIGHT = 0.5F;
+	private static final float HITBOX_WIDTH = 0.5F;
+
+	public PumpkinSeedEntity(EntityType<? extends PumpkinSeedEntity> type, World world) {
 		super(type, world);
 	}
-	
-	public PumpkinSeedEntity(World worldIn, LivingEntity shooter)
-	{
+
+	public PumpkinSeedEntity(World worldIn, LivingEntity shooter) {
 		super(EntityTypeInit.PUMPKIN_SEED.get(), shooter, worldIn);
 	}
-	
+
 	@Override
-	protected ItemStack getPickupItem()
-	{
+	protected ItemStack getPickupItem() {
 		return new ItemStack(Items.PUMPKIN_SEEDS);
 	}
-	
-	public static EntityType<PumpkinSeedEntity> createEntityType()
-	{
-		return EntityType.Builder.<PumpkinSeedEntity>of(PumpkinSeedEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":pumpkin_seed");
+
+	public static EntityType<PumpkinSeedEntity> createEntityType() {
+		return EntityType.Builder.<PumpkinSeedEntity>of(PumpkinSeedEntity::new, EntityClassification.MISC)
+				.sized(HITBOX_WIDTH, HITBOX_HEIGHT)
+				.build(SupersLegendMain.MOD_ID + ":pumpkin_seed");
 	}
 }

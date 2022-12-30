@@ -10,26 +10,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
-public class MelonSeedEntity extends SeedEntity
-{
-	public MelonSeedEntity(EntityType<? extends MelonSeedEntity> type, World world)
-	{
+public class MelonSeedEntity extends SeedEntity {
+	private static final float HITBOX_HEIGHT = 0.5F;
+	private static final float HITBOX_WIDTH = 0.5F;
+
+	public MelonSeedEntity(EntityType<? extends MelonSeedEntity> type, World world) {
 		super(type, world);
 	}
-	
-	public MelonSeedEntity(World worldIn, LivingEntity shooter)
-	{
+
+	public MelonSeedEntity(World worldIn, LivingEntity shooter) {
 		super(EntityTypeInit.MELON_SEED.get(), shooter, worldIn);
 	}
-	
+
 	@Override
-	protected ItemStack getPickupItem()
-	{
+	protected ItemStack getPickupItem() {
 		return new ItemStack(Items.MELON_SEEDS);
 	}
-	
-	public static EntityType<MelonSeedEntity> createEntityType()
-	{
-		return EntityType.Builder.<MelonSeedEntity>of(MelonSeedEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":melon_seed");
+
+	public static EntityType<MelonSeedEntity> createEntityType() {
+		return EntityType.Builder.<MelonSeedEntity>of(MelonSeedEntity::new, EntityClassification.MISC)
+				.sized(HITBOX_WIDTH, HITBOX_HEIGHT)
+				.build(SupersLegendMain.MOD_ID + ":melon_seed");
 	}
 }

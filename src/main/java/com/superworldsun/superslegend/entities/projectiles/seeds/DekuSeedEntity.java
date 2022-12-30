@@ -10,30 +10,32 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class DekuSeedEntity extends SeedEntity
-{
-	public DekuSeedEntity(EntityType<? extends DekuSeedEntity> type, World world)
-	{
+public class DekuSeedEntity extends SeedEntity {
+	private static final float HITBOX_HEIGHT = 0.5F;
+	private static final float HITBOX_WIDTH = 0.5F;
+	private static final float WATER_INERTIA = 0.9F;
+
+	public DekuSeedEntity(EntityType<? extends DekuSeedEntity> type, World world) {
 		super(type, world);
 	}
-	
-	public DekuSeedEntity(World worldIn, LivingEntity shooter)
-	{
+
+	public DekuSeedEntity(World worldIn, LivingEntity shooter) {
 		super(EntityTypeInit.DEKU_SEED.get(), shooter, worldIn);
 	}
 
+	@Override
 	protected float getWaterInertia() {
-		return 0.9F;
+		return WATER_INERTIA;
 	}
 
 	@Override
-	protected ItemStack getPickupItem()
-	{
+	protected ItemStack getPickupItem() {
 		return new ItemStack(ItemInit.DEKU_SEEDS.get());
 	}
-	
-	public static EntityType<DekuSeedEntity> createEntityType()
-	{
-		return EntityType.Builder.<DekuSeedEntity>of(DekuSeedEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":deku_seed");
+
+	public static EntityType<DekuSeedEntity> createEntityType() {
+		return EntityType.Builder.<DekuSeedEntity>of(DekuSeedEntity::new, EntityClassification.MISC)
+				.sized(HITBOX_WIDTH, HITBOX_HEIGHT)
+				.build(SupersLegendMain.MOD_ID + ":deku_seed");
 	}
 }

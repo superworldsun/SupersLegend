@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public abstract class PoisonFluid {
+public class PoisonFluid {
 	private static final ResourceLocation FLOWING_BLOCK_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "block/poison_flowing");
 	private static final ResourceLocation SOURCE_BLOCK_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "block/poison_still");
 	private static final ResourceLocation OVERLAY_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/block/poison_overlay.png");
