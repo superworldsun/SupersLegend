@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.items.bags;
 
 import java.util.List;
 
-import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.block.CropsBlock;
@@ -22,7 +22,7 @@ public class BaitBagItem extends BagItem
 {
 	public BaitBagItem()
 	{
-		super(new Properties().tab(SupersLegendMain.RESOURCES));
+		super(new Properties().tab(ItemGroupInit.RESOURCES));
 	}
 	
 	@Override

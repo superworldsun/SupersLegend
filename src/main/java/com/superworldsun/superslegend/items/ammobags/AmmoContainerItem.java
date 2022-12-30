@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.util.ItemNBTHelper;
 
 import net.minecraft.entity.item.ItemEntity;
@@ -31,7 +32,7 @@ public abstract class AmmoContainerItem extends Item
 	
 	public AmmoContainerItem(int capacity)
 	{
-		super(new Properties().durability(capacity).tab(SupersLegendMain.APPAREL));
+		super(new Properties().durability(capacity).tab(ItemGroupInit.APPAREL));
 		this.capacity = capacity;
 	}
 	

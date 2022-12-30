@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.items.bags;
 
-import com.superworldsun.superslegend.SupersLegendMain;
-
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
@@ -20,7 +19,7 @@ public class SpoilsBagItem extends BagItem
 {
 	public SpoilsBagItem()
 	{
-		super(new Item.Properties().tab(SupersLegendMain.RESOURCES));
+		super(new Item.Properties().tab(ItemGroupInit.RESOURCES));
 	}
 	
 	@Override

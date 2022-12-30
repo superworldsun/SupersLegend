@@ -282,11 +282,4 @@ public class SupersLegendMain
 			serverWorld.getChunkSource().getGenerator().getSettings().structureConfig = tempMap;
 		}
 	}
-	// STRUCTURE GEN CODE ENDS HERE!
-	// STRUCTURE GEN CODE ENDS HERE!
-
-	//GROUPS
-	public static final ItemGroup RESOURCES = new SupersLegendItemGroup();
-	public static final ItemGroup APPAREL = new SupersLegendItemGroupApparel();
-	public static final ItemGroup BLOCKS = new SupersLegendItemGroupBlocks();
 }

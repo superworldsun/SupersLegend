@@ -11,6 +11,7 @@ import com.superworldsun.superslegend.client.model.armor.SnowquillTunicModel;
 import com.superworldsun.superslegend.items.custom.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ArmourInit;
 import com.superworldsun.superslegend.registries.EffectInit;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
@@ -29,7 +30,7 @@ public class ArmorSnowquill extends NonEnchantArmor {
 	private static final Map<EquipmentSlotType, BipedModel<?>> MODELS_CACHE = new HashMap<>();
 
 	public ArmorSnowquill(EquipmentSlotType slot) {
-		super(ArmourInit.SNOWQUILL, slot, new Properties().tab(SupersLegendMain.APPAREL));
+		super(ArmourInit.SNOWQUILL, slot, new Properties().tab(ItemGroupInit.APPAREL));
 	}
 
 	@OnlyIn(Dist.CLIENT)

@@ -11,6 +11,7 @@ import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
 import com.superworldsun.superslegend.entities.projectiles.seeds.MelonSeedEntity;
 import com.superworldsun.superslegend.entities.projectiles.seeds.PumpkinSeedEntity;
 import com.superworldsun.superslegend.entities.projectiles.seeds.WheatSeedEntity;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.registries.TagInit;
@@ -38,7 +39,7 @@ public class SlingShot extends BowItem
 {
 	public SlingShot()
 	{
-		super(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES));
+		super(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES));
 	}
 	
 	@Override

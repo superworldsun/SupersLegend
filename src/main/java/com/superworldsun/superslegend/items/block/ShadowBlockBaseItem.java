@@ -2,9 +2,9 @@ package com.superworldsun.superslegend.items.block;
 
 import javax.annotation.Nullable;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.ShadowBlock;
 import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,12 +22,12 @@ public class ShadowBlockBaseItem extends BlockItem
 {
 	public ShadowBlockBaseItem()
 	{
-		super(BlockInit.SHADOW_BLOCK.get(), new Item.Properties().tab(SupersLegendMain.BLOCKS));
+		super(BlockInit.SHADOW_BLOCK.get(), new Item.Properties().tab(ItemGroupInit.BLOCKS));
 	}
 	
 	protected ShadowBlockBaseItem(Block block)
 	{
-		super(block, new Item.Properties().tab(SupersLegendMain.BLOCKS));
+		super(block, new Item.Properties().tab(ItemGroupInit.BLOCKS));
 	}
 	
 	@Override

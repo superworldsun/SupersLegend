@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.items;
 
-import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -16,7 +16,7 @@ public abstract class RingItem extends Item implements ICurioItem
 {
 	public RingItem(Properties properties)
 	{
-		super(properties.stacksTo(1).tab(SupersLegendMain.APPAREL));
+		super(properties.stacksTo(1).tab(ItemGroupInit.APPAREL));
 	}
 	
 	@Override

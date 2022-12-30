@@ -2,10 +2,10 @@ package com.superworldsun.superslegend.items.weapons;
 
 import java.util.function.Predicate;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity;
 import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.registries.TagInit;
 
 import net.minecraft.block.AbstractFireBlock;
@@ -38,7 +38,7 @@ public class FireRod extends NonEnchantItem
 {
 	public FireRod()
 	{
-		super(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES));
+		super(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES));
 	}
 
 	//TODO Always creates a fire at the block looked at as soon as a right click is made and is a bit spammy,

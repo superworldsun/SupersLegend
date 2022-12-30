@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.SupersLegendRegistries;
+import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.songs.LearnedSongsProvider;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
@@ -28,7 +28,7 @@ public class AllSongsSheet extends Item
 {
 	public AllSongsSheet()
 	{
-		super(new Item.Properties().tab(SupersLegendMain.RESOURCES).stacksTo(1));
+		super(new Item.Properties().tab(ItemGroupInit.RESOURCES).stacksTo(1));
 	}
 
 	@OnlyIn(Dist.CLIENT)
