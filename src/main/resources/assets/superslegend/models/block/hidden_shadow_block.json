@@ -4,6 +4,7 @@
     "ambient_lighting": false,
     "shade": false,
     "textures": {
-        "all": "superslegend:block/shadow_block"
+        "all": "superslegend:block/shadow_block",
+        "particle": "superslegend:block/air"
     }
 }

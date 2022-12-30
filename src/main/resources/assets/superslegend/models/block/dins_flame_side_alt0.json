@@ -1,6 +1,7 @@
 {
 	"parent": "minecraft:block/template_fire_side_alt",
 	"textures": {
-		"fire": "superslegend:block/dins_flame_0"
+		"fire": "superslegend:block/dins_flame_0",
+		"particle": "superslegend:block/air"
 	}
 }
