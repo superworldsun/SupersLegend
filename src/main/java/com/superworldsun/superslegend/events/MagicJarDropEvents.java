@@ -12,45 +12,39 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
-public class MagicJarDropEvents
-{
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
+public class MagicJarDropEvents {
+	private static final int LARGE_JAR_MANA_RESTORATION = 10;
+	private static final int JAR_MANA_RESTORATION = 4;
+	private static final double LARGE_JAR_DROP_CHANCE = 0.05;
+	private static final double JAR_DROP_CHANCE = 0.15;
+
 	@SubscribeEvent
-	public static void onLivingDeath(LivingDeathEvent event)
-	{
-		Random random = new Random();
-		// Check if player killed the entity
-		// Check if entity being killed is MonsterEntity
-		if (event.getSource().getEntity() instanceof PlayerEntity && event.getEntityLiving() instanceof MonsterEntity)
-		{
+	public static void onLivingDeath(LivingDeathEvent event) {
+		if (event.getSource().getEntity() instanceof PlayerEntity && event.getEntityLiving() instanceof MonsterEntity) {
 			Entity entity = event.getEntity();
 			PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
 			World level = player.level;
-			
-			// Appear with 15% probability
-			if (!level.isClientSide && new Random().nextDouble() <= 0.15)
-			{
-				double d0 = (double) (random.nextFloat() * 0.5F) + 0.25D;
-				double d1 = (double) (random.nextFloat() * 0.5F) + 0.25D;
-				double d2 = (double) (random.nextFloat() * 0.5F) + 0.25D;
-				MagicJarEntity magicJarEntity = new MagicJarEntity(level, entity.getX() + d0, entity.getY() + d1, entity.getZ() + d2);
-				// Amount of mana restore.
-				magicJarEntity.value = 4;
-				level.addFreshEntity(magicJarEntity);
+			Random random = new Random();
+
+			if (!level.isClientSide && random.nextDouble() <= JAR_DROP_CHANCE) {
+				double xOffset = random.nextFloat() * 0.5F - 0.25F;
+				double yOffset = random.nextFloat() * 0.5F;
+				double zOffset = random.nextFloat() * 0.5F - 0.25F;
+				MagicJarEntity jar = new MagicJarEntity(level, entity.getX() + xOffset, entity.getY() + yOffset, entity.getZ() + zOffset);
+				jar.value = JAR_MANA_RESTORATION;
+				level.addFreshEntity(jar);
 			}
-			
-			// Appear with 5% probability
-			if (!level.isClientSide && new Random().nextDouble() <= 0.05)
-			{
-				double d0 = (double) (random.nextFloat() * 0.5F) + 0.25D;
-				double d1 = (double) (random.nextFloat() * 0.5F) + 0.25D;
-				double d2 = (double) (random.nextFloat() * 0.5F) + 0.25D;
-				LargeMagicJarEntity largeMagicJarEntity = new LargeMagicJarEntity(level, entity.getX() + d0, entity.getY() + d1, entity.getZ() + d2);
-				// Amount of mana restore.
-				largeMagicJarEntity.value = 10;
-				level.addFreshEntity(largeMagicJarEntity);
+
+			if (!level.isClientSide && random.nextDouble() <= LARGE_JAR_DROP_CHANCE) {
+				double xOffset = random.nextFloat() * 0.5F - 0.25F;
+				double yOffset = random.nextFloat() * 0.5F;
+				double zOffset = random.nextFloat() * 0.5F - 0.25F;
+				LargeMagicJarEntity jar = new LargeMagicJarEntity(level, entity.getX() + xOffset, entity.getY() + yOffset, entity.getZ() + zOffset);
+				jar.value = LARGE_JAR_MANA_RESTORATION;
+				level.addFreshEntity(jar);
 			}
 		}
 	}
