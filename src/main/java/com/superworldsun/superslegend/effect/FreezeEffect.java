@@ -26,31 +26,27 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
-public class FreezeEffect extends Effect
-{
-	public FreezeEffect()
-	{
+public class FreezeEffect extends Effect {
+	public FreezeEffect() {
 		super(EffectType.HARMFUL, 0xD6FFFF);
 	}
-	
+
 	@SubscribeEvent
-	public static void onLivingUpdate(LivingUpdateEvent event)
-	{
+	public static void onLivingUpdate(LivingUpdateEvent event) {
 		LivingEntity entity = event.getEntityLiving();
-		
-		if (entity.hasEffect(EffectInit.FREEZE.get()))
-		{
+
+		if (entity.hasEffect(EffectInit.FREEZE.get())) {
 			EffectInstance freezeEffect = entity.getEffect(EffectInit.FREEZE.get());
-			
-			if (entity.isDeadOrDying() || freezeEffect.getDuration() == 0)
-			{
+
+			if (entity.isDeadOrDying() || freezeEffect.getDuration() == 0) {
 				entity.removeEffect(EffectInit.FREEZE.get());
 				return;
 			}
-			
-			if (!entity.level.isClientSide)
+
+			if (!entity.level.isClientSide) {
 				NetworkDispatcher.networkChannel.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new SyncFreezeEffectMessage(entity));
-			
+			}
+
 			entity.baseTick();
 			entity.move(MoverType.SELF, entity.getDeltaMovement());
 			entity.setDeltaMovement(entity.getDeltaMovement().scale(0.8));
@@ -58,26 +54,24 @@ public class FreezeEffect extends Effect
 			event.setCanceled(true);
 		}
 	}
-	
-	private static List<LivingRenderer<?, ?>> modified_renderers = new ArrayList<>();
-	
+
+	private static final List<LivingRenderer<?, ?>> MODIFIED_RENDERERS = new ArrayList<>();
+
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public static void onLivingRender(RenderLivingEvent.Pre<LivingEntity, EntityModel<LivingEntity>> event)
-	{
+	public static void onLivingRender(RenderLivingEvent.Pre<LivingEntity, EntityModel<LivingEntity>> event) {
 		if (!event.getEntity().hasEffect(EffectInit.FREEZE.get()))
 			return;
-		
+
 		event.getEntity().xOld = event.getEntity().getX();
 		event.getEntity().yOld = event.getEntity().getY();
 		event.getEntity().zOld = event.getEntity().getZ();
 		event.getEntity().yRotO = event.getEntity().yRot;
 		event.getEntity().calculateEntityAnimation(event.getEntity(), true);
-		
-		if (!modified_renderers.contains(event.getRenderer()))
-		{
+
+		if (!MODIFIED_RENDERERS.contains(event.getRenderer())) {
 			event.getRenderer().addLayer(new FreezeEffectLayer(event.getRenderer()));
-			modified_renderers.add(event.getRenderer());
+			MODIFIED_RENDERERS.add(event.getRenderer());
 		}
 	}
 }
