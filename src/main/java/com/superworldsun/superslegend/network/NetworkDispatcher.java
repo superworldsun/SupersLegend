@@ -41,5 +41,6 @@ public class NetworkDispatcher
 		networkChannel.registerMessage(14, RemoveWaypointMessage.class, RemoveWaypointMessage::encode, RemoveWaypointMessage::decode, RemoveWaypointMessage::receive, Optional.of(PLAY_TO_SERVER));
 		networkChannel.registerMessage(15, ShowWaystoneCreationScreenMessage.class, ShowWaystoneCreationScreenMessage::encode, ShowWaystoneCreationScreenMessage::decode, ShowWaystoneCreationScreenMessage::receive, Optional.of(PLAY_TO_CLIENT));
 		networkChannel.registerMessage(16, SyncFreezeEffectMessage.class, SyncFreezeEffectMessage::encode, SyncFreezeEffectMessage::decode, SyncFreezeEffectMessage::receive, Optional.of(PLAY_TO_CLIENT));
+		networkChannel.registerMessage(17, ToggleCrawlingMessage.class, ToggleCrawlingMessage::encode, ToggleCrawlingMessage::decode, ToggleCrawlingMessage::receive, Optional.of(PLAY_TO_SERVER));
 	}
 }

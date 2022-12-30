@@ -79,7 +79,7 @@ public class BremenMask extends NonEnchantItem implements IMaskAbility, ICurioIt
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		String keybind = KeyBindings.MASK_ABILITY.getKey().getDisplayName().getString();
+		String keybind = KeyBindings.KEY_USE_MASK.getKey().getDisplayName().getString();
 		list.add(new StringTextComponent(TextFormatting.WHITE + "A mask animals would love!"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold '" + keybind + "' to have animals follow you"));
 	}
