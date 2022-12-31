@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.lang3.tuple.ImmutableTriple;
@@ -45,17 +46,15 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurioItem {
-	private static final int FALL_DISTANCE_REDUCTION = 15;
-	private static final float MANA_COST = 0.01F;
-	private static final UUID GIANTS_MASK_REACH_MODIFIER_ID = UUID.fromString("dfb43a2f-8a3f-476b-8e4c-89f48601cda6");
-	private static final UUID GIANTS_MASK_DAMAGE_MODIFIER_ID = UUID.fromString("6925a147-19d6-4900-ae51-a330ff1a7e6b");
-	private static final UUID GIANTS_MASK_SPEED_MODIFIER_ID = UUID.fromString("076fe501-e233-47e1-a568-8368c8a0f8b6");
-	private static final UUID GIANTS_MASK_SWIM_MODIFIER_ID = UUID.fromString("47cd763b-9c10-4cc1-b77a-b4bf07ece942");
-
-	@OnlyIn(Dist.CLIENT)
-	private Object model;
-	// put your texture here
 	private static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/models/armor/giants_mask.png");
+	private static final float PLAYER_SCALE_MULTIPLIER = 4.0F;
+	private static final float SWIM_SPEED_BONUS = -0.5F;
+	private static final float MOVEMENT_SPEED_BONUS = -0.1F;
+	private static final float ATTACK_DAMAGE_BONUS = 2.0F;
+	private static final float REACH_DISTANCE_BONUS = 4.0F;
+	private static final float MANA_COST = 0.01F;
+	private static final int FALL_DISTANCE_REDUCTION = 15;
+	private Object cachedModel;
 
 	public GiantsMask(Properties properties) {
 		super(properties);
@@ -65,20 +64,18 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
 		super.appendHoverText(stack, world, list, flag);
+		// TODO: this should be in a lang file
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Within this mask lies the might of a giant"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Awaken the giants power and abilities"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "at the cost of magic"));
 	}
 
-	// TODO add so giants can have further attack distance (REACH_DISTANCE only affects blocks placed/break)
-	// ,dont take any fall damage when they should be, when swiming straight up or down the speed is alot faster than it should be
 	@Override
 	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
 		PlayerEntity player = (PlayerEntity) livingEntity;
-		// boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
-		if (!player.abilities.instabuild) {
-			float manaCost = 0.01F;
-			ManaProvider.get(player).spendMana(manaCost);
+
+		if (!player.isCreative()) {
+			ManaProvider.get(player).spendMana(MANA_COST);
 		}
 	}
 
@@ -89,9 +86,8 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 		}
 
 		PlayerEntity player = (PlayerEntity) event.getEntityLiving();
-		boolean canUse = ManaProvider.get(player).getMana() >= MANA_COST || player.isCreative();
 
-		if (!canUse) {
+		if (!canPlayerUseMask(player)) {
 			return;
 		}
 
@@ -102,35 +98,40 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 
 	@SubscribeEvent
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-		float manaCost = 0.01F;
-		// Prevent applying changes 2 times per tick
-		boolean hasMana = ManaProvider.get(event.player).getMana() >= manaCost || event.player.abilities.instabuild;
 		if (event.phase == TickEvent.Phase.START) {
 			return;
 		}
-		// Only if we have the mask
-		ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIANTSMASK.get(), event.player).map(ImmutableTriple::getRight)
-				.orElse(ItemStack.EMPTY);
 
-		if (!maskStack.isEmpty()) {
-			if (event.player.isAlive() && hasMana) {
-				addOrReplaceModifier(event.player, ForgeMod.REACH_DISTANCE.get(), GIANTS_MASK_REACH_MODIFIER_ID, 4.0F, AttributeModifier.Operation.ADDITION);
-				// addOrReplaceModifier(event.player, ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "tool", -2D, AttributeModifier.Operation.ADDITION)
-				addOrReplaceModifier(event.player, Attributes.ATTACK_DAMAGE, GIANTS_MASK_DAMAGE_MODIFIER_ID, 2.0F, AttributeModifier.Operation.ADDITION);
-				addOrReplaceModifier(event.player, Attributes.MOVEMENT_SPEED, GIANTS_MASK_SPEED_MODIFIER_ID, -0.1F, AttributeModifier.Operation.MULTIPLY_TOTAL);
-				addOrReplaceModifier(event.player, ForgeMod.SWIM_SPEED.get(), GIANTS_MASK_SWIM_MODIFIER_ID, -0.5F, AttributeModifier.Operation.MULTIPLY_TOTAL);
-			} else {
-				removeModifier(event.player, ForgeMod.REACH_DISTANCE.get(), GIANTS_MASK_REACH_MODIFIER_ID);
-				removeModifier(event.player, Attributes.ATTACK_DAMAGE, GIANTS_MASK_DAMAGE_MODIFIER_ID);
-				removeModifier(event.player, Attributes.MOVEMENT_SPEED, GIANTS_MASK_SPEED_MODIFIER_ID);
-				removeModifier(event.player, ForgeMod.SWIM_SPEED.get(), GIANTS_MASK_SWIM_MODIFIER_ID);
-			}
-		} else {
-			removeModifier(event.player, ForgeMod.REACH_DISTANCE.get(), GIANTS_MASK_REACH_MODIFIER_ID);
-			removeModifier(event.player, Attributes.ATTACK_DAMAGE, GIANTS_MASK_DAMAGE_MODIFIER_ID);
-			removeModifier(event.player, Attributes.MOVEMENT_SPEED, GIANTS_MASK_SPEED_MODIFIER_ID);
-			removeModifier(event.player, ForgeMod.SWIM_SPEED.get(), GIANTS_MASK_SWIM_MODIFIER_ID);
+		boolean canUse = ManaProvider.get(event.player).getMana() >= MANA_COST || event.player.isCreative();
+
+		if (!canUse) {
+			removeMaskAttributeModifiers(event.player);
+			return;
 		}
+
+		Optional<ImmutableTriple<String, Integer, ItemStack>> maskCurio = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIANTSMASK.get(), event.player);
+
+		if (maskCurio.isPresent()) {
+			applyMaskAttributeModifiers(event.player);
+		} else {
+			removeMaskAttributeModifiers(event.player);
+		}
+	}
+
+	private static void applyMaskAttributeModifiers(PlayerEntity player) {
+		UUID modifiersId = UUID.fromString("82f70fa8-9791-48dd-8aef-f9ecaf5fab64");
+		addOrReplaceModifier(player, ForgeMod.REACH_DISTANCE.get(), modifiersId, REACH_DISTANCE_BONUS, AttributeModifier.Operation.ADDITION);
+		addOrReplaceModifier(player, Attributes.ATTACK_DAMAGE, modifiersId, ATTACK_DAMAGE_BONUS, AttributeModifier.Operation.ADDITION);
+		addOrReplaceModifier(player, Attributes.MOVEMENT_SPEED, modifiersId, MOVEMENT_SPEED_BONUS, AttributeModifier.Operation.MULTIPLY_TOTAL);
+		addOrReplaceModifier(player, ForgeMod.SWIM_SPEED.get(), modifiersId, SWIM_SPEED_BONUS, AttributeModifier.Operation.MULTIPLY_TOTAL);
+	}
+
+	private static void removeMaskAttributeModifiers(PlayerEntity player) {
+		UUID modifiersId = UUID.fromString("82f70fa8-9791-48dd-8aef-f9ecaf5fab64");
+		removeModifier(player, ForgeMod.REACH_DISTANCE.get(), modifiersId);
+		removeModifier(player, Attributes.ATTACK_DAMAGE, modifiersId);
+		removeModifier(player, Attributes.MOVEMENT_SPEED, modifiersId);
+		removeModifier(player, ForgeMod.SWIM_SPEED.get(), modifiersId);
 	}
 
 	private static void removeModifier(PlayerEntity player, Attribute attribute, UUID id) {
@@ -160,9 +161,11 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 
 	@Override
 	public float getScale(PlayerEntity player) {
-		float manaCost = 0.01F;
-		boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
-		return hasMana ? 4.0F : 1.0F;
+		return canPlayerUseMask(player) ? PLAYER_SCALE_MULTIPLIER : 1.0F;
+	}
+
+	private static boolean canPlayerUseMask(PlayerEntity player) {
+		return ManaProvider.get(player).getMana() >= MANA_COST || player.isCreative();
 	}
 
 	@Override
@@ -174,12 +177,11 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 	@Override
 	public void render(String identifier, int index, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, LivingEntity livingEntity, float limbSwing,
 			float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, ItemStack stack) {
-		// put your model here
-		if (!(this.model instanceof GiantsMaskModel)) {
-			model = new GiantsMaskModel<>();
+		if (cachedModel == null) {
+			cachedModel = new GiantsMaskModel<>();
 		}
 
-		GiantsMaskModel<?> maskModel = (GiantsMaskModel<?>) this.model;
+		GiantsMaskModel<?> maskModel = (GiantsMaskModel<?>) cachedModel;
 		ICurio.RenderHelper.followHeadRotations(livingEntity, maskModel.base);
 		IVertexBuilder vertexBuilder = ItemRenderer.getArmorFoilBuffer(renderTypeBuffer, maskModel.renderType(TEXTURE), false, stack.hasFoil());
 		maskModel.renderToBuffer(matrixStack, vertexBuilder, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
