@@ -94,11 +94,11 @@ public class BlockInit
 	public static final RegistryObject<Block> HAMMERED_SPIKED_PEG_BLOCK = BLOCKS.register("hammered_spiked_peg_block", () ->
 			new HammeredSpikedPegBlock(AbstractBlock.Properties.of(Material.WOOD).strength(3.0F, 3.0F).sound(SoundType.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).randomTicks().requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> SHADOW_BLOCK = BLOCKS.register("shadow_block", () ->
-			new ShadowBlock(AbstractBlock.Properties.of(Material.GLASS).noOcclusion().strength(4.0F, 3.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()));
+			new ShadowBlock(AbstractBlock.Properties.of(Material.GLASS).noOcclusion().strength(4.0F, 3.0F).sound(SoundType.GLASS).harvestLevel(1).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> FALSE_SHADOW_BLOCK = BLOCKS.register("false_shadow_block", () ->
-			new FalseShadowBlock(AbstractBlock.Properties.of(Material.GLASS).noOcclusion().strength(4.0F, 3.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()));
+			new FalseShadowBlock(AbstractBlock.Properties.of(Material.GLASS).noOcclusion().strength(4.0F, 3.0F).sound(SoundType.GLASS).harvestLevel(1).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> HIDDEN_SHADOW_BLOCK = BLOCKS.register("hidden_shadow_block", () ->
-			new HiddenShadowBlock(AbstractBlock.Properties.of(Material.GLASS).noOcclusion().strength(4.0F, 3.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()));
+			new HiddenShadowBlock(AbstractBlock.Properties.of(Material.GLASS).noOcclusion().strength(4.0F, 3.0F).sound(SoundType.GLASS).harvestLevel(1).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> SHADOW_MODEL_BLOCK = BLOCKS.register("shadow_model_block", ShadowModelBlock::new);
 	public static final RegistryObject<Block> TOMBSTONE_BLOCK = BLOCKS.register("tombstone_block", () ->
 			new TombstoneBlock(AbstractBlock.Properties.of(Material.STONE).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(3.0f,3.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
