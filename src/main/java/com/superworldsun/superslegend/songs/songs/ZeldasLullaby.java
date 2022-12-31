@@ -11,32 +11,33 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ZeldasLullaby extends OcarinaSong
-{
-	public ZeldasLullaby()
-	{
+public class ZeldasLullaby extends OcarinaSong {
+	private static final int EFFECT_RADIUS = 5;
+
+	public ZeldasLullaby() {
 		super("lurlur");
 	}
 
 	@Override
-	public SoundEvent getPlayingSound()
-	{
+	public SoundEvent getPlayingSound() {
 		return SoundInit.ZELDAS_LULLABY.get();
 	}
-	
+
 	@Override
-	public void onSongPlayed(PlayerEntity player, World level)
-	{
-		int radius = 5;
-		BlockPos start = player.blockPosition().offset(-radius, -radius, -radius);
-		BlockPos end = player.blockPosition().offset(radius, radius, radius);
-		BlockPos.betweenClosed(start, end).forEach(pos ->
-		{
+	public boolean requiresOcarinaOfTime() {
+		return false;
+	}
+
+	@Override
+	public void onSongPlayed(PlayerEntity player, World level) {
+		BlockPos startPos = player.blockPosition().offset(-EFFECT_RADIUS, -EFFECT_RADIUS, -EFFECT_RADIUS);
+		BlockPos endPos = player.blockPosition().offset(EFFECT_RADIUS, EFFECT_RADIUS, EFFECT_RADIUS);
+
+		BlockPos.betweenClosed(startPos, endPos).forEach(pos -> {
 			BlockState blockState = level.getBlockState(pos);
 			Block block = blockState.getBlock();
-			
-			if (block instanceof RoyalTileBlock)
-			{
+
+			if (block instanceof RoyalTileBlock) {
 				((RoyalTileBlock) block).activate(level, blockState, pos);
 			}
 		});
