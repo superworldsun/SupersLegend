@@ -84,8 +84,6 @@ public class ShockArrowEntity extends AbstractArrowEntity {
                 armorPartsEquipped++;
             if (livingentity.getItemBySlot(EquipmentSlotType.HEAD).getItem() == Items.NETHERITE_HELMET)
                 armorPartsEquipped++;
-            if (livingentity.getItemBySlot(EquipmentSlotType.HEAD).getItem() == Items.CHAINMAIL_HELMET)
-                armorPartsEquipped++;
 
             if (livingentity.getItemBySlot(EquipmentSlotType.CHEST).getItem() == Items.IRON_CHESTPLATE)
                 armorPartsEquipped++;
@@ -94,8 +92,6 @@ public class ShockArrowEntity extends AbstractArrowEntity {
             if (livingentity.getItemBySlot(EquipmentSlotType.CHEST).getItem() == Items.CHAINMAIL_CHESTPLATE)
                 armorPartsEquipped++;
             if (livingentity.getItemBySlot(EquipmentSlotType.CHEST).getItem() == Items.NETHERITE_CHESTPLATE)
-                armorPartsEquipped++;
-            if (livingentity.getItemBySlot(EquipmentSlotType.CHEST).getItem() == Items.CHAINMAIL_CHESTPLATE)
                 armorPartsEquipped++;
 
             if (livingentity.getItemBySlot(EquipmentSlotType.LEGS).getItem() == Items.IRON_LEGGINGS)
@@ -106,8 +102,6 @@ public class ShockArrowEntity extends AbstractArrowEntity {
                 armorPartsEquipped++;
             if (livingentity.getItemBySlot(EquipmentSlotType.LEGS).getItem() == Items.NETHERITE_LEGGINGS)
                 armorPartsEquipped++;
-            if (livingentity.getItemBySlot(EquipmentSlotType.LEGS).getItem() == Items.CHAINMAIL_LEGGINGS)
-                armorPartsEquipped++;
 
             if (livingentity.getItemBySlot(EquipmentSlotType.FEET).getItem() == Items.IRON_BOOTS)
                 armorPartsEquipped++;
@@ -117,8 +111,7 @@ public class ShockArrowEntity extends AbstractArrowEntity {
                 armorPartsEquipped++;
             if (livingentity.getItemBySlot(EquipmentSlotType.FEET).getItem() == Items.NETHERITE_BOOTS)
                 armorPartsEquipped++;
-            if (livingentity.getItemBySlot(EquipmentSlotType.FEET).getItem() == Items.CHAINMAIL_BOOTS)
-                armorPartsEquipped++;
+
             ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.GREEN_HOLY_RING.get(), livingentity).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
             if (stack.isEmpty())
             {
