@@ -1,8 +1,14 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -124,5 +130,14 @@ public class GnatHat extends NonEnchantItem implements IEntityResizer, ICurioIte
 		ICurio.RenderHelper.followHeadRotations(livingEntity, maskModel.base);
 		IVertexBuilder vertexBuilder = ItemRenderer.getArmorFoilBuffer(renderTypeBuffer, maskModel.renderType(TEXTURE), false, stack.hasFoil());
 		maskModel.renderToBuffer(matrixStack, vertexBuilder, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	{
+		super.appendHoverText(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.WHITE + "Shrink down to the size of a Gnat"));
+		list.add(new StringTextComponent(TextFormatting.RED + "You wont be as strong shrunk down"));
 	}
 }
