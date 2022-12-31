@@ -11,7 +11,7 @@ public class NewWaveBossaNova extends OcarinaSong
 {
 	public NewWaveBossaNova()
 	{
-		super("lulrdlr");
+		super("lulrdlr", 0x1D235F);
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class InvertedSongOfTime extends OcarinaSong
 {
 	public InvertedSongOfTime()
 	{
-		super("dardar");
+		super("dardar", 0x3170CF);
 	}
 	
 	// TODO: this is not being saved when the game is closed

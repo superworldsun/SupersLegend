@@ -15,7 +15,7 @@ public class SongOfTime extends OcarinaSong
 {
 	public SongOfTime()
 	{
-		super("radrad");
+		super("radrad", 0x3170CF);
 	}
 
 	@Override

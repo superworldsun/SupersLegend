@@ -11,7 +11,7 @@ public class PreludeOfLight extends OcarinaSong
 {
 	public PreludeOfLight()
 	{
-		super("ururlu");
+		super("ururlu", 0xC4CA02);
 	}
 
 	@Override

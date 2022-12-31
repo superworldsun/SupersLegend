@@ -11,7 +11,7 @@ public class BoleroOfFire extends OcarinaSong
 {
 	public BoleroOfFire()
 	{
-		super("dadardrd");
+		super("dadardrd", 0xCD2012);
 	}
 
 	@Override

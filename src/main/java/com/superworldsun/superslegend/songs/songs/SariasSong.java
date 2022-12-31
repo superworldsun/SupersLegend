@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class SariasSong extends OcarinaSong {
 	public SariasSong() {
-		super("drldrl");
+		super("drldrl", 0x43BE60);
 	}
 
 	@Override

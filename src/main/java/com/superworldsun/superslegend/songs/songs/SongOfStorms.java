@@ -12,7 +12,7 @@ public class SongOfStorms extends OcarinaSong
 {
 	public SongOfStorms()
 	{
-		super("aduadu");
+		super("aduadu", 0xC87D8E);
 	}
 
 	@Override

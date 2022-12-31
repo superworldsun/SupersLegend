@@ -30,7 +30,7 @@ public class SongOfDoubleTime extends OcarinaSong
 {
 	public SongOfDoubleTime()
 	{
-		super("rraadd");
+		super("rraadd", 0x023A91);
 	}
 	
 	// TODO: this is not being saved when the game is closed

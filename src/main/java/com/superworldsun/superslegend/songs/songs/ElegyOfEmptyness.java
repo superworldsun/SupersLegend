@@ -11,7 +11,7 @@ public class ElegyOfEmptyness extends OcarinaSong
 {
 	public ElegyOfEmptyness()
 	{
-		super("rlrdrul");
+		super("rlrdrul", 0x2E2719);
 	}
 
 	@Override

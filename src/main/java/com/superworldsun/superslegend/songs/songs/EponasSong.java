@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class EponasSong extends OcarinaSong {
 	public EponasSong() {
-		super("ulrulr");
+		super("ulrulr", 0xCD5819);
 	}
 
 	@Override

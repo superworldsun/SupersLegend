@@ -11,7 +11,7 @@ public class SerenadeOfWater extends OcarinaSong
 {
 	public SerenadeOfWater()
 	{
-		super("adrrl");
+		super("adrrl", 0x1211BA);
 	}
 
 	@Override

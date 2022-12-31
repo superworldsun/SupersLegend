@@ -11,7 +11,7 @@ public class OathToOrder extends OcarinaSong
 {
 	public OathToOrder()
 	{
-		super("rdadru");
+		super("rdadru", 0x842719);
 	}
 
 	@Override

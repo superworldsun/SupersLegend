@@ -12,7 +12,7 @@ public class GoronLullaby extends OcarinaSong
 {
 	public GoronLullaby()
 	{
-		super("arlarlra");
+		super("arlarlra", 0x840101);
 	}
 
 	@Override

@@ -15,7 +15,7 @@ public class ZeldasLullaby extends OcarinaSong {
 	private static final int EFFECT_RADIUS = 5;
 
 	public ZeldasLullaby() {
-		super("lurlur");
+		super("lurlur", 0x625CAD);
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class SongOfHealing extends OcarinaSong
 {
 	public SongOfHealing()
 	{
-		super("lrdlrd");
+		super("lrdlrd", 0xD560D8);
 	}
 
 	@Override

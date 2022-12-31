@@ -11,7 +11,7 @@ public class NocturneOfShadow extends OcarinaSong
 {
 	public NocturneOfShadow()
 	{
-		super("lrralrd");
+		super("lrralrd", 0x704D7B);
 	}
 
 	@Override
