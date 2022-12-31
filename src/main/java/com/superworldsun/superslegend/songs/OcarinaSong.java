@@ -9,49 +9,45 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class OcarinaSong implements IForgeRegistryEntry<OcarinaSong>
-{
+public abstract class OcarinaSong implements IForgeRegistryEntry<OcarinaSong> {
 	private ResourceLocation registryName;
-	private final String pattern;
-	
-	public OcarinaSong(String pattern)
-	{
-		this.pattern = pattern;
+	private final String songPattern;
+
+	public OcarinaSong(String songPattern) {
+		this.songPattern = songPattern;
 	}
-	
-	public String getPattern()
-	{
-		return pattern;
+
+	public String getSongPattern() {
+		return songPattern;
 	}
-	
-	public ITextComponent getLocalizedName()
-	{
+
+	public ITextComponent getLocalizedName() {
 		return new TranslationTextComponent("song." + getRegistryName().toString().replace(":", "."));
 	}
-	
+
 	@Override
-	public OcarinaSong setRegistryName(ResourceLocation registryName)
-	{
+	public OcarinaSong setRegistryName(ResourceLocation registryName) {
 		this.registryName = registryName;
 		return this;
 	}
-	
+
 	@Override
-	public ResourceLocation getRegistryName()
-	{
+	public ResourceLocation getRegistryName() {
 		return registryName;
 	}
-	
+
 	@Override
-	public Class<OcarinaSong> getRegistryType()
-	{
+	public Class<OcarinaSong> getRegistryType() {
 		return OcarinaSong.class;
 	}
-	
-	public SoundEvent getPlayingSound()
-	{
+
+	public SoundEvent getPlayingSound() {
 		return SoundEvents.MUSIC_DISC_PIGSTEP;
 	}
-	
+
+	public boolean requiresOcarinaOfTime() {
+		return true;
+	}
+
 	public abstract void onSongPlayed(PlayerEntity player, World level);
 }
