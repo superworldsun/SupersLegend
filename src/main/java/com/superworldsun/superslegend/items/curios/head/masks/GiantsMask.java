@@ -125,7 +125,6 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
                 addOrReplaceModifier(event.player, Attributes.ATTACK_DAMAGE, GIANTS_MASK_DAMAGE_MODIFIER_ID, 2.0F, AttributeModifier.Operation.ADDITION);
                 addOrReplaceModifier(event.player, Attributes.MOVEMENT_SPEED, GIANTS_MASK_SPEED_MODIFIER_ID, -0.1F, AttributeModifier.Operation.MULTIPLY_TOTAL);
                 addOrReplaceModifier(event.player, ForgeMod.SWIM_SPEED.get(), GIANTS_MASK_SWIM_MODIFIER_ID, -0.5F, AttributeModifier.Operation.MULTIPLY_TOTAL);
-                event.player.maxUpStep = 2.0f;
             }
             else
             {
@@ -133,7 +132,6 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
                 removeModifier(event.player, Attributes.ATTACK_DAMAGE, GIANTS_MASK_DAMAGE_MODIFIER_ID);
                 removeModifier(event.player, Attributes.MOVEMENT_SPEED, GIANTS_MASK_SPEED_MODIFIER_ID);
                 removeModifier(event.player, ForgeMod.SWIM_SPEED.get(), GIANTS_MASK_SWIM_MODIFIER_ID);
-                event.player.maxUpStep = 0.6f;
             }
         }
         else
@@ -142,7 +140,6 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
             removeModifier(event.player, Attributes.ATTACK_DAMAGE, GIANTS_MASK_DAMAGE_MODIFIER_ID);
             removeModifier(event.player, Attributes.MOVEMENT_SPEED, GIANTS_MASK_SPEED_MODIFIER_ID);
             removeModifier(event.player, ForgeMod.SWIM_SPEED.get(), GIANTS_MASK_SWIM_MODIFIER_ID);
-            event.player.maxUpStep = 0.6f;
         }
     }
 

@@ -73,20 +73,17 @@ public class GnatHat extends NonEnchantItem implements IEntityResizer, ICurioIte
             {
                 addOrReplaceModifier(event.player, ForgeMod.REACH_DISTANCE.get(), GNATS_MASK_REACH_MODIFIER_ID, -2.6F, AttributeModifier.Operation.ADDITION);
                 addOrReplaceModifier(event.player, Attributes.ATTACK_DAMAGE, GNATS_MASK_DAMAGE_MODIFIER_ID, -2.0F, AttributeModifier.Operation.ADDITION);
-                event.player.maxUpStep = 0.2f;
             }
             else
             {
                 removeModifier(event.player, ForgeMod.REACH_DISTANCE.get(), GNATS_MASK_REACH_MODIFIER_ID);
                 removeModifier(event.player, Attributes.ATTACK_DAMAGE, GNATS_MASK_DAMAGE_MODIFIER_ID);
-                event.player.maxUpStep = 0.6f;
             }
         }
         else
         {
             removeModifier(event.player, ForgeMod.REACH_DISTANCE.get(), GNATS_MASK_REACH_MODIFIER_ID);
             removeModifier(event.player, Attributes.ATTACK_DAMAGE, GNATS_MASK_DAMAGE_MODIFIER_ID);
-            event.player.maxUpStep = 0.6f;
         }
     }
 
