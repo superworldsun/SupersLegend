@@ -8,6 +8,7 @@ import com.superworldsun.superslegend.SupersLegendRegistries;
 import com.superworldsun.superslegend.client.sound.OcarinaSongSound;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.PlaySongMessage;
+import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.songs.ILearnedSongs;
 import com.superworldsun.superslegend.songs.LearnedSongsProvider;
@@ -131,7 +132,7 @@ public class OcarinaScreen extends Screen
 		{
 			ILearnedSongs learnedSongs = LearnedSongsProvider.get(minecraft.player);
 			
-			if (learnedSongs.getLearnedSongs().contains(song) && song.getPattern().equals(playedNotes))
+			if (learnedSongs.getLearnedSongs().contains(song) && song.getSongPattern().equals(playedNotes))
 			{
 				LearnedSongsProvider.get(minecraft.player).setCurrentSong(null);
 				playedSong = song;
@@ -147,8 +148,11 @@ public class OcarinaScreen extends Screen
 	{
 		if (closeDelay == 0)
 		{
-			NetworkDispatcher.networkChannel.sendToServer(new PlaySongMessage(playedSong));
-			minecraft.player.sendMessage(new TranslationTextComponent("screen.ocarina.song_played", playedSong.getLocalizedName()), UUID.randomUUID());
+			if (minecraft.player.isHolding(ItemInit.OCARINA_OF_TIME.get()) || !playedSong.requiresOcarinaOfTime()) {
+				NetworkDispatcher.networkChannel.sendToServer(new PlaySongMessage(playedSong));
+				minecraft.player.sendMessage(new TranslationTextComponent("screen.ocarina.song_played", playedSong.getLocalizedName()), UUID.randomUUID());
+			}
+			
 			minecraft.setScreen(null);
 			minecraft.getSoundManager().play(new OcarinaSongSound(minecraft.player, playedSong));
 			LearnedSongsProvider.get(minecraft.player).setCurrentSong(playedSong);
@@ -170,7 +174,7 @@ public class OcarinaScreen extends Screen
 	{
 		SupersLegendRegistries.OCARINA_SONGS.forEach(song ->
 		{
-			int length = song.getPattern().length();
+			int length = song.getSongPattern().length();
 			
 			if (length > max_notes)
 			{

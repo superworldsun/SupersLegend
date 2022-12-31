@@ -7,22 +7,22 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class SariasSong extends OcarinaSong
-{
-	public SariasSong()
-	{
+public class SariasSong extends OcarinaSong {
+	public SariasSong() {
 		super("drldrl");
 	}
 
 	@Override
-	public SoundEvent getPlayingSound()
-	{
+	public SoundEvent getPlayingSound() {
 		return SoundInit.SARIAS_SONG.get();
 	}
-	
+
 	@Override
-	public void onSongPlayed(PlayerEntity player, World level)
-	{
-		
+	public boolean requiresOcarinaOfTime() {
+		return false;
+	}
+
+	@Override
+	public void onSongPlayed(PlayerEntity player, World level) {
 	}
 }

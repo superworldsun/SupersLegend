@@ -50,7 +50,7 @@ public abstract class SongSheetItem extends Item
 		if (event.getStack().getItem() instanceof SongSheetItem)
 		{
 			SongSheetItem songSheet = (SongSheetItem) event.getStack().getItem();
-			String notes = songSheet.getSong().getPattern();
+			String notes = songSheet.getSong().getSongPattern();
 			ResourceLocation texture = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/ocarina.png");
 			Minecraft.getInstance().getTextureManager().bind(texture);
 			int noteWidth = 11;
