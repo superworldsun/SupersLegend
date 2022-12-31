@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.items.armors;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.superworldsun.superslegend.SupersLegendMain;
@@ -14,10 +15,15 @@ import com.superworldsun.superslegend.registries.EffectInit;
 import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -64,5 +70,15 @@ public class ArmorSnowquill extends NonEnchantArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
 		return SupersLegendMain.MOD_ID + ":textures/models/armor/snowquill_armor.png";
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
+	{
+		super.appendHoverText(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.WHITE + "The armor of the Ritto"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Provides resistance again the cold"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Wearing full set makes you freezable"));
 	}
 }
