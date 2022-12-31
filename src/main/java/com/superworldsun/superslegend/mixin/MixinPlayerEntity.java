@@ -375,6 +375,7 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	private void setScale(float scale)
 	{
 		this.scale = scale;
+		maxUpStep = 0.6F * scale;
 		updateEyeHeight();
 		refreshDimensions();
 	}
