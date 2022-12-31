@@ -6,8 +6,8 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -39,12 +39,12 @@ public class Triforce extends Item
 		 BlockPos currentPos = player.blockPosition();
 		        {
 		        	world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);
-					player.addEffect(new EffectInstance(Effect.byId(1), 6000, 0, false, false));
-					player.addEffect(new EffectInstance(Effect.byId(11), 6000, 0, false, false));
-					player.addEffect(new EffectInstance(Effect.byId(5), 6000, 0, false, true));
-					player.addEffect(new EffectInstance(Effect.byId(3), 6000, 0, false, false));
-					player.addEffect(new EffectInstance(Effect.byId(16), 6000, 0, false, false));
-					player.addEffect(new EffectInstance(Effect.byId(13), 6000, 0, false, false));
+					player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 6000, 0, false, false));
+					player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 6000, 0, false, true));
+					player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 6000, 0, false, false));
+					player.addEffect(new EffectInstance(Effects.DIG_SPEED, 6000, 0, false, false));
+					player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 6000, 0, false, false));
+					player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 6000, 0, false, false));
 					player.getCooldowns().addCooldown(this, 100);
 		        }
 				return new ActionResult<>(ActionResultType.PASS, player.getItemInHand(hand));
