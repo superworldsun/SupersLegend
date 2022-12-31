@@ -1,0 +1,36 @@
+{
+   "display": {
+      "title": {
+         "text": "The Sword of Legend",
+         "color": "yellow",
+         "bold": false,
+         "underlined": false,
+         "strikethrough": false
+      },
+      "description": {
+         "text": "Bathe the goddess white sword in Dins flame from the temple within the Badlands. Forge the sword of Evil's Bane through pure determination.",
+         "italic": false,
+         "underlined": false
+      },
+      "icon": {
+         "item": "superslegend:master_sword"
+      },
+      "frame": "challenge",
+      "show_toast": true,
+      "announce_to_chat": true,
+      "hidden": false
+   },
+   "criteria": {
+      "be_alive": {
+         "trigger": "minecraft:inventory_changed",
+         "conditions": {
+            "items": [
+               {
+                  "item": "superslegend:master_sword"
+               }
+            ]
+         }
+      }
+   },
+   "parent": "superslegend:create_the_goddess_white_sword"
+}

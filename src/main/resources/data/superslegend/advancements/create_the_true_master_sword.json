@@ -1,0 +1,36 @@
+{
+   "display": {
+      "title": {
+         "text": "This is my True Form",
+         "color": "yellow",
+         "bold": false,
+         "underlined": true,
+         "strikethrough": false
+      },
+      "description": {
+         "text": "The Master Weapon-smith was able to upgrade your master sword to its true form.",
+         "italic": false,
+         "underlined": false
+      },
+      "icon": {
+         "item": "superslegend:true_master_sword"
+      },
+      "frame": "challenge",
+      "show_toast": true,
+      "announce_to_chat": true,
+      "hidden": false
+   },
+   "criteria": {
+      "be_alive": {
+         "trigger": "minecraft:inventory_changed",
+         "conditions": {
+            "items": [
+               {
+                  "item": "superslegend:true_master_sword"
+               }
+            ]
+         }
+      }
+   },
+   "parent": "superslegend:create_the_master_sword_v2"
+}

@@ -1,0 +1,37 @@
+{
+    "display": {
+        "title": {
+            "text": "SupersLegend",
+            "color": "yellow",
+            "bold": false,
+            "italic": true
+        },
+        "description": {
+            "text": "Start an adventure in a new world",
+            "color": "white"
+        },
+        "icon": {
+            "item": "superslegend:kokiri_sword"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false,
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "criteria": {
+        "be_alive": {
+            "trigger": "minecraft:tick"
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "superslegend:book_of_mudora_recipe",
+			"superslegend:mask_clay_recipe",
+			"superslegend:kokiri_cap_recipe",
+            "superslegend:kokiri_tunic_recipe",
+            "superslegend:kokiri_leggings_recipe",
+            "superslegend:kokiri_boots_recipe"
+        ]
+    }
+}
