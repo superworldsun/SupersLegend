@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.client.keys;
 
 import java.util.function.Predicate;
 
+import com.superworldsun.superslegend.network.message.ToggleCrawlingMessage;
 import org.lwjgl.glfw.GLFW;
 
 import com.superworldsun.superslegend.SupersLegendMain;
@@ -69,7 +70,7 @@ public class KeyBindings {
 					minecraft.player.setForcedPose(Pose.SWIMMING);
 				else
 					minecraft.player.setForcedPose(null);
-//				NetworkDispatcher.networkChannel.sendToServer(new ToggleCrawlingMessage());
+				NetworkDispatcher.networkChannel.sendToServer(new ToggleCrawlingMessage());
 			}
 		}
 

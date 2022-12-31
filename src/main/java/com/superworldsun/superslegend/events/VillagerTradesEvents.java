@@ -8,6 +8,7 @@ import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
@@ -60,8 +61,8 @@ public class VillagerTradesEvents
 			level1Trades.add(createTrade(new ItemStack(ItemInit.MASTER_SWORD.get(), 1),(new ItemStack(ItemInit.MASTER_ORE.get(), 2)) , new ItemStack(ItemInit.MASTER_SWORD_V2.get()), 1, 70, 0F));
 			level1Trades.add(createTrade(new ItemStack(ItemInit.RED_RUPEE.get(), 2), new ItemStack(ItemInit.KOKIRI_SWORD.get()), 1, 10, 0F));
 			level2Trades.add(createTrade(new ItemStack(ItemInit.RED_RUPEE.get(), 6),(new ItemStack(ItemInit.BOOMERANG.get(), 1)) , new ItemStack(ItemInit.MAGIC_BOOMERANG.get()), 1, 20, 0F));
-			level3Trades.add(createTrade(new ItemStack(ItemInit.SILVER_RUPEE.get(), 2), new ItemStack(ItemInit.RAZOR_SWORD.get()), 1, 10, 0F));
-			level4Trades.add(createTrade(new ItemStack(ItemInit.RAZOR_SWORD.get(), 1),(new ItemStack(ItemInit.GOLD_RUPEE_BLOCK.get(), 2)) , new ItemStack(ItemInit.RAZOR_SWORD.get()), 1, 70, 0F));
+			level3Trades.add(createTrade(new ItemStack(ItemInit.SILVER_RUPEE.get(), 2),(new ItemStack(ItemInit.KOKIRI_SWORD.get(), 1)) , new ItemStack(ItemInit.RAZOR_SWORD.get()), 6, 30, 0F));
+			level4Trades.add(createTrade(new ItemStack(ItemInit.RAZOR_SWORD.get(), 1),(new ItemStack(Items.GOLD_BLOCK, 2)) , new ItemStack(ItemInit.GILDED_SWORD.get()), 1, 70, 0F));
 			level5Trades.add(createTrade(new ItemStack(ItemInit.MASTER_SWORD_V2.get(), 1),(new ItemStack(ItemInit.MASTER_ORE.get(), 6)) , new ItemStack(ItemInit.TRUE_MASTER_SWORD.get()), 1, 100, 0F));
 		}
 		if (event.getType() == VillagerProfession.LEATHERWORKER)

@@ -65,7 +65,7 @@ public class SupersLegendConfig
 				.define("shockArrowCreeper", true);
 
 		explosivegriefing = configSpecBuilder
-				.comment("Whether bombs will cause block destruction")
+				.comment("Whether bombs & bomb arrows will cause block destruction")
 				.define("explosivegriefing", true);
 
 		RegularBoomerangRange = configSpecBuilder

@@ -1,0 +1,36 @@
+{
+   "display": {
+      "title": {
+         "text": "A new beginning",
+         "color": "yellow",
+         "bold": false,
+         "underlined": false,
+         "strikethrough": false
+      },
+      "description": {
+         "text": "Create the Goddess Sword",
+         "italic": false,
+         "underlined": false
+      },
+      "icon": {
+         "item": "superslegend:goddess_sword"
+      },
+      "frame": "goal",
+      "show_toast": true,
+      "announce_to_chat": true,
+      "hidden": true
+   },
+   "criteria": {
+      "be_alive": {
+         "trigger": "minecraft:inventory_changed",
+         "conditions": {
+            "items": [
+               {
+                  "item": "superslegend:goddess_sword"
+               }
+            ]
+         }
+      }
+   },
+   "parent": "superslegend:smelt_master_ore_block"
+}

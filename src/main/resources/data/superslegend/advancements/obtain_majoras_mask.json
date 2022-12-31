@@ -1,0 +1,35 @@
+{
+    "display": {
+        "title": {
+            "text": "Child's Play",
+            "color": "red",
+            "bold": true,
+            "italic": true
+        },
+        "description": {
+            "text": "Obtain the mask of pure Evil, Majora's Mask",
+            "color": "red",
+            "italic": true
+        },
+        "icon": {
+            "item": "superslegend:mask_majorasmask"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": true
+    },
+    "criteria": {
+        "be_alive": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "superslegend:mask_majorasmask"
+                    }
+                ]
+            }
+        }
+    },
+    "parent": "superslegend:obtain_clay_mask"
+}

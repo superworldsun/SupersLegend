@@ -1,0 +1,35 @@
+{
+    "display": {
+        "title": {
+            "text": "Traveler's Best Friend",
+            "color": "white",
+            "bold": false,
+            "italic": false,
+            "underlined": false,
+            "strikethrough": false
+        },
+        "description": {
+            "text": "Craft the Magic Mirror, Great for long distance travel!"
+        },
+        "icon": {
+            "item": "superslegend:magic_mirror"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": true
+    },
+    "criteria": {
+        "be_alive": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "superslegend:magic_mirror"
+                    }
+                ]
+            }
+        }
+    },
+    "parent": "superslegend:root"
+}
