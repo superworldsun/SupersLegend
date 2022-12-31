@@ -30,7 +30,7 @@ public class KeyBindings {
 	private static final String KEYS_CATEGORY = "key.categories." + SupersLegendMain.MOD_ID;
 	public static final KeyBinding KEY_USE_MASK = new KeyBinding("key.mask_ability", GLFW.GLFW_KEY_B, KEYS_CATEGORY);
 	public static final KeyBinding KEY_DROP_BOMB = new KeyBinding("key.drop_bomb", GLFW.GLFW_KEY_N, KEYS_CATEGORY);
-	public static final KeyBinding KEY_CRAWL = new KeyBinding("key.crawl", GLFW.GLFW_KEY_H, KEYS_CATEGORY);
+	public static final KeyBinding KEY_CRAWL = new KeyBinding("key.crawl", GLFW.GLFW_KEY_V, KEYS_CATEGORY);
 	// Dosent work as intended and is incomplete
 	// public static final KeyBinding SELECT_INVENTORY = new KeyBinding("key.select_inventory", GLFW.GLFW_KEY_C, "key.categories." + SupersLegendMain.MOD_ID);
 
