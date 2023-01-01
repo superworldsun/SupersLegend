@@ -6,7 +6,7 @@ issueTrackerURL = "https://github.com/superworldsun/SupersLegend/issues"
 license="All rights reserved."
 [[mods]]
 modId = "superslegend"
-version = "1.4"
+version = "1.4.1"
 displayName = "SupersLegend"
 # We should also have an icon file, Forge searches for under main/resources/icon.png
 logoFile="icon.png"
