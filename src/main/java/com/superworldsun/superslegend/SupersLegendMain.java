@@ -67,7 +67,8 @@ public class SupersLegendMain
 		SoundInit.SOUNDS.register(modEventBus);
 		//BiomeInit.BIOMES.register(modEventBus);
 		//BiomeInit.registerBiomes();
-		PaintingInit.PAINTING_TYPES.register(modEventBus);
+		//TODO Make some paintings at some point
+		//PaintingInit.PAINTING_TYPES.register(modEventBus);
 		EntityTypeInit.ENTITIES.register(modEventBus);
 		TileEntityInit.TILES.register(modEventBus);
 		ContainerInit.CONTAINERS.register(modEventBus);

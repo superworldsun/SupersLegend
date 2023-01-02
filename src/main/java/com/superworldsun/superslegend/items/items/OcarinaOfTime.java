@@ -45,7 +45,7 @@ public class OcarinaOfTime extends Item
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
-		list.add(new StringTextComponent(TextFormatting.BLUE + "A Ocarina to control time"));
+		list.add(new StringTextComponent(TextFormatting.BLUE + "An Ocarina to Control Time"));
 	}
 	
 	@OnlyIn(value = Dist.CLIENT)

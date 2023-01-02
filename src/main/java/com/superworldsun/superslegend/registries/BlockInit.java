@@ -62,9 +62,9 @@ public class BlockInit
 	public static final RegistryObject<Block> GRASS_PATCH_BLOCK = BLOCKS.register("grass_patch_block", () ->
 			new GrassPatch(AbstractBlock.Properties.of(Material.PLANT).harvestLevel(0).strength(0.1f,0.1f).sound(SoundType.CROP)));
 	public static final RegistryObject<Block> ODD_MUSHROOM = BLOCKS.register("odd_mushroom", () ->
-			new OddMushroomBlock(AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.CROP).noOcclusion().instabreak().randomTicks()));
+			new OddMushroomBlock(AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.GRASS).noOcclusion().instabreak().randomTicks()));
 	public static final RegistryObject<Block> MAGIC_MUSHROOM = BLOCKS.register("magic_mushroom", () ->
-			new MagicMushroomBlock(AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.CROP).noOcclusion().instabreak().randomTicks()));
+			new MagicMushroomBlock(AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.GRASS).noOcclusion().instabreak().randomTicks()));
 	public static final RegistryObject<Block> TORCH_TOWER = BLOCKS.register("torch_tower", () ->
 			new TorchTower(AbstractBlock.Properties.of(Material.WOOD).strength(1.0F, 1.0F).sound(SoundType.WOOD).harvestLevel(1).harvestTool(ToolType.AXE)));
 	public static final RegistryObject<Block> TORCH_TOWER_TOP_UNLIT = BLOCKS.register("torch_tower_top_unlit", () ->
