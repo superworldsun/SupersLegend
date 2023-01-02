@@ -11,7 +11,7 @@ public class RequiemOfSpirit extends OcarinaSong
 {
 	public RequiemOfSpirit()
 	{
-		super("adarda");
+		super("adarda", 0xD8541C);
 	}
 
 	@Override

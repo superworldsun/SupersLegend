@@ -24,7 +24,7 @@ public class SunsSong extends OcarinaSong {
 	private static boolean played_at_day;
 
 	public SunsSong() {
-		super("rdurdu");
+		super("rdurdu", 0xDEDC19);
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class MinuetOfForest extends OcarinaSong
 {
 	public MinuetOfForest()
 	{
-		super("aulrlr");
+		super("aulrlr", 0x18893D);
 	}
 
 	@Override

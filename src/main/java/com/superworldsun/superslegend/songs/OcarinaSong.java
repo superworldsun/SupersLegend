@@ -12,9 +12,11 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 public abstract class OcarinaSong implements IForgeRegistryEntry<OcarinaSong> {
 	private ResourceLocation registryName;
 	private final String songPattern;
+	private final int iconColor;
 
-	public OcarinaSong(String songPattern) {
+	public OcarinaSong(String songPattern, int iconColor) {
 		this.songPattern = songPattern;
+		this.iconColor = iconColor;
 	}
 
 	public String getSongPattern() {
@@ -47,6 +49,10 @@ public abstract class OcarinaSong implements IForgeRegistryEntry<OcarinaSong> {
 
 	public boolean requiresOcarinaOfTime() {
 		return true;
+	}
+
+	public int getSongIconColor() {
+		return iconColor;
 	}
 
 	public abstract void onSongPlayed(PlayerEntity player, World level);

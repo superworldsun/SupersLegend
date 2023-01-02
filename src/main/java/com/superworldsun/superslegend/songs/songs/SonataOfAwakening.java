@@ -11,7 +11,7 @@ public class SonataOfAwakening extends OcarinaSong
 {
 	public SonataOfAwakening()
 	{
-		super("ululara");
+		super("ululara", 0x00A915);
 	}
 
 	@Override
