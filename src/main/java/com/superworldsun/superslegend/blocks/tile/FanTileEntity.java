@@ -23,81 +23,79 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 
-public class FanTileEntity extends TileEntity implements ITickableTileEntity
-{
+public class FanTileEntity extends TileEntity implements ITickableTileEntity {
+	private static final double AIRFLOW_STRENGTH = 0.3D;
+	private static final int AIRFLOW_MAX_DISTANCE = 16;
 	public float bladesRotation;
-	
-	public FanTileEntity()
-	{
+
+	public FanTileEntity() {
 		super(TileEntityInit.FAN.get());
 	}
-	
-	public FanTileEntity(TileEntityType<? extends FanTileEntity> type)
-	{
+
+	public FanTileEntity(TileEntityType<? extends FanTileEntity> type) {
 		super(type);
 	}
-	
+
 	@Override
-	public void tick()
-	{
-		if (isPowered())
-		{
-			List<Entity> affectedEntities = level.getEntities(null, getCoveredArea());
-			affectedEntities.forEach(entity ->
-			{
-				// If no iron boots equipped
-				if (!(entity instanceof LivingEntity) || ((LivingEntity) entity).getItemBySlot(EquipmentSlotType.FEET).getItem() != ItemInit.IRON_BOOTS.get())
-				{
-					entity.move(MoverType.PISTON, getAirflowVector());
-				}
-			});
+	public void tick() {
+		if (!isPowered()) {
+			return;
 		}
+
+		getPushedEntities().stream().filter(this::canPush).forEach(this::pushEntity);
 	}
-	
-	private AxisAlignedBB getCoveredArea()
-	{
+
+	private void pushEntity(Entity entity) {
+		entity.move(MoverType.PISTON, getAirflowDirection());
+	}
+
+	private boolean canPush(Entity entity) {
+		return !(entity instanceof LivingEntity) || ((LivingEntity) entity).getItemBySlot(EquipmentSlotType.FEET).getItem() != ItemInit.IRON_BOOTS.get();
+	}
+
+	private List<Entity> getPushedEntities() {
+		return level.getEntities(null, getAirflowArea());
+	}
+
+	private AxisAlignedBB getAirflowArea() {
+		AxisAlignedBB airflowArea = new AxisAlignedBB(worldPosition, worldPosition.offset(1, 1, 1));
 		Direction fanDirection = getFanDirection();
-		AxisAlignedBB area = new AxisAlignedBB(worldPosition, worldPosition.offset(1, 1, 1));
-		
-		for (int i = 1; i < 16; i++)
-		{
+
+		for (int i = 1; i < AIRFLOW_MAX_DISTANCE; i++) {
 			BlockPos checkingPos = worldPosition.relative(fanDirection, i);
-			VoxelShape checkingCollisionShape = level.getBlockState(checkingPos).getCollisionShape(level, checkingPos);
-			
-			if (!level.isEmptyBlock(checkingPos) && checkingCollisionShape != VoxelShapes.empty() && checkingCollisionShape.max(Axis.Y) >= 0.75D
-					&& checkingCollisionShape.min(Axis.Y) <= 0.75D)
-			{
+
+			if (isAirflowBlockedAt(checkingPos)) {
 				break;
 			}
-			
-			area = area.expandTowards(fanDirection.getStepX(), fanDirection.getStepY(), fanDirection.getStepZ());
+
+			airflowArea = airflowArea.expandTowards(fanDirection.getStepX(), fanDirection.getStepY(), fanDirection.getStepZ());
 		}
-		
-		return area;
+
+		return airflowArea;
 	}
-	
-	public Direction getFanDirection()
-	{
+
+	private boolean isAirflowBlockedAt(BlockPos blockPos) {
+		VoxelShape blockShape = level.getBlockState(blockPos).getCollisionShape(level, blockPos);
+		return !level.isEmptyBlock(blockPos) && blockShape != VoxelShapes.empty() && blockShape.max(Axis.Y) >= 0.75D && blockShape.min(Axis.Y) <= 0.75D;
+	}
+
+	public Direction getFanDirection() {
 		return level.getBlockState(worldPosition).getValue(DirectionalBlock.FACING);
 	}
-	
-	private Vector3d getAirflowVector()
-	{
-		return new Vector3d(getFanDirection().step()).multiply(0.3D, 0.3D, 0.3D);
+
+	private Vector3d getAirflowDirection() {
+		return new Vector3d(getFanDirection().step()).multiply(AIRFLOW_STRENGTH, AIRFLOW_STRENGTH, AIRFLOW_STRENGTH);
 	}
-	
-	public boolean isPowered()
-	{
+
+	public boolean isPowered() {
 		return true;
 	}
-	
-	public static TileEntityType<FanTileEntity> createType()
-	{
+
+	public static TileEntityType<FanTileEntity> createType() {
 		return Builder.of(FanTileEntity::new, BlockInit.FAN.get()).build(null);
 	}
-	
-	public static TileEntityType<SwitchableFanTileEntity> createSwitchableFanType()
-	{
+
+	public static TileEntityType<SwitchableFanTileEntity> createSwitchableFanType() {
 		return Builder.of(SwitchableFanTileEntity::new, BlockInit.SWITCHABLE_FAN.get()).build(null);
 	}
 }
