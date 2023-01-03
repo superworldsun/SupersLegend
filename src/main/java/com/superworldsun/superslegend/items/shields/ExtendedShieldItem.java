@@ -20,99 +20,102 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public abstract class ExtendedShieldItem extends ShieldItem
-{
-	public ExtendedShieldItem(Properties properties)
-	{
+public abstract class ExtendedShieldItem extends ShieldItem {
+	public ExtendedShieldItem(Properties properties) {
 		super(properties);
 	}
 
 	@Override
-	public boolean isShield(ItemStack stack, LivingEntity entity)
-	{
+	public boolean isShield(ItemStack stack, LivingEntity entity) {
 		return true;
 	}
 
 	@SubscribeEvent
-	public static void onLivingAttacked(LivingAttackEvent event)
-	{
-		if (!(event.getEntity() instanceof PlayerEntity))
-		{
+	public static void onLivingAttacked(LivingAttackEvent event) {
+		if (!(event.getEntity() instanceof PlayerEntity)) {
 			return;
 		}
 
 		PlayerEntity player = (PlayerEntity) event.getEntity();
 
-		if (!player.isBlocking())
-		{
+		if (!player.isBlocking()) {
 			return;
 		}
 
 		Item currentItem = player.getItemInHand(player.getUsedItemHand()).getItem();
 
-		if (!(currentItem instanceof ExtendedShieldItem))
-		{
+		if (!(currentItem instanceof ExtendedShieldItem)) {
 			return;
 		}
 
-		ExtendedShieldItem shield = (ExtendedShieldItem) currentItem;
-		LivingEntity attacker = null;
-		Entity projectile = null;
-
-		if (event.getSource().getEntity() instanceof LivingEntity)
-		{
-			attacker = (LivingEntity) event.getSource().getEntity();
-		}
-
-		if (event.getSource().getDirectEntity() != null && event.getSource().getDirectEntity() != attacker)
-		{
-			projectile = event.getSource().getDirectEntity();
-		}
-
-		if (isDamageBlocked(event.getSource(), event.getEntityLiving()))
-		{
-			shield.onShieldBlock(player.level, player, attacker, projectile, event.getSource());
+		if (isDamageBlocked(event.getSource(), event.getEntityLiving())) {
+			ExtendedShieldItem shieldItem = (ExtendedShieldItem) currentItem;
+			LivingEntity attackingLivingEntity = getDamagingLivingEntity(event);
+			Entity projectile = getDamagingProjectile(event);
+			shieldItem.onShieldBlock(player.level, player, attackingLivingEntity, projectile, event.getSource());
 		}
 	}
 
-	public static boolean isDamageBlocked(DamageSource damage, LivingEntity target)
-	{
-		Entity entity = damage.getDirectEntity();
-		boolean flag = false;
+	@Nullable
+	private static Entity getDamagingProjectile(LivingAttackEvent event) {
+		Entity damagingEntity = event.getSource().getEntity();
+		Entity directDamagingEntity = event.getSource().getDirectEntity();
+		
+		if (directDamagingEntity != null && directDamagingEntity != damagingEntity) {
+			return directDamagingEntity;
+		} else {
+			return null;
+		}
+	}
 
-		if (entity instanceof AbstractArrowEntity)
-		{
-			AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity) entity;
+	@Nullable
+	private static LivingEntity getDamagingLivingEntity(LivingAttackEvent event) {
+		Entity damagingEntity = event.getSource().getEntity();
 
-			if (abstractarrowentity.getPierceLevel() > 0)
-			{
-				flag = true;
+		if (damagingEntity instanceof LivingEntity) {
+			return (LivingEntity) damagingEntity;
+		} else {
+			return null;
+		}
+	}
+
+	public static boolean isDamageBlocked(DamageSource damageSource, LivingEntity targetEntity) {
+		if (!targetEntity.isBlocking()) {
+			return false;
+		}
+
+		if (damageSource.isBypassArmor()) {
+			return false;
+		}
+
+		Entity entityDealingDamage = damageSource.getDirectEntity();
+
+		if (entityDealingDamage instanceof AbstractArrowEntity) {
+			AbstractArrowEntity arrow = (AbstractArrowEntity) entityDealingDamage;
+
+			if (arrow.getPierceLevel() > 0) {
+				return false;
 			}
 		}
 
-		if (!damage.isBypassArmor() && target.isBlocking() && !flag)
-		{
-			Vector3d vector3d2 = damage.getSourcePosition();
+		return isDamageSourceInFrontOf(targetEntity, damageSource);
+	}
 
-			if (vector3d2 != null)
-			{
-				Vector3d vector3d = target.getViewVector(1.0F);
-				Vector3d vector3d1 = vector3d2.vectorTo(target.position()).normalize();
-				vector3d1 = new Vector3d(vector3d1.x, 0.0D, vector3d1.z);
+	private static boolean isDamageSourceInFrontOf(LivingEntity entity, DamageSource damageSource) {
+		Vector3d damageSourcePosition = damageSource.getSourcePosition();
 
-				if (vector3d1.dot(vector3d) < 0.0D)
-				{
-					return true;
-				}
-			}
+		if (damageSourcePosition == null) {
+			return false;
 		}
 
-		return false;
+		Vector3d targetViewVector = entity.getViewVector(1);
+		Vector3d vectorFromSourceToTarget = damageSourcePosition.vectorTo(entity.position()).normalize();
+		vectorFromSourceToTarget = new Vector3d(vectorFromSourceToTarget.x, 0, vectorFromSourceToTarget.z);
+		return vectorFromSourceToTarget.dot(targetViewVector) < 0;
 	}
 
 	@Override
-	public boolean isBookEnchantable(ItemStack stack, ItemStack book)
-	{
+	public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
 		return false;
 	}
 

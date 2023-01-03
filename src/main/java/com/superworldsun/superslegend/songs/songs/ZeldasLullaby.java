@@ -30,16 +30,24 @@ public class ZeldasLullaby extends OcarinaSong {
 
 	@Override
 	public void onSongPlayed(PlayerEntity player, World level) {
-		BlockPos startPos = player.blockPosition().offset(-EFFECT_RADIUS, -EFFECT_RADIUS, -EFFECT_RADIUS);
-		BlockPos endPos = player.blockPosition().offset(EFFECT_RADIUS, EFFECT_RADIUS, EFFECT_RADIUS);
-
-		BlockPos.betweenClosed(startPos, endPos).forEach(pos -> {
-			BlockState blockState = level.getBlockState(pos);
-			Block block = blockState.getBlock();
-
-			if (block instanceof RoyalTileBlock) {
-				((RoyalTileBlock) block).activate(level, blockState, pos);
-			}
+		getBlocksInAreaOfEffect(player).forEach(pos -> {
+			activateRoyalTile(level, pos);
 		});
+	}
+
+	private void activateRoyalTile(World level, BlockPos pos) {
+		BlockState blockState = level.getBlockState(pos);
+		Block block = blockState.getBlock();
+
+		if (block instanceof RoyalTileBlock) {
+			RoyalTileBlock royalTileBlock = (RoyalTileBlock) block;
+			royalTileBlock.activate(level, blockState, pos);
+		}
+	}
+
+	private Iterable<BlockPos> getBlocksInAreaOfEffect(PlayerEntity player) {
+		BlockPos start = player.blockPosition().offset(-EFFECT_RADIUS, -EFFECT_RADIUS, -EFFECT_RADIUS);
+		BlockPos end = player.blockPosition().offset(EFFECT_RADIUS, EFFECT_RADIUS, EFFECT_RADIUS);
+		return BlockPos.betweenClosed(start, end);
 	}
 }

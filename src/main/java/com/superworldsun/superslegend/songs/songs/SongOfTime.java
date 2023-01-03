@@ -11,34 +11,38 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class SongOfTime extends OcarinaSong
-{
-	public SongOfTime()
-	{
+public class SongOfTime extends OcarinaSong {
+	private static final int EFFECT_RADIUS = 5;
+
+	public SongOfTime() {
 		super("radrad", 0x3170CF);
 	}
 
 	@Override
-	public SoundEvent getPlayingSound()
-	{
+	public SoundEvent getPlayingSound() {
 		return SoundInit.SONG_OF_TIME.get();
 	}
-	
+
 	@Override
-	public void onSongPlayed(PlayerEntity player, World level)
-	{
-		int radius = 5;
-		BlockPos start = player.blockPosition().offset(-radius, -radius, -radius);
-		BlockPos end = player.blockPosition().offset(radius, radius, radius);
-		BlockPos.betweenClosed(start, end).forEach(pos ->
-		{
-			BlockState blockState = level.getBlockState(pos);
-			Block block = blockState.getBlock();
-			
-			if (block instanceof TimeBlock)
-			{
-				((TimeBlock) block).toggle(level, blockState, pos);
-			}
+	public void onSongPlayed(PlayerEntity player, World level) {
+		getBlocksInAreaOfEffect(player).forEach(pos -> {
+			toggleTimeBlock(level, pos);
 		});
+	}
+
+	private void toggleTimeBlock(World level, BlockPos pos) {
+		BlockState blockState = level.getBlockState(pos);
+		Block block = blockState.getBlock();
+
+		if (block instanceof TimeBlock) {
+			TimeBlock timeBlock = (TimeBlock) block;
+			timeBlock.toggle(level, blockState, pos);
+		}
+	}
+
+	private Iterable<BlockPos> getBlocksInAreaOfEffect(PlayerEntity player) {
+		BlockPos start = player.blockPosition().offset(-EFFECT_RADIUS, -EFFECT_RADIUS, -EFFECT_RADIUS);
+		BlockPos end = player.blockPosition().offset(EFFECT_RADIUS, EFFECT_RADIUS, EFFECT_RADIUS);
+		return BlockPos.betweenClosed(start, end);
 	}
 }
