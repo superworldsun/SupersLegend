@@ -789,7 +789,7 @@ public class ItemInit
 	public static final RegistryObject<Item> SHADOW_BLOCK = ITEMS.register("shadow_block", ShadowBlockItem::new);
 	public static final RegistryObject<Item> HIDDEN_SHADOW_BLOCK = ITEMS.register("hidden_shadow_block", HiddenShadowBlockItem::new);
 	public static final RegistryObject<Item> FALSE_SHADOW_BLOCK = ITEMS.register("false_shadow_block", FalseShadowBlockItem::new);
-	public static final RegistryObject<Item> SHADOW_MODEL_BLOCK = ITEMS.register("shadow_model_block", () -> new ModBlockItem(BlockInit.SHADOW_MODEL_BLOCK));
+	public static final RegistryObject<Item> SHADOW_MODEL_BLOCK = ITEMS.register("shadow_model_block", () -> new ModHiddenBlockItem(BlockInit.SHADOW_MODEL_BLOCK));
 	public static final RegistryObject<Item> DINS_SACRED_PEDESTAL = ITEMS.register("dins_sacred_pedestal", () -> new SacredPedestalItem(BlockInit.DINS_SACRED_PEDESTAL));
 	public static final RegistryObject<Item> FARORES_SACRED_PEDESTAL = ITEMS.register("farores_sacred_pedestal", () -> new SacredPedestalItem(BlockInit.FARORES_SACRED_PEDESTAL));
 	public static final RegistryObject<Item> NAYRUS_SACRED_PEDESTAL = ITEMS.register("nayrus_sacred_pedestal", () -> new SacredPedestalItem(BlockInit.NAYRUS_SACRED_PEDESTAL));
