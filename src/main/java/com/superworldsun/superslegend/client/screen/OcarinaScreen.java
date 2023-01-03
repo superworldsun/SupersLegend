@@ -199,20 +199,21 @@ public class OcarinaScreen extends Screen {
 
 		if (canPlayNotes) {
 			Optional.ofNullable(Note.getByKeyCode(keyCode)).ifPresent(Note::play);
+			SupersLegendRegistries.OCARINA_SONGS.forEach(this::checkIfSongWasPlayed);
 		}
 
-		SupersLegendRegistries.OCARINA_SONGS.forEach(song -> {
-			ILearnedSongs learnedSongs = LearnedSongsProvider.get(minecraft.player);
-			boolean wasSongPlayed = learnedSongs.getLearnedSongs().contains(song) && song.getSongPattern().equals(playedPattern);
-
-			if (wasSongPlayed) {
-				playedSong = song;
-				closeTimer = 20;
-				LearnedSongsProvider.get(minecraft.player).setCurrentSong(null);
-			}
-		});
-
 		return super.keyPressed(keyCode, p_231046_2_, p_231046_3_);
+	}
+
+	private void checkIfSongWasPlayed(OcarinaSong song) {
+		ILearnedSongs learnedSongs = LearnedSongsProvider.get(minecraft.player);
+		boolean wasPlayed = learnedSongs.getLearnedSongs().contains(song) && song.getSongPattern().equals(playedPattern);
+
+		if (wasPlayed) {
+			playedSong = song;
+			closeTimer = 20;
+			LearnedSongsProvider.get(minecraft.player).setCurrentSong(null);
+		}
 	}
 
 	@Override
