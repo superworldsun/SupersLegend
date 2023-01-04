@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.blocks.tile.SwitchableFanTileEntity;
+import com.superworldsun.superslegend.blocks.entity.SwitchableFanTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,9 +22,9 @@ public class SwitchableFanBlock extends FanBlock
 		{
 			SwitchableFanTileEntity fan = (SwitchableFanTileEntity) world.getBlockEntity(pos);
 			
-			if (fan.powered != world.hasNeighborSignal(pos))
+			if (fan.isPowered != world.hasNeighborSignal(pos))
 			{
-				fan.powered = world.hasNeighborSignal(pos);
+				fan.isPowered = world.hasNeighborSignal(pos);
 				// 2 means we send changes to client
 				world.sendBlockUpdated(pos, state, state, 2);
 			}

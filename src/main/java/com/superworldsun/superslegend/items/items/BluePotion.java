@@ -1,7 +1,12 @@
 package com.superworldsun.superslegend.items.items;
 
-import com.superworldsun.superslegend.mana.IMana;
-import com.superworldsun.superslegend.mana.ManaProvider;
+import java.util.List;
+import java.util.Objects;
+
+import javax.annotation.Nonnull;
+
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -11,22 +16,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.DrinkHelper;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.Objects;
-
-import net.minecraft.item.Item.Properties;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -50,9 +49,7 @@ public class BluePotion extends Item
 
 		if (player != null)
 		{
-			IMana mana = ManaProvider.get(player);
-			// Restore to maximum
-			mana.restoreMana(mana.getMaxMana());
+			ManaHelper.restoreManaToFull(player);
 			player.addEffect(new EffectInstance(Objects.requireNonNull(Effects.REGENERATION), 60, 4, false, false));
 			player.awardStat(Stats.ITEM_USED.get(this));
 
@@ -95,7 +92,7 @@ public class BluePotion extends Item
 	{
 		ItemStack stack = player.getItemInHand(hand);
 
-		if (ManaProvider.get(player).getMana() == ManaProvider.get(player).getMaxMana() && !player.isHurt())
+		if (ManaHelper.isFullMana(player) && !player.isHurt())
 		{
 			return ActionResult.fail(stack);
 		}

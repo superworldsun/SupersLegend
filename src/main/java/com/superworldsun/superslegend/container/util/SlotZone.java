@@ -1,0 +1,15 @@
+package com.superworldsun.superslegend.container.util;
+
+public class SlotZone {
+	public final int firstSlotIndex;
+	public final int lastSlotIndex;
+
+	public SlotZone(int firstSlotIndex, int numberOfSlots) {
+		this.firstSlotIndex = firstSlotIndex;
+		this.lastSlotIndex = firstSlotIndex + numberOfSlots;
+	}
+
+	public boolean contains(int slotIndex) {
+		return slotIndex >= firstSlotIndex && slotIndex < lastSlotIndex;
+	}
+}

@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.client.screen;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.container.RingBoxContainer;
+import com.superworldsun.superslegend.container.bag.RingBoxContainer;
 
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;

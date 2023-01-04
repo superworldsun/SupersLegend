@@ -3,7 +3,7 @@ package com.superworldsun.superslegend.client.init;
 import javax.annotation.Nullable;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.world.ClientWorld;
@@ -65,7 +65,7 @@ public class ItemModelPropertiesInit {
 		}
 
 		PlayerEntity player = (PlayerEntity) livingEntity;
-		return !player.abilities.instabuild && ManaProvider.get(player).getMana() < 0.1F ? 1.0F : 0.0F;
+		return !ManaHelper.hasMana(player, 0.1F) ? 1.0F : 0.0F;
 	}
 
 	private static float isFishing(ItemStack itemStack, @Nullable ClientWorld clientWorld, @Nullable LivingEntity livingEntity) {

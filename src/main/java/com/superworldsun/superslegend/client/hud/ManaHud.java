@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.client.hud;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
@@ -40,7 +40,7 @@ public class ManaHud {
 			int currentMana = 0;
 
 			if (player.isAlive()) {
-				currentMana = (int) ManaProvider.get(player).getMana();
+				currentMana = (int) ManaHelper.getMana(player);
 				last_tick_mana = currentMana;
 			} else {
 				currentMana = last_tick_mana;

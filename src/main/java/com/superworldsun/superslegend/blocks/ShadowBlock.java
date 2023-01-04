@@ -3,7 +3,7 @@ package com.superworldsun.superslegend.blocks;
 import java.util.Optional;
 import java.util.Random;
 
-import com.superworldsun.superslegend.blocks.tile.ShadowTileEntity;
+import com.superworldsun.superslegend.blocks.entity.ShadowTileEntity;
 import com.superworldsun.superslegend.items.block.ShadowBlockBaseItem;
 
 import net.minecraft.block.Block;

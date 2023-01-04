@@ -9,10 +9,10 @@ import org.apache.commons.lang3.tuple.ImmutableTriple;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
 import com.superworldsun.superslegend.client.model.armor.GiantsMaskModel;
 import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.items.custom.NonEnchantItem;
-import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -72,11 +72,7 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 
 	@Override
 	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-		PlayerEntity player = (PlayerEntity) livingEntity;
-
-		if (!player.isCreative()) {
-			ManaProvider.get(player).spendMana(MANA_COST);
-		}
+		ManaHelper.spendMana((PlayerEntity) livingEntity, MANA_COST);
 	}
 
 	@SubscribeEvent
@@ -102,9 +98,7 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 			return;
 		}
 
-		boolean canUse = ManaProvider.get(event.player).getMana() >= MANA_COST || event.player.isCreative();
-
-		if (!canUse) {
+		if (!canPlayerUseMask(event.player)) {
 			removeMaskAttributeModifiers(event.player);
 			return;
 		}
@@ -165,7 +159,7 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 	}
 
 	private static boolean canPlayerUseMask(PlayerEntity player) {
-		return ManaProvider.get(player).getMana() >= MANA_COST || player.isCreative();
+		return ManaHelper.hasMana(player, MANA_COST);
 	}
 
 	@Override

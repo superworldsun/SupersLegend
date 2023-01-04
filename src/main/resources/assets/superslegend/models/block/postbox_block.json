@@ -1,5 +1,5 @@
 {
-    "parent": "block/cube_all",
+	"parent": "block/cube_all",
 	"textures": {
 		"0": "superslegend:block/postbox_block",
 		"particle": "superslegend:block/postbox_block"
@@ -132,5 +132,11 @@
 			}
 		}
 	],
-	"display": {}
+	"display": {
+		"gui": {
+			"rotation": [30, 135, 0],
+			"translation": [0, -3, 0],
+			"scale": [0.52, 0.52, 0.52]
+		}
+	}
 }

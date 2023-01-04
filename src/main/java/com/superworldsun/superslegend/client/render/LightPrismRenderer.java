@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.client.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.superworldsun.superslegend.blocks.tile.LightPrismTileEntity;
+import com.superworldsun.superslegend.blocks.entity.LightPrismTileEntity;
 import com.superworldsun.superslegend.light.LightRayRenderer;
 
 import net.minecraft.client.renderer.IRenderTypeBuffer;

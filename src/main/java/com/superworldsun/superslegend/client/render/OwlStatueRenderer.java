@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.client.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.blocks.tile.OwlStatueTileEntity;
+import com.superworldsun.superslegend.blocks.entity.OwlStatueTileEntity;
 import com.superworldsun.superslegend.client.model.OpenOwlStatueModel;
 import com.superworldsun.superslegend.client.model.OwlStatueModel;
 import com.superworldsun.superslegend.waypoints.WaypointsProvider;

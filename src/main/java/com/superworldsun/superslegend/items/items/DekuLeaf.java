@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
 import com.superworldsun.superslegend.entities.projectiles.magic.GustEntity;
-import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.client.Minecraft;
@@ -36,7 +36,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class DekuLeaf extends Item
 {
-	private final float manacost = 0.02F;
+	private static final float MANA_COST = 0.02F;
 	
 	public DekuLeaf()
 	{
@@ -65,22 +65,22 @@ public class DekuLeaf extends Item
 	}
 	
 	@Override
-	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand)
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
 	{
-		ItemStack heldItem = playerEntity.getItemInHand(hand);
-		boolean hasMana = ManaProvider.get(playerEntity).getMana() >= manacost || playerEntity.abilities.instabuild;
+		ItemStack heldItem = player.getItemInHand(hand);
+		boolean hasMana = ManaHelper.hasMana(player, MANA_COST);
 		
-		if (playerEntity.isOnGround())
+		if (player.isOnGround())
 		{
 			if (!world.isClientSide && hasMana)
 			{
 				float gustSpeed = 0.5F;
-				Vector3d playerLookVec = playerEntity.getLookAngle();
-				Vector3d gustPosition = playerEntity.getEyePosition(1F).add(playerLookVec);
+				Vector3d playerLookVec = player.getLookAngle();
+				Vector3d gustPosition = player.getEyePosition(1F).add(playerLookVec);
 				Vector3d gustMotion = playerLookVec.multiply(gustSpeed, gustSpeed, gustSpeed);
-				GustEntity gustEntity = new GustEntity(gustPosition, gustMotion, world, playerEntity);
+				GustEntity gustEntity = new GustEntity(gustPosition, gustMotion, world, player);
 				world.addFreshEntity(gustEntity);
-				playerEntity.getCooldowns().addCooldown(this, 16);
+				player.getCooldowns().addCooldown(this, 16);
 			}
 			
 			return new ActionResult<>(ActionResultType.PASS, heldItem);
@@ -89,7 +89,7 @@ public class DekuLeaf extends Item
 		{
 			if (hasMana)
 			{
-				playerEntity.startUsingItem(hand);
+				player.startUsingItem(hand);
 				return new ActionResult<>(ActionResultType.PASS, heldItem);
 			}
 		}
@@ -106,10 +106,11 @@ public class DekuLeaf extends Item
 		}
 		
 		PlayerEntity player = (PlayerEntity) livingEntity;
-		boolean hasMana = ManaProvider.get(player).getMana() >= manacost || player.abilities.instabuild;
+		boolean hasMana = ManaHelper.hasMana(player, MANA_COST);
 		
 		if (!player.isFallFlying() && !player.isOnGround() && !player.isInWater() && hasMana)
 		{
+			ManaHelper.spendMana(player, MANA_COST);
 			player.fallDistance = 0F;
 			
 			// slows fall speed
@@ -117,12 +118,6 @@ public class DekuLeaf extends Item
 			{
 				Vector3d movement = player.getDeltaMovement();
 				player.setDeltaMovement(new Vector3d(movement.x, -0.05, movement.z));
-			}
-			
-			// do not spend mana in creeative mode
-			if (!player.abilities.instabuild)
-			{
-				ManaProvider.get(player).spendMana(manacost);
 			}
 			
 			int particlesDensity = 5;

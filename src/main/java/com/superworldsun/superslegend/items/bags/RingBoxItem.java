@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.items.bags;
 
-import com.superworldsun.superslegend.container.RingBoxContainer;
+import com.superworldsun.superslegend.container.bag.RingBoxContainer;
 import com.superworldsun.superslegend.items.RingItem;
 import com.superworldsun.superslegend.registries.ItemGroupInit;
 

@@ -2,9 +2,9 @@ package com.superworldsun.superslegend.items.weapons;
 
 import java.util.function.Predicate;
 
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
 import com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity;
 import com.superworldsun.superslegend.items.custom.NonEnchantItem;
-import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ItemGroupInit;
 import com.superworldsun.superslegend.registries.TagInit;
 
@@ -14,7 +14,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -57,7 +56,7 @@ public class FireRod extends NonEnchantItem
 				// per use
 				float manacost = 2F;
 				
-				if (ManaProvider.get(playerEntity).getMana() >= manacost || playerEntity.abilities.instabuild)
+				if (ManaHelper.hasMana(playerEntity, manacost))
 				{
 					float fireballSpeed = 0.5F;
 					Vector3d playerLookVec = playerEntity.getLookAngle();
@@ -65,9 +64,7 @@ public class FireRod extends NonEnchantItem
 					Vector3d fireballMotion = playerLookVec.multiply(fireballSpeed, fireballSpeed, fireballSpeed);
 					FireballEntity fireballEntity = new FireballEntity(fireballPosition, fireballMotion, world, playerEntity);
 					world.addFreshEntity(fireballEntity);
-					ManaProvider.get(playerEntity).spendMana(manacost);
-					// we need to sync mana after spending it because of server side check
-					ManaProvider.sync((ServerPlayerEntity) playerEntity);
+					ManaHelper.spendMana(playerEntity, manacost);
 					playerEntity.getCooldowns().addCooldown(this, 16);
 					world.playSound(null, playerEntity.position().x, playerEntity.position().y, playerEntity.position().z, SoundEvents.FIRECHARGE_USE, SoundCategory.PLAYERS, 1F, 1F);
 				}
@@ -102,7 +99,7 @@ public class FireRod extends NonEnchantItem
 			float manacost = 0.025F;
 			PlayerEntity player = (PlayerEntity) livingEntity;
 			
-			if (ManaProvider.get(player).getMana() < manacost && !player.abilities.instabuild)
+			if (!ManaHelper.hasMana(player, manacost))
 			{
 				// no effect in not enough mana and not in creative mod
 				return;
@@ -173,11 +170,7 @@ public class FireRod extends NonEnchantItem
 				entityRayTraceResult.getEntity().setSecondsOnFire(secondsOnFire);
 			}
 			
-			// only spend mana in survival mode
-			if (!player.abilities.instabuild)
-			{
-				ManaProvider.get(player).spendMana(manacost);
-			}
+			ManaHelper.spendMana(player, manacost);
 			
 			// plays sound 4 times per second
 			if (timeInUse % 5 == 0)

@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.client.screen;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.container.LetterContainer;
+import com.superworldsun.superslegend.container.bag.LetterContainer;
 
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;

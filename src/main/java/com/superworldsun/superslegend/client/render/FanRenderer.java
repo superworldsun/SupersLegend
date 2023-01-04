@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.client.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.blocks.tile.FanTileEntity;
+import com.superworldsun.superslegend.blocks.entity.FanTileEntity;
 import com.superworldsun.superslegend.client.model.FanModel;
 
 import net.minecraft.client.renderer.IRenderTypeBuffer;
