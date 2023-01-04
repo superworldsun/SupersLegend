@@ -1,6 +1,14 @@
 package com.superworldsun.superslegend.blocks;
 
-import net.minecraft.block.*;
+import java.util.Optional;
+
+import com.superworldsun.superslegend.blocks.tile.PostboxTileEntity;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
@@ -17,52 +25,48 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class PostboxTopBlock extends Block
-{
+public class PostboxTopBlock extends Block {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	protected static final VoxelShape SHAPE = Block.box(0.0D, -16.0D, 2.0D, 16.0D, 5.0D, 14.0D);
 
-	public PostboxTopBlock(Properties properties)
-	{
+	public PostboxTopBlock(Properties properties) {
 		super(properties);
 		registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
-	
+
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
-	{
-		return SHAPE;
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		return PostboxBlock.SHAPE.move(0, -1, 0);
 	}
-	
+
 	@Override
-	public BlockRenderType getRenderShape(BlockState state)
-	{
+	public BlockRenderType getRenderShape(BlockState state) {
 		return BlockRenderType.INVISIBLE;
 	}
-	
+
 	@Override
-	public void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
-	{
+	public void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
-	
+
 	@Override
-	public void destroy(IWorld world, BlockPos pos, BlockState state)
-	{
+	public void destroy(IWorld world, BlockPos pos, BlockState state) {
 		world.setBlock(pos.below(), Blocks.AIR.defaultBlockState(), 3);
 	}
-	
+
 	@Override
-	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player)
-	{
-		pos = pos.below();
-		return world.getBlockState(pos).getBlock().getPickBlock(state, target, world, pos, player);
+	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+		return world.getBlockState(pos.below()).getBlock().getPickBlock(state, target, world, pos.below(), player);
 	}
-	
-	@SuppressWarnings("deprecation")
-	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
-	{
-		pos = pos.below();
-		return world.getBlockState(pos).getBlock().use(state, world, pos, player, hand, rayTraceResult);
+
+	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
+		if (!world.isClientSide) {
+			getTileEntity(world, blockPos).ifPresent(postbox -> postbox.openGui(blockPos, player));
+		}
+
+		return ActionResultType.SUCCESS;
+	}
+
+	private Optional<PostboxTileEntity> getTileEntity(World world, BlockPos blockPos) {
+		return Optional.ofNullable(world.getBlockEntity(blockPos.below())).map(t -> (PostboxTileEntity) t);
 	}
 }
