@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import javax.annotation.Nullable;
 
 import com.superworldsun.superslegend.blocks.ShadowBlock;
-import com.superworldsun.superslegend.client.render.ister.ShadowBlockIster;
+import com.superworldsun.superslegend.client.render.ister.ShadowBlockISTER;
 import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.block.Block;
@@ -29,7 +29,7 @@ public class ShadowBlockBaseItem extends BlockItem {
 
 	@OnlyIn(Dist.CLIENT)
 	public static Callable<ItemStackTileEntityRenderer> createISTER() {
-		return ShadowBlockIster::new;
+		return ShadowBlockISTER::new;
 	}
 
 	@Override

@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.ItemStack;
 
-public class ShadowBlockIster extends ItemStackTileEntityRenderer {
+public class ShadowBlockISTER extends ItemStackTileEntityRenderer {
 	@Override
 	public void renderByItem(ItemStack itemStack, TransformType transformType, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight,
 			int combinedOverlay) {
