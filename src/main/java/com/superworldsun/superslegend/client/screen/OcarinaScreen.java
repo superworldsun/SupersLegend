@@ -15,7 +15,6 @@ import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.PlaySongMessage;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
-import com.superworldsun.superslegend.songs.ILearnedSongs;
 import com.superworldsun.superslegend.songs.LearnedSongsProvider;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
@@ -36,6 +35,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.RegistryObject;
 
 public class OcarinaScreen extends Screen {
+	// TODO: REPLACE TERRIBLE SONG ICONS WITH BUTTONS
+	// TODO: actually, replace all interactable parts with widgets
 	private static final ResourceLocation TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/ocarina.png");
 	private static final int NOTE_ICON_SIZE = 11;
 	private static final int NOTE_ICON_SPACING = 6;
@@ -56,7 +57,7 @@ public class OcarinaScreen extends Screen {
 	private List<Note> hintNotes = new ArrayList<>();
 	private int hintTimer;
 	private int hintNoteTimer;
-	private int closeTimer = -1;
+	private int closeDelay = -1;
 
 	public OcarinaScreen() {
 		super(new StringTextComponent(""));
@@ -195,9 +196,15 @@ public class OcarinaScreen extends Screen {
 
 	@Override
 	public boolean keyPressed(int keyCode, int p_231046_2_, int p_231046_3_) {
-		boolean canPlayNotes = playedNotes.size() < MAX_NOTES && playedSong == null && hintTimer == 0;
+		boolean canPlayNotes = playedSong == null && hintTimer == 0;
 
 		if (canPlayNotes) {
+			boolean reachedMaxNotes = playedNotes.size() == MAX_NOTES;
+
+			if (reachedMaxNotes) {
+				removeFirstPlayedNote();
+			}
+
 			Optional.ofNullable(Note.getByKeyCode(keyCode)).ifPresent(Note::play);
 			SupersLegendRegistries.OCARINA_SONGS.forEach(this::checkIfSongWasPlayed);
 		}
@@ -205,15 +212,40 @@ public class OcarinaScreen extends Screen {
 		return super.keyPressed(keyCode, p_231046_2_, p_231046_3_);
 	}
 
-	private void checkIfSongWasPlayed(OcarinaSong song) {
-		ILearnedSongs learnedSongs = LearnedSongsProvider.get(minecraft.player);
-		boolean wasPlayed = learnedSongs.getLearnedSongs().contains(song) && song.getSongPattern().equals(playedPattern);
+	private void removeFirstPlayedNote() {
+		playedNotes.remove(0);
+		playedPattern = playedPattern.substring(1);
+	}
 
-		if (wasPlayed) {
-			playedSong = song;
-			closeTimer = 20;
+	private void checkIfSongWasPlayed(OcarinaSong song) {
+		boolean isSongLearned = LearnedSongsProvider.get(minecraft.player).getLearnedSongs().contains(song);
+
+		if (!isSongLearned) {
+			return;
+		}
+
+		String songPattern = song.getSongPattern();
+		String playedPattern = OcarinaScreen.playedPattern;
+
+		if (playedPattern.length() > songPattern.length()) {
+			playedPattern = playedPattern.substring(MAX_NOTES - songPattern.length());
+		}
+
+		boolean isPlayedPatternCorrect = songPattern.equals(playedPattern);
+
+		if (isPlayedPatternCorrect) {
+			setPlayedSong(song);
+			closeAfterDelay(20);
 			LearnedSongsProvider.get(minecraft.player).setCurrentSong(null);
 		}
+	}
+
+	private OcarinaSong setPlayedSong(OcarinaSong song) {
+		return playedSong = song;
+	}
+
+	private void closeAfterDelay(int delay) {
+		closeDelay = delay;
 	}
 
 	@Override
@@ -243,7 +275,7 @@ public class OcarinaScreen extends Screen {
 	}
 
 	private void updateDelayedClose() {
-		if (closeTimer == 0) {
+		if (closeDelay == 0) {
 			boolean canApplySongEffect = minecraft.player.isHolding(ItemInit.OCARINA_OF_TIME.get()) || !playedSong.requiresOcarinaOfTime();
 
 			if (canApplySongEffect) {
@@ -256,8 +288,8 @@ public class OcarinaScreen extends Screen {
 			LearnedSongsProvider.get(minecraft.player).setCurrentSong(playedSong);
 		}
 
-		if (closeTimer > 0) {
-			closeTimer--;
+		if (closeDelay > 0) {
+			closeDelay--;
 		}
 	}
 

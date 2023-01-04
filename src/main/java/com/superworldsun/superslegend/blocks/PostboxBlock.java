@@ -11,7 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -80,7 +80,7 @@ public class PostboxBlock extends Block {
 
 	@Override
 	public void onRemove(BlockState oldBlockState, World world, BlockPos blockPos, BlockState blockState, boolean flag) {
-		getTileEntity(world, blockPos).ifPresent(postbox -> InventoryHelper.dropContents(world, blockPos, postbox.inventory));
+		getTileEntity(world, blockPos).ifPresent(PostboxTileEntity::dropInventoryContents);
 		world.removeBlockEntity(blockPos);
 		world.setBlock(blockPos.above(), Blocks.AIR.defaultBlockState(), 3);
 	}
@@ -97,7 +97,7 @@ public class PostboxBlock extends Block {
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
 		if (!world.isClientSide) {
-			getTileEntity(world, blockPos).ifPresent(postbox -> postbox.openGui(blockPos, player));
+			getTileEntity(world, blockPos).ifPresent(postbox -> postbox.interact((ServerPlayerEntity) player, hand));
 		}
 
 		return ActionResultType.SUCCESS;

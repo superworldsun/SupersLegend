@@ -26,6 +26,11 @@ public class CocoaBeanEntity extends SeedEntity {
 	protected ItemStack getPickupItem() {
 		return new ItemStack(Items.COCOA_BEANS);
 	}
+	
+	@Override
+	protected float getMass() {
+		return 0.15F;
+	}
 
 	public static EntityType<CocoaBeanEntity> createEntityType() {
 		return EntityType.Builder.<CocoaBeanEntity>of(CocoaBeanEntity::new, EntityClassification.MISC)

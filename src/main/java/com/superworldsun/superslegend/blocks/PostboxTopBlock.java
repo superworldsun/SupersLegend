@@ -10,6 +10,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -60,7 +61,7 @@ public class PostboxTopBlock extends Block {
 
 	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
 		if (!world.isClientSide) {
-			getTileEntity(world, blockPos).ifPresent(postbox -> postbox.openGui(blockPos, player));
+			getTileEntity(world, blockPos).ifPresent(postbox -> postbox.interact((ServerPlayerEntity) player, hand));
 		}
 
 		return ActionResultType.SUCCESS;
