@@ -9,134 +9,96 @@ import com.superworldsun.superslegend.registries.TileEntityInit;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
 
-public class LightPrismTileEntity extends TileEntity implements ITickableTileEntity, ILightReceiver
-{
-	public final AbstractLightEmitter lightEmitter = new BlockLightEmitter(this::getLevel, this::getLightDirecion, this::getBlockPos);
+public class LightPrismTileEntity extends SyncableTileEntity implements ITickableTileEntity, ILightReceiver {
+	private static final double ROTATION_SPEED = 0.07;
+	public final AbstractLightEmitter lightEmitter = new BlockLightEmitter(this::getLevel, this::getLightDirection, this::getBlockPos);
 	private float rotation;
 	public float targetRotation;
 	private boolean isLit;
 
-	public LightPrismTileEntity()
-	{
+	public LightPrismTileEntity() {
 		super(TileEntityInit.LIGHT_PRISM.get());
 	}
-	
+
 	@Override
-	public void tick()
-	{
-		if (rotation < targetRotation)
-		{
-			rotation += Math.PI / 45;
-			
-			if (rotation > targetRotation)
-			{
+	public void tick() {
+		if (rotation < targetRotation) {
+			rotation += ROTATION_SPEED;
+
+			if (rotation > targetRotation) {
 				rotation = targetRotation;
 			}
+
+			setChanged();
 		}
-		
-		if (rotation > Math.PI * 2)
-		{
+
+		if (rotation > Math.PI * 2) {
 			rotation -= Math.PI * 2;
 			targetRotation -= Math.PI * 2;
+			setChanged();
 		}
-		this.getUpdatePacket();
-		this.getUpdateTag();
+
 		lightEmitter.tick();
 	}
-	
+
 	@Override
-	public AxisAlignedBB getRenderBoundingBox()
-	{
+	public AxisAlignedBB getRenderBoundingBox() {
 		return INFINITE_EXTENT_AABB;
 	}
-	
+
 	@Override
-	public void receiveLight()
-	{
+	public void receiveLight() {
 		isLit = true;
 		level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(LightPrismBlock.LIT, true));
 	}
 
 	@Override
-	public void stopReceivingLight()
-	{
+	public void stopReceivingLight() {
 		isLit = false;
+		boolean wasLightingSomething = lightEmitter.litObject instanceof ILightReceiver && ((ILightReceiver) lightEmitter).isLit();
 
-		if (lightEmitter.litObject instanceof ILightReceiver && ((ILightReceiver) lightEmitter.litObject).isLit())
-		{
-			((ILightReceiver) lightEmitter.litObject).stopReceivingLight();
+		if (wasLightingSomething) {
+			ILightReceiver previouslyLitObject = (ILightReceiver) lightEmitter.litObject;
+			previouslyLitObject.stopReceivingLight();
 		}
-		
-		if (level.getBlockState(worldPosition).getBlock() instanceof LightPrismBlock)
-		{
+
+		boolean canSetBlockLitValue = level.getBlockState(worldPosition).getOptionalValue(LightPrismBlock.LIT).isPresent();
+
+		if (canSetBlockLitValue) {
 			level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(LightPrismBlock.LIT, false));
 		}
 	}
-	
+
 	@Override
-	public boolean isLit()
-	{
+	public boolean isLit() {
 		return isLit;
 	}
-	
+
 	@Override
-	public CompoundNBT save(CompoundNBT compound)
-	{
+	public CompoundNBT save(CompoundNBT compound) {
 		compound.putFloat("targetRotation", targetRotation);
 		compound.putFloat("rotation", rotation);
 		return super.save(compound);
 	}
-	
+
 	@Override
-	public void load(BlockState state, CompoundNBT compound)
-	{
+	public void load(BlockState state, CompoundNBT compound) {
 		targetRotation = compound.getFloat("targetRotation");
 		rotation = compound.getFloat("rotation");
 		super.load(state, compound);
 	}
-	
-	@Override
-	public SUpdateTileEntityPacket getUpdatePacket()
-	{
-		return new SUpdateTileEntityPacket(worldPosition, 0, getUpdateTag());
-	}
-	
-	@Override
-	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet)
-	{
-		load(level.getBlockState(packet.getPos()), packet.getTag());
-	}
-	
-	@Override
-	public CompoundNBT getUpdateTag()
-	{
-		return save(new CompoundNBT());
-	}
-	
-	private Vector3d getLightDirecion()
-	{
 
-		if (level.getBlockState(worldPosition).getBlock() == BlockInit.LIGHT_PRISM.get() && level.getBlockState(worldPosition).getValue(LightPrismBlock.LIT))
-		{
-			return new Vector3d(0, 0, 1).yRot(rotation);
-		}
-		else
-		{
-			return Vector3d.ZERO;
-		}
+	private Vector3d getLightDirection() {
+		return isLit ? new Vector3d(0, 0, 1).yRot(rotation) : Vector3d.ZERO;
 	}
-	
-	public static TileEntityType<LightPrismTileEntity> createType()
-	{
+
+	public static TileEntityType<LightPrismTileEntity> createType() {
 		return Builder.of(LightPrismTileEntity::new, BlockInit.LIGHT_PRISM.get()).build(null);
 	}
 }
