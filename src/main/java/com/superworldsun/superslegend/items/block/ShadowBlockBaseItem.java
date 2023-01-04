@@ -15,6 +15,8 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class ShadowBlockBaseItem extends BlockItem {
@@ -34,6 +36,7 @@ public class ShadowBlockBaseItem extends BlockItem {
 			}
 
 			saveDisguiseInStack(useContext.getItemInHand(), clickedBlockState);
+			useContext.getLevel().playSound(null, useContext.getPlayer(), SoundEvents.LODESTONE_PLACE, SoundCategory.PLAYERS, 1F, 1F);
 			return ActionResultType.SUCCESS;
 		}
 
@@ -47,6 +50,7 @@ public class ShadowBlockBaseItem extends BlockItem {
 
 			if (stackInHand.hasTag()) {
 				stackInHand.setTag(null);
+				world.playSound(null, playerEntity, SoundEvents.LODESTONE_BREAK, SoundCategory.PLAYERS, 1F, 1F);
 				return ActionResult.success(stackInHand);
 			}
 		}
