@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.blocks.tile.CookingPotTileEntity;
+import com.superworldsun.superslegend.blocks.entity.CookingPotTileEntity;
 import com.superworldsun.superslegend.container.*;
 import com.superworldsun.superslegend.container.bag.*;
 

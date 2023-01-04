@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.superworldsun.superslegend.blocks.tile.ShadowTileEntity;
+import com.superworldsun.superslegend.blocks.entity.ShadowTileEntity;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 

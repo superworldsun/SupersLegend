@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.blocks.tile;
+package com.superworldsun.superslegend.blocks.entity;
 
 import com.superworldsun.superslegend.blocks.LightEmitterBlock;
 import com.superworldsun.superslegend.light.AbstractLightEmitter;

@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.container;
 
-import com.superworldsun.superslegend.blocks.tile.PostboxTileEntity;
+import com.superworldsun.superslegend.blocks.entity.PostboxTileEntity;
 import com.superworldsun.superslegend.container.util.SlotZone;
 import com.superworldsun.superslegend.inventory.PostboxInventory;
 import com.superworldsun.superslegend.registries.ContainerInit;

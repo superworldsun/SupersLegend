@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.client.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.superworldsun.superslegend.blocks.PedestalBlock;
-import com.superworldsun.superslegend.blocks.tile.PedestalTileEntity;
+import com.superworldsun.superslegend.blocks.entity.PedestalTileEntity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;

@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.client.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.superworldsun.superslegend.blocks.tile.FalseShadowTileEntity;
+import com.superworldsun.superslegend.blocks.entity.FalseShadowTileEntity;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.client.Minecraft;

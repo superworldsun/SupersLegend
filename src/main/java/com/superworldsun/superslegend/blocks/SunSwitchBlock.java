@@ -4,7 +4,7 @@ import static net.minecraft.state.properties.BlockStateProperties.FACING;
 import static net.minecraft.state.properties.BlockStateProperties.POWER;
 import static net.minecraft.state.properties.BlockStateProperties.POWERED;
 
-import com.superworldsun.superslegend.blocks.tile.SunSwitchTileEntity;
+import com.superworldsun.superslegend.blocks.entity.SunSwitchTileEntity;
 import com.superworldsun.superslegend.util.BlockShapeHelper;
 
 import net.minecraft.block.Block;

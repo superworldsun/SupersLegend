@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.blocks.tile.CookingPotTileEntity;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -30,6 +29,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.superworldsun.superslegend.blocks.entity.CookingPotTileEntity;
+
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;

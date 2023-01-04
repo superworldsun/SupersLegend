@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.blocks;
 
 import java.util.Optional;
 
-import com.superworldsun.superslegend.blocks.tile.PostboxTileEntity;
+import com.superworldsun.superslegend.blocks.entity.PostboxTileEntity;
 import com.superworldsun.superslegend.registries.BlockInit;
 
 import net.minecraft.block.Block;

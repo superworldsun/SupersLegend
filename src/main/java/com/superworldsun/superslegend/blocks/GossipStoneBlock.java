@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.blocks;
 
 import java.util.UUID;
 
-import com.superworldsun.superslegend.blocks.tile.GossipStoneTileEntity;
+import com.superworldsun.superslegend.blocks.entity.GossipStoneTileEntity;
 import com.superworldsun.superslegend.client.screen.GossipStoneScreen;
 import com.superworldsun.superslegend.registries.BlockInit;
 

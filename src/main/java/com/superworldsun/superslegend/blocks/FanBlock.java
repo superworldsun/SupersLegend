@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.blocks;
 
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
 
-import com.superworldsun.superslegend.blocks.tile.FanTileEntity;
+import com.superworldsun.superslegend.blocks.entity.FanTileEntity;
 import com.superworldsun.superslegend.util.BlockShapeHelper;
 
 import net.minecraft.block.Block;

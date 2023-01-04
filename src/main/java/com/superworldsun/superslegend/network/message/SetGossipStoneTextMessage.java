@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.network.message;
 
 import java.util.function.Supplier;
 
-import com.superworldsun.superslegend.blocks.tile.GossipStoneTileEntity;
+import com.superworldsun.superslegend.blocks.entity.GossipStoneTileEntity;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;

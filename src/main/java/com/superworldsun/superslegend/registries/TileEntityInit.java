@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.blocks.tile.*;
+import com.superworldsun.superslegend.blocks.entity.*;
 
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;

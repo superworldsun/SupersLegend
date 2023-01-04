@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.blocks.tile.PedestalTileEntity;
+import com.superworldsun.superslegend.blocks.entity.PedestalTileEntity;
 import com.superworldsun.superslegend.util.BlockShapeHelper;
 
 import net.minecraft.block.Block;

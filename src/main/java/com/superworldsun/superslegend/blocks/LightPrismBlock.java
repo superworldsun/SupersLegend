@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.blocks.tile.LightPrismTileEntity;
+import com.superworldsun.superslegend.blocks.entity.LightPrismTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.blocks.tile.OwlStatueTileEntity;
+import com.superworldsun.superslegend.blocks.entity.OwlStatueTileEntity;
 import com.superworldsun.superslegend.client.screen.WaypointCreationScreen;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.ShowWaystoneCreationScreenMessage;

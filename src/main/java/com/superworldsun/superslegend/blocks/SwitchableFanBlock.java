@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.blocks.tile.SwitchableFanTileEntity;
+import com.superworldsun.superslegend.blocks.entity.SwitchableFanTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

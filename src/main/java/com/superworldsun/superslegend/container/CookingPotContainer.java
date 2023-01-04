@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.container;
 
-import com.superworldsun.superslegend.blocks.tile.CookingPotTileEntity;
+import com.superworldsun.superslegend.blocks.entity.CookingPotTileEntity;
 import com.superworldsun.superslegend.container.slot.SlotCookingPotOutput;
 import com.superworldsun.superslegend.registries.ContainerInit;
 import net.minecraft.entity.player.PlayerEntity;

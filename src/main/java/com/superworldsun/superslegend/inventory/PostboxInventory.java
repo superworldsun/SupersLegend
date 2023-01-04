@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.inventory;
 
-import com.superworldsun.superslegend.blocks.tile.PostboxTileEntity;
+import com.superworldsun.superslegend.blocks.entity.PostboxTileEntity;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;

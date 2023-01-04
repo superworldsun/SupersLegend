@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.blocks.tile.LightEmitterTileEntity;
+import com.superworldsun.superslegend.blocks.entity.LightEmitterTileEntity;
 import com.superworldsun.superslegend.light.AbstractLightEmitter;
 import com.superworldsun.superslegend.light.ILightReceiver;
 

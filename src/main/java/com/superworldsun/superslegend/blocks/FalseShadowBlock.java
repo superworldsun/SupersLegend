@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.blocks.tile.FalseShadowTileEntity;
+import com.superworldsun.superslegend.blocks.entity.FalseShadowTileEntity;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.block.BlockState;
