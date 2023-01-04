@@ -7,6 +7,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -28,6 +29,11 @@ public abstract class SeedEntity extends AbstractArrowEntity {
 	}
 
 	@Override
+	public void shoot(double motionX, double motionY, double motionZ, float speed, float deviation) {
+		super.shoot(motionX, motionY, motionZ, speed * getFlightSpeed(), deviation);
+	}
+
+	@Override
 	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
@@ -36,9 +42,19 @@ public abstract class SeedEntity extends AbstractArrowEntity {
 	public void tick() {
 		super.tick();
 
+		if (!isNoPhysics()) {
+			Vector3d previousMovement = getDeltaMovement();
+			setDeltaMovement(previousMovement.x, previousMovement.y - getMass(), previousMovement.z);
+		}
+
 		if (inGround) {
 			remove();
 		}
+	}
+
+	@Override
+	public boolean isNoGravity() {
+		return true;
 	}
 
 	@Override
@@ -57,5 +73,13 @@ public abstract class SeedEntity extends AbstractArrowEntity {
 				target.setArrowCount(target.getArrowCount() - 1);
 			}
 		}
+	}
+
+	protected float getMass() {
+		return 0.05F;
+	}
+
+	private float getFlightSpeed() {
+		return 1F;
 	}
 }
