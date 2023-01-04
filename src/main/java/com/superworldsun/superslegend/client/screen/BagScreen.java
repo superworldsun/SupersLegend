@@ -1,8 +1,8 @@
 package com.superworldsun.superslegend.client.screen;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.container.bag.BagContainer;
 
-import com.superworldsun.superslegend.container.BagContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;

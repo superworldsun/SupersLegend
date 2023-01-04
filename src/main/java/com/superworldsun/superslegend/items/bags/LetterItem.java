@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.items.bags;
 
-import com.superworldsun.superslegend.container.LetterContainer;
+import com.superworldsun.superslegend.container.bag.LetterContainer;
 import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.entity.player.PlayerEntity;
