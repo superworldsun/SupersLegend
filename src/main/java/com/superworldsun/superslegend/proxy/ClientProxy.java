@@ -12,8 +12,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class ClientProxy extends CommonProxy {
 	@Override
-	public Properties setShadowBlockIster(Properties properties) {
-		return properties.setISTER(ClientProxy::createShadowBlockISTER);
+	public Properties getShadowBlockProperties() {
+		return new Properties().setISTER(ClientProxy::createShadowBlockISTER);
 	}
 
 	public static Callable<ItemStackTileEntityRenderer> createShadowBlockISTER() {

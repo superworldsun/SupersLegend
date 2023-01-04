@@ -1,9 +1,9 @@
 package com.superworldsun.superslegend.proxy;
 
-import net.minecraft.item.Item;
+import net.minecraft.item.Item.Properties;
 
 public class CommonProxy {
-	public Item.Properties setShadowBlockIster(Item.Properties properties) {
-		return properties;
+	public Properties getShadowBlockProperties() {
+		return new Properties();
 	}
 }

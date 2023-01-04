@@ -1,16 +1,13 @@
 package com.superworldsun.superslegend.items.block;
 
-import java.util.concurrent.Callable;
-
 import javax.annotation.Nullable;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.ShadowBlock;
-import com.superworldsun.superslegend.client.render.ister.ShadowBlockISTER;
 import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
@@ -19,17 +16,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ShadowBlockBaseItem extends BlockItem {
 	protected ShadowBlockBaseItem(Block block) {
-		super(block, new Properties().tab(ItemGroupInit.BLOCKS).setISTER(ShadowBlockBaseItem::createISTER));
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public static Callable<ItemStackTileEntityRenderer> createISTER() {
-		return ShadowBlockISTER::new;
+		super(block, SupersLegendMain.PROXY.getShadowBlockProperties().tab(ItemGroupInit.BLOCKS));
 	}
 
 	@Override
