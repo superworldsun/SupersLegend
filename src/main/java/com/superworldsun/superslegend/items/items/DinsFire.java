@@ -1,15 +1,26 @@
 package com.superworldsun.superslegend.items.items;
 
+import java.util.List;
+import java.util.function.Predicate;
+
+import javax.annotation.Nonnull;
+
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EntityPredicates;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -18,10 +29,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.function.Predicate;
 
 public class DinsFire extends Item {
    public DinsFire(Properties builder) {
@@ -56,15 +63,13 @@ public class DinsFire extends Item {
    {
       float manacost = 6F;
       PlayerEntity player = (PlayerEntity) livingEntity;
-      if (ManaProvider.get(player).getMana() >= manacost || player.abilities.instabuild)
+      boolean hasMana = ManaHelper.hasMana(player, manacost);
+	if (hasMana)
       {
          if(livingEntity instanceof PlayerEntity)
          {
             if (!world.isClientSide)
             {
-
-               boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
-
             fibonacci_sphere(player);
 
             AxisAlignedBB targetBox = new AxisAlignedBB(player.position(), player.position()).inflate(6);
@@ -81,9 +86,7 @@ public class DinsFire extends Item {
                   world.playSound(player, player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundCategory.PLAYERS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
                   for (LivingEntity living : foundTarget)
                   {
-                     ManaProvider.get(player).spendMana(manaCost);
-                     // we need to sync mana after spending it because of server side check
-                     ManaProvider.sync((ServerPlayerEntity) player);
+                     ManaHelper.spendMana(player, manaCost);
                      player.getCooldowns().addCooldown(this, 16);
                      living.setSecondsOnFire(6);
                      player.clearFire();

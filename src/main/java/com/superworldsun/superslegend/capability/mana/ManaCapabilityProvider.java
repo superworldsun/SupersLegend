@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.mana;
+package com.superworldsun.superslegend.capability.mana;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -25,76 +25,56 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class ManaProvider implements ICapabilitySerializable<CompoundNBT>
-{
+public class ManaCapabilityProvider implements ICapabilitySerializable<CompoundNBT> {
 	private static final ResourceLocation MANA_ID = new ResourceLocation(SupersLegendMain.MOD_ID, "mana");
-	private IMana instance = MANA_CAPABILITY.getDefaultInstance();
-	
-	@CapabilityInject(IMana.class)
-	public static final Capability<IMana> MANA_CAPABILITY = null;
-	
+	@CapabilityInject(ManaCapability.class)
+	public static final Capability<ManaCapability> MANA_CAPABILITY = null;
+	private final ManaCapability capabilityInstance = MANA_CAPABILITY.getDefaultInstance();
+
 	@SubscribeEvent
-	public static void attachCapability(AttachCapabilitiesEvent<Entity> event)
-	{
-		// We add mana only to players
-		if (!(event.getObject() instanceof PlayerEntity))
-		{
+	public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
+		if (!canHaveMana(event.getObject())) {
 			return;
 		}
-		
-		event.addCapability(MANA_ID, new ManaProvider());
+
+		event.addCapability(MANA_ID, new ManaCapabilityProvider());
 	}
-	
+
 	@SubscribeEvent
-	public static void playerJoinWorld(EntityJoinWorldEvent event)
-	{
-		// We add mana only to players, means we only sync it for players
-		if (!(event.getEntity() instanceof PlayerEntity))
-		{
+	public static void playerJoinWorld(EntityJoinWorldEvent event) {
+		if (!canHaveMana(event.getEntity())) {
 			return;
 		}
-		
-		// We only sync from server to client, not other way around!
-		if (event.getEntity().level.isClientSide)
-		{
-			return;
+
+		if (!event.getEntity().level.isClientSide) {
+			ManaCapabilityProvider.syncWithSelf((ServerPlayerEntity) event.getEntity());
 		}
-		
-		PlayerEntity player = (PlayerEntity) event.getEntity();
-		ManaProvider.sync((ServerPlayerEntity) player);
 	}
-	
+
 	@Override
-	@SuppressWarnings("unchecked")
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing)
-	{
-		if (MANA_CAPABILITY == capability)
-		{
-			return (LazyOptional<T>) LazyOptional.of(() -> instance);
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
+		if (capability == MANA_CAPABILITY) {
+			return LazyOptional.of(() -> capabilityInstance).cast();
 		}
-		
+
 		return LazyOptional.empty();
 	}
-	
+
 	@Override
-	public CompoundNBT serializeNBT()
-	{
-		return (CompoundNBT) MANA_CAPABILITY.writeNBT(instance, null);
+	public CompoundNBT serializeNBT() {
+		return (CompoundNBT) MANA_CAPABILITY.writeNBT(capabilityInstance, null);
 	}
-	
+
 	@Override
-	public void deserializeNBT(CompoundNBT nbt)
-	{
-		MANA_CAPABILITY.readNBT(instance, null, nbt);
+	public void deserializeNBT(CompoundNBT nbt) {
+		MANA_CAPABILITY.readNBT(capabilityInstance, null, nbt);
 	}
-	
-	public static IMana get(PlayerEntity player)
-	{
-		return player.getCapability(MANA_CAPABILITY).orElse(new Mana());
+
+	private static boolean canHaveMana(Entity entity) {
+		return entity instanceof PlayerEntity;
 	}
-	
-	public static void sync(ServerPlayerEntity player)
-	{
+
+	private static void syncWithSelf(ServerPlayerEntity player) {
 		NetworkDispatcher.networkChannel.send(PacketDistributor.PLAYER.with(() -> player), new SyncManaMessage(player));
 	}
 }

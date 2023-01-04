@@ -1,8 +1,7 @@
 package com.superworldsun.superslegend.entities;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.mana.IMana;
-import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 
 import net.minecraft.entity.Entity;
@@ -10,7 +9,6 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.tags.FluidTags;
@@ -143,12 +141,9 @@ public class MagicJarEntity extends Entity {
     public void playerTouch(PlayerEntity player) {
         if (!this.level.isClientSide)
         {
-            IMana mana = ManaProvider.get(player);
-            if (this.throwTime == 0 && mana.getMana() != mana.getMaxMana())
+            if (this.throwTime == 0 && !ManaHelper.isFullMana(player))
             {
-                ManaProvider.sync((ServerPlayerEntity) player);
-                ManaProvider.get(player).restoreMana(3);
-                ManaProvider.sync((ServerPlayerEntity) player);
+                ManaHelper.restoreMana(player, 3);
                 //this.playSound(SoundInit.HEART.get(), 1F, 1F);
                 //mana.restoreMana(value);
                 this.remove();

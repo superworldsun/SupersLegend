@@ -1,14 +1,13 @@
 package com.superworldsun.superslegend;
 
 import com.mojang.serialization.Codec;
+import com.superworldsun.superslegend.capability.mana.ManaCapability;
+import com.superworldsun.superslegend.capability.mana.ManaCapabilityStorage;
 import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldState;
 import com.superworldsun.superslegend.items.capabilities.SacredShieldStorage;
-import com.superworldsun.superslegend.mana.IMana;
-import com.superworldsun.superslegend.mana.Mana;
-import com.superworldsun.superslegend.mana.ManaStorage;
 import com.superworldsun.superslegend.proxy.*;
 import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.songs.ILearnedSongs;
@@ -99,11 +98,11 @@ public class SupersLegendMain
 	public static void setup(final FMLCommonSetupEvent event)
 	{
 		FeatureInit.Configured.registerConfiguredFeatures();
-		CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana::new);
+		CapabilityManager.INSTANCE.register(ManaCapability.class, new ManaCapabilityStorage(), ManaCapability::new);
 		CapabilityManager.INSTANCE.register(ILearnedSongs.class, new LearnedSongsStorage(), LearnedSongs::new);
+		CapabilityManager.INSTANCE.register(IWaypoints.class, new WaypointsStorage(), Waypoints::new);
 		CapabilityManager.INSTANCE.register(HookModel.class, new HookStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });
 		CapabilityManager.INSTANCE.register(SacredShieldState.class, new SacredShieldStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });
-		CapabilityManager.INSTANCE.register(IWaypoints.class, new WaypointsStorage(), Waypoints::new);
 
 		// This is for thread-safe operations later on such as world-gen
 		event.enqueueWork(() ->

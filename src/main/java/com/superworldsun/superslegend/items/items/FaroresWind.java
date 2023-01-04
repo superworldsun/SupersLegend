@@ -3,12 +3,12 @@ package com.superworldsun.superslegend.items.items;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nonnull;
+
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.mana.ManaProvider;
-import com.superworldsun.superslegend.util.DimBlockPos;
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,26 +16,26 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.world.ChunkEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-import javax.annotation.Nonnull;
-
-@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class FaroresWind extends Item {
-
+	private static final float MANA_COST = 5F;
+	
     public FaroresWind(Properties properties)
     {
         super(properties);
@@ -83,11 +83,9 @@ public class FaroresWind extends Item {
         return ActionResultType.PASS;
     }
 
-    float manaCost = 5.00F;
-
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
     {
-        boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
+        boolean hasMana = ManaHelper.hasMana(player, MANA_COST);
         ItemStack stack = player.getItemInHand(hand);
 
         if(getPosition(stack) != null && !player.isShiftKeyDown() && hasMana)
@@ -102,7 +100,7 @@ public class FaroresWind extends Item {
                         0.3, 0.105D, 0.3);
             }
 
-            ManaProvider.get(player).spendMana(manaCost);
+            ManaHelper.spendMana(player, MANA_COST);
             teleport(player, world, stack);
             world.playSound(null, player.xo, player.yo, player.zo, SoundEvents.CHORUS_FRUIT_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
             player.getCooldowns().addCooldown(this, 120);

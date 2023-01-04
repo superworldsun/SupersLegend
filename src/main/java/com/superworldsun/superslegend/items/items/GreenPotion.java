@@ -1,7 +1,10 @@
 package com.superworldsun.superslegend.items.items;
 
-import com.superworldsun.superslegend.mana.IMana;
-import com.superworldsun.superslegend.mana.ManaProvider;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
@@ -23,9 +26,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-
 public class GreenPotion extends Item
 {
 	public GreenPotion(Properties properties)
@@ -45,9 +45,7 @@ public class GreenPotion extends Item
 		
 		if (player != null)
 		{
-			IMana mana = ManaProvider.get(player);
-			// Restore to maximum
-			mana.restoreMana(mana.getMaxMana());
+			ManaHelper.restoreManaToFull(player);
 			player.awardStat(Stats.ITEM_USED.get(this));
 			
 			if (!player.abilities.instabuild)
@@ -89,7 +87,7 @@ public class GreenPotion extends Item
 	{
 		ItemStack stack = player.getItemInHand(hand);
 		
-		if (ManaProvider.get(player).getMana() == ManaProvider.get(player).getMaxMana())
+		if (ManaHelper.isFullMana(player))
 		{
 			return ActionResult.fail(stack);
 		}

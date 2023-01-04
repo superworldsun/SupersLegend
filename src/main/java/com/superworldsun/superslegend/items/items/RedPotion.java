@@ -3,8 +3,9 @@ package com.superworldsun.superslegend.items.items;
 import java.util.List;
 import java.util.Objects;
 
-import com.superworldsun.superslegend.mana.IMana;
-import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.capability.mana.ManaCapability;
+import com.superworldsun.superslegend.capability.mana.ManaCapabilityProvider;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;

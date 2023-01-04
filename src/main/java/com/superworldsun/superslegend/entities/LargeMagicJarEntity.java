@@ -1,8 +1,9 @@
 package com.superworldsun.superslegend.entities;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.mana.IMana;
-import com.superworldsun.superslegend.mana.ManaProvider;
+import com.superworldsun.superslegend.capability.mana.ManaCapability;
+import com.superworldsun.superslegend.capability.mana.ManaCapabilityProvider;
+import com.superworldsun.superslegend.capability.mana.ManaHelper;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 
 import net.minecraft.entity.Entity;
@@ -142,13 +143,9 @@ public class LargeMagicJarEntity extends Entity {
     @Override
     public void playerTouch(PlayerEntity player) {
         if (!this.level.isClientSide) {
-            IMana mana = ManaProvider.get(player);
-            if (this.throwTime == 0 && mana.getMana() != mana.getMaxMana())
-
+            if (this.throwTime == 0 && !ManaHelper.isFullMana(player))
             {
-                ManaProvider.sync((ServerPlayerEntity) player);
-                ManaProvider.get(player).restoreMana(20);
-                ManaProvider.sync((ServerPlayerEntity) player);
+            	ManaHelper.restoreMana(player, 20);
                 //this.playSound(SoundInit.HEART.get(), 1F, 1F);
                 //mana.restoreMana(value);
                 this.remove();

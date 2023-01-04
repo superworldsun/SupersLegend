@@ -3,6 +3,8 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.SupersLegendMain;
@@ -10,8 +12,8 @@ import com.superworldsun.superslegend.client.model.player.ZoraPlayerModel;
 import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
 import com.superworldsun.superslegend.items.custom.NonEnchantItem;
-import com.superworldsun.superslegend.mana.ManaProvider;
 import com.superworldsun.superslegend.registries.ItemInit;
+
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.util.ITooltipFlag;
@@ -35,7 +37,6 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -97,7 +98,6 @@ public class MaskZoramask extends NonEnchantItem implements IPlayerModelChanger,
 	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
 	{
 		PlayerEntity player = (PlayerEntity) livingEntity;
-		boolean hasMana = ManaProvider.get(player).getMana() >= manaCost || player.abilities.instabuild;
 
 		if(player.isUnderWater())
 		{
