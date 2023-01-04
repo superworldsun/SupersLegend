@@ -12,7 +12,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraft.util.Direction;
@@ -23,7 +22,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 
-public class FanTileEntity extends TileEntity implements ITickableTileEntity {
+public class FanTileEntity extends SyncableTileEntity implements ITickableTileEntity {
 	private static final double AIRFLOW_STRENGTH = 0.3D;
 	private static final int AIRFLOW_MAX_DISTANCE = 16;
 	public float bladesRotation;
@@ -38,15 +37,13 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity {
 
 	@Override
 	public void tick() {
-		if (!isPowered()) {
-			return;
+		if (isPowered()) {
+			getPushedEntities().stream().filter(this::canPush).forEach(this::pushEntity);
 		}
-
-		getPushedEntities().stream().filter(this::canPush).forEach(this::pushEntity);
 	}
 
 	private void pushEntity(Entity entity) {
-		entity.move(MoverType.PISTON, getAirflowDirection());
+		entity.move(MoverType.PISTON, getAirflowPushVector());
 	}
 
 	private boolean canPush(Entity entity) {
@@ -54,24 +51,31 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity {
 	}
 
 	private List<Entity> getPushedEntities() {
-		return level.getEntities(null, getAirflowArea());
+		return level.getEntities(null, getAirflowAreaOfEffect());
 	}
 
-	private AxisAlignedBB getAirflowArea() {
-		AxisAlignedBB airflowArea = new AxisAlignedBB(worldPosition, worldPosition.offset(1, 1, 1));
-		Direction fanDirection = getFanDirection();
+	private AxisAlignedBB getAirflowAreaOfEffect() {
+		int airflowDistance = getAirflowDistance();
+		AxisAlignedBB airflowArea = new AxisAlignedBB(worldPosition);
+		Vector3d airflowExpansionVector = getAirflowDirection().multiply(airflowDistance, airflowDistance, airflowDistance);
+		airflowArea = airflowArea.expandTowards(airflowExpansionVector);
+		return airflowArea;
+	}
+
+	private int getAirflowDistance() {
+		int airflowDistance = 0;
 
 		for (int i = 1; i < AIRFLOW_MAX_DISTANCE; i++) {
-			BlockPos checkingPos = worldPosition.relative(fanDirection, i);
+			boolean isAirflowBlocked = isAirflowBlockedAt(worldPosition.relative(getFanDirection(), i));
 
-			if (isAirflowBlockedAt(checkingPos)) {
-				break;
+			if (isAirflowBlocked) {
+				return airflowDistance;
 			}
 
-			airflowArea = airflowArea.expandTowards(fanDirection.getStepX(), fanDirection.getStepY(), fanDirection.getStepZ());
+			airflowDistance++;
 		}
 
-		return airflowArea;
+		return airflowDistance;
 	}
 
 	private boolean isAirflowBlockedAt(BlockPos blockPos) {
@@ -83,8 +87,12 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity {
 		return level.getBlockState(worldPosition).getValue(DirectionalBlock.FACING);
 	}
 
+	private Vector3d getAirflowPushVector() {
+		return getAirflowDirection().multiply(AIRFLOW_STRENGTH, AIRFLOW_STRENGTH, AIRFLOW_STRENGTH);
+	}
+
 	private Vector3d getAirflowDirection() {
-		return new Vector3d(getFanDirection().step()).multiply(AIRFLOW_STRENGTH, AIRFLOW_STRENGTH, AIRFLOW_STRENGTH);
+		return new Vector3d(getFanDirection().step());
 	}
 
 	public boolean isPowered() {

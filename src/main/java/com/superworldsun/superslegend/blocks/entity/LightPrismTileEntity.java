@@ -28,6 +28,11 @@ public class LightPrismTileEntity extends SyncableTileEntity implements ITickabl
 
 	@Override
 	public void tick() {
+		rotate();
+		lightEmitter.tick();
+	}
+
+	private void rotate() {
 		if (rotation < targetRotation) {
 			rotation += ROTATION_SPEED;
 
@@ -35,16 +40,16 @@ public class LightPrismTileEntity extends SyncableTileEntity implements ITickabl
 				rotation = targetRotation;
 			}
 
+			if (rotation > Math.PI * 2) {
+				rotation -= Math.PI * 2;
+			}
+
+			if (targetRotation > Math.PI * 2) {
+				targetRotation -= Math.PI * 2;
+			}
+
 			setChanged();
 		}
-
-		if (rotation > Math.PI * 2) {
-			rotation -= Math.PI * 2;
-			targetRotation -= Math.PI * 2;
-			setChanged();
-		}
-
-		lightEmitter.tick();
 	}
 
 	@Override
@@ -55,7 +60,7 @@ public class LightPrismTileEntity extends SyncableTileEntity implements ITickabl
 	@Override
 	public void receiveLight() {
 		isLit = true;
-		level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(LightPrismBlock.LIT, true));
+		level.setBlockAndUpdate(worldPosition, getBlockState().setValue(LightPrismBlock.LIT, true));
 	}
 
 	@Override
@@ -68,10 +73,10 @@ public class LightPrismTileEntity extends SyncableTileEntity implements ITickabl
 			previouslyLitObject.stopReceivingLight();
 		}
 
-		boolean canSetBlockLitValue = level.getBlockState(worldPosition).getOptionalValue(LightPrismBlock.LIT).isPresent();
+		boolean canSetBlockLitValue = getBlockState().getOptionalValue(LightPrismBlock.LIT).isPresent();
 
 		if (canSetBlockLitValue) {
-			level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(LightPrismBlock.LIT, false));
+			level.setBlockAndUpdate(worldPosition, getBlockState().setValue(LightPrismBlock.LIT, false));
 		}
 	}
 

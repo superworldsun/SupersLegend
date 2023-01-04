@@ -13,53 +13,38 @@ import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
 
-public class LightEmitterTileEntity extends TileEntity implements ITickableTileEntity
-{
+public class LightEmitterTileEntity extends TileEntity implements ITickableTileEntity {
 	public final AbstractLightEmitter lightEmitter = new BlockLightEmitter(this::getLevel, this::getLightDirection, this::getBlockPos);
-	
-	public LightEmitterTileEntity(Direction direction)
-	{
+
+	public LightEmitterTileEntity(Direction direction) {
 		super(TileEntityInit.LIGHT_EMITTER.get());
 	}
-	
-	private LightEmitterTileEntity()
-	{
+
+	private LightEmitterTileEntity() {
 		super(TileEntityInit.LIGHT_EMITTER.get());
 	}
-	
+
 	@Override
-	public void tick()
-	{
+	public void tick() {
 		lightEmitter.tick();
 	}
-	
+
 	@Override
-	public AxisAlignedBB getRenderBoundingBox()
-	{
+	public AxisAlignedBB getRenderBoundingBox() {
 		return INFINITE_EXTENT_AABB;
 	}
-	
-	private Vector3d getLightDirection()
-	{
-		if (getBlockState().getValue(LightEmitterBlock.LIT))
-		{
-			return new Vector3d(step(getBlockState().getValue(LightEmitterBlock.FACING)));
-		}
-		else
-		{
-			return Vector3d.ZERO;
-		}
+
+	private Vector3d getLightDirection() {
+		return getBlockState().getOptionalValue(LightEmitterBlock.LIT).map(this::getLightDirection).orElse(Vector3d.ZERO);
 	}
-	
-	public Vector3f step(Direction direction)
-	{
-		return new Vector3f(direction.getStepX(), direction.getStepY(), direction.getStepZ());
+
+	private Vector3d getLightDirection(boolean isLit) {
+		Direction blockFacing = getBlockState().getValue(LightEmitterBlock.FACING);
+		return isLit ? new Vector3d(blockFacing.step()) : Vector3d.ZERO;
 	}
-	
-	public static TileEntityType<LightEmitterTileEntity> createType()
-	{
+
+	public static TileEntityType<LightEmitterTileEntity> createType() {
 		return Builder.of(LightEmitterTileEntity::new, BlockInit.LIGHT_EMITTER.get()).build(null);
 	}
 }

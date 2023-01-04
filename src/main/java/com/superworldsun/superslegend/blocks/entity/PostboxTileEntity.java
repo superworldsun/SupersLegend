@@ -12,9 +12,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.tileentity.TileEntityType.Builder;
 import net.minecraft.util.math.BlockPos;
@@ -22,7 +19,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class PostboxTileEntity extends TileEntity implements INamedContainerProvider {
+public class PostboxTileEntity extends SyncableTileEntity implements INamedContainerProvider {
 	public final PostboxInventory inventory = new PostboxInventory(this);
 
 	public PostboxTileEntity() {
@@ -39,21 +36,6 @@ public class PostboxTileEntity extends TileEntity implements INamedContainerProv
 	public void load(BlockState state, CompoundNBT compound) {
 		inventory.load(compound.getCompound("inventory"));
 		super.load(state, compound);
-	}
-
-	@Override
-	public SUpdateTileEntityPacket getUpdatePacket() {
-		return new SUpdateTileEntityPacket(worldPosition, 0, getUpdateTag());
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
-		load(level.getBlockState(packet.getPos()), packet.getTag());
-	}
-
-	@Override
-	public CompoundNBT getUpdateTag() {
-		return save(new CompoundNBT());
 	}
 
 	public void openGui(BlockPos blockPos, PlayerEntity player) {
