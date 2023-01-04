@@ -20,8 +20,6 @@ public class ScreenContainerInit {
 		ScreenManager.register(ContainerInit.RING_BOX_BIG.get(), BigRingBoxScreen::new);
 		ScreenManager.register(ContainerInit.RING_BOX_BIGGEST.get(), BiggestRingBoxScreen::new);
 		ScreenManager.register(ContainerInit.LETTER.get(), LetterScreen::new);
-		// ScreenManager.register(ContainerInit.MEDIUM_BOMB_BAG.get(), MediumQuiverScreen::new);
-		// ScreenManager.register(ContainerInit.BIG_BOMB_BAG.get(), BigQuiverScreen::new);
 		ScreenManager.register(ContainerInit.POSTBOX.get(), PostboxScreen::new);
 		ScreenManager.register(ContainerInit.SELECT_CONTAINER.get(), SelectScreen::new);
 		ScreenManager.register(ContainerInit.COOKING_POT.get(), CookingPotScreen::new);
