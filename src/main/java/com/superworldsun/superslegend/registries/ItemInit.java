@@ -45,6 +45,18 @@ public class ItemInit
 			() -> new SilverRupee(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<GoldRupee> GOLD_RUPEE = ITEMS.register("gold_rupee",
 			() -> new GoldRupee(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+	public static final RegistryObject<Item> MEDALLION_LIGHT = ITEMS.register("medallion_light",
+			() -> new Item(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+	public static final RegistryObject<Item> MEDALLION_FOREST = ITEMS.register("medallion_forest",
+			() -> new Item(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+	public static final RegistryObject<Item> MEDALLION_FIRE = ITEMS.register("medallion_fire",
+			() -> new Item(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+	public static final RegistryObject<Item> MEDALLION_WATER = ITEMS.register("medallion_water",
+			() -> new Item(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+	public static final RegistryObject<Item> MEDALLION_SPIRIT = ITEMS.register("medallion_spirit",
+			() -> new Item(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+	public static final RegistryObject<Item> MEDALLION_SHADOW = ITEMS.register("medallion_shadow",
+			() -> new Item(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
 
 	/*public static final RegistryObject<Item> SMALL_KEY = ITEMS.register("small_key",
 			SimpleResourceItem::new);
@@ -309,11 +321,11 @@ public class ItemInit
 	public static final RegistryObject<Item> MEGATON_HAMMER = ITEMS.register("megaton_hammer", MegatonHammer::new);
 	public static final RegistryObject<SkullHammer> SKULL_HAMMER = ITEMS.register("skull_hammer", SkullHammer::new);
 
-	/*public static final RegistryObject<Item> BOMBOS_MEDALLION = ITEMS.register("bombos_medallion",
+	/*public static final RegistryObject<Item> BOMBOS_MEDALLION = ITEMS.register("bombos_MEDALLION",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> ETHER_MEDALLION = ITEMS.register("ether_medallion",
+	public static final RegistryObject<Item> ETHER_MEDALLION = ITEMS.register("ether_MEDALLION",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
-	public static final RegistryObject<Item> QUAKE_MEDALLION = ITEMS.register("quake_medallion",
+	public static final RegistryObject<Item> QUAKE_MEDALLION = ITEMS.register("quake_MEDALLION",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
 	public static final RegistryObject<Item> FIRE_ROD = ITEMS.register("fire_rod", FireRod::new);
 	public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod", IceRod::new);
