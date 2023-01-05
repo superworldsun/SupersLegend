@@ -47,21 +47,26 @@ public class PostboxTileEntity extends SyncableTileEntity implements INamedConta
 				NetworkHooks.openGui(player, this, packetBuffer -> packetBuffer.writeBlockPos(getBlockPos()));
 			} else {
 				ItemStack itemInHand = player.getItemInHand(hand);
-				addItemIntoInventoryIfPossible(itemInHand, 1);
+
+				if (!addItemIntoInventory(itemInHand, 1)) {
+					level.playSound(null, player, SoundEvents.IRON_DOOR_CLOSE, SoundCategory.BLOCKS, 1F, 1F);
+				}
 			}
 		}
 	}
 
-	private void addItemIntoInventoryIfPossible(ItemStack itemInHand, int amount) {
+	private boolean addItemIntoInventory(ItemStack itemInHand, int amount) {
 		if (itemInHand.getCount() < amount) {
-			return;
+			return false;
 		}
 
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			if (addItemInSlot(itemInHand, i, amount)) {
-				return;
+				return true;
 			}
 		}
+
+		return false;
 	}
 
 	protected boolean addItemInSlot(ItemStack itemStack, int slotIndex, int amount) {
