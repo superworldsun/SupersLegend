@@ -18,7 +18,7 @@ public class BiggestRingBoxItem extends BagItem
 	}
 
 	@Override
-	public Container getContainer(int windowId, PlayerInventory playerInventory, PlayerEntity player, Hand hand)
+	public Container createContainer(int windowId, PlayerInventory playerInventory, PlayerEntity player, Hand hand)
 	{
 		return new BiggestRingBoxContainer(windowId, player.inventory, hand);
 	}

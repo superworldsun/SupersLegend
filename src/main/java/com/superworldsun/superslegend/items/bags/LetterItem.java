@@ -17,7 +17,7 @@ public class LetterItem extends BagItem
 	}
 	
 	@Override
-	public Container getContainer(int windowId, PlayerInventory playerInventory, PlayerEntity player, Hand hand)
+	public Container createContainer(int windowId, PlayerInventory playerInventory, PlayerEntity player, Hand hand)
 	{
 		return new LetterContainer(windowId, player.inventory, hand);
 	}

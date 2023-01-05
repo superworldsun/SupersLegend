@@ -47,38 +47,57 @@ public class PostboxTileEntity extends SyncableTileEntity implements INamedConta
 				NetworkHooks.openGui(player, this, packetBuffer -> packetBuffer.writeBlockPos(getBlockPos()));
 			} else {
 				ItemStack itemInHand = player.getItemInHand(hand);
-				addItemIntoInventoryIfPossible(itemInHand);
+
+				if (!addItemIntoInventory(itemInHand, 1)) {
+					level.playSound(null, player, SoundEvents.IRON_DOOR_CLOSE, SoundCategory.BLOCKS, 1F, 1F);
+				}
 			}
 		}
 	}
 
-	private void addItemIntoInventoryIfPossible(ItemStack itemInHand) {
-		if (itemInHand.isEmpty()) {
-			return;
+	private boolean addItemIntoInventory(ItemStack itemInHand, int amount) {
+		if (itemInHand.getCount() < amount) {
+			return false;
 		}
 
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
-			ItemStack itemInSlot = inventory.getItem(i);
-
-			if (itemInSlot.isEmpty()) {
-				ItemStack itemCopy = itemInHand.copy();
-				itemCopy.setCount(1);
-				inventory.setItem(i, itemCopy);
-				itemInHand.shrink(1);
-				level.playSound(null, getBlockPos(), SoundEvents.ITEM_PICKUP, SoundCategory.BLOCKS, 1F, 1F);
-				return;
-			}
-
-			boolean isSameItemInSlot = ItemStack.matches(itemInSlot, itemInHand);
-			boolean isStackInSlotFull = itemInSlot.getCount() == itemInSlot.getMaxStackSize();
-
-			if (isSameItemInSlot && !isStackInSlotFull) {
-				itemInSlot.grow(1);
-				itemInHand.shrink(1);
-				level.playSound(null, getBlockPos(), SoundEvents.ITEM_PICKUP, SoundCategory.BLOCKS, 1F, 1F);
-				return;
+			if (addItemInSlot(itemInHand, i, amount)) {
+				return true;
 			}
 		}
+
+		return false;
+	}
+
+	protected boolean addItemInSlot(ItemStack itemStack, int slotIndex, int amount) {
+		ItemStack itemInSlot = inventory.getItem(slotIndex);
+		boolean isSlotFull = itemInSlot.getCount() == itemInSlot.getMaxStackSize();
+
+		if (isSlotFull) {
+			return false;
+		}
+
+		boolean isSameItemInSlot = ItemStack.isSame(itemInSlot, itemStack) && ItemStack.tagMatches(itemInSlot, itemStack);
+
+		if (itemInSlot.isEmpty() || isSameItemInSlot) {
+			setItemCopyInSlot(itemStack, slotIndex, amount, isSameItemInSlot);
+			itemStack.shrink(amount);
+			level.playSound(null, getBlockPos(), SoundEvents.ITEM_PICKUP, SoundCategory.BLOCKS, 1F, 1F);
+			return true;
+		}
+
+		return false;
+	}
+
+	protected void setItemCopyInSlot(ItemStack itemStack, int slotIndex, int amount, boolean adding) {
+		ItemStack itemCopy = itemStack.copy();
+		itemCopy.setCount(amount);
+
+		if (adding) {
+			itemCopy.grow(inventory.getItem(slotIndex).getCount());
+		}
+
+		inventory.setItem(slotIndex, itemCopy);
 	}
 
 	private boolean canBeOpenedByPlayer(ServerPlayerEntity player) {
