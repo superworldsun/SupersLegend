@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.effect;
 
-import com.google.common.collect.ImmutableSet;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.capability.mana.ManaHelper;
 import com.superworldsun.superslegend.items.items.MagicCape;
@@ -11,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -30,30 +30,20 @@ public class CloakedEffect extends Effect {
 
 	@Override
 	public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
-		if (livingEntity instanceof PlayerEntity) {
-			PlayerEntity player = (PlayerEntity) livingEntity;
-			boolean hasMana = ManaHelper.hasMana(player, MagicCape.MANA_COST);
-			boolean hasCape = player.inventory.hasAnyOf(ImmutableSet.of(ItemInit.MAGIC_CAPE.get()));
-
-			if (!hasCape) {
-				player.removeEffect(this);
-				return;
-			}
-
-			if (hasMana) {
-				if (!player.abilities.instabuild) {
-					ManaHelper.spendMana(player, MagicCape.MANA_COST);
-				}
-			} else {
-				player.removeEffect(this);
-			}
+		if (!(livingEntity instanceof PlayerEntity)) {
+			return;
 		}
-	}
 
-	// you can regulate how often it spends mana here
-	@Override
-	public boolean isDurationEffectTick(int tick, int amplifier) {
-		return true;
+		PlayerEntity player = (PlayerEntity) livingEntity;
+		boolean hasMana = ManaHelper.hasMana(player, MagicCape.MANA_COST);
+		boolean hasCape = player.inventory.contains(new ItemStack(ItemInit.MAGIC_CAPE.get()));
+
+		if (!hasCape || !hasMana) {
+			player.removeEffect(this);
+			return;
+		}
+
+		ManaHelper.spendMana(player, MagicCape.MANA_COST);
 	}
 
 	@SubscribeEvent
@@ -65,8 +55,11 @@ public class CloakedEffect extends Effect {
 
 	@SubscribeEvent
 	public static void onLivingSetAttackTarget(LivingSetAttackTargetEvent event) {
-		if (event.getTarget() != null && event.getTarget().hasEffect(EffectInit.CLOAKED.get())) {
-			((MobEntity) event.getEntityLiving()).setTarget(null);
+		boolean isTargetCloked = event.getTarget() != null && event.getTarget().hasEffect(EffectInit.CLOAKED.get());
+
+		if (isTargetCloked) {
+			MobEntity mobEntity = (MobEntity) event.getEntityLiving();
+			mobEntity.setTarget(null);
 		}
 	}
 
@@ -74,11 +67,11 @@ public class CloakedEffect extends Effect {
 	@SubscribeEvent
 	public static void onPlayerRender(RenderPlayerEvent.Pre event) {
 		if (event.getPlayer().hasEffect(EffectInit.CLOAKED.get())) {
-			Minecraft client = Minecraft.getInstance();
+			Minecraft minecraft = Minecraft.getInstance();
+			boolean isClientPlayerUsingLens = minecraft.player.isUsingItem()
+					&& minecraft.player.getItemInHand(minecraft.player.getUsedItemHand()).getItem() == ItemInit.LENS_OF_TRUTH.get();
 
-			// if the client player is using lens of truth, he will see cloaked players anyway
-			if (!client.player.isUsingItem() || client.player.getItemInHand(client.player.getUsedItemHand()).getItem() != ItemInit.LENS_OF_TRUTH.get()) {
-				// completely disables render of the player (including armor, held items, etc)
+			if (isClientPlayerUsingLens) {
 				event.setCanceled(true);
 			}
 		}
@@ -88,8 +81,9 @@ public class CloakedEffect extends Effect {
 	@SubscribeEvent
 	public static void onHandRender(RenderHandEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
+		boolean isClientPlayerCloaked = minecraft.player.hasEffect(EffectInit.CLOAKED.get());
 
-		if (minecraft.player.hasEffect(EffectInit.CLOAKED.get())) {
+		if (isClientPlayerCloaked) {
 			event.setCanceled(true);
 		}
 	}
