@@ -42,38 +42,33 @@ import net.minecraftforge.common.ForgeHooks;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(PlayerEntity.class)
-public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, IJumpingEntity, ILightReceiver, ILightEmitterContainer
-{
+public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, IJumpingEntity, ILightReceiver, ILightEmitterContainer {
 	private float targetScale = 1.0F;
 	private float scale = 1.0F;
 	private float targetRenderScale = 1.0F;
 	private float renderScale = 1.0F;
 	private float prevRenderScale = 1.0F;
-	
+
 	private int hoverTime;
 	private int hoverHeight;
 	private boolean jumpedFromGround;
-	
+
 	private boolean isLit;
 	private EntityLightEmitter lightEmitter = new EntityLightEmitter(() -> level, this::getLightRayVector, this::getLightRayPosition, this);
-	
+
 	// This constructor is fake and never used
-	protected MixinPlayerEntity()
-	{
+	protected MixinPlayerEntity() {
 		super(null, null);
 	}
-	
+
 	@Overwrite
-	public EntitySize getDimensions(Pose pose)
-	{
+	public EntitySize getDimensions(Pose pose) {
 		return POSES.getOrDefault(pose, STANDING_DIMENSIONS).scale(getScale());
 	}
-	
+
 	@Overwrite
-	public float getStandingEyeHeight(Pose pose, EntitySize size)
-	{
-		switch (pose)
-		{
+	public float getStandingEyeHeight(Pose pose, EntitySize size) {
+		switch (pose) {
 			case SWIMMING:
 			case FALL_FLYING:
 			case SPIN_ATTACK:
@@ -84,335 +79,291 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 				return 1.62F * getScale();
 		}
 	}
-	
+
 	@Inject(method = "tick", at = @At("HEAD"))
-	private void injectTick(CallbackInfo ci)
-	{
+	private void injectTick(CallbackInfo ci) {
 		targetScale = 1.0F;
 		targetRenderScale = 1.0F;
-		
-		getArmorSlots().forEach(stack ->
-		{
-			if (stack.getItem() instanceof IEntityResizer)
-			{
+
+		getArmorSlots().forEach(stack -> {
+			if (stack.getItem() instanceof IEntityResizer) {
 				targetScale *= ((IEntityResizer) stack.getItem()).getScale((PlayerEntity) getEntity());
 				targetRenderScale *= ((IEntityResizer) stack.getItem()).getRenderScale((PlayerEntity) getEntity());
 			}
 		});
-		
-		CuriosApi.getCuriosHelper().getEquippedCurios((PlayerEntity) getEntity()).ifPresent(curios ->
-		{
-			for (int i = 0; i < curios.getSlots(); i++)
-			{
+
+		CuriosApi.getCuriosHelper().getEquippedCurios((PlayerEntity) getEntity()).ifPresent(curios -> {
+			for (int i = 0; i < curios.getSlots(); i++) {
 				ItemStack curioStack = curios.getStackInSlot(i);
-				
-				if (!curioStack.isEmpty() && curioStack.getItem() instanceof IEntityResizer)
-				{
+
+				if (!curioStack.isEmpty() && curioStack.getItem() instanceof IEntityResizer) {
 					targetScale *= ((IEntityResizer) curioStack.getItem()).getScale((PlayerEntity) getEntity());
 					targetRenderScale *= ((IEntityResizer) curioStack.getItem()).getRenderScale((PlayerEntity) getEntity());
 				}
 			}
 		});
-		
+
 		prevRenderScale = renderScale;
-		
-		if (targetRenderScale > renderScale)
-		{
+
+		if (targetRenderScale > renderScale) {
 			renderScale = Math.min(targetRenderScale, renderScale + 0.05F);
 		}
-		
-		if (targetRenderScale < renderScale)
-		{
+
+		if (targetRenderScale < renderScale) {
 			renderScale = Math.max(targetRenderScale, renderScale - 0.05F);
 		}
-		
-		if (targetScale > scale)
-		{
+
+		if (targetScale > scale) {
 			setScale(Math.min(targetScale, scale + 0.05F));
 		}
-		
-		if (targetScale < scale)
-		{
+
+		if (targetScale < scale) {
 			setScale(Math.max(targetScale, scale - 0.05F));
 		}
-		
+
 		// Increase movement if we are bigger, decrease if we are smaller
-		if (scale > 1)
-		{
+		if (scale > 1) {
 			float bonusSpeed = scale - 1;
 			move(MoverType.SELF, getDeltaMovement().multiply(bonusSpeed, 1D, bonusSpeed));
-		}
-		else if (scale < 1)
-		{
+		} else if (scale < 1) {
 			float bonusSpeed = (scale - 1) / 2;
 			setBoundingBox(getBoundingBox().move(getDeltaMovement().multiply(bonusSpeed, bonusSpeed, bonusSpeed)));
 		}
-		
+
 		lightEmitter.tick();
 	}
-	
+
 	@Inject(method = "getProjectile", at = @At(value = "HEAD"), cancellable = true)
-	private void injectGetProjectile(ItemStack weaponStack, CallbackInfoReturnable<ItemStack> callbackInfo)
-	{
-		if (!(weaponStack.getItem() instanceof ShootableItem))
-		{
+	private void injectGetProjectile(ItemStack weaponStack, CallbackInfoReturnable<ItemStack> callbackInfo) {
+		if (!(weaponStack.getItem() instanceof ShootableItem)) {
 			return;
 		}
-		
+
 		PlayerEntity player = (PlayerEntity) (Object) this;
 		ShootableItem shootableItem = (ShootableItem) weaponStack.getItem();
-		
-		CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curios ->
-		{
-			for (int i = 0; i < curios.getSlots(); i++)
-			{
+
+		CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(curios -> {
+			for (int i = 0; i < curios.getSlots(); i++) {
 				ItemStack curioStack = curios.getStackInSlot(i);
-				
-				if (!curioStack.isEmpty() && curioStack.getItem() instanceof AmmoContainerItem)
-				{
+
+				if (!curioStack.isEmpty() && curioStack.getItem() instanceof AmmoContainerItem) {
 					AmmoContainerItem quiverItem = (AmmoContainerItem) curioStack.getItem();
 					Pair<ItemStack, Integer> quiverContents = quiverItem.getContents(curioStack);
-					
-					if (quiverContents == null)
-					{
+
+					if (quiverContents == null) {
 						continue;
 					}
-					
+
 					int arrowsCount = quiverContents.getRight();
-					
-					if (arrowsCount == 0)
-					{
+
+					if (arrowsCount == 0) {
 						continue;
 					}
-					
+
 					ItemStack arrowsStack = quiverContents.getLeft();
-					
+
 					// if our weapon can shoot items inside of the quiver
-					if (shootableItem.getSupportedHeldProjectiles().test(arrowsStack))
-					{
-						if (player.level.isClientSide())
-						{
+					if (shootableItem.getSupportedHeldProjectiles().test(arrowsStack)) {
+						if (player.level.isClientSide()) {
 							callbackInfo.setReturnValue(ItemStack.EMPTY);
-						}
-						else
-						{
+						} else {
 							callbackInfo.setReturnValue(arrowsStack);
 						}
-						
+
 						return;
 					}
 				}
 			}
 		});
 	}
-	
+
 	@Override
-	public void doubleJump()
-	{
-		PlayerEntity player = (PlayerEntity) (Object) this;
-		double jumpStrength = 0.5;
-		
-		if (player.hasEffect(Effects.JUMP))
-		{
-			jumpStrength += 0.1 * (player.getEffect(Effects.JUMP).getAmplifier() + 1);
+	protected float getJumpPower() {
+		float jumpPower = super.getJumpPower();
+
+		if (getScale() > 1) {
+			jumpPower += 0.1 * getScale();
 		}
-		
+
+		if (getScale() < 1) {
+			jumpPower -= 0.15 * (1 - getScale());
+		}
+
+		return jumpPower;
+	}
+
+	@Override
+	public void doubleJump() {
+		PlayerEntity player = (PlayerEntity) (Object) this;
+		double jumpPower = getJumpPower();
+
+		if (player.hasEffect(Effects.JUMP)) {
+			jumpPower += 0.1 * (player.getEffect(Effects.JUMP).getAmplifier() + 1);
+		}
+
 		Vector3d movementVector = player.getDeltaMovement();
-		Vector3d jumpVector = new Vector3d(0, jumpStrength - movementVector.y, 0);
+		Vector3d jumpVector = new Vector3d(0, jumpPower - movementVector.y, 0);
 		player.setDeltaMovement(movementVector.add(jumpVector));
 		player.hasImpulse = true;
 		player.awardStat(Stats.JUMP);
 		ForgeHooks.onLivingJump(player);
-		
-		if (player.isSprinting())
-		{
+
+		if (player.isSprinting()) {
 			player.causeFoodExhaustion(0.2F);
-		}
-		else
-		{
+		} else {
 			player.causeFoodExhaustion(0.05F);
 		}
 	}
-	
+
 	@Override
-	public float getScale()
-	{
+	public float getScale() {
 		return scale;
 	}
-	
+
 	@Override
-	public void onAddedToWorld()
-	{
+	public void onAddedToWorld() {
 		super.onAddedToWorld();
 		refreshDimensions();
 	}
-	
+
 	@Override
-	public AxisAlignedBB getBoundingBoxForCulling()
-	{
+	public AxisAlignedBB getBoundingBoxForCulling() {
 		return getBoundingBoxForPose(getPose());
 	}
-	
+
 	@Override
-	protected void pushEntities()
-	{
-		if (!hasEffect(EffectInit.CLOAKED.get()))
-		{
+	protected void pushEntities() {
+		if (!hasEffect(EffectInit.CLOAKED.get())) {
 			super.pushEntities();
 		}
 	}
-	
+
 	@Override
-	public boolean isPushable()
-	{
+	public boolean isPushable() {
 		return !hasEffect(EffectInit.CLOAKED.get()) && super.isPushable();
 	}
-	
+
 	@Override
-	public float getScaleForRender(float partialTick)
-	{
+	public float getScaleForRender(float partialTick) {
 		return prevRenderScale + (renderScale - prevRenderScale) * partialTick;
 	}
-	
+
 	@Override
-	public int getHoverTime()
-	{
+	public int getHoverTime() {
 		return hoverTime;
 	}
-	
+
 	@Override
-	public void setHoverTime(int amount)
-	{
+	public void setHoverTime(int amount) {
 		hoverTime = amount;
 	}
-	
+
 	@Override
-	public int increaseHoverTime()
-	{
+	public int increaseHoverTime() {
 		return hoverTime++;
 	}
-	
+
 	@Override
-	public void setHoverHeight(int height)
-	{
+	public void setHoverHeight(int height) {
 		hoverHeight = height;
 	}
-	
+
 	@Override
-	public int getHoverHeight()
-	{
+	public int getHoverHeight() {
 		return hoverHeight;
 	}
-	
+
 	@Override
-	public boolean jumpedFromBlock()
-	{
+	public boolean jumpedFromBlock() {
 		return jumpedFromGround;
 	}
-	
+
 	@Override
-	public void setJumpedFromBlock(boolean state)
-	{
+	public void setJumpedFromBlock(boolean state) {
 		jumpedFromGround = state;
 	}
-	
+
 	@Override
-	public boolean isSwimming()
-	{
+	public boolean isSwimming() {
 		return canSwim() && !abilities.flying && !this.isSpectator() && super.isSwimming();
 	}
-	
+
 	@Override
-	public boolean isJumping()
-	{
+	public boolean isJumping() {
 		return jumping;
 	}
-	
+
 	@Override
-	public void receiveLight()
-	{
+	public void receiveLight() {
 		isLit = true;
 	}
-	
+
 	@Override
-	public void stopReceivingLight()
-	{
+	public void stopReceivingLight() {
 		isLit = false;
-		
-		if (lightEmitter.litObject instanceof ILightReceiver && ((ILightReceiver) lightEmitter.litObject).isLit())
-		{
+
+		if (lightEmitter.litObject instanceof ILightReceiver && ((ILightReceiver) lightEmitter.litObject).isLit()) {
 			((ILightReceiver) lightEmitter.litObject).stopReceivingLight();
 		}
 	}
-	
+
 	@Override
-	public boolean isLit()
-	{
+	public boolean isLit() {
 		return isLit;
 	}
-	
+
 	@Override
-	public AbstractLightEmitter getLightEmitter()
-	{
+	public AbstractLightEmitter getLightEmitter() {
 		return lightEmitter;
 	}
-	
-	private Vector3d getLightRayVector()
-	{
-		if (isLit && isBlocking() && getItemInHand(getUsedItemHand()).getItem() instanceof MirrorShield)
-		{
+
+	private Vector3d getLightRayVector() {
+		if (isLit && isBlocking() && getItemInHand(getUsedItemHand()).getItem() instanceof MirrorShield) {
 			return getLookAngle();
 		}
-		
+
 		return Vector3d.ZERO;
 	}
-	
-	private Vector3d getLightRayPosition()
-	{
+
+	private Vector3d getLightRayPosition() {
 		return position().add(0, getEyeHeight() * 0.8, 0);
 	}
-	
-	private void setScale(float scale)
-	{
+
+	private void setScale(float scale) {
 		this.scale = scale;
 		maxUpStep = 0.6F * scale;
 		updateEyeHeight();
 		refreshDimensions();
 	}
 
-	private boolean canSwim()
-	{
-		if (getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.IRON_BOOTS.get())
-			return false;
+	private boolean canSwim() {
+		boolean hasIronBoots = getItemBySlot(EquipmentSlotType.FEET).getItem() == ItemInit.IRON_BOOTS.get();
+		boolean hasGoronMask = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GORONMASK.get(), (PlayerEntity) (Object) this).isPresent();
 
-		if (CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GORONMASK.get(), (PlayerEntity) (Object) this).isPresent())
+		if (hasIronBoots || hasGoronMask)
 			return false;
 
 		return true;
 	}
-	
-	private void updateEyeHeight()
-	{
+
+	private void updateEyeHeight() {
 		eyeHeight = getDimensions(getPose()).height * 0.85F;
 	}
-	
-	/* Everything below is taken from original class */
-	
+
 	@Shadow
 	@Final
 	private static Map<Pose, EntitySize> POSES;
-	
+
 	@Shadow
 	@Final
 	private static EntitySize STANDING_DIMENSIONS;
-	
+
 	@Shadow
 	@Final
 	public PlayerAbilities abilities;
-	
+
 	@Shadow
-	public ItemStack getItemBySlot(EquipmentSlotType slot)
-	{
+	public ItemStack getItemBySlot(EquipmentSlotType slot) {
 		return null;
 	}
 }
