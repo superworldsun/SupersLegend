@@ -1,10 +1,7 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -83,7 +80,7 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 
 		PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 
-		if (!canPlayerUseMask(player)) {
+		if (!playerCanUseMask(player)) {
 			return;
 		}
 
@@ -98,18 +95,18 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 			return;
 		}
 
-		if (!canPlayerUseMask(event.player)) {
-			removeMaskAttributeModifiers(event.player);
-			return;
-		}
+		PlayerEntity player = event.player;
 
-		Optional<ImmutableTriple<String, Integer, ItemStack>> maskCurio = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIANTSMASK.get(), event.player);
-
-		if (maskCurio.isPresent()) {
-			applyMaskAttributeModifiers(event.player);
+		if (playerHasMask(player) && playerCanUseMask(player)) {
+			applyMaskAttributeModifiers(player);
 		} else {
-			removeMaskAttributeModifiers(event.player);
+			removeMaskAttributeModifiers(player);
 		}
+	}
+
+	// TODO: This code is used in multiple places. Should be moved in separate helper class
+	protected static boolean playerHasMask(PlayerEntity player) {
+		return CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIANTSMASK.get(), player).isPresent();
 	}
 
 	private static void applyMaskAttributeModifiers(PlayerEntity player) {
@@ -155,10 +152,10 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 
 	@Override
 	public float getScale(PlayerEntity player) {
-		return canPlayerUseMask(player) ? PLAYER_SCALE_MULTIPLIER : 1.0F;
+		return playerCanUseMask(player) ? PLAYER_SCALE_MULTIPLIER : 1.0F;
 	}
 
-	private static boolean canPlayerUseMask(PlayerEntity player) {
+	private static boolean playerCanUseMask(PlayerEntity player) {
 		return ManaHelper.hasMana(player, MANA_COST);
 	}
 

@@ -12,7 +12,8 @@
   ],
   "client": [
     "client.MixinPlayerRenderer",
-    "client.MixinHeldItemLayer"
+    "client.MixinHeldItemLayer",
+    "client.MixinInventoryScreen"
   ],
   "minVersion": "0.8"
 }
