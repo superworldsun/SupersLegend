@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.client.hud;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.capability.mana.ManaHelper;
@@ -26,44 +27,50 @@ public class ManaHud {
 	public static void onRenderGameOverlay(RenderGameOverlayEvent.Post event) {
 		if (event.getType() == ElementType.FOOD) {
 			Minecraft minecraft = Minecraft.getInstance();
-			PlayerEntity player = minecraft.player;
 
-			if (player == null) {
+			if (minecraft.player == null) {
 				return;
 			}
 
-			IngameGui gui = minecraft.gui;
 			RenderSystem.enableBlend();
+			ForgeIngameGui.right_height += 10;
 			int manaIconsX = event.getWindow().getGuiScaledWidth() / 2 + 91;
 			int manaIconsY = event.getWindow().getGuiScaledHeight() - ForgeIngameGui.right_height;
-			ForgeIngameGui.right_height += 10;
-			int currentMana = 0;
-
-			if (player.isAlive()) {
-				currentMana = (int) ManaHelper.getMana(player);
-				last_tick_mana = currentMana;
-			} else {
-				currentMana = last_tick_mana;
-			}
-
+			int mana = getManaForRender(minecraft.player);
 			minecraft.getTextureManager().bind(MANA_TEXTURE);
 
 			for (int i = 0; i < 10; ++i) {
-				int iconNumber = i * 2 + 1;
+				int iconIndex = i * 2 + 1;
 				int iconX = manaIconsX - i * 8 - 9;
 				int iconY = manaIconsY;
-
-				gui.blit(event.getMatrixStack(), iconX, iconY, 0, 0, 9, 9);
-
-				if (iconNumber <= currentMana) {
-					int crystalIcon = iconNumber == currentMana ? 18 : 9;
-					gui.blit(event.getMatrixStack(), iconX, iconY, crystalIcon, 0, 9, 9);
-				}
+				renderManaIcon(event.getMatrixStack(), minecraft.gui, mana, iconIndex, iconX, iconY);
 			}
 
 			// We need to switch texture back to vanilla one
 			minecraft.getTextureManager().bind(AbstractGui.GUI_ICONS_LOCATION);
 			RenderSystem.disableBlend();
 		}
+	}
+
+	private static void renderManaIcon(MatrixStack matrixStack, IngameGui gui, int mana, int iconIndex, int iconX, int iconY) {
+		gui.blit(matrixStack, iconX, iconY, 0, 0, 9, 9);
+
+		if (iconIndex <= mana) {
+			int crystalIcon = iconIndex == mana ? 18 : 9;
+			gui.blit(matrixStack, iconX, iconY, crystalIcon, 0, 9, 9);
+		}
+	}
+
+	private static int getManaForRender(PlayerEntity player) {
+		int currentMana = 0;
+
+		if (player.isAlive()) {
+			currentMana = (int) ManaHelper.getMana(player);
+			last_tick_mana = currentMana;
+		} else {
+			currentMana = last_tick_mana;
+		}
+
+		return currentMana;
 	}
 }
