@@ -11,8 +11,8 @@
     "MixinFlowingFluid"
   ],
   "client": [
-    "MixinPlayerRenderer",
-    "MixinHeldItemLayer"
+    "client.MixinPlayerRenderer",
+    "client.MixinHeldItemLayer"
   ],
   "minVersion": "0.8"
 }
