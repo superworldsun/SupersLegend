@@ -8,15 +8,10 @@ import net.minecraft.util.Hand;
 
 public class RingBoxContainer extends BagContainer {
 	public RingBoxContainer(int windowId, PlayerInventory playerInventory, Hand activeHand) {
-		super(ContainerInit.RING_BOX.get(), windowId, playerInventory, activeHand);
+		super(ContainerInit.RING_BOX.get(), windowId, playerInventory, activeHand, 1, 9);
 	}
 
 	public RingBoxContainer(int windowId, PlayerInventory playerInventory, PacketBuffer additionalData) {
 		this(windowId, playerInventory, additionalData.readEnum(Hand.class));
-	}
-
-	@Override
-	protected int getBagSlotRows() {
-		return 1;
 	}
 }

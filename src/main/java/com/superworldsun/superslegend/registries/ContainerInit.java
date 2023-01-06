@@ -18,8 +18,6 @@ public class ContainerInit
 	
 	public static final RegistryObject<ContainerType<BagContainer>> BAG = CONTAINERS.register("bag", () -> IForgeContainerType.create(BagContainer::new));
 	public static final RegistryObject<ContainerType<LetterContainer>> LETTER = CONTAINERS.register("letter", () -> IForgeContainerType.create(LetterContainer::new));
-	//public static final RegistryObject<ContainerType<MediumQuiverContainer>> BIG_BOMB_BAG = CONTAINERS.register("medium_bomb_bag", () -> IForgeContainerType.create(MediumQuiverContainer::new));
-	//public static final RegistryObject<ContainerType<BigQuiverContainer>> BIGGEST_BOMB_BAG = CONTAINERS.register("big_bomb_bag", () -> IForgeContainerType.create(BigQuiverContainer::new));
 	public static final RegistryObject<ContainerType<PostboxContainer>> POSTBOX = CONTAINERS.register("postbox", () -> IForgeContainerType.create(PostboxContainer::new));
 	public static final RegistryObject<ContainerType<SelectContainer>> SELECT_CONTAINER = CONTAINERS.register("select_container", () -> IForgeContainerType.create(SelectContainer::new));
 	public static final RegistryObject<ContainerType<RingBoxContainer>> RING_BOX = CONTAINERS.register("ring_box", () -> IForgeContainerType.create(RingBoxContainer::new));
