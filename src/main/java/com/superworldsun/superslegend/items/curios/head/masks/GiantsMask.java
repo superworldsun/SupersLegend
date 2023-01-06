@@ -24,6 +24,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTier;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -31,9 +32,12 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -80,13 +84,9 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 
 		PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 
-		if (!playerCanUseMask(player)) {
-			return;
-		}
-
-		CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIANTSMASK.get(), player).ifPresent(i -> {
+		if (playerHasMask(player) && playerCanUseMask(player)) {
 			event.setDistance(event.getDistance() - FALL_DISTANCE_REDUCTION);
-		});
+		}
 	}
 
 	@SubscribeEvent
@@ -101,6 +101,43 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 			applyMaskAttributeModifiers(player);
 		} else {
 			removeMaskAttributeModifiers(player);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerBreakSpeed(PlayerEvent.BreakSpeed event) {
+		PlayerEntity player = event.getPlayer();
+		boolean isPlayerEmptyHanded = player.getMainHandItem().isEmpty();
+
+		if (playerHasMask(player) && playerCanUseMask(player) && isPlayerEmptyHanded) {
+			event.setNewSpeed(5F);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerHarvestCheck(PlayerEvent.HarvestCheck event) {
+		PlayerEntity player = event.getPlayer();
+		boolean isPlayerEmptyHanded = player.getMainHandItem().isEmpty();
+
+		if (playerHasMask(player) && playerCanUseMask(player) && isPlayerEmptyHanded) {
+			int blockHarvestLevel = event.getTargetBlock().getHarvestLevel();
+			int ironTierLevel = ItemTier.IRON.getLevel();
+			event.setCanHarvest(blockHarvestLevel <= ironTierLevel);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerBreakBlock(BlockEvent.BreakEvent event) {
+		PlayerEntity player = event.getPlayer();
+
+		if (playerHasMask(player) && playerCanUseMask(player)) {
+			boolean dropResources = ForgeHooks.canHarvestBlock(event.getState(), player, event.getWorld(), event.getPos());
+			event.getWorld().destroyBlock(event.getPos().above(), dropResources);
+			event.getWorld().destroyBlock(event.getPos().below(), dropResources);
+			event.getWorld().destroyBlock(event.getPos().east(), dropResources);
+			event.getWorld().destroyBlock(event.getPos().north(), dropResources);
+			event.getWorld().destroyBlock(event.getPos().south(), dropResources);
+			event.getWorld().destroyBlock(event.getPos().west(), dropResources);
 		}
 	}
 
