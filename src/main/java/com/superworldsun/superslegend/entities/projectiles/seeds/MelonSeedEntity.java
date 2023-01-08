@@ -5,7 +5,6 @@ import com.superworldsun.superslegend.registries.EntityTypeInit;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
@@ -18,8 +17,8 @@ public class MelonSeedEntity extends SeedEntity {
 		super(type, world);
 	}
 
-	public MelonSeedEntity(World worldIn, LivingEntity shooter) {
-		super(EntityTypeInit.MELON_SEED.get(), shooter, worldIn);
+	public MelonSeedEntity(World worldIn) {
+		super(EntityTypeInit.MELON_SEED.get(), worldIn);
 	}
 
 	@Override

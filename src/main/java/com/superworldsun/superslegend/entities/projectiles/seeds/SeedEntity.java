@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.entities.projectiles.seeds;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -18,10 +19,6 @@ public abstract class SeedEntity extends AbstractArrowEntity {
 		super(type, world);
 	}
 
-	public SeedEntity(EntityType<? extends SeedEntity> entityType, LivingEntity shooter, World worldIn) {
-		super(entityType, shooter, worldIn);
-	}
-
 	@Override
 	public void onAddedToWorld() {
 		super.onAddedToWorld();
@@ -29,8 +26,8 @@ public abstract class SeedEntity extends AbstractArrowEntity {
 	}
 
 	@Override
-	public void shoot(double motionX, double motionY, double motionZ, float speed, float deviation) {
-		super.shoot(motionX, motionY, motionZ, speed * getFlightSpeed(), deviation);
+	public void shootFromRotation(Entity entity, float rotationX, float rotationY, float rotationZ, float speed, float deviation) {
+		super.shootFromRotation(entity, rotationX, rotationY, rotationZ, speed * getFlightSpeed(), deviation);
 	}
 
 	@Override
@@ -73,6 +70,14 @@ public abstract class SeedEntity extends AbstractArrowEntity {
 				target.setArrowCount(target.getArrowCount() - 1);
 			}
 		}
+	}
+
+	public void shoot(Vector3d direction, float speed, float spread) {
+		super.shoot(direction.x, direction.y, direction.z, speed, spread);
+	}
+
+	public void setPos(Vector3d pos) {
+		setPos(pos.x, pos.y, pos.z);
 	}
 
 	protected float getMass() {

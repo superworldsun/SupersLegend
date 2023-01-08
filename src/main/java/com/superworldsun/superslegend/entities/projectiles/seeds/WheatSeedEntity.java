@@ -5,7 +5,6 @@ import com.superworldsun.superslegend.registries.EntityTypeInit;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.SoundEvent;
@@ -22,8 +21,8 @@ public class WheatSeedEntity extends SeedEntity {
 		super(type, world);
 	}
 
-	public WheatSeedEntity(World worldIn, LivingEntity shooter) {
-		super(EntityTypeInit.WHEAT_SEED.get(), shooter, worldIn);
+	public WheatSeedEntity(World worldIn) {
+		super(EntityTypeInit.WHEAT_SEED.get(), worldIn);
 	}
 
 	@Override
