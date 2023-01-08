@@ -47,6 +47,10 @@ public class FollowSkeletonOwnerGoal<T extends MonsterEntity & TameableEntity> e
 	
 	public boolean canUse()
 	{
+		if(!tamable.hasOwner()) {
+			return false;
+		}
+		
 		LivingEntity livingentity = this.tamable.getOwner().get();
 		if (livingentity == null)
 		{

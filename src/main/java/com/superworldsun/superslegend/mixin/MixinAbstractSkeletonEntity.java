@@ -74,7 +74,7 @@ public abstract class MixinAbstractSkeletonEntity extends MonsterEntity implemen
 
 	@Override
 	public boolean canAttack(LivingEntity entity) {
-		return entity == getOwner().get() ? false : super.canAttack(entity);
+		return isOwner(entity) ? false : super.canAttack(entity);
 	}
 
 	@Override
@@ -103,8 +103,12 @@ public abstract class MixinAbstractSkeletonEntity extends MonsterEntity implemen
 		return entityData.get(OWNER_UUID);
 	}
 
+	private boolean isOwner(Entity entity) {
+		return getOwner().filter(e -> e == entity).isPresent();
+	}
+
 	protected boolean isEntityAlliedToOwner(Entity entity) {
-		LivingEntity owner = getOwner().get();
-		return entity == owner || entity.isAlliedTo(owner);
+		boolean isAlliedToOwner = getOwner().filter(e -> entity.isAlliedTo(e)).isPresent();
+		return isOwner(entity) || isAlliedToOwner;
 	}
 }
