@@ -45,6 +45,7 @@ public class PostboxTileEntity extends SyncableTileEntity implements INamedConta
 		} else {
 			if (canBeOpenedByPlayer(player)) {
 				NetworkHooks.openGui(player, this, packetBuffer -> packetBuffer.writeBlockPos(getBlockPos()));
+				level.playSound(null, player, SoundEvents.IRON_DOOR_OPEN, SoundCategory.BLOCKS, 1F, 1F);
 			} else {
 				ItemStack itemInHand = player.getItemInHand(hand);
 

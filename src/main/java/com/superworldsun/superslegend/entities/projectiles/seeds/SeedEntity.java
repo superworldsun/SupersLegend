@@ -79,7 +79,7 @@ public abstract class SeedEntity extends AbstractArrowEntity {
 		return 0.05F;
 	}
 
-	private float getFlightSpeed() {
+	protected float getFlightSpeed() {
 		return 1F;
 	}
 }

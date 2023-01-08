@@ -4,16 +4,19 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class DekuSeedEntity extends SeedEntity {
 	private static final float HITBOX_HEIGHT = 0.5F;
 	private static final float HITBOX_WIDTH = 0.5F;
-	private static final float WATER_INERTIA = 0.9F;
+	private static final float WATER_INERTIA = 0.0F;
 
 	public DekuSeedEntity(EntityType<? extends DekuSeedEntity> type, World world) {
 		super(type, world);
@@ -26,6 +29,26 @@ public class DekuSeedEntity extends SeedEntity {
 	@Override
 	protected float getWaterInertia() {
 		return WATER_INERTIA;
+	}
+
+	@Override
+	protected float getMass() {
+		return 0.00F;
+	}
+
+	@Override
+	protected float getFlightSpeed() {
+		return 2.8F;
+	}
+
+	@Override
+	public void tick()
+	{
+		super.tick();
+		if (tickCount > 80)
+		{
+			this.remove();
+		}
 	}
 
 	@Override
