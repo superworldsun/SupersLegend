@@ -76,6 +76,7 @@ public abstract class CustomFluid extends ForgeFlowingFluid {
 		public Flowing(ResourceLocation overlayTexture, Properties properties) {
 			super(overlayTexture, properties);
 			registerDefaultState(getStateDefinition().any().setValue(LEVEL, 7));
+			getStateDefinition().getPossibleStates().forEach(Fluid.FLUID_STATE_REGISTRY::add);
 		}
 
 		protected void createFluidStateDefinition(StateContainer.Builder<Fluid, FluidState> builder) {
