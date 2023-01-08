@@ -1,10 +1,7 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -27,6 +24,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTier;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -34,9 +32,12 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -83,13 +84,9 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 
 		PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 
-		if (!canPlayerUseMask(player)) {
-			return;
-		}
-
-		CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIANTSMASK.get(), player).ifPresent(i -> {
+		if (playerHasMask(player) && playerCanUseMask(player)) {
 			event.setDistance(event.getDistance() - FALL_DISTANCE_REDUCTION);
-		});
+		}
 	}
 
 	@SubscribeEvent
@@ -98,18 +95,55 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 			return;
 		}
 
-		if (!canPlayerUseMask(event.player)) {
-			removeMaskAttributeModifiers(event.player);
-			return;
-		}
+		PlayerEntity player = event.player;
 
-		Optional<ImmutableTriple<String, Integer, ItemStack>> maskCurio = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIANTSMASK.get(), event.player);
-
-		if (maskCurio.isPresent()) {
-			applyMaskAttributeModifiers(event.player);
+		if (playerHasMask(player) && playerCanUseMask(player)) {
+			applyMaskAttributeModifiers(player);
 		} else {
-			removeMaskAttributeModifiers(event.player);
+			removeMaskAttributeModifiers(player);
 		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerBreakSpeed(PlayerEvent.BreakSpeed event) {
+		PlayerEntity player = event.getPlayer();
+		boolean isPlayerEmptyHanded = player.getMainHandItem().isEmpty();
+
+		if (playerHasMask(player) && playerCanUseMask(player) && isPlayerEmptyHanded) {
+			event.setNewSpeed(5F);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerHarvestCheck(PlayerEvent.HarvestCheck event) {
+		PlayerEntity player = event.getPlayer();
+		boolean isPlayerEmptyHanded = player.getMainHandItem().isEmpty();
+
+		if (playerHasMask(player) && playerCanUseMask(player) && isPlayerEmptyHanded) {
+			int blockHarvestLevel = event.getTargetBlock().getHarvestLevel();
+			int ironTierLevel = ItemTier.IRON.getLevel();
+			event.setCanHarvest(blockHarvestLevel <= ironTierLevel);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerBreakBlock(BlockEvent.BreakEvent event) {
+		PlayerEntity player = event.getPlayer();
+
+		if (playerHasMask(player) && playerCanUseMask(player)) {
+			boolean dropResources = ForgeHooks.canHarvestBlock(event.getState(), player, event.getWorld(), event.getPos());
+			event.getWorld().destroyBlock(event.getPos().above(), dropResources);
+			event.getWorld().destroyBlock(event.getPos().below(), dropResources);
+			event.getWorld().destroyBlock(event.getPos().east(), dropResources);
+			event.getWorld().destroyBlock(event.getPos().north(), dropResources);
+			event.getWorld().destroyBlock(event.getPos().south(), dropResources);
+			event.getWorld().destroyBlock(event.getPos().west(), dropResources);
+		}
+	}
+
+	// TODO: This code is used in multiple places. Should be moved in separate helper class
+	protected static boolean playerHasMask(PlayerEntity player) {
+		return CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIANTSMASK.get(), player).isPresent();
 	}
 
 	private static void applyMaskAttributeModifiers(PlayerEntity player) {
@@ -155,10 +189,10 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 
 	@Override
 	public float getScale(PlayerEntity player) {
-		return canPlayerUseMask(player) ? PLAYER_SCALE_MULTIPLIER : 1.0F;
+		return playerCanUseMask(player) ? PLAYER_SCALE_MULTIPLIER : 1.0F;
 	}
 
-	private static boolean canPlayerUseMask(PlayerEntity player) {
+	private static boolean playerCanUseMask(PlayerEntity player) {
 		return ManaHelper.hasMana(player, MANA_COST);
 	}
 

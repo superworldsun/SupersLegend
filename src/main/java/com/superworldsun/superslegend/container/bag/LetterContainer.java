@@ -8,20 +8,10 @@ import net.minecraft.util.Hand;
 
 public class LetterContainer extends BagContainer {
 	public LetterContainer(int windowId, PlayerInventory playerInventory, Hand activeHand) {
-		super(ContainerInit.LETTER.get(), windowId, playerInventory, activeHand);
+		super(ContainerInit.LETTER.get(), windowId, playerInventory, activeHand, 1, 1);
 	}
 
 	public LetterContainer(int windowId, PlayerInventory playerInventory, PacketBuffer additionalData) {
 		this(windowId, playerInventory, additionalData.readEnum(Hand.class));
-	}
-
-	@Override
-	protected int getBagSlotRows() {
-		return 1;
-	}
-
-	@Override
-	protected int getBagSlotColumns() {
-		return 1;
 	}
 }

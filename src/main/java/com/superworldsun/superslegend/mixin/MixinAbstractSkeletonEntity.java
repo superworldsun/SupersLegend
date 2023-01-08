@@ -3,8 +3,6 @@ package com.superworldsun.superslegend.mixin;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.annotation.Nullable;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -13,7 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.superworldsun.superslegend.entities.ai.FollowSkeletonOwnerGoal;
 import com.superworldsun.superslegend.entities.ai.SkeletonOwnerHurtByTargetGoal;
 import com.superworldsun.superslegend.entities.ai.SkeletonOwnerHurtTargetGoal;
-import com.superworldsun.superslegend.interfaces.ITameableSkeleton;
+import com.superworldsun.superslegend.interfaces.TameableEntity;
+import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -23,89 +22,93 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.scoreboard.Team;
+import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(AbstractSkeletonEntity.class)
-public abstract class MixinAbstractSkeletonEntity extends MonsterEntity implements ITameableSkeleton
-{
+public abstract class MixinAbstractSkeletonEntity extends MonsterEntity implements TameableEntity {
 	private static final DataParameter<Optional<UUID>> OWNER_UUID = EntityDataManager.defineId(AbstractSkeletonEntity.class, DataSerializers.OPTIONAL_UUID);
-	
+
 	// This constructor is fake and never used
-	protected MixinAbstractSkeletonEntity()
-	{
+	protected MixinAbstractSkeletonEntity() {
 		super(null, null);
 	}
-	
+
 	@Inject(method = "registerGoals", at = @At("HEAD"))
-	private void injectRegisterGoals(CallbackInfo ci)
-	{
-		goalSelector.addGoal(4, new FollowSkeletonOwnerGoal<>(this, 1.0D, 10.0F, 2.0F));
+	private void injectRegisterGoals(CallbackInfo callbackInfo) {
+		goalSelector.addGoal(4, new FollowSkeletonOwnerGoal<>(this, 1D, 10F, 2F));
 		targetSelector.addGoal(2, new SkeletonOwnerHurtByTargetGoal<>(this));
 		targetSelector.addGoal(3, new SkeletonOwnerHurtTargetGoal<>(this));
 	}
-	
+
 	@Override
-	protected void defineSynchedData()
-	{
-		super.defineSynchedData();
+	public void setTarget(LivingEntity target) {
+		if (target != null) {
+			boolean targetHasCaptainsHat = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_CAPTAINSHAT.get(), target).isPresent();
+
+			if (targetHasCaptainsHat && !hasOwner()) {
+				setOwner(target);
+			}
+		}
+
+		super.setTarget(target);
+	}
+
+	@Override
+	public void tick() {
+		if (hasOwner()) {
+			boolean ownerHasCaptainsHat = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_CAPTAINSHAT.get(), getOwner().get()).isPresent();
+
+			if (!ownerHasCaptainsHat) {
+				setOwner(null);
+			}
+		}
+
+		super.tick();
+	}
+
+	@Override
+	protected void defineSynchedData() {
 		entityData.define(OWNER_UUID, Optional.empty());
+		super.defineSynchedData();
 	}
-	
+
 	@Override
-	public boolean canAttack(LivingEntity entity)
-	{
-		return entity == getOwner() ? false : super.canAttack(entity);
+	public boolean canAttack(LivingEntity entity) {
+		return isOwner(entity) ? false : super.canAttack(entity);
 	}
-	
+
 	@Override
-	public Team getTeam()
-	{
-		if (hasOwner())
-		{
-			return getOwner().getTeam();
-		}
-		
-		return super.getTeam();
+	public Team getTeam() {
+		return getOwner().map(Entity::getTeam).orElse(super.getTeam());
 	}
-	
+
 	@Override
-	public boolean isAlliedTo(Entity entity)
-	{
-		if (hasOwner())
-		{
-			LivingEntity owner = getOwner();
-			return entity == owner || entity.isAlliedTo(owner);
-		}
-		
-		return super.isAlliedTo(entity);
+	public boolean isAlliedTo(Entity entity) {
+		return getOwner().map(this::isEntityAlliedToOwner).orElse(super.isAlliedTo(entity));
 	}
-	
+
 	@Override
-	public LivingEntity getOwner()
-	{
-		UUID uuid = getOwnerUniqueId();
-		return uuid == null ? null : level.getPlayerByUUID(uuid);
+	public Optional<LivingEntity> getOwner() {
+		return getOwnerUniqueId().map(level::getPlayerByUUID);
 	}
-	
+
 	@Override
-	public void setOwner(LivingEntity owner)
-	{
-		setOwnerUUID(owner == null ? null : owner.getUUID());
+	public void setOwner(LivingEntity owner) {
+		Optional<UUID> ownerUniqueId = Optional.ofNullable(owner).map(Entity::getUUID);
+		entityData.set(OWNER_UUID, ownerUniqueId);
 	}
-	
+
 	@Override
-	public UUID getOwnerUniqueId()
-	{
-		return entityData.get(OWNER_UUID).orElse(null);
+	public Optional<UUID> getOwnerUniqueId() {
+		return entityData.get(OWNER_UUID);
 	}
-	
-	@Override
-	public boolean hasOwner()
-	{
-		return getOwner() != null;
+
+	private boolean isOwner(Entity entity) {
+		return getOwner().filter(e -> e == entity).isPresent();
 	}
-	
-	private void setOwnerUUID(@Nullable UUID id)
-	{
-		entityData.set(OWNER_UUID, Optional.ofNullable(id));
+
+	protected boolean isEntityAlliedToOwner(Entity entity) {
+		boolean isAlliedToOwner = getOwner().filter(e -> entity.isAlliedTo(e)).isPresent();
+		return isOwner(entity) || isAlliedToOwner;
 	}
 }

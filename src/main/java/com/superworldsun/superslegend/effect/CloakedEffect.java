@@ -71,7 +71,7 @@ public class CloakedEffect extends Effect {
 			boolean isClientPlayerUsingLens = minecraft.player.isUsingItem()
 					&& minecraft.player.getItemInHand(minecraft.player.getUsedItemHand()).getItem() == ItemInit.LENS_OF_TRUTH.get();
 
-			if (isClientPlayerUsingLens) {
+			if (!isClientPlayerUsingLens) {
 				event.setCanceled(true);
 			}
 		}

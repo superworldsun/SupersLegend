@@ -4,13 +4,9 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
-import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class DekuSeedEntity extends SeedEntity {
@@ -22,8 +18,8 @@ public class DekuSeedEntity extends SeedEntity {
 		super(type, world);
 	}
 
-	public DekuSeedEntity(World worldIn, LivingEntity shooter) {
-		super(EntityTypeInit.DEKU_SEED.get(), shooter, worldIn);
+	public DekuSeedEntity(World worldIn) {
+		super(EntityTypeInit.DEKU_SEED.get(), worldIn);
 	}
 
 	@Override
@@ -38,7 +34,7 @@ public class DekuSeedEntity extends SeedEntity {
 
 	@Override
 	protected float getFlightSpeed() {
-		return 2.8F;
+		return 15;
 	}
 
 	@Override

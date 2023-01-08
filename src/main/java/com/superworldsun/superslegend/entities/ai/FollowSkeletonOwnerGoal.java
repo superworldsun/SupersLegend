@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.entities.ai;
 
 import java.util.EnumSet;
 
-import com.superworldsun.superslegend.interfaces.ITameableSkeleton;
+import com.superworldsun.superslegend.interfaces.TameableEntity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
@@ -17,7 +17,7 @@ import net.minecraft.pathfinding.WalkNodeProcessor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 
-public class FollowSkeletonOwnerGoal<T extends MonsterEntity & ITameableSkeleton> extends Goal
+public class FollowSkeletonOwnerGoal<T extends MonsterEntity & TameableEntity> extends Goal
 {
 	private final T tamable;
 	private LivingEntity owner;
@@ -47,7 +47,11 @@ public class FollowSkeletonOwnerGoal<T extends MonsterEntity & ITameableSkeleton
 	
 	public boolean canUse()
 	{
-		LivingEntity livingentity = this.tamable.getOwner();
+		if(!tamable.hasOwner()) {
+			return false;
+		}
+		
+		LivingEntity livingentity = this.tamable.getOwner().get();
 		if (livingentity == null)
 		{
 			return false;

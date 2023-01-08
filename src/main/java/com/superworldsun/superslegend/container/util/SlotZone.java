@@ -9,7 +9,7 @@ public class SlotZone {
 		this.lastSlotIndex = firstSlotIndex + numberOfSlots;
 	}
 
-	public boolean contains(int slotIndex) {
+	public boolean containsSlot(int slotIndex) {
 		return slotIndex >= firstSlotIndex && slotIndex < lastSlotIndex;
 	}
 }
