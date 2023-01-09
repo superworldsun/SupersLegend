@@ -68,7 +68,7 @@ public class SlingShot extends BowItem {
 					if (!world.isClientSide) {
 						SeedEntity projectile = createAmmoEntity(world, ammoStack);
 						projectile.setOwner(player);
-						projectile.setPos(player.getEyePosition(1F).add(player.getLookAngle()));
+						projectile.setPos(player.getEyePosition(1F).add(0, -0.1, 0));
 						projectile.shoot(player.getLookAngle(), shotPower * 3F, 0F);
 						world.addFreshEntity(projectile);
 					}
