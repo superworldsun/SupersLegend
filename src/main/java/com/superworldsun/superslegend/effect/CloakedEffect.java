@@ -46,6 +46,11 @@ public class CloakedEffect extends Effect {
 		ManaHelper.spendMana(player, MagicCape.MANA_COST);
 	}
 
+	@Override
+	public boolean isDurationEffectTick(int tick, int effectAmplifier) {
+		return true;
+	}
+
 	@SubscribeEvent
 	public static void onLivingAttacked(LivingAttackEvent event) {
 		if (event.getEntityLiving().hasEffect(EffectInit.CLOAKED.get())) {
