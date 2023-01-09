@@ -34,7 +34,7 @@ public class DekuSeedEntity extends SeedEntity {
 
 	@Override
 	protected float getFlightSpeed() {
-		return 15;
+		return 3F;
 	}
 
 	@Override
