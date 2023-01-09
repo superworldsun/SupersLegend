@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.google.common.util.concurrent.AtomicDouble;
 import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IHoveringEntity;
 import com.superworldsun.superslegend.interfaces.IJumpingEntity;
@@ -180,15 +181,27 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	@Override
 	protected float getJumpPower() {
 		float jumpPower = super.getJumpPower();
+		AtomicDouble jumpPowerMultiplier = new AtomicDouble(1F);
 
-		if (getScale() > 1) {
-			jumpPower += 0.1 * getScale();
-		}
+		getArmorSlots().forEach(stack -> {
+			if (stack.getItem() instanceof IEntityResizer) {
+				float itemJumpPowerMultiplier = ((IEntityResizer) stack.getItem()).getJumpPowerMultiplier();
+				jumpPowerMultiplier.set(itemJumpPowerMultiplier);
+			}
+		});
 
-		if (getScale() < 1) {
-			jumpPower -= 0.15 * (1 - getScale());
-		}
+		CuriosApi.getCuriosHelper().getEquippedCurios((PlayerEntity) getEntity()).ifPresent(curios -> {
+			for (int i = 0; i < curios.getSlots(); i++) {
+				ItemStack curioStack = curios.getStackInSlot(i);
 
+				if (!curioStack.isEmpty() && curioStack.getItem() instanceof IEntityResizer) {
+					float itemJumpPowerMultiplier = ((IEntityResizer) curioStack.getItem()).getJumpPowerMultiplier();
+					jumpPowerMultiplier.set(itemJumpPowerMultiplier);
+				}
+			}
+		});
+
+		jumpPower *= jumpPowerMultiplier.get();
 		return jumpPower;
 	}
 
