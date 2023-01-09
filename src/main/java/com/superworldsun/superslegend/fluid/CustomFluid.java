@@ -96,6 +96,7 @@ public abstract class CustomFluid extends ForgeFlowingFluid {
 	public static class Source extends CustomFluid {
 		public Source(ResourceLocation overlayTexture, Properties properties) {
 			super(overlayTexture, properties);
+			getStateDefinition().getPossibleStates().forEach(Fluid.FLUID_STATE_REGISTRY::add);
 		}
 
 		public int getAmount(FluidState state) {

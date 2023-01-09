@@ -114,11 +114,11 @@ public class GrateBlock extends Block implements Floodable {
 		Block placedBlock = event.getState().getBlock();
 
 		if (placedBlock instanceof GrateBlock) {
-			BlockState replacedBlockState = event.getBlockSnapshot().getReplacedBlock();
+			BlockState oldBlockState = event.getBlockSnapshot().getReplacedBlock();
 
-			if (replacedBlockState.getBlock() instanceof FlowingFluidBlock) {
+			if (oldBlockState.getBlock() instanceof FlowingFluidBlock) {
 				GrateBlock grateBlock = (GrateBlock) placedBlock;
-				BlockState floodedGrateState = grateBlock.getBlockState(replacedBlockState.getFluidState());
+				BlockState floodedGrateState = grateBlock.getBlockState(oldBlockState.getFluidState());
 				event.getWorld().setBlock(event.getPos(), floodedGrateState, 11);
 			}
 		}
