@@ -411,6 +411,11 @@
 		"subtitle": "superslegend.subtitle.bitbow_arrow",
 		"sounds": [ "superslegend:item/bitbow_arrow" ]
 	},
+	"item.deku_seed_hit": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_seed_hit",
+		"sounds": [ "superslegend:item/deku_seed_hit" ]
+	},
 	"item.hover_boots": {
 		"category": "player",
 		"subtitle": "superslegend.subtitle.hover_boots",
