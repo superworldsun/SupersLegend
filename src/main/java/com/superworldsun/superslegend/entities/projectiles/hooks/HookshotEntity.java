@@ -112,9 +112,8 @@ public class HookshotEntity extends AbstractArrowEntity {
 				}
 
 				if (owner != null) { //Reasons to remove the hook.
-					if (owner.isDeadOrDying() || !HookModel.get(owner).getHasHook() ||
-							!HookModel.get(owner).getHasHook() ||
-							owner.distanceTo(this) > maxRange ||
+					if (owner.isDeadOrDying() || this.tickCount == 35 || !HookModel.get(owner).getHasHook() ||
+							!HookModel.get(owner).getHasHook() || owner.distanceTo(this) > maxRange ||
 							!(owner.getMainHandItem().getItem() instanceof HookshotItem ||
 									owner.getOffhandItem().getItem() instanceof HookshotItem) ||
 							!HookModel.get(owner).getHasHook()) {

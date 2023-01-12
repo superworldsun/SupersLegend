@@ -111,7 +111,7 @@ public class LongshotEntity extends AbstractArrowEntity {
                 }
 
                 if (owner != null) { //Reasons to remove the hook.
-                    if (owner.isDeadOrDying() || !HookModel.get(owner).getHasHook() ||
+                    if (owner.isDeadOrDying() || this.tickCount == 65 || !HookModel.get(owner).getHasHook() ||
                             !HookModel.get(owner).getHasHook() ||
                             owner.distanceTo(this) > maxRange ||
                             !(owner.getMainHandItem().getItem() instanceof LongshotItem ||
