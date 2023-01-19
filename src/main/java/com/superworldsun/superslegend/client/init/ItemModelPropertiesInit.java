@@ -45,9 +45,9 @@ public class ItemModelPropertiesInit {
 		// ItemModelsProperties.register(ItemInit.MIRROR_SHIELD.get(), new ResourceLocation("blocking"), IN_USE);
 		ItemModelsProperties.register(ItemInit.DEKU_LEAF.get(), new ResourceLocation("no_magic"), NO_MAGIC);
 		ItemModelsProperties.register(ItemInit.FISHING_ROD.get(), new ResourceLocation("cast"), IS_FISHING);
-		// TODO add these back with hookshot
-		// registerFishingRodModelProperties(ItemInit.HOOKSHOT.get());
-		// registerFishingRodModelProperties(ItemInit.LONGSHOT.get());
+		///TODO the models for these still dont switch to their fired model
+		ItemModelsProperties.register(ItemInit.HOOKSHOT.get(), new ResourceLocation("pulling"), IN_USE);
+		ItemModelsProperties.register(ItemInit.LONGSHOT.get(), new ResourceLocation("pulling"), IN_USE);
 		// registerFishingRodModelProperties(ItemInit.CLAWSHOT.get());
 	}
 

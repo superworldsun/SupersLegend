@@ -309,10 +309,10 @@ public class ItemInit
 	//		() -> new BombItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	/*public static final RegistryObject<Item> BOMBCHU = ITEMS.register("bombchu",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
-	/*public static final RegistryObject<Item> HOOKSHOT = ITEMS.register("hookshot",
-			() -> new HookshotItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	public static final RegistryObject<Item> HOOKSHOT = ITEMS.register("hookshot",
+			() -> new HookshotItem(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<Item> LONGSHOT = ITEMS.register("longshot",
-			() -> new LongshotItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
+			() -> new LongshotItem(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
 
 	//add back in ItemModelPropertiesInit
 	/*public static final RegistryObject<Item> CLAWSHOT = ITEMS.register("clawshot",

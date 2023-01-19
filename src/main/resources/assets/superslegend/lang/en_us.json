@@ -8,6 +8,9 @@
   "key.drop_bomb": "Pull Bomb from Bomb Bag",
   "key.crawl": "Crawl",
 
+  "death.attack.boomerang": "%1$s was hit with %2$s's Boomerang",
+  "death.attack.ww_boomerang": "%1$s was hit with %2$s's Boomerang",
+
   "block.superslegend.cooking_pot": "Cooking Pot",
   
   "item.superslegend.meat_skewer": "Meat Skewer",

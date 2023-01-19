@@ -34,22 +34,25 @@ public class LongshotItem extends NonEnchantItem {
     public LongshotItem(Properties properties) {
         super(properties);
     }
-    //TODO 1 Currently the hookshot forces you on a fixed Y axis when held, the player dosent fall
-    //TODO 2 Sometimes the model will randomly swap to the fired model and have no hook in the model when it should
-    //TODO 3 When you fire the hook it will go on forever if you are to chase it at fast speeds such as flying, maybe have it removed after a while if not connected to block
-    //TODO 4 the Chain part looks really dark near the hook instead of the same color as the rest of the chain
-    //TODO 5 the chain flicks up and down when you hook a block and are going towards it.
-    //TODO 6 the chain looks like it comes from your stomach and could look more like its coming out of the item in hand
-    //TODO 7 the off hand dosent look the same as main hand, needs to be redone
-
+    //TODO 1 Sometimes the model will randomly swap to the fired model and have no hook in the model when it should
+    //TODO 2 the Chain part looks really dark near the hook instead of the same color as the rest of the chain
+    //TODO 3 the chain flicks up and down when you hook a block and are going towards it.
+    //TODO 4 the chain looks like it comes from your stomach and could look more like its coming out of the item in hand
+    //TODO 5 the off hand dosent look the same as main hand, needs to be redone
+    //TODO 6 this is Only with the Longshot, player dosent go into swimming animation until they are near the targeted hook block
     //Let you shoot.
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.GNAT_HAT.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
         ItemStack maskStack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIANTSMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        ItemStack maskStack1 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_DEKUMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        ItemStack maskStack2 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GORONMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        ItemStack maskStack3 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_ZORAMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        ItemStack maskStack4 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_FIERCEDEITYSMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 
-        if(!maskStack.isEmpty() || !maskStack0.isEmpty())
+        if(!maskStack.isEmpty() || !maskStack0.isEmpty() || !maskStack1.isEmpty() ||
+                !maskStack2.isEmpty() || !maskStack3.isEmpty() || !maskStack4.isEmpty())
             return ActionResult.fail(itemstack);
 
         ActionResult<ItemStack> ret = ForgeEventFactory.onArrowNock(itemstack, world, player, hand, true);
@@ -95,7 +98,7 @@ public class LongshotItem extends NonEnchantItem {
                 spriteL = true;
             }
 
-                HookModel.get((PlayerEntity) player).setHasHook(!HookModel.get((PlayerEntity) player).getHasHook());
+            HookModel.get((PlayerEntity) player).setHasHook(!HookModel.get((PlayerEntity) player).getHasHook());
 
         }
 
@@ -126,11 +129,4 @@ public class LongshotItem extends NonEnchantItem {
     public boolean isValidRepairItem(ItemStack itemStack, ItemStack ingredient) {
         return ingredient.getItem() == Items.IRON_INGOT;
     }
-
-    @Override
-    public void onUseTick(World world, LivingEntity entity, ItemStack itemStack, int remainingTicks) {
-    	entity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 1, 255, false, false, false));
-    	entity.setDeltaMovement(0, 0, 0);
-    }
-
 }
