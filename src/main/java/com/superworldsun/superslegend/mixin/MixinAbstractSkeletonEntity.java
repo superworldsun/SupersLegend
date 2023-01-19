@@ -47,6 +47,7 @@ public abstract class MixinAbstractSkeletonEntity extends MonsterEntity implemen
 
 			if (targetHasCaptainsHat && !hasOwner()) {
 				setOwner(target);
+				return;
 			}
 		}
 
