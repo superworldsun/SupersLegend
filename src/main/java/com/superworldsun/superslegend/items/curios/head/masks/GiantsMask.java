@@ -12,6 +12,7 @@ import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.items.custom.NonEnchantItem;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -26,9 +27,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTier;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -117,9 +120,8 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 	@SubscribeEvent
 	public static void onPlayerHarvestCheck(PlayerEvent.HarvestCheck event) {
 		PlayerEntity player = event.getPlayer();
-		boolean isPlayerEmptyHanded = player.getMainHandItem().isEmpty();
 
-		if (playerHasMask(player) && playerCanUseMask(player) && isPlayerEmptyHanded) {
+		if (!event.canHarvest() && playerHasMask(player) && playerCanUseMask(player)) {
 			int blockHarvestLevel = event.getTargetBlock().getHarvestLevel();
 			int ironTierLevel = ItemTier.IRON.getLevel();
 			event.setCanHarvest(blockHarvestLevel <= ironTierLevel);
@@ -131,13 +133,21 @@ public class GiantsMask extends NonEnchantItem implements IEntityResizer, ICurio
 		PlayerEntity player = event.getPlayer();
 
 		if (playerHasMask(player) && playerCanUseMask(player)) {
-			boolean dropResources = ForgeHooks.canHarvestBlock(event.getState(), player, event.getWorld(), event.getPos());
-			event.getWorld().destroyBlock(event.getPos().above(), dropResources);
-			event.getWorld().destroyBlock(event.getPos().below(), dropResources);
-			event.getWorld().destroyBlock(event.getPos().east(), dropResources);
-			event.getWorld().destroyBlock(event.getPos().north(), dropResources);
-			event.getWorld().destroyBlock(event.getPos().south(), dropResources);
-			event.getWorld().destroyBlock(event.getPos().west(), dropResources);
+			IWorld world = event.getWorld();
+			BlockPos targetBlockPos = event.getPos();
+			BlockState targetBlockState = world.getBlockState(targetBlockPos);
+			float targetBlockDestroyTime = targetBlockState.getDestroySpeed(world, targetBlockPos);
+
+			BlockPos.betweenClosed(targetBlockPos.offset(-1, -1, -1), targetBlockPos.offset(1, 1, 1)).forEach(neighbourBlockPos -> {
+				BlockState neighbourBlockState = world.getBlockState(neighbourBlockPos);
+				float neighbourBlockDestroyTime = neighbourBlockState.getDestroySpeed(world, neighbourBlockPos);
+				boolean canBreakNeighbourBlock = neighbourBlockDestroyTime > 0 && neighbourBlockDestroyTime <= targetBlockDestroyTime;
+
+				if (canBreakNeighbourBlock) {
+					boolean canHarvestNeighbourBlock = ForgeHooks.canHarvestBlock(neighbourBlockState, player, world, neighbourBlockPos);
+					world.destroyBlock(neighbourBlockPos, canHarvestNeighbourBlock);
+				}
+			});
 		}
 	}
 
