@@ -27,7 +27,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -69,7 +68,7 @@ public class SlingShot extends BowItem {
 					if (!world.isClientSide) {
 						SeedEntity projectile = createAmmoEntity(world, ammoStack);
 						projectile.setOwner(player);
-						projectile.setPos(player.getEyePosition(1F).add(player.getLookAngle()));
+						projectile.setPos(player.getEyePosition(1F).add(0, -0.1, 0));
 						projectile.shoot(player.getLookAngle(), shotPower * 3F, 0F);
 						world.addFreshEntity(projectile);
 					}

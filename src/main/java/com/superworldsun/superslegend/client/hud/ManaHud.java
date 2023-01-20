@@ -33,22 +33,23 @@ public class ManaHud {
 			}
 
 			RenderSystem.enableBlend();
-			ForgeIngameGui.right_height += 10;
 			int manaIconsX = event.getWindow().getGuiScaledWidth() / 2 + 91;
 			int manaIconsY = event.getWindow().getGuiScaledHeight() - ForgeIngameGui.right_height;
 			int mana = getManaForRender(minecraft.player);
 			minecraft.getTextureManager().bind(MANA_TEXTURE);
-
-			for (int i = 0; i < 10; ++i) {
-				int iconIndex = i * 2 + 1;
-				int iconX = manaIconsX - i * 8 - 9;
-				int iconY = manaIconsY;
-				renderManaIcon(event.getMatrixStack(), minecraft.gui, mana, iconIndex, iconX, iconY);
-			}
-
-			// We need to switch texture back to vanilla one
+			renderManaIcons(event.getMatrixStack(), minecraft, manaIconsX, manaIconsY, mana);
+			ForgeIngameGui.right_height += 10;
 			minecraft.getTextureManager().bind(AbstractGui.GUI_ICONS_LOCATION);
 			RenderSystem.disableBlend();
+		}
+	}
+
+	protected static void renderManaIcons(MatrixStack matrixStack, Minecraft minecraft, int iconsX, int iconsY, int mana) {
+		for (int i = 0; i < 10; ++i) {
+			int iconIndex = i * 2 + 1;
+			int iconX = iconsX - i * 8 - 9;
+			int iconY = iconsY;
+			renderManaIcon(matrixStack, minecraft.gui, mana, iconIndex, iconX, iconY);
 		}
 	}
 

@@ -17,4 +17,8 @@ public interface IEntityResizer
 	{
 		return getScale(player);
 	}
+
+	default float getJumpPowerMultiplier() {
+		return 1F;
+	}
 }
