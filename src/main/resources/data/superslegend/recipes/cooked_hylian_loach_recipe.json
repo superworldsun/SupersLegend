@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "superslegend:hylian_loach"
+    },
+    "result": "superslegend:cooked_hylian_loach",
+    "experience": 0.60,
+    "cookingtime": 200
+}
