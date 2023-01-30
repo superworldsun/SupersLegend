@@ -12,7 +12,7 @@ public enum ItemToolTiers implements IItemTier {
 
     //WEAPONS
     KOKIRI_SWORD     (0, 0, -2F, 2F, 0, () -> { return Ingredient.EMPTY; }),
-    RAZOR_SWORD      (0, 200, -2F, 3F, 0, () -> { return Ingredient.EMPTY; }),
+    RAZOR_SWORD      (0, 100, -2F, 3F, 0, () -> { return Ingredient.EMPTY; }),
     GILDED_SWORD     (0, 0, -2F, 4F, 0, () -> { return Ingredient.EMPTY; }),
     GREAT_FAIRYS_SWORD(0, 0, -2F, 4F, 0, () -> { return Ingredient.EMPTY; }),
 
