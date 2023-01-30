@@ -68,7 +68,7 @@ public class BlockInit
 	public static final RegistryObject<Block> TORCH_TOWER = BLOCKS.register("torch_tower", () ->
 			new TorchTower(AbstractBlock.Properties.of(Material.WOOD).strength(1.0F, 1.0F).sound(SoundType.WOOD).harvestLevel(1).harvestTool(ToolType.AXE)));
 	public static final RegistryObject<Block> TORCH_TOWER_TOP_UNLIT = BLOCKS.register("torch_tower_top_unlit", () ->
-			new TorchTowerTopUnlit(AbstractBlock.Properties.of(Material.WOOD).strength(1.0F, 1.0F).sound(SoundType.WOOD).harvestLevel(1).harvestTool(ToolType.AXE).noCollission().lightLevel(value -> 15)));
+			new TorchTowerTopUnlit(AbstractBlock.Properties.of(Material.WOOD).strength(1.0F, 1.0F).sound(SoundType.WOOD).harvestLevel(1).harvestTool(ToolType.AXE).noCollission()));
 	public static final RegistryObject<Block> TORCH_TOWER_TOP_LIT = BLOCKS.register("torch_tower_top_lit", () ->
 			new TorchTowerTopLit(AbstractBlock.Properties.of(Material.WOOD).strength(1.0F, 1.0F).sound(SoundType.WOOD).harvestLevel(1).harvestTool(ToolType.AXE).noCollission().lightLevel(value -> 15)));
 	public static final RegistryObject<Block> MASTER_ORE_BLOCK = BLOCKS.register("master_ore_block", () ->
