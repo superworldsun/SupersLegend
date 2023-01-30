@@ -157,7 +157,7 @@ public class ItemInit
 	public static final RegistryObject<SwordItem> KOKIRI_SWORD = ITEMS.register("kokiri_sword",
 			() -> new ItemCustomSword(ItemToolTiers.KOKIRI_SWORD, 2, -2.5f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<SwordItem> RAZOR_SWORD = ITEMS.register("razor_sword",
-			() -> new ItemCustomSword(ItemToolTiers.RAZOR_SWORD, 2, -2.5f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+			() -> new RazorSword(ItemToolTiers.RAZOR_SWORD, 2, -2.5f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<SwordItem> GILDED_SWORD = ITEMS.register("gilded_sword",
 			() -> new ItemCustomSword(ItemToolTiers.GILDED_SWORD, 2, -2.4f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
 
