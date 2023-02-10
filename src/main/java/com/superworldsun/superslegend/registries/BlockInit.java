@@ -3,8 +3,10 @@ package com.superworldsun.superslegend.registries;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.*;
 
+import com.superworldsun.superslegend.blocks.natural.plants.DekuFlowerCrop;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
@@ -46,9 +48,9 @@ public class BlockInit
 	public static final RegistryObject<Block> GRAPPLE_BLOCK = BLOCKS.register("grapple_block", () ->
 			new Block(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestLevel(2).harvestTool(ToolType.PICKAXE).strength(7.0f,7.0f).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> DEKU_FLOWER_BLOCK = BLOCKS.register("deku_flower_block", () ->
-			new DekuFlowerBlock(AbstractBlock.Properties.of(Material.PLANT).harvestLevel(0).harvestTool(ToolType.AXE).strength(0.5f,0.5f).sound(SoundType.HARD_CROP)));
+			new DekuFlowerBlock(AbstractBlock.Properties.of(Material.PLANT).harvestLevel(0).harvestTool(ToolType.AXE).strength(0.5f,0.5f).sound(SoundType.CROP)));
 	public static final RegistryObject<Block> YELLOW_DEKU_FLOWER_BLOCK = BLOCKS.register("yellow_deku_flower_block", () ->
-			new DekuFlowerBlock(AbstractBlock.Properties.of(Material.PLANT).harvestLevel(0).harvestTool(ToolType.AXE).strength(0.5f,0.5f).sound(SoundType.HARD_CROP)));
+			new DekuFlowerBlock(AbstractBlock.Properties.of(Material.PLANT).harvestLevel(0).harvestTool(ToolType.AXE).strength(0.5f,0.5f).sound(SoundType.CROP)));
 	public static final RegistryObject<Block> POT_BLOCK = BLOCKS.register("pot_block", () ->
 			new PotBlock(AbstractBlock.Properties.of(Material.CLAY).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(0.1f,0.1f).sound(SoundType.GLASS)));
 	public static final RegistryObject<Block> JAR_BLOCK = BLOCKS.register("jar_block", () ->
@@ -161,6 +163,10 @@ public class BlockInit
 	public static final RegistryObject<Block> WARP_PAD_WATER = BLOCKS.register("warp_pad_water", WarpPadBlock::new);
 	public static final RegistryObject<Block> WARP_PAD_SPIRIT = BLOCKS.register("warp_pad_spirit", WarpPadBlock::new);
 	public static final RegistryObject<Block> WARP_PAD_SHADOW = BLOCKS.register("warp_pad_shadow", WarpPadBlock::new);
+
+	//Crops
+	public static final RegistryObject<Block> DEKU_FLOWER_CROP = BLOCKS.register("deku_flower_crop",
+				() -> new DekuFlowerCrop(AbstractBlock.Properties.copy(Blocks.WHEAT).randomTicks().instabreak()));
 
 	//For cooking pot
 	public static final RegistryObject<Block> COOKING_POT = BLOCKS.register("cooking_pot", () -> new SimpleCookingPotBlock());
