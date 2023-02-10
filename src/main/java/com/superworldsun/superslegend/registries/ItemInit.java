@@ -206,8 +206,8 @@ public class ItemInit
 	public static final RegistryObject<ShieldItem> SACRED_SHIELD = ITEMS.register("sacred_shield",
 			() -> new SacredShieldItem(new Item.Properties()));
 	//public static final RegistryObject<Item> MIRROR_SHIELD = ITEMS.register("mirror_shield", MirrorShield::new);
-	public static final RegistryObject<Item> DEKU_SEEDS = ITEMS.register("deku_seeds",
-			() -> new DekuSeed(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+	public static final RegistryObject<BlockItem> DEKU_SEEDS = ITEMS.register("deku_seeds",
+			() -> new BlockItem(BlockInit.DEKU_FLOWER_CROP.get(), new Item.Properties().tab(ItemGroupInit.RESOURCES)));
 
 	public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow", MagicFireArrow::new);
 	public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow", MagicIceArrow::new);
