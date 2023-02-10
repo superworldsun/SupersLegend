@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "0": "superslegend:block/deku_flower_crop_stage7",
+    "particle": "superslegend:block/deku_flower_crop_stage7"
+  },
+  "elements": [
+    {
+      "from": [6, 0, 5],
+      "to": [8, 1, 7],
+      "color": 6,
+      "faces": {
+        "north": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "east": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "south": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "west": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "up": {"uv": [0, 0, 2, 2], "texture": "#0"},
+        "down": {"uv": [0, 0, 2, 2], "texture": "#0"}
+      }
+    },
+    {
+      "from": [4, 0, 9],
+      "to": [6, 1, 11],
+      "color": 6,
+      "faces": {
+        "north": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "east": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "south": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "west": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "up": {"uv": [0, 0, 2, 2], "texture": "#0"},
+        "down": {"uv": [0, 0, 2, 2], "texture": "#0"}
+      }
+    },
+    {
+      "from": [9, 0, 8],
+      "to": [11, 1, 10],
+      "color": 6,
+      "faces": {
+        "north": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "east": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "south": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "west": {"uv": [0, 0, 2, 1], "texture": "#0"},
+        "up": {"uv": [0, 0, 2, 2], "texture": "#0"},
+        "down": {"uv": [0, 0, 2, 2], "texture": "#0"}
+      }
+    }
+  ]
+}
