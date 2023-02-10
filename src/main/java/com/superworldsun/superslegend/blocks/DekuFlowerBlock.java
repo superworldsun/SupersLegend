@@ -16,7 +16,7 @@ import net.minecraft.block.AbstractBlock.Properties;
 public class DekuFlowerBlock extends Block
 
 {
-	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 7.0D, 14.0D);
+	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D);
 
 	   public DekuFlowerBlock(Properties properties) {
 	      super(properties);
