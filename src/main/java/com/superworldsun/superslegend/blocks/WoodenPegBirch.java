@@ -2,7 +2,6 @@ package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,12 +14,12 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class WoodenPegBlock extends Block {
+public class WoodenPegBirch extends Block {
 
 	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D);
 	protected static final VoxelShape HITBOX_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 24.0D, 12.0D);
 
-	public WoodenPegBlock(Properties properties) {
+	public WoodenPegBirch(Properties properties) {
 		super(properties);
 	}
 
@@ -38,7 +37,7 @@ public class WoodenPegBlock extends Block {
 				BlockPos currentPos = playerEntity.blockPosition();
 				world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.SHIELD_BLOCK, SoundCategory.PLAYERS, 1f, 1f);
 
-				world.setBlock(pos, BlockInit.HAMMERED_WOODEN_PEG_BLOCK.get().defaultBlockState(), 3);
+				world.setBlock(pos, BlockInit.HAMMERED_WOODEN_PEG_BIRCH.get().defaultBlockState(), 3);
 			}
 
 		super.attack(state, world, pos, playerEntity);

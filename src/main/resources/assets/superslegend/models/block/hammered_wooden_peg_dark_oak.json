@@ -1,8 +1,8 @@
 {
     "texture_size": [64, 64],
     "textures": {
-        "0": "superslegend:block/rusted_peg_block",
-        "particle": "superslegend:block/rusted_peg_block"
+        "0": "superslegend:block/dark_oak_peg_block",
+        "particle": "superslegend:block/dark_oak_peg_block"
     },
     "elements": [
         {

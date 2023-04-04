@@ -18,13 +18,13 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class HammeredWoodenPegBlock extends Block
+public class HammeredWoodenPegDarkOak extends Block
 
 {
 
-	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 1.0D, 12.0D);
+	protected static final VoxelShape SHAPE = Block.box(3.75D, 0.0D, 3.75D, 12.25D, 1.0D, 12.25D);
 
-	public HammeredWoodenPegBlock(Properties properties) {
+	public HammeredWoodenPegDarkOak(Properties properties) {
 		super(properties);
 	}
 
@@ -32,7 +32,7 @@ public class HammeredWoodenPegBlock extends Block
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
 	{
 		{
-			worldIn.setBlockAndUpdate(pos, BlockInit.WOODEN_PEG_BLOCK.get().defaultBlockState());
+			worldIn.setBlockAndUpdate(pos, BlockInit.DARK_OAK_PEG_BLOCK.get().defaultBlockState());
 
 			BlockPos currentPos = pos;
 			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WOOD_HIT, SoundCategory.PLAYERS, 1f, 1f);
@@ -47,7 +47,7 @@ public class HammeredWoodenPegBlock extends Block
 		world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WOOD_HIT, SoundCategory.PLAYERS, 1f, 1f);
 
 
-			world.setBlock(pos, BlockInit.WOODEN_PEG_BLOCK.get().defaultBlockState(), 3);
+			world.setBlock(pos, BlockInit.DARK_OAK_PEG_BLOCK.get().defaultBlockState(), 3);
 
 		return ActionResultType.SUCCESS;
 	}

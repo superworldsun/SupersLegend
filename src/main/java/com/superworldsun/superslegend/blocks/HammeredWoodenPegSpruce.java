@@ -18,33 +18,36 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class HammeredRustedPegBlock extends Block
+public class HammeredWoodenPegSpruce extends Block
 
 {
 
 	protected static final VoxelShape SHAPE = Block.box(3.75D, 0.0D, 3.75D, 12.25D, 1.0D, 12.25D);
 
-	public HammeredRustedPegBlock(Properties properties) {
+	public HammeredWoodenPegSpruce(Properties properties) {
 		super(properties);
 	}
 
 	@SuppressWarnings("deprecation")
-	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-		if (worldIn.getMaxLocalRawBrightness(pos) >= 0) {
-			worldIn.setBlockAndUpdate(pos, BlockInit.RUSTED_PEG_BLOCK.get().defaultBlockState());
+	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
+	{
+		{
+			worldIn.setBlockAndUpdate(pos, BlockInit.SPRUCE_PEG_BLOCK.get().defaultBlockState());
+
+			BlockPos currentPos = pos;
+			worldIn.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WOOD_HIT, SoundCategory.PLAYERS, 1f, 1f);
 		}
 		super.randomTick(state, worldIn, pos, random);
 	}
-
 
 	@SuppressWarnings("deprecation")
 	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
 	{
 		BlockPos currentPos = player.blockPosition();
-		world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ARMOR_EQUIP_IRON, SoundCategory.PLAYERS, 1f, 1f);
+		world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WOOD_HIT, SoundCategory.PLAYERS, 1f, 1f);
 
 
-		world.setBlock(pos, BlockInit.RUSTED_PEG_BLOCK.get().defaultBlockState(), 3);
+			world.setBlock(pos, BlockInit.SPRUCE_PEG_BLOCK.get().defaultBlockState(), 3);
 
 		return ActionResultType.SUCCESS;
 	}

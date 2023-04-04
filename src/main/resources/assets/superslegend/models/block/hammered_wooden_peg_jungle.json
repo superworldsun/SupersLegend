@@ -1,8 +1,8 @@
 {
     "texture_size": [64, 64],
     "textures": {
-        "0": "superslegend:block/rusted_peg_block",
-        "particle": "superslegend:block/rusted_peg_block"
+        "0": "superslegend:block/jungle_peg_block",
+        "particle": "superslegend:block/jungle_peg_block"
     },
     "elements": [
         {

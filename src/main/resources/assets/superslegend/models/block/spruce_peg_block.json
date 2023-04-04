@@ -2,8 +2,8 @@
     "texture_size": [64, 64],
     "parent": "block/cube_all",
     "textures": {
-        "0": "superslegend:block/wooden_peg_block",
-        "particle": "superslegend:block/wooden_peg_block"
+        "0": "superslegend:block/spruce_peg_block",
+        "particle": "superslegend:block/spruce_peg_block"
     },
     "elements": [
         {

@@ -1,13 +1,13 @@
 {
     "texture_size": [64, 64],
     "textures": {
-        "0": "superslegend:block/wooden_peg_block",
-        "particle": "superslegend:block/wooden_peg_block"
+        "0": "superslegend:block/spruce_peg_block",
+        "particle": "superslegend:block/spruce_peg_block"
     },
     "elements": [
         {
-            "from": [3.75, -0.05, 3.75],
-            "to": [12.25, 0.2, 12.25],
+            "from": [3.75, 0, 3.75],
+            "to": [12.25, 1, 12.25],
             "faces": {
                 "north": {"uv": [6.25, 0, 8.5, 0.25], "texture": "#0"},
                 "east": {"uv": [6.25, 0.25, 8.5, 0.5], "texture": "#0"},
