@@ -75,6 +75,8 @@ public class BlockInit
 			new TorchTowerTopLit(AbstractBlock.Properties.of(Material.WOOD).strength(1.0F, 1.0F).sound(SoundType.WOOD).harvestLevel(1).harvestTool(ToolType.AXE).noCollission().lightLevel(value -> 15)));
 	public static final RegistryObject<Block> MASTER_ORE_BLOCK = BLOCKS.register("master_ore_block", () ->
 			new Block(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().harvestLevel(3).harvestTool(ToolType.PICKAXE).strength(100.0f,400.0f).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CRACKED_BOMB_WALL = BLOCKS.register("cracked_bomb_wall", () ->
+			new CrackedBombWall(AbstractBlock.Properties.of(Material.STONE).strength(1500.0F, 0.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> BLUE_FLOOR_SWITCH = BLOCKS.register("blue_floor_switch", () ->
 			new BlueFloorSwitch(BlueFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL).strength(3.5f, 5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
 	public static final RegistryObject<Block> YELLOW_FLOOR_SWITCH = BLOCKS.register("yellow_floor_switch", () ->
@@ -83,14 +85,34 @@ public class BlockInit
 			new RedFloorSwitch(RedFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL).strength(3.5f, 5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
 	public static final RegistryObject<Block> RUSTED_FLOOR_SWITCH = BLOCKS.register("rusted_floor_switch", () ->
 			new RustedFloorSwitch(AbstractBlock.Properties.of(Material.METAL).strength(3.5f, 5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
-	public static final RegistryObject<Block> WOODEN_PEG_BLOCK = BLOCKS.register("wooden_peg_block", () ->
-			new WoodenPegBlock(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(2).harvestTool(ToolType.AXE).strength(80.0f,100.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> OAK_PEG_BLOCK = BLOCKS.register("oak_peg_block", () ->
+			new WoodenPegOak(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(2).harvestTool(ToolType.AXE).strength(80.0f,100.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SPRUCE_PEG_BLOCK = BLOCKS.register("spruce_peg_block", () ->
+			new WoodenPegSpruce(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(2).harvestTool(ToolType.AXE).strength(80.0f,100.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> BIRCH_PEG_BLOCK = BLOCKS.register("birch_peg_block", () ->
+			new WoodenPegBirch(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(2).harvestTool(ToolType.AXE).strength(80.0f,100.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> JUNGLE_PEG_BLOCK = BLOCKS.register("jungle_peg_block", () ->
+			new WoodenPegJungle(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(2).harvestTool(ToolType.AXE).strength(80.0f,100.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> ACACIA_PEG_BLOCK = BLOCKS.register("acacia_peg_block", () ->
+			new WoodenPegAcacia(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(2).harvestTool(ToolType.AXE).strength(80.0f,100.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> DARK_OAK_PEG_BLOCK = BLOCKS.register("dark_oak_peg_block", () ->
+			new WoodenPegDarkOak(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(2).harvestTool(ToolType.AXE).strength(80.0f,100.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> RUSTED_PEG_BLOCK = BLOCKS.register("rusted_peg_block", () ->
 			new RustedPegBlock(AbstractBlock.Properties.of(Material.METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).strength(80.0f,100.0f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 	public static final RegistryObject<Block> SPIKED_PEG_BLOCK = BLOCKS.register("spiked_peg_block", () ->
 			new SpikedPegBlock(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(2).harvestTool(ToolType.AXE).strength(80.0f,100.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
-	public static final RegistryObject<Block> HAMMERED_WOODEN_PEG_BLOCK = BLOCKS.register("hammered_wooden_peg_block", () ->
-			new HammeredWoodenPegBlock(AbstractBlock.Properties.of(Material.WOOD).strength(3.0F, 3.0F).sound(SoundType.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).randomTicks().requiresCorrectToolForDrops()));
+	public static final RegistryObject<Block> HAMMERED_WOODEN_PEG_OAK = BLOCKS.register("hammered_wooden_peg_oak", () ->
+			new HammeredWoodenPegOak(AbstractBlock.Properties.of(Material.WOOD).strength(3.0F, 3.0F).sound(SoundType.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).randomTicks().requiresCorrectToolForDrops()));
+	public static final RegistryObject<Block> HAMMERED_WOODEN_PEG_SPRUCE = BLOCKS.register("hammered_wooden_peg_spruce", () ->
+			new HammeredWoodenPegSpruce(AbstractBlock.Properties.of(Material.WOOD).strength(3.0F, 3.0F).sound(SoundType.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).randomTicks().requiresCorrectToolForDrops()));
+	public static final RegistryObject<Block> HAMMERED_WOODEN_PEG_BIRCH = BLOCKS.register("hammered_wooden_peg_birch", () ->
+			new HammeredWoodenPegBirch(AbstractBlock.Properties.of(Material.WOOD).strength(3.0F, 3.0F).sound(SoundType.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).randomTicks().requiresCorrectToolForDrops()));
+	public static final RegistryObject<Block> HAMMERED_WOODEN_PEG_JUNGLE = BLOCKS.register("hammered_wooden_peg_jungle", () ->
+			new HammeredWoodenPegJungle(AbstractBlock.Properties.of(Material.WOOD).strength(3.0F, 3.0F).sound(SoundType.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).randomTicks().requiresCorrectToolForDrops()));
+	public static final RegistryObject<Block> HAMMERED_WOODEN_PEG_ACACIA = BLOCKS.register("hammered_wooden_peg_acacia", () ->
+			new HammeredWoodenPegAcacia(AbstractBlock.Properties.of(Material.WOOD).strength(3.0F, 3.0F).sound(SoundType.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).randomTicks().requiresCorrectToolForDrops()));
+	public static final RegistryObject<Block> HAMMERED_WOODEN_PEG_DARK_OAK = BLOCKS.register("hammered_wooden_peg_dark_oak", () ->
+			new HammeredWoodenPegDarkOak(AbstractBlock.Properties.of(Material.WOOD).strength(3.0F, 3.0F).sound(SoundType.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).randomTicks().requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> HAMMERED_RUSTED_PEG_BLOCK = BLOCKS.register("hammered_rusted_peg_block", () ->
 			new HammeredRustedPegBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.0F, 3.0F).sound(SoundType.METAL).harvestLevel(0).harvestTool(ToolType.PICKAXE).randomTicks().requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> HAMMERED_SPIKED_PEG_BLOCK = BLOCKS.register("hammered_spiked_peg_block", () ->

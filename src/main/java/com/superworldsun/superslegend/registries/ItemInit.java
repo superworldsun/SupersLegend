@@ -791,6 +791,7 @@ public class ItemInit
 	public static final RegistryObject<Item> SILVER_RUPEE_BLOCK = ITEMS.register("silver_rupee_block", () -> new ModBlockItem(BlockInit.SILVER_RUPEE_BLOCK));
 	public static final RegistryObject<Item> GOLD_RUPEE_BLOCK = ITEMS.register("gold_rupee_block", () -> new ModBlockItem(BlockInit.GOLD_RUPEE_BLOCK));
 	public static final RegistryObject<Item> MASTER_ORE_BLOCK = ITEMS.register("master_ore_block", () -> new ModBlockItem(BlockInit.MASTER_ORE_BLOCK));
+	public static final RegistryObject<Item> CRACKED_BOMB_WALL = ITEMS.register("cracked_bomb_wall", () -> new ModBlockItem(BlockInit.CRACKED_BOMB_WALL));
 	public static final RegistryObject<Item> BLOCK_OF_TIME = ITEMS.register("block_of_time", () -> new ModBlockItem(BlockInit.BLOCK_OF_TIME));
 	public static final RegistryObject<Item> SHADOW_BLOCK = ITEMS.register("shadow_block", ShadowBlockItem::new);
 	public static final RegistryObject<Item> HIDDEN_SHADOW_BLOCK = ITEMS.register("hidden_shadow_block", HiddenShadowBlockItem::new);
@@ -823,7 +824,12 @@ public class ItemInit
 	public static final RegistryObject<Item> RED_FLOOR_SWITCH = ITEMS.register("red_floor_switch", () -> new ModBlockItem(BlockInit.RED_FLOOR_SWITCH));
 	public static final RegistryObject<Item> RUSTED_FLOOR_SWITCH = ITEMS.register("rusted_floor_switch", () -> new ModBlockItem(BlockInit.RUSTED_FLOOR_SWITCH));
 	public static final RegistryObject<Item> ROYAL_TILE = ITEMS.register("royal_tile", () -> new RoyalTileItem(BlockInit.ROYAL_TILE));
-	public static final RegistryObject<Item> WOODEN_PEG_BLOCK = ITEMS.register("wooden_peg_block", () -> new WoodenPegItem(BlockInit.WOODEN_PEG_BLOCK));
+	public static final RegistryObject<Item> OAK_PEG_BLOCK = ITEMS.register("oak_peg_block", () -> new WoodenPegItem(BlockInit.OAK_PEG_BLOCK));
+	public static final RegistryObject<Item> SPRUCE_PEG_BLOCK = ITEMS.register("spruce_peg_block", () -> new WoodenPegItem(BlockInit.SPRUCE_PEG_BLOCK));
+	public static final RegistryObject<Item> BIRCH_PEG_BLOCK = ITEMS.register("birch_peg_block", () -> new WoodenPegItem(BlockInit.BIRCH_PEG_BLOCK));
+	public static final RegistryObject<Item> JUNGLE_PEG_BLOCK = ITEMS.register("jungle_peg_block", () -> new WoodenPegItem(BlockInit.JUNGLE_PEG_BLOCK));
+	public static final RegistryObject<Item> ACACIA_PEG_BLOCK = ITEMS.register("acacia_peg_block", () -> new WoodenPegItem(BlockInit.ACACIA_PEG_BLOCK));
+	public static final RegistryObject<Item> DARK_OAK_PEG_BLOCK = ITEMS.register("dark_oak_peg_block", () -> new WoodenPegItem(BlockInit.DARK_OAK_PEG_BLOCK));
 	public static final RegistryObject<Item> RUSTED_PEG_BLOCK = ITEMS.register("rusted_peg_block", () -> new RustedPegItem(BlockInit.RUSTED_PEG_BLOCK));
 	public static final RegistryObject<Item> SPIKED_PEG_BLOCK = ITEMS.register("spiked_peg_block", () -> new SpikedPegItem(BlockInit.SPIKED_PEG_BLOCK));
 	//public static final RegistryObject<Item> LIGHT_EMITTER = ITEMS.register("light_emitter", () -> new ModBlockItem(BlockInit.LIGHT_EMITTER));
