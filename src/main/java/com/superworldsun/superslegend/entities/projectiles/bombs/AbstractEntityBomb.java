@@ -1,9 +1,10 @@
 package com.superworldsun.superslegend.entities.projectiles.bombs;
 
 import com.superworldsun.superslegend.client.config.SupersLegendConfig;
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
@@ -170,16 +171,24 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
 
 
     private void explode() {
-        if(SupersLegendConfig.getInstance().explosivegriefing())
-        {
+        if(SupersLegendConfig.getInstance().explosivegriefing()){
             this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionPower, Explosion.Mode.DESTROY);
             remove();
         }
         else
         {
+            BlockPos explosionPos = this.blockPosition();
             this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionPower, Explosion.Mode.NONE);
-            remove();
+
+            int radius = (int) Math.ceil(explosionPower);
+            for (BlockPos pos : BlockPos.betweenClosed(explosionPos.offset(-radius, -radius, -radius), explosionPos.offset(radius, radius, radius))) {
+                Block block = this.level.getBlockState(pos).getBlock();
+                if (block == BlockInit.CRACKED_BOMB_WALL.get()) {
+                    this.level.destroyBlock(pos, false);
+                }
+            }
         }
+        remove();
     }
 
     public Instant getCreationTime() {

@@ -4,10 +4,12 @@ import static com.superworldsun.superslegend.util.Functions.repeat;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.config.SupersLegendConfig;
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -63,32 +65,44 @@ public class BombArrowEntity extends AbstractArrowEntity
 			}
 		}
 	}
-	
+
 	@Override
 	public void tick()
 	{
 		super.tick();
-		
+
 		if (!level.isClientSide)
 		{
 			if (inGround)
 			{
 				if (!isInWater())
-				{
-					boolean destroyBlocks = SupersLegendConfig.getInstance().explosivegriefing();
-					level.explode(null, this.xo, this.yo, this.zo, 3.0f, destroyBlocks ? Mode.DESTROY : Mode.NONE);
-				}
-				
+					if(SupersLegendConfig.getInstance().explosivegriefing()){
+						this.level.explode(this, this.getX(), this.getY(), this.getZ(), 3.0f, Explosion.Mode.DESTROY);
+						remove();
+					}
+					else
+					{
+						BlockPos explosionPos = this.blockPosition();
+						this.level.explode(this, this.getX(), this.getY(), this.getZ(), 3.0f, Explosion.Mode.NONE);
+
+						int radius = 3;
+						for (BlockPos pos : BlockPos.betweenClosed(explosionPos.offset(-radius, -radius, -radius), explosionPos.offset(radius, radius, radius))) {
+							Block block = this.level.getBlockState(pos).getBlock();
+							if (block == BlockInit.CRACKED_BOMB_WALL.get()) {
+								this.level.destroyBlock(pos, false);
+							}
+						}
+					}
 				remove();
 			}
 		}
-		
+
 		addSmokeToFlightPath();
 		defuseInWater();
 		explodeInHeat();
 		playFuseSoundEveryNinthTick();
 	}
-	
+
 	private void playFuseSoundEveryNinthTick()
 	{
 		if (this.tickCount % 9 == 0)
