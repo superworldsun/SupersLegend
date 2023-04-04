@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "superslegend:block/cracked_bomb_wall"
+    }
+}
