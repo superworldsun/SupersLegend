@@ -3,11 +3,9 @@ package com.superworldsun.superslegend.registries;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.*;
 
+import com.superworldsun.superslegend.blocks.BushBlock;
 import com.superworldsun.superslegend.blocks.natural.plants.DekuFlowerCrop;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
@@ -41,6 +39,26 @@ public class BlockInit
 			new GossipStoneBlock(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(11.0f,11.0f).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> GOSSIP_STONE_TOP = BLOCKS.register("gossip_stone_top", () ->
 			new GossipStoneTopBlock(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(11.0f,11.0f).sound(SoundType.STONE)));
+
+	/*public static final RegistryObject<Block> SMALL_LOCK = BLOCKS.register("small_lock", () ->
+			new SmallLock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,999.0f).sound(SoundType.METAL).noOcclusion()));
+	public static final RegistryObject<Block> LOCKED_DOOR = BLOCKS.register("locked_door", () ->
+			new LockedDoor(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,999.0f).sound(SoundType.METAL)));*/
+	public static final RegistryObject<Block> LOCKED_DOOR_TOP = BLOCKS.register("locked_door_top", () ->
+			new LockedDoorTop(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,999.0f).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> DUNGEON_DOOR = BLOCKS.register("dungeon_door", () ->
+			new DungeonDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
+	public static final RegistryObject<Block> LOCKED_DUNGEON_DOOR = BLOCKS.register("locked_dungeon_door", () ->
+			new LockedDungeonDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
+	public static final RegistryObject<Block> BOSS_DOOR = BLOCKS.register("boss_door", () ->
+			new DungeonDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
+	public static final RegistryObject<Block> LOCKED_BOSS_DOOR = BLOCKS.register("locked_boss_door", () ->
+			new LockedBossDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
+	public static final RegistryObject<Block> LOCKED_WOODEN_DOOR = BLOCKS.register("locked_wooden_door", () ->
+			new LockedDungeonDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
+	public static final RegistryObject<Block> WOODEN_BOSS_DOOR = BLOCKS.register("wooden_boss_door", () ->
+			new LockedBossDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
+
 	public static final RegistryObject<Block> BUSH_BLOCK = BLOCKS.register("bush_block", () ->
 			new BushBlock(AbstractBlock.Properties.of(Material.PLANT).harvestTool(ToolType.AXE).strength(0.1f,0.1f).sound(SoundType.CROP)));
 	public static final RegistryObject<Block> CHAIN_LINK_FENCE_BLOCK = BLOCKS.register("chain_link_fence_block", () ->

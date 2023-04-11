@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_rh",
+  "textures": {
+    "top": "superslegend:block/locked_boss_door_top",
+    "bottom": "superslegend:block/locked_boss_door_bottom"
+  }
+}

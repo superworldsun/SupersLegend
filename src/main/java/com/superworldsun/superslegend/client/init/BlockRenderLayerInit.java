@@ -21,6 +21,13 @@ public class BlockRenderLayerInit {
 		RenderTypeLookup.setRenderLayer(BlockInit.YELLOW_DEKU_FLOWER_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.GRATE_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.SPIKES_BLOCK.get(), RenderType.cutout());
+		//RenderTypeLookup.setRenderLayer(BlockInit.SMALL_LOCK.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.DUNGEON_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.LOCKED_DUNGEON_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.BOSS_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.LOCKED_BOSS_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.LOCKED_WOODEN_DOOR.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.WOODEN_BOSS_DOOR.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.BUSH_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.GRASS_PATCH_BLOCK.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.ODD_MUSHROOM.get(), RenderType.cutout());
