@@ -52,12 +52,12 @@ public class ItemInit
 	public static final RegistryObject<Item> MEDALLION_SPIRIT = ITEMS.register("medallion_spirit", () -> new MedallionItem(BlockInit.WARP_PAD));
 	public static final RegistryObject<Item> MEDALLION_SHADOW = ITEMS.register("medallion_shadow", () -> new MedallionItem(BlockInit.WARP_PAD));
 
-	/*public static final RegistryObject<Item> SMALL_KEY = ITEMS.register("small_key",
-			SimpleResourceItem::new);
-	public static final RegistryObject<Item> BIG_KEY = ITEMS.register("big_key",
-			SimpleResourceItem::new);
+	public static final RegistryObject<Item> SMALL_KEY = ITEMS.register("small_key",
+			() -> new Item(new Item.Properties().stacksTo(64).tab(ItemGroupInit.RESOURCES)));
+	public static final RegistryObject<Item> BOSS_KEY = ITEMS.register("boss_key",
+			() -> new Item(new Item.Properties().stacksTo(64).tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<Item> MAGICAL_KEY = ITEMS.register("magical_key",
-			SimpleResourceItem::new);*/
+			() -> new Item(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
 
 	/*public static final RegistryObject<Item> SMALL_LOCK = ITEMS.register("small_lock",
 			SimpleResourceItem::new);
@@ -299,8 +299,8 @@ public class ItemInit
 	//		() -> new GaleBoomerangItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BOMB = ITEMS.register("bomb",
 			() -> new BombItem(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
-	//public static final RegistryObject<Item> WATER_BOMB = ITEMS.register("water_bomb",
-	//		() -> new BombItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
+	/*public static final RegistryObject<Item> WATER_BOMB = ITEMS.register("water_bomb",
+			() -> new WaterBombItem(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));*/
 	/*public static final RegistryObject<Item> BOMBCHU = ITEMS.register("bombchu",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
 	public static final RegistryObject<Item> HOOKSHOT = ITEMS.register("hookshot",
@@ -808,6 +808,14 @@ public class ItemInit
 	public static final RegistryObject<Item> GRAPPLE_BLOCK = ITEMS.register("grapple_block", () -> new ModBlockItem(BlockInit.GRAPPLE_BLOCK));
 	public static final RegistryObject<Item> GRATE_BLOCK = ITEMS.register("grate_block", () -> new GrateItem(BlockInit.GRATE_BLOCK));
 	public static final RegistryObject<Item> GOSSIP_STONE_BLOCK = ITEMS.register("gossip_stone_block", () -> new GossipStoneItem(BlockInit.GOSSIP_STONE_BLOCK));
+	//public static final RegistryObject<Item> SMALL_LOCK = ITEMS.register("small_lock", () -> new ModBlockItem(BlockInit.SMALL_LOCK));
+	//public static final RegistryObject<Item> LOCKED_DOOR = ITEMS.register("locked_door", () -> new ModBlockItem(BlockInit.LOCKED_DOOR));
+	public static final RegistryObject<Item> DUNGEON_DOOR = ITEMS.register("dungeon_door", () -> new ModBlockItem(BlockInit.DUNGEON_DOOR));
+	public static final RegistryObject<Item> LOCKED_DUNGEON_DOOR = ITEMS.register("locked_dungeon_door", () -> new ModBlockItem(BlockInit.LOCKED_DUNGEON_DOOR));
+	public static final RegistryObject<Item> BOSS_DOOR = ITEMS.register("boss_door", () -> new ModBlockItem(BlockInit.BOSS_DOOR));
+	public static final RegistryObject<Item> LOCKED_BOSS_DOOR = ITEMS.register("locked_boss_door", () -> new ModBlockItem(BlockInit.LOCKED_BOSS_DOOR));
+	public static final RegistryObject<Item> LOCKED_WOODEN_DOOR = ITEMS.register("locked_wooden_door", () -> new ModBlockItem(BlockInit.LOCKED_WOODEN_DOOR));
+	public static final RegistryObject<Item> WOODEN_BOSS_DOOR = ITEMS.register("wooden_boss_door", () -> new ModBlockItem(BlockInit.WOODEN_BOSS_DOOR));
 	public static final RegistryObject<Item> POSTBOX_BLOCK = ITEMS.register("postbox_block", () -> new ModBlockItem(BlockInit.POSTBOX_BLOCK));
 	public static final RegistryObject<Item> TOMBSTONE_BLOCK = ITEMS.register("tombstone_block", () -> new ModBlockItem(BlockInit.TOMBSTONE_BLOCK));
 	public static final RegistryObject<Item> CHAIN_LINK_FENCE_BLOCK = ITEMS.register("chain_link_fence_block", () -> new ModBlockItem(BlockInit.CHAIN_LINK_FENCE_BLOCK));
