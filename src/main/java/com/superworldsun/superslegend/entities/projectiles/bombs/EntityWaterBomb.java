@@ -30,8 +30,8 @@ public class EntityWaterBomb extends AbstractEntityWaterBomb {
 	}
 
     //TODO Turn this back on when item is put back in
-    /*@Override
+    @Override
     protected Item getDefaultItem() {
         return ItemInit.WATER_BOMB.get();
-    }*/
+    }
 }

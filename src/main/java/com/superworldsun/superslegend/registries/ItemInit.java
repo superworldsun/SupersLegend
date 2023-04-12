@@ -299,8 +299,8 @@ public class ItemInit
 	//		() -> new GaleBoomerangItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
 	public static final RegistryObject<Item> BOMB = ITEMS.register("bomb",
 			() -> new BombItem(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
-	/*public static final RegistryObject<Item> WATER_BOMB = ITEMS.register("water_bomb",
-			() -> new WaterBombItem(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));*/
+	public static final RegistryObject<Item> WATER_BOMB = ITEMS.register("water_bomb",
+			() -> new WaterBombItem(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
 	/*public static final RegistryObject<Item> BOMBCHU = ITEMS.register("bombchu",
 			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
 	public static final RegistryObject<Item> HOOKSHOT = ITEMS.register("hookshot",
