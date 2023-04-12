@@ -60,6 +60,7 @@ public class SoundInit
 	public static final RegistryObject<SoundEvent> SLINGSHOT_PULL = register("item.slingshot_pull");
 	public static final RegistryObject<SoundEvent> SLINGSHOT_SHOOT = register("item.slingshot_shoot");
 	public static final RegistryObject<SoundEvent> BOTTLE_POP = register("item.bottle_pop");
+	public static final RegistryObject<SoundEvent> DOOR_UNLOCKED = register("item.door_unlocked");
 	public static final RegistryObject<SoundEvent> FAIRY_BOTTLE_USE = register("item.fairy_bottle_use");
 	public static final RegistryObject<SoundEvent> FAIRY_HEAL_ON_TOUCH = register("item.fairy_heal_on_touch");
 	public static final RegistryObject<SoundEvent> FAIRY_TWINKLE = register("item.fairy_twinkle");

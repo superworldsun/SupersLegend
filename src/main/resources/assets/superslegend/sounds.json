@@ -531,6 +531,11 @@
 		"subtitle": "superslegend.subtitle.bottle_pop",
 		"sounds": [ "superslegend:item/bottle_pop" ]
 	},
+	"item.door_unlocked": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.door_unlocked",
+		"sounds": [ "superslegend:block/door_unlocked" ]
+	},
 	"item.fairy_bottle_use": {
 		"category": "entity",
 		"subtitle": "superslegend.subtitle.fairy_bottle_use",
