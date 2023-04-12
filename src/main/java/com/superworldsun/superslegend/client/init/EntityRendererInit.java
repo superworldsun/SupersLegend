@@ -50,5 +50,6 @@ public class EntityRendererInit {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.GALE_BOOMERANG.get(), GaleBoomerangRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MASTERSWORD_SWORD_ENTITY.get(), MasterSwordRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.BOMB.get(), BombRender::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.WATER_BOMB.get(), WaterBombRender::new);
 	}
 }

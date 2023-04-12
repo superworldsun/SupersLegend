@@ -42,6 +42,7 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<MagicJarEntity>> MAGIC_JAR = ENTITIES.register("magic_jar", MagicJarEntity::createEntityType);
 	public static final RegistryObject<EntityType<LargeMagicJarEntity>> LARGE_MAGIC_JAR = ENTITIES.register("large_magic_jar", LargeMagicJarEntity::createEntityType);
 	public static final RegistryObject<EntityType<EntityBomb>> BOMB = ENTITIES.register("bomb", EntityBomb::createEntityType);
+	public static final RegistryObject<EntityType<EntityWaterBomb>> WATER_BOMB = ENTITIES.register("water_bomb", EntityWaterBomb::createEntityType);
 	public static final RegistryObject<EntityType<FaroresWindEntity>> FARORES_WIND = ENTITIES.register("farores_wind", FaroresWindEntity::createEntityType);
 	public static final RegistryObject<EntityType<FireballEntity>> FIREBALL = ENTITIES.register("fireball", FireballEntity::createEntityType);
 	public static final RegistryObject<EntityType<IceballEntity>> ICEBALL = ENTITIES.register("iceball", IceballEntity::createEntityType);
