@@ -536,6 +536,51 @@
 		"subtitle": "superslegend.subtitle.door_unlocked",
 		"sounds": [ "superslegend:block/door_unlocked" ]
 	},
+	"item.block_push_dirt": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_dirt",
+		"sounds": [ "superslegend:block/block_push_dirt" ]
+	},
+	"item.block_push_flesh": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_flesh",
+		"sounds": [ "superslegend:block/block_push_flesh" ]
+	},
+	"item.block_push_grass": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_grass",
+		"sounds": [ "superslegend:block/block_push_grass" ]
+	},
+	"item.block_push_ice": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_ice",
+		"sounds": [ "superslegend:block/block_push_ice" ]
+	},
+	"item.block_push_lava": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_lava",
+		"sounds": [ "superslegend:block/block_push_lava" ]
+	},
+	"item.block_push_sand": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_sand",
+		"sounds": [ "superslegend:block/block_push_sand" ]
+	},
+	"item.block_push_stone": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_stone",
+		"sounds": [ "superslegend:block/block_push_stone" ]
+	},
+	"item.block_push_wood": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_wood",
+		"sounds": [ "superslegend:block/block_push_wood" ]
+	},
+	"item.block_push_wool": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_wool",
+		"sounds": [ "superslegend:block/block_push_wool" ]
+	},
 	"item.fairy_bottle_use": {
 		"category": "entity",
 		"subtitle": "superslegend.subtitle.fairy_bottle_use",
