@@ -700,14 +700,14 @@ public class ItemInit
 
 
 	//Hands (gloves, gauntlets, bracelets)
-	/*public static final RegistryObject<Item> POWER_BRACELETS = ITEMS.register("power_bracelets",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
+	//public static final RegistryObject<Item> POWER_BRACELETS = ITEMS.register("power_bracelets",
+	//		() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
 	public static final RegistryObject<Item> GORONS_BRACELET = ITEMS.register("gorons_bracelet",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
+			() -> new Item(new Item.Properties().stacksTo(1).tab(ItemGroupInit.APPAREL)));
 	public static final RegistryObject<Item> SILVER_GAUNTLETS = ITEMS.register("silver_gauntlets",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));
+			() -> new Item(new Item.Properties().stacksTo(1).tab(ItemGroupInit.APPAREL)));
 	public static final RegistryObject<Item> GOLDEN_GAUNTLETS = ITEMS.register("golden_gauntlets",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));*/
+			() -> new Item(new Item.Properties().stacksTo(1).tab(ItemGroupInit.APPAREL)));
 
 	//CHARMS
 	public static final RegistryObject<SilverScale> SILVER_SCALE = ITEMS.register("silver_scale",
@@ -807,6 +807,10 @@ public class ItemInit
 	public static final RegistryObject<Item> SWITCHABLE_FAN = ITEMS.register("switchable_fan", () -> new ModBlockItem(BlockInit.SWITCHABLE_FAN));
 	public static final RegistryObject<Item> GRAPPLE_BLOCK = ITEMS.register("grapple_block", () -> new ModBlockItem(BlockInit.GRAPPLE_BLOCK));
 	public static final RegistryObject<Item> GRATE_BLOCK = ITEMS.register("grate_block", () -> new GrateItem(BlockInit.GRATE_BLOCK));
+	public static final RegistryObject<Item> CRATE_BLOCK = ITEMS.register("crate_block", () -> new ModBlockItem(BlockInit.CRATE_BLOCK));
+	public static final RegistryObject<Item> PUSH_STONE = ITEMS.register("push_stone", () -> new ModBlockItem(BlockInit.PUSH_STONE));
+	public static final RegistryObject<Item> SILVER_PUSH_STONE = ITEMS.register("silver_push_stone", () -> new ModBlockItem(BlockInit.SILVER_PUSH_STONE));
+	public static final RegistryObject<Item> BLACK_PUSH_STONE = ITEMS.register("black_push_stone", () -> new ModBlockItem(BlockInit.BLACK_PUSH_STONE));
 	public static final RegistryObject<Item> GOSSIP_STONE_BLOCK = ITEMS.register("gossip_stone_block", () -> new GossipStoneItem(BlockInit.GOSSIP_STONE_BLOCK));
 	//public static final RegistryObject<Item> SMALL_LOCK = ITEMS.register("small_lock", () -> new ModBlockItem(BlockInit.SMALL_LOCK));
 	//public static final RegistryObject<Item> LOCKED_DOOR = ITEMS.register("locked_door", () -> new ModBlockItem(BlockInit.LOCKED_DOOR));
