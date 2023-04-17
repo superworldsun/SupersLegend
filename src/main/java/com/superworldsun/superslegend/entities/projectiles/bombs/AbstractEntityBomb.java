@@ -172,7 +172,7 @@ public abstract class AbstractEntityBomb extends ProjectileItemEntity {
 
     private void explode() {
         if(SupersLegendConfig.getInstance().explosivegriefing()){
-            this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionPower, Explosion.Mode.DESTROY);
+            this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionPower, Explosion.Mode.BREAK);
             remove();
         }
         else

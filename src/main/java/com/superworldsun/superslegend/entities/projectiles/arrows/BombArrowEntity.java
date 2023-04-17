@@ -77,7 +77,7 @@ public class BombArrowEntity extends AbstractArrowEntity
 			{
 				if (!isInWater())
 					if(SupersLegendConfig.getInstance().explosivegriefing()){
-						this.level.explode(this, this.getX(), this.getY(), this.getZ(), 3.0f, Explosion.Mode.DESTROY);
+						this.level.explode(this, this.getX(), this.getY(), this.getZ(), 3.0f, Mode.BREAK);
 						remove();
 					}
 					else
