@@ -1,0 +1,8 @@
+{
+	"parent": "minecraft:block/orientable",
+	"textures": {
+		"top": "superslegend:block/crate_top",
+		"front": "superslegend:block/crate_side",
+		"side": "superslegend:block/crate_side"
+	}
+}
