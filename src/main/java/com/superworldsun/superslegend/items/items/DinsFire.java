@@ -8,6 +8,8 @@ import javax.annotation.Nonnull;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.capability.mana.ManaHelper;
 
+import com.superworldsun.superslegend.registries.BlockInit;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -22,6 +24,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -64,7 +67,7 @@ public class DinsFire extends Item {
       float manacost = 6F;
       PlayerEntity player = (PlayerEntity) livingEntity;
       boolean hasMana = ManaHelper.hasMana(player, manacost);
-	if (hasMana)
+	  if (hasMana)
       {
          if(livingEntity instanceof PlayerEntity)
          {
@@ -89,10 +92,37 @@ public class DinsFire extends Item {
                      ManaHelper.spendMana(player, manaCost);
                      player.getCooldowns().addCooldown(this, 16);
                      living.setSecondsOnFire(6);
+
+                     BlockPos playerPos = player.blockPosition();
+                     int radius = 10;
+                     BlockState blockToReplace = BlockInit.TORCH_TOWER_TOP_UNLIT.get().defaultBlockState();
+                     BlockState blockToReplaceWith = BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState();
+                     // Create the fire field around the player
+                     // Replace blocks within the field
+                     replaceBlocksAroundPlayer(player, world, playerPos, radius, blockToReplace, blockToReplaceWith);
+
                      player.clearFire();
                   }
                }
             }
+         }
+      }
+      if (player.isCreative())
+      {
+         BlockPos playerPos = player.blockPosition();
+         int radius = 10;
+         BlockState blockToReplace = BlockInit.TORCH_TOWER_TOP_UNLIT.get().defaultBlockState();
+         BlockState blockToReplaceWith = BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState();
+         // Create the fire field around the player
+         // Replace blocks within the field
+         replaceBlocksAroundPlayer(player, world, playerPos, radius, blockToReplace, blockToReplaceWith);
+      }
+   }
+
+   private void replaceBlocksAroundPlayer(PlayerEntity player, World world, BlockPos playerPos, int radius, BlockState blockToReplace, BlockState blockToReplaceWith) {
+      for (BlockPos pos : BlockPos.betweenClosed(playerPos.offset(-radius, -radius, -radius), playerPos.offset(radius, radius, radius))) {
+         if (pos.distSqr(playerPos) <= radius * radius && world.getBlockState(pos) == blockToReplace) {
+            world.setBlock(pos, blockToReplaceWith, 3);
          }
       }
    }
