@@ -55,10 +55,10 @@ public class LockedDoorTop extends Block {
 		return world.getBlockState(pos).getBlock().getPickBlock(state, target, world, pos, player);
 	}
 
-	@Override
+	/*@Override
 	public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
 		return !world.isEmptyBlock(pos.below()) && (world.getBlockState(pos.below()).is(BlockInit.LOCKED_DOOR.get()));
-	}
+	}*/
 
 	@Override
 	public void neighborChanged(BlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos, boolean flag) {
