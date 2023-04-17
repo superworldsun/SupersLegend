@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.entities.projectiles.bombs;
 
+import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -42,7 +43,7 @@ public abstract class AbstractEntityWaterBomb extends ProjectileItemEntity {
      * The number of ticks to wait before flashing rapidly.
      */
     private final int ticksToFlashRapidly;
-    private final int explosionPower;
+    private int explosionPower;
 
     /**
      * How much to dampen the bounce. Lower values mean less bounce.
@@ -161,23 +162,34 @@ public abstract class AbstractEntityWaterBomb extends ProjectileItemEntity {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-
+    //works underwater
+    //TODO when the bomb is under water and blows up the blocks don't drop from the explosion, but does on land.
+    // Make it so blast drops blocks when breaking underwater
     private void explode() {
         BlockPos explosionPos = this.blockPosition();
-        this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionPower, Explosion.Mode.DESTROY);
-
         int radius = (int) Math.ceil(explosionPower);
-        for (BlockPos pos : BlockPos.betweenClosed(explosionPos.offset(-radius, -radius, -radius), explosionPos.offset(radius, radius, radius))) {
-            Block block = this.level.getBlockState(pos).getBlock();
-            if (block == BlockInit.CRACKED_BOMB_WALL.get()) {
-                this.level.destroyBlock(pos, false);
+        if(SupersLegendConfig.getInstance().explosivegriefing()) {
+            this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionPower, Explosion.Mode.BREAK);
+            for (BlockPos pos : BlockPos.betweenClosed(explosionPos.offset(-radius, -radius, -radius), explosionPos.offset(radius, radius, radius))) {
+                Block block = this.level.getBlockState(pos).getBlock();
+                double distance = new Vector3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5).distanceTo(new Vector3d(explosionPos.getX() + 0.5, explosionPos.getY() + 0.5, explosionPos.getZ() + 0.5));
+                if (distance <= radius) {
+                    this.level.destroyBlock(pos, false);
+                }
+            }
+        }
+        else
+        {
+            this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionPower, Explosion.Mode.NONE);
+            for (BlockPos pos : BlockPos.betweenClosed(explosionPos.offset(-radius, -radius, -radius), explosionPos.offset(radius, radius, radius))) {
+                Block block = this.level.getBlockState(pos).getBlock();
+                if (block == BlockInit.CRACKED_BOMB_WALL.get()) {
+                    this.level.destroyBlock(pos, false);
+                }
             }
         }
         remove();
     }
-
-
-
 
     public Instant getCreationTime() {
         return this.creationTimestamp;
