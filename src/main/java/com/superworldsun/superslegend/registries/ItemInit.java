@@ -45,12 +45,12 @@ public class ItemInit
 			() -> new SilverRupee(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<GoldRupee> GOLD_RUPEE = ITEMS.register("gold_rupee",
 			() -> new GoldRupee(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
-	public static final RegistryObject<Item> MEDALLION_LIGHT = ITEMS.register("medallion_light", () -> new MedallionItem(BlockInit.WARP_PAD));
-	public static final RegistryObject<Item> MEDALLION_FOREST = ITEMS.register("medallion_forest", () -> new MedallionItem(BlockInit.WARP_PAD));
-	public static final RegistryObject<Item> MEDALLION_FIRE = ITEMS.register("medallion_fire", () -> new MedallionItem(BlockInit.WARP_PAD));
-	public static final RegistryObject<Item> MEDALLION_WATER = ITEMS.register("medallion_water", () -> new MedallionItem(BlockInit.WARP_PAD));
-	public static final RegistryObject<Item> MEDALLION_SPIRIT = ITEMS.register("medallion_spirit", () -> new MedallionItem(BlockInit.WARP_PAD));
-	public static final RegistryObject<Item> MEDALLION_SHADOW = ITEMS.register("medallion_shadow", () -> new MedallionItem(BlockInit.WARP_PAD));
+	public static final RegistryObject<Item> MEDALLION_LIGHT = ITEMS.register("medallion_light", () -> new MedallionItem(BlockInit.WARP_PAD_LIGHT));
+	public static final RegistryObject<Item> MEDALLION_FOREST = ITEMS.register("medallion_forest", () -> new MedallionItem(BlockInit.WARP_PAD_FOREST));
+	public static final RegistryObject<Item> MEDALLION_FIRE = ITEMS.register("medallion_fire", () -> new MedallionItem(BlockInit.WARP_PAD_FIRE));
+	public static final RegistryObject<Item> MEDALLION_WATER = ITEMS.register("medallion_water", () -> new MedallionItem(BlockInit.WARP_PAD_WATER));
+	public static final RegistryObject<Item> MEDALLION_SPIRIT = ITEMS.register("medallion_spirit", () -> new MedallionItem(BlockInit.WARP_PAD_SPIRIT));
+	public static final RegistryObject<Item> MEDALLION_SHADOW = ITEMS.register("medallion_shadow", () -> new MedallionItem(BlockInit.WARP_PAD_SHADOW));
 
 	public static final RegistryObject<Item> SMALL_KEY = ITEMS.register("small_key",
 			() -> new Item(new Item.Properties().stacksTo(64).tab(ItemGroupInit.RESOURCES)));

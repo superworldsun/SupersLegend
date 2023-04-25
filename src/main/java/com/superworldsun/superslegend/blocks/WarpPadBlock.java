@@ -86,8 +86,13 @@ public class WarpPadBlock extends HorizontalBlock {
 			Item itemInHand = playerEntity.getItemInHand(hand).getItem();
 
 			if (itemInHand instanceof MedallionItem) {
+				int centerBlockOffsetX = -getBlockPartX(blockState);
+				int centerBlockOffsetZ = -getBlockPartZ(blockState);
+				BlockPos centerBlockPos = blockPos.offset(centerBlockOffsetX, 0, centerBlockOffsetZ);
+				BlockState centerBlockState = world.getBlockState(centerBlockPos);
 				MedallionItem medallionItem = (MedallionItem) itemInHand;
-				world.setBlockAndUpdate(blockPos, medallionItem.transformWarpPadState(blockState));
+				world.setBlockAndUpdate(centerBlockPos, medallionItem.transformWarpPadState(centerBlockState));
+				return ActionResultType.SUCCESS;
 			}
 		}
 
@@ -100,8 +105,8 @@ public class WarpPadBlock extends HorizontalBlock {
 
 	private VoxelShape getShapeForState(BlockState blockState) {
 		VoxelShape blockShape = Block.box(-16, 0, -16, 32, 2, 32);
-		double blockShapeShiftX = -getBlockPartX(blockState);
-		double blockShapeShiftZ = -getBlockPartZ(blockState);
+		int blockShapeShiftX = -getBlockPartX(blockState);
+		int blockShapeShiftZ = -getBlockPartZ(blockState);
 		return blockShape.move(blockShapeShiftX, 0, blockShapeShiftZ);
 	}
 
@@ -109,11 +114,11 @@ public class WarpPadBlock extends HorizontalBlock {
 		return getBlockPartX(blockState) == 0 && getBlockPartZ(blockState) == 0;
 	}
 
-	private static double getBlockPartX(BlockState blockState) {
+	private static int getBlockPartX(BlockState blockState) {
 		return blockState.getValue(BLOCK_PART_X).intValue() - 1;
 	}
 
-	private static double getBlockPartZ(BlockState blockState) {
+	private static int getBlockPartZ(BlockState blockState) {
 		return blockState.getValue(BLOCK_PART_Z).intValue() - 1;
 	}
 }
