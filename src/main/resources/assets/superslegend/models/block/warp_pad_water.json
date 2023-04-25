@@ -1,0 +1,6 @@
+{
+	"parent": "superslegend:block/warp_pad",
+	"textures": {
+		"1": "superslegend:block/warp_pad_water"
+	}
+}
