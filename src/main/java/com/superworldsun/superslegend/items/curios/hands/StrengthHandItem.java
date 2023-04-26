@@ -31,6 +31,9 @@ public class StrengthHandItem extends HandItem {
 	}
 
 	public boolean canPickUpEntity(EntityType<?> type) {
+		if(getMobWeight(type) == -1) {
+			return false;
+		}
 		return getMobWeight(type) <= strength;
 	}
 
