@@ -79,6 +79,14 @@ public class BlockInit
 			new PostboxTopBlock(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(1).harvestTool(ToolType.AXE).strength(2.0f,2.0f).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> GRATE_BLOCK = BLOCKS.register("grate_block", () ->
 			new GrateBlock(AbstractBlock.Properties.of(Material.METAL).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(6.0f,6.0f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+	public static final RegistryObject<Block> CRATE_BLOCK = BLOCKS.register("crate_block", () ->
+			new CrateBlock(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).strength(6.0f,6.0f).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> PUSH_STONE = BLOCKS.register("push_stone", () ->
+			new PushStoneBlock(AbstractBlock.Properties.of(Material.STONE).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(8.0f,8.0f).sound(SoundType.STONE)));
+		public static final RegistryObject<Block> SILVER_PUSH_STONE = BLOCKS.register("silver_push_stone", () ->
+			new SilverPushStoneBlock(AbstractBlock.Properties.of(Material.STONE).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(12.0f,12.0f).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> BLACK_PUSH_STONE = BLOCKS.register("black_push_stone", () ->
+			new BlackPushStoneBlock(AbstractBlock.Properties.of(Material.STONE).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(20.0f,20.0f).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> GRASS_PATCH_BLOCK = BLOCKS.register("grass_patch_block", () ->
 			new GrassPatch(AbstractBlock.Properties.of(Material.PLANT).harvestLevel(0).strength(0.1f,0.1f).sound(SoundType.CROP)));
 	public static final RegistryObject<Block> ODD_MUSHROOM = BLOCKS.register("odd_mushroom", () ->
