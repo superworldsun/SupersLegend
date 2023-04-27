@@ -92,6 +92,7 @@ public class StrengthHandItem extends HandItem {
 	}
 
 	static {
+		//Hands
 		ENTITY_WEIGHTS.put(EntityType.VEX, 0);
 		ENTITY_WEIGHTS.put(EntityType.SILVERFISH, 0);
 		ENTITY_WEIGHTS.put(EntityType.ENDERMITE, 0);
@@ -110,6 +111,7 @@ public class StrengthHandItem extends HandItem {
 		ENTITY_WEIGHTS.put(EntityType.FOX, 0);
 		ENTITY_WEIGHTS.put(EntityType.SNOW_GOLEM, 0);
 		ENTITY_WEIGHTS.put(EntityType.PHANTOM, 0);
+		//Goron Bracelet
 		ENTITY_WEIGHTS.put(EntityType.CAVE_SPIDER, 1);
 		ENTITY_WEIGHTS.put(EntityType.SLIME, 1);
 		ENTITY_WEIGHTS.put(EntityType.MAGMA_CUBE, 1);
@@ -129,6 +131,7 @@ public class StrengthHandItem extends HandItem {
 		ENTITY_WEIGHTS.put(EntityType.PLAYER, 2);
 		ENTITY_WEIGHTS.put(EntityType.EVOKER, 2);
 		ENTITY_WEIGHTS.put(EntityType.PILLAGER, 2);
+		//Silver gauntlets
 		ENTITY_WEIGHTS.put(EntityType.VINDICATOR, 2);
 		ENTITY_WEIGHTS.put(EntityType.HUSK, 2);
 		ENTITY_WEIGHTS.put(EntityType.SKELETON_HORSE, 2);
