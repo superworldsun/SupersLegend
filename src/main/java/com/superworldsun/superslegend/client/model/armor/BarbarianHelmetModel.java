@@ -1,14 +1,10 @@
 package com.superworldsun.superslegend.client.model.armor;
 
-import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 
-public class BarbarianHelmetModel extends BipedModel<LivingEntity>
-{
+public class BarbarianHelmetModel extends BipedModel<LivingEntity> {
 	private final ModelRenderer body;
 	private final ModelRenderer body_r1;
 	private final ModelRenderer body_r2;
@@ -27,14 +23,12 @@ public class BarbarianHelmetModel extends BipedModel<LivingEntity>
 	private final ModelRenderer body_r15;
 	private final ModelRenderer body_r16;
 	private final ModelRenderer body_r17;
-	//TODO	Helmet isnt locked to the players head and theres a weird layer on face fo player
-	public BarbarianHelmetModel()
-	{
+
+	public BarbarianHelmetModel() {
 		super(0.0F);
-		
 		texWidth = 128;
 		texHeight = 128;
-
+		head = new ModelRenderer(this, 0, 0);
 		body = new ModelRenderer(this);
 		body.setPos(0.0F, 0.0F, 0.0F);
 		body.texOffs(0, 12).addBox(-4.6F, -8.0F, -3.0F, 1.0F, 2.0F, 2.0F, 0.1F, false);
@@ -158,26 +152,12 @@ public class BarbarianHelmetModel extends BipedModel<LivingEntity>
 		body.addChild(body_r17);
 		setRotationAngle(body_r17, 0.0172F, -0.1298F, -0.4374F);
 		body_r17.texOffs(0, 20).addBox(-0.448F, -0.9478F, -1.037F, 1.0F, 2.0F, 2.0F, -0.2F, false);
+		head.addChild(body);
 	}
 
-	@Override
-	public void renderToBuffer(MatrixStack p_225598_1_, IVertexBuilder p_225598_2_, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_)
-	{
-		// if you have other model parts in the helmet model, you need to make them visible manually
-		body.visible = true;
-		super.renderToBuffer(p_225598_1_, p_225598_2_, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
-	}
-
-	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z)
-	{
+	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.xRot = x;
 		modelRenderer.yRot = y;
 		modelRenderer.zRot = z;
-	}
-
-	@Override
-	protected Iterable<ModelRenderer> bodyParts()
-	{
-		return ImmutableList.of(body);
 	}
 }
