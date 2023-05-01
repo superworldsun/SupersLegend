@@ -70,7 +70,7 @@ public class LockedDungeonDoor extends DoorBlock {
 				} else {
 					worldIn.setBlockAndUpdate(pos.below(), unlockedDoorState.setValue(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.LOWER));
 				}
-				if (!player.isCreative()) {
+				if (!player.isCreative() && heldItem.getItem() == ItemInit.SMALL_KEY.get()) {
 					heldItem.shrink(1);
 				}
 				return ActionResultType.SUCCESS;
