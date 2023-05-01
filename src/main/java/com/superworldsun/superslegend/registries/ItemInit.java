@@ -209,8 +209,11 @@ public class ItemInit
 	public static final RegistryObject<ShieldItem> SACRED_SHIELD = ITEMS.register("sacred_shield",
 			() -> new SacredShieldItem(new Item.Properties()));
 	//public static final RegistryObject<Item> MIRROR_SHIELD = ITEMS.register("mirror_shield", MirrorShield::new);
-	public static final RegistryObject<BlockItem> DEKU_SEEDS = ITEMS.register("deku_seeds",
-			() -> new BlockItem(BlockInit.DEKU_FLOWER_CROP.get(), new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+
+	public static final RegistryObject<Item> DEKU_SEEDS = ITEMS.register("deku_seeds", SimpleResourceItem::new);
+	//TODO undo this when deku flower growth is fixed then remove the above line
+	/*public static final RegistryObject<BlockItem> DEKU_SEEDS = ITEMS.register("deku_seeds",
+			() -> new BlockItem(BlockInit.DEKU_FLOWER_CROP.get(), new Item.Properties().tab(ItemGroupInit.RESOURCES)));*/
 
 	public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow", MagicFireArrow::new);
 	public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow", MagicIceArrow::new);
@@ -836,6 +839,7 @@ public class ItemInit
 	public static final RegistryObject<Item> RED_FLOOR_SWITCH = ITEMS.register("red_floor_switch", () -> new ModBlockItem(BlockInit.RED_FLOOR_SWITCH));
 	public static final RegistryObject<Item> RUSTED_FLOOR_SWITCH = ITEMS.register("rusted_floor_switch", () -> new ModBlockItem(BlockInit.RUSTED_FLOOR_SWITCH));
 	public static final RegistryObject<Item> ROYAL_TILE = ITEMS.register("royal_tile", () -> new RoyalTileItem(BlockInit.ROYAL_TILE));
+	public static final RegistryObject<Item> WARP_PAD = ITEMS.register("warp_pad", () -> new WarpPadBlockItem(BlockInit.WARP_PAD));
 	public static final RegistryObject<Item> OAK_PEG_BLOCK = ITEMS.register("oak_peg_block", () -> new WoodenPegItem(BlockInit.OAK_PEG_BLOCK));
 	public static final RegistryObject<Item> SPRUCE_PEG_BLOCK = ITEMS.register("spruce_peg_block", () -> new WoodenPegItem(BlockInit.SPRUCE_PEG_BLOCK));
 	public static final RegistryObject<Item> BIRCH_PEG_BLOCK = ITEMS.register("birch_peg_block", () -> new WoodenPegItem(BlockInit.BIRCH_PEG_BLOCK));
@@ -857,7 +861,6 @@ public class ItemInit
 
 	//public static final RegistryObject<Item> COOKING_POT = ITEMS.register("cooking_pot", () -> new ModBlockItem(BlockInit.COOKING_POT));
 	//public static final RegistryObject<Item> SUN_SWITCH = ITEMS.register("sun_switch", () -> new SunSwitchItem(BlockInit.SUN_SWITCH));
-	public static final RegistryObject<Item> WARP_PAD = ITEMS.register("warp_pad", () -> new WarpPadBlockItem(BlockInit.WARP_PAD));
 
 	public static final Map<FoodCategory, Item> foodCategoryItems = Util.make(new EnumMap<FoodCategory, Item>(FoodCategory.class), map ->
 	{
