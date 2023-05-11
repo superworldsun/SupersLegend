@@ -6,14 +6,14 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:oak_planks"
+            "item": "minecraft:birch_planks"
         },
         "O": {
-            "item": "minecraft:oak_log"
+            "item": "minecraft:birch_log"
         }
     },
     "result": {
-        "item": "superslegend:wooden_peg_block",
+        "item": "superslegend:birch_peg_block",
         "count": 4
     }
 }

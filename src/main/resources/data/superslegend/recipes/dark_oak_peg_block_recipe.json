@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "O"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:dark_oak_planks"
+        },
+        "O": {
+            "item": "minecraft:dark_oak_log"
+        }
+    },
+    "result": {
+        "item": "superslegend:dark_oak_peg_block",
+        "count": 4
+    }
+}
