@@ -56,11 +56,11 @@ public class ItemInit
 	public static final RegistryObject<Item> MEDALLION_SHADOW = ITEMS.register("medallion_shadow", () -> new MedallionItem(BlockInit.WARP_PAD_SHADOW));
 
 	public static final RegistryObject<Item> SMALL_KEY = ITEMS.register("small_key",
-			() -> new Item(new Item.Properties().stacksTo(64).tab(ItemGroupInit.RESOURCES)));
+			() -> new SmallKey(new Item.Properties().stacksTo(64).tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<Item> BOSS_KEY = ITEMS.register("boss_key",
-			() -> new Item(new Item.Properties().stacksTo(64).tab(ItemGroupInit.RESOURCES)));
+			() -> new BossKey(new Item.Properties().stacksTo(64).tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<Item> MAGICAL_KEY = ITEMS.register("magical_key",
-			() -> new Item(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
+			() -> new MagicalKey(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
 
 	/*public static final RegistryObject<Item> SMALL_LOCK = ITEMS.register("small_lock",
 			SimpleResourceItem::new);
@@ -794,8 +794,8 @@ public class ItemInit
 	public static final RegistryObject<Item> SILVER_RUPEE_BLOCK = ITEMS.register("silver_rupee_block", () -> new ModBlockItem(BlockInit.SILVER_RUPEE_BLOCK));
 	public static final RegistryObject<Item> GOLD_RUPEE_BLOCK = ITEMS.register("gold_rupee_block", () -> new ModBlockItem(BlockInit.GOLD_RUPEE_BLOCK));
 	public static final RegistryObject<Item> MASTER_ORE_BLOCK = ITEMS.register("master_ore_block", () -> new ModBlockItem(BlockInit.MASTER_ORE_BLOCK));
-	public static final RegistryObject<Item> CRACKED_BOMB_WALL = ITEMS.register("cracked_bomb_wall", () -> new ModBlockItem(BlockInit.CRACKED_BOMB_WALL));
-	public static final RegistryObject<Item> BLOCK_OF_TIME = ITEMS.register("block_of_time", () -> new ModBlockItem(BlockInit.BLOCK_OF_TIME));
+	public static final RegistryObject<Item> CRACKED_BOMB_WALL = ITEMS.register("cracked_bomb_wall", () -> new CrackedBombWallItem(BlockInit.CRACKED_BOMB_WALL));
+	public static final RegistryObject<Item> BLOCK_OF_TIME = ITEMS.register("block_of_time", () -> new BlockOfTimeItem(BlockInit.BLOCK_OF_TIME));
 	public static final RegistryObject<Item> SHADOW_BLOCK = ITEMS.register("shadow_block", ShadowBlockItem::new);
 	public static final RegistryObject<Item> HIDDEN_SHADOW_BLOCK = ITEMS.register("hidden_shadow_block", HiddenShadowBlockItem::new);
 	public static final RegistryObject<Item> FALSE_SHADOW_BLOCK = ITEMS.register("false_shadow_block", FalseShadowBlockItem::new);
@@ -810,10 +810,10 @@ public class ItemInit
 	public static final RegistryObject<Item> SWITCHABLE_FAN = ITEMS.register("switchable_fan", () -> new ModBlockItem(BlockInit.SWITCHABLE_FAN));
 	public static final RegistryObject<Item> GRAPPLE_BLOCK = ITEMS.register("grapple_block", () -> new ModBlockItem(BlockInit.GRAPPLE_BLOCK));
 	public static final RegistryObject<Item> GRATE_BLOCK = ITEMS.register("grate_block", () -> new GrateItem(BlockInit.GRATE_BLOCK));
-	public static final RegistryObject<Item> CRATE_BLOCK = ITEMS.register("crate_block", () -> new ModBlockItem(BlockInit.CRATE_BLOCK));
-	public static final RegistryObject<Item> PUSH_STONE = ITEMS.register("push_stone", () -> new ModBlockItem(BlockInit.PUSH_STONE));
-	public static final RegistryObject<Item> SILVER_PUSH_STONE = ITEMS.register("silver_push_stone", () -> new ModBlockItem(BlockInit.SILVER_PUSH_STONE));
-	public static final RegistryObject<Item> BLACK_PUSH_STONE = ITEMS.register("black_push_stone", () -> new ModBlockItem(BlockInit.BLACK_PUSH_STONE));
+	public static final RegistryObject<Item> CRATE_BLOCK = ITEMS.register("crate_block", () -> new CrateBlockItem(BlockInit.CRATE_BLOCK));
+	public static final RegistryObject<Item> PUSH_STONE = ITEMS.register("push_stone", () -> new PushStoneItem(BlockInit.PUSH_STONE));
+	public static final RegistryObject<Item> SILVER_PUSH_STONE = ITEMS.register("silver_push_stone", () -> new SilverPushStoneItem(BlockInit.SILVER_PUSH_STONE));
+	public static final RegistryObject<Item> BLACK_PUSH_STONE = ITEMS.register("black_push_stone", () -> new BlackPushStoneItem(BlockInit.BLACK_PUSH_STONE));
 	public static final RegistryObject<Item> GOSSIP_STONE_BLOCK = ITEMS.register("gossip_stone_block", () -> new GossipStoneItem(BlockInit.GOSSIP_STONE_BLOCK));
 	//public static final RegistryObject<Item> SMALL_LOCK = ITEMS.register("small_lock", () -> new ModBlockItem(BlockInit.SMALL_LOCK));
 	//public static final RegistryObject<Item> LOCKED_DOOR = ITEMS.register("locked_door", () -> new ModBlockItem(BlockInit.LOCKED_DOOR));
@@ -827,8 +827,8 @@ public class ItemInit
 	public static final RegistryObject<Item> TOMBSTONE_BLOCK = ITEMS.register("tombstone_block", () -> new ModBlockItem(BlockInit.TOMBSTONE_BLOCK));
 	public static final RegistryObject<Item> CHAIN_LINK_FENCE_BLOCK = ITEMS.register("chain_link_fence_block", () -> new ModBlockItem(BlockInit.CHAIN_LINK_FENCE_BLOCK));
 	public static final RegistryObject<Item> SPIKES_BLOCK = ITEMS.register("spikes_block", () -> new ModBlockItem(BlockInit.SPIKES_BLOCK));
-	public static final RegistryObject<Item> TORCH_TOWER = ITEMS.register("torch_tower", () -> new ModBlockItem(BlockInit.TORCH_TOWER));
-	public static final RegistryObject<Item> OWL_STATUE = ITEMS.register("owl_statue", () -> new ModBlockItem(BlockInit.OWL_STATUE));
+	public static final RegistryObject<Item> TORCH_TOWER = ITEMS.register("torch_tower", () -> new TorchTowerItem(BlockInit.TORCH_TOWER));
+	public static final RegistryObject<Item> OWL_STATUE = ITEMS.register("owl_statue", () -> new OwlStatueItem(BlockInit.OWL_STATUE));
 	public static final RegistryObject<Item> POT_BLOCK = ITEMS.register("pot_block", () -> new ModBlockItem(BlockInit.POT_BLOCK));
 	public static final RegistryObject<Item> JAR_BLOCK = ITEMS.register("jar_block", () -> new ModBlockItem(BlockInit.JAR_BLOCK));
 	public static final RegistryObject<Item> PEDESTAL = ITEMS.register("pedestal", () -> new ModBlockItem(BlockInit.PEDESTAL));
