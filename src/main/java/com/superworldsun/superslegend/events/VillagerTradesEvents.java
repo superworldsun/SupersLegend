@@ -92,6 +92,9 @@ public class VillagerTradesEvents
 		genericTrades.add(createTrade(new ItemStack(ItemInit.RUPEE.get()), new ItemStack(ItemInit.DEKU_SEEDS.get()), 64, 5, 0F));
 		genericTrades.add(createTrade(new ItemStack(ItemInit.RED_RUPEE.get(), 3), new ItemStack(ItemInit.APPRAISED_RING_BOX.get()), 4, 30, 0F));
 		rareTrades.add(createTrade(new ItemStack(ItemInit.SILVER_RUPEE.get()), new ItemStack(ItemInit.HEART_PIECE.get()), 1, 200, 0F));
+		rareTrades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 2), (new ItemStack(ItemInit.SILVER_RUPEE.get())), new ItemStack(ItemInit.GORONS_BRACELET.get()), 2, 200, 0F));
+		rareTrades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 5), new ItemStack(ItemInit.SILVER_GAUNTLETS.get()), 1, 200, 0F));
+		rareTrades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 15), new ItemStack(ItemInit.GOLDEN_GAUNTLETS.get()), 1, 600, 0F));
 		rareTrades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 4), new ItemStack(ItemInit.MAGIC_FIRE_ARROW.get()), 1, 400, 5F));
 		rareTrades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 4), new ItemStack(ItemInit.MAGIC_ICE_ARROW.get()), 1, 400, 5F));
 	}
