@@ -1,8 +1,11 @@
 package com.superworldsun.superslegend.blocks;
 
+import com.superworldsun.superslegend.entities.projectiles.arrows.IceArrowEntity;
+import com.superworldsun.superslegend.entities.projectiles.arrows.MagicIceArrowEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.MagicBoomerangEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.WWBoomerangEntity;
+import com.superworldsun.superslegend.entities.projectiles.magic.IceballEntity;
 import com.superworldsun.superslegend.registries.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -110,10 +113,15 @@ public class TorchTowerTopLit extends Block
 	}
 
 	public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-		if(entityIn instanceof ArrowEntity || entityIn instanceof AbstractArrowEntity || entityIn instanceof BoomerangEntity
-		|| entityIn instanceof MagicBoomerangEntity || entityIn instanceof WWBoomerangEntity)
+		if(entityIn instanceof ArrowEntity || (entityIn instanceof AbstractArrowEntity && !(entityIn instanceof IceArrowEntity || entityIn instanceof MagicIceArrowEntity) || entityIn instanceof BoomerangEntity
+		|| entityIn instanceof MagicBoomerangEntity || entityIn instanceof WWBoomerangEntity))
 		{
 			entityIn.setSecondsOnFire(15);
+		}
+		if(entityIn instanceof IceArrowEntity || entityIn instanceof MagicIceArrowEntity || entityIn instanceof IceballEntity)
+		{
+			worldIn.setBlock(pos , BlockInit.TORCH_TOWER_TOP_UNLIT.get().defaultBlockState(), 1);
+			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}
 	}
 	//TODO add some particles like a camp fire
