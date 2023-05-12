@@ -102,7 +102,7 @@ public class BlockInit
 	public static final RegistryObject<Block> MASTER_ORE_BLOCK = BLOCKS.register("master_ore_block", () ->
 			new Block(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().harvestLevel(3).harvestTool(ToolType.PICKAXE).strength(100.0f,400.0f).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> CRACKED_BOMB_WALL = BLOCKS.register("cracked_bomb_wall", () ->
-			new CrackedBombWall(AbstractBlock.Properties.of(Material.STONE).strength(1500.0F, 0.0F).sound(SoundType.STONE)));
+			new CrackedBombWall(AbstractBlock.Properties.of(Material.STONE).strength(Float.MAX_VALUE, 0.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> BLUE_FLOOR_SWITCH = BLOCKS.register("blue_floor_switch", () ->
 			new BlueFloorSwitch(BlueFloorSwitch.SensitivityMod.PLAYER, AbstractBlock.Properties.of(Material.METAL).strength(3.5f, 5f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
 	public static final RegistryObject<Block> YELLOW_FLOOR_SWITCH = BLOCKS.register("yellow_floor_switch", () ->
