@@ -21,11 +21,12 @@ public class BombBagItem extends AmmoContainerItem
 	{
 		super(capacity);
 	}
-	
+
+	//TODO When the players have water bombs in their bags i would like it consume 2x the capacity
 	@Override
 	public boolean canHoldItem(ItemStack itemStack)
 	{
-		return itemStack.getItem() == ItemInit.BOMB.get();
+		return itemStack.getItem() == ItemInit.BOMB.get() || itemStack.getItem() == ItemInit.WATER_BOMB.get();
 	}
 
 	@OnlyIn(Dist.CLIENT)
