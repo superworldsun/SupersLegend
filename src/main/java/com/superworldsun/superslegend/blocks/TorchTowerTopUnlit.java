@@ -69,9 +69,11 @@ public class TorchTowerTopUnlit extends Block
 	}
 
 	public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-		if(entityIn instanceof FireArrowEntity || entityIn instanceof MagicFireArrowEntity)
+		if(entityIn instanceof FireArrowEntity || entityIn instanceof MagicFireArrowEntity ||
+				entityIn instanceof com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity)
 		{
 			worldIn.setBlock(pos , BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState(), 1);
+			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}
 
 		if(entityIn instanceof ArrowEntity || entityIn instanceof AbstractArrowEntity || entityIn instanceof BoomerangEntity
@@ -80,6 +82,7 @@ public class TorchTowerTopUnlit extends Block
 			if (entityIn.isOnFire())
 			{
 				worldIn.setBlock(pos , BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState(), 1);
+				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 		}
 	}
