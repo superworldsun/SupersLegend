@@ -581,6 +581,11 @@
 		"subtitle": "superslegend.subtitle.block_push_wool",
 		"sounds": [ "superslegend:block/block_push_wool" ]
 	},
+	"item.pickup": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.pickup",
+		"sounds": [ "superslegend:item/pickup" ]
+	},
 	"item.fairy_bottle_use": {
 		"category": "entity",
 		"subtitle": "superslegend.subtitle.fairy_bottle_use",
