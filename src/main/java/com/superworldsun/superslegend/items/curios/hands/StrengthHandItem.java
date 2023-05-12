@@ -3,6 +3,9 @@ package com.superworldsun.superslegend.items.curios.hands;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.superworldsun.superslegend.registries.SoundInit;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import com.google.common.base.Predicates;
@@ -56,6 +59,8 @@ public class StrengthHandItem extends HandItem {
 			LivingEntity rider = (LivingEntity) target;
 			if (!rider.isVehicle()) {
 				rider.startRiding(player, true);
+				BlockPos currentPos = player.blockPosition();
+				player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.PICKUP.get(), SoundCategory.PLAYERS, 1f, 1f);
 			}
 		} else if (!player.getPassengers().isEmpty() && !player.isCrouching()) {
 			LivingEntity rider = (LivingEntity) target;
