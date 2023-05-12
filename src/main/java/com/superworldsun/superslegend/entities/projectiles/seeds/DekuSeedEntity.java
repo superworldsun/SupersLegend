@@ -4,9 +4,11 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class DekuSeedEntity extends SeedEntity {
@@ -20,6 +22,11 @@ public class DekuSeedEntity extends SeedEntity {
 
 	public DekuSeedEntity(World worldIn) {
 		super(EntityTypeInit.DEKU_SEED.get(), worldIn);
+	}
+
+	@Override
+	protected SoundEvent getDefaultHitGroundSoundEvent() {
+		return SoundInit.DEKU_SEED_HIT.get();
 	}
 
 	@Override
