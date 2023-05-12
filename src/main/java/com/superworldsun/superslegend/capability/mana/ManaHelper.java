@@ -10,7 +10,7 @@ import net.minecraftforge.fml.network.PacketDistributor;
 
 public class ManaHelper {
 	private static LazyOptional<ManaCapability> getCapability(PlayerEntity player) {
-		return player.getCapability(ManaCapabilityProvider.MANA_CAPABILITY);
+		return player.getCapability(ManaCapabilityProvider.CAPABILITY);
 	}
 
 	public static float getMana(PlayerEntity player) {

@@ -26,10 +26,10 @@ import net.minecraftforge.fml.network.PacketDistributor;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class ManaCapabilityProvider implements ICapabilitySerializable<CompoundNBT> {
-	private static final ResourceLocation MANA_ID = new ResourceLocation(SupersLegendMain.MOD_ID, "mana");
+	private static final ResourceLocation CAPABILITY_ID = new ResourceLocation(SupersLegendMain.MOD_ID, "mana");
 	@CapabilityInject(ManaCapability.class)
-	public static final Capability<ManaCapability> MANA_CAPABILITY = null;
-	private final ManaCapability capabilityInstance = MANA_CAPABILITY.getDefaultInstance();
+	public static final Capability<ManaCapability> CAPABILITY = null;
+	private final ManaCapability capabilityInstance = CAPABILITY.getDefaultInstance();
 
 	@SubscribeEvent
 	public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
@@ -37,7 +37,7 @@ public class ManaCapabilityProvider implements ICapabilitySerializable<CompoundN
 			return;
 		}
 
-		event.addCapability(MANA_ID, new ManaCapabilityProvider());
+		event.addCapability(CAPABILITY_ID, new ManaCapabilityProvider());
 	}
 
 	@SubscribeEvent
@@ -53,7 +53,7 @@ public class ManaCapabilityProvider implements ICapabilitySerializable<CompoundN
 
 	@Override
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
-		if (capability == MANA_CAPABILITY) {
+		if (capability == CAPABILITY) {
 			return LazyOptional.of(() -> capabilityInstance).cast();
 		}
 
@@ -62,12 +62,12 @@ public class ManaCapabilityProvider implements ICapabilitySerializable<CompoundN
 
 	@Override
 	public CompoundNBT serializeNBT() {
-		return (CompoundNBT) MANA_CAPABILITY.writeNBT(capabilityInstance, null);
+		return (CompoundNBT) CAPABILITY.writeNBT(capabilityInstance, null);
 	}
 
 	@Override
 	public void deserializeNBT(CompoundNBT nbt) {
-		MANA_CAPABILITY.readNBT(capabilityInstance, null, nbt);
+		CAPABILITY.readNBT(capabilityInstance, null, nbt);
 	}
 
 	private static boolean canHaveMana(Entity entity) {

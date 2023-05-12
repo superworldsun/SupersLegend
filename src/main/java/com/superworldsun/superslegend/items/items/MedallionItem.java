@@ -3,15 +3,14 @@ package com.superworldsun.superslegend.items.items;
 import com.superworldsun.superslegend.blocks.WarpPadBlock;
 import com.superworldsun.superslegend.registries.ItemGroupInit;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
 public class MedallionItem extends Item {
-	private final RegistryObject<Block> warpPadBlockObject;
+	private final RegistryObject<WarpPadBlock> warpPadBlockObject;
 
-	public MedallionItem(RegistryObject<Block> warpPadBlockObject) {
+	public MedallionItem(RegistryObject<WarpPadBlock> warpPadBlockObject) {
 		super(new Properties().tab(ItemGroupInit.RESOURCES));
 		this.warpPadBlockObject = warpPadBlockObject;
 	}
