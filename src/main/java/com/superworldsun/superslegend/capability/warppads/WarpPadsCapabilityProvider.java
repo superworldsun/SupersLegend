@@ -4,12 +4,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.capability.mana.ManaCapability;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -23,9 +22,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class WarpPadsCapabilityProvider implements ICapabilitySerializable<CompoundNBT> {
+public class WarpPadsCapabilityProvider implements ICapabilitySerializable<ListNBT> {
 	private static final ResourceLocation CAPABILITY_ID = new ResourceLocation(SupersLegendMain.MOD_ID, "warppads");
-	@CapabilityInject(ManaCapability.class)
+	@CapabilityInject(WarpPadsCapability.class)
 	public static final Capability<WarpPadsCapability> CAPABILITY = null;
 	private final WarpPadsCapability capabilityInstance = CAPABILITY.getDefaultInstance();
 
@@ -52,12 +51,12 @@ public class WarpPadsCapabilityProvider implements ICapabilitySerializable<Compo
 	}
 
 	@Override
-	public CompoundNBT serializeNBT() {
-		return (CompoundNBT) CAPABILITY.writeNBT(capabilityInstance, null);
+	public ListNBT serializeNBT() {
+		return (ListNBT) CAPABILITY.writeNBT(capabilityInstance, null);
 	}
 
 	@Override
-	public void deserializeNBT(CompoundNBT nbt) {
+	public void deserializeNBT(ListNBT nbt) {
 		CAPABILITY.readNBT(capabilityInstance, null, nbt);
 	}
 

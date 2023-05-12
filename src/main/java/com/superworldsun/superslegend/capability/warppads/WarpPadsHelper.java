@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.capability.warppads;
 
-import javax.annotation.Nullable;
+import java.util.Optional;
 
 import com.superworldsun.superslegend.blocks.WarpPadBlock;
 
@@ -13,9 +13,8 @@ public class WarpPadsHelper {
 		return player.getCapability(WarpPadsCapabilityProvider.CAPABILITY);
 	}
 
-	@Nullable
-	public static BlockPos getWarpPosition(PlayerEntity player, WarpPadBlock warpPad) {
-		return getCapability(player).map(capability -> capability.getWarpPosition(warpPad)).orElse(null);
+	public static Optional<BlockPos> getWarpPosition(PlayerEntity player, WarpPadBlock warpPad) {
+		return getCapability(player).map(capability -> capability.getWarpPosition(warpPad)).orElse(Optional.empty());
 	}
 
 	public static void saveWarpPosition(PlayerEntity player, WarpPadBlock warpPad, BlockPos pos) {

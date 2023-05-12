@@ -2,8 +2,7 @@ package com.superworldsun.superslegend.capability.warppads;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.annotation.Nullable;
+import java.util.Optional;
 
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -23,9 +22,8 @@ public class WarpPadsCapability {
 		return new HashMap<>(warpPositions);
 	}
 
-	@Nullable
-	BlockPos getWarpPosition(WarpPadBlock warpPadBlock) {
-		return warpPositions.get(warpPadBlock);
+	Optional<BlockPos> getWarpPosition(WarpPadBlock warpPadBlock) {
+		return Optional.ofNullable(warpPositions.get(warpPadBlock));
 	}
 
 	void saveWarpPosition(WarpPadBlock warpPadBlock, BlockPos position) {

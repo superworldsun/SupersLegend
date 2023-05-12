@@ -1,28 +1,18 @@
 package com.superworldsun.superslegend.songs.songs;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.SoundInit;
-import com.superworldsun.superslegend.songs.OcarinaSong;
+import com.superworldsun.superslegend.songs.WarpSong;
 
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
 
-public class RequiemOfSpirit extends OcarinaSong
-{
-	public RequiemOfSpirit()
-	{
-		super("adarda", 0xD8541C);
+public class RequiemOfSpirit extends WarpSong {
+	public RequiemOfSpirit() {
+		super("adarda", 0xD8541C, BlockInit.WARP_PAD_SPIRIT);
 	}
 
 	@Override
-	public SoundEvent getPlayingSound()
-	{
+	public SoundEvent getPlayingSound() {
 		return SoundInit.REQUIEM_OF_SPIRIT.get();
-	}
-	
-	@Override
-	public void onSongPlayed(PlayerEntity player, World level)
-	{
-		
 	}
 }
