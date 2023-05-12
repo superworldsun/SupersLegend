@@ -1,14 +1,18 @@
 package com.superworldsun.superslegend.items.weapons;
 
+import java.util.List;
 import java.util.function.Predicate;
 
+import com.superworldsun.superslegend.blocks.TorchTowerTopLit;
 import com.superworldsun.superslegend.capability.mana.ManaHelper;
 import com.superworldsun.superslegend.entities.projectiles.magic.IceballEntity;
 import com.superworldsun.superslegend.items.custom.NonEnchantItem;
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemGroupInit;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +34,14 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nonnull;
 
 public class IceRod extends NonEnchantItem
 {
@@ -128,16 +139,16 @@ public class IceRod extends NonEnchantItem
 			
 			BlockRayTraceResult blockRayTraceResult = world.clip(new RayTraceContext(effectStart, effectEnd, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, null));
 			
-			if (blockRayTraceResult.getType() != RayTraceResult.Type.MISS)
+			if (blockRayTraceResult.getType() != RayTraceResult.Type.MISS && !world.isClientSide())
 			{
 				// if we hit block, area of effect ends at the hit location
 				effectEnd = blockRayTraceResult.getLocation();
 				// blocks effect
-				// once per second
-				if (timeInUse % 20 == 0)
+				// once between 5 - 15 Ticks at random
+				if (timeInUse % (5 + random.nextInt(10)) == 0)
 				{
 					BlockPos hitPos = blockRayTraceResult.getBlockPos();
-					
+
 					if (world.getFluidState(hitPos).is(FluidTags.WATER))
 					{
 						world.setBlock(hitPos, Blocks.ICE.defaultBlockState(), 3);
@@ -147,14 +158,17 @@ public class IceRod extends NonEnchantItem
 						world.setBlock(hitPos, Blocks.OBSIDIAN.defaultBlockState(), 3);
 						world.playSound(null, hitPos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1F, 1F);
 					}
-					else
+					//This dosent seem to extinguish the Torch tower
+					else if (world.getBlockState(hitPos).getBlock() instanceof TorchTowerTopLit)
 					{
+						world.setBlock(hitPos, BlockInit.TORCH_TOWER_TOP_UNLIT.get().defaultBlockState(), 3);
+						world.playSound(null, hitPos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1F, 1F);
+					}
+					else {
 						BlockPos snowPos = hitPos.relative(blockRayTraceResult.getDirection());
-						
-						if (Blocks.SNOW.defaultBlockState().canSurvive(world, snowPos))
-						{
-							BlockState snowBlockState = Blocks.SNOW.defaultBlockState();
-							world.setBlock(snowPos, snowBlockState, 3);
+						BlockState snowBlockState = Blocks.SNOW.defaultBlockState();
+						if (snowBlockState.canSurvive(world, snowPos) && world.getBlockState(snowPos).getMaterial().isReplaceable()) {
+							world.setBlock(snowPos, snowBlockState, 11);
 						}
 					}
 				}
@@ -179,5 +193,15 @@ public class IceRod extends NonEnchantItem
 				world.playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.SNOW_BREAK, SoundCategory.PLAYERS, 1F, 1F);
 			}
 		}
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void appendHoverText(@Nonnull ItemStack stack, World world, @Nonnull List<ITextComponent> list, @Nonnull ITooltipFlag flag)
+	{
+		super.appendHoverText(stack, world, list, flag);
+		list.add(new StringTextComponent(TextFormatting.AQUA + "Hold Right-Click to create ice"));
+		list.add(new StringTextComponent(TextFormatting.AQUA + "Sneak+Right-Click to shoot a ball of ice"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Magic on use"));
 	}
 }
