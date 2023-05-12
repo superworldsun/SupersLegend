@@ -74,7 +74,7 @@ public class LensOfTruth extends NonEnchantItem {
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Hold in Hands to reveal a hidden target"));
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Mana on use"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Magic on use"));
 	}
 
 	@Override

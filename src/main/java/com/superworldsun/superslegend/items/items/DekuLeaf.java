@@ -144,6 +144,6 @@ public class DekuLeaf extends Item
 	{
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Hold Right-Click in the air, this will slow your decent"));
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses mana when airborne"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Magic when airborne"));
 	}
 }

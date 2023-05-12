@@ -80,6 +80,6 @@ public class NayrusLove extends Item {
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.AQUA + "Grants invinciblity"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Stamina on use"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Magic on use"));
 	}
 }

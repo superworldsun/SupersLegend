@@ -25,6 +25,6 @@ public class GrateItem extends ModBlockItem
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.GRAY + "Will allow water to pass through"));
+		list.add(new StringTextComponent(TextFormatting.GRAY + "Will allow liquid to pass through"));
 	}
 }
