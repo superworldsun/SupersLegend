@@ -1,28 +1,18 @@
 package com.superworldsun.superslegend.songs.songs;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.SoundInit;
-import com.superworldsun.superslegend.songs.OcarinaSong;
+import com.superworldsun.superslegend.songs.WarpSong;
 
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
 
-public class BoleroOfFire extends OcarinaSong
-{
-	public BoleroOfFire()
-	{
-		super("dadardrd", 0xCD2012);
+public class BoleroOfFire extends WarpSong {
+	public BoleroOfFire() {
+		super("dadardrd", 0xCD2012, BlockInit.WARP_PAD_FIRE);
 	}
 
 	@Override
-	public SoundEvent getPlayingSound()
-	{
+	public SoundEvent getPlayingSound() {
 		return SoundInit.BOLERO_OF_FIRE.get();
-	}
-	
-	@Override
-	public void onSongPlayed(PlayerEntity player, World level)
-	{
-		
 	}
 }

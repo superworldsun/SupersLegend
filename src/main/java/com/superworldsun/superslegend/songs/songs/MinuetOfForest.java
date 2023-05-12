@@ -1,28 +1,18 @@
 package com.superworldsun.superslegend.songs.songs;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.SoundInit;
-import com.superworldsun.superslegend.songs.OcarinaSong;
+import com.superworldsun.superslegend.songs.WarpSong;
 
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
 
-public class MinuetOfForest extends OcarinaSong
-{
-	public MinuetOfForest()
-	{
-		super("aulrlr", 0x18893D);
+public class MinuetOfForest extends WarpSong {
+	public MinuetOfForest() {
+		super("aulrlr", 0x18893D, BlockInit.WARP_PAD_FOREST);
 	}
 
 	@Override
-	public SoundEvent getPlayingSound()
-	{
+	public SoundEvent getPlayingSound() {
 		return SoundInit.MINUET_OF_FOREST.get();
-	}
-	
-	@Override
-	public void onSongPlayed(PlayerEntity player, World level)
-	{
-		
 	}
 }

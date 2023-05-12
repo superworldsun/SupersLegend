@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
+import com.superworldsun.superslegend.capability.warppads.WarpPadsHelper;
 import com.superworldsun.superslegend.items.items.MedallionItem;
 import com.superworldsun.superslegend.registries.BlockInit;
 
@@ -18,10 +19,12 @@ import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -54,11 +57,12 @@ public class WarpPadBlock extends HorizontalBlock {
 	public void setPlacedBy(World world, BlockPos blockPos, BlockState blockState, LivingEntity livingEntity, ItemStack itemStack) {
 		for (int x = -1; x <= 1; x++) {
 			for (int z = -1; z <= 1; z++) {
-				if (x != 0 || z != 0) {
-					BlockState blockPartState = getStateForPartCoords(x, z);
-					BlockPos blockPartPos = blockPos.offset(x, 0, z);
-					world.setBlockAndUpdate(blockPartPos, blockPartState);
+				if (x == 0 && z == 0) {
+					continue;
 				}
+				BlockState blockPartState = getStateForPartCoords(x, z);
+				BlockPos blockPartPos = blockPos.offset(x, 0, z);
+				world.setBlockAndUpdate(blockPartPos, blockPartState);
 			}
 		}
 	}
@@ -66,7 +70,6 @@ public class WarpPadBlock extends HorizontalBlock {
 	@Override
 	public void destroy(IWorld world, BlockPos blockPos, BlockState blockState) {
 		blockPos = blockPos.offset(-getBlockPartX(blockState), 0, -getBlockPartZ(blockState));
-
 		for (int x = -1; x <= 1; x++) {
 			for (int z = -1; z <= 1; z++) {
 				BlockPos blockPartPos = blockPos.offset(x, 0, z);
@@ -81,22 +84,30 @@ public class WarpPadBlock extends HorizontalBlock {
 	}
 
 	@Override
-	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
-		if (blockState.getBlock() == BlockInit.WARP_PAD.get()) {
-			Item itemInHand = playerEntity.getItemInHand(hand).getItem();
-
-			if (itemInHand instanceof MedallionItem) {
-				int centerBlockOffsetX = -getBlockPartX(blockState);
-				int centerBlockOffsetZ = -getBlockPartZ(blockState);
-				BlockPos centerBlockPos = blockPos.offset(centerBlockOffsetX, 0, centerBlockOffsetZ);
-				BlockState centerBlockState = world.getBlockState(centerBlockPos);
-				MedallionItem medallionItem = (MedallionItem) itemInHand;
-				world.setBlockAndUpdate(centerBlockPos, medallionItem.transformWarpPadState(centerBlockState));
-				return ActionResultType.SUCCESS;
-			}
+	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
+		boolean isBaseWarpPad = blockState.getBlock() == BlockInit.WARP_PAD.get();
+		ItemStack itemStackInHand = player.getItemInHand(hand);
+		Item itemInHand = itemStackInHand.getItem();
+		boolean usingMedallion = itemInHand instanceof MedallionItem;
+		if (isBaseWarpPad && usingMedallion) {
+			MedallionItem medallion = (MedallionItem) itemInHand;
+			transformWarpPad(blockState, world, blockPos, medallion);
+			return ActionResultType.SUCCESS;
+		} else if (itemStackInHand.isEmpty()) {
+			player.sendMessage(new TranslationTextComponent("superslegend.message.warp_saved"), Util.NIL_UUID);
+			WarpPadsHelper.saveWarpPosition(player, this, blockPos);
+			return ActionResultType.SUCCESS;
 		}
-
 		return ActionResultType.FAIL;
+	}
+
+	protected void transformWarpPad(BlockState blockState, World world, BlockPos blockPos, MedallionItem medallionItem) {
+		int centerBlockOffsetX = -getBlockPartX(blockState);
+		int centerBlockOffsetZ = -getBlockPartZ(blockState);
+		BlockPos centerBlockPos = blockPos.offset(centerBlockOffsetX, 0, centerBlockOffsetZ);
+		BlockState centerBlockState = world.getBlockState(centerBlockPos);
+		BlockState transformedWarpPad = medallionItem.transformWarpPadState(centerBlockState);
+		world.setBlockAndUpdate(centerBlockPos, transformedWarpPad);
 	}
 
 	private BlockState getStateForPartCoords(int x, int z) {

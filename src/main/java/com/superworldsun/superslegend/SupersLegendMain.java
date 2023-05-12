@@ -3,6 +3,8 @@ package com.superworldsun.superslegend;
 import com.mojang.serialization.Codec;
 import com.superworldsun.superslegend.capability.mana.ManaCapability;
 import com.superworldsun.superslegend.capability.mana.ManaCapabilityStorage;
+import com.superworldsun.superslegend.capability.warppads.WarpPadsCapability;
+import com.superworldsun.superslegend.capability.warppads.WarpPadsCapabilityStorage;
 import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookModel;
 import com.superworldsun.superslegend.hookshotCap.capabilities.HookStorage;
@@ -99,6 +101,7 @@ public class SupersLegendMain
 	{
 		FeatureInit.Configured.registerConfiguredFeatures();
 		CapabilityManager.INSTANCE.register(ManaCapability.class, new ManaCapabilityStorage(), ManaCapability::new);
+		CapabilityManager.INSTANCE.register(WarpPadsCapability.class, new WarpPadsCapabilityStorage(), WarpPadsCapability::new);
 		CapabilityManager.INSTANCE.register(ILearnedSongs.class, new LearnedSongsStorage(), LearnedSongs::new);
 		CapabilityManager.INSTANCE.register(IWaypoints.class, new WaypointsStorage(), Waypoints::new);
 		CapabilityManager.INSTANCE.register(HookModel.class, new HookStorage(), () -> { throw new UnsupportedOperationException("No Implementation!"); });

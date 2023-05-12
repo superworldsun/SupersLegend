@@ -1,28 +1,18 @@
 package com.superworldsun.superslegend.songs.songs;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.SoundInit;
-import com.superworldsun.superslegend.songs.OcarinaSong;
+import com.superworldsun.superslegend.songs.WarpSong;
 
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
 
-public class SerenadeOfWater extends OcarinaSong
-{
-	public SerenadeOfWater()
-	{
-		super("adrrl", 0x1211BA);
+public class SerenadeOfWater extends WarpSong {
+	public SerenadeOfWater() {
+		super("adrrl", 0x1211BA, BlockInit.WARP_PAD_WATER);
 	}
 
 	@Override
-	public SoundEvent getPlayingSound()
-	{
+	public SoundEvent getPlayingSound() {
 		return SoundInit.SERENADE_OF_WATER.get();
-	}
-
-	@Override
-	public void onSongPlayed(PlayerEntity player, World level)
-	{
-		
 	}
 }
