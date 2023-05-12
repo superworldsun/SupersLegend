@@ -205,12 +205,12 @@ public class BlockInit
 	//public static final RegistryObject<Block> COOKING_POT = BLOCKS.register("cooking_pot", CookingPotBlock::new);
 	public static final RegistryObject<Block> SUN_SWITCH = BLOCKS.register("sun_switch", SunSwitchBlock::new);
 	public static final RegistryObject<Block> WARP_PAD = BLOCKS.register("warp_pad", WarpPadBlock::new);
-	public static final RegistryObject<Block> WARP_PAD_LIGHT = BLOCKS.register("warp_pad_light", WarpPadBlock::new);
-	public static final RegistryObject<Block> WARP_PAD_FOREST = BLOCKS.register("warp_pad_forest", WarpPadBlock::new);
-	public static final RegistryObject<Block> WARP_PAD_FIRE = BLOCKS.register("warp_pad_fire", WarpPadBlock::new);
-	public static final RegistryObject<Block> WARP_PAD_WATER = BLOCKS.register("warp_pad_water", WarpPadBlock::new);
-	public static final RegistryObject<Block> WARP_PAD_SPIRIT = BLOCKS.register("warp_pad_spirit", WarpPadBlock::new);
-	public static final RegistryObject<Block> WARP_PAD_SHADOW = BLOCKS.register("warp_pad_shadow", WarpPadBlock::new);
+	public static final RegistryObject<WarpPadBlock> WARP_PAD_LIGHT = BLOCKS.register("warp_pad_light", WarpPadBlock::new);
+	public static final RegistryObject<WarpPadBlock> WARP_PAD_FOREST = BLOCKS.register("warp_pad_forest", WarpPadBlock::new);
+	public static final RegistryObject<WarpPadBlock> WARP_PAD_FIRE = BLOCKS.register("warp_pad_fire", WarpPadBlock::new);
+	public static final RegistryObject<WarpPadBlock> WARP_PAD_WATER = BLOCKS.register("warp_pad_water", WarpPadBlock::new);
+	public static final RegistryObject<WarpPadBlock> WARP_PAD_SPIRIT = BLOCKS.register("warp_pad_spirit", WarpPadBlock::new);
+	public static final RegistryObject<WarpPadBlock> WARP_PAD_SHADOW = BLOCKS.register("warp_pad_shadow", WarpPadBlock::new);
 
 	//Crops
 	public static final RegistryObject<Block> DEKU_FLOWER_CROP = BLOCKS.register("deku_flower_crop",
