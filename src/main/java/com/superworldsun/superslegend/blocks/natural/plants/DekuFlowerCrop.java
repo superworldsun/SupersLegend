@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.blocks.natural.plants;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.block.*;
 import net.minecraft.util.IItemProvider;
@@ -8,6 +9,10 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+
+import java.util.Random;
 
 public class DekuFlowerCrop extends CropsBlock {
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
@@ -37,6 +42,16 @@ public class DekuFlowerCrop extends CropsBlock {
         return SHAPE_BY_AGE[p_220053_1_.getValue(this.getAgeProperty())];
     }
 
+
+    //TODO dosent seem to work at all. I want to make it so when the crop grows to its max stage the crop turns into a deku flower block
+    /*public void tick(BlockState state, World world, BlockPos pos, Random random) {
+        super.tick(state, (ServerWorld) world, pos, random);
+        if (state.getValue(AGE) == 7) {
+            BlockState flowerState = BlockInit.DEKU_FLOWER_BLOCK.get().defaultBlockState();
+            world.setBlock(pos, flowerState,3);
+        }
+    }*/
+    
     @Override
     public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos)
     {

@@ -3,6 +3,7 @@
   "textures": {
     "1": "superslegend:item/deku_leaf"
   },
+  "gui_light": "front",
   "elements": [
     {
       "from": [8.05, 0, 7.46],

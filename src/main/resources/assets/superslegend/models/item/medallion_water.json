@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures": 
 	{
-        "layer0": "superslegend:item/medalion_water"
+        "layer0": "superslegend:item/medallion_water"
     }
 }

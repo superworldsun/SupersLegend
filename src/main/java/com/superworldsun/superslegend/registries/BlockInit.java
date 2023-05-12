@@ -49,15 +49,15 @@ public class BlockInit
 	public static final RegistryObject<Block> DUNGEON_DOOR = BLOCKS.register("dungeon_door", () ->
 			new DungeonDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> LOCKED_DUNGEON_DOOR = BLOCKS.register("locked_dungeon_door", () ->
-			new LockedDungeonDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
+			new LockedDungeonDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(Float.MAX_VALUE,Float.MAX_VALUE).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> BOSS_DOOR = BLOCKS.register("boss_door", () ->
 			new DungeonDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> LOCKED_BOSS_DOOR = BLOCKS.register("locked_boss_door", () ->
-			new LockedBossDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
+			new LockedBossDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(Float.MAX_VALUE,Float.MAX_VALUE).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> LOCKED_WOODEN_DOOR = BLOCKS.register("locked_wooden_door", () ->
-			new LockedDungeonDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
+			new LockedWoodenDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(Float.MAX_VALUE,Float.MAX_VALUE).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> WOODEN_BOSS_DOOR = BLOCKS.register("wooden_boss_door", () ->
-			new LockedBossDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(5.0f,99.0f).sound(SoundType.METAL).noOcclusion()));
+			new LockedWoodenBossDoor(AbstractBlock.Properties.of(Material.HEAVY_METAL).requiresCorrectToolForDrops().harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(Float.MAX_VALUE,Float.MAX_VALUE).sound(SoundType.METAL).noOcclusion()));
 
 	public static final RegistryObject<Block> BUSH_BLOCK = BLOCKS.register("bush_block", () ->
 			new BushBlock(AbstractBlock.Properties.of(Material.PLANT).harvestTool(ToolType.AXE).strength(0.1f,0.1f).sound(SoundType.CROP)));
@@ -80,13 +80,13 @@ public class BlockInit
 	public static final RegistryObject<Block> GRATE_BLOCK = BLOCKS.register("grate_block", () ->
 			new GrateBlock(AbstractBlock.Properties.of(Material.METAL).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(6.0f,6.0f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 	public static final RegistryObject<Block> CRATE_BLOCK = BLOCKS.register("crate_block", () ->
-			new CrateBlock(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).strength(6.0f,6.0f).sound(SoundType.WOOD)));
+			new CrateBlock(AbstractBlock.Properties.of(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).strength(4.0f,3.0f).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> PUSH_STONE = BLOCKS.register("push_stone", () ->
-			new PushStoneBlock(AbstractBlock.Properties.of(Material.STONE).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(8.0f,8.0f).sound(SoundType.STONE)));
+			new PushStoneBlock(AbstractBlock.Properties.of(Material.STONE).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(6.0f,6.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 		public static final RegistryObject<Block> SILVER_PUSH_STONE = BLOCKS.register("silver_push_stone", () ->
-			new SilverPushStoneBlock(AbstractBlock.Properties.of(Material.STONE).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(12.0f,12.0f).sound(SoundType.STONE)));
+			new SilverPushStoneBlock(AbstractBlock.Properties.of(Material.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE).strength(8.0f,25.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 	public static final RegistryObject<Block> BLACK_PUSH_STONE = BLOCKS.register("black_push_stone", () ->
-			new BlackPushStoneBlock(AbstractBlock.Properties.of(Material.STONE).harvestLevel(0).harvestTool(ToolType.PICKAXE).strength(20.0f,20.0f).sound(SoundType.STONE)));
+			new BlackPushStoneBlock(AbstractBlock.Properties.of(Material.STONE).harvestLevel(3).harvestTool(ToolType.PICKAXE).strength(60.0f,1300.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 	public static final RegistryObject<Block> GRASS_PATCH_BLOCK = BLOCKS.register("grass_patch_block", () ->
 			new GrassPatch(AbstractBlock.Properties.of(Material.PLANT).harvestLevel(0).strength(0.1f,0.1f).sound(SoundType.CROP)));
 	public static final RegistryObject<Block> ODD_MUSHROOM = BLOCKS.register("odd_mushroom", () ->
@@ -213,6 +213,7 @@ public class BlockInit
 	public static final RegistryObject<WarpPadBlock> WARP_PAD_SHADOW = BLOCKS.register("warp_pad_shadow", WarpPadBlock::new);
 
 	//Crops
+	//TODO The growth stages of 2-6 have broken models where the models look fine but the textures are scrambled
 	public static final RegistryObject<Block> DEKU_FLOWER_CROP = BLOCKS.register("deku_flower_crop",
 				() -> new DekuFlowerCrop(AbstractBlock.Properties.copy(Blocks.WHEAT).randomTicks().instabreak()));
 
