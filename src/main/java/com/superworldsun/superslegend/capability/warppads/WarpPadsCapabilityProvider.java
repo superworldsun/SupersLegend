@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.capability.mana.ManaCapability;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -16,6 +17,7 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -35,6 +37,12 @@ public class WarpPadsCapabilityProvider implements ICapabilitySerializable<Compo
 		event.addCapability(CAPABILITY_ID, new WarpPadsCapabilityProvider());
 	}
 
+	@SubscribeEvent
+	public static void persistThroughDeath(PlayerEvent.Clone event) {
+		INBT originalNBT = CAPABILITY.writeNBT(getWarpPadsCapability(event.getOriginal()), null);
+		CAPABILITY.readNBT(getWarpPadsCapability(event.getPlayer()), null, originalNBT);
+	}
+
 	@Override
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
 		if (capability == CAPABILITY) {
@@ -51,5 +59,9 @@ public class WarpPadsCapabilityProvider implements ICapabilitySerializable<Compo
 	@Override
 	public void deserializeNBT(CompoundNBT nbt) {
 		CAPABILITY.readNBT(capabilityInstance, null, nbt);
+	}
+
+	private static WarpPadsCapability getWarpPadsCapability(PlayerEntity player) {
+		return player.getCapability(WarpPadsCapabilityProvider.CAPABILITY).orElse(new WarpPadsCapability());
 	}
 }
