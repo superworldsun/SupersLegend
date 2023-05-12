@@ -93,7 +93,8 @@ public class WarpPadBlock extends HorizontalBlock {
 			transformWarpPad(blockState, world, blockPos, itemInHand);
 			return ActionResultType.SUCCESS;
 		} else if (!isBaseWarpPad && usingEmptyHand) {
-			WarpPadsHelper.saveWarpPosition(player, this, blockPos);
+			BlockPos centerPos = getCenterBlockPos(blockState, blockPos);
+			WarpPadsHelper.saveWarpPosition(player, this, centerPos);
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.FAIL;

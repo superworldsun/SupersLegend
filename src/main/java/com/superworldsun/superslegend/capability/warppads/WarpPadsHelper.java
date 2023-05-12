@@ -20,7 +20,14 @@ public class WarpPadsHelper {
 	}
 
 	public static void saveWarpPosition(PlayerEntity player, WarpPadBlock warpPad, BlockPos pos) {
-		getCapability(player).ifPresent(capability -> capability.saveWarpPosition(warpPad, pos));
-		player.sendMessage(new TranslationTextComponent("superslegend.message.warp_saved"), Util.NIL_UUID);
+		if (player.level.isClientSide) {
+			return;
+		}
+		getCapability(player).ifPresent(capability -> {
+			Optional<BlockPos> previousPos = capability.saveWarpPosition(warpPad, pos);
+			if (previousPos.isPresent() && !previousPos.get().equals(pos)) {
+				player.sendMessage(new TranslationTextComponent("superslegend.message.warp_saved"), Util.NIL_UUID);
+			}
+		});
 	}
 }
