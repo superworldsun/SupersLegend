@@ -19,7 +19,7 @@ public class SyncManaMessage {
 	public CompoundNBT nbt;
 
 	public SyncManaMessage(PlayerEntity player) {
-		nbt = (CompoundNBT) ManaCapabilityProvider.MANA_CAPABILITY.writeNBT(getManaCapability(player), null);
+		nbt = (CompoundNBT) ManaCapabilityProvider.CAPABILITY.writeNBT(getManaCapability(player), null);
 	}
 
 	private SyncManaMessage() {
@@ -44,10 +44,10 @@ public class SyncManaMessage {
 	@OnlyIn(Dist.CLIENT)
 	public static void handlePacket(SyncManaMessage message, Context ctx) {
 		Minecraft client = Minecraft.getInstance();
-		ManaCapabilityProvider.MANA_CAPABILITY.readNBT(getManaCapability(client.player), null, message.nbt);
+		ManaCapabilityProvider.CAPABILITY.readNBT(getManaCapability(client.player), null, message.nbt);
 	}
 
 	private static ManaCapability getManaCapability(PlayerEntity player) {
-		return player.getCapability(ManaCapabilityProvider.MANA_CAPABILITY).orElse(new ManaCapability());
+		return player.getCapability(ManaCapabilityProvider.CAPABILITY).orElse(new ManaCapability());
 	}
 }
