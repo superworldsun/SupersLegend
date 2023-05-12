@@ -7,18 +7,15 @@ import net.minecraft.entity.LivingEntity;
 
 public class BarbarianChestModel extends BipedModel<LivingEntity>
 {
-	private final ModelRenderer body;
-	private final ModelRenderer leftArm;
 	private final ModelRenderer LeftArm_r1;
 	private final ModelRenderer LeftArm_r2;
-	private final ModelRenderer rightArm;
 	private final ModelRenderer RightArm_r1;
 	private final ModelRenderer RightArm_r2;
 	private final ModelRenderer RightArm_r3;
 	private final ModelRenderer RightArm_r4;
 	private final ModelRenderer RightArm_r5;
 	private final ModelRenderer RightArm_r6;
-	//TODO	Chest & Arms isnt locked to the players body
+
 	public BarbarianChestModel()
 	{
 		super(0.0F);
