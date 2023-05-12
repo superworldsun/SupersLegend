@@ -73,10 +73,32 @@ public class BombArrowEntity extends AbstractArrowEntity
 
 		if (!level.isClientSide)
 		{
+			if (this.level.dimension().location().equals(World.NETHER.location()))
+			{
+				if(SupersLegendConfig.getInstance().explosivegriefing())
+				{
+					this.level.explode(this, this.getX(), this.getY(), this.getZ(), 3.0f, Mode.BREAK);
+					remove();
+				}
+				else
+				{
+					BlockPos explosionPos = this.blockPosition();
+					this.level.explode(this, this.getX(), this.getY(), this.getZ(), 3.0f, Explosion.Mode.NONE);
+
+					int radius = 3;
+					for (BlockPos pos : BlockPos.betweenClosed(explosionPos.offset(-radius, -radius, -radius), explosionPos.offset(radius, radius, radius))) {
+						Block block = this.level.getBlockState(pos).getBlock();
+						if (block == BlockInit.CRACKED_BOMB_WALL.get()) {
+							this.level.destroyBlock(pos, false);
+						}
+					}
+				}
+			}
 			if (inGround)
 			{
 				if (!isInWater())
-					if(SupersLegendConfig.getInstance().explosivegriefing()){
+					if(SupersLegendConfig.getInstance().explosivegriefing())
+					{
 						this.level.explode(this, this.getX(), this.getY(), this.getZ(), 3.0f, Mode.BREAK);
 						remove();
 					}
