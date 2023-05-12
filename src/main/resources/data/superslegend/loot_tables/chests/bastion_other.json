@@ -10,7 +10,7 @@
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 33,
+               "weight": 30,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -25,7 +25,7 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 25,
+               "weight": 20,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -67,6 +67,21 @@
                   }
                ],
                "name": "superslegend:bolero_of_fire_sheet"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 8,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 1.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:gorons_bracelet"
             },
             {
                "type":"minecraft:item",

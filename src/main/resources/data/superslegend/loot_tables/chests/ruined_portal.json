@@ -21,7 +21,7 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 50,
+               "weight": 45,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -48,6 +48,11 @@
                "type":"minecraft:item",
                "weight":8,
                "name":"superslegend:inverted_song_of_time_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":5,
+               "name":"superslegend:gorons_bracelet"
             }
          ]
       }

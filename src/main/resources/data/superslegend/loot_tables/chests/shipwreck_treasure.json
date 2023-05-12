@@ -20,7 +20,7 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 20,
+               "weight": 19,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -37,6 +37,11 @@
                "type":"minecraft:item",
                "weight":7,
                "name":"superslegend:triforce_courage_shard"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":1,
+               "name":"superslegend:silver_gauntlets"
             }
          ]
       }

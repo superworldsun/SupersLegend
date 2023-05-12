@@ -35,7 +35,7 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 43,
+               "weight": 38,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -47,6 +47,11 @@
                   }
                ],
                "name": "superslegend:red_rupee"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":5,
+               "name":"superslegend:golden_gauntlets"
             },
             {
                "type":"minecraft:item",

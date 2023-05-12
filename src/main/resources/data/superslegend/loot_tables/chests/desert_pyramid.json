@@ -10,7 +10,7 @@
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 50,
+               "weight": 45,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -25,7 +25,7 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 25,
+               "weight": 24,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -40,7 +40,7 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 10,
+               "weight": 9,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -52,6 +52,21 @@
                   }
                ],
                "name": "superslegend:elegy_of_emptyness_sheet"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 7,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 1.0,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:silver_gauntlets"
             },
             {
                "type": "minecraft:item",

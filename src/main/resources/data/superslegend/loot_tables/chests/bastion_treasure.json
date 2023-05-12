@@ -10,7 +10,21 @@
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 35,
+               "weight": 50,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1.0,
+                        "max": 3.0
+                     }
+                  }
+               ],
+               "name": "superslegend:red_rupee"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 30,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -25,7 +39,7 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 9,
+               "weight": 10,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -36,7 +50,7 @@
                      }
                   }
                ],
-               "name": "superslegend:triforce_power_shard"
+               "name": "superslegend:gorons_bracelet"
             },
             {
                "type": "minecraft:item",
@@ -51,21 +65,22 @@
                      }
                   }
                ],
-               "name": "superslegend:heart_piece"
+               "name": "superslegend:triforce_power_shard"
             },
             {
                "type": "minecraft:item",
-               "weight": 55,
+               "weight": 9,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
                         "min": 1.0,
-                        "max": 3.0
+                        "max": 1.0,
+                        "type": "minecraft:uniform"
                      }
                   }
                ],
-               "name": "superslegend:red_rupee"
+               "name": "superslegend:heart_piece"
             }
          ]
       }
