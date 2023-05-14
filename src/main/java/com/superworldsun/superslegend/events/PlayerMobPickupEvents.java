@@ -7,14 +7,16 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class PlayerMobPickupEvents {
 	// Makes it so when you have a mob held you cant attack it or anything else
 	@SubscribeEvent
@@ -52,6 +54,7 @@ public class PlayerMobPickupEvents {
 	}
 
 	// removes players first person hand when holding mob
+	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public static void onRenderHand(RenderHandEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();

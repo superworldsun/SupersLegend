@@ -16,7 +16,10 @@ public class MedallionItem extends Item {
 	}
 
 	public BlockState transformWarpPadState(BlockState blockState) {
-		BlockState defaultBlockState = warpPadBlockObject.get().defaultBlockState();
-		return defaultBlockState.setValue(WarpPadBlock.FACING, blockState.getValue(WarpPadBlock.FACING));
+		BlockState transformedState = warpPadBlockObject.get().defaultBlockState();
+		transformedState = transformedState.setValue(WarpPadBlock.FACING, blockState.getValue(WarpPadBlock.FACING));
+		transformedState = transformedState.setValue(WarpPadBlock.BLOCK_PART_X, blockState.getValue(WarpPadBlock.BLOCK_PART_X));
+		transformedState = transformedState.setValue(WarpPadBlock.BLOCK_PART_Z, blockState.getValue(WarpPadBlock.BLOCK_PART_Z));
+		return transformedState;
 	}
 }

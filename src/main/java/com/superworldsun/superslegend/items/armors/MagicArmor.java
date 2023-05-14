@@ -27,9 +27,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
+@EventBusSubscriber(bus = Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class MagicArmor extends NonEnchantArmor
 {
 	private static final Map<EquipmentSlotType, BipedModel<?>> MODELS_CACHE = new HashMap<>();
@@ -51,6 +52,7 @@ public class MagicArmor extends NonEnchantArmor
 	}
 
 	@SuppressWarnings("unchecked")
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public <M extends BipedModel<?>> M getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, M _default)
 	{
