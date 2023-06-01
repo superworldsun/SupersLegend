@@ -61,7 +61,9 @@ public class WarpPadBlock extends HorizontalBlock {
 			int blockPartX = pos.getX() - blockPos.getX();
 			int blockPartZ = pos.getZ() - blockPos.getZ();
 			BlockState blockPartState = getStateForPartCoords(blockPartX, blockPartZ);
-			world.setBlockAndUpdate(pos, blockPartState);
+			if (blockPartX != 0 || blockPartZ != 0) {
+				world.setBlockAndUpdate(pos, blockPartState);
+			}
 		});
 	}
 
