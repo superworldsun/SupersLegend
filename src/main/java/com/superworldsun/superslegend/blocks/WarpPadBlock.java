@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.blocks;
 import com.superworldsun.superslegend.capability.warppads.WarpPadsHelper;
 import com.superworldsun.superslegend.items.items.MedallionItem;
 import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.warppads.WarpPadsServerData;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -56,17 +57,22 @@ public class WarpPadBlock extends HorizontalBlock {
 		if (!isCenterBlock(blockState)) {
 			return;
 		}
+		WarpPadsServerData.instance().placeWarpPad(blockPos, this);
 		Iterable<BlockPos> occupiedPositions = getOccupiedPositions(blockPos, blockState);
 		occupiedPositions.forEach(pos -> {
 			int blockPartX = pos.getX() - blockPos.getX();
 			int blockPartZ = pos.getZ() - blockPos.getZ();
 			BlockState blockPartState = getStateForPartCoords(blockPartX, blockPartZ);
-			world.setBlockAndUpdate(pos, blockPartState);
+			if (blockPartX != 0 || blockPartZ != 0) {
+				world.setBlockAndUpdate(pos, blockPartState);
+			}
 		});
 	}
 
 	@Override
 	public void destroy(IWorld world, BlockPos blockPos, BlockState blockState) {
+		BlockPos centerPos = getCenterBlockPos(blockState, blockPos);
+		WarpPadsServerData.instance().removeWarpPad(centerPos);
 		Iterable<BlockPos> occupiedPositions = getOccupiedPositions(blockPos, blockState);
 		occupiedPositions.forEach(pos -> world.removeBlock(pos, false));
 	}
