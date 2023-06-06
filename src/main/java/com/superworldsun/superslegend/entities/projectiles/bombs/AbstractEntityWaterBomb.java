@@ -173,9 +173,11 @@ public abstract class AbstractEntityWaterBomb extends ProjectileItemEntity {
             for (BlockPos pos : BlockPos.betweenClosed(explosionPos.offset(-radius, -radius, -radius), explosionPos.offset(radius, radius, radius))) {
                 Block block = this.level.getBlockState(pos).getBlock();
                 double distance = new Vector3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5).distanceTo(new Vector3d(explosionPos.getX() + 0.5, explosionPos.getY() + 0.5, explosionPos.getZ() + 0.5));
-                if (distance <= radius) {
-                    this.level.destroyBlock(pos, false);
-                }
+				// closer to center - higher the chance
+				double destructionChance = radius / 2F / distance;
+				if (distance <= radius && random.nextFloat() < destructionChance) {
+					this.level.destroyBlock(pos, false);
+				}
             }
         }
         else
