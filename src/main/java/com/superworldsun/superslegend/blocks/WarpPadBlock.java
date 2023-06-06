@@ -108,13 +108,15 @@ public class WarpPadBlock extends HorizontalBlock {
 
 	protected void transformWarpPad(BlockState blockState, World world, BlockPos blockPos, Item itemInHand) {
 		MedallionItem medallion = (MedallionItem) itemInHand;
-		BlockPos centerPos = getCenterBlockPos(blockState, blockPos);
-		Iterable<BlockPos> occupiedPositions = BlockPos.betweenClosed(centerPos.offset(-1, 0, -1), centerPos.offset(1, 0, 1));
+		Iterable<BlockPos> occupiedPositions = getOccupiedPositions(blockPos, blockState);
 		occupiedPositions.forEach(pos -> {
 			BlockState blockPartState = world.getBlockState(pos);
 			BlockState transformedBlockState = medallion.transformWarpPadState(blockPartState);
 			world.setBlockAndUpdate(pos, transformedBlockState);
 		});
+		WarpPadBlock transformedWarpPad = (WarpPadBlock) medallion.transformWarpPadState(blockState).getBlock();
+		BlockPos centerPos = getCenterBlockPos(blockState, blockPos);
+		WarpPadsServerData.instance().placeWarpPad(centerPos, transformedWarpPad);
 	}
 
 	protected BlockPos getCenterBlockPos(BlockState blockState, BlockPos blockPos) {

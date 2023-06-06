@@ -34,7 +34,7 @@ public abstract class WarpSong extends OcarinaSong {
 			return;
 		}
 		WarpPadBlock serverWarpPad = WarpPadsServerData.instance().getWarpPad(warpPos.get());
-		if (serverWarpPad == null) {
+		if (serverWarpPad != warpPad) {
 			player.sendMessage(new TranslationTextComponent("superslegend.message.warp_destroyed"), Util.NIL_UUID);
 			return;
 		}
