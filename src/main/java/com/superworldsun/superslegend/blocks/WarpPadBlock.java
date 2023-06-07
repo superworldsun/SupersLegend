@@ -27,13 +27,14 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 public class WarpPadBlock extends HorizontalBlock {
 	public static final IntegerProperty BLOCK_PART_X = IntegerProperty.create("model_part_x", 0, 2);
 	public static final IntegerProperty BLOCK_PART_Z = IntegerProperty.create("model_part_z", 0, 2);
 
 	public WarpPadBlock() {
-		super(Properties.of(Material.STONE).noOcclusion());
+		super(Properties.of(Material.STONE).strength(4f,4f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1).noOcclusion());
 		registerDefaultState(getStateForPartCoords(0, 0).setValue(FACING, Direction.NORTH));
 	}
 
