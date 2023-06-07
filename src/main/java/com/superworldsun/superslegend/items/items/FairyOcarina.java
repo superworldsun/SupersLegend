@@ -30,11 +30,7 @@ public class FairyOcarina extends Item
 
 	//TODO Restrict the songs the fairy ocarina can play and have effects so not identical to Ocarina of Time
 
-	//TODO When the Ocarina Gui is open the player can only play 8 notes and must cancel the gui to play any more.
-	// Have it so the first note is pushed out and you can keep adding to the notes
-
-	//TODO when you play songs, you have to play perfectly. Make it so that even if you dont play the song on the first
-	// note you can still have the song played as long as the right notes are eventually played
+	//TODO When the player plays any notes from the ocarina, make it so other players can hear the notes
 	
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)

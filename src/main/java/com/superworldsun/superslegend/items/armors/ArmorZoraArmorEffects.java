@@ -60,8 +60,6 @@ public class ArmorZoraArmorEffects extends NonEnchantArmor
                 	if(player.isInWater()) 
                 	{
                 		player.addEffect(new EffectInstance(Effect.byId(13), 10, 0, false, false, false));
-                		//Todo add potion back
-                		//player.addEffect(new EffectInstance(PotionList.zoras_grace_effect, 10, 0, false, false, false));
                 	}
                 }
         }

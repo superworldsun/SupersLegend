@@ -28,11 +28,7 @@ public class OcarinaOfTime extends Item
 		super(properties);
 	}
 
-	//TODO When the Ocarina Gui is open the player can only play 8 notes and must cancel the gui to play any more.
-	// Have it so if the list of notes is full and a new one is made it will start a new. Or if no note is played for a couple seconds
-
-	//TODO when you play songs, you have to play perfectly. Make it so that even if you dont play the song on the first
-	// note you can still have the song played as long as the right notes are eventually played
+	//TODO When the player plays any notes from the ocarina, make it so other players can hear the notes
 	
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)

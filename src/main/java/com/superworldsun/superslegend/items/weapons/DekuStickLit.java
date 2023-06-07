@@ -34,7 +34,7 @@ public class DekuStickLit extends NonEnchantItem
 
 	//TODO Find new sound for when item breaks
 
-	//TODO if posible to have it so it still breaks when on ground, chest, or not in hand
+	//TODO if possible to have it so it still breaks when on ground, chest, or not in hand
 
 	//TODO At some point make a block or method that makes it so when cobwebs are on fire,
 	// the fire will spread to nearby connecting cobwebs and will spread the burning

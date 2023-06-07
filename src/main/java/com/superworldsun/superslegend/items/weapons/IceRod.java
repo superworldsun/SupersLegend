@@ -50,9 +50,6 @@ public class IceRod extends NonEnchantItem
 		super(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES));
 	}
 
-	//TODO Always creates a snow block where looked at as soon as a right click is made and is a bit spammy,
-	// should be more random for when snow is created and should be held longer to make a fire
-
 	//TODO Ice should extinguish fire easily with held right click
 
 	//TODO Change the Ice ball explosion sound
