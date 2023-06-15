@@ -176,7 +176,7 @@ public abstract class AbstractEntityWaterBomb extends ProjectileItemEntity {
 				// closer to center - higher the chance
 				double destructionChance = radius / 2F / distance;
 				if (distance <= radius && random.nextFloat() < destructionChance) {
-					this.level.destroyBlock(pos, false);
+					this.level.destroyBlock(pos, true);
 				}
             }
         }
@@ -186,7 +186,7 @@ public abstract class AbstractEntityWaterBomb extends ProjectileItemEntity {
             for (BlockPos pos : BlockPos.betweenClosed(explosionPos.offset(-radius, -radius, -radius), explosionPos.offset(radius, radius, radius))) {
                 Block block = this.level.getBlockState(pos).getBlock();
                 if (block == BlockInit.CRACKED_BOMB_WALL.get()) {
-                    this.level.destroyBlock(pos, false);
+                    this.level.destroyBlock(pos, true);
                 }
             }
         }
