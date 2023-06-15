@@ -25,20 +25,18 @@ public abstract class WarpSong extends OcarinaSong {
 
 	@Override
 	public void onSongPlayed(PlayerEntity player, World level) {
-		if (level.isClientSide) {
-			return;
-		}
+		if (level.isClientSide) return;
 		Optional<BlockPos> warpPos = WarpPadsHelper.getWarpPosition(player, warpPad);
 		if (!warpPos.isPresent()) {
 			player.sendMessage(new TranslationTextComponent("superslegend.message.warp_not_found"), Util.NIL_UUID);
 			return;
 		}
-		WarpPadBlock serverWarpPad = WarpPadsServerData.instance().getWarpPad(warpPos.get());
+		MinecraftServer server = level.getServer();
+		WarpPadBlock serverWarpPad = WarpPadsServerData.instance(server).getWarpPad(warpPos.get());
 		if (serverWarpPad != warpPad) {
 			player.sendMessage(new TranslationTextComponent("superslegend.message.warp_destroyed"), Util.NIL_UUID);
 			return;
 		}
-		MinecraftServer server = level.getServer();
 		String playerName = player.getName().getString();
 		String teleportaionCommand = "tp " + playerName + " " + warpPos.get().getX() + " " + warpPos.get().getY() + " " + warpPos.get().getZ();
 		new Commands(Commands.EnvironmentType.ALL).performCommand(server.createCommandSourceStack(), teleportaionCommand);
