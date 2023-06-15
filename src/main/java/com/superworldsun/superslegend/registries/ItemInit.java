@@ -769,11 +769,10 @@ public class ItemInit
 	//Recommended way to calculate fair hunger/saturation values dynamically based on ingredients
 	//Take the minimum and maximum hunger/sat for each possible food category in a recipe
 	//(for example, meat skewers...so just meat, so this makes it easy for this example)
-	//For any kind of vanilla meat, cooked or not, the min hunger/saturation is 2 and 0.6, max is 8 and 6.4
+	//For any kind of vanilla meat, cooked or not, the min hunger/saturation is 2 and 0.6, max is 8 andtter how min/max ingredients is used 6.4
 	//Add lowest/highest hunger and saturation together then divide by two to get the average
 	//I.e, hunger is...(2+8)/2=5 and saturation is...(6.4+0.6)/2=3.5 (fyi, hunger is a whole number, so round up if needed!)
-	//multiply results x2.5, giving us a good fair-average to make possible-hunger values seem fair no matter how min/max ingredients is used
-
+	//multiply results x2.5, giving us a good fair-average to make possible-hunger values seem fair no ma
 	/*public static final RegistryObject<Item> GOAT_BUTTER = ITEMS.register("goat_butter",
 			() -> new Item(new Item.Properties().stacksTo(64).tab(SupersLegendMain.RESOURCES)));
 

@@ -55,7 +55,7 @@ public class WaterBombItem extends NonEnchantItem {
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.BLUE + "Overpower your enemies with an explosive blast"));
+		list.add(new StringTextComponent(TextFormatting.BLUE + "Use this on submerged blocks to destroy them"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-Click to throw"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Sneak+Right-Click to Drop Bomb"));
 	}

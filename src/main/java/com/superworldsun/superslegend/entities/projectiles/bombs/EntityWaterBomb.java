@@ -16,7 +16,6 @@ public class EntityWaterBomb extends AbstractEntityWaterBomb {
     private static final int EXPLOSION_POWER = 4;
     private static final double BOUNCE_DAMPENING_FACTOR = 0.05;
 
-    //TODO Water bomb currently makes explosions in perfect cuts and is always the same when explode
     public EntityWaterBomb(EntityType<EntityWaterBomb> type, World world) {
         super(type, world, SECONDS_TO_EXPLODE, SECONDS_TO_FLASH_RAPIDLY, EXPLOSION_POWER, BOUNCE_DAMPENING_FACTOR);
     }
