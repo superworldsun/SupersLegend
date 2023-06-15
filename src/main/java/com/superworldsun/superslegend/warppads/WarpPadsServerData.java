@@ -7,10 +7,10 @@ import com.superworldsun.superslegend.blocks.WarpPadBlock;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.storage.WorldSavedData;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class WarpPadsServerData extends WorldSavedData {
@@ -74,7 +74,7 @@ public class WarpPadsServerData extends WorldSavedData {
 		setDirty();
 	}
 
-	public static WarpPadsServerData instance() {
-		return ServerLifecycleHooks.getCurrentServer().overworld().getDataStorage().computeIfAbsent(WarpPadsServerData::new, DATA_ID);
+	public static WarpPadsServerData instance(MinecraftServer server) {
+		return server.overworld().getDataStorage().computeIfAbsent(WarpPadsServerData::new, DATA_ID);
 	}
 }

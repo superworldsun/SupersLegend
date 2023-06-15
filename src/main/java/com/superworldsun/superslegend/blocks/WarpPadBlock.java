@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.util.ActionResultType;
@@ -27,6 +28,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class WarpPadBlock extends HorizontalBlock {
 	public static final IntegerProperty BLOCK_PART_X = IntegerProperty.create("model_part_x", 0, 2);
@@ -54,10 +56,10 @@ public class WarpPadBlock extends HorizontalBlock {
 
 	@Override
 	public void setPlacedBy(World world, BlockPos blockPos, BlockState blockState, LivingEntity livingEntity, ItemStack itemStack) {
-		if (!isCenterBlock(blockState)) {
-			return;
-		}
-		WarpPadsServerData.instance().placeWarpPad(blockPos, this);
+		if (world.isClientSide) return;
+		if (!isCenterBlock(blockState)) return;
+		MinecraftServer server = world.getServer();
+		WarpPadsServerData.instance(server).placeWarpPad(blockPos, this);
 		Iterable<BlockPos> occupiedPositions = getOccupiedPositions(blockPos, blockState);
 		occupiedPositions.forEach(pos -> {
 			int blockPartX = pos.getX() - blockPos.getX();
@@ -71,8 +73,9 @@ public class WarpPadBlock extends HorizontalBlock {
 
 	@Override
 	public void destroy(IWorld world, BlockPos blockPos, BlockState blockState) {
+		if (world.isClientSide()) return;
 		BlockPos centerPos = getCenterBlockPos(blockState, blockPos);
-		WarpPadsServerData.instance().removeWarpPad(centerPos);
+		WarpPadsServerData.instance(((World) world).getServer()).removeWarpPad(centerPos);
 		Iterable<BlockPos> occupiedPositions = getOccupiedPositions(blockPos, blockState);
 		occupiedPositions.forEach(pos -> world.removeBlock(pos, false));
 	}
@@ -96,9 +99,11 @@ public class WarpPadBlock extends HorizontalBlock {
 		boolean usingMedallion = itemInHand instanceof MedallionItem;
 		boolean usingEmptyHand = itemStackInHand.isEmpty();
 		if (isBaseWarpPad && usingMedallion) {
+			if (world.isClientSide) return ActionResultType.SUCCESS;
 			transformWarpPad(blockState, world, blockPos, itemInHand);
 			return ActionResultType.SUCCESS;
 		} else if (!isBaseWarpPad && usingEmptyHand) {
+			if (world.isClientSide) return ActionResultType.SUCCESS;
 			BlockPos centerPos = getCenterBlockPos(blockState, blockPos);
 			WarpPadsHelper.saveWarpPosition(player, this, centerPos);
 			return ActionResultType.SUCCESS;
@@ -116,7 +121,7 @@ public class WarpPadBlock extends HorizontalBlock {
 		});
 		WarpPadBlock transformedWarpPad = (WarpPadBlock) medallion.transformWarpPadState(blockState).getBlock();
 		BlockPos centerPos = getCenterBlockPos(blockState, blockPos);
-		WarpPadsServerData.instance().placeWarpPad(centerPos, transformedWarpPad);
+		WarpPadsServerData.instance(ServerLifecycleHooks.getCurrentServer()).placeWarpPad(centerPos, transformedWarpPad);
 	}
 
 	protected BlockPos getCenterBlockPos(BlockState blockState, BlockPos blockPos) {
