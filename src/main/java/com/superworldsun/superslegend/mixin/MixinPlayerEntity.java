@@ -1,11 +1,8 @@
 package com.superworldsun.superslegend.mixin;
 
-import java.util.Map;
-
 import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -44,16 +41,15 @@ import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(PlayerEntity.class)
 public abstract class MixinPlayerEntity extends LivingEntity implements IResizableEntity, IHoveringEntity, IJumpingEntity, ILightReceiver, ILightEmitterContainer {
+	public @Shadow @Final PlayerAbilities abilities;
 	private float targetScale = 1.0F;
 	private float scale = 1.0F;
 	private float targetRenderScale = 1.0F;
 	private float renderScale = 1.0F;
 	private float prevRenderScale = 1.0F;
-
 	private int hoverTime;
 	private int hoverHeight;
 	private boolean jumpedFromGround;
-
 	private boolean isLit;
 	private EntityLightEmitter lightEmitter = new EntityLightEmitter(() -> level, this::getLightRayVector, this::getLightRayPosition, this);
 
@@ -62,23 +58,14 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 		super(null, null);
 	}
 
-	@Overwrite
-	public EntitySize getDimensions(Pose pose) {
-		return POSES.getOrDefault(pose, STANDING_DIMENSIONS).scale(getScale());
+	@Inject(method = "getDimensions", at = @At("RETURN"), cancellable = true)
+	private void scaleEntitySize(Pose pose, CallbackInfoReturnable<EntitySize> callbackInfo) {
+		callbackInfo.setReturnValue(callbackInfo.getReturnValue().scale(getScale()));
 	}
 
-	@Overwrite
-	public float getStandingEyeHeight(Pose pose, EntitySize size) {
-		switch (pose) {
-			case SWIMMING:
-			case FALL_FLYING:
-			case SPIN_ATTACK:
-				return 0.4F * getScale();
-			case CROUCHING:
-				return 1.27F * getScale();
-			default:
-				return 1.62F * getScale();
-		}
+	@Inject(method = "getStandingEyeHeight", at = @At("RETURN"), cancellable = true)
+	private void getStandingEyeHeight(Pose pose, EntitySize size, CallbackInfoReturnable<Float> callbackInfo) {
+		callbackInfo.setReturnValue(callbackInfo.getReturnValue() * getScale());
 	}
 
 	@Inject(method = "tick", at = @At("HEAD"))
@@ -135,7 +122,7 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 	}
 
 	@Inject(method = "getProjectile", at = @At(value = "HEAD"), cancellable = true)
-	private void injectGetProjectile(ItemStack weaponStack, CallbackInfoReturnable<ItemStack> callbackInfo) {
+	private void getProjectileFromQuiver(ItemStack weaponStack, CallbackInfoReturnable<ItemStack> callbackInfo) {
 		if (!(weaponStack.getItem() instanceof ShootableItem)) {
 			return;
 		}
@@ -363,20 +350,5 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IResizab
 		eyeHeight = getDimensions(getPose()).height * 0.85F;
 	}
 
-	@Shadow
-	@Final
-	private static Map<Pose, EntitySize> POSES;
-
-	@Shadow
-	@Final
-	private static EntitySize STANDING_DIMENSIONS;
-
-	@Shadow
-	@Final
-	public PlayerAbilities abilities;
-
-	@Shadow
-	public ItemStack getItemBySlot(EquipmentSlotType slot) {
-		return null;
-	}
+	public @Shadow ItemStack getItemBySlot(EquipmentSlotType slot) { return null; }
 }
