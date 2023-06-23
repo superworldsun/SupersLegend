@@ -31,6 +31,7 @@ public class VillagerTradesEvents
 		{
 			level1Trades.add(createTrade(new ItemStack(ItemInit.RED_RUPEE.get()), new ItemStack(ItemInit.UNAPPRAISED_RING.get()), new ItemStack(ItemInit.APPRAISED_RING_BOX.get()), 99, 5, 0F));
 			level1Trades.add(createTrade(new ItemStack(ItemInit.BLUE_RUPEE.get(), 3), new ItemStack(ItemInit.BOMB.get()), 20, 8, 1F));
+			level1Trades.add(createTrade(new ItemStack(ItemInit.RED_RUPEE.get(), 1), new ItemStack(ItemInit.WATER_BOMB.get()), 10, 10, 1F));
 			level1Trades.add(createTrade(new ItemStack(ItemInit.RED_RUPEE.get(), 2), new ItemStack(ItemInit.DEKU_SHIELD.get()), 1, 20, 0F));
 			level2Trades.add(createTrade(new ItemStack(ItemInit.SILVER_RUPEE.get(), 1), new ItemStack(ItemInit.RING_BOX_L1.get()), 5, 10, 1F));
 			level3Trades.add(createTrade(new ItemStack(ItemInit.BLUE_RUPEE.get(), 30),(new ItemStack(ItemInit.RING_BOX_L1.get(), 1)) , new ItemStack(ItemInit.RING_BOX_L2.get()), 5, 30, 0F));
