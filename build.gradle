@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.4'
+version = '1.5'
 group = 'com.superworldsun.superslegend' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'superslegend'
 
@@ -45,7 +45,7 @@ minecraft {
         client {
             workingDirectory project.file('run')
             arg "-mixin.config=superslegend.mixins.json"
-
+            //NAME// args '--username', 'superworldsun'
             // Recommended logging data for a userdev environment
             // The markers can be changed as needed.
             // "SCAN": For mods scan.
