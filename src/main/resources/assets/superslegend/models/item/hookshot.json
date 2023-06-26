@@ -408,8 +408,7 @@
       "rotation": [-49.5, 2.25, 19.75]
     },
     "firstperson_lefthand": {
-      "rotation": [-49.5, -4.25, -15.75],
-      "translation": [0, -0.25, 0]
+      "rotation": [-49.5, 2.25, 19.75]
     },
     "ground": {
       "rotation": [0, 0, 44.5],
