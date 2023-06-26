@@ -97,10 +97,17 @@ public class TemperatureEvents {
 			}
 
 			if (temperature > dangerousHeatTemperature) {
-				if (isInNether) {
+				if (isInNether && event.player.isCreative() || event.player.isSpectator())
+				{
+
+				}
+				if (isInNether && !event.player.isCreative() && !event.player.isSpectator())
+				{
 					event.player.setSecondsOnFire(1);
 					event.player.hurt(DamageSource.ON_FIRE, 1.0F);
-				} else {
+				}
+				else
+				{
 					event.player.hurt(HEAT_DAMAGE, 1.0F);
 				}
 			}
