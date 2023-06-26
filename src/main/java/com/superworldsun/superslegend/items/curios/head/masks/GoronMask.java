@@ -81,7 +81,7 @@ public class GoronMask extends NonEnchantItem implements IPlayerModelChanger, IE
 	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack)
 	{
 		Multimap<Attribute, AttributeModifier> multimap = HashMultimap.create();
-		multimap.put(AttributeInit.HELL_HEAT_RESISTANCE.get(), new AttributeModifier(uuid, "Hardcoded Modifier", 0.5F, Operation.ADDITION));
+		multimap.put(AttributeInit.HELL_HEAT_RESISTANCE.get(), new AttributeModifier(uuid, "Hardcoded Modifier", 1.0F, Operation.ADDITION));
 		return multimap;
 	}
 	
