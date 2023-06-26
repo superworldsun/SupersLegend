@@ -260,20 +260,12 @@ public class HookshotEntity extends AbstractArrowEntity {
 
 			if (useBlockList) { //If this value is "FALSE" all blocks will be hooked.
 				//If the block is not in the list, the hook does not hook.
-				AbstractBlock block = (AbstractBlock) level.getBlockState(blockHitResult.getBlockPos()).getBlock();
-				try {
-					Field blockMaterial = AbstractBlock.class.getDeclaredField("material");
-					blockMaterial.setAccessible(true);
-					if (!hookableBlocks.contains(block) && blockMaterial.get(block) != Material.WOOD) {
-						HookModel.get(owner).setHasHook(false);
-						isPulling = false;
-						onRemovedFromWorld();
-					}
+				if (!hookableBlocks.contains(level.getBlockState(blockHitResult.getBlockPos()).getBlock())) {
+					HookModel.get(owner).setHasHook(false);
+					isPulling = false;
+					onRemovedFromWorld();
 				}
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-				//Catch ItemEntities from ground.
+				//Catch Items
 				if(list != null && list.size() > 0){
 					for (Entity entity : list) {
 						hookedEntity = entity;
