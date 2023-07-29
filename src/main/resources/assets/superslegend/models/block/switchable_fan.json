@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "top": "superslegend:block/fan_block",
-    "front": "superslegend:block/fan_block_front",
-    "side": "superslegend:block/fan_block"
-  }
-}

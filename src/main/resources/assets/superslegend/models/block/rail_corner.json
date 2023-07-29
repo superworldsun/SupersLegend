@@ -1,6 +1,0 @@
-{
-  "parent": "superslegend:block/rail_curved",
-  "textures": {
-    "rail": "superslegend:block/rail_corner"
-  }
-}

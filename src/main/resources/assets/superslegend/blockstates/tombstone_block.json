@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "superslegend:block/tombstone_block" },
-        "facing=south": { "model": "superslegend:block/tombstone_block", "y": 180 },
-        "facing=west":  { "model": "superslegend:block/tombstone_block", "y": 270 },
-        "facing=east":  { "model": "superslegend:block/tombstone_block", "y": 90 }
-    }
-}

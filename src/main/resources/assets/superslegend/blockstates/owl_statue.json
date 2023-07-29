@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "superslegend:block/owl_statue" },
-        "facing=south": { "model": "superslegend:block/owl_statue", "y": 180 },
-        "facing=west":  { "model": "superslegend:block/owl_statue", "y": 270 },
-        "facing=east":  { "model": "superslegend:block/owl_statue", "y": 90 }
-    }
-}

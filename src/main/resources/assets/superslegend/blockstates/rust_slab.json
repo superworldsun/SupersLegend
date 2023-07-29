@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "superslegend:block/rust_slab" },
-        "type=top": { "model": "superslegend:block/rust_slab_top" },
-        "type=double": { "model": "superslegend:block/rust" }
-    }
-}

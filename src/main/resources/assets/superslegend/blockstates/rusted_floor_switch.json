@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "powered=false": { "model": "superslegend:block/rusted_floor_switch" },
-        "powered=true": { "model": "superslegend:block/rusted_floor_switch_down" }
-    }
-}

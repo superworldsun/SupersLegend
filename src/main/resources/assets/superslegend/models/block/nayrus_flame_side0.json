@@ -1,7 +1,0 @@
-{
-	"parent": "minecraft:block/template_fire_side",
-	"textures": {
-		"fire": "superslegend:block/nayrus_flame_0",
-		"particle": "superslegend:block/air"
-	}
-}

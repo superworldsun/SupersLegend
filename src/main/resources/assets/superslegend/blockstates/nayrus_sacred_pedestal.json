@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "superslegend:block/nayrus_sacred_pedestal" },
-        "facing=south": { "model": "superslegend:block/nayrus_sacred_pedestal", "y": 180 },
-        "facing=west":  { "model": "superslegend:block/nayrus_sacred_pedestal", "y": 270 },
-        "facing=east":  { "model": "superslegend:block/nayrus_sacred_pedestal", "y": 90 }
-    }
-}

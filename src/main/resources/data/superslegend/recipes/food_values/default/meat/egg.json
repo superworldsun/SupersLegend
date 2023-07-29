@@ -1,9 +1,0 @@
-{
-  "type": "superslegend:food_values",
-  "items": [
-    "minecraft:egg"
-  ],
-  "values": {
-    "MEAT": 1.0
-  }
-}

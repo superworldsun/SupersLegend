@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "superslegend:block/black_push_stone"
-    }
-}

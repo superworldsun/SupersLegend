@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "superslegend:blue_potion_mix"
-    },
-    "result": "superslegend:blue_potion",
-    "experience": 0.7,
-    "cookingtime": 800
-}

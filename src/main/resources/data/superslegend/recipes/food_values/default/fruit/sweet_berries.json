@@ -1,9 +1,0 @@
-{
-  "type": "superslegend:food_values",
-  "items": [
-    "minecraft:sweet_berries"
-  ],
-  "values": {
-    "FRUIT": 1.0
-  }
-}

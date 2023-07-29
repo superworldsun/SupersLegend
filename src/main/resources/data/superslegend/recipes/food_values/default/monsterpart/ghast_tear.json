@@ -1,9 +1,0 @@
-{
-  "type": "superslegend:food_values",
-  "items": [
-    "minecraft:ghast_tear"
-  ],
-  "values": {
-    "MONSTERPART": 1.0
-  }
-}

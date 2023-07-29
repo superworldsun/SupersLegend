@@ -1,6 +1,0 @@
-{
-    "variants":
-    {
-        "variant=default": { "model": "superslegend:block/rust_slab_double" }
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "superslegend:block/ancient_tablet" },
-        "facing=south": { "model": "superslegend:block/ancient_tablet", "y": 180 },
-        "facing=west":  { "model": "superslegend:block/ancient_tablet", "y": 270 },
-        "facing=east":  { "model": "superslegend:block/ancient_tablet", "y": 90 }
-    }
-}

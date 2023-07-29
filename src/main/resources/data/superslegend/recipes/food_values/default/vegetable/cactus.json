@@ -1,9 +1,0 @@
-{
-  "type": "superslegend:food_values",
-  "items": [
-    "minecraft:cactus"
-  ],
-  "values": {
-    "VEGETABLE": 1.0
-  }
-}

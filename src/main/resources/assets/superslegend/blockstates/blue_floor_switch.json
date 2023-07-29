@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "powered=false": { "model": "superslegend:block/blue_floor_switch" },
-        "powered=true": { "model": "superslegend:block/blue_floor_switch_down" }
-    }
-}

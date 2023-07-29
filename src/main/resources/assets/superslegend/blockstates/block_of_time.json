@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "hidden=false": { "model": "superslegend:block/block_of_time" },
-        "hidden=true":  { "model": "block/air" }
-    }
-}

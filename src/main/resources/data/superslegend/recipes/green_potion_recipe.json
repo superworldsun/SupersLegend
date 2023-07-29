@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "superslegend:green_potion_mix"
-    },
-    "result": "superslegend:green_potion",
-    "experience": 0.5,
-    "cookingtime": 600
-}

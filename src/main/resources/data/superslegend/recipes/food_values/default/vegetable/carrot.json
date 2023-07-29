@@ -1,9 +1,0 @@
-{
-  "type": "superslegend:food_values",
-  "items": [
-    "minecraft:carrot"
-  ],
-  "values": {
-    "VEGETABLE": 1.0
-  }
-}

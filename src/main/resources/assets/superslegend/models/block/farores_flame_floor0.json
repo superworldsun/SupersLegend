@@ -1,7 +1,0 @@
-{
-	"parent": "minecraft:block/template_fire_floor",
-	"textures": {
-		"fire": "superslegend:block/farores_flame_0",
-		"particle": "superslegend:block/air"
-	}
-}

@@ -1,6 +1,0 @@
-{
-    "parent": "item/bow",
-    "textures": {
-        "layer0": "superslegend:item/bows/bow_lynel_savage_pulling_2"
-    }
-}
