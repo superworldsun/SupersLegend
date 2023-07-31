@@ -14,7 +14,7 @@ public class CreativeModTabsInit {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SupersLegendMain.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> ITEMS_TAB = CREATIVE_MODE_TABS.register("items_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.RUPEE.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.TRIFORCE.get()))
                     .title(Component.translatable("creativetab.items_tab"))
                     .displayItems(((pParameters, pOutput) -> {
                         pOutput.accept(ItemInit.RUPEE.get());
@@ -186,6 +186,13 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.TRIFORCE_WISDOM.get());
                         pOutput.accept(ItemInit.TRIFORCE_COURAGE.get());
                         pOutput.accept(ItemInit.MASK_CLAY.get());
+                    }))
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> APPAREL_TAB = CREATIVE_MODE_TABS.register("apparel_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.KOKIRI_TUNIC.get()))
+                    .title(Component.translatable("creativetab.apparel_tab"))
+                    .displayItems(((pParameters, pOutput) -> {
                         pOutput.accept(ItemInit.MASK_POSTMANSHAT.get());
                         pOutput.accept(ItemInit.MASK_ALLNIGHTMASK.get());
                         pOutput.accept(ItemInit.MASK_BLASTMASK.get());
