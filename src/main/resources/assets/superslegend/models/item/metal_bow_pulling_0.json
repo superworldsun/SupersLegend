@@ -1,0 +1,6 @@
+{
+    "parent": "item/bow",
+    "textures": {
+        "layer0": "superslegend:items/metal_bow_pulling_0"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "superslegend:item/fairy_bow",
+    "textures": {
+        "layer0": "superslegend:item/fairy_bow_pulling_0"
+    }
+}

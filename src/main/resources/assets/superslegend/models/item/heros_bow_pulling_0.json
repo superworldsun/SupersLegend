@@ -1,0 +1,6 @@
+{
+    "parent": "superslegend:item/heros_bow",
+    "textures": {
+        "layer0": "superslegend:item/heros_bow_pulling_0"
+    }
+}
