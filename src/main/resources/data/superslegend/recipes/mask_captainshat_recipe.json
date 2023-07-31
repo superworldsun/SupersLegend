@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#B#",
+        "BCB",
+        "BBB"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:red_dye"
+        },
+        "B": {
+            "item": "minecraft:bone"
+        },
+        "C": {
+            "item": "superslegend:mask_clay"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_captainshat",
+        "count": 1
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:bomb_arrow"
+        },
+        {
+            "item": "superslegend:bomb_arrow"
+        },
+        {
+            "item": "superslegend:bomb_arrow"
+        },
+        {
+            "item": "superslegend:bomb_arrow"
+        },
+        {
+            "item": "superslegend:bomb_arrow"
+        }
+    ],
+    "result": {
+        "item": "superslegend:bomb_arrow_bundle",
+        "count": 1
+    }
+}

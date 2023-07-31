@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#VV",
+        " C#",
+        "GGG"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:red_dye"
+        },
+        "V": {
+            "item": "minecraft:vine"
+        },
+        "C": {
+            "item": "superslegend:mask_clay"
+        },
+        "G": {
+            "item": "minecraft:glistering_melon_slice"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_greatfairymask",
+        "count": 1
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "gRg",
+        "SMS",
+        "ggg"
+    ],
+    "key": {
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "R": {
+            "item": "minecraft:red_dye"
+        },
+        "S": {
+            "item": "minecraft:sunflower"
+        },
+        "M": {
+            "item": "superslegend:mask_clay"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_sunmask"
+    }
+}

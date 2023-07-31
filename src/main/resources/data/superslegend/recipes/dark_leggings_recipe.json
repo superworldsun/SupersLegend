@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "#L#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:ink_sac"
+        },
+        "L": {
+            "item": "superslegend:kokiri_leggings"
+        }
+    },
+    "result": {
+        "item": "superslegend:dark_leggings",
+        "count": 1
+    }
+}

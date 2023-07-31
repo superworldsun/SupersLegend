@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##G",
+        "#S#",
+        "G##"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:diamond"
+        },
+        "G": {
+            "item": "minecraft:glowstone"
+        },
+        "S": {
+            "item": "superslegend:empty_container"
+        }
+    },
+    "result": {
+        "item": "superslegend:nayrus_love",
+        "count": 1
+    }
+}

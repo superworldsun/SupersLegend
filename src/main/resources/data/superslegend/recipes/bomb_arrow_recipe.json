@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#T",
+        "A#",
+        " S"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:paper"
+        },
+        "T": {
+            "item": "superslegend:bomb"
+        },
+        "A": {
+            "item": "minecraft:arrow"
+        },
+        "S": {
+            "item": "minecraft:string"
+        }
+    },
+    "result": {
+        "item": "superslegend:bomb_arrow",
+        "count": 1
+    }
+}

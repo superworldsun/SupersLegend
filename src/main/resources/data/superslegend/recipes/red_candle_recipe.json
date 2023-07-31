@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " #",
+        "g/",
+        " g"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:torch"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "/": {
+            "item": "minecraft:end_rod"
+        }
+    },
+    "result": {
+        "item": "superslegend:red_candle",
+        "count": 1
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "superslegend:hyrule_bass"
+    },
+    "result": "superslegend:cooked_hyrule_bass",
+    "experience": 0.35,
+    "cookingtime": 200
+}

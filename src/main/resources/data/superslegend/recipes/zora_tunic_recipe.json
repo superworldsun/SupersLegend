@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "LKL",
+        " L "
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:gold_rupee"
+        },
+        "L": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "K": {
+            "item": "superslegend:kokiri_tunic"
+        }
+    },
+    "result": {
+        "item": "superslegend:zora_tunic",
+        "count": 1
+    }
+}

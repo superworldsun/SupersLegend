@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:fire_arrow"
+        },
+        {
+            "item": "superslegend:fire_arrow"
+        },
+        {
+            "item": "superslegend:fire_arrow"
+        },
+        {
+            "item": "superslegend:fire_arrow"
+        },
+        {
+            "item": "superslegend:fire_arrow"
+        }
+    ],
+    "result": {
+        "item": "superslegend:fire_arrow_bundle",
+        "count": 1
+    }
+}

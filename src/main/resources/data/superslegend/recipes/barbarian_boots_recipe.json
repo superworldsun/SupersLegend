@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# #",
+        "BLB"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:blaze_powder"
+        },
+        "B": {
+            "item": "minecraft:bone"
+        },
+        "L": {
+            "item": "minecraft:leather_boots"
+        }
+    },
+    "result": {
+        "item": "superslegend:barbarian_boots",
+        "count": 1
+    }
+}

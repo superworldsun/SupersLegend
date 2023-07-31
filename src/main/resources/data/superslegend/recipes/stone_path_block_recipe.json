@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "___"
+    ],
+    "key": {
+        "_": {
+            "item": "minecraft:stone_slab"
+        }
+    },
+    "result": {
+        "item": "superslegend:stone_path_block",
+        "count": 6
+    }
+}

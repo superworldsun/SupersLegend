@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#LL",
+        "  L"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:slime_ball"
+        },
+        "L": {
+            "item": "minecraft:leather"
+        }
+    },
+    "result": {
+        "item": "superslegend:climbers_bandanna",
+        "count": 1
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:triforce_wisdom_shard"
+        },
+        {
+            "item": "superslegend:triforce_wisdom_shard"
+        },
+        {
+            "item": "superslegend:triforce_wisdom_shard"
+        },
+        {
+            "item": "superslegend:triforce_wisdom_shard"
+        },
+        {
+            "item": "superslegend:triforce_wisdom_shard"
+        },
+        {
+            "item": "superslegend:triforce_wisdom_shard"
+        },
+        {
+            "item": "superslegend:triforce_wisdom_shard"
+        },
+        {
+            "item": "superslegend:triforce_wisdom_shard"
+        }
+    ],
+    "result": {
+        "item": "superslegend:triforce_wisdom",
+        "count": 1
+    }
+}

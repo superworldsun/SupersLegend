@@ -1,0 +1,10 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "superslegend:hyrule_bass",
+    "superslegend:cooked_hyrule_bass"
+  ],
+  "values": {
+    "FISH": 1.0
+  }
+}

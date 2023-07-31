@@ -1,0 +1,26 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "# #",
+        "TCT",
+        "#A#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "T": {
+            "item": "minecraft:tripwire_hook"
+        },
+        "C": {
+            "item": "superslegend:mask_clay"
+        },
+        "A": {
+            "item": "minecraft:tnt"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_blastmask",
+        "count": 1
+    }
+}

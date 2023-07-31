@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#VR",
+        "VNV",
+        "PVS"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:lilac"
+        },
+        "V": {
+            "tag": "minecraft:saplings"
+        },
+        "R": {
+            "item": "minecraft:rose_bush"
+        },
+        "N": {
+            "item": "minecraft:nether_star"
+        },
+        "P": {
+            "item": "minecraft:peony"
+        },
+        "S": {
+            "item": "minecraft:sunflower"
+        }
+    },
+    "result": {
+        "item": "superslegend:medallion_forest",
+        "count": 1
+    }
+}

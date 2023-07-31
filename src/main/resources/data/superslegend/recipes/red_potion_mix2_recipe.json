@@ -1,0 +1,18 @@
+{
+    "type": "crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:odd_mushroom"
+        },
+        {
+            "item": "minecraft:nether_wart"
+        },
+		{
+            "type":"forge:nbt","item":"minecraft:potion","count":1,"nbt":"{Potion:\"minecraft:water\"}"
+        }
+    ],
+    "result": {
+        "item": "superslegend:red_potion_mix",
+        "count": 1
+    }
+}

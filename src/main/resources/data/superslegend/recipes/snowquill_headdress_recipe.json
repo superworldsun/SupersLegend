@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "G"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:feather"
+        },
+        "G": {
+            "item": "minecraft:gold_nugget"
+        }
+    },
+    "result": {
+        "item": "superslegend:snowquill_headdress",
+        "count": 1
+    }
+}

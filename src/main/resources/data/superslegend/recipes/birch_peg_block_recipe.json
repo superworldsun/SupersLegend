@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "O"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:birch_planks"
+        },
+        "O": {
+            "item": "minecraft:birch_log"
+        }
+    },
+    "result": {
+        "item": "superslegend:birch_peg_block",
+        "count": 4
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:goron_cap"
+        },
+        {
+            "item": "superslegend:goron_tunic"
+        },
+        {
+            "item": "superslegend:goron_leggings"
+        }
+    ],
+    "result": {
+        "item": "superslegend:goron_set"
+    }
+}

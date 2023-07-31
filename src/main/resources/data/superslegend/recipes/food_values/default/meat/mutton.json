@@ -1,0 +1,10 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:mutton",
+    "minecraft:cooked_mutton"
+  ],
+  "values": {
+    "MEAT": 1
+  }
+}

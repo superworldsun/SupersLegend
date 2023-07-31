@@ -1,0 +1,20 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "###",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:red_rupee"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "superslegend:red_rupee_pickaxe",
+        "count": 1
+    }
+}

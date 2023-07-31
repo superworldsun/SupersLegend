@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#G#",
+        "GNG",
+        "#G#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:quartz"
+        },
+        "G": {
+            "item": "minecraft:gold_block"
+        },
+        "N": {
+            "item": "superslegend:farores_sacred_pedestal"
+        }
+    },
+    "result": {
+        "item": "superslegend:farores_sacred_pedestal",
+        "count": 2
+    }
+}

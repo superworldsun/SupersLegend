@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#B#",
+        "B B"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:light_blue_dye"
+        },
+        "B": {
+            "item": "minecraft:brick"
+        }
+    },
+    "result": {
+        "item": "superslegend:jar_block",
+        "count": 1
+    }
+}

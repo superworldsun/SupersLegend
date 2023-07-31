@@ -1,0 +1,26 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "B R"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:porkchop"
+        },
+        "C": {
+            "item": "superslegend:mask_clay"
+        },
+        "B": {
+            "item": "minecraft:brown_mushroom"
+        },
+        "R": {
+            "item": "minecraft:red_mushroom"
+        }
+    },
+    "result": {
+        "item": "superslegend:mask_maskofscents",
+        "count": 1
+    }
+}

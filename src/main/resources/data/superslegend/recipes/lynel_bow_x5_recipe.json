@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#A ",
+        " BA",
+        "  #"
+    ],
+    "key": {
+        "#": {
+            "item": "superslegend:lynel_bow_x3"
+        },
+        "A": {
+            "item": "minecraft:arrow"
+        },
+        "B": {
+            "item": "minecraft:bow"
+        }
+    },
+    "result": {
+        "item": "superslegend:lynel_bow_x5",
+        "count": 1
+    }
+}

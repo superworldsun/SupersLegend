@@ -1,0 +1,10 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:porkchop",
+    "minecraft:cooked_porkchop"
+  ],
+  "values": {
+    "MEAT": 1
+  }
+}

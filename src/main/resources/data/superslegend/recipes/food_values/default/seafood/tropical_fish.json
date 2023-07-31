@@ -1,0 +1,9 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:tropical_fish"
+  ],
+  "values": {
+    "SEAFOOD": 1.0
+  }
+}

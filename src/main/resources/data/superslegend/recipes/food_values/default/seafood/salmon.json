@@ -1,0 +1,10 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:cooked_salmon",
+	"minecraft:salmon"
+  ],
+  "values": {
+    "SEAFOOD": 1.0
+  }
+}

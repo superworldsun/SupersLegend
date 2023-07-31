@@ -1,0 +1,9 @@
+{
+  "type": "superslegend:food_values",
+  "items": [
+    "minecraft:bone"
+  ],
+  "values": {
+    "MONSTERPART": 1.0
+  }
+}

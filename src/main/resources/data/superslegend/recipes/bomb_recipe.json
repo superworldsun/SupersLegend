@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#L ",
+        "LGL",
+        " LL"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:string"
+        },
+        "L": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "G": {
+            "item": "minecraft:gunpowder"
+        }
+    },
+    "result": {
+        "item": "superslegend:bomb",
+        "count": 1
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " /S",
+        "/SW"
+    ],
+    "key": {
+        "/": {
+            "item": "minecraft:stick"
+        },
+        "S": {
+            "item": "minecraft:string"
+        },
+        "W": {
+            "item": "minecraft:white_wool"
+        }
+    },
+    "result": {
+        "item": "superslegend:bug_net",
+        "count": 1
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##P",
+        "#g#",
+        "P#/"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:jungle_leaves"
+        },
+        "P": {
+            "item": "minecraft:phantom_membrane"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "superslegend:deku_leaf",
+        "count": 1
+    }
+}

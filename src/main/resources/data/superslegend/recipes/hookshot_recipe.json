@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#Ci",
+        "iTC",
+        "Oi#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:diamond"
+        },
+        "C": {
+            "item": "minecraft:chain"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "T": {
+            "item": "minecraft:tripwire_hook"
+        },
+        "O": {
+            "item": "minecraft:oak_planks"
+        }
+    },
+    "result": {
+        "item": "superslegend:hookshot",
+        "count": 1
+    }
+}

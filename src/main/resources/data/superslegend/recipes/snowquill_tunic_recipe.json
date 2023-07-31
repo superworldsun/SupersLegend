@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#W#",
+        "WLW",
+        "WWW"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:feather"
+        },
+        "W": {
+            "item": "minecraft:white_wool"
+        },
+        "L": {
+            "item": "minecraft:leather_chestplate"
+        }
+    },
+    "result": {
+        "item": "superslegend:snowquill_tunic",
+        "count": 1
+    }
+}

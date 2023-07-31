@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "superslegend:shock_arrow"
+        },
+        {
+            "item": "superslegend:shock_arrow"
+        },
+        {
+            "item": "superslegend:shock_arrow"
+        },
+        {
+            "item": "superslegend:shock_arrow"
+        },
+        {
+            "item": "superslegend:shock_arrow"
+        }
+    ],
+    "result": {
+        "item": "superslegend:shock_arrow_bundle",
+        "count": 1
+    }
+}

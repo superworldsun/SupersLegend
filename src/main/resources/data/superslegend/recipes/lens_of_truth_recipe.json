@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#PG",
+        "POP",
+        "GPJ"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:red_dye"
+        },
+        "P": {
+            "item": "minecraft:purple_dye"
+        },
+        "G": {
+            "item": "minecraft:glass_pane"
+        },
+        "O": {
+            "item": "minecraft:observer"
+        },
+        "J": {
+            "item": "minecraft:gold_nugget"
+        }
+    },
+    "result": {
+        "item": "superslegend:lens_of_truth",
+        "count": 1
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# #",
+        "S S"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:leather"
+        },
+        "S": {
+            "item": "minecraft:slime_ball"
+        }
+    },
+    "result": {
+        "item": "superslegend:climbing_boots",
+        "count": 1
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "g g",
+        " Lg",
+        "g g"
+    ],
+    "key": {
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "L": {
+            "item": "minecraft:leather_chestplate"
+        }
+    },
+    "result": {
+        "item": "superslegend:desert_voe_spaulder",
+        "count": 1
+    }
+}
