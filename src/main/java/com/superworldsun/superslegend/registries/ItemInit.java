@@ -1,10 +1,10 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.item.BlueRupee;
-import com.superworldsun.superslegend.items.item.RedRupee;
-import com.superworldsun.superslegend.items.item.Rupee;
-import com.superworldsun.superslegend.items.item.SilverRupee;
+import com.superworldsun.superslegend.items.curios.head.masks.AllNightMask;
+import com.superworldsun.superslegend.items.curios.rings.*;
+import com.superworldsun.superslegend.items.item.*;
+import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -92,14 +92,17 @@ public class ItemInit {
 
     public static final RegistryObject<Item> HEART_PIECE = ITEMS.register("heart_piece",
             () -> new Item(new Item.Properties()));
+    //TODO, Heart container half implemented, dosent have a config and crashes after using more than once.
     public static final RegistryObject<Item> HEART_CONTAINER = ITEMS.register("heart_container",
-            () -> new Item(new Item.Properties()));
+            () -> new HeartContainer(new Item.Properties()));
+    //TODO, crashes after use.
     public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
-            () -> new Item(new Item.Properties()));
+            () -> new VoidContainer(new Item.Properties()));
     public static final RegistryObject<Item> UNAPPRAISED_RING = ITEMS.register("unappraised_ring",
             () -> new Item(new Item.Properties()));
+    //TODO, Finish port
     public static final RegistryObject<Item> APPRAISED_RING_BOX = ITEMS.register("appraised_ring_box",
-            () -> new Item(new Item.Properties()));
+            () -> new AppraisedRingBox(new Item.Properties()));
 
     //Songs
     /*public static final RegistryObject<Item> ZELDAS_LULLABY_SHEET = ITEMS.register("zeldas_lullaby_sheet", ZeldasLullabySheet::new);
@@ -129,13 +132,13 @@ public class ItemInit {
     // FOOD
 
     public static final RegistryObject<Item> HYRULE_BASS = ITEMS.register("hyrule_bass",
-            () -> new Item(new Item.Properties()));
+            () -> new Item(new Item.Properties().food(FoodInit.HYRULE_BASS)));
     public static final RegistryObject<Item> COOKED_HYRULE_BASS = ITEMS.register("cooked_hyrule_bass",
-            () -> new Item(new Item.Properties()));
+            () -> new Item(new Item.Properties().food(FoodInit.COOKED_HYRULE_BASS)));
     public static final RegistryObject<Item> HYLIAN_LOACH = ITEMS.register("hylian_loach",
-            () -> new Item(new Item.Properties()));
+            () -> new Item(new Item.Properties().food(FoodInit.HYLIAN_LOACH)));
     public static final RegistryObject<Item> COOKED_HYLIAN_LOACH = ITEMS.register("cooked_hylian_loach",
-            () -> new Item(new Item.Properties()));
+            () -> new Item(new Item.Properties().food(FoodInit.COOKED_HYLIAN_LOACH)));
 
     // WEAPONS & TOOLS
 
@@ -264,14 +267,15 @@ public class ItemInit {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RED_CANDLE = ITEMS.register("red_candle",
             () -> new Item(new Item.Properties()));
+    //TODO, Not working
     public static final RegistryObject<Item> HEROS_SECRET_STASH = ITEMS.register("heros_secret_stash",
-            () -> new Item(new Item.Properties()));
+            () -> new HerosSecretStash(new Item.Properties()));
     public static final RegistryObject<Item> BOOK_OF_MUDORA = ITEMS.register("book_of_mudora",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ROCS_FEATHER = ITEMS.register("rocs_feather",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> FISHING_ROD = ITEMS.register("fishing_rod",
-            () -> new Item(new Item.Properties()));
+            () -> new FishingRodItem(new Item.Properties()));
     public static final RegistryObject<Item> BUG_NET = ITEMS.register("bug_net",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MAGIC_MIRROR = ITEMS.register("magic_mirror",
@@ -346,11 +350,12 @@ public class ItemInit {
     public static final RegistryObject<Item> BLUE_JELLY = ITEMS.register("blue_jelly",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RED_POTION_MIX = ITEMS.register("red_potion_mix",
-            () -> new Item(new Item.Properties()));
+            () -> new RedPotionMix(new Item.Properties()));
     public static final RegistryObject<Item> GREEN_POTION_MIX = ITEMS.register("green_potion_mix",
-            () -> new Item(new Item.Properties()));
+            () -> new GreenPotionMix(new Item.Properties()));
     public static final RegistryObject<Item> BLUE_POTION_MIX = ITEMS.register("blue_potion_mix",
-            () -> new Item(new Item.Properties()));
+            () -> new BluePotionMix(new Item.Properties()));
+    //TODO, fix Red Potion
     public static final RegistryObject<Item> RED_POTION = ITEMS.register("red_potion",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GREEN_POTION = ITEMS.register("green_potion",
@@ -382,7 +387,7 @@ public class ItemInit {
     public static final RegistryObject<Item> MASK_POSTMANSHAT = ITEMS.register("mask_postmanshat",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MASK_ALLNIGHTMASK = ITEMS.register("mask_allnightmask",
-            () -> new Item(new Item.Properties()));
+            () -> new AllNightMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_BLASTMASK = ITEMS.register("mask_blastmask",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MASK_STONEMASK = ITEMS.register("mask_stonemask",
@@ -609,45 +614,50 @@ public class ItemInit {
 
     // Rings
     public static final RegistryObject<Item> BLUE_RING = ITEMS.register("blue_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new BlueRing(new Item.Properties()));
     public static final RegistryObject<Item> RED_RING = ITEMS.register("red_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new RedRing(new Item.Properties()));
     public static final RegistryObject<Item> GREEN_RING = ITEMS.register("green_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new GreenRing(new Item.Properties()));
     public static final RegistryObject<Item> POWER_RING_L1 = ITEMS.register("power_ring_l1",
-            () -> new Item(new Item.Properties()));
+            () -> new PowerRingL1(new Item.Properties()));
     public static final RegistryObject<Item> POWER_RING_L2 = ITEMS.register("power_ring_l2",
-            () -> new Item(new Item.Properties()));
+            () -> new PowerRingL2(new Item.Properties()));
     public static final RegistryObject<Item> POWER_RING_L3 = ITEMS.register("power_ring_l3",
-            () -> new Item(new Item.Properties()));
+            () -> new PowerRingL3(new Item.Properties()));
     public static final RegistryObject<Item> ARMOR_RING_L1 = ITEMS.register("armor_ring_l1",
-            () -> new Item(new Item.Properties()));
+            () -> new ArmorRingL1(new Item.Properties()));
     public static final RegistryObject<Item> ARMOR_RING_L2 = ITEMS.register("armor_ring_l2",
-            () -> new Item(new Item.Properties()));
+            () -> new ArmorRingL2(new Item.Properties()));
     public static final RegistryObject<Item> ARMOR_RING_L3 = ITEMS.register("armor_ring_l3",
-            () -> new Item(new Item.Properties()));
+            () -> new ArmorRingL3(new Item.Properties()));
     public static final RegistryObject<Item> CURSED_RING = ITEMS.register("cursed_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new CursedRing(new Item.Properties()));
     public static final RegistryObject<Item> HEART_RING_L1 = ITEMS.register("heart_ring_l1",
-            () -> new Item(new Item.Properties()));
+            () -> new HeartRingL1(new Item.Properties()));
     public static final RegistryObject<Item> HEART_RING_L2 = ITEMS.register("heart_ring_l2",
-            () -> new Item(new Item.Properties()));
+            () -> new HeartRingL2(new Item.Properties()));
+    //TODO, GreenLuckRing dosent work
     public static final RegistryObject<Item> GREEN_LUCK_RING = ITEMS.register("green_luck_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new GreenLuckRing(new Item.Properties()));
+    //TODO, BlueLuckRing dosent work
     public static final RegistryObject<Item> BLUE_LUCK_RING = ITEMS.register("blue_luck_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new BlueLuckRing(new Item.Properties()));
+    //TODO, GoldLuckRing dosent work
     public static final RegistryObject<Item> GOLD_LUCK_RING = ITEMS.register("gold_luck_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new GoldLuckRing(new Item.Properties()));
+    //TODO, RedLuckRing dosent work
     public static final RegistryObject<Item> RED_LUCK_RING = ITEMS.register("red_luck_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new RedLuckRing(new Item.Properties()));
     public static final RegistryObject<Item> STEADFAST_RING = ITEMS.register("steadfast_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new SteadfastRing(new Item.Properties()));
+    //TODO, GreenHolyRing dosent work
     public static final RegistryObject<Item> GREEN_HOLY_RING = ITEMS.register("green_holy_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new GreenHolyRing(new Item.Properties()));
     //public static final RegistryObject<Item> BLUE_HOLY_RING = ITEMS.register("blue_holy_ring", BlueHolyRing::new);
     //public static final RegistryObject<Item> RED_HOLY_RING = ITEMS.register("red_holy_ring", RedHolyRing::new);
     public static final RegistryObject<Item> SWIMMERS_RING = ITEMS.register("swimmers_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new SwimmersRing(new Item.Properties()));
     //When Adding Rings, Remember to Add them to AppraisedRingBox
 
     //BUCKETS
