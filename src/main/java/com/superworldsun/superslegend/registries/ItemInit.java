@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.curios.head.masks.AllNightMask;
+import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.item.*;
 import net.minecraft.world.item.FishingRodItem;
@@ -389,49 +389,56 @@ public class ItemInit {
     public static final RegistryObject<Item> MASK_ALLNIGHTMASK = ITEMS.register("mask_allnightmask",
             () -> new AllNightMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_BLASTMASK = ITEMS.register("mask_blastmask",
-            () -> new Item(new Item.Properties()));
+            () -> new BlastMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_STONEMASK = ITEMS.register("mask_stonemask",
-            () -> new Item(new Item.Properties()));
+            () -> new StoneMask(new Item.Properties()));
+    //TODO, Needs marching re added
     public static final RegistryObject<Item> MASK_BREMANMASK = ITEMS.register("mask_bremenmask",
-            () -> new Item(new Item.Properties()));
+            () -> new BremenMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_GREATFAIRYMASK = ITEMS.register("mask_greatfairymask",
-            () -> new Item(new Item.Properties()));
+            () -> new GreatfairyMask(new Item.Properties()));
+    //TODO, Deku mask needs DamageSource changed
     public static final RegistryObject<Item> MASK_DEKUMASK = ITEMS.register("mask_dekumask",
-            () -> new Item(new Item.Properties()));
+            () -> new DekuMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_KEATONMASK = ITEMS.register("mask_keatonmask",
-            () -> new Item(new Item.Properties()));
+            () -> new KeatonMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_BUNNYHOOD = ITEMS.register("mask_bunnyhood",
-            () -> new Item(new Item.Properties()));
+            () -> new BunnyHoodMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_DONGEROSMASK = ITEMS.register("mask_dongerosmask",
-            () -> new Item(new Item.Properties()));
+            () -> new DongerosMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_MASKOFSCENTS = ITEMS.register("mask_maskofscents",
-            () -> new Item(new Item.Properties()));
+            () -> new MaskOfScentsMask(new Item.Properties()));
+    //TODO, GORON MASK DOSENT WORK
     public static final RegistryObject<Item> MASK_GORONMASK = ITEMS.register("mask_goronmask",
-            () -> new Item(new Item.Properties()));
+            () -> new GoronMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_ROMANISMASK = ITEMS.register("mask_romanismask",
-            () -> new Item(new Item.Properties()));
+            () -> new RomanisMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_TROUPELEADERSMASK = ITEMS.register("mask_troupeleadersmask",
-            () -> new Item(new Item.Properties()));
+            () -> new TroupeLeadersMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_KAFEISMASK = ITEMS.register("mask_kafeismask",
-            () -> new Item(new Item.Properties()));
+            () -> new KafeisMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_COUPLESMASK = ITEMS.register("mask_couplesmask",
-            () -> new Item(new Item.Properties()));
+            () -> new CouplesMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_MASKOFTRUTH = ITEMS.register("mask_maskoftruth",
-            () -> new Item(new Item.Properties()));
+            () -> new MaskOfTruth(new Item.Properties()));
     public static final RegistryObject<Item> MASK_ZORAMASK = ITEMS.register("mask_zoramask",
-            () -> new Item(new Item.Properties()));
+            () -> new ZoraMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_KAMAROSMASK = ITEMS.register("mask_kamarosmask",
-            () -> new Item(new Item.Properties()));
+            () -> new KamarosMask(new Item.Properties()));
+    //TODO, Gibdo isnt finished
     public static final RegistryObject<Item> MASK_GIBDOMASK = ITEMS.register("mask_gibdomask",
-            () -> new Item(new Item.Properties()));
+            () -> new GibdoMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_GAROSMASK = ITEMS.register("mask_garosmask",
-            () -> new Item(new Item.Properties()));
+            () -> new GarosMask(new Item.Properties()));
+    //TODO, CaptainsHat needs function re added
     public static final RegistryObject<Item> MASK_CAPTAINSHAT = ITEMS.register("mask_captainshat",
-            () -> new Item(new Item.Properties()));
+            () -> new CaptainsHatMask(new Item.Properties()));
+    //TODO, skipped
     public static final RegistryObject<Item> MASK_GIANTSMASK = ITEMS.register("mask_giantsmask",
-            () -> new Item(new Item.Properties()));
+            () -> new GiantsMask(new Item.Properties()));
+    //TODO, skipped
     public static final RegistryObject<Item> MASK_FIERCEDEITYSMASK = ITEMS.register("mask_fiercedeitysmask",
-            () -> new Item(new Item.Properties()));
+            () -> new FierceDeitysMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_MAJORASMASK = ITEMS.register("mask_majorasmask",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MASK_MOONMASK = ITEMS.register("mask_moonmask",
