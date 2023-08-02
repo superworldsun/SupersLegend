@@ -18,7 +18,7 @@ public class SilverRupee extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
-        if (itemstack.getCount() < 2) {
+        if (itemstack.getCount() < 3) {
             return InteractionResultHolder.pass(itemstack);
         } else {
             // Check if the player has enough space in their inventory
@@ -63,7 +63,7 @@ public class SilverRupee extends Item {
             }
 
             if (remainingToAdd == 0) {
-                itemstack.shrink(2);
+                itemstack.shrink(3);
 
                 // Play a sound when the new item is created
                 //TODO add rupee sound effect
