@@ -319,6 +319,18 @@ public class CreativeModTabsInit {
                     }))
                     .build());
 
+    public static final RegistryObject<CreativeModeTab> BLOCKS_TAB = CREATIVE_MODE_TABS.register("blocks_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(BlockInit.RUPEE_BLOCK.get()))
+                    .title(Component.translatable("creativetab.blocks_tab"))
+                    .displayItems(((pParameters, pOutput) -> {
+                        pOutput.accept(BlockInit.RUPEE_BLOCK.get());
+                        pOutput.accept(BlockInit.BLUE_RUPEE_BLOCK.get());
+                        pOutput.accept(BlockInit.RED_RUPEE_BLOCK.get());
+                        pOutput.accept(BlockInit.SILVER_RUPEE_BLOCK.get());
+                        pOutput.accept(BlockInit.GOLD_RUPEE_BLOCK.get());
+                    }))
+                    .build());
+
     public static void resiter(IEventBus eventBus)
     {
         CREATIVE_MODE_TABS.register(eventBus);
