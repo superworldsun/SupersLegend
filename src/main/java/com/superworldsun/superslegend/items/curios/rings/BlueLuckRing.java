@@ -1,11 +1,13 @@
 package com.superworldsun.superslegend.items.curios.rings;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.api.DamageReductionItem;
 import com.superworldsun.superslegend.items.customclass.RingItem;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.monster.Guardian;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -22,33 +24,25 @@ import top.theillusivec4.curios.api.CuriosApi;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
-public class BlueLuckRing extends RingItem {
+public class BlueLuckRing extends RingItem implements DamageReductionItem {
     public BlueLuckRing(Properties properties) {
         super(new Properties());
     }
 
-    @SubscribeEvent
-    public static void onLivingHurt(LivingHurtEvent event) {
-        if (event.getEntity() instanceof Player) { // Check if the entity taking damage is a Player
-            Player player = (Player) event.getEntity();
+    @Override
+    public boolean canReduceDamage(DamageSource damage) {
+        return damage.getEntity() instanceof Guardian && !damage.is(DamageTypes.THORNS);
+    }
 
-            // Get the Ring as an ItemStack
-            ItemStack stack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.BLUE_LUCK_RING.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
-
-            // Check if player is wearing it.
-
-            //TODO, Dosent seem to work
-            if (event.getSource() instanceof DamageSource && event.getSource().getEntity() instanceof Guardian)
-            {
-                event.setAmount(event.getAmount() / 2);
-            }
-        }
+    @Override
+    public float getDamageReduction() {
+        return 0.5F;
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("1/2 Damage From Traps").withStyle(ChatFormatting.BLUE));
+        tooltip.add(Component.literal("1/2 Damage From Beams").withStyle(ChatFormatting.BLUE));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 

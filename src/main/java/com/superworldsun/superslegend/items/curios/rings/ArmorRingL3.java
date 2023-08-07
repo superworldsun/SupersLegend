@@ -65,7 +65,7 @@ public class ArmorRingL3 extends RingItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("2x Sword Attack & Damage Reduced").withStyle(ChatFormatting.BLUE));
+        tooltip.add(Component.literal("2.5x Sword Attack & Damage Reduced").withStyle(ChatFormatting.BLUE));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 

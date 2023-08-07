@@ -65,7 +65,7 @@ public class PowerRingL3 extends RingItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("2x Sword & Taken Damage").withStyle(ChatFormatting.RED));
+        tooltip.add(Component.literal("2.5x Sword & Taken Damage").withStyle(ChatFormatting.RED));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
