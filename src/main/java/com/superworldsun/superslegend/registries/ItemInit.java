@@ -357,7 +357,7 @@ public class ItemInit {
             () -> new BluePotionMix(new Item.Properties()));
     //TODO, fix Red Potion
     public static final RegistryObject<Item> RED_POTION = ITEMS.register("red_potion",
-            () -> new Item(new Item.Properties()));
+            () -> new RedPotion(new Item.Properties()));
     public static final RegistryObject<Item> GREEN_POTION = ITEMS.register("green_potion",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BLUE_POTION = ITEMS.register("blue_potion",
@@ -385,7 +385,7 @@ public class ItemInit {
     public static final RegistryObject<Item> MASK_CLAY = ITEMS.register("mask_clay",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MASK_POSTMANSHAT = ITEMS.register("mask_postmanshat",
-            () -> new Item(new Item.Properties()));
+            () -> new PostmansHat(new Item.Properties()));
     public static final RegistryObject<Item> MASK_ALLNIGHTMASK = ITEMS.register("mask_allnightmask",
             () -> new AllNightMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_BLASTMASK = ITEMS.register("mask_blastmask",
@@ -440,15 +440,15 @@ public class ItemInit {
     public static final RegistryObject<Item> MASK_FIERCEDEITYSMASK = ITEMS.register("mask_fiercedeitysmask",
             () -> new FierceDeitysMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_MAJORASMASK = ITEMS.register("mask_majorasmask",
-            () -> new Item(new Item.Properties()));
+            () -> new MajorasMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_MOONMASK = ITEMS.register("mask_moonmask",
-            () -> new Item(new Item.Properties()));
+            () -> new MoonMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_SUNMASK = ITEMS.register("mask_sunmask",
-            () -> new Item(new Item.Properties()));
+            () -> new SunMask(new Item.Properties()));
     public static final RegistryObject<Item> MASK_HAWKEYEMASK = ITEMS.register("mask_hawkeyemask",
-            () -> new Item(new Item.Properties()));
+            () -> new HawkeyeMask(new Item.Properties()));
     public static final RegistryObject<Item> GNAT_HAT = ITEMS.register("gnat_hat",
-            () -> new Item(new Item.Properties()));
+            () -> new GnatHat(new Item.Properties()));
 	/*public static final RegistryObject<Item> MASK_HEROS_CHARM = ITEMS.register("mask_heroscharm",
 			() -> new HerosCharmMask(new Item.Properties().stacksTo(1).tab(SupersLegendMain.APPAREL)));*/
 
@@ -644,16 +644,12 @@ public class ItemInit {
             () -> new HeartRingL1(new Item.Properties()));
     public static final RegistryObject<Item> HEART_RING_L2 = ITEMS.register("heart_ring_l2",
             () -> new HeartRingL2(new Item.Properties()));
-    //TODO, GreenLuckRing dosent work
     public static final RegistryObject<Item> GREEN_LUCK_RING = ITEMS.register("green_luck_ring",
             () -> new GreenLuckRing(new Item.Properties()));
-    //TODO, BlueLuckRing dosent work
     public static final RegistryObject<Item> BLUE_LUCK_RING = ITEMS.register("blue_luck_ring",
             () -> new BlueLuckRing(new Item.Properties()));
-    //TODO, GoldLuckRing dosent work
     public static final RegistryObject<Item> GOLD_LUCK_RING = ITEMS.register("gold_luck_ring",
             () -> new GoldLuckRing(new Item.Properties()));
-    //TODO, RedLuckRing dosent work
     public static final RegistryObject<Item> RED_LUCK_RING = ITEMS.register("red_luck_ring",
             () -> new RedLuckRing(new Item.Properties()));
     public static final RegistryObject<Item> STEADFAST_RING = ITEMS.register("steadfast_ring",
