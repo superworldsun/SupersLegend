@@ -29,5 +29,6 @@ public class ItemEvents {
 				}
 			}
 		});
+		if (event.getAmount() <= 0) event.setCanceled(true);
 	}
 }
