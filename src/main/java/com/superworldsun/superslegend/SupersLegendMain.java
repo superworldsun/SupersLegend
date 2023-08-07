@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend;
 
 import com.mojang.logging.LogUtils;
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.CreativeModTabsInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -32,6 +33,7 @@ public class SupersLegendMain
         CreativeModTabsInit.resiter(modEventBus);
 
         ItemInit.register(modEventBus);
+        BlockInit.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
