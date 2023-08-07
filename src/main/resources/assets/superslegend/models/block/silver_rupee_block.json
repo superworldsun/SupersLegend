@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "superslegend:block/silver_rupee_block"
+    }
+}
