@@ -65,12 +65,15 @@ public class PlayerHealthEvents {
 	 * @return Player's maximum health affected by modifiers from:<br>
 	 *         {@link HeartContainer}, {@link VoidContainer} and {@link Config#basePlayerHealth}
 	 */
-	public static double getBaseHealth(Player player) {
-		AttributeInstance maxHealth = player.getAttribute(Attributes.MAX_HEALTH);
-		AttributeModifier heartsModifier = maxHealth.getModifier(PlayerHealthEvents.HEARTS_MODIFIER);
-		AttributeModifier baseModifier = maxHealth.getModifier(PlayerHealthEvents.BASE_HEALTH_MODIFIER);
-		return maxHealth.getBaseValue() + baseModifier.getAmount() + heartsModifier.getAmount();
-	}
+    public static double getBaseHealth(Player player) {
+        AttributeInstance maxHealth = player.getAttribute(Attributes.MAX_HEALTH);
+        double baseHealth = maxHealth.getBaseValue();
+        AttributeModifier heartsModifier = maxHealth.getModifier(PlayerHealthEvents.HEARTS_MODIFIER);
+        if (heartsModifier != null) baseHealth += heartsModifier.getAmount();
+        AttributeModifier baseModifier = maxHealth.getModifier(PlayerHealthEvents.BASE_HEALTH_MODIFIER);
+        if (baseModifier != null) baseHealth += baseModifier.getAmount();
+        return baseHealth;
+    }
 
 	/**
 	 * Applies maximum health bonus, should only be used for {@link HeartContainer} and {@link VoidContainer}<br>
