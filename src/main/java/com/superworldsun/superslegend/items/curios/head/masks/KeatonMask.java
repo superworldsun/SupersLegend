@@ -24,7 +24,7 @@ public class KeatonMask extends Item implements ICurioItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("This mask is popular with the children").withStyle(ChatFormatting.DARK_GREEN));
+        tooltip.add(Component.literal("This mask is popular with the children").withStyle(ChatFormatting.YELLOW));
         tooltip.add(Component.literal("Foxes will see you as one of their own").withStyle(ChatFormatting.GREEN));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }

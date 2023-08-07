@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -8,21 +9,23 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class GiantsMask extends Item implements ICurioItem {
-    public GiantsMask(Properties pProperties) {
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
+
+public class PostmansHat extends Item implements ICurioItem {
+    public PostmansHat(Properties pProperties) {
         super(pProperties);
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("Within this mask lies the might of a giant").withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.literal("Awaken the giants power and abilities").withStyle(ChatFormatting.GREEN));
-        tooltip.add(Component.literal("at the cost of magic").withStyle(ChatFormatting.GREEN));
+        tooltip.add(Component.literal("Worn by those who are").withStyle(ChatFormatting.RED));
+        tooltip.add(Component.literal("never late for a delivery").withStyle(ChatFormatting.RED));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 }

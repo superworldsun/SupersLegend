@@ -31,7 +31,8 @@ public class BremenMask extends Item implements ICurioItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("The face of a fairy").withStyle(ChatFormatting.RED));
+        tooltip.add(Component.literal("A mask animals would love!").withStyle(ChatFormatting.WHITE));
+        //tooltip.add(Component.literal("Hold '" + keybind + "' to have animals follow you").withStyle(ChatFormatting.GREEN));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 }

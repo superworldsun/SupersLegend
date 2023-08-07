@@ -187,8 +187,9 @@ public class GoronMask extends Item implements ICurioItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("This mask is said to").withStyle(ChatFormatting.YELLOW));
-        tooltip.add(Component.literal("Enhance ones Pig-like senses to smell fungi").withStyle(ChatFormatting.YELLOW));
+        tooltip.add(Component.literal("The face of a Goron").withStyle(ChatFormatting.DARK_RED));
+        tooltip.add(Component.literal("Your skin is stone and cannot be burned").withStyle(ChatFormatting.GREEN));
+        tooltip.add(Component.literal("Not a strong swimmer").withStyle(ChatFormatting.RED));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 }

@@ -12,17 +12,15 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class GiantsMask extends Item implements ICurioItem {
-    public GiantsMask(Properties pProperties) {
+public class MoonMask extends Item implements ICurioItem {
+    public MoonMask(Properties pProperties) {
         super(pProperties);
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("Within this mask lies the might of a giant").withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.literal("Awaken the giants power and abilities").withStyle(ChatFormatting.GREEN));
-        tooltip.add(Component.literal("at the cost of magic").withStyle(ChatFormatting.GREEN));
+        tooltip.add(Component.literal("A Mask that represents the evening moon").withStyle(ChatFormatting.WHITE));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 }

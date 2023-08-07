@@ -20,7 +20,7 @@ public class GarosMask extends Item implements ICurioItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("A mask connected to the dead").withStyle(ChatFormatting.LIGHT_PURPLE));
+        tooltip.add(Component.literal("A mask connected to the dead").withStyle(ChatFormatting.WHITE));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 }

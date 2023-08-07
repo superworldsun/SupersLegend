@@ -71,8 +71,7 @@ public class GreatfairyMask extends Item implements ICurioItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("You wont be noticed, more than usual").withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.literal("Grants invisibility").withStyle(ChatFormatting.DARK_GRAY));
+        tooltip.add(Component.literal("The face of a fairy").withStyle(ChatFormatting.RED));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 }

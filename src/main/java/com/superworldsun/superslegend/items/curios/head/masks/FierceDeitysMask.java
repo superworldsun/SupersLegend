@@ -20,7 +20,9 @@ public class FierceDeitysMask extends Item implements ICurioItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.literal("It resembles the face of Kafei").withStyle(ChatFormatting.LIGHT_PURPLE));
+        tooltip.add(Component.literal("Contains a dark, godlike power..").withStyle(ChatFormatting.RED));
+        tooltip.add(Component.literal("Grants Strength and removes some negative effects").withStyle(ChatFormatting.GREEN));
+        tooltip.add(Component.literal("Uses Magic upon use").withStyle(ChatFormatting.GRAY));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 }
