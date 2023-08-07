@@ -1,11 +1,14 @@
 package com.superworldsun.superslegend.events;
 
+import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.api.DamageReductionItem;
 
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
 
+@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class ItemEvents {
 	/**
 	 * Applies damage reduction from all instances of {@link DamageReductionItem}
