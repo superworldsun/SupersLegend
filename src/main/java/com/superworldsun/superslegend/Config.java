@@ -11,7 +11,7 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 public class Config {
 	private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
-	private static final IntValue BASE_PLAYER_HEALTH = BUILDER.defineInRange("Base Player Health", 10, 1, 20);
+	private static final IntValue BASE_PLAYER_HEALTH = BUILDER.defineInRange("Base Player Health", 20, 1, 20);
 	public static int basePlayerHealth;
 	
 	static final ForgeConfigSpec SPEC = BUILDER.build();
