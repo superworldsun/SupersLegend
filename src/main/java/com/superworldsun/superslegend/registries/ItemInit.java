@@ -3,9 +3,19 @@ package com.superworldsun.superslegend.registries;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
+import com.superworldsun.superslegend.items.customclass.ItemCustomBow;
+import com.superworldsun.superslegend.items.customclass.ItemCustomSword;
 import com.superworldsun.superslegend.items.item.*;
+import com.superworldsun.superslegend.items.weapons.bow.BitBow;
+import com.superworldsun.superslegend.items.weapons.swords.BiggoronsSword;
+import com.superworldsun.superslegend.items.weapons.swords.BrokenGiantsKnife;
+import com.superworldsun.superslegend.items.weapons.swords.GiantsKnife;
+import com.superworldsun.superslegend.items.weapons.swords.RazorSword;
+import com.superworldsun.superslegend.util.ItemToolTiers;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -142,44 +152,45 @@ public class ItemInit {
 
     // WEAPONS & TOOLS
 
-    /*public static final RegistryObject<SwordItem> KOKIRI_SWORD = ITEMS.register("kokiri_sword",
-            () -> new ItemCustomSword(ItemToolTiers.KOKIRI_SWORD, 2, -2.5f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+    public static final RegistryObject<SwordItem> KOKIRI_SWORD = ITEMS.register("kokiri_sword",
+            () -> new ItemCustomSword(ItemToolTiers.KOKIRI_SWORD, 2, -2.5f, new Item.Properties()));
     public static final RegistryObject<SwordItem> RAZOR_SWORD = ITEMS.register("razor_sword",
-            () -> new RazorSword(ItemToolTiers.RAZOR_SWORD, 2, -2.5f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+            () -> new RazorSword(ItemToolTiers.RAZOR_SWORD, 2, -2.5f, new Item.Properties()));
     public static final RegistryObject<SwordItem> GILDED_SWORD = ITEMS.register("gilded_sword",
-            () -> new ItemCustomSword(ItemToolTiers.GILDED_SWORD, 2, -2.4f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+            () -> new ItemCustomSword(ItemToolTiers.GILDED_SWORD, 2, -2.4f, new Item.Properties()));
 
     public static final RegistryObject<SwordItem> GIANTS_KNIFE = ITEMS.register("giants_knife",
-            () -> new GiantsKnife(ItemToolTiers.GIANTS_KNIFE, 2, -2.5f, new Item.Properties().durability(30).tab(ItemGroupInit.RESOURCES)));
+            () -> new GiantsKnife(ItemToolTiers.GIANTS_KNIFE, 2, -2.5f, new Item.Properties()));
     public static final RegistryObject<SwordItem> BROKEN_GIANTS_KNIFE = ITEMS.register("broken_giants_knife",
-            () -> new BrokenGiantsKnife(ItemToolTiers.BROKEN_GIANTS_KNIFE, 2, -2.5f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+            () -> new BrokenGiantsKnife(ItemToolTiers.BROKEN_GIANTS_KNIFE, 2, -2.5f, new Item.Properties()));
     public static final RegistryObject<SwordItem> BIGGORONS_SWORD = ITEMS.register("biggorons_sword",
-            () -> new BiggornsSword(ItemToolTiers.BIGGORONS_SWORD, 2, -2.5f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+            () -> new BiggoronsSword(ItemToolTiers.BIGGORONS_SWORD, 2, -2.5f, new Item.Properties()));
 
     public static final RegistryObject<SwordItem> GODDESS_SWORD = ITEMS.register("goddess_sword",
-            () -> new ItemCustomSword(ItemToolTiers.GODDESS_SWORD, 2, -2.5f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+            () -> new ItemCustomSword(ItemToolTiers.GODDESS_SWORD, 2, -2.5f, new Item.Properties()));
     public static final RegistryObject<SwordItem> GODDESS_LONGSWORD = ITEMS.register("goddess_longsword",
-            () -> new ItemCustomSword(ItemToolTiers.GODDESS_LONGSWORD, 2, -2.4f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+            () -> new ItemCustomSword(ItemToolTiers.GODDESS_LONGSWORD, 2, -2.4f, new Item.Properties()));
     public static final RegistryObject<SwordItem> GODDESS_WHITE_SWORD = ITEMS.register("goddess_white_sword",
-            () -> new ItemCustomSword(ItemToolTiers.GODDESS_WHITE_SWORD, 2, -2.4f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+            () -> new ItemCustomSword(ItemToolTiers.GODDESS_WHITE_SWORD, 2, -2.4f, new Item.Properties()));
 
     public static final RegistryObject<SwordItem> MASTER_SWORD = ITEMS.register("master_sword",
-            () -> new MasterSword(ItemToolTiers.MASTER_SWORD, 2, -2.4f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+            () -> new ItemCustomSword(ItemToolTiers.MASTER_SWORD, 2, -2.4f, new Item.Properties()));
     public static final RegistryObject<SwordItem> MASTER_SWORD_V2 = ITEMS.register("master_sword_v2",
-            () -> new MasterSwordV2(ItemToolTiers.MASTER_SWORD_V2, 2, -2.3f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+            () -> new ItemCustomSword(ItemToolTiers.MASTER_SWORD_V2, 2, -2.3f, new Item.Properties()));
     public static final RegistryObject<SwordItem> TRUE_MASTER_SWORD = ITEMS.register("true_master_sword",
-            () -> new TrueMasterSword(ItemToolTiers.TRUE_MASTER_SWORD, 2, -2.2f, new Item.Properties().tab(ItemGroupInit.RESOURCES)));
+            () -> new ItemCustomSword(ItemToolTiers.TRUE_MASTER_SWORD, 2, -2.2f, new Item.Properties()));
 
-    public static final RegistryObject<GuardianSword> GUARDIAN_SWORD = ITEMS.register("guardian_sword",
-            () -> new GuardianSword(ItemToolTiers.GUARDIAN_SWORD, 2, -2.3f, new Item.Properties().durability(1200).tab(ItemGroupInit.RESOURCES)));*/
+    public static final RegistryObject<SwordItem> GUARDIAN_SWORD = ITEMS.register("guardian_sword",
+            () -> new ItemCustomSword(ItemToolTiers.GUARDIAN_SWORD, 2, -2.3f, new Item.Properties()));
 
-    /*public static final RegistryObject<HerosBow> FAIRY_BOW = ITEMS.register("fairy_bow",
-            () -> new HerosBow(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
-    public static final RegistryObject<HerosBow> HEROS_BOW = ITEMS.register("heros_bow",
-            () -> new HerosBow(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
+
+    public static final RegistryObject<BowItem> FAIRY_BOW = ITEMS.register("fairy_bow",
+            () -> new ItemCustomBow(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<BowItem> HEROS_BOW = ITEMS.register("heros_bow",
+            () -> new ItemCustomBow(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BIT_BOW = ITEMS.register("bit_bow",
-            () -> new BitBow(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
-    public static final RegistryObject<LynelBowX3> LYNEL_BOW_X3 = ITEMS.register("lynel_bow_x3",
+            () -> new BitBow(new Item.Properties().stacksTo(1)));
+    /*public static final RegistryObject<LynelBowX3> LYNEL_BOW_X3 = ITEMS.register("lynel_bow_x3",
             () -> new LynelBowX3(1, new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
     public static final RegistryObject<LynelBowX5> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
             () -> new LynelBowX5(1, new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
@@ -189,7 +200,7 @@ public class ItemInit {
     public static final RegistryObject<ShieldItem> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
             () -> new HylianShield(new Item.Properties().stacksTo(1).durability(3000).tab(ItemGroupInit.RESOURCES)));
     public static final RegistryObject<ShieldItem> SACRED_SHIELD = ITEMS.register("sacred_shield",
-            () -> new SacredShieldItem(new Item.Properties()));*/
+            () -> new SacredShieldItem(new Item.Properties()));
 
     public static final RegistryObject<Item> DEKU_SEEDS = ITEMS.register("deku_seeds",
             () -> new Item(new Item.Properties()));
@@ -241,19 +252,19 @@ public class ItemInit {
     //Sets
 
     public static final RegistryObject<Item> KOKIRI_SET = ITEMS.register("kokiri_set",
-            () -> new Item(new Item.Properties()));
+            () -> new KokiriSet(new Item.Properties()));
     public static final RegistryObject<Item> GORON_SET = ITEMS.register("goron_set",
-            () -> new Item(new Item.Properties()));
+            () -> new GoronSet(new Item.Properties()));
     public static final RegistryObject<Item> ZORA_SET = ITEMS.register("zora_set",
-            () -> new Item(new Item.Properties()));
+            () -> new ZoraSet(new Item.Properties()));
     public static final RegistryObject<Item> PURPLE_SET = ITEMS.register("purple_set",
-            () -> new Item(new Item.Properties()));
+            () -> new PurpleSet(new Item.Properties()));
     public static final RegistryObject<Item> MAGIC_ARMOR_SET = ITEMS.register("magic_armor_set",
-            () -> new Item(new Item.Properties()));
+            () -> new MagicArmorSet(new Item.Properties()));
     public static final RegistryObject<Item> DARK_SET = ITEMS.register("dark_set",
-            () -> new Item(new Item.Properties()));
+            () -> new DarkSet(new Item.Properties()));
     public static final RegistryObject<Item> ZORA_ARMOR_SET = ITEMS.register("zora_armor_set",
-            () -> new Item(new Item.Properties()));
+            () -> new ZoraArmorSet(new Item.Properties()));
 
     //Tools
 
@@ -264,26 +275,30 @@ public class ItemInit {
     public static final RegistryObject<Item> OIL = ITEMS.register("oil_bottle",
             () -> new Oil(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
     public static final RegistryObject<Item> BLUE_CANDLE = ITEMS.register("blue_candle",
-            () -> new Item(new Item.Properties()));
+            () -> new BlueCandle(new Item.Properties()));
     public static final RegistryObject<Item> RED_CANDLE = ITEMS.register("red_candle",
-            () -> new Item(new Item.Properties()));
-    //TODO, Not working
+            () -> new RedCandle(new Item.Properties()));
     public static final RegistryObject<Item> HEROS_SECRET_STASH = ITEMS.register("heros_secret_stash",
             () -> new HerosSecretStash(new Item.Properties()));
+    //TODO, change how the book of mudora works to translate new hylian text.
     public static final RegistryObject<Item> BOOK_OF_MUDORA = ITEMS.register("book_of_mudora",
             () -> new Item(new Item.Properties()));
+    //TODO, re implement rocs feather, currently dosent do anything
     public static final RegistryObject<Item> ROCS_FEATHER = ITEMS.register("rocs_feather",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> FISHING_ROD = ITEMS.register("fishing_rod",
             () -> new FishingRodItem(new Item.Properties()));
+    //TODO, BugNet doesn't work
     public static final RegistryObject<Item> BUG_NET = ITEMS.register("bug_net",
-            () -> new Item(new Item.Properties()));
+            () -> new BugNet(new Item.Properties()));
+    //TODO, magic mirror isnt working
     public static final RegistryObject<Item> MAGIC_MIRROR = ITEMS.register("magic_mirror",
-            () -> new Item(new Item.Properties()));
+            () -> new MagicMirror(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MAGIC_CAPE = ITEMS.register("magic_cape",
-            () -> new Item(new Item.Properties()));
+            () -> new MagicCape(new Item.Properties()));
     /*public static final RegistryObject<Item> MAGIC_POWDER = ITEMS.register("magic_powder",
             () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
+    //TODO, Boomeranges not yet added, no entities added yet
     public static final RegistryObject<Item> BOOMERANG = ITEMS.register("boomerang",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MAGIC_BOOMERANG = ITEMS.register("magic_boomerang",
