@@ -1,10 +1,13 @@
 package com.superworldsun.superslegend.items.item;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.PlayerEnderChestContainer;
@@ -16,24 +19,27 @@ public class HerosSecretStash extends Item {
     public HerosSecretStash(Properties pProperties) {
         super(pProperties);
     }
+    private static final Component CONTAINER_TITLE = Component.translatable("container.enderchest");
 
-    /*@Override
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
     {
 
         PlayerEnderChestContainer enderChest = player.getEnderChestInventory();
+        PlayerEnderChestContainer playerenderchestcontainer = player.getEnderChestInventory();
 
         if (enderChest != null)
         {
             if (!level.isClientSide)
             {
                 BlockPos currentPos = player.blockPosition();
-                level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENDER_CHEST_OPEN, SoundEvents.ENDER_CHEST_OPEN, 1f, 1f);
-                player.openMenu(new SimpleNamedContainerProvider((p_220114_1_, p_220114_2_, p_220114_3_) -> {
-                    return ChestMenu.threeRows(p_220114_1_, p_220114_2_, enderChest);
+                level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ENDER_CHEST_OPEN, SoundSource.PLAYERS, 1f, 1f);
+
+                player.openMenu(new SimpleMenuProvider((p_53124_, p_53125_, p_53126_) -> {
+                    return ChestMenu.threeRows(p_53124_, p_53125_, playerenderchestcontainer);
                 }, CONTAINER_TITLE));
             }
         }
         return new InteractionResultHolder<ItemStack>(InteractionResult.PASS, player.getItemInHand(hand));
-    }*/
+    }
 }
