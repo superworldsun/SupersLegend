@@ -83,7 +83,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.COOKED_HYRULE_BASS.get());
                         pOutput.accept(ItemInit.HYLIAN_LOACH.get());
                         pOutput.accept(ItemInit.COOKED_HYLIAN_LOACH.get());
-                        /*pOutput.accept(ItemInit.KOKIRI_SWORD.get());
+                        pOutput.accept(ItemInit.KOKIRI_SWORD.get());
                         pOutput.accept(ItemInit.RAZOR_SWORD.get());
                         pOutput.accept(ItemInit.GILDED_SWORD.get());
                         pOutput.accept(ItemInit.GIANTS_KNIFE.get());
@@ -99,12 +99,12 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.FAIRY_BOW.get());
                         pOutput.accept(ItemInit.HEROS_BOW.get());
                         pOutput.accept(ItemInit.BIT_BOW.get());
-                        pOutput.accept(ItemInit.LYNEL_BOW_X3.get());
+                        /*pOutput.accept(ItemInit.LYNEL_BOW_X3.get());
                         pOutput.accept(ItemInit.LYNEL_BOW_X5.get());
                         pOutput.accept(ItemInit.SLING_SHOT.get());
                         pOutput.accept(ItemInit.DEKU_SHIELD.get());
                         pOutput.accept(ItemInit.HYLIAN_SHIELD.get());
-                        pOutput.accept(ItemInit.SACRED_SHIELD.get());*/
+                        pOutput.accept(ItemInit.SACRED_SHIELD.get());
                         pOutput.accept(ItemInit.DEKU_SEEDS.get());
                         pOutput.accept(ItemInit.MAGIC_FIRE_ARROW.get());
                         pOutput.accept(ItemInit.MAGIC_ICE_ARROW.get());
@@ -122,7 +122,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.RING_BOX_L2.get());
                         pOutput.accept(ItemInit.RING_BOX_L3.get());
                         pOutput.accept(ItemInit.LETTER.get());
-                        pOutput.accept(ItemInit.RED_LETTER.get());
+                        pOutput.accept(ItemInit.RED_LETTER.get());*/
                         pOutput.accept(ItemInit.KOKIRI_SET.get());
                         pOutput.accept(ItemInit.GORON_SET.get());
                         pOutput.accept(ItemInit.ZORA_SET.get());
