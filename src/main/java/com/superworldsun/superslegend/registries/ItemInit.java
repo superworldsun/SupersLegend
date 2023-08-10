@@ -12,10 +12,7 @@ import com.superworldsun.superslegend.items.weapons.swords.BrokenGiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.GiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.RazorSword;
 import com.superworldsun.superslegend.util.ItemToolTiers;
-import net.minecraft.world.item.BowItem;
-import net.minecraft.world.item.FishingRodItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -355,7 +352,7 @@ public class ItemInit {
     public static final RegistryObject<Item> LENS_OF_TRUTH = ITEMS.register("lens_of_truth",
             () -> new LensOfTruth(new Item.Properties()));
     public static final RegistryObject<Item> FAIRY_OCARINA = ITEMS.register("fairy_ocarina",
-            () -> new Item(new Item.Properties()));
+            () -> new FairyOcarina(new Item.Properties()));
     public static final RegistryObject<Item> OCARINA_OF_TIME = ITEMS.register("ocarina_of_time",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RED_JELLY = ITEMS.register("red_jelly",
@@ -374,15 +371,15 @@ public class ItemInit {
     public static final RegistryObject<Item> RED_POTION = ITEMS.register("red_potion",
             () -> new RedPotion(new Item.Properties()));
     public static final RegistryObject<Item> GREEN_POTION = ITEMS.register("green_potion",
-            () -> new Item(new Item.Properties()));
+            () -> new GreenPotion(new Item.Properties()));
     public static final RegistryObject<Item> BLUE_POTION = ITEMS.register("blue_potion",
-            () -> new Item(new Item.Properties()));
+            () -> new BluePotion(new Item.Properties()));
     public static final RegistryObject<Item> BOTTLED_BEE = ITEMS.register("bottled_bee",
-            () -> new Item(new Item.Properties()));
+            () -> new BottledBee(new Item.Properties()));
     public static final RegistryObject<Item> BOTTLED_SILVERFISH = ITEMS.register("bottled_silverfish",
-            () -> new Item(new Item.Properties()));
+            () -> new BottledSilverfish(new Item.Properties()));
     public static final RegistryObject<Item> BOTTLED_ENDERMITE = ITEMS.register("bottled_endermite",
-            () -> new Item(new Item.Properties()));
+            () -> new BottledEndermite(new Item.Properties()));
     public static final RegistryObject<Item> MAGNETIC_GLOVE = ITEMS.register("magnetic_glove",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TRIFORCE = ITEMS.register("triforce",
