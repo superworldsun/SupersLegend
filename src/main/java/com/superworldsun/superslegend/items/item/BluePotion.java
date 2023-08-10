@@ -11,10 +11,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.gameevent.GameEvent;
 
-public class RedPotion extends Item {
-    public RedPotion(Properties pProperties) {
+import java.util.Objects;
+
+public class BluePotion extends Item {
+    public BluePotion(Properties pProperties) {
         super(pProperties);
     }
 
@@ -31,18 +32,21 @@ public class RedPotion extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
+    {
         ItemStack stack = player.getItemInHand(hand);
 
-        if (!player.isHurt())
+        //TODO, Undo when Magic is re added
+        /*if (ManaHelper.isFullMana(player) && !player.isHurt())
         {
             return InteractionResultHolder.fail(stack);
-        }
+        }*/
 
         return ItemUtils.startUsingInstantly(level, player, hand);
     }
 
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity)
+    {
         Player player = entity instanceof Player ? (Player) entity : null;
 
         if (player instanceof Player)
@@ -52,6 +56,8 @@ public class RedPotion extends Item {
 
         if (player != null)
         {
+            //TODO, Undo when Magic is re added
+            //ManaHelper.restoreManaToFull(player);
             player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 4, false, false));
             player.awardStat(Stats.ITEM_USED.get(this));
 
