@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.items.item;
 
+import com.superworldsun.superslegend.capability.magic.MagicProvider;
+import com.superworldsun.superslegend.registries.EffectInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.core.particles.ParticleTypes;
@@ -8,6 +10,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -25,32 +29,32 @@ public class MagicCape extends Item {
         super(pProperties);
     }
 
-    //TODO, re add EffectInit.Cloaked to get item working again
-    //TODO, Needs magic to function
-    /*@Override
+    //TODO, Needs sounds re added
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
     {
         ItemStack capeStack = player.getItemInHand(hand);
-        boolean hasMana = ManaHelper.hasMana(player, MANA_COST);
+        boolean hasMana = MagicProvider.hasMagic(player, MANA_COST);
         boolean hasEffect = player.hasEffect(EffectInit.CLOAKED.get());
 
         if (hasEffect) {
             player.removeEffect(EffectInit.CLOAKED.get());
             player.getCooldowns().addCooldown(this, 8);
-            addSmokeParticles(player);
+            //addSmokeParticles(player);
             //world.playSound(null, player, SoundInit.MAGIC_CAPE_OFF.get(), SoundSource.PLAYERS, 1f, 1f);
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, capeStack);
         } else if (hasMana) {
             player.getCooldowns().addCooldown(this, 8);
-            player.addEffect(new EffectInstance(EffectInit.CLOAKED.get(), Integer.MAX_VALUE, 0, false, false, true));
+            player.addEffect(new MobEffectInstance(EffectInit.CLOAKED.get(), Integer.MAX_VALUE, 0, false, false, true));
             //world.playSound(null, player, SoundInit.MAGIC_CAPE_ON.get(), SoundSource.PLAYERS, 1f, 1f);
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, capeStack);
         }
 
         return new InteractionResultHolder<>(InteractionResult.SUCCESS.FAIL, capeStack);
-    }*/
+    }
 
-    private void addSmokeParticles(Player player) {
+    //TODO, Random random causes a crash, not sure why.
+    /*private void addSmokeParticles(Player player) {
         Random random = (Random) player.level().random;
 
         for (int i = 0; i < 45; i++) {
@@ -59,7 +63,7 @@ public class MagicCape extends Item {
             double particleZ = player.getZ() + (random.nextBoolean() ? -1 : 1) * Math.pow(random.nextFloat(), 2) * 2;
             player.level().addParticle(ParticleTypes.SMOKE, particleX, particleY, particleZ, 0, 0.105D, 0);
         }
-    }
+    }*/
 
     @OnlyIn(Dist.CLIENT)
     @Override
