@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.items.armors.KokiriArmor;
 import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.customclass.ItemCustomBow;
@@ -12,7 +13,9 @@ import com.superworldsun.superslegend.items.weapons.swords.BrokenGiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.GiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.RazorSword;
 import com.superworldsun.superslegend.util.ItemToolTiers;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -381,7 +384,7 @@ public class ItemInit {
     public static final RegistryObject<Item> BOTTLED_ENDERMITE = ITEMS.register("bottled_endermite",
             () -> new BottledEndermite(new Item.Properties()));
     public static final RegistryObject<Item> MAGNETIC_GLOVE = ITEMS.register("magnetic_glove",
-            () -> new Item(new Item.Properties()));
+            () -> new MagneticGlove(new Item.Properties()));
     public static final RegistryObject<Item> TRIFORCE = ITEMS.register("triforce",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TRIFORCE_POWER = ITEMS.register("triforce_power",
@@ -469,13 +472,13 @@ public class ItemInit {
     public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap",
-            () -> new Item(new Item.Properties()));
+            () -> new KokiriArmor(ArmorTiers.KOKIRI, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> KOKIRI_TUNIC = ITEMS.register("kokiri_tunic",
-            () -> new Item(new Item.Properties()));
+            () -> new KokiriArmor(ArmorTiers.KOKIRI, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> KOKIRI_LEGGINGS = ITEMS.register("kokiri_leggings",
-            () -> new Item(new Item.Properties()));
+            () -> new KokiriArmor(ArmorTiers.KOKIRI, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> KOKIRI_BOOTS = ITEMS.register("kokiri_boots",
-            () -> new Item(new Item.Properties()));
+            () -> new KokiriArmor(ArmorTiers.KOKIRI, ArmorItem.Type.BOOTS, new Item.Properties()));
     public static final RegistryObject<Item> ZORA_CAP = ITEMS.register("zora_cap",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ZORA_TUNIC = ITEMS.register("zora_tunic",
@@ -795,7 +798,23 @@ public class ItemInit {
         }
     });*/
 
-    public static void register(IEventBus eventBus)
+    //TODO, maybe move this to its own class?
+    //first new Int is Durablity, second is armor defense
+    public static class ArmorTiers {
+        public static final ArmorInit KOKIRI = new ArmorInit(
+                new int[]{0, 0, 0, 0},
+                new int[]{1, 3, 4, 1},
+                0,
+                SoundEvents.ARMOR_EQUIP_LEATHER,
+                () -> Ingredient.of(ItemInit.KOKIRI_TUNIC::get),
+                "kokiri",
+                0.0f,
+                0.0f
+        );
+    }
+
+
+        public static void register(IEventBus eventBus)
     {
         ITEMS.register(eventBus);
     }
