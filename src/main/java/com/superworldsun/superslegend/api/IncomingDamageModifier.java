@@ -5,8 +5,8 @@ import net.minecraft.world.damagesource.DamageSource;
 /**
  * Use with equipment and curios
  */
-public interface DamageReductionItem {
-	boolean canReduceDamage(DamageSource damage);
+public interface IncomingDamageModifier {
+	boolean canModifyDamage(DamageSource damage);
 
-	float getDamageReduction();
+	float getDamageModifier();
 }

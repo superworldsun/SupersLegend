@@ -2,7 +2,7 @@ package com.superworldsun.superslegend.items.curios.rings;
 
 import java.util.List;
 
-import com.superworldsun.superslegend.api.DamageReductionItem;
+import com.superworldsun.superslegend.api.IncomingDamageModifier;
 import com.superworldsun.superslegend.items.customclass.RingItem;
 
 import net.minecraft.ChatFormatting;
@@ -13,19 +13,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
-public class GreenLuckRing extends RingItem implements DamageReductionItem {
+public class GreenLuckRing extends RingItem implements IncomingDamageModifier {
 	public GreenLuckRing(Properties properties) {
 		super(new Properties());
 	}
 
 	@Override
-	public boolean canReduceDamage(DamageSource damage) {
+	public boolean canModifyDamage(DamageSource damage) {
 		return damage.is(DamageTypes.FALLING_ANVIL) || damage.is(DamageTypes.HOT_FLOOR);
 	}
 
 	@Override
-	public float getDamageReduction() {
-		return 0.5F;
+	public float getDamageModifier() {
+		return -0.5F;
 	}
 
 	@Override
