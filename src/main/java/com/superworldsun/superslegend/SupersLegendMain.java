@@ -3,6 +3,7 @@ package com.superworldsun.superslegend;
 import com.mojang.logging.LogUtils;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.CreativeModTabsInit;
+import com.superworldsun.superslegend.registries.EffectInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,6 +35,7 @@ public class SupersLegendMain
 
         ItemInit.register(modEventBus);
         BlockInit.register(modEventBus);
+        EffectInit.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
