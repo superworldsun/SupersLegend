@@ -14,6 +14,7 @@ public class AppraisedRingBox extends Item {
         super(pProperties);
     }
 
+    //TODO, not sure how to replace INamedTag, no longer in ITag
     /*public static final ITag.INamedTag<Item> itempool =
             ItemTags.bind("superslegend:appraisal_list");
 
