@@ -34,6 +34,7 @@ public class SupersLegendMain
         BlockInit.register(modEventBus);
         EffectInit.register(modEventBus);
         SoundInit.register(modEventBus);
+        EntityTypeInit.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);

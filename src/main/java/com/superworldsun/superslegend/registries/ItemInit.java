@@ -9,9 +9,11 @@ import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.customclass.ItemCustomBow;
 import com.superworldsun.superslegend.items.customclass.ItemCustomSword;
 import com.superworldsun.superslegend.items.item.*;
+import com.superworldsun.superslegend.items.item.ammo.ArrowFire;
 import com.superworldsun.superslegend.items.weapons.bow.BitBow;
 import com.superworldsun.superslegend.items.weapons.hammer.MagicHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.MegatonHammer;
+import com.superworldsun.superslegend.items.weapons.hammer.SkullHammer;
 import com.superworldsun.superslegend.items.weapons.swords.BiggoronsSword;
 import com.superworldsun.superslegend.items.weapons.swords.BrokenGiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.GiantsKnife;
@@ -189,17 +191,18 @@ public class ItemInit {
             () -> new ItemCustomBow(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BIT_BOW = ITEMS.register("bit_bow",
             () -> new BitBow(new Item.Properties().stacksTo(1)));
-    /*public static final RegistryObject<LynelBowX3> LYNEL_BOW_X3 = ITEMS.register("lynel_bow_x3",
-            () -> new LynelBowX3(1, new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
-    public static final RegistryObject<LynelBowX5> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
-            () -> new LynelBowX5(1, new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
-    public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot", SlingShot::new);
+    public static final RegistryObject<BowItem> LYNEL_BOW_X3 = ITEMS.register("lynel_bow_x3",
+            () -> new BowItem(new Item.Properties()));
+    public static final RegistryObject<BowItem> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
+            () -> new BowItem(new Item.Properties()));
+    public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot",
+            () -> new BowItem(new Item.Properties()));
     public static final RegistryObject<ShieldItem> DEKU_SHIELD = ITEMS.register("deku_shield",
-            () -> new DekuShield(new Item.Properties().stacksTo(1).durability(500).tab(ItemGroupInit.RESOURCES)));
+            () -> new ShieldItem(new Item.Properties().stacksTo(1).durability(500)));
     public static final RegistryObject<ShieldItem> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
-            () -> new HylianShield(new Item.Properties().stacksTo(1).durability(3000).tab(ItemGroupInit.RESOURCES)));
+            () -> new ShieldItem(new Item.Properties().stacksTo(1).durability(3000)));
     public static final RegistryObject<ShieldItem> SACRED_SHIELD = ITEMS.register("sacred_shield",
-            () -> new SacredShieldItem(new Item.Properties()));
+            () -> new ShieldItem(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> DEKU_SEEDS = ITEMS.register("deku_seeds",
             () -> new Item(new Item.Properties()));
@@ -211,7 +214,7 @@ public class ItemInit {
     public static final RegistryObject<Item> MAGIC_LIGHT_ARROW = ITEMS.register("magic_light_arrow",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowFire(new Item.Properties()));
     public static final RegistryObject<Item> ICE_ARROW = ITEMS.register("ice_arrow",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SHOCK_ARROW = ITEMS.register("shock_arrow",
@@ -326,7 +329,7 @@ public class ItemInit {
     public static final RegistryObject<Item> MEGATON_HAMMER = ITEMS.register("megaton_hammer",
             () -> new MegatonHammer(new Item.Properties()));
     public static final RegistryObject<Item> SKULL_HAMMER = ITEMS.register("skull_hammer",
-            () -> new Item(new Item.Properties()));
+            () -> new SkullHammer(new Item.Properties()));
 
 
     public static final RegistryObject<Item> FIRE_ROD = ITEMS.register("fire_rod",
