@@ -1,0 +1,634 @@
+{
+	"music.disc.bubblegloop_swamp": {
+		"category": "music",
+		"subtitle": "Swamp music",
+		"sounds": [{
+			"name": "superslegend:music/disc/bubblegloop_swamp",
+			"stream": true
+		}]
+	},
+	"item.bubblegloop_disc": {
+		"category": "item",
+		"subtitle": "Bubblegloop Swamp",
+		"sounds": [{
+				"name": "superslegend:item/bubblegloop_disc",
+				"stream": true
+			}
+		]
+	},
+	"music.disc.forest_temple": {
+		"category": "music",
+		"subtitle": "Forest Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/forest_temple",
+			"stream": true
+		}]
+	},
+	"item.forest_temple_disc": {
+		"category": "item",
+		"subtitle": "Forest Temple",
+		"sounds": [{
+			"name": "superslegend:item/forest_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.fire_temple": {
+		"category": "music",
+		"subtitle": "Fire Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/fire_temple",
+			"stream": true
+		}]
+	},
+	"item.fire_temple_disc": {
+		"category": "item",
+		"subtitle": "Fire Temple",
+		"sounds": [{
+			"name": "superslegend:item/fire_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.water_temple": {
+		"category": "music",
+		"subtitle": "Water Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/water_temple",
+			"stream": true
+		}]
+	},
+	"item.water_temple_disc": {
+		"category": "item",
+		"subtitle": "Water Temple",
+		"sounds": [{
+			"name": "superslegend:item/water_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.shadow_temple": {
+		"category": "music",
+		"subtitle": "Shadow Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/shadow_temple",
+			"stream": true
+		}]
+	},
+	"item.shadow_temple_disc": {
+		"category": "item",
+		"subtitle": "Shadow Temple",
+		"sounds": [{
+			"name": "superslegend:item/shadow_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.spirit_temple": {
+		"category": "music",
+		"subtitle": "Spirit Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/spirit_temple",
+			"stream": true
+		}]
+	},
+	"item.spirit_temple_disc": {
+		"category": "item",
+		"subtitle": "Spirit Temple",
+		"sounds": [{
+			"name": "superslegend:item/spirit_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.woodfall_temple": {
+		"category": "music",
+		"subtitle": "Woodfall Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/woodfall_temple",
+			"stream": true
+		}]
+	},
+	"item.woodfall_temple_disc": {
+		"category": "item",
+		"subtitle": "Spirit Temple",
+		"sounds": [{
+			"name": "superslegend:item/woodfall_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.snowhead_temple": {
+		"category": "music",
+		"subtitle": "Spirit Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/snowhead_temple",
+			"stream": true
+		}]
+	},
+	"item.snowhead_temple_disc": {
+		"category": "item",
+		"subtitle": "Snowhead Temple",
+		"sounds": [{
+			"name": "superslegend:item/snowhead_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.great_bay_temple": {
+		"category": "music",
+		"subtitle": "Great Bay Temple",
+		"sounds": [{
+			"name": "superslegend:music/disc/great_bay_temple",
+			"stream": true
+		}]
+	},
+	"item.great_bay_temple_disc": {
+		"category": "item",
+		"subtitle": "Great Bay Temple",
+		"sounds": [{
+			"name": "superslegend:item/great_bay_temple_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.stone_tower_temple_reality": {
+		"category": "music",
+		"subtitle": "Stone Tower Temple Reality",
+		"sounds": [{
+			"name": "superslegend:music/disc/stone_tower_temple_reality",
+			"stream": true
+		}]
+	},
+	"item.stone_tower_temple_reality_disc": {
+		"category": "item",
+		"subtitle": "Stone Tower Temple Reality",
+		"sounds": [{
+			"name": "superslegend:item/stone_tower_temple_reality_disc",
+			"stream": true
+		}
+		]
+	},
+	"music.disc.stone_tower_temple_illusion": {
+		"category": "music",
+		"subtitle": "Stone Tower Temple Illusion",
+		"sounds": [{
+			"name": "superslegend:music/disc/stone_tower_temple_illusion",
+			"stream": true
+		}]
+	},
+	"item.stone_tower_temple_illusion_disc": {
+		"category": "item",
+		"subtitle": "Stone Tower Temple Illusion",
+		"sounds": [{
+			"name": "superslegend:item/stone_tower_temple_illusion_disc",
+			"stream": true
+		}
+		]
+	},
+	"item.bremen_march": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.bremen_march",
+		"sounds": [ "superslegend:item/bremen_march" ]
+	},
+	"item.bolero_of_fire": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.bolero_of_fire",
+		"sounds": [ "superslegend:item/bolero_of_fire" ]
+	},
+	"item.elegy_of_emptyness": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.elegy_of_emptyness",
+		"sounds": [ "superslegend:item/elegy_of_emptyness" ]
+	},
+	"item.eponas_song": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.eponas_song",
+		"sounds": [ "superslegend:item/eponas_song" ]
+	},
+	"item.goron_lullaby": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.goron_lullaby",
+		"sounds": [ "superslegend:item/goron_lullaby" ]
+	},
+	"item.inverted_song_of_time": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.inverted_song_of_time",
+		"sounds": [ "superslegend:item/inverted_song_of_time" ]
+	},
+	"item.minuet_of_forest": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.minuet_of_forest",
+		"sounds": [ "superslegend:item/minuet_of_forest" ]
+	},
+	"item.new_wave_bossa_nova": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.new_wave_bossa_nova",
+		"sounds": [ "superslegend:item/new_wave_bossa_nova" ]
+	},
+	"item.nocturn_of_shadow": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.nocturn_of_shadow",
+		"sounds": [ "superslegend:item/nocturn_of_shadow" ]
+	},
+	"item.oath_to_order": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.oath_to_order",
+		"sounds": [ "superslegend:item/oath_to_order" ]
+	},
+	"item.prelude_of_light": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.prelude_of_light",
+		"sounds": [ "superslegend:item/prelude_of_light" ]
+	},
+	"item.requiem_of_spirit": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.requiem_of_spirit",
+		"sounds": [ "superslegend:item/requiem_of_spirit" ]
+	},
+	"item.sarias_song": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.sarias_song",
+		"sounds": [ "superslegend:item/sarias_song" ]
+	},
+	"item.serenade_of_water": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.serenade_of_water",
+		"sounds": [ "superslegend:item/serenade_of_water" ]
+	},
+	"item.sonata_of_awakening": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.sonata_of_awakening",
+		"sounds": [ "superslegend:item/sonata_of_awakening" ]
+	},
+	"item.song_of_double_time": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_double_time",
+		"sounds": [ "superslegend:item/song_of_double_time" ]
+	},
+	"item.song_of_healing": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_healing",
+		"sounds": [ "superslegend:item/song_of_healing" ]
+	},
+	"item.song_of_soaring": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_soaring",
+		"sounds": [ "superslegend:item/song_of_soaring" ]
+	},
+	"item.song_of_storms": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_storms",
+		"sounds": [ "superslegend:item/song_of_storms" ]
+	},
+	"item.song_of_time": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.song_of_time",
+		"sounds": [ "superslegend:item/song_of_time" ]
+	},
+	"item.suns_song": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.suns_song",
+		"sounds": [ "superslegend:item/suns_song" ]
+	},
+	"item.zeldas_lullaby": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.zeldas_lullaby",
+		"sounds": [ "superslegend:item/zeldas_lullaby" ]
+	},
+	"item.nayrus_love_cast": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.nayrus_love_cast",
+		"sounds": [ "superslegend:item/nayrus_love_cast" ]
+	},
+	"item.zelda_error": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.zelda_error",
+		"sounds": [ "superslegend:item/zelda_error" ]
+	},
+	"item.dash": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.dash",
+		"sounds": [ "superslegend:item/dash" ]
+	},
+	"item.magic_cape_off": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.magic_cape_off",
+		"sounds": [ "superslegend:item/magic_cape_off" ]
+	},
+	"item.magic_cape_on": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.magic_cape_on",
+		"sounds": [ "superslegend:item/magic_cape_on" ]
+	},
+	"item.lens_of_truth_on": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.lens_of_truth_on",
+		"sounds": [ "superslegend:item/lens_of_truth_on" ]
+	},
+	"item.lens_of_truth_off": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.lens_of_truth_off",
+		"sounds": [ "superslegend:item/lens_of_truth_off" ]
+	},
+	"item.floor_switch": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.floor_switch",
+		"sounds": [ "superslegend:item/floor_switch" ]
+	},
+	"item.rupee_green": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_green",
+		"sounds": [ "superslegend:item/rupee_green" ]
+	},
+	"item.rupee_blue": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_blue",
+		"sounds": [ "superslegend:item/rupee_blue" ]
+	},
+	"item.rupee_red": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_red",
+		"sounds": [ "superslegend:item/rupee_red" ]
+	},
+	"item.rupee_silver": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_silver",
+		"sounds": [ "superslegend:item/rupee_silver" ]
+	},
+	"item.book_of_mudora": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.book_of_mudora",
+		"sounds": [ "superslegend:item/book_of_mudora" ]
+	},
+	"item.heart": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.heart",
+		"sounds": [ "superslegend:item/heart" ]
+	},
+	"item.fire_ignite": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.fire_ignite",
+		"sounds": [ "superslegend:item/fire_ignite" ]
+	},
+	"item.magic_arrow_hit_fire": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.magic_arrow_hit_fire",
+		"sounds": [ "superslegend:item/magic_arrow_hit_fire" ]
+	},
+	"item.magic_arrow_hit_ice": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.magic_arrow_hit_ice",
+		"sounds": [ "superslegend:item/magic_arrow_hit_ice" ]
+	},
+	"item.magic_arrow_hit_light": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.magic_arrow_hit_light",
+		"sounds": [ "superslegend:item/magic_arrow_hit_light" ]
+	},
+	"item.arrow_hit_fire": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.arrow_hit_fire",
+		"sounds": [ "superslegend:item/arrow_hit_fire" ]
+	},
+	"item.arrow_hit_ice": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.arrow_hit_ice",
+		"sounds": [ "superslegend:item/arrow_hit_ice" ]
+	},
+	"item.arrow_hit_shock": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.arrow_hit_shock",
+		"sounds": [ "superslegend:item/arrow_hit_shock" ]
+	},
+	"item.arrow_hit_ancient": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.arrow_hit_ancient",
+		"sounds": [ "superslegend:item/arrow_hit_ancient" ]
+	},
+	"item.bitbow_arrow": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.bitbow_arrow",
+		"sounds": [ "superslegend:item/bitbow_arrow" ]
+	},
+	"item.deku_seed_hit": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_seed_hit",
+		"sounds": [ "superslegend:item/deku_seed_hit" ]
+	},
+	"item.hover_boots": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.hover_boots",
+		"sounds": [ "superslegend:item/hover_boots" ]
+	},
+	"item.oot_boomerang_fly_loop": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.oot_boomerang_fly_loop",
+		"sounds": [ "superslegend:item/oot_boomerang_fly_loop" ]
+	},
+	"item.oot_boomerang_throw": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.oot_boomerang_throw",
+		"sounds": [ "superslegend:item/oot_boomerang_throw" ]
+	},
+	"item.alttp_boomerang_fly_loop": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.alttp_boomerang_fly_loop",
+		"sounds": [ "superslegend:item/alttp_boomerang_fly_loop" ]
+	},
+	"item.ww_boomerang_fly_loop": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.ww_boomerang_fly_loop",
+		"sounds": [ "superslegend:item/ww_boomerang_fly_loop" ]
+	},
+	"item.sword_beam_summon": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.sword_beam_summon",
+		"sounds": [ "superslegend:item/sword_beam_summon" ]
+	},
+	"item.sword_beam_loop": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.sword_beam_loop",
+		"sounds": [ "superslegend:item/sword_beam_loop" ]
+	},
+	"item.bomb_fuse": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.bomb_fuse",
+		"sounds": [ "superslegend:item/bomb_fuse" ]
+	},
+	"item.bomb_defuse": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.bomb_defuse",
+		"sounds": [ "superslegend:item/bomb_defuse" ]
+	},
+	"item.hookshot_set": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.hookshot_set",
+		"sounds": [ "superslegend:item/hookshot_set" ]
+	},
+	"item.hookshot_extended": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.hookshot_extended",
+		"sounds": [ "superslegend:item/hookshot_extended" ]
+	},
+	"item.hookshot_fire": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.hookshot_fire",
+		"sounds": [ "superslegend:item/hookshot_fire" ]
+	},
+	"item.hookshot_target": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.hookshot_target",
+		"sounds": [ "superslegend:item/hookshot_target" ]
+	},
+	"item.hookshot_clang": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.hookshot_clang",
+		"sounds": [ "superslegend:item/hookshot_clang" ]
+	},
+	"item.clawshot_set": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.clawshot_set",
+		"sounds": [ "superslegend:item/clawshot_set" ]
+	},
+	"item.clawshot_fire": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.clawshot_fire",
+		"sounds": [ "superslegend:item/clawshot_fire" ]
+	},
+	"item.clawshot_extended": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.clawshot_extended",
+		"sounds": [ "superslegend:item/clawshot_extended" ]
+	},
+	"item.clawshot_return": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.clawshot_return",
+		"sounds": [ "superslegend:item/clawshot_return" ]
+	},
+	"item.megaton_hammer_swing": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.megaton_hammer_swing",
+		"sounds": [ "superslegend:item/megaton_hammer_swing" ]
+	},
+	"item.megaton_hammer_hit": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.megaton_hammer_hit",
+		"sounds": [ "superslegend:item/megaton_hammer_hit" ]
+	},
+	"item.slingshot_pull": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.slingshot_pull",
+		"sounds": [ "superslegend:item/slingshot_pull" ]
+	},
+	"item.slingshot_shoot": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.slingshot_shoot",
+		"sounds": [ "superslegend:item/slingshot_shoot" ]
+	},
+	"item.bottle_pop": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.bottle_pop",
+		"sounds": [ "superslegend:item/bottle_pop" ]
+	},
+	"item.door_unlocked": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.door_unlocked",
+		"sounds": [ "superslegend:block/door_unlocked" ]
+	},
+	"item.block_push_dirt": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_dirt",
+		"sounds": [ "superslegend:block/block_push_dirt" ]
+	},
+	"item.block_push_flesh": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_flesh",
+		"sounds": [ "superslegend:block/block_push_flesh" ]
+	},
+	"item.block_push_grass": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_grass",
+		"sounds": [ "superslegend:block/block_push_grass" ]
+	},
+	"item.block_push_ice": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_ice",
+		"sounds": [ "superslegend:block/block_push_ice" ]
+	},
+	"item.block_push_lava": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_lava",
+		"sounds": [ "superslegend:block/block_push_lava" ]
+	},
+	"item.block_push_sand": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_sand",
+		"sounds": [ "superslegend:block/block_push_sand" ]
+	},
+	"item.block_push_stone": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_stone",
+		"sounds": [ "superslegend:block/block_push_stone" ]
+	},
+	"item.block_push_wood": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_wood",
+		"sounds": [ "superslegend:block/block_push_wood" ]
+	},
+	"item.block_push_wool": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.block_push_wool",
+		"sounds": [ "superslegend:block/block_push_wool" ]
+	},
+	"item.pickup": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.pickup",
+		"sounds": [ "superslegend:item/pickup" ]
+	},
+	"item.fairy_bottle_use": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.fairy_bottle_use",
+		"sounds": [ "superslegend:item/fairy_bottle_use" ]
+	},
+	"item.fairy_heal_on_touch": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.fairy_heal_on_touch",
+		"sounds": [ "superslegend:item/fairy_heal_on_touch" ]
+	},
+	"item.fairy_twinkle": {
+		"category": "entity",
+		"subtitle": "superslegend.subtitle.fairy_twinkle",
+		"sounds": [ "superslegend:item/fairy_twinkle" ]
+	},
+	"item.poe_laugh": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.poe_laughing",
+		"sounds": [ "superslegend:item/poe_laugh" ]
+	},
+	"item.ocarina.note_d": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item.ocarina.note_d",
+		"sounds": [ "superslegend:item/ocarina/note_d" ]
+	},
+	"item.ocarina.note_u": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item.ocarina.note_u",
+		"sounds": [ "superslegend:item/ocarina/note_u" ]
+	},
+	"item.ocarina.note_r": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item.ocarina.note_r",
+		"sounds": [ "superslegend:item/ocarina/note_r" ]
+	},
+	"item.ocarina.note_l": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item.ocarina.note_l",
+		"sounds": [ "superslegend:item/ocarina/note_l" ]
+	},
+	"item.ocarina.note_a": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item.ocarina.note_a",
+		"sounds": [ "superslegend:item/ocarina/note_a" ]
+	}
+}
