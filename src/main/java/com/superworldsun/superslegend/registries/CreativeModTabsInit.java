@@ -99,7 +99,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.FAIRY_BOW.get());
                         pOutput.accept(ItemInit.HEROS_BOW.get());
                         pOutput.accept(ItemInit.BIT_BOW.get());
-                        /*pOutput.accept(ItemInit.LYNEL_BOW_X3.get());
+                        pOutput.accept(ItemInit.LYNEL_BOW_X3.get());
                         pOutput.accept(ItemInit.LYNEL_BOW_X5.get());
                         pOutput.accept(ItemInit.SLING_SHOT.get());
                         pOutput.accept(ItemInit.DEKU_SHIELD.get());
@@ -122,7 +122,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.RING_BOX_L2.get());
                         pOutput.accept(ItemInit.RING_BOX_L3.get());
                         pOutput.accept(ItemInit.LETTER.get());
-                        pOutput.accept(ItemInit.RED_LETTER.get());*/
+                        pOutput.accept(ItemInit.RED_LETTER.get());
                         pOutput.accept(ItemInit.KOKIRI_SET.get());
                         pOutput.accept(ItemInit.GORON_SET.get());
                         pOutput.accept(ItemInit.ZORA_SET.get());
