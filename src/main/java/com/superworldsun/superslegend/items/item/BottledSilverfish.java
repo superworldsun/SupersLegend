@@ -1,11 +1,10 @@
 package com.superworldsun.superslegend.items.item;
 
-import net.minecraft.core.BlockPos;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.monster.Silverfish;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -26,9 +25,7 @@ public class BottledSilverfish extends Item
 
         if(!level.isClientSide && !player.isCreative())
         {
-            BlockPos currentPos = player.blockPosition();
-            //TODO, add sounds back
-            //level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOTTLE_POP.get(), SoundCategory.PLAYERS, 1f, 1f);
+            player.playSound(SoundInit.BOTTLE_POP.get(), 1f, 1f);
 
             if (!player.level().isClientSide)
             {
@@ -43,8 +40,7 @@ public class BottledSilverfish extends Item
 
         if(!level.isClientSide && player.isCreative())
         {
-            BlockPos currentPos = player.blockPosition();
-            //level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOTTLE_POP.get(), SoundCategory.PLAYERS, 1f, 1f);
+            player.playSound(SoundInit.BOTTLE_POP.get(), 1f, 1f);
 
             if (!player.level().isClientSide)
             {

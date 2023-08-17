@@ -27,6 +27,7 @@ public class AppraisedRingBox extends Item {
         if (!player.getAbilities().instabuild)
         {
             stack.shrink(1);
+            player.playSound(SoundEvents.ITEM_PICKUP, 1.0f, 1.0f);
         }
         return InteractionResultHolder.success(stack);
     }

@@ -1,6 +1,6 @@
 package com.superworldsun.superslegend.items.item;
 
-import net.minecraft.core.BlockPos;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -11,10 +11,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.List;
 
 public class BottledBee extends Item
 {
@@ -29,9 +25,7 @@ public class BottledBee extends Item
 
         if(!level.isClientSide && !player.isCreative())
         {
-            BlockPos currentPos = player.blockPosition();
-            //TODO, add sounds back
-            //level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOTTLE_POP.get(), SoundCategory.PLAYERS, 1f, 1f);
+            player.playSound(SoundInit.BOTTLE_POP.get(), 1f, 1f);
 
             if (!player.level().isClientSide)
             {
@@ -46,8 +40,7 @@ public class BottledBee extends Item
 
         if(!level.isClientSide && player.isCreative())
         {
-            BlockPos currentPos = player.blockPosition();
-            //level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOTTLE_POP.get(), SoundCategory.PLAYERS, 1f, 1f);
+            player.playSound(SoundInit.BOTTLE_POP.get(), 1f, 1f);
 
             if (!player.level().isClientSide)
             {

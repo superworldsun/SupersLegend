@@ -2,8 +2,8 @@ package com.superworldsun.superslegend.items.weapons.bow;
 
 import com.superworldsun.superslegend.items.customclass.ItemCustomBow;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -35,10 +35,7 @@ public class BitBow extends ItemCustomBow
         if (!level.isClientSide && !player.isCreative() && player.getInventory().contains(new ItemStack(ItemInit.RUPEE.get())))
         {
             player.getCooldowns().addCooldown(this, 15);
-
-            BlockPos currentPos = player.blockPosition();
-            //TODO, re add sound
-            //level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW.get(), SoundCategory.PLAYERS, 3f, 1f);
+            player.playSound(SoundInit.BITBOW_ARROW.get(), 3.0f, 1.0f);
 
             ArrowItem itemarrow = (ArrowItem) Items.ARROW;
             AbstractArrow entityarrow = itemarrow.createArrow(level, new ItemStack(Items.ARROW), player);
@@ -60,9 +57,7 @@ public class BitBow extends ItemCustomBow
         }
         else if (!level.isClientSide && player.isCreative()) {
             player.getCooldowns().addCooldown(this, 15);
-
-            BlockPos currentPos = player.blockPosition();
-            //level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BITBOW_ARROW.get(), SoundCategory.PLAYERS, 3f, 1f);
+            player.playSound(SoundInit.BITBOW_ARROW.get(), 3.0f, 1.0f);
 
             ArrowItem itemarrow = (ArrowItem)Items.ARROW;
             AbstractArrow entityarrow = itemarrow.createArrow(level, new ItemStack(Items.ARROW), player);
@@ -81,5 +76,4 @@ public class BitBow extends ItemCustomBow
         tooltip.add(Component.literal("Uses Green Rupee as ammo").withStyle(ChatFormatting.GRAY));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
-
 }

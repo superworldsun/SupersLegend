@@ -5,8 +5,11 @@ import java.util.List;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.events.PlayerHealthEvents;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -33,8 +36,8 @@ public class HeartContainer extends Item {
 		} else {
 			PlayerHealthEvents.addBaseHealthModifier(player, 2F);
 			if (!player.getAbilities().instabuild) stack.shrink(1);
-//			BlockPos pos = player.blockPosition();
-//			level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundInit.HEART.get(), SoundCategory.PLAYERS, 1f, 1f);
+			BlockPos pos = player.blockPosition();
+			level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundInit.HEART.get(), SoundSource.PLAYERS, 1f, 1f);
 			return InteractionResultHolder.consume(stack);
 		}
 	}

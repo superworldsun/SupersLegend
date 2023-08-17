@@ -1,8 +1,8 @@
 package com.superworldsun.superslegend.items.item;
 
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.core.NonNullList;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -64,10 +64,7 @@ public class RedRupee extends Item {
 
             if (remainingToAdd == 0) {
                 itemstack.shrink(5);
-
-                // Play a sound when the new item is created
-                //TODO add rupee sound effect
-                player.playSound(SoundEvents.ITEM_PICKUP, 1.0f, 1.0f);
+                player.playSound(SoundInit.RUPEE_RED.get(), 1.0f, 1.0f);
 
                 return InteractionResultHolder.success(itemstack);
             }

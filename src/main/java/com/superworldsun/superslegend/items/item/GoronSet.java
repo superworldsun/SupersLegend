@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.items.item;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -32,6 +33,7 @@ public class GoronSet extends Item
             if (!player.getAbilities().instabuild)
             {
                 stack.shrink(1);
+                player.playSound(SoundEvents.ARMOR_EQUIP_LEATHER, 1.0f, 1.0f);
             }
 
             return InteractionResultHolder.success(stack);

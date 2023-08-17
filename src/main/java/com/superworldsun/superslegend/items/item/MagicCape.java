@@ -2,16 +2,16 @@ package com.superworldsun.superslegend.items.item;
 
 import com.superworldsun.superslegend.capability.magic.MagicProvider;
 import com.superworldsun.superslegend.registries.EffectInit;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +29,6 @@ public class MagicCape extends Item {
         super(pProperties);
     }
 
-    //TODO, Needs sounds re added
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
     {
@@ -41,12 +40,12 @@ public class MagicCape extends Item {
             player.removeEffect(EffectInit.CLOAKED.get());
             player.getCooldowns().addCooldown(this, 8);
             //addSmokeParticles(player);
-            //world.playSound(null, player, SoundInit.MAGIC_CAPE_OFF.get(), SoundSource.PLAYERS, 1f, 1f);
+            player.playSound(SoundInit.MAGIC_CAPE_OFF.get(), 1f, 1f);
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, capeStack);
         } else if (hasMana) {
             player.getCooldowns().addCooldown(this, 8);
             player.addEffect(new MobEffectInstance(EffectInit.CLOAKED.get(), Integer.MAX_VALUE, 0, false, false, true));
-            //world.playSound(null, player, SoundInit.MAGIC_CAPE_ON.get(), SoundSource.PLAYERS, 1f, 1f);
+            player.playSound(SoundInit.MAGIC_CAPE_OFF.get(), 1f, 1f);
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, capeStack);
         }
 

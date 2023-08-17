@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.item;
 
 import com.superworldsun.superslegend.capability.magic.MagicProvider;
 
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -33,18 +34,18 @@ public class LensOfTruth extends Item {
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		if (MagicProvider.hasMagic(player, MANA_COST)) {
-//            player.level().playSound(null, player, SoundInit.LENS_OF_TRUTH_ON.get(), SoundCategory.PLAYERS, 1f, 1f);
+			player.playSound(SoundInit.LENS_OF_TRUTH_ON.get(), 1f, 1f);
 			player.startUsingItem(hand);
 			return InteractionResultHolder.consume(itemstack);
 		} else {
-//            player.level().playSound(null, player, SoundInit.ZELDA_ERROR.get(), SoundCategory.PLAYERS, 1f, 1f);
+			player.playSound(SoundInit.ZELDA_ERROR.get(), 1f, 1f);
 			return InteractionResultHolder.fail(itemstack);
 		}
 	}
 
 	@Override
 	public void releaseUsing(ItemStack stack, Level level, LivingEntity player, int timeInUse) {
-		// player.level().playSound(null, player, SoundInit.LENS_OF_TRUTH_OFF.get(), SoundCategory.PLAYERS, 1f, 1f);
+		player.playSound(SoundInit.LENS_OF_TRUTH_OFF.get(), 1f, 1f);
 	}
 
 	@Override
