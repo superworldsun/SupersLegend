@@ -9,7 +9,7 @@ import com.superworldsun.superslegend.items.curios.rings.*;
 import com.superworldsun.superslegend.items.customclass.ItemCustomBow;
 import com.superworldsun.superslegend.items.customclass.ItemCustomSword;
 import com.superworldsun.superslegend.items.item.*;
-import com.superworldsun.superslegend.items.item.ammo.ArrowFire;
+import com.superworldsun.superslegend.items.item.ammo.*;
 import com.superworldsun.superslegend.items.weapons.bow.BitBow;
 import com.superworldsun.superslegend.items.weapons.hammer.MagicHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.MegatonHammer;
@@ -216,13 +216,13 @@ public class ItemInit {
     public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
             () -> new ArrowFire(new Item.Properties()));
     public static final RegistryObject<Item> ICE_ARROW = ITEMS.register("ice_arrow",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowIce(new Item.Properties()));
     public static final RegistryObject<Item> SHOCK_ARROW = ITEMS.register("shock_arrow",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowShock(new Item.Properties()));
     public static final RegistryObject<Item> BOMB_ARROW = ITEMS.register("bomb_arrow",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowBomb(new Item.Properties()));
     public static final RegistryObject<Item> ANCIENT_ARROW = ITEMS.register("ancient_arrow",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowAncient(new Item.Properties()));
     public static final RegistryObject<Item> SILVER_ARROW = ITEMS.register("silver_arrow",
             () -> new Item(new Item.Properties()));
 
