@@ -1,7 +1,7 @@
 package com.superworldsun.superslegend.client.init;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.render.arrows.FireArrowRender;
+import com.superworldsun.superslegend.client.render.arrows.*;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -25,6 +25,10 @@ public class EntityRendererInit {
     @SubscribeEvent
     public static void initRenders(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(EntityTypeInit.FIRE_ARROW.get(), FireArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.ICE_ARROW.get(), IceArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.SHOCK_ARROW.get(), ShockArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.BOMB_ARROW.get(), BombArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.ANCIENT_ARROW.get(), AncientArrowRender::new);
     }
 
     private static <T extends LivingEntity, M extends EntityModel<T>> void attachRenderLayers(LivingEntityRenderer<T, M> renderer) {
