@@ -14,10 +14,12 @@ import com.superworldsun.superslegend.items.weapons.bow.BitBow;
 import com.superworldsun.superslegend.items.weapons.hammer.MagicHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.MegatonHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.SkullHammer;
+import com.superworldsun.superslegend.items.weapons.other.DekuStick;
 import com.superworldsun.superslegend.items.weapons.swords.BiggoronsSword;
 import com.superworldsun.superslegend.items.weapons.swords.BrokenGiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.GiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.RazorSword;
+import com.superworldsun.superslegend.items.weapons.wand.FireRod;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -333,11 +335,11 @@ public class ItemInit {
 
 
     public static final RegistryObject<Item> FIRE_ROD = ITEMS.register("fire_rod",
-            () -> new Item(new Item.Properties()));
+            () -> new FireRod(new Item.Properties()));
     public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick",
-            () -> new Item(new Item.Properties()));
+            () -> new DekuStick(new Item.Properties()));
     public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit",
             () -> new Item(new Item.Properties()));
     /*public static final RegistryObject<Item> DEKU_NUTS = ITEMS.register("deku_nuts",
