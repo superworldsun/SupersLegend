@@ -31,20 +31,6 @@ public class FireArrowEntity extends AbstractArrow
         super(EntityTypeInit.FIRE_ARROW.get(), shooter, worldIn);
     }
 
-    public FireArrowEntity(Level worldIn, double x, double y, double z) {
-        super(EntityTypeInit.FIRE_ARROW.get(), x, y, z, worldIn);
-    }
-
-    public FireArrowEntity(EntityType<? extends FireArrowEntity> type, Level worldIn, LivingEntity shooter)
-    {
-        super(type, shooter, worldIn);
-    }
-
-    public FireArrowEntity(EntityType<? extends FireArrowEntity> type, Level levelIn, double x, double y, double z)
-    {
-        super(type, x, y, z, levelIn);
-    }
-
     @Override
     public void onAddedToWorld()
     {
@@ -64,19 +50,17 @@ public class FireArrowEntity extends AbstractArrow
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    /*private void applyResistanceAndWeakness(Entity entity) {
-        if (TagInit.RESISTANT_TO_FIRE.contains(entity.getType()))
-            setBaseDamage(getBaseDamage() / 2f);
-        else if (TagInit.WEAK_TO_FIRE.contains(entity.getType()))
-            setBaseDamage(getBaseDamage() * 2f);
-    }*/
-
     @Override
     protected void doPostHurtEffects(LivingEntity entity)
     {
         super.doPostHurtEffects(entity);
         entity.setSecondsOnFire(6);
+
         playSound(SoundInit.ARROW_HIT_FIRE.get(), 1f, 1f);
+
+        if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
+            entity.setArrowCount(entity.getArrowCount() - 1);
+        }
     }
 
     @Override
