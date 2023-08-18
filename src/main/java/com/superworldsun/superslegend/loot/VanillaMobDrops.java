@@ -16,6 +16,8 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class VanillaMobDrops {
 
+    //TODO, right now i have a event in AncientArrowDropEvents that makes it so any mob killed by the ancient arrow doesn't drop any loot,
+    // but because of these events here, it at least still drops rupees and such. I dont want the ancient arrow to allow mob to drop any of these items when killed by it
     @SubscribeEvent
     public static void customLootMonsterEntity(LivingDropsEvent event) {
         Random random = new Random();
