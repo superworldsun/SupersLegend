@@ -1,0 +1,27 @@
+{
+  "feature": "superslegend:overworld_master_ore",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 2
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:trapezoid",
+        "min_inclusive": {
+          "absolute": -52
+        },
+        "max_inclusive": {
+          "absolute": 19
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
