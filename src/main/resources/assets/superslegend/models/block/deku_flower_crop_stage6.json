@@ -1,0 +1,64 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "0": "superslegend:block/deku_flower_crop_stage6",
+    "particle": "superslegend:block/deku_flower_crop_stage6"
+  },
+  "elements": [
+    {
+      "from": [5, 5, 5],
+      "to": [11, 15, 11],
+      "color": 6,
+      "faces": {
+        "north": {"uv": [0, 0, 6, 10], "texture": "#0"},
+        "east": {"uv": [0, 0, 6, 10], "texture": "#0"},
+        "south": {"uv": [0, 0, 6, 10], "texture": "#0"},
+        "west": {"uv": [0, 0, 6, 10], "texture": "#0"},
+        "up": {"uv": [0, 0, 6, 6], "texture": "#0"},
+        "down": {"uv": [0, 0, 6, 6], "texture": "#0"}
+      }
+    },
+    {
+      "from": [2, 0, 2],
+      "to": [14, 2, 14],
+      "rotation": {"angle": 0, "axis": "y", "origin": [10, 9, 21]},
+      "color": 7,
+      "faces": {
+        "north": {"uv": [5.75, 1.75, 7.25, 2], "texture": "#0"},
+        "east": {"uv": [8.875, 8.375, 10.375, 8.625], "texture": "#0"},
+        "south": {"uv": [8.875, 8.625, 10.375, 8.875], "texture": "#0"},
+        "west": {"uv": [8.875, 8.875, 10.375, 9.125], "texture": "#0"},
+        "up": {"uv": [9.625, 3.25, 8.125, 1.75], "texture": "#0"},
+        "down": {"uv": [9.875, 3.25, 8.375, 4.75], "texture": "#0"}
+      }
+    },
+    {
+      "from": [3, 2, 3],
+      "to": [13, 4, 13],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 19, 8]},
+      "color": 1,
+      "faces": {
+        "north": {"uv": [0, 9.125, 1.25, 9.375], "texture": "#0"},
+        "east": {"uv": [8.875, 9.125, 10.125, 9.375], "texture": "#0"},
+        "south": {"uv": [9.25, 0, 10.5, 0.25], "texture": "#0"},
+        "west": {"uv": [9.25, 0.25, 10.5, 0.5], "texture": "#0"},
+        "up": {"uv": [7.625, 9.625, 6.375, 8.375], "texture": "#0"},
+        "down": {"uv": [8.875, 8.375, 7.625, 9.625], "texture": "#0"}
+      }
+    },
+    {
+      "from": [4, 4, 4],
+      "to": [12, 5, 12],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 19, 8]},
+      "color": 6,
+      "faces": {
+        "north": {"uv": [7.875, 7.375, 8.875, 7.5], "texture": "#0"},
+        "east": {"uv": [8.875, 7.375, 9.875, 7.5], "texture": "#0"},
+        "south": {"uv": [9.25, 0.5, 10.25, 0.625], "texture": "#0"},
+        "west": {"uv": [9.25, 0.625, 10.25, 0.75], "texture": "#0"},
+        "up": {"uv": [9.375, 5.75, 8.375, 4.75], "texture": "#0"},
+        "down": {"uv": [4.5, 8.75, 3.5, 9.75], "texture": "#0"}
+      }
+    }
+  ]
+}

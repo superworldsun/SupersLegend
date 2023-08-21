@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/template_fire_side_alt",
+	"textures": {
+		"fire": "superslegend:block/farores_flame_1",
+		"particle": "superslegend:block/air"
+	}
+}

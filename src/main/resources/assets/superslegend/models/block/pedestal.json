@@ -1,0 +1,34 @@
+{
+  "texture_size": [32, 32],
+  "parent": "block/cube_all",
+  "textures": {
+    "0": "superslegend:block/pedestal",
+    "particle": "superslegend:block/pedestal"
+  },
+  "elements": [
+    {
+      "from": [2, 0, 5],
+      "to": [14, 4, 11],
+      "faces": {
+        "north": {"uv": [0, 6, 6, 8], "texture": "#0"},
+        "east": {"uv": [6, 2, 9, 4], "texture": "#0"},
+        "south": {"uv": [6, 0, 12, 2], "texture": "#0"},
+        "west": {"uv": [6, 4, 9, 6], "texture": "#0"},
+        "up": {"uv": [6, 3, 0, 0], "texture": "#0"},
+        "down": {"uv": [6, 3, 0, 6], "texture": "#0"}
+      }
+    },
+    {
+      "from": [6, 3.25, 7],
+      "to": [10, 4.25, 9],
+      "faces": {
+        "north": {"uv": [0, 8, 2, 8.5], "texture": "#0"},
+        "east": {"uv": [4, 8, 5, 8.5], "texture": "#0"},
+        "south": {"uv": [2, 8, 4, 8.5], "texture": "#0"},
+        "west": {"uv": [5, 8, 6, 8.5], "texture": "#0"},
+        "up": {"uv": [8, 7, 6, 6], "texture": "#0"},
+        "down": {"uv": [8, 7, 6, 8], "texture": "#0"}
+      }
+    }
+  ]
+}

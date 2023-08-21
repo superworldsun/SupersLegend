@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "superslegend:blocks/directionblocktop",
+    "front": "superslegend:blocks/directionblockfront",
+    "side": "superslegend:blocks/directionblockside"
+  }
+}

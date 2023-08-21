@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/cross",
+    "textures": {
+        "cross": "superslegend:block/odd_mushroom"
+    }
+}
