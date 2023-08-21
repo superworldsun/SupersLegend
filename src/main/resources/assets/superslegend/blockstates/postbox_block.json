@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "superslegend:block/postbox_block" },
+        "facing=south": { "model": "superslegend:block/postbox_block", "y": 180 },
+        "facing=west":  { "model": "superslegend:block/postbox_block", "y": 270 },
+        "facing=east":  { "model": "superslegend:block/postbox_block", "y": 90 }
+    }
+}

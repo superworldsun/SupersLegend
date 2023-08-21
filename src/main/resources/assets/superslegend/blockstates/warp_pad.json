@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "superslegend:block/warp_pad"
+		},
+		"facing=south": {
+			"model": "superslegend:block/warp_pad",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "superslegend:block/warp_pad",
+			"y": 270
+		},
+		"facing=east": {
+			"model": "superslegend:block/warp_pad",
+			"y": 90
+		}
+	}
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "superslegend:block/small_lock" },
+        "facing=south": { "model": "superslegend:block/small_lock", "y": 180 },
+        "facing=west":  { "model": "superslegend:block/small_lock", "y": 270 },
+        "facing=east":  { "model": "superslegend:block/small_lock", "y": 90 }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "variants":
+    {
+        "half=bottom,variant=default": { "model": "superslegend:block/rust_slab_bottom" },
+        "half=top,variant=default": { "model": "superslegend:block/rust_slab_top" }
+    }
+}

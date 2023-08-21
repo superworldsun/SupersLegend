@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "superslegend:block/gossip_stone_block" },
+        "facing=south": { "model": "superslegend:block/gossip_stone_block", "y": 180 },
+        "facing=west":  { "model": "superslegend:block/gossip_stone_block", "y": 270 },
+        "facing=east":  { "model": "superslegend:block/gossip_stone_block", "y": 90 }
+    }
+}

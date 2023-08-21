@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "superslegend:block/pedestal" },
+        "facing=south": { "model": "superslegend:block/pedestal", "y": 180 },
+        "facing=west":  { "model": "superslegend:block/pedestal", "y": 270 },
+        "facing=east":  { "model": "superslegend:block/pedestal", "y": 90 }
+    }
+}

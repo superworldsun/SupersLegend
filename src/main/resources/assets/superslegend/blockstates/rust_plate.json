@@ -1,0 +1,8 @@
+{
+    "variants": {
+		"facing=north":  { "model": "superslegend:block/rust_plate" },
+        "facing=east":   { "model": "superslegend:block/rust_plate", "y": 90 },
+        "facing=south":   { "model": "superslegend:block/rust_plate", "y": 180 },
+        "facing=west":   { "model": "superslegend:block/rust_plate", "y": 270 }
+    }
+}
