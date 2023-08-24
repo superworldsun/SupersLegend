@@ -1,10 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.blocks.BushBlock;
-import com.superworldsun.superslegend.blocks.ChainLinkFenceBlock;
-import com.superworldsun.superslegend.blocks.OddMushroomBlock;
-import com.superworldsun.superslegend.blocks.SpikesBlock;
+import com.superworldsun.superslegend.blocks.*;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -13,6 +10,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -77,13 +75,13 @@ public class BlockInit {
     public static final RegistryObject<Block> GRATE_BLOCK = registerBlock("grate_block",
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(6).explosionResistance(6).sound(SoundType.METAL)));
     public static final RegistryObject<Block> CRATE_BLOCK = registerBlock("crate_block",
-            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(4).explosionResistance(3).sound(SoundType.WOOD)));
+            () -> new CrateBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(4).explosionResistance(3).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> PUSH_STONE = registerBlock("push_stone",
-            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(6).explosionResistance(6).sound(SoundType.STONE)));
+            () -> new PushStone(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(6).explosionResistance(6).sound(SoundType.STONE)));
     public static final RegistryObject<Block> SILVER_PUSH_STONE = registerBlock("silver_push_stone",
-            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(8).explosionResistance(25).sound(SoundType.STONE)));
+            () -> new SilverPushStone(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(8).explosionResistance(25).sound(SoundType.STONE)));
     public static final RegistryObject<Block> BLACK_PUSH_STONE = registerBlock("black_push_stone",
-            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(60).explosionResistance(1300).sound(SoundType.STONE)));
+            () -> new BlackPushStone(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(60).explosionResistance(1300).sound(SoundType.GILDED_BLACKSTONE)));
     public static final RegistryObject<Block> GRASS_PATCH_BLOCK = registerBlock("grass_patch_block",
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(0.1f).explosionResistance(0.1f).sound(SoundType.CROP)));
     public static final RegistryObject<Block> ODD_MUSHROOM = registerBlock("odd_mushroom",
