@@ -329,7 +329,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(BlockInit.SILVER_RUPEE_BLOCK.get());
                         pOutput.accept(BlockInit.GOLD_RUPEE_BLOCK.get());
 
-                        /*pOutput.accept(BlockInit.SPIKES_BLOCK.get());
+                        pOutput.accept(BlockInit.SPIKES_BLOCK.get());
                         pOutput.accept(BlockInit.GOSSIP_STONE_BLOCK.get());
                         pOutput.accept(BlockInit.DUNGEON_DOOR.get());
                         pOutput.accept(BlockInit.LOCKED_DUNGEON_DOOR.get());
@@ -353,10 +353,10 @@ public class CreativeModTabsInit {
                         pOutput.accept(BlockInit.GRASS_PATCH_BLOCK.get());
                         pOutput.accept(BlockInit.ODD_MUSHROOM.get());
                         pOutput.accept(BlockInit.MAGIC_MUSHROOM.get());
-                        pOutput.accept(BlockInit.TORCH_TOWER.get());*/
+                        pOutput.accept(BlockInit.TORCH_TOWER.get());
                         pOutput.accept(BlockInit.MASTER_ORE_BLOCK.get());
                         pOutput.accept(BlockInit.DEEPSLATE_MASTER_ORE_BLOCK.get());
-                        /*pOutput.accept(BlockInit.BLUE_FLOOR_SWITCH.get());
+                        pOutput.accept(BlockInit.BLUE_FLOOR_SWITCH.get());
                         pOutput.accept(BlockInit.YELLOW_FLOOR_SWITCH.get());
                         pOutput.accept(BlockInit.RED_FLOOR_SWITCH.get());
                         pOutput.accept(BlockInit.RUSTED_FLOOR_SWITCH.get());
@@ -371,7 +371,6 @@ public class CreativeModTabsInit {
                         pOutput.accept(BlockInit.SHADOW_BLOCK.get());
                         pOutput.accept(BlockInit.FALSE_SHADOW_BLOCK.get());
                         pOutput.accept(BlockInit.HIDDEN_SHADOW_BLOCK.get());
-                        pOutput.accept(BlockInit.SHADOW_MODEL_BLOCK.get());
                         pOutput.accept(BlockInit.TOMBSTONE_BLOCK.get());
                         pOutput.accept(BlockInit.STONE_PATH_BLOCK.get());
                         pOutput.accept(BlockInit.STONE_TILE_BLOCK.get());
@@ -396,7 +395,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(BlockInit.WARP_PAD_FIRE.get());
                         pOutput.accept(BlockInit.WARP_PAD_WATER.get());
                         pOutput.accept(BlockInit.WARP_PAD_SPIRIT.get());
-                        pOutput.accept(BlockInit.WARP_PAD_SHADOW.get());*/
+                        pOutput.accept(BlockInit.WARP_PAD_SHADOW.get());
                     }))
                     .build());
 
