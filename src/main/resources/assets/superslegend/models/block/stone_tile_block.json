@@ -1,6 +1,7 @@
 {
     "parent": "block/cube_all",
 	"texture_size": [32, 32],
+	"render_type": "cutout",
 	"textures": {
 		"0": "superslegend:block/stone_tile_block",
 		"particle": "superslegend:block/stone_tile_block"

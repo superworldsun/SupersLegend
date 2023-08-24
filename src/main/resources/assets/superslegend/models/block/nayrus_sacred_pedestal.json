@@ -1,6 +1,7 @@
 {
     "parent": "block/cube_all",
     "texture_size": [64, 64],
+    "render_type": "cutout",
     "textures": {
         "0": "superslegend:block/nayrus_sacred_pedestal",
         "particle": "superslegend:block/nayrus_sacred_pedestal"

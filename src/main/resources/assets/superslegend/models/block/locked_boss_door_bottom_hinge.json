@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/door_bottom_rh",
+  "render_type": "cutout",
   "textures": {
     "top": "superslegend:block/locked_boss_door_top",
     "bottom": "superslegend:block/locked_boss_door_bottom"

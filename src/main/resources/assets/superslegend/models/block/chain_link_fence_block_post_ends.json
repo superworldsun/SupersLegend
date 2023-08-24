@@ -1,5 +1,6 @@
 {
     "ambientocclusion": false,
+    "render_type": "cutout",
     "textures": {
         "particle": "superslegend:block/chain_link_fence_block",
         "edge": "superslegend:block/chain_link_fence_block"

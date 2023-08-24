@@ -1,5 +1,6 @@
 {
     "textures": {
+        "render_type": "cutout",
         "particle": "superslegend:block/poison_still"
     }
 }
