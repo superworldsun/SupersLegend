@@ -1,8 +1,33 @@
 package com.superworldsun.superslegend.items.weapons.wand;
 
+import com.superworldsun.superslegend.capability.magic.MagicProvider;
 import com.superworldsun.superslegend.items.customclass.NonEnchantItem;
+import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.registries.TagInit;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
+
+import java.util.function.Predicate;
 
 public class FireRod extends NonEnchantItem
 {
@@ -95,29 +120,29 @@ public class FireRod extends NonEnchantItem
                 level.addParticle(ParticleTypes.FLAME, particleX, particleY, particleZ, particleMotionX, particleMotionY, particleMotionZ);
             }
 
-            BlockRayTraceResult blockRayTraceResult = level.clip(new RayTraceContext(effectStart, effectEnd, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, null));
+            EntityHitResult blockRayTraceResult = level.clip(new RayTraceContext(effectStart, effectEnd, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, null));
 
-            if (blockRayTraceResult.getType() != RayTraceResult.Type.MISS && !level.isClientSide()) {
+            if (blockRayTraceResult.getType() != EntityHitResult.Type.MISS && !level.isClientSide()) {
                 // if we hit block, area of effect ends at the hit location
                 effectEnd = blockRayTraceResult.getLocation();
                 // blocks effect
                 // once between 5 - 15 Ticks at random
                 if (timeInUse % (5 + random.nextInt(10)) == 0) {
-                    BlockPos hitPos = blockRayTraceResult.getBlockPos();
+                    BlockPos hitPos = blockRayTraceResult.getEntity().getOnPos();
 
-                    if (level.getBlockState(hitPos).is(TagInit.CAN_MELT) || world.getBlockState(hitPos).is(BlockTags.ICE)) {
+                    if (level.getBlockState(hitPos).is(TagInit.CAN_MELT) || level.getBlockState(hitPos).is(BlockTags.ICE)) {
                         // replaces meltable blocks with air
                         level.setBlock(hitPos, Blocks.AIR.defaultBlockState(), 3);
                     }
                     //TODO i want it so that you can light torch towers but this dosent seem to work
-					else if (world.getBlockState(hitPos).getBlock() instanceof TorchTowerTopUnlit) {
-						world.setBlock(hitPos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState(), 3);
-						world.playSound(null, hitPos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1F, 1F);
+					else if (level.getBlockState(hitPos).getBlock() instanceof TorchTowerTopUnlit) {
+                        level.setBlock(hitPos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState(), 3);
+                        level.playSound(null, hitPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1F, 1F);
 					}
                     else {
-                        BlockPos firePos = hitPos.relative(blockRayTraceResult.getDirection());
+                        BlockPos firePos = hitPos.relative(blockRayTraceResult.getEntity().getDirection());
                         // sets other blocks on fire
-                        if (FireBlock.canBePlacedAt(level, firePos, blockRayTraceResult.getDirection())) {
+                        if (FireBlock.canBePlacedAt(level, firePos, blockRayTraceResult.getEntity().getDirection())) {
                             BlockState fireBlockState = FireBlock.getState(level, firePos);
                             level.setBlock(firePos, fireBlockState, 11);
                         }
@@ -127,7 +152,7 @@ public class FireRod extends NonEnchantItem
 
             // we want to only attack living entities
             Predicate<Entity> canHit = e -> e instanceof LivingEntity;
-            EntityRayTraceResult entityRayTraceResult = ProjectileHelper.getEntityHitResult(level, player, effectStart, effectEnd, new AxisAlignedBB(effectStart, effectEnd).inflate(1.0D), canHit);
+            EntityHitResult entityRayTraceResult = ProjectileUtil.getEntityHitResult(level, player, effectStart, effectEnd, new AABB(effectStart, effectEnd).inflate(1.0D), canHit);
 
             // if we hit entity
             if (entityRayTraceResult != null)
