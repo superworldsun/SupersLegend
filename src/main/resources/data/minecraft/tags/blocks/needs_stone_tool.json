@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "superslegend:rupee_block",
+    "superslegend:blue_rupee_block",
+    "superslegend:red_rupee_block",
+    "superslegend:silver_rupee_block",
+    "superslegend:gold_rupee_block"
+
+  ]
+}
