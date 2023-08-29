@@ -2,10 +2,12 @@ package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.*;
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -18,6 +20,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
+
+import static net.minecraft.world.level.block.Blocks.OAK_PLANKS;
 
 public class BlockInit {
     public static final DeferredRegister<Block> BLOCKS =
@@ -41,7 +45,7 @@ public class BlockInit {
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(11).explosionResistance(11).sound(SoundType.GLASS)));
 
     public static final RegistryObject<Block> DUNGEON_DOOR = registerBlock("dungeon_door",
-            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(5).explosionResistance(99).sound(SoundType.GLASS)));
+            () -> new DoorBlock(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE), BlockSetType.IRON));
     public static final RegistryObject<Block> LOCKED_DUNGEON_DOOR = registerBlock("locked_dungeon_door",
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(Integer.MAX_VALUE).explosionResistance(Integer.MAX_VALUE).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> BOSS_DOOR = registerBlock("boss_door",
