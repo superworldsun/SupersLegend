@@ -105,6 +105,8 @@ public class ItemInit {
 
     public static final RegistryObject<Item> MASTER_ORE = ITEMS.register("master_ore",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> MASTER_ORE_CHUNK = ITEMS.register("master_ore_chunk",
+            () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> HEART_PIECE = ITEMS.register("heart_piece",
             () -> new Item(new Item.Properties()));
