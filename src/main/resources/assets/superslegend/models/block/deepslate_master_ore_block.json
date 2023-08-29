@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "superslegend:block/master_ore_block"
+    "all": "superslegend:block/deepslate_master_ore_block"
   }
 }
