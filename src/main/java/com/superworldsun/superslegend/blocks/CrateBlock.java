@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
+import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -8,6 +9,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -23,7 +25,10 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.Tags;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static net.minecraft.world.level.block.Blocks.*;
 
@@ -35,30 +40,67 @@ public class CrateBlock extends FallingBlock{
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
-                    //TODO TODO, When previously ported, i was able to make the sounds of the block push based on material,
-                    // i can no longer do this. i want to be able to have the sounds be based on groups of blocks instead of picking every type of block i want individually.
-                    /*SoundEvent soundEvent;
-                    if (DIRT.equals(material) || CLAY.equals(material)) {
-                        soundEvent = SoundInit.BLOCK_PUSH_DIRT.get();
-                    } else if (STONE.equals(material) || HEAVY_METAL.equals(material) || METAL.equals(material)) {
-                        soundEvent = SoundInit.BLOCK_PUSH_STONE.get();
-                    } else if (WOOD.equals(material) || NETHER_WOOD.equals(material) || BAMBOO.equals(material) || BAMBOO_SAPLING.equals(material)) {
-                        soundEvent = SoundInit.BLOCK_PUSH_WOOD.get();
-                    } else if (ICE.equals(material) || ICE_SOLID.equals(material) || SNOW.equals(material)) {
-                        soundEvent = SoundInit.BLOCK_PUSH_ICE.get();
-                    } else if (GRASS.equals(material)) {
-                        soundEvent = SoundInit.BLOCK_PUSH_GRASS.get();
-                    } else if (SAND.equals(material)) {
-                        soundEvent = SoundInit.BLOCK_PUSH_SAND.get();
-                    } else if (LAVA.equals(material) || FIRE.equals(material) || EXPLOSIVE.equals(material)) {
-                        soundEvent = SoundInit.BLOCK_PUSH_LAVA.get();
-                    } else if (WOOL.equals(material) || CLOTH_DECORATION.equals(material) || WEB.equals(material)) {
-                        soundEvent = SoundInit.BLOCK_PUSH_WOOL.get();
-                    } else if (LEAVES.equals(material) || CACTUS.equals(material) || CORAL.equals(material) || VEGETABLE.equals(material)) {
-                        soundEvent = SoundInit.BLOCK_PUSH_FLESH.get();
-                    } else {
-                        soundEvent = SoundInit.BLOCK_PUSH_DIRT.get();*/
+    private static final Set<TagKey<Block>> StoneTags = new HashSet<>(Arrays.asList(
+            BlockTags.STONE_BRICKS, Tags.Blocks.END_STONES, Tags.Blocks.END_STONES,
+            BlockTags.STONE_BUTTONS, BlockTags.BASE_STONE_NETHER, BlockTags.STONE_PRESSURE_PLATES,
+            BlockTags.REDSTONE_ORES, BlockTags.COPPER_ORES, BlockTags.DIAMOND_ORES,
+            BlockTags.LAPIS_ORES, BlockTags.IRON_ORES, BlockTags.EMERALD_ORES,
+            BlockTags.DEEPSLATE_ORE_REPLACEABLES, BlockTags.ANCIENT_CITY_REPLACEABLE, BlockTags.STONE_ORE_REPLACEABLES
+            ));
+    private static final Set<Block> StoneBlocks = new HashSet<>(Arrays.asList(
+            END_STONE_BRICKS,
+            END_STONE_BRICK_SLAB,
+            END_STONE_BRICK_STAIRS,
+            END_STONE_BRICK_WALL
+    ));
 
+    private static final Set<TagKey<Block>> WoodTags = new HashSet<>(Arrays.asList(
+            BlockTags.PLANKS, BlockTags.LOGS, BlockTags.LOGS_THAT_BURN,
+            BlockTags.ACACIA_LOGS, BlockTags.BIRCH_LOGS, BlockTags.CHERRY_LOGS,
+            BlockTags.DARK_OAK_LOGS, BlockTags.CHERRY_LOGS, BlockTags.DARK_OAK_LOGS,
+            BlockTags.JUNGLE_LOGS, BlockTags.MANGROVE_LOGS, BlockTags.OAK_LOGS,
+            BlockTags.SPRUCE_LOGS, BlockTags.WOODEN_BUTTONS, BlockTags.WOODEN_DOORS,
+            BlockTags.WOODEN_FENCES, BlockTags.WOODEN_SLABS, BlockTags.WOODEN_STAIRS,
+            BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.WOODEN_TRAPDOORS
+    ));
+
+    private static final Set<TagKey<Block>> IceTags = new HashSet<>(Arrays.asList(
+            BlockTags.ICE,
+            BlockTags.SNOW
+    ));
+
+    private static final Set<Block> GrassBlocks = new HashSet<>(Arrays.asList(
+            GRASS_BLOCK,
+            PODZOL,
+            MYCELIUM
+    ));
+
+    private static final Set<TagKey<Block>> SandTags = new HashSet<>(Arrays.asList(
+            BlockTags.SAND,
+            Tags.Blocks.SAND,
+            Tags.Blocks.SAND_RED,
+            Tags.Blocks.SAND_COLORLESS
+    ));
+
+    private static final Set<Block> FireBlocks = new HashSet<>(Arrays.asList(
+            TNT,
+            MAGMA_BLOCK
+    ));
+
+    private static final Set<TagKey<Block>> WoolTags = new HashSet<>(Arrays.asList(
+            BlockTags.WOOL,
+            BlockTags.WOOL_CARPETS,
+            BlockTags.BEDS
+    ));
+
+    private static final Set<TagKey<Block>> CropTags = new HashSet<>(Arrays.asList(
+            BlockTags.CROPS,
+            BlockTags.CORAL_BLOCKS,
+            BlockTags.CORAL_PLANTS,
+            BlockTags.WALL_CORALS,
+            BlockTags.CORAL_PLANTS,
+            BlockTags.LEAVES
+    ));
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
@@ -84,46 +126,33 @@ public class CrateBlock extends FallingBlock{
                     }
                     BlockState belowState = level.getBlockState(pos.below());
                     Block block = belowState.getBlock();
-
+                    /*belowState.getTags().forEach(f -> {
+                        System.out.println(f.toString());
+                    });*/
                     SoundEvent soundEvent;
-                    if (belowState.is(BlockTags.STONE_BRICKS) || belowState.is(Tags.Blocks.END_STONES) ||
-                            belowState.is(BlockTags.STONE_BUTTONS) || belowState.is(BlockTags.BASE_STONE_NETHER) ||
-                            belowState.is(BlockTags.STONE_PRESSURE_PLATES) || belowState.is(BlockTags.REDSTONE_ORES) ||
-                            belowState.is(BlockTags.COPPER_ORES) || belowState.is(BlockTags.DIAMOND_ORES) ||
-                            belowState.is(BlockTags.LAPIS_ORES) || belowState.is(BlockTags.IRON_ORES) ||
-                            belowState.is(BlockTags.EMERALD_ORES) || belowState.is(BlockTags.DEEPSLATE_ORE_REPLACEABLES) ||
-                            belowState.is(BlockTags.ANCIENT_CITY_REPLACEABLE) && !GRAY_WOOL.equals(block) ||
-                            belowState.is(BlockTags.STONE_ORE_REPLACEABLES)
-                    ) {
+                    if (belowState.getTags().anyMatch(blockTagKey -> StoneTags.contains(blockTagKey)) || StoneBlocks.contains(block))
+                    {
                         soundEvent = SoundInit.BLOCK_PUSH_STONE.get();
-                    } else if (belowState.is(BlockTags.PLANKS) || belowState.is(BlockTags.LOGS) ||
-                            belowState.is(BlockTags.LOGS_THAT_BURN) || belowState.is(BlockTags.ACACIA_LOGS) ||
-                            belowState.is(BlockTags.BIRCH_LOGS) || belowState.is(BlockTags.CHERRY_LOGS) ||
-                            belowState.is(BlockTags.DARK_OAK_LOGS) || belowState.is(BlockTags.JUNGLE_LOGS) ||
-                            belowState.is(BlockTags.MANGROVE_LOGS) || belowState.is(BlockTags.OAK_LOGS) ||
-                            belowState.is(BlockTags.SPRUCE_LOGS) || belowState.is(BlockTags.WOODEN_BUTTONS) ||
-                            belowState.is(BlockTags.WOODEN_DOORS) || belowState.is(BlockTags.WOODEN_FENCES) ||
-                            belowState.is(BlockTags.WOODEN_SLABS) || belowState.is(BlockTags.WOODEN_STAIRS) ||
-                            belowState.is(BlockTags.WOODEN_PRESSURE_PLATES) || belowState.is(BlockTags.WOODEN_TRAPDOORS)) {
+                    }
+                    else if (belowState.getTags().anyMatch(blockTagKey -> WoodTags.contains(blockTagKey))) {
                         soundEvent = SoundInit.BLOCK_PUSH_WOOD.get();
                     }
-                    else if (belowState.is(BlockTags.ICE) || belowState.is(BlockTags.SNOW)) {
+                    else if (belowState.getTags().anyMatch(blockTagKey -> IceTags.contains(blockTagKey))) {
                         soundEvent = SoundInit.BLOCK_PUSH_ICE.get();
-                    } else if (GRASS_BLOCK.equals(block) || PODZOL.equals(block) || MYCELIUM.equals(block)) {
+                    }
+                    else if (GrassBlocks.contains(block)) {
                         soundEvent = SoundInit.BLOCK_PUSH_GRASS.get();
-                    } else if (belowState.is(BlockTags.SAND) || belowState.is(Tags.Blocks.SAND) ||
-                            belowState.is(Tags.Blocks.SAND_RED) || belowState.is(Tags.Blocks.SAND_COLORLESS)) {
+                    }
+                    else if (belowState.getTags().anyMatch(blockTagKey -> SandTags.contains(blockTagKey))) {
                         soundEvent = SoundInit.BLOCK_PUSH_SAND.get();
-                    } else if (belowState.equals(FluidTags.LAVA) || MAGMA_BLOCK.equals(block) || belowState.is(BlockTags.FIRE) || TNT.equals(block)) {
+                    }
+                    else if (belowState.equals(FluidTags.LAVA) || belowState.is(BlockTags.FIRE) || FireBlocks.contains(block)) {
                         soundEvent = SoundInit.BLOCK_PUSH_LAVA.get();
-                    } else if (belowState.is(BlockTags.WOOL) || belowState.is(BlockTags.WOOL_CARPETS) || belowState.is(BlockTags.BEDS) ||
-                            COBWEB.equals(block)) {
+                    }
+                    else if (belowState.getTags().anyMatch(blockTagKey -> WoolTags.contains(blockTagKey)) || COBWEB.equals(block)) {
                         soundEvent = SoundInit.BLOCK_PUSH_WOOL.get();
-                    } else if (belowState.is(BlockTags.CROPS) || CACTUS.equals(block) ||
-                            belowState.is(BlockTags.CORAL_BLOCKS) || belowState.is(BlockTags.CORAL_PLANTS) ||
-                            belowState.is(BlockTags.CORALS) || belowState.is(BlockTags.WALL_CORALS) ||
-                            belowState.is(BlockTags.LEAVES)
-                    ) {
+                    }
+                    else if (belowState.getTags().anyMatch(blockTagKey -> CropTags.contains(blockTagKey)) || CACTUS.equals(block)) {
                         soundEvent = SoundInit.BLOCK_PUSH_FLESH.get();
                     } else {
                         soundEvent = SoundInit.BLOCK_PUSH_DIRT.get();
