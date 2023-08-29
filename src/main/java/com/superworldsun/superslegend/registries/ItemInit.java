@@ -347,7 +347,7 @@ public class ItemInit {
     public static final RegistryObject<Item> EMPTY_CONTAINER = ITEMS.register("empty_container",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DINS_FIRE = ITEMS.register("dins_fire",
-            () -> new Item(new Item.Properties()));
+            () -> new DinsFire(new Item.Properties()));
     public static final RegistryObject<Item> FARORES_WIND = ITEMS.register("farores_wind",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> NAYRUS_LOVE = ITEMS.register("nayrus_love",
