@@ -51,6 +51,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.ANCIENT_SHAFT.get());
                         pOutput.accept(ItemInit.ANCIENT_SPRING.get());
                         pOutput.accept(ItemInit.MASTER_ORE.get());
+                        pOutput.accept(ItemInit.MASTER_ORE_CHUNK.get());
                         pOutput.accept(ItemInit.HEART_PIECE.get());
                         pOutput.accept(ItemInit.HEART_CONTAINER.get());
                         pOutput.accept(ItemInit.VOID_CONTAINER.get());
