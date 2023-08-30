@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "bottom": "superslegend:block/dungeon_door_bottom",
+    "top": "superslegend:block/dungeon_door_top"
+  }
+}
