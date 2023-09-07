@@ -1,5 +1,6 @@
 {
     "parent": "block/cube_all",
+    "render_type": "cutout",
     "textures": {
         "0": "superslegend:block/spiked_peg_block",
         "particle": "superslegend:block/spiked_peg_block"
