@@ -1,0 +1,22 @@
+{
+  "values": [
+    "superslegend:bush_block",
+    "superslegend:postbox_block",
+    "superslegend:postbox_top",
+    "superslegend:crate_block",
+    "superslegend:oak_peg_block",
+    "superslegend:spruce_peg_block",
+    "superslegend:birch_peg_block",
+    "superslegend:jungle_peg_block",
+    "superslegend:acacia_peg_block",
+    "superslegend:dark_oak_peg_block",
+    "superslegend:spiked_peg_block",
+    "superslegend:hammered_wooden_peg_oak",
+    "superslegend:hammered_wooden_peg_spruce",
+    "superslegend:hammered_wooden_peg_birch",
+    "superslegend:hammered_wooden_peg_jungle",
+    "superslegend:hammered_wooden_peg_acacia",
+    "superslegend:hammered_wooden_peg_dark_oak",
+    "superslegend:hammered_spiked_peg_block"
+  ]
+}
