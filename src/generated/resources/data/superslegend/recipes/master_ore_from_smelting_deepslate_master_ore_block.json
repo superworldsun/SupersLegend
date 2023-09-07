@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 10000,
+  "experience": 10.0,
+  "group": "MASTER_ORE",
+  "ingredient": {
+    "item": "superslegend:deepslate_master_ore_block"
+  },
+  "result": "superslegend:master_ore"
+}

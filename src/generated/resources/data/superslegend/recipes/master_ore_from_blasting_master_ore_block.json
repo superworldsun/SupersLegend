@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 8000,
+  "experience": 10.0,
+  "group": "MASTER_ORE",
+  "ingredient": {
+    "item": "superslegend:master_ore_block"
+  },
+  "result": "superslegend:master_ore"
+}
