@@ -14,8 +14,9 @@ public class CreativeModTabsInit {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SupersLegendMain.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> ITEMS_TAB = CREATIVE_MODE_TABS.register("items_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.TRIFORCE.get()))
+            () -> CreativeModeTab.builder()
                     .title(Component.translatable("creativetab.items_tab"))
+                    .icon(() -> new ItemStack(ItemInit.TRIFORCE.get()))
                     .displayItems(((pParameters, pOutput) -> {
                         pOutput.accept(ItemInit.RUPEE.get());
                         pOutput.accept(ItemInit.BLUE_RUPEE.get());
@@ -191,8 +192,10 @@ public class CreativeModTabsInit {
                     .build());
 
     public static final RegistryObject<CreativeModeTab> APPAREL_TAB = CREATIVE_MODE_TABS.register("apparel_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.KOKIRI_TUNIC.get()))
+            () -> CreativeModeTab.builder()
                     .title(Component.translatable("creativetab.apparel_tab"))
+                    .withTabsBefore(ITEMS_TAB.getId())
+                    .icon(() -> new ItemStack(ItemInit.KOKIRI_TUNIC.get()))
                     .displayItems(((pParameters, pOutput) -> {
                         pOutput.accept(ItemInit.MASK_POSTMANSHAT.get());
                         pOutput.accept(ItemInit.MASK_ALLNIGHTMASK.get());
@@ -321,8 +324,11 @@ public class CreativeModTabsInit {
                     .build());
 
     public static final RegistryObject<CreativeModeTab> BLOCKS_TAB = CREATIVE_MODE_TABS.register("blocks_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(BlockInit.RUPEE_BLOCK.get()))
+            () -> CreativeModeTab.builder()
                     .title(Component.translatable("creativetab.blocks_tab"))
+                    .withTabsBefore(ITEMS_TAB.getId())
+                    .withTabsBefore(APPAREL_TAB.getId())
+                    .icon(() -> new ItemStack(BlockInit.RUPEE_BLOCK.get()))
                     .displayItems(((pParameters, pOutput) -> {
                         pOutput.accept(BlockInit.RUPEE_BLOCK.get());
                         pOutput.accept(BlockInit.BLUE_RUPEE_BLOCK.get());
