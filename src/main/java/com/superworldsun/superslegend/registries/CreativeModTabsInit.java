@@ -384,8 +384,8 @@ public class CreativeModTabsInit {
                         pOutput.accept(BlockInit.PEDESTAL.get());
                         pOutput.accept(BlockInit.FAN.get());
                         pOutput.accept(BlockInit.SWITCHABLE_FAN.get());
-                        pOutput.accept(BlockInit.LIGHT_EMITTER.get());
-                        pOutput.accept(BlockInit.LIGHT_PRISM.get());
+                        //pOutput.accept(BlockInit.LIGHT_EMITTER.get());
+                        //pOutput.accept(BlockInit.LIGHT_PRISM.get());
                         pOutput.accept(BlockInit.ROYAL_TILE.get());
                         pOutput.accept(BlockInit.BLOCK_OF_TIME.get());
                         pOutput.accept(BlockInit.OWL_STATUE.get());
