@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_master_ore_chunk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "superslegend:master_ore_chunk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "superslegend:master_ore_from_blasting_master_ore_chunk"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_master_ore_chunk",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "superslegend:master_ore_from_blasting_master_ore_chunk"
+    ]
+  },
+  "sends_telemetry_event": false
+}
