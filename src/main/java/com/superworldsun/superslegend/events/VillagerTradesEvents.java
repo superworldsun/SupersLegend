@@ -57,6 +57,13 @@ public class VillagerTradesEvents
 		{
 			level2Trades.add(createTrade(new ItemStack(ItemInit.SILVER_RUPEE.get(), 1), new ItemStack(ItemInit.FAIRY_BOW.get()), 1, 50, 0F));
 		}
+		if (event.getType() == VillagerProfession.LIBRARIAN)
+		{
+			level2Trades.add(createTrade(new ItemStack(ItemInit.BLUE_RUPEE.get(), 4), new ItemStack(ItemInit.AMNEISA_SHEET.get()), 1, 25, 0F));
+			level4Trades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 1), new ItemStack(ItemInit.SONG_OF_TIME_SHEET.get()), 1, 25, 0F));
+			level5Trades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 1), new ItemStack(ItemInit.SONG_OF_HEALING_SHEET.get()), 1, 25, 0F));
+			level5Trades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 1), new ItemStack(ItemInit.SONG_OF_SOARING_SHEET.get()), 1, 25, 0F));
+		}
 		if (event.getType() == VillagerProfession.WEAPONSMITH)
 		{
 			level1Trades.add(createTrade(new ItemStack(ItemInit.MASTER_SWORD.get(), 1),(new ItemStack(ItemInit.MASTER_ORE.get(), 2)) , new ItemStack(ItemInit.MASTER_SWORD_V2.get()), 1, 70, 0F));
