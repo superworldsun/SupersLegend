@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "superslegend:block_of_time"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "superslegend:blocks/block_of_time"
+}
