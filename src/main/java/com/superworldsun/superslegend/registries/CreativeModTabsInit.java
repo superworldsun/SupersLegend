@@ -328,14 +328,13 @@ public class CreativeModTabsInit {
                     .title(Component.translatable("creativetab.blocks_tab"))
                     .withTabsBefore(ITEMS_TAB.getId())
                     .withTabsBefore(APPAREL_TAB.getId())
-                    .icon(() -> new ItemStack(BlockInit.RUPEE_BLOCK.get()))
+                    .icon(() -> new ItemStack(BlockInit.BLOCK_OF_TIME.get()))
                     .displayItems(((pParameters, pOutput) -> {
                         pOutput.accept(BlockInit.RUPEE_BLOCK.get());
                         pOutput.accept(BlockInit.BLUE_RUPEE_BLOCK.get());
                         pOutput.accept(BlockInit.RED_RUPEE_BLOCK.get());
                         pOutput.accept(BlockInit.SILVER_RUPEE_BLOCK.get());
                         pOutput.accept(BlockInit.GOLD_RUPEE_BLOCK.get());
-
                         pOutput.accept(BlockInit.SPIKES_BLOCK.get());
                         pOutput.accept(BlockInit.GOSSIP_STONE_BLOCK.get());
                         pOutput.accept(BlockInit.DUNGEON_DOOR.get());
