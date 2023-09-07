@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
-    private static final List<ItemLike> MASTER_ORE_SMELTABLES = List.of((ItemInit.MASTER_ORE_CHUNK.get()),
-            BlockInit.MASTER_ORE_BLOCK.get(), BlockInit.DEEPSLATE_MASTER_ORE_BLOCK.get());
+    private static final List<ItemLike> MASTER_ORE_SMELTABLES =
+            List.of((ItemInit.MASTER_ORE_CHUNK.get()), BlockInit.MASTER_ORE_BLOCK.get(), BlockInit.DEEPSLATE_MASTER_ORE_BLOCK.get());
 
     public ModRecipeProvider(PackOutput pOutput) {
         super(pOutput);
@@ -24,8 +24,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
-        oreSmelting(pWriter, MASTER_ORE_SMELTABLES, RecipeCategory.MISC, ItemInit.MASTER_ORE.get(), 0.25f, 200, "MASTER_ORE");
-        oreBlasting(pWriter, MASTER_ORE_SMELTABLES, RecipeCategory.MISC, ItemInit.MASTER_ORE.get(), 0.25f, 100, "MASTER_ORE");
+        oreSmelting(pWriter, MASTER_ORE_SMELTABLES, RecipeCategory.MISC, ItemInit.MASTER_ORE.get(), 10f, 10000, "MASTER_ORE");
+        oreBlasting(pWriter, MASTER_ORE_SMELTABLES, RecipeCategory.MISC, ItemInit.MASTER_ORE.get(), 10f, 8000, "MASTER_ORE");
 
         /*ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockInit.MASTER_ORE_BLOCK.get())
                 .pattern("SSS")
