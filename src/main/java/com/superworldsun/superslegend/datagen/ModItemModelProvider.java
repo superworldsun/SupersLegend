@@ -17,7 +17,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ItemInit.RUPEE);
+        //simpleItem(ItemInit.RUPEE);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
