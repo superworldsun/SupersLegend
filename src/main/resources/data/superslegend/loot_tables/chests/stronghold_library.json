@@ -6,7 +6,7 @@
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 35,
+               "weight": 30,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -21,7 +21,7 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 35,
+               "weight": 30,
                "functions": [
                   {
                      "function": "minecraft:set_count",
@@ -38,6 +38,11 @@
                "type":"minecraft:item",
                "weight":10,
                "name":"superslegend:oath_to_order_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":10,
+               "name":"superslegend:song_of_time_sheet"
             },
             {
                "type":"minecraft:item",

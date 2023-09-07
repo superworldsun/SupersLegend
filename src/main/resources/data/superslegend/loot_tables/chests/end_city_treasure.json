@@ -10,13 +10,18 @@
          "entries":[
             {
                "type":"minecraft:item",
-               "weight":10,
+               "weight":8,
                "name":"superslegend:song_of_double_time_sheet"
             },
             {
                "type":"minecraft:item",
-               "weight":10,
+               "weight":8,
                "name":"superslegend:inverted_song_of_time_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":10,
+               "name":"superslegend:song_of_time_sheet"
             },
             {
                "type":"minecraft:item",
@@ -35,7 +40,7 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 38,
+               "weight": 32,
                "functions": [
                   {
                      "function": "minecraft:set_count",
