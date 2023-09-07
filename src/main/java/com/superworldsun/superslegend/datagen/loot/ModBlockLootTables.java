@@ -30,7 +30,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(BlockInit.GOLD_RUPEE_BLOCK.get());
         this.dropSelf(BlockInit.SPIKES_BLOCK.get());
         this.dropSelf(BlockInit.GOSSIP_STONE_BLOCK.get());
-        this.dropSelf(BlockInit.DUNGEON_DOOR.get());
         this.dropSelf(BlockInit.BOSS_DOOR.get());
         this.dropSelf(BlockInit.CHAIN_LINK_FENCE_BLOCK.get());
         this.dropSelf(BlockInit.GRAPPLE_BLOCK.get());
@@ -90,6 +89,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropOther(BlockInit.WARP_PAD_WATER.get(), BlockInit.WARP_PAD.get());
         this.dropOther(BlockInit.WARP_PAD_SPIRIT.get(), BlockInit.WARP_PAD.get());
         this.dropOther(BlockInit.WARP_PAD_SHADOW.get(), BlockInit.WARP_PAD.get());
+
+        this.add(BlockInit.DUNGEON_DOOR.get(),
+                block -> createDoorTable(BlockInit.DUNGEON_DOOR.get()));
 
 
         this.add(BlockInit.MASTER_ORE_BLOCK.get(),
