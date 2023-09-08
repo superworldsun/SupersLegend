@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend;
 
 import com.mojang.logging.LogUtils;
+import com.superworldsun.superslegend.client.init.ItemModelPropertiesInit;
 import com.superworldsun.superslegend.registries.*;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -66,6 +67,7 @@ public class SupersLegendMain
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            ItemModelPropertiesInit.addCustomItemProperties();
         }
     }
 }
