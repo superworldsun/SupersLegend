@@ -10,8 +10,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class RingItem extends Item implements ICurioItem {
 
-    public RingItem(Properties pProperties) {
-        super(pProperties);
+    public RingItem(Properties properties)
+    {
+        super(properties.stacksTo(1));
     }
 
     @Override
