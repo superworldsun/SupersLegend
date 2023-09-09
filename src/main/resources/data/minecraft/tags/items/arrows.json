@@ -5,6 +5,10 @@
     "superslegend:ice_arrow",
     "superslegend:shock_arrow",
     "superslegend:bomb_arrow",
-    "superslegend:ancient_arrow"
+    "superslegend:ancient_arrow",
+    "superslegend:silver_arrow",
+    "superslegend:magic_fire_arrow",
+    "superslegend:magic_ice_arrow",
+    "superslegend:magic_light_arrow"
   ]
 }
