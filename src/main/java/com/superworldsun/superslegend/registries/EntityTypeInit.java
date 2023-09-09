@@ -34,6 +34,69 @@ public class EntityTypeInit
             () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("ancient_arrow"));
 
+    public static final RegistryObject<EntityType<SilverArrowEntity>> SILVER_ARROW = ENTITY_TYPES.register("silver_arrow",
+            () -> EntityType.Builder.<SilverArrowEntity>of(SilverArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("silver_arrow"));
+
+    public static final RegistryObject<EntityType<MagicFireArrowEntity>> MAGIC_FIRE_ARROW = ENTITY_TYPES.register("magic_fire_arrow",
+            () -> EntityType.Builder.<MagicFireArrowEntity>of(MagicFireArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("magic_fire_arrow"));
+
+    public static final RegistryObject<EntityType<MagicIceArrowEntity>> MAGIC_ICE_ARROW = ENTITY_TYPES.register("magic_ice_arrow",
+            () -> EntityType.Builder.<MagicIceArrowEntity>of(MagicIceArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("magic_ice_arrow"));
+
+    public static final RegistryObject<EntityType<MagicLightArrowEntity>> MAGIC_LIGHT_ARROW = ENTITY_TYPES.register("magic_light_arrow",
+            () -> EntityType.Builder.<MagicLightArrowEntity>of(MagicLightArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("magic_light_arrow"));
+
+    public static final RegistryObject<EntityType<AncientArrowEntity>> ICE_BEAM = ENTITY_TYPES.register("ice_beam",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("ice_beam"));
+
+
+
+    public static final RegistryObject<EntityType<AncientArrowEntity>> HEART = ENTITY_TYPES.register("heart",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("heart"));
+
+    public static final RegistryObject<EntityType<AncientArrowEntity>> MAGIC_JAR = ENTITY_TYPES.register("magic_jar",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("magic_jar"));
+
+    public static final RegistryObject<EntityType<AncientArrowEntity>> LARGE_MAGIC_JAR = ENTITY_TYPES.register("large_magic_jar",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("large_magic_jar"));
+
+    public static final RegistryObject<EntityType<AncientArrowEntity>> BOMB = ENTITY_TYPES.register("bomb",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("bomb"));
+
+    public static final RegistryObject<EntityType<AncientArrowEntity>> WATER_BOMB = ENTITY_TYPES.register("water_bomb",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("water_bomb"));
+
+
+
+    public static final RegistryObject<EntityType<AncientArrowEntity>> DEKU_SEED = ENTITY_TYPES.register("deku_seed",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("deku_seed"));
+    public static final RegistryObject<EntityType<AncientArrowEntity>> WHEAT_SEED = ENTITY_TYPES.register("wheat_seed",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("wheat_seed"));
+    public static final RegistryObject<EntityType<AncientArrowEntity>> BEETROOT_SEED = ENTITY_TYPES.register("beetroot_seed",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("beetroot_seed"));
+    public static final RegistryObject<EntityType<AncientArrowEntity>> MELON_SEED = ENTITY_TYPES.register("melon_seed",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("melon_seed"));
+    public static final RegistryObject<EntityType<AncientArrowEntity>> PUMPKIN_SEED = ENTITY_TYPES.register("pumpkin_seed",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("pumpkin_seed"));
+    public static final RegistryObject<EntityType<AncientArrowEntity>> COCOA_BEAN = ENTITY_TYPES.register("cocoa_bean",
+            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("cocoa_bean"));
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }
