@@ -12,7 +12,9 @@ public class ItemModelPropertiesInit {
         makeBow(ItemInit.LYNEL_BOW_X3.get());
         makeBow(ItemInit.LYNEL_BOW_X5.get());
 
-        //makeShield(ItemInit.DEKU_SHIELD.get());
+        makeShield(ItemInit.DEKU_SHIELD.get());
+        makeShield(ItemInit.HYLIAN_SHIELD.get());
+        makeShield(ItemInit.SACRED_SHIELD.get());
     }
 
     private static void makeBow(Item item) {
@@ -31,9 +33,9 @@ public class ItemModelPropertiesInit {
     }
 
     //TODO, fix shields so they can render their blocking model
-    /*private static void makeShield(Item item) {
-        ItemProperties.register(Items.SHIELD, new ResourceLocation("blocking"), (p_174575_, p_174576_, p_174577_, p_174578_) -> {
+    private static void makeShield(Item item) {
+        ItemProperties.register(item, new ResourceLocation("blocking"), (p_174575_, p_174576_, p_174577_, p_174578_) -> {
             return p_174577_ != null && p_174577_.isUsingItem() && p_174577_.getUseItem() == p_174575_ ? 1.0F : 0.0F;
         });
-    }*/
+    }
 }
