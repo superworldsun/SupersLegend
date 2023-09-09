@@ -200,7 +200,7 @@ public class ItemInit {
     public static final RegistryObject<BowItem> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
             () -> new BowItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot",
-            () -> new BowItem(new Item.Properties().stacksTo(1)));
+            () -> new SlingShot(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<ShieldItem> DEKU_SHIELD = ITEMS.register("deku_shield",
             () -> new ShieldItem(new Item.Properties().stacksTo(1).durability(500)));
     public static final RegistryObject<ShieldItem> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
@@ -211,12 +211,9 @@ public class ItemInit {
     public static final RegistryObject<Item> DEKU_SEEDS = ITEMS.register("deku_seeds",
             () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> MAGIC_LIGHT_ARROW = ITEMS.register("magic_light_arrow",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow", () -> new MagicArrowFire());
+    public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow", () -> new MagicArrowIce());
+    public static final RegistryObject<Item> MAGIC_LIGHT_ARROW = ITEMS.register("magic_light_arrow", () -> new MagicArrowLight());
     public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
             () -> new ArrowFire(new Item.Properties()));
     public static final RegistryObject<Item> ICE_ARROW = ITEMS.register("ice_arrow",
@@ -228,7 +225,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ANCIENT_ARROW = ITEMS.register("ancient_arrow",
             () -> new ArrowAncient(new Item.Properties()));
     public static final RegistryObject<Item> SILVER_ARROW = ITEMS.register("silver_arrow",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowSilver(new Item.Properties()));
 
     //BAGS
 
