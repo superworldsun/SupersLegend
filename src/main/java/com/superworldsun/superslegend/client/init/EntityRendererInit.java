@@ -29,6 +29,22 @@ public class EntityRendererInit {
         event.registerEntityRenderer(EntityTypeInit.SHOCK_ARROW.get(), ShockArrowRender::new);
         event.registerEntityRenderer(EntityTypeInit.BOMB_ARROW.get(), BombArrowRender::new);
         event.registerEntityRenderer(EntityTypeInit.ANCIENT_ARROW.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.SILVER_ARROW.get(), SilverArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.MAGIC_FIRE_ARROW.get(), MagicFireArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.MAGIC_ICE_ARROW.get(), MagicIceArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.MAGIC_LIGHT_ARROW.get(), MagicLightArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.ICE_BEAM.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.HEART.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.MAGIC_JAR.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.LARGE_MAGIC_JAR.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.BOMB.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.WATER_BOMB.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.DEKU_SEED.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.WHEAT_SEED.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.BEETROOT_SEED.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.MELON_SEED.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.PUMPKIN_SEED.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.COCOA_BEAN.get(), AncientArrowRender::new);
     }
 
     private static <T extends LivingEntity, M extends EntityModel<T>> void attachRenderLayers(LivingEntityRenderer<T, M> renderer) {
