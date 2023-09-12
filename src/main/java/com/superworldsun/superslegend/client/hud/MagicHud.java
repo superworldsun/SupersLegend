@@ -1,75 +1,67 @@
 package com.superworldsun.superslegend.client.hud;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.capability.magic.MagicProvider;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
+import net.minecraftforge.client.gui.overlay.IGuiOverlay;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
-import java.lang.annotation.ElementType;
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Bus.MOD, value = Dist.CLIENT)
+public enum MagicHud implements IGuiOverlay {
+	INSTANCE;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
-public class MagicHud {
-    private static final ResourceLocation MANA_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/magic.png");
-    private static int last_tick_mana;
+	private static final ResourceLocation MAGIC_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/gui/magic.png");
+	private static int last_tick_magic;
 
-    //TODO, unifinished port of magic Hud
-    /*@SubscribeEvent
-    public static void onRenderGameOverlay(RenderGuiOverlayEvent.Post event) {
-        if (event.getType() == ElementType.FOOD) {
-            Minecraft minecraft = Minecraft.getInstance();
+	@Override
+	public void render(ForgeGui gui, GuiGraphics graphics, float partialTick, int screenWidth, int screenHeight) {
+		Minecraft minecraft = Minecraft.getInstance();
+		if (minecraft.player == null) return;
+		int magicIconsX = graphics.guiWidth() / 2 + 91;
+		int magicIconsY = graphics.guiHeight() - gui.rightHeight;
+		int magic = getMagicForRender(minecraft.player);
+		gui.setupOverlayRenderState(true, false);
+		renderMagic(graphics, minecraft, magicIconsX, magicIconsY, magic);
+		gui.rightHeight += 10;
+	}
 
-            if (minecraft.player == null) {
-                return;
-            }
+	protected static void renderMagic(GuiGraphics graphics, Minecraft minecraft, int iconsX, int iconsY, int magic) {
+		for (int i = 0; i < 10; ++i) {
+			int iconIndex = i * 2 + 1;
+			int iconX = iconsX - i * 8 - 9;
+			int iconY = iconsY;
+			renderMagicIcon(graphics, minecraft.gui, magic, iconIndex, iconX, iconY);
+		}
+	}
 
-            RenderSystem.enableBlend();
-            int manaIconsX = event.getWindow().getGuiScaledWidth() / 2 + 91;
-            int manaIconsY = event.getWindow().getGuiScaledHeight() - ForgeIngameGui.right_height;
-            int mana = getManaForRender(minecraft.player);
-            minecraft.getTextureManager().bindForSetup(MANA_TEXTURE);
-            renderManaIcons(event.getMatrixStack(), minecraft, manaIconsX, manaIconsY, mana);
-            ForgeIngameGui.right_height += 10;
-            minecraft.getTextureManager().bind(AbstractGui.GUI_ICONS_LOCATION);
-            RenderSystem.disableBlend();
-        }
-    }
+	private static void renderMagicIcon(GuiGraphics graphics, Gui gui, int magic, int iconIndex, int iconX, int iconY) {
+		graphics.blit(MAGIC_TEXTURE, iconX, iconY, 0, 0, 9, 9);
+		if (iconIndex <= magic) {
+			int iconU = iconIndex == magic ? 18 : 9;
+			graphics.blit(MAGIC_TEXTURE, iconX, iconY, iconU, 0, 9, 9);
+		}
+	}
 
-    protected static void renderManaIcons(MatrixStack matrixStack, Minecraft minecraft, int iconsX, int iconsY, int mana) {
-        for (int i = 0; i < 10; ++i) {
-            int iconIndex = i * 2 + 1;
-            int iconX = iconsX - i * 8 - 9;
-            int iconY = iconsY;
-            renderManaIcon(matrixStack, minecraft.gui, mana, iconIndex, iconX, iconY);
-        }
-    }
+	private static int getMagicForRender(Player player) {
+		if (player.isAlive()) {
+			last_tick_magic = (int) MagicProvider.getMagic(player);
+		}
+		return last_tick_magic;
+	}
 
-    private static void renderManaIcon(MatrixStack matrixStack, Gui gui, int mana, int iconIndex, int iconX, int iconY) {
-        gui.blit(matrixStack, iconX, iconY, 0, 0, 9, 9);
-
-        if (iconIndex <= mana) {
-            int crystalIcon = iconIndex == mana ? 18 : 9;
-            gui.blit(matrixStack, iconX, iconY, crystalIcon, 0, 9, 9);
-        }
-    }*/
-
-    private static int getManaForRender(Player player) {
-        int currentMana = 0;
-
-        if (player.isAlive()) {
-            currentMana = (int) MagicProvider.getMagic(player);
-            last_tick_mana = currentMana;
-        } else {
-            currentMana = last_tick_mana;
-        }
-
-        return currentMana;
-    }
+	@SubscribeEvent
+	public static void register(RegisterGuiOverlaysEvent event) {
+		event.registerAbove(VanillaGuiOverlay.FOOD_LEVEL.id(), "magic", INSTANCE);
+	}
 }
-
