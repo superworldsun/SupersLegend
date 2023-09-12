@@ -26,6 +26,7 @@ public enum MagicHud implements IGuiOverlay {
 
 	@Override
 	public void render(ForgeGui gui, GuiGraphics graphics, float partialTick, int screenWidth, int screenHeight) {
+		if (gui.getMinecraft().options.hideGui || !gui.shouldDrawSurvivalElements()) return;
 		Minecraft minecraft = Minecraft.getInstance();
 		if (minecraft.player == null) return;
 		int magicIconsX = graphics.guiWidth() / 2 + 91;
