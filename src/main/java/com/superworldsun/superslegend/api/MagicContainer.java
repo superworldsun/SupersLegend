@@ -6,7 +6,7 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 public interface MagicContainer {
 	float getMagic();
 
-	float setMagic(float value);
+	void setMagic(float value);
 
 	float getMaxMagic();
 
