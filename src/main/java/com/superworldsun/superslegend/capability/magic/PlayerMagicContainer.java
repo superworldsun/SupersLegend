@@ -11,8 +11,8 @@ public class PlayerMagicContainer implements MagicContainer {
 	}
 
 	@Override
-	public float setMagic(float value) {
-		return magic;
+	public void setMagic(float value) {
+		magic = value;
 	}
 
 	@Override
