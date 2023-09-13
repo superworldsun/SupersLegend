@@ -93,6 +93,7 @@ public class MagicProvider implements ICapabilitySerializable<CompoundTag> {
 	}
 
 	public static void spendMagic(Player player, float amount) {
+		if (player.getAbilities().instabuild) return;
 		get(player).spendMagic(amount);
 		if (player instanceof ServerPlayer) sync((ServerPlayer) player);
 	}
