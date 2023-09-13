@@ -14,6 +14,8 @@ public class ItemModelPropertiesInit {
         makeBow(ItemInit.LYNEL_BOW_X3.get());
         makeBow(ItemInit.LYNEL_BOW_X5.get());
 
+        makeUse(ItemInit.LENS_OF_TRUTH.get());
+
         makeShield(ItemInit.DEKU_SHIELD.get());
         makeShield(ItemInit.HYLIAN_SHIELD.get());
         makeShield(ItemInit.SACRED_SHIELD.get());
@@ -32,6 +34,12 @@ public class ItemModelPropertiesInit {
         });
 
         ItemProperties.register(item, new ResourceLocation("pulling"), (p_174630_, p_174631_, p_174632_, p_174633_) -> {
+            return p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F;
+        });
+    }
+
+    private static void makeUse(Item item) {
+        ItemProperties.register(item, new ResourceLocation("using"), (p_174630_, p_174631_, p_174632_, p_174633_) -> {
             return p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F;
         });
     }
