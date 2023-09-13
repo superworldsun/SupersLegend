@@ -11,6 +11,8 @@ import com.superworldsun.superslegend.items.customclass.ItemCustomSword;
 import com.superworldsun.superslegend.items.item.*;
 import com.superworldsun.superslegend.items.item.ammo.*;
 import com.superworldsun.superslegend.items.weapons.bow.BitBow;
+import com.superworldsun.superslegend.items.weapons.bow.LynelBowX3;
+import com.superworldsun.superslegend.items.weapons.bow.LynelBowX5;
 import com.superworldsun.superslegend.items.weapons.hammer.MagicHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.MegatonHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.SkullHammer;
@@ -31,6 +33,7 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, SupersLegendMain.MOD_ID);
 
+    //TODO, make think about making rupees into entities, can allow them to make sounds on pick up, or make an event to do this.
     public static final RegistryObject<Item> RUPEE = ITEMS.register("rupee",
             () -> new Rupee(new Item.Properties()));
     public static final RegistryObject<Item> BLUE_RUPEE = ITEMS.register("blue_rupee",
@@ -196,9 +199,9 @@ public class ItemInit {
     public static final RegistryObject<Item> BIT_BOW = ITEMS.register("bit_bow",
             () -> new BitBow(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<BowItem> LYNEL_BOW_X3 = ITEMS.register("lynel_bow_x3",
-            () -> new BowItem(new Item.Properties().stacksTo(1)));
+            () -> new LynelBowX3(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<BowItem> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
-            () -> new BowItem(new Item.Properties().stacksTo(1)));
+            () -> new LynelBowX5(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot",
             () -> new SlingShot(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<ShieldItem> DEKU_SHIELD = ITEMS.register("deku_shield",
@@ -705,25 +708,25 @@ public class ItemInit {
     //Music Discs
 
     public static final RegistryObject<Item> FOREST_TEMPLE_DISC = ITEMS.register("forest_temple_disc",
-            () -> new RecordItem(8, SoundInit.FOREST_TEMPLE_DISC, new Item.Properties().stacksTo(1), 320));
-    /*public static final RegistryObject<Item> FIRE_TEMPLE_DISC = ITEMS.register("fire_temple_disc",
-            () -> new RecordItem(8, SoundInit.FIRE_TEMPLE_DISC, new Item.Properties().stacksTo(1), 60));
+            () -> new RecordItem(8, SoundInit.FOREST_TEMPLE_DISC, new Item.Properties().stacksTo(1), 3220));
+    public static final RegistryObject<Item> FIRE_TEMPLE_DISC = ITEMS.register("fire_temple_disc",
+            () -> new RecordItem(8, SoundInit.FIRE_TEMPLE_DISC, new Item.Properties().stacksTo(1), 4220));
     public static final RegistryObject<Item> WATER_TEMPLE_DISC = ITEMS.register("water_temple_disc",
-            () -> new RecordItem(8, SoundInit.WATER_TEMPLE_DISC, new Item.Properties().stacksTo(1), 320));
+            () -> new RecordItem(8, SoundInit.WATER_TEMPLE_DISC, new Item.Properties().stacksTo(1), 6420));
     public static final RegistryObject<Item> SHADOW_TEMPLE_DISC = ITEMS.register("shadow_temple_disc",
-            () -> new RecordItem(8, SoundInit.SHADOW_TEMPLE_DISC, new Item.Properties().stacksTo(1), 320));
+            () -> new RecordItem(8, SoundInit.SHADOW_TEMPLE_DISC, new Item.Properties().stacksTo(1), 3700));
     public static final RegistryObject<Item> SPIRIT_TEMPLE_DISC = ITEMS.register("spirit_temple_disc",
-            () -> new RecordItem(8, SoundInit.SPIRIT_TEMPLE_DISC, new Item.Properties().stacksTo(1), 320));
+            () -> new RecordItem(8, SoundInit.SPIRIT_TEMPLE_DISC, new Item.Properties().stacksTo(1), 5860));
     public static final RegistryObject<Item> WOODFALL_TEMPLE_DISC = ITEMS.register("woodfall_temple_disc",
-            () -> new RecordItem(8, SoundInit.WOODFALL_TEMPLE_DISC, new Item.Properties().stacksTo(1), 320));
+            () -> new RecordItem(8, SoundInit.WOODFALL_TEMPLE_DISC, new Item.Properties().stacksTo(1), 3220));
     public static final RegistryObject<Item> SNOWHEAD_TEMPLE_DISC = ITEMS.register("snowhead_temple_disc",
-            () -> new RecordItem(8, SoundInit.SNOWHEAD_TEMPLE_DISC, new Item.Properties().stacksTo(1), 320));
+            () -> new RecordItem(8, SoundInit.SNOWHEAD_TEMPLE_DISC, new Item.Properties().stacksTo(1), 1900));
     public static final RegistryObject<Item> GREAT_BAY_TEMPLE_DISC = ITEMS.register("great_bay_temple_disc",
-            () -> new RecordItem(8, SoundInit.GREAT_BAY_TEMPLE_DISC, new Item.Properties().stacksTo(1), 320));
+            () -> new RecordItem(8, SoundInit.GREAT_BAY_TEMPLE_DISC, new Item.Properties().stacksTo(1), 3020));
     public static final RegistryObject<Item> STONE_TOWER_TEMPLE_REALITY_DISC = ITEMS.register("stone_tower_temple_reality_disc",
-            () -> new RecordItem(8, SoundInit.STONE_TOWER_TEMPLE_REALITY_DISC, new Item.Properties().stacksTo(1), 320));
+            () -> new RecordItem(8, SoundInit.STONE_TOWER_TEMPLE_REALITY_DISC, new Item.Properties().stacksTo(1), 2420));
     public static final RegistryObject<Item> STONE_TOWER_TEMPLE_ILLUSION_DISC = ITEMS.register("stone_tower_temple_illusion_disc",
-            () -> new RecordItem(8, SoundInit.STONE_TOWER_TEMPLE_ILLUSION_DISC, new Item.Properties().stacksTo(1), 320));*/
+            () -> new RecordItem(8, SoundInit.STONE_TOWER_TEMPLE_ILLUSION_DISC, new Item.Properties().stacksTo(1), 2420));
 
     //MobEggs
     //public static final RegistryObject<TPBokoblinSpawnEgg> TP_BOKOBLIN_EGG = ITEMS.register("tp_bokoblin_egg",
