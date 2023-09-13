@@ -1,5 +1,14 @@
 {
   "values": [
-    "superslegend:forest_temple_disc"
+    "superslegend:forest_temple_disc",
+    "superslegend:fire_temple_disc",
+    "superslegend:water_temple_disc",
+    "superslegend:shadow_temple_disc",
+    "superslegend:spirit_temple_disc",
+    "superslegend:woodfall_temple_disc",
+    "superslegend:snowhead_temple_disc",
+    "superslegend:great_bay_temple_disc",
+    "superslegend:stone_tower_temple_reality_disc",
+    "superslegend:stone_tower_temple_illusion_disc"
   ]
 }
