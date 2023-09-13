@@ -1,7 +1,11 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.entities.HeartEntity;
+import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
+import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
+import com.superworldsun.superslegend.entities.projectiles.bombs.BombEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -50,26 +54,26 @@ public class EntityTypeInit
             () -> EntityType.Builder.<MagicLightArrowEntity>of(MagicLightArrowEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("magic_light_arrow"));
 
-    public static final RegistryObject<EntityType<AncientArrowEntity>> ICE_BEAM = ENTITY_TYPES.register("ice_beam",
+    /*public static final RegistryObject<EntityType<AncientArrowEntity>> ICE_BEAM = ENTITY_TYPES.register("ice_beam",
             () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
-                    .sized(1F, 1F).build("ice_beam"));
+                    .sized(1F, 1F).build("ice_beam"));*/
 
 
 
-    public static final RegistryObject<EntityType<AncientArrowEntity>> HEART = ENTITY_TYPES.register("heart",
-            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+    public static final RegistryObject<EntityType<HeartEntity>> HEART = ENTITY_TYPES.register("heart",
+            () -> EntityType.Builder.<HeartEntity>of(HeartEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("heart"));
 
-    public static final RegistryObject<EntityType<AncientArrowEntity>> MAGIC_JAR = ENTITY_TYPES.register("magic_jar",
-            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+    public static final RegistryObject<EntityType<MagicJarEntity>> MAGIC_JAR = ENTITY_TYPES.register("magic_jar",
+            () -> EntityType.Builder.<MagicJarEntity>of(MagicJarEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("magic_jar"));
 
-    public static final RegistryObject<EntityType<AncientArrowEntity>> LARGE_MAGIC_JAR = ENTITY_TYPES.register("large_magic_jar",
-            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+    public static final RegistryObject<EntityType<LargeMagicJarEntity>> LARGE_MAGIC_JAR = ENTITY_TYPES.register("large_magic_jar",
+            () -> EntityType.Builder.<LargeMagicJarEntity>of(LargeMagicJarEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("large_magic_jar"));
 
-    public static final RegistryObject<EntityType<AncientArrowEntity>> BOMB = ENTITY_TYPES.register("bomb",
-            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+    public static final RegistryObject<EntityType<BombEntity>> BOMB = ENTITY_TYPES.register("bomb",
+            () -> EntityType.Builder.<BombEntity>of(BombEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("bomb"));
 
     public static final RegistryObject<EntityType<AncientArrowEntity>> WATER_BOMB = ENTITY_TYPES.register("water_bomb",
