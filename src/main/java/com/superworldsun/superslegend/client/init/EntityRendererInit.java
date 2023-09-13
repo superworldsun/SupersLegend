@@ -2,6 +2,11 @@ package com.superworldsun.superslegend.client.init;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.render.arrows.*;
+import com.superworldsun.superslegend.client.render.entites.BombRender;
+import com.superworldsun.superslegend.client.render.entites.HeartRender;
+import com.superworldsun.superslegend.client.render.entites.LargeMagicJarRender;
+import com.superworldsun.superslegend.client.render.entites.MagicJarRender;
+import com.superworldsun.superslegend.entities.HeartEntity;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -33,11 +38,10 @@ public class EntityRendererInit {
         event.registerEntityRenderer(EntityTypeInit.MAGIC_FIRE_ARROW.get(), MagicFireArrowRender::new);
         event.registerEntityRenderer(EntityTypeInit.MAGIC_ICE_ARROW.get(), MagicIceArrowRender::new);
         event.registerEntityRenderer(EntityTypeInit.MAGIC_LIGHT_ARROW.get(), MagicLightArrowRender::new);
-        event.registerEntityRenderer(EntityTypeInit.ICE_BEAM.get(), AncientArrowRender::new);
-        event.registerEntityRenderer(EntityTypeInit.HEART.get(), AncientArrowRender::new);
-        event.registerEntityRenderer(EntityTypeInit.MAGIC_JAR.get(), AncientArrowRender::new);
-        event.registerEntityRenderer(EntityTypeInit.LARGE_MAGIC_JAR.get(), AncientArrowRender::new);
-        event.registerEntityRenderer(EntityTypeInit.BOMB.get(), AncientArrowRender::new);
+        event.registerEntityRenderer(EntityTypeInit.HEART.get(), HeartRender::new);
+        event.registerEntityRenderer(EntityTypeInit.MAGIC_JAR.get(), MagicJarRender::new);
+        event.registerEntityRenderer(EntityTypeInit.LARGE_MAGIC_JAR.get(), LargeMagicJarRender::new);
+        //event.registerEntityRenderer(EntityTypeInit.BOMB.get(), BombRender::new);
         event.registerEntityRenderer(EntityTypeInit.WATER_BOMB.get(), AncientArrowRender::new);
         event.registerEntityRenderer(EntityTypeInit.DEKU_SEED.get(), AncientArrowRender::new);
         event.registerEntityRenderer(EntityTypeInit.WHEAT_SEED.get(), AncientArrowRender::new);
