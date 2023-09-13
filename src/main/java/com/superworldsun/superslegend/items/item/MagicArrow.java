@@ -12,16 +12,15 @@ import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.logging.Level;
-
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public abstract class MagicArrow extends ArrowItem {
-    private static final float MANA_COST = 4F;
+    private static final float MAGIC_COST = 4F;
 
     public MagicArrow() {
         super(new Item.Properties().stacksTo(1));
@@ -37,20 +36,18 @@ public abstract class MagicArrow extends ArrowItem {
 
         if (!isPlayer) {
             //TODO (level, shooter) is causing errors
-            //return new Arrow(level, shooter);
+            return new Arrow(level, shooter);
         }
 
         Player player = (Player) shooter;
-        boolean hasMana = MagicProvider.hasMagic(player, MANA_COST);
+        boolean hasMana = MagicProvider.hasMagic(player, MAGIC_COST);
 
         if (hasMana) {
-            MagicProvider.spendMagic(player, MANA_COST);
+            MagicProvider.spendMagic(player, MAGIC_COST);
             return createMagicArrow(level, stack, shooter);
         } else {
-            //return new Arrow(level, shooter);
+            return new Arrow(level, shooter);
         }
-        //delete this when fixing, just added to run
-        return null;
     }
 
     @SubscribeEvent
