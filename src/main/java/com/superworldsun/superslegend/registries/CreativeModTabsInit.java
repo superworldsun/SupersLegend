@@ -189,7 +189,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.TRIFORCE_COURAGE.get());
                         pOutput.accept(ItemInit.MASK_CLAY.get());
                         pOutput.accept(ItemInit.FOREST_TEMPLE_DISC.get());
-                        /*pOutput.accept(ItemInit.FIRE_TEMPLE_DISC.get());
+                        pOutput.accept(ItemInit.FIRE_TEMPLE_DISC.get());
                         pOutput.accept(ItemInit.WATER_TEMPLE_DISC.get());
                         pOutput.accept(ItemInit.SHADOW_TEMPLE_DISC.get());
                         pOutput.accept(ItemInit.SPIRIT_TEMPLE_DISC.get());
@@ -197,7 +197,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.SNOWHEAD_TEMPLE_DISC.get());
                         pOutput.accept(ItemInit.GREAT_BAY_TEMPLE_DISC.get());
                         pOutput.accept(ItemInit.STONE_TOWER_TEMPLE_REALITY_DISC.get());
-                        pOutput.accept(ItemInit.STONE_TOWER_TEMPLE_ILLUSION_DISC.get());*/
+                        pOutput.accept(ItemInit.STONE_TOWER_TEMPLE_ILLUSION_DISC.get());
                     }))
                     .build());
 
