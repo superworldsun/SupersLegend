@@ -599,13 +599,13 @@ public class ItemInit {
             () -> new ClimbingGearArmor(ArmorInit.ArmorTiers.CLIMBING, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> DESERT_VOE_HEADBAND = ITEMS.register("desert_voe_headband",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new DesertVoeArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> DESERT_VOE_SPAULDER = ITEMS.register("desert_voe_spaulder",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new DesertVoeArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> DESERT_VOE_TROUSERS = ITEMS.register("desert_voe_trousers",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new DesertVoeArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> DESERT_VOE_BOOTS = ITEMS.register("desert_voe_boots",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new DesertVoeArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> SNOWQUILL_HEADDRESS = ITEMS.register("snowquill_headdress",
             () -> new ArmorItem(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.HELMET, new Item.Properties()));
