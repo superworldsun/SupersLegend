@@ -608,13 +608,13 @@ public class ItemInit {
             () -> new DesertVoeArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> SNOWQUILL_HEADDRESS = ITEMS.register("snowquill_headdress",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new SnowquillArmor(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> SNOWQUILL_TUNIC = ITEMS.register("snowquill_tunic",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new SnowquillArmor(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> SNOWQUILL_TROUSERS = ITEMS.register("snowquill_trousers",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new SnowquillArmor(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> SNOWQUILL_BOOTS = ITEMS.register("snowquill_boots",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new SnowquillArmor(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     //Back
     public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver",
