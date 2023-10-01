@@ -3,6 +3,8 @@ package com.superworldsun.superslegend.client.render.armor;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.superworldsun.superslegend.SupersLegendMain;
@@ -27,6 +29,7 @@ public class GeoArmorRendererExtension<T extends Item & GeoItem> implements ICli
     private ResourceLocation modelResource;
     private ResourceLocation textureResource;
     private ResourceLocation animationResource;
+    private @Nullable GeoArmorResourceProvider textureProvider;
 
     public GeoArmorRendererExtension(String filesNames) {
         setModelName(filesNames);
@@ -40,8 +43,22 @@ public class GeoArmorRendererExtension<T extends Item & GeoItem> implements ICli
         if (renderer == null) {
             renderer = new ExtendedGeoArmorRenderer<>(this);
         }
+        if (textureProvider != null) {
+            textureResource = textureProvider.getTexture(entity, stack, slot);
+        }
         renderer.prepForRender(entity, stack, slot, original);
         return renderer;
+    }
+
+    /**
+     * Sets the texture provider.
+     * 
+     * @param provider a function that dynamically provides texture based on the
+     *                 {@link LivingEntity} wearer, {@link ItemStack} and
+     *                 {@link EquipmentSlot}.
+     */
+    public void setTextureProvider(GeoArmorResourceProvider provider) {
+        this.textureProvider = provider;
     }
 
     /**
