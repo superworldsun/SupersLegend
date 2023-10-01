@@ -147,7 +147,7 @@ public class CreativeModTabsInit {
                         //pOutput.accept(ItemInit.MAGIC_POWDER.get());
                         pOutput.accept(ItemInit.BOOMERANG.get());
                         pOutput.accept(ItemInit.MAGIC_BOOMERANG.get());
-                        pOutput.accept(ItemInit.WW_BOOMERANG.get());
+                        pOutput.accept(ItemInit.SEA_BREEZE_BOOMERANG.get());
                         //pOutput.accept(ItemInit.GALE_BOOMERANG.get());
                         pOutput.accept(ItemInit.BOMB.get());
                         pOutput.accept(ItemInit.WATER_BOMB.get());
