@@ -43,7 +43,7 @@ public class ItemInit {
     public static final RegistryObject<Item> SILVER_RUPEE = ITEMS.register("silver_rupee",
             () -> new SilverRupee(new Item.Properties()));
     public static final RegistryObject<Item> GOLD_RUPEE = ITEMS.register("gold_rupee",
-            () -> new Item(new Item.Properties()));
+            () -> new GoldRupee(new Item.Properties()));
 
     public static final RegistryObject<Item> MEDALLION_LIGHT = ITEMS.register("medallion_light",
             () -> new Item(new Item.Properties()));
@@ -118,7 +118,7 @@ public class ItemInit {
     public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
             () -> new VoidContainer(new Item.Properties()));
     public static final RegistryObject<Item> UNAPPRAISED_RING = ITEMS.register("unappraised_ring",
-            () -> new Item(new Item.Properties()));
+            () -> new UnappraisedRing(new Item.Properties()));
     public static final RegistryObject<Item> APPRAISED_RING_BOX = ITEMS.register("appraised_ring_box",
             () -> new AppraisedRingBox(new Item.Properties()));
 
@@ -309,7 +309,7 @@ public class ItemInit {
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MAGIC_BOOMERANG = ITEMS.register("magic_boomerang",
             () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> WW_BOOMERANG = ITEMS.register("ww_boomerang",
+    public static final RegistryObject<Item> SEA_BREEZE_BOOMERANG = ITEMS.register("sea_breeze_boomerang",
             () -> new Item(new Item.Properties().stacksTo(1)));
 
     //public static final RegistryObject<Item> GALE_BOOMERANG = ITEMS.register("gale_boomerang",
@@ -508,11 +508,11 @@ public class ItemInit {
             () -> new HoverBootsArmor(ArmorInit.ArmorTiers.HOVER_BOOTS, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> PURPLE_CAP = ITEMS.register("purple_cap",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.PURPLE, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new PurpleArmor(ArmorInit.ArmorTiers.PURPLE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> PURPLE_TUNIC = ITEMS.register("purple_tunic",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.PURPLE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new PurpleArmor(ArmorInit.ArmorTiers.PURPLE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> PURPLE_LEGGINGS = ITEMS.register("purple_leggings",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.PURPLE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new PurpleArmor(ArmorInit.ArmorTiers.PURPLE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
     public static final RegistryObject<Item> PEGASUS_BOOTS = ITEMS.register("pegasus_boots",
             () -> new PegasusBootsArmor(ArmorInit.ArmorTiers.PEGASUS_BOOTS, ArmorItem.Type.BOOTS, new Item.Properties()));
