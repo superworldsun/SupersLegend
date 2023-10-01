@@ -17,6 +17,10 @@ out
 build
 .gradle
 
+# vscode
+.vscode
+*.code-workspace
+
 # other
 eclipse
 run
