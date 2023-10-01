@@ -4,22 +4,46 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.api.IncomingDamageModifier;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ItemInit;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+
+import java.util.function.Consumer;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class GoronArmor extends NonEnchantArmor implements IncomingDamageModifier {
+public class GoronArmor extends NonEnchantArmor implements IncomingDamageModifier, GeoItem {
+    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     public GoronArmor(ArmorMaterial material, Type type, Properties properties) {
         super(material, type, properties);
+    }
+
+    private PlayState predicate(AnimationState animationState){
+        animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController(this, "controller", 0, this::predicate));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 
     @Override
