@@ -7,6 +7,7 @@ import com.superworldsun.superslegend.events.PlayerHealthEvents;
 
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
@@ -20,6 +21,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+import javax.annotation.Nullable;
 
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class HeartContainer extends Item {
@@ -44,9 +47,15 @@ public class HeartContainer extends Item {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(Component.literal("Increases Maximum Health").withStyle(ChatFormatting.RED));
-		tooltip.add(Component.literal("Right-click to use").withStyle(ChatFormatting.GREEN));
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+		if(!Screen.hasShiftDown()) {
+			tooltip.add(Component.literal("Increases Maximum Health").withStyle(ChatFormatting.RED));
+			tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
+		}
+		else if(Screen.hasShiftDown()) {
+			tooltip.add(Component.literal("Right-click to use, 1 time use").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC));
+			tooltip.add(Component.literal("You can have a maximum of 20 hearts").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC));
+		}
+		super.appendHoverText(stack, level, tooltip, flag);
 	}
 }

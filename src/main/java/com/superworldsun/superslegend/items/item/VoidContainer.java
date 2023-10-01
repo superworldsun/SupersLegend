@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.events.PlayerHealthEvents;
 
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
@@ -16,6 +17,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
 
 public class VoidContainer extends Item {
 	public VoidContainer(Properties pProperties) {
@@ -37,10 +42,17 @@ public class VoidContainer extends Item {
 		}
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-		tooltip.add(Component.literal("Decreases Maximum Health").withStyle(ChatFormatting.BLACK));
-		tooltip.add(Component.literal("Right-click to use").withStyle(ChatFormatting.GREEN));
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+		if(!Screen.hasShiftDown()) {
+			tooltip.add(Component.literal("Decreases Maximum Health").withStyle(ChatFormatting.DARK_GRAY));
+			tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
+		}
+		else if(Screen.hasShiftDown()) {
+			tooltip.add(Component.literal("Right-click to use, 1 time use").withStyle(ChatFormatting.DARK_GRAY).withStyle(ChatFormatting.ITALIC));
+			tooltip.add(Component.literal("You can have a minimum of 1 heart").withStyle(ChatFormatting.DARK_GRAY).withStyle(ChatFormatting.ITALIC));
+		}
+		super.appendHoverText(stack, level, tooltip, flag);
 	}
 }

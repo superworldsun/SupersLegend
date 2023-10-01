@@ -2,13 +2,22 @@ package com.superworldsun.superslegend.items.item;
 
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class RedRupee extends Item {
     public RedRupee(Properties pProperties) {
@@ -71,5 +80,21 @@ public class RedRupee extends Item {
         }
 
         return InteractionResultHolder.pass(itemstack);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        if(!Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("20 Rupee").withStyle(ChatFormatting.RED));
+            tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        else if(Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("Holding 5 in a single stack and then Right-click will convert the " +
+                    "rupees into a single Silver Rupee. Rupees can be used for amo, fuel, or trading").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC));
+            tooltip.add(Component.literal("You can also put this in a crafting table to break it down").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+            tooltip.add(Component.literal("Rupees can be found by slaying monsters").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        super.appendHoverText(stack, level, tooltip, flag);
     }
 }

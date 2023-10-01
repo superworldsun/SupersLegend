@@ -1,13 +1,22 @@
 package com.superworldsun.superslegend.items.item;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.tags.ITag;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class AppraisedRingBox extends Item {
     public AppraisedRingBox(Properties pProperties) {
@@ -39,4 +48,18 @@ public class AppraisedRingBox extends Item {
             player.spawnAtLocation(itemSupplier);
         }
     }*/
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        if(!Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("Contains an Appraised Ring").withStyle(ChatFormatting.GREEN));
+            tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        else if(Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("Right-click to receive a random appraised ring").withStyle(ChatFormatting.GREEN).withStyle(ChatFormatting.ITALIC));
+            tooltip.add(Component.literal("an Appraised Ring Box can be traded from Tool Smiths and Wandering Traders").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        super.appendHoverText(stack, level, tooltip, flag);
+    }
 }
