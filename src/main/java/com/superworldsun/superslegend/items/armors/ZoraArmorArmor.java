@@ -8,6 +8,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.render.armor.GeoArmorRendererExtension;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -45,6 +46,12 @@ public class ZoraArmorArmor extends NonEnchantArmor implements GeoItem {
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         GeoArmorRendererExtension<ZoraArmorArmor> extension = new GeoArmorRendererExtension<>("zora_armor_armor");
+        extension.setTextureProvider((wearer, stack, slot) -> {
+            if (wearer.isUnderWater())
+                return new ResourceLocation(SupersLegendMain.MOD_ID, "textures/armor/zora_armor_armor_covered.png");
+            else
+                return new ResourceLocation(SupersLegendMain.MOD_ID, "textures/armor/zora_armor_armor.png");
+        });
         consumer.accept(extension);
     }
 
