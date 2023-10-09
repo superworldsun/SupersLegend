@@ -21,6 +21,7 @@ public class TagInit {
     public static final TagKey<EntityType<?>> RESISTANT_TO_LIGHT = registerEntityTag("resistant_to_light");
 
     public static final TagKey<Item> PELLETS = registerItemTag("pellets");
+    public static final TagKey<Item> APPRAISAL_LIST = registerItemTag("appraisal_list");
 
     public static final TagKey<Block> CAN_MELT = registerBlockTag("can_melt");
     public static final TagKey<Block> FRAGILE = registerBlockTag("fragile");
