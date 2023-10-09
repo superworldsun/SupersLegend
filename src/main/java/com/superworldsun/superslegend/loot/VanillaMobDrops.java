@@ -1,17 +1,48 @@
 package com.superworldsun.superslegend.loot;
 
+import java.util.Random;
+
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.ItemInit;
-import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
-import net.minecraft.world.entity.boss.wither.WitherBoss;
-import net.minecraft.world.entity.monster.*;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Blaze;
+import net.minecraft.world.entity.monster.CaveSpider;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Drowned;
+import net.minecraft.world.entity.monster.ElderGuardian;
+import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Endermite;
+import net.minecraft.world.entity.monster.Evoker;
+import net.minecraft.world.entity.monster.Ghast;
+import net.minecraft.world.entity.monster.Guardian;
+import net.minecraft.world.entity.monster.Husk;
+import net.minecraft.world.entity.monster.MagmaCube;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.monster.Pillager;
+import net.minecraft.world.entity.monster.Ravager;
+import net.minecraft.world.entity.monster.Shulker;
+import net.minecraft.world.entity.monster.Silverfish;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.monster.Stray;
+import net.minecraft.world.entity.monster.Vindicator;
+import net.minecraft.world.entity.monster.Witch;
+import net.minecraft.world.entity.monster.WitherSkeleton;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.ZombieVillager;
+import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.Random;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class VanillaMobDrops {
@@ -20,29 +51,16 @@ public class VanillaMobDrops {
     // but because of these events here, it at least still drops rupees and such. I dont want the ancient arrow to allow mob to drop any of these items when killed by it
     @SubscribeEvent
     public static void customLootMonsterEntity(LivingDropsEvent event) {
-        Random random = new Random();
-
-        // This should make it so any type of monster from other mods should also drop rupees occasionally
-        if (event.getSource().getEntity() instanceof Player && event.getEntity() instanceof Monster
-                && !(event.getEntity() instanceof Blaze) && !(event.getEntity() instanceof CaveSpider)
-                && !(event.getEntity() instanceof Creeper) && !(event.getEntity() instanceof Drowned)
-                && !(event.getEntity() instanceof ElderGuardian) && !(event.getEntity() instanceof EnderMan)
-                && !(event.getEntity() instanceof Endermite) && !(event.getEntity() instanceof EnderDragon)
-                && !(event.getEntity() instanceof Evoker) && !(event.getEntity() instanceof Ghast)
-                && !(event.getEntity() instanceof Guardian) && !(event.getEntity() instanceof Husk)
-                && !(event.getEntity() instanceof Illusioner) && !(event.getEntity() instanceof MagmaCube)
-                && !(event.getEntity() instanceof Phantom) && !(event.getEntity() instanceof Pillager)
-                && !(event.getEntity() instanceof Ravager) && !(event.getEntity() instanceof Shulker)
-                && !(event.getEntity() instanceof Silverfish) && !(event.getEntity() instanceof Skeleton)
-                && !(event.getEntity() instanceof Slime) && !(event.getEntity() instanceof Spider)
-                && !(event.getEntity() instanceof Stray) && !(event.getEntity() instanceof Vindicator)
-                && !(event.getEntity() instanceof Witch) && !(event.getEntity() instanceof WitherBoss)
-                && !(event.getEntity() instanceof WitherSkeleton) && !(event.getEntity() instanceof ZombieVillager)
-                && !(event.getEntity() instanceof ZombifiedPiglin) && !(event.getEntity() instanceof Zombie)) {
+        LivingEntity entity = event.getEntity();
+        ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
+        // This should make it so any type of monster from other mods should also drop
+        // rupees occasionally
+        if (!entityId.getNamespace().equals("minecraft")) {
+            RandomSource random = entity.getRandom();
             if (random.nextInt(7) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
+                entity.spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
             if (random.nextInt(14) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+                entity.spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
         }
     }
 
