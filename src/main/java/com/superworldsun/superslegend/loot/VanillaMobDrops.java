@@ -1,424 +1,364 @@
 package com.superworldsun.superslegend.loot;
 
+import java.util.Collection;
+
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.ItemInit;
-import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
-import net.minecraft.world.entity.boss.wither.WitherBoss;
-import net.minecraft.world.entity.monster.*;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Blaze;
+import net.minecraft.world.entity.monster.CaveSpider;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Drowned;
+import net.minecraft.world.entity.monster.ElderGuardian;
+import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Endermite;
+import net.minecraft.world.entity.monster.Evoker;
+import net.minecraft.world.entity.monster.Ghast;
+import net.minecraft.world.entity.monster.Guardian;
+import net.minecraft.world.entity.monster.Husk;
+import net.minecraft.world.entity.monster.MagmaCube;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.monster.Pillager;
+import net.minecraft.world.entity.monster.Ravager;
+import net.minecraft.world.entity.monster.Shulker;
+import net.minecraft.world.entity.monster.Silverfish;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.monster.Stray;
+import net.minecraft.world.entity.monster.Vindicator;
+import net.minecraft.world.entity.monster.Witch;
+import net.minecraft.world.entity.monster.WitherSkeleton;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.ZombieVillager;
+import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Random;
-
-@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class VanillaMobDrops {
-
-    //TODO, right now i have a event in AncientArrowDropEvents that makes it so any mob killed by the ancient arrow doesn't drop any loot,
-    // but because of these events here, it at least still drops rupees and such. I dont want the ancient arrow to allow mob to drop any of these items when killed by it
     @SubscribeEvent
     public static void customLootMonsterEntity(LivingDropsEvent event) {
-        Random random = new Random();
-
-        // This should make it so any type of monster from other mods should also drop rupees occasionally
-        if (event.getSource().getEntity() instanceof Player && event.getEntity() instanceof Monster
-                && !(event.getEntity() instanceof Blaze) && !(event.getEntity() instanceof CaveSpider)
-                && !(event.getEntity() instanceof Creeper) && !(event.getEntity() instanceof Drowned)
-                && !(event.getEntity() instanceof ElderGuardian) && !(event.getEntity() instanceof EnderMan)
-                && !(event.getEntity() instanceof Endermite) && !(event.getEntity() instanceof EnderDragon)
-                && !(event.getEntity() instanceof Evoker) && !(event.getEntity() instanceof Ghast)
-                && !(event.getEntity() instanceof Guardian) && !(event.getEntity() instanceof Husk)
-                && !(event.getEntity() instanceof Illusioner) && !(event.getEntity() instanceof MagmaCube)
-                && !(event.getEntity() instanceof Phantom) && !(event.getEntity() instanceof Pillager)
-                && !(event.getEntity() instanceof Ravager) && !(event.getEntity() instanceof Shulker)
-                && !(event.getEntity() instanceof Silverfish) && !(event.getEntity() instanceof Skeleton)
-                && !(event.getEntity() instanceof Slime) && !(event.getEntity() instanceof Spider)
-                && !(event.getEntity() instanceof Stray) && !(event.getEntity() instanceof Vindicator)
-                && !(event.getEntity() instanceof Witch) && !(event.getEntity() instanceof WitherBoss)
-                && !(event.getEntity() instanceof WitherSkeleton) && !(event.getEntity() instanceof ZombieVillager)
-                && !(event.getEntity() instanceof ZombifiedPiglin) && !(event.getEntity() instanceof Zombie)) {
-            if (random.nextInt(7) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
-            if (random.nextInt(14) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        LivingEntity entity = event.getEntity();
+        ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
+        Entity attacker = event.getSource().getEntity();
+        if (attacker instanceof Player player) {
+            RandomSource random = player.getRandom();
+            // This should make it so any type of monster from other mods should also drop
+            // rupees occasionally
+            if (!entityId.getNamespace().equals("minecraft"))
+                dropModdedMonsterLoot(event, entity, random);
+            if (entity instanceof Monster)
+                dropMonsterLoot(event, entity, random);
+            if (entity instanceof Blaze)
+                dropBlazeLoot(event, entity, random);
+            if (entity instanceof CaveSpider)
+                dropCaveSpiderLoot(event, entity, random);
+            if (entity instanceof Creeper)
+                dropCreeperLoot(event, entity, random);
+            if (entity instanceof Drowned)
+                dropDrownedLoot(event, entity, random);
+            if (entity instanceof ElderGuardian)
+                dropElderGuardianLoot(event, entity, random);
+            if (entity instanceof EnderMan)
+                dropEndermanLoot(event, entity, random);
+            if (entity instanceof Endermite)
+                dropEndermiteLoot(event, entity, random);
+            if (entity instanceof Evoker)
+                dropEvokerLoot(event, entity, random);
+            if (entity instanceof Ghast)
+                dropGhastLoot(event, entity, random);
+            if (entity instanceof Guardian)
+                dropGuardianLoot(event, entity, random);
+            if (entity instanceof Husk)
+                dropHuskLoot(event, entity, random);
+            if (entity instanceof MagmaCube)
+                dropMagmaCubeLoot(event, entity, random);
+            if (entity instanceof Phantom)
+                dropPhantomLoot(event, entity, random);
+            if (entity instanceof Pillager)
+                dropPillagerLoot(event, entity, random);
+            if (entity instanceof Ravager)
+                dropRavagerLoot(event, entity, random);
+            if (entity instanceof Shulker)
+                dropShulkerLoot(event, entity, random);
+            if (entity instanceof Silverfish)
+                dropSilverfishLoot(event, entity, random);
+            if (entity instanceof Skeleton)
+                dropSkeletonLoot(event, entity, random);
+            if (entity instanceof Slime && !(entity instanceof MagmaCube))
+                dropSlimeLoot(event, entity, random);
+            if (entity instanceof Spider)
+                dropSpiderLoot(event, entity, random);
+            if (entity instanceof Stray)
+                dropStrayLoot(event, entity, random);
+            if (entity instanceof Vindicator)
+                dropVindicatorLoot(event, entity, random);
+            if (entity instanceof Witch)
+                dropWitchLoot(event, entity, random);
+            if (entity instanceof WitherSkeleton)
+                dropWitherSkeletonLoot(event, entity, random);
+            if (entity instanceof ZombieVillager)
+                dropZombieVillagerLoot(event, entity, random);
+            if (entity instanceof ZombifiedPiglin)
+                dropZombifiedPiglinLoot(event, entity, random);
+            if (entity instanceof Zombie)
+                dropZombieLoot(event, entity, random);
         }
     }
 
-    @SubscribeEvent
-    public static void customLootRingDrop(LivingDropsEvent event) {
-        Random random = new Random();
-
-        // This should make it so any type of monster from other mods should also drop rupees occasionally
-        if (event.getSource().getEntity() instanceof Player && event.getEntity() instanceof Monster) {
-            if (random.nextInt(45) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.UNAPPRAISED_RING.get(), random.nextInt(3)));
-        }
+    private static void dropZombieLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(7) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(17) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootBlaze(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Blaze)) {
-            if (random.nextInt(6) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
-            if (random.nextInt(10) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(60) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_POWER_SHARD.get(), 1));
-        }
+    private static void dropZombifiedPiglinLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(6) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(13) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(70) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_POWER_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootCaveSpider(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof CaveSpider)) {
-            if (random.nextInt(6) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
-            if (random.nextInt(14) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(50) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_COURAGE_SHARD.get(), 1));
-        }
+    private static void dropZombieVillagerLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(7) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(12) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootCreeper(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Creeper)) {
-            if (random.nextInt(4) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
-            if (random.nextInt(7) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-        }
+    private static void dropWitherSkeletonLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(3) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(6) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(40) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_POWER_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootDrowned(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Drowned)) {
-            if (random.nextInt(6) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
-            if (random.nextInt(14) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(70) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_COURAGE_SHARD.get(), 1));
-        }
+    private static void dropWitchLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(2) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(4) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(20) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootElderGuardian(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof ElderGuardian)) {
-            if (random.nextInt(14) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RED_RUPEE.get(), 1));
-            if (random.nextInt(1) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_COURAGE_SHARD.get(), 1));
-        }
+    private static void dropVindicatorLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(2) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 3));
+        if (random.nextInt(5) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(25) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_COURAGE_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootEnderman(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof EnderMan)) {
-            if (random.nextInt(3) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(8) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-        }
+    private static void dropStrayLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(7) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 3));
+        if (random.nextInt(12) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootEndermite(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Endermite)) {
-            if (random.nextInt(3) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(7) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-        }
+    private static void dropSpiderLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(6) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 3));
+        if (random.nextInt(10) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootEvoker(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Evoker)) {
-            if (random.nextInt(3) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(6) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(25) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
-        }
+    private static void dropSlimeLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(9) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 3));
+        if (random.nextInt(11) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(15) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.GREEN_JELLY.get(), 1));
+        if (random.nextInt(65) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_JELLY.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootGhast(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Ghast)) {
-            if (random.nextInt(2) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(4) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(35) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_POWER_SHARD.get(), 1));
-        }
+    private static void dropSkeletonLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(5) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 3));
+        if (random.nextInt(16) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(75) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootGuardian(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Guardian)) {
-            if (random.nextInt(4) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(6) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(55) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_COURAGE_SHARD.get(), 1));
-        }
+    private static void dropSilverfishLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(4) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 3));
+        if (random.nextInt(15) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootHusk(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Husk)) {
-            if (random.nextInt(6) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(12) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-        }
+    private static void dropShulkerLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(5) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 3));
+        if (random.nextInt(8) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(65) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootMagmaCube(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof MagmaCube)) {
-            if (random.nextInt(8) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(10) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(90) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_POWER_SHARD.get(), 1));
-            if (random.nextInt(20) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RED_JELLY.get(), 1));
-            if (random.nextInt(60) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_JELLY.get(), 1));
-        }
+    private static void dropRavagerLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(5) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 3));
+        if (random.nextInt(8) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(65) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootPhantom(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Phantom)) {
-            if (random.nextInt(5) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(10) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(45) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
-        }
+    private static void dropPillagerLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(3) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(5) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(60) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootPillager(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Pillager)) {
-            if (random.nextInt(3) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(5) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(60) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
-        }
+    private static void dropPhantomLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(5) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(10) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(45) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootRavager(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Ravager)) {
-            if (random.nextInt(5) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 3));
-            if (random.nextInt(8) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(65) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
-        }
+    private static void dropMagmaCubeLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(8) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(10) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(90) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_POWER_SHARD.get(), 1));
+        if (random.nextInt(20) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RED_JELLY.get(), 1));
+        if (random.nextInt(60) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_JELLY.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootShulker(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Shulker)) {
-            if (random.nextInt(5) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 3));
-            if (random.nextInt(8) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(65) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
-        }
+    private static void dropHuskLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(6) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(12) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootSilverfish(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Silverfish)) {
-            if (random.nextInt(4) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 3));
-            if (random.nextInt(15) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-        }
+    private static void dropGuardianLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(4) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(6) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(55) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_COURAGE_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootSkeleton(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Skeleton)) {
-            if (random.nextInt(5) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 3));
-            if (random.nextInt(16) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(75) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
-        }
+    private static void dropGhastLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(2) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(4) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(35) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_POWER_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootSlime(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player
-                && (event.getEntity() instanceof Slime && !(event.getEntity() instanceof MagmaCube))) {
-            if (random.nextInt(9) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 3));
-            if (random.nextInt(11) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(15) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.GREEN_JELLY.get(), 1));
-            if (random.nextInt(65) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_JELLY.get(), 1));
-        }
+    private static void dropEvokerLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(3) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(6) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(25) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootSpider(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Spider)) {
-            if (random.nextInt(6) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 3));
-            if (random.nextInt(10) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-        }
+    private static void dropEndermiteLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(3) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(7) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootStray(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Stray)) {
-            if (random.nextInt(7) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 3));
-            if (random.nextInt(12) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-        }
+    private static void dropEndermanLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(3) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), 4));
+        if (random.nextInt(8) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootVindicator(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Vindicator)) {
-            if (random.nextInt(2) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 3));
-            if (random.nextInt(5) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(25) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_COURAGE_SHARD.get(), 1));
-        }
+    private static void dropElderGuardianLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(14) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RED_RUPEE.get(), 1));
+        if (random.nextInt(1) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_COURAGE_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootWitch(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Witch)) {
-            if (random.nextInt(2) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(4) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(20) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_WISDOM_SHARD.get(), 1));
-        }
+    private static void dropDrownedLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(6) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
+        if (random.nextInt(14) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(70) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_COURAGE_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootWitherSkeleton(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof WitherSkeleton)) {
-            if (random.nextInt(3) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(6) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(40) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_POWER_SHARD.get(), 1));
-        }
+    private static void dropCreeperLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(4) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
+        if (random.nextInt(7) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootZombieVillager(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof ZombieVillager)) {
-            if (random.nextInt(7) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(12) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-        }
+    private static void dropCaveSpiderLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(6) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
+        if (random.nextInt(14) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(50) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_COURAGE_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootZombifiedPig(LivingDropsEvent event) {
-        Random random = new Random();
-
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof ZombifiedPiglin)) {
-            if (random.nextInt(6) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(13) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-            if (random.nextInt(70) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.TRIFORCE_POWER_SHARD.get(), 1));
-        }
+    private static void dropBlazeLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(6) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
+        if (random.nextInt(10) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+        if (random.nextInt(60) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.TRIFORCE_POWER_SHARD.get(), 1));
     }
 
-    @SubscribeEvent
-    public static void customLootZombie(LivingDropsEvent event) {
-        Random random = new Random();
+    private static void dropMonsterLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(45) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.UNAPPRAISED_RING.get(), random.nextInt(3)));
+    }
 
-        if (event.getSource().getEntity() instanceof Player && (event.getEntity() instanceof Zombie)) {
-            if (random.nextInt(7) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.RUPEE.get(), 4));
-            if (random.nextInt(17) == 0)
-                event.getEntity().spawnAtLocation(new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
-        }
+    private static void dropModdedMonsterLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
+        if (random.nextInt(7) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
+        if (random.nextInt(14) == 0)
+            addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
+    }
+
+    private static void addDrop(Collection<ItemEntity> items, LivingEntity entity, ItemStack stack) {
+        items.add(new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), stack));
     }
 }
