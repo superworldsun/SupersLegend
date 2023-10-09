@@ -51,14 +51,13 @@ public class VanillaMobDrops {
     public static void customLootMonsterEntity(LivingDropsEvent event) {
         LivingEntity entity = event.getEntity();
         ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
-        // This should make it so any type of monster from other mods should also drop
-        // rupees occasionally
-        if (!entityId.getNamespace().equals("minecraft")) {
-            dropModdedMonsterLoot(event, entity);
-        }
         Entity attacker = event.getSource().getEntity();
         if (attacker instanceof Player player) {
             RandomSource random = player.getRandom();
+            // This should make it so any type of monster from other mods should also drop
+            // rupees occasionally
+            if (!entityId.getNamespace().equals("minecraft"))
+                dropModdedMonsterLoot(event, entity, random);
             if (entity instanceof Monster)
                 dropMonsterLoot(event, entity, random);
             if (entity instanceof Blaze)
@@ -352,8 +351,7 @@ public class VanillaMobDrops {
             addDrop(event.getDrops(), entity, new ItemStack(ItemInit.UNAPPRAISED_RING.get(), random.nextInt(3)));
     }
 
-    private static void dropModdedMonsterLoot(LivingDropsEvent event, LivingEntity entity) {
-        RandomSource random = entity.getRandom();
+    private static void dropModdedMonsterLoot(LivingDropsEvent event, LivingEntity entity, RandomSource random) {
         if (random.nextInt(7) == 0)
             addDrop(event.getDrops(), entity, new ItemStack(ItemInit.RUPEE.get(), random.nextInt(3)));
         if (random.nextInt(14) == 0)
