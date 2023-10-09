@@ -2,19 +2,18 @@ package com.superworldsun.superslegend.events;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.projectiles.arrows.AncientArrowEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+@EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class AncientArrowDropEvents {
     // TODO MAKE A CONFIG TO TURN THIS OFF FOR PLAYERS UPON DEATH.
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingDrops(LivingDropsEvent event) {
-        Entity directEntity = event.getSource().getDirectEntity();
-        if (directEntity instanceof AncientArrowEntity) {
+        if (event.getSource().getDirectEntity() instanceof AncientArrowEntity)
             event.getDrops().clear();
-        }
     }
 }
