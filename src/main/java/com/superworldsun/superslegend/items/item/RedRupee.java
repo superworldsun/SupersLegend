@@ -91,7 +91,7 @@ public class RedRupee extends Item {
         }
         else if(Screen.hasShiftDown()) {
             tooltip.add(Component.literal("Holding 5 in a single stack and then Right-click will convert the " +
-                    "rupees into a single Silver Rupee. Rupees can be used for amo, fuel, or trading").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC));
+                    "rupees into a single Silver Rupee. Rupees can be used for ammo, fuel, or trading").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC));
             tooltip.add(Component.literal("You can also put this in a crafting table to break it down").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
             tooltip.add(Component.literal("Rupees can be found by slaying monsters").withStyle(ChatFormatting.DARK_GRAY));
         }
