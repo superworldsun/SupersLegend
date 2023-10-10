@@ -3,6 +3,7 @@ package com.superworldsun.superslegend;
 import com.mojang.logging.LogUtils;
 import com.superworldsun.superslegend.client.init.ItemModelPropertiesInit;
 import com.superworldsun.superslegend.registries.*;
+import com.superworldsun.superslegend.world.biome.BiomeModifiers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,6 +38,7 @@ public class SupersLegendMain
         EffectInit.register(modEventBus);
         SoundInit.register(modEventBus);
         EntityTypeInit.register(modEventBus);
+        BiomeModifiers.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
