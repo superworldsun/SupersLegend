@@ -1,13 +1,9 @@
 package com.superworldsun.superslegend.items.armors;
 
+import com.superworldsun.superslegend.client.render.armor.GeoArmorRendererExtension;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
@@ -22,14 +18,20 @@ public class KokiriArmor extends NonEnchantArmor implements GeoItem {
         super(material, type, properties);
     }
 
-    private PlayState predicate(AnimationState animationState){
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        GeoArmorRendererExtension<KokiriArmor> extension = new GeoArmorRendererExtension<>("kokiri_armor");
+        consumer.accept(extension);
+    }
+
+    private PlayState predicate(AnimationState<KokiriArmor> animationState) {
         animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
         return PlayState.CONTINUE;
     }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController(this, "controller", 0, this::predicate));
+        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override
