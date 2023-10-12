@@ -25,7 +25,7 @@ public class GoldRupee extends Item {
             components.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
         }
         else if(Screen.hasShiftDown()) {
-            components.add(Component.literal("The maximum value of a rupee. Rupees can be used for amo, fuel, or trading").withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
+            components.add(Component.literal("The maximum value of a rupee. Rupees can be used for ammo, fuel, or trading").withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
             components.add(Component.literal("You can also put this in a crafting table to break it down").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
             components.add(Component.literal("Rupees can be found by slaying monsters").withStyle(ChatFormatting.DARK_GRAY));
         }

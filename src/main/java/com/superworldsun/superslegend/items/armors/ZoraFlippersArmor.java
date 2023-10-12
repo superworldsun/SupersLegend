@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.client.render.armor.GeoArmorRendererExtension;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,6 +22,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 
 import java.util.UUID;
+import java.util.function.Consumer;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class ZoraFlippersArmor extends NonEnchantArmor implements GeoItem {
@@ -31,14 +34,20 @@ public class ZoraFlippersArmor extends NonEnchantArmor implements GeoItem {
     }
 
 
-    private PlayState predicate(AnimationState animationState){
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        GeoArmorRendererExtension<ZoraFlippersArmor> extension = new GeoArmorRendererExtension<>("zora_flippers");
+        consumer.accept(extension);
+    }
+
+    private PlayState predicate(AnimationState<ZoraFlippersArmor> animationState) {
         animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
         return PlayState.CONTINUE;
     }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController(this, "controller", 0, this::predicate));
+        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override

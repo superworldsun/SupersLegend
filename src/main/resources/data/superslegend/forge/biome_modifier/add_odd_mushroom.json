@@ -1,0 +1,7 @@
+{
+  "type": "superslegend:vegetal",
+  "biomes": [
+    "minecraft:swamp"
+  ],
+  "feature": "superslegend:overworld_odd_mushroom_placed"
+}
