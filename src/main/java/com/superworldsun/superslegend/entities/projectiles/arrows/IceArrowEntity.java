@@ -26,6 +26,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3d;
 
 import java.util.List;
@@ -50,13 +51,13 @@ public class IceArrowEntity extends AbstractArrow
     }
 
     @Override
-    protected ItemStack getPickupItem()
+    protected @NotNull ItemStack getPickupItem()
     {
         return new ItemStack(ItemInit.ICE_ARROW.get());
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket()
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket()
     {
         return NetworkHooks.getEntitySpawningPacket(this);
     }

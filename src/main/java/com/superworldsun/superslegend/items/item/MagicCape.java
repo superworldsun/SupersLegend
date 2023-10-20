@@ -19,6 +19,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Random;
@@ -30,7 +31,7 @@ public class MagicCape extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand)
     {
         ItemStack capeStack = player.getItemInHand(hand);
         boolean hasMana = MagicProvider.hasMagic(player, MANA_COST);
@@ -66,7 +67,7 @@ public class MagicCape extends Item {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         tooltip.add(Component.literal("Allows you to slip through many obstacles easier").withStyle(ChatFormatting.RED));
         tooltip.add(Component.literal("Grants invincibility & invisibility").withStyle(ChatFormatting.DARK_RED));
         tooltip.add(Component.literal("Right-click to use").withStyle(ChatFormatting.GREEN));

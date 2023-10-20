@@ -17,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class GiantsKnife extends ItemCustomSword {
         super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
     }
 
-    public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected)
+    public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int itemSlot, boolean isSelected)
     {
         if(entity instanceof Player)
         {
@@ -44,7 +45,7 @@ public class GiantsKnife extends ItemCustomSword {
         }
     }
 
-    public boolean hurtEnemy(ItemStack itemStack, LivingEntity attacked, LivingEntity attacker) {
+    public boolean hurtEnemy(@NotNull ItemStack itemStack, @NotNull LivingEntity attacked, @NotNull LivingEntity attacker) {
         if(this.getTier() == ItemToolTiers.BROKEN_GIANTS_KNIFE) {
             return false;
         }
@@ -63,7 +64,7 @@ public class GiantsKnife extends ItemCustomSword {
     }
 
     @Override
-    public boolean mineBlock(ItemStack itemStack, Level level, BlockState blockstate, BlockPos pos, LivingEntity entity) {
+    public boolean mineBlock(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull BlockState blockstate, @NotNull BlockPos pos, @NotNull LivingEntity entity) {
         if(this.getTier() == ItemToolTiers.BROKEN_GIANTS_KNIFE) {
             return false;
         }
@@ -82,7 +83,7 @@ public class GiantsKnife extends ItemCustomSword {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         tooltip.add(Component.literal("A Large Sword that requires two hands to wield").withStyle(ChatFormatting.GRAY));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }

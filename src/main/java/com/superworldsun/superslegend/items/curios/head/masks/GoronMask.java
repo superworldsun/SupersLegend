@@ -24,6 +24,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -186,7 +187,7 @@ public class GoronMask extends Item implements ICurioItem {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         tooltip.add(Component.literal("The face of a Goron").withStyle(ChatFormatting.DARK_RED));
         tooltip.add(Component.literal("Your skin is stone and cannot be burned").withStyle(ChatFormatting.GREEN));
         tooltip.add(Component.literal("Not a strong swimmer").withStyle(ChatFormatting.RED));

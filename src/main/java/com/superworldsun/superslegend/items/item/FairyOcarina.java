@@ -13,6 +13,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class FairyOcarina extends Item
@@ -27,7 +29,7 @@ public class FairyOcarina extends Item
     //TODO When the player plays any notes from the ocarina, make it so other players can hear the notes
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> showOcarinaScreen());
         return InteractionResultHolder.success(player.getItemInHand(hand));
     }
@@ -42,7 +44,7 @@ public class FairyOcarina extends Item
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         tooltip.add(Component.literal("A standard Ocarina").withStyle(ChatFormatting.GOLD));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }

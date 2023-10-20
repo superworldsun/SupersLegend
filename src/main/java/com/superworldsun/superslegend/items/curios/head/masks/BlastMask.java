@@ -17,6 +17,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3d;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -56,7 +57,7 @@ public class BlastMask extends Item implements ICurioItem {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         tooltip.add(Component.literal("Bomb Blastic").withStyle(ChatFormatting.GRAY));
         //tooltip.add(Component.literal("Press '" + keybind + "' to Explode")).withStyle(ChatFormatting.GREEN));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);

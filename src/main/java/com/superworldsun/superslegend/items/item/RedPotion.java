@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class RedPotion extends Item {
     public RedPotion(Properties pProperties) {
@@ -19,19 +20,19 @@ public class RedPotion extends Item {
     }
 
     @Override
-    public int getUseDuration(ItemStack stack)
+    public int getUseDuration(@NotNull ItemStack stack)
     {
         return 32;
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack)
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack)
     {
         return UseAnim.DRINK;
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
         if (!player.isHurt())
@@ -42,7 +43,7 @@ public class RedPotion extends Item {
         return ItemUtils.startUsingInstantly(level, player, hand);
     }
 
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entity) {
         Player player = entity instanceof Player ? (Player) entity : null;
 
         if (player instanceof Player)

@@ -12,6 +12,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class GreenLuckRing extends RingItem implements IncomingDamageModifier {
 	public GreenLuckRing(Properties properties) {
@@ -29,7 +30,7 @@ public class GreenLuckRing extends RingItem implements IncomingDamageModifier {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag tooltipFlag) {
+	public void appendHoverText(@NotNull ItemStack stack, Level level, List<Component> tooltip, @NotNull TooltipFlag tooltipFlag) {
 		tooltip.add(Component.literal("1/2 Damage From Traps").withStyle(ChatFormatting.BLUE));
 	}
 }

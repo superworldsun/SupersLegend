@@ -12,6 +12,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class RedLuckRing extends RingItem implements IncomingDamageModifier {
 	public RedLuckRing(Properties properties) {
@@ -30,7 +31,7 @@ public class RedLuckRing extends RingItem implements IncomingDamageModifier {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+	public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
 		tooltip.add(Component.literal("1/2 Damage From spikes & thorns").withStyle(ChatFormatting.BLUE));
 	}
 }

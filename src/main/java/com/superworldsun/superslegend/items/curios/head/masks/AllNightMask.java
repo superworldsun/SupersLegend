@@ -87,7 +87,7 @@ public class AllNightMask extends Item implements ICurioItem, GeoItem {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         tooltip.add(Component.literal("Cant sleep huh?").withStyle(ChatFormatting.WHITE));
         tooltip.add(Component.literal("Grants night vision").withStyle(ChatFormatting.GREEN));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);

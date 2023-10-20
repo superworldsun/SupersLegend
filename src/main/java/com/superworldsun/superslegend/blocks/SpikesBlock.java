@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class SpikesBlock extends Block
 
@@ -19,22 +20,22 @@ public class SpikesBlock extends Block
         super(properties);
     }
 
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
         return SHAPE;
     }
 
     @Override
-    public void entityInside(BlockState pState, Level level, BlockPos pPos, Entity entity) {
+    public void entityInside(@NotNull BlockState pState, Level level, @NotNull BlockPos pPos, Entity entity) {
         entity.hurt(level.damageSources().cactus(), 6.0F);
     }
 
     @Override
-    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+    public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {
         return false;
     }
 
     @Override
-    public boolean isPossibleToRespawnInThis(BlockState pState) {
+    public boolean isPossibleToRespawnInThis(@NotNull BlockState pState) {
         return false;
     }
 }

@@ -17,6 +17,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -46,7 +47,7 @@ public class DekuMask extends Item implements ICurioItem {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         tooltip.add(Component.literal("The face of a Deku").withStyle(ChatFormatting.DARK_GREEN));
         tooltip.add(Component.literal("Your wooden skin is unlikely to be poisoned").withStyle(ChatFormatting.GREEN));
         tooltip.add(Component.literal("Your wooden body will burn faster").withStyle(ChatFormatting.RED));

@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class BlueRing extends RingItem implements IncomingDamageModifier {
 	public BlueRing(Properties properties) {
@@ -29,7 +30,7 @@ public class BlueRing extends RingItem implements IncomingDamageModifier {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+	public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
 		tooltip.add(Component.literal("Damage taken is 1/2").withStyle(ChatFormatting.BLUE));
 	}
 }

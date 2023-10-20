@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class FireArrowEntity extends AbstractArrow
 {
@@ -39,19 +40,19 @@ public class FireArrowEntity extends AbstractArrow
     }
 
     @Override
-    protected ItemStack getPickupItem()
+    protected @NotNull ItemStack getPickupItem()
     {
         return new ItemStack(ItemInit.FIRE_ARROW.get());
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket()
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket()
     {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected void doPostHurtEffects(LivingEntity entity)
+    protected void doPostHurtEffects(@NotNull LivingEntity entity)
     {
         super.doPostHurtEffects(entity);
         entity.setSecondsOnFire(6);

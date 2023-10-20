@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -49,18 +50,18 @@ public class YellowFloorSwitch extends BasePressurePlateBlock {
     /**
      * Returns the block state that encodes the given signal.
      */
-    protected BlockState setSignalForState(BlockState pState, int pStrength) {
+    protected @NotNull BlockState setSignalForState(BlockState pState, int pStrength) {
         return pState.setValue(POWERED, Boolean.valueOf(pStrength > 0));
     }
 
-    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+    public void tick(@NotNull BlockState pState, @NotNull ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
         int i = this.getSignalForState(pState);
         if (i > 0) {
             this.checkPressed((Entity)null, pLevel, pPos, pState, i);
         }
     }
 
-    public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+    public void entityInside(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Entity pEntity) {
         if (!pLevel.isClientSide) {
             int i = this.getSignalForState(pState);
             if (i == 0) {
@@ -96,7 +97,7 @@ public class YellowFloorSwitch extends BasePressurePlateBlock {
     /**
      * Calculates what the signal strength of a pressure plate at the given location should be.
      */
-    protected int getSignalStrength(Level world, BlockPos pos) {
+    protected int getSignalStrength(@NotNull Level world, @NotNull BlockPos pos) {
         net.minecraft.world.phys.AABB axisalignedbb = TOUCH_AABB.move(pos);
         List<? extends Entity> list;
         switch(this.sensitivity) {

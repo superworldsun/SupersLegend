@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -33,7 +34,7 @@ public class MagicMirror extends Item {
 
     //TODO, the item doesn't have any errors but the magic mirror isn't working.
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         player.startUsingItem(hand);
         return new InteractionResultHolder<ItemStack>(InteractionResult.SUCCESS, stack);
@@ -53,7 +54,7 @@ public class MagicMirror extends Item {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity)
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, Level level, @NotNull LivingEntity entity)
     {
         if (!level.isClientSide)
         {
@@ -92,13 +93,13 @@ public class MagicMirror extends Item {
     }
 
     @Override
-    public UseAnim getUseAnimation (ItemStack stack)
+    public @NotNull UseAnim getUseAnimation (@NotNull ItemStack stack)
     {
         return UseAnim.BOW;
     }
 
     @Override
-    public int getUseDuration(ItemStack stack)
+    public int getUseDuration(@NotNull ItemStack stack)
     {
         return duration;
     }
@@ -110,7 +111,7 @@ public class MagicMirror extends Item {
     }
 
     @Override
-    public boolean isFoil(ItemStack stack) {
+    public boolean isFoil(@NotNull ItemStack stack) {
         return getPosition(stack) != null;
     }
 

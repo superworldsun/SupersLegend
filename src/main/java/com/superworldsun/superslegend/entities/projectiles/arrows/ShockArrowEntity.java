@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 
 public class ShockArrowEntity extends AbstractArrow
@@ -47,13 +48,13 @@ public class ShockArrowEntity extends AbstractArrow
     }
 
     @Override
-    protected ItemStack getPickupItem()
+    protected @NotNull ItemStack getPickupItem()
     {
         return new ItemStack(ItemInit.ICE_ARROW.get());
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket()
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket()
     {
         return NetworkHooks.getEntitySpawningPacket(this);
     }

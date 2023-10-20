@@ -26,6 +26,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -40,17 +41,17 @@ public class TorchTowerTopLit extends Block
         super(properties);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState state)
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state)
     {
         return RenderShape.INVISIBLE;
     }
 
-    public void animateTick(BlockState pState, Level level, BlockPos pos, RandomSource rand)
+    public void animateTick(@NotNull BlockState pState, Level level, BlockPos pos, @NotNull RandomSource rand)
     {
         double d0 = (double)pos.getX() + 0.5D;
         double d1 = (double)pos.getY() + 0.5D;
@@ -95,7 +96,7 @@ public class TorchTowerTopLit extends Block
     }
 
     @Override
-    public void destroy(LevelAccessor level, BlockPos pos, BlockState pState) {
+    public void destroy(LevelAccessor level, BlockPos pos, @NotNull BlockState pState) {
         level.setBlock(pos.below(), Blocks.AIR.defaultBlockState(), 3);
     }
 
@@ -113,7 +114,7 @@ public class TorchTowerTopLit extends Block
 		}
 	}*/
     //TODO add some particles like a camp fire
-    public InteractionResult use(BlockState blockstate, Level worldIn, BlockPos pos, Player playerentity, InteractionHand hand, BlockHitResult blocktrace) {
+    public @NotNull InteractionResult use(@NotNull BlockState blockstate, @NotNull Level worldIn, @NotNull BlockPos pos, Player playerentity, @NotNull InteractionHand hand, @NotNull BlockHitResult blocktrace) {
         ItemStack itemstack = playerentity.getItemInHand(hand);
         Item item = itemstack.getItem();
         if (item != Items.WATER_BUCKET)
@@ -130,7 +131,7 @@ public class TorchTowerTopLit extends Block
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos neighborPos, boolean flag)
+    public void neighborChanged(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull Block block, @NotNull BlockPos neighborPos, boolean flag)
     {
         //TODO, probably not needed but couldnt port
         //DebugPacketSender.sendNeighborsUpdatePacket(world, pos);
@@ -142,7 +143,7 @@ public class TorchTowerTopLit extends Block
     }
 
     @Override
-    public void onPlace(BlockState blockState, Level world, BlockPos blockPos, BlockState oldBlockState, boolean b) {
+    public void onPlace(@NotNull BlockState blockState, Level world, BlockPos blockPos, @NotNull BlockState oldBlockState, boolean b) {
         world.setBlockAndUpdate(blockPos.below(), BlockInit.TORCH_TOWER.get().defaultBlockState().setValue(OUTPUT_POWER, 15));
         world.setBlockAndUpdate(blockPos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState());
     }

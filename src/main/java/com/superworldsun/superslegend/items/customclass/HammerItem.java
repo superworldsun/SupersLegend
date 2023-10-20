@@ -24,6 +24,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public abstract class HammerItem extends TieredItem implements Vanishable {
@@ -104,13 +105,13 @@ public abstract class HammerItem extends TieredItem implements Vanishable {
     }
 
     @Override
-    public boolean canAttackBlock(BlockState blockState, Level level, BlockPos blockPos, Player playerEntity)
+    public boolean canAttackBlock(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, Player playerEntity)
     {
         return !playerEntity.isCreative();
     }
 
     @Override
-    public float getDestroySpeed(ItemStack itemStack, BlockState blockState)
+    public float getDestroySpeed(@NotNull ItemStack itemStack, BlockState blockState)
     {
         if (blockState.is(Blocks.COBWEB))
         {
@@ -132,14 +133,14 @@ public abstract class HammerItem extends TieredItem implements Vanishable {
     }
 
     @Override
-    public boolean hurtEnemy(ItemStack itemStack, LivingEntity attackingEntity, LivingEntity targetEntity)
+    public boolean hurtEnemy(ItemStack itemStack, @NotNull LivingEntity attackingEntity, @NotNull LivingEntity targetEntity)
     {
         itemStack.hurtAndBreak(1, targetEntity, entity -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         return true;
     }
 
     @Override
-    public boolean mineBlock(ItemStack itemStack, Level level, BlockState blockState, BlockPos blockPos, LivingEntity livingEntity)
+    public boolean mineBlock(@NotNull ItemStack itemStack, @NotNull Level level, BlockState blockState, @NotNull BlockPos blockPos, @NotNull LivingEntity livingEntity)
     {
         if (blockState.getDestroySpeed(level, blockPos) != 0.0F)
         {
@@ -150,7 +151,7 @@ public abstract class HammerItem extends TieredItem implements Vanishable {
     }
 
     @Override
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slotType)
+    public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slotType)
     {
         return slotType == EquipmentSlot.MAINHAND ? this.defaultModifiers : ImmutableMultimap.of();
     }

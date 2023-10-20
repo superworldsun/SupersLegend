@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class HammeredWoodenBirchPeg extends Block
 
@@ -28,7 +29,7 @@ public class HammeredWoodenBirchPeg extends Block
     }
 
     @SuppressWarnings("deprecation")
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random)
     {
         super.randomTick(state, level, pos, random);
         {
@@ -41,7 +42,7 @@ public class HammeredWoodenBirchPeg extends Block
     }
 
     @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
+    public @NotNull InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit)
     {
         BlockPos currentPos = player.blockPosition();
         level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WOOD_HIT, SoundSource.PLAYERS, 1f, 1f);
@@ -52,7 +53,7 @@ public class HammeredWoodenBirchPeg extends Block
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE;
     }
 }

@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
@@ -28,7 +29,7 @@ public class LargeMagicJarRender extends EntityRenderer<LargeMagicJarEntity> {
         this.shadowStrength = 0.75F;
     }
 
-    public void render(LargeMagicJarEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(@NotNull LargeMagicJarEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
         pMatrixStack.pushPose();
         //Raise the entity slightly so that it is not cutting through the ground.
         pMatrixStack.translate(0.0F, 0.1F, 0.0F);
@@ -56,7 +57,7 @@ public class LargeMagicJarRender extends EntityRenderer<LargeMagicJarEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(LargeMagicJarEntity pEntity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull LargeMagicJarEntity pEntity) {
         return TEXTURE_LOCATION;
     }
 }

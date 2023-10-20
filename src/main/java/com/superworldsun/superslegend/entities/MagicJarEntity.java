@@ -17,6 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class MagicJarEntity extends Entity {
 
@@ -102,7 +103,7 @@ public class MagicJarEntity extends Entity {
     }
 
     @Override
-    public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
+    public boolean hurt(@NotNull DamageSource p_70097_1_, float p_70097_2_) {
         if (this.level().isClientSide || !isAlive()) return false;
         if (this.isInvulnerableTo(p_70097_1_)) {
             return false;
@@ -136,7 +137,7 @@ public class MagicJarEntity extends Entity {
      */
     //TODO add a custom sound effect for magic pick up
     @Override
-    public void playerTouch(Player player) {
+    public void playerTouch(@NotNull Player player) {
         if (!this.level().isClientSide)
         {
             if (this.throwTime == 0 && !MagicProvider.isFullMagic(player))
@@ -156,7 +157,7 @@ public class MagicJarEntity extends Entity {
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

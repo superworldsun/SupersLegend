@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class AncientArrowEntity extends AbstractArrow
 {
@@ -41,7 +42,7 @@ public class AncientArrowEntity extends AbstractArrow
     }
 
     @Override
-    protected void doPostHurtEffects(LivingEntity entity)
+    protected void doPostHurtEffects(@NotNull LivingEntity entity)
     {
         playSound(SoundInit.ARROW_HIT_ANCIENT.get(), 1f, 1f);
 
@@ -51,13 +52,13 @@ public class AncientArrowEntity extends AbstractArrow
     }
 
     @Override
-    protected ItemStack getPickupItem()
+    protected @NotNull ItemStack getPickupItem()
     {
         return new ItemStack(ItemInit.ANCIENT_ARROW.get());
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket()
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket()
     {
         return NetworkHooks.getEntitySpawningPacket(this);
     }

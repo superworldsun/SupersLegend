@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.CandleCakeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class BlueCandle extends Item {
     public BlueCandle(Item.Properties pProperties) {
@@ -28,7 +29,7 @@ public class BlueCandle extends Item {
      * Called when this item is used when targeting a Block
      */
     //TODO, right now this is pretty much just a flint and steel, in future change this to maybe fire a small short range fire projectile that starts fires
-    public InteractionResult useOn(UseOnContext pContext) {
+    public @NotNull InteractionResult useOn(UseOnContext pContext) {
         Player player = pContext.getPlayer();
         Level level = pContext.getLevel();
         BlockPos blockpos = pContext.getClickedPos();

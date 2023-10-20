@@ -57,7 +57,7 @@ public class GeoArmorRendererExtension<T extends Item & GeoItem> implements ICli
      *                 {@link LivingEntity} wearer, {@link ItemStack} and
      *                 {@link EquipmentSlot}.
      */
-    public void setTextureProvider(GeoArmorResourceProvider provider) {
+    public void setTextureProvider(@org.jetbrains.annotations.Nullable GeoArmorResourceProvider provider) {
         this.textureProvider = provider;
     }
 

@@ -11,6 +11,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class MagicMushroomBlock extends MushroomBlock implements BonemealableBlock
 {
@@ -19,13 +20,13 @@ public class MagicMushroomBlock extends MushroomBlock implements BonemealableBlo
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState p_220071_1_, BlockGetter p_220071_2_, BlockPos p_220071_3_, CollisionContext p_220071_4_)
+    public @NotNull VoxelShape getCollisionShape(@NotNull BlockState p_220071_1_, @NotNull BlockGetter p_220071_2_, @NotNull BlockPos p_220071_3_, @NotNull CollisionContext p_220071_4_)
     {
         return Shapes.empty();
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState state) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.INVISIBLE;
     }
 }
