@@ -1,12 +1,12 @@
 package com.superworldsun.superslegend.api;
 
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.item.ArmorItem;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 /**
- * Use with equipment and curios
+ * Can be used with instances of {@link ArmorItem} and {@link ICurioItem}
  */
 public interface IncomingDamageModifier {
-	boolean canModifyDamage(DamageSource damage);
-
-	float getDamageModifier();
+	float modifyIncomingDamage(DamageSource source, float amount);
 }

@@ -20,46 +20,46 @@ import software.bernie.geckolib.core.object.PlayState;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class GoronArmor extends NonEnchantArmor implements IncomingDamageModifier, GeoItem {
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-    public GoronArmor(ArmorMaterial material, Type type, Properties properties) {
-        super(material, type, properties);
-    }
+	private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
-    private PlayState predicate(AnimationState animationState){
-        animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
-    }
+	public GoronArmor(ArmorMaterial material, Type type, Properties properties) {
+		super(material, type, properties);
+	}
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController(this, "controller", 0, this::predicate));
-    }
+	private PlayState predicate(AnimationState animationState) {
+		animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+		return PlayState.CONTINUE;
+	}
 
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
-    }
+	@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+		controllerRegistrar.add(new AnimationController(this, "controller", 0, this::predicate));
+	}
 
-    @Override
-    public void onArmorTick(ItemStack stack, Level level, Player player) {
-        super.onArmorTick(stack, level, player);
-        if (!level.isClientSide){
-            boolean isChestplateOn = player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.GORON_TUNIC.get();
+	@Override
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
+		return cache;
+	}
 
-            if (isChestplateOn)
-            {
-                player.clearFire();
-            }
-        }
-    }
-    //TODO, I want In Fire damage and lava to be exactly /3, and to be immune to Hot Floor damage
-    @Override
-    public boolean canModifyDamage(DamageSource damage) {
-        return damage.is(DamageTypes.IN_FIRE) || damage.is(DamageTypes.LAVA) || damage.is(DamageTypes.HOT_FLOOR);
-    }
+	@Override
+	public void onArmorTick(ItemStack stack, Level level, Player player) {
+		super.onArmorTick(stack, level, player);
+		if (!level.isClientSide) {
+			boolean isChestplateOn = player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.GORON_TUNIC.get();
 
-    @Override
-    public float getDamageModifier() {
-        return -0.5f;
-    }
+			if (isChestplateOn) {
+				player.clearFire();
+			}
+		}
+	}
+
+	@Override
+	public float modifyIncomingDamage(DamageSource source, float amount) {
+		if (source.is(DamageTypes.IN_FIRE) || source.is(DamageTypes.LAVA)) {
+			return amount / 3f;
+		} else if (source.is(DamageTypes.HOT_FLOOR)) {
+			return 0f;
+		}
+		return amount;
+	}
 }

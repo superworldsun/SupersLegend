@@ -1,10 +1,7 @@
 package com.superworldsun.superslegend.items.curios.rings;
 
-import java.util.List;
-
 import com.superworldsun.superslegend.api.IncomingDamageModifier;
 import com.superworldsun.superslegend.items.customclass.RingItem;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
@@ -15,19 +12,16 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class BlueLuckRing extends RingItem implements IncomingDamageModifier {
 	public BlueLuckRing(Properties properties) {
 		super(new Properties());
 	}
 
 	@Override
-	public boolean canModifyDamage(DamageSource damage) {
-		return damage.getEntity() instanceof Guardian && !damage.is(DamageTypes.THORNS);
-	}
-
-	@Override
-	public float getDamageModifier() {
-		return -0.5F;
+	public float modifyIncomingDamage(DamageSource source, float amount) {
+		return source.getEntity() instanceof Guardian && !source.is(DamageTypes.THORNS) ? amount / 2 : amount;
 	}
 
 	@Override
