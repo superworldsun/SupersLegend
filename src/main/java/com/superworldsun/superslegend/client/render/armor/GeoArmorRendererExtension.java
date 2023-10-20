@@ -129,7 +129,7 @@ public class GeoArmorRendererExtension<T extends Item & GeoItem> implements ICli
     /**
      * Sets the armor texture file name.
      * 
-     * @param model a {@link String} that represents the name of the texture file.
+     * @param texture a {@link String} that represents the name of the texture file.
      * @return Current instance of the GeoArmorRendererExtension class.
      */
     public GeoArmorRendererExtension<T> setTextureName(String texture) {
@@ -148,7 +148,7 @@ public class GeoArmorRendererExtension<T extends Item & GeoItem> implements ICli
     /**
      * Sets the armor animation file name.
      * 
-     * @param model a {@link String} that represents the name of the animation file.
+     * @param animation a {@link String} that represents the name of the animation file.
      * @return Current instance of the GeoArmorRendererExtension class.
      */
     public GeoArmorRendererExtension<T> setAnimationName(String animation) {
