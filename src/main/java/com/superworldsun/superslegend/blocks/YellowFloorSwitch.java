@@ -57,7 +57,7 @@ public class YellowFloorSwitch extends BasePressurePlateBlock {
     public void tick(@NotNull BlockState pState, @NotNull ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
         int i = this.getSignalForState(pState);
         if (i > 0) {
-            this.checkPressed((Entity)null, pLevel, pPos, pState, i);
+            this.checkPressed(null, pLevel, pPos, pState, i);
         }
     }
 
@@ -83,10 +83,10 @@ public class YellowFloorSwitch extends BasePressurePlateBlock {
         }
 
         if (!flag1 && flag) {
-            pLevel.playSound((Player)null, pPos, SoundInit.FLOOR_SWITCH.get(), SoundSource.BLOCKS, 0.3f, 0.6f);
+            pLevel.playSound(null, pPos, SoundInit.FLOOR_SWITCH.get(), SoundSource.BLOCKS, 0.3f, 0.6f);
             pLevel.gameEvent(pEntity, GameEvent.BLOCK_DEACTIVATE, pPos);
         } else if (flag1 && !flag) {
-            pLevel.playSound((Player)null, pPos, SoundInit.FLOOR_SWITCH.get(), SoundSource.BLOCKS, 0.3f, 0.4f);
+            pLevel.playSound(null, pPos, SoundInit.FLOOR_SWITCH.get(), SoundSource.BLOCKS, 0.3f, 0.4f);
             pLevel.gameEvent(pEntity, GameEvent.BLOCK_ACTIVATE, pPos);
         }
         if (flag1) {
@@ -102,7 +102,7 @@ public class YellowFloorSwitch extends BasePressurePlateBlock {
         List<? extends Entity> list;
         switch(this.sensitivity) {
             case EVERYTHING:
-                list = world.getEntities((Entity)null, axisalignedbb);
+                list = world.getEntities(null, axisalignedbb);
                 break;
             case MOBS:
                 list = world.getEntitiesOfClass(LivingEntity.class, axisalignedbb);

@@ -124,7 +124,7 @@ public class TorchTowerTopLit extends Block
         else
         {
             worldIn.setBlock(pos, BlockInit.TORCH_TOWER_TOP_UNLIT.get().defaultBlockState(), 1);
-            worldIn.playSound((Player) null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+            worldIn.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
 
             return InteractionResult.sidedSuccess(worldIn.isClientSide);
         }

@@ -66,7 +66,7 @@ public class MaskOfTruth extends Item implements ICurioItem {
             return;
         }
 
-        ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_MASKOFTRUTH.get(), (LivingEntity) event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_MASKOFTRUTH.get(), event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 
         if (maskStack.isEmpty())
         {

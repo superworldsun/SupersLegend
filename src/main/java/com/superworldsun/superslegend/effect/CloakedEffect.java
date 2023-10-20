@@ -63,7 +63,7 @@ public class CloakedEffect extends MobEffect {
         boolean isTargetCloked = event.getEntity() != null && event.getEntity().hasEffect(EffectInit.CLOAKED.get());
 
         if (isTargetCloked) {
-            Entity entity = (Entity) event.getEntity();
+            Entity entity = event.getEntity();
             entity.startSeenByPlayer(null);
         }
     }

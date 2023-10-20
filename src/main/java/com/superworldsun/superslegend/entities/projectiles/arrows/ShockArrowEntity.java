@@ -140,7 +140,7 @@ public class ShockArrowEntity extends AbstractArrow
             if(livingentity.level().isClientSide)
                 return;
             if(livingentity instanceof Creeper) {
-                LightningBolt lightningBoltEntity = EntityType.LIGHTNING_BOLT.create((ServerLevel) livingentity.level());
+                LightningBolt lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(livingentity.level());
                 livingentity.thunderHit((ServerLevel) livingentity.level(), lightningBoltEntity);
             }
             this.getBaseDamage();

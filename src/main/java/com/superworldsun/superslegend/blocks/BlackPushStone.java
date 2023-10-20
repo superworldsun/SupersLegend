@@ -153,7 +153,7 @@ public class BlackPushStone extends FallingBlock{
                         } else {
                             soundEvent = SoundInit.BLOCK_PUSH_DIRT.get();
                         }
-                        level.playSound((Player) null, pos, soundEvent, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        level.playSound(null, pos, soundEvent, SoundSource.BLOCKS, 1.0F, 1.0F);
                         level.setBlock(pushPos, state, 3);
                         level.removeBlock(pos, false);
                         return InteractionResult.SUCCESS;
@@ -167,7 +167,7 @@ public class BlackPushStone extends FallingBlock{
     @Override
     public void onLand(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull BlockState ReplaceableState, @NotNull FallingBlockEntity fallingBlock) {
         super.onLand(level, pos, state, ReplaceableState, fallingBlock);
-        level.playSound((Player) null, pos, SoundEvents.GILDED_BLACKSTONE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+        level.playSound(null, pos, SoundEvents.GILDED_BLACKSTONE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
     }
 
     @Override

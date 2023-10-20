@@ -95,7 +95,7 @@ public class AbstractBombEntity extends ThrowableItemProjectile {
         super.onHitBlock(result);
         Vec3 vector3d = result.getLocation().subtract(this.getX(), this.getY(), this.getZ());
         this.setDeltaMovement(vector3d);
-        Vec3 vector3d1 = vector3d.normalize().scale((double)0.05F);
+        Vec3 vector3d1 = vector3d.normalize().scale(0.05F);
         this.setPosRaw(this.getX() - vector3d1.x, this.getY() - vector3d1.y, this.getZ() - vector3d1.z);
         this.inGround = true;
     }

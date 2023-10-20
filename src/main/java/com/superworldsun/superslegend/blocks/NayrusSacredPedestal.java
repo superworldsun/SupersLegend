@@ -28,7 +28,7 @@ public class NayrusSacredPedestal extends Block {
     }
 
     public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        switch((Direction)state.getValue(FACING)) {
+        switch(state.getValue(FACING)) {
             case EAST:
             default:
                 return FACE_EAST_AABB;

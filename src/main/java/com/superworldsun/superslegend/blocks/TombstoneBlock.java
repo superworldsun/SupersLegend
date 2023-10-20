@@ -40,7 +40,7 @@ public class TombstoneBlock extends Block implements SimpleWaterloggedBlock
 
     @Override
     public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        switch((Direction)state.getValue(FACING)) {
+        switch(state.getValue(FACING)) {
             case EAST:
             default:
                 return FACE_EAST_AABB;
@@ -85,7 +85,7 @@ public class TombstoneBlock extends Block implements SimpleWaterloggedBlock
 
     @Override
     public @NotNull VoxelShape getCollisionShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        switch((Direction)pState.getValue(FACING)) {
+        switch(pState.getValue(FACING)) {
             case EAST:
                 return Shapes.box(0,0,0,0.2,1,1);
             case WEST:

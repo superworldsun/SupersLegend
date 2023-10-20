@@ -94,7 +94,7 @@ public class TorchTowerTopUnlit extends Block
         {
             onCaughtFire(blockstate, worldIn, pos, blocktrace.getDirection(), playerentity);
             worldIn.setBlock(pos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState(), 1);
-            worldIn.playSound((Player) null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!playerentity.isCreative()) {
                 if (item == Items.FLINT_AND_STEEL) {
                     itemstack.hurtAndBreak(1, playerentity, (p_220287_1_) -> {
