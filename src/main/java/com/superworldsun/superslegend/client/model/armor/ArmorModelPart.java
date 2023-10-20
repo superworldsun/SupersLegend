@@ -7,5 +7,5 @@ public enum ArmorModelPart {
     BODY,
     LEFT_LEG,
     RIGHT_LEG,
-    PELVIS;
+    PELVIS
 }

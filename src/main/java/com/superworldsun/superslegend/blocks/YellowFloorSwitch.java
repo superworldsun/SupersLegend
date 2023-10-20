@@ -132,6 +132,6 @@ public class YellowFloorSwitch extends BasePressurePlateBlock {
     public enum SensitivityMod {
         EVERYTHING,
         MOBS,
-        PLAYER;
-    }
+        PLAYER
+	}
 }
