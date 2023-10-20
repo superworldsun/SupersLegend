@@ -350,8 +350,7 @@ public class ItemInit {
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DINS_FIRE = ITEMS.register("dins_fire",
             () -> new DinsFire(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> FARORES_WIND = ITEMS.register("farores_wind",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> FARORES_WIND = ITEMS.register("farores_wind", FaroresWindItem::new);
     public static final RegistryObject<Item> NAYRUS_LOVE = ITEMS.register("nayrus_love",
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DEKU_LEAF = ITEMS.register("deku_leaf",
