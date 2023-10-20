@@ -1,25 +1,6 @@
 package com.superworldsun.superslegend.items.item;
 
-import com.superworldsun.superslegend.registries.ItemInit;
-import com.superworldsun.superslegend.registries.SoundInit;
-import com.superworldsun.superslegend.registries.TagInit;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BowItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import javax.annotation.Nonnull;
-import java.util.function.Predicate;
-import java.util.logging.Level;
 
 public class SlingShot extends BowItem {
     public SlingShot(Properties pProperties) {

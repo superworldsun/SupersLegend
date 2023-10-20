@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.client.model.curio.head;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.armors.ZoraArmorArmor;
 import com.superworldsun.superslegend.items.curios.head.masks.AllNightMask;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;

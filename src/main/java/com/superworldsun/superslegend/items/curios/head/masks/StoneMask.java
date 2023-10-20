@@ -2,7 +2,6 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

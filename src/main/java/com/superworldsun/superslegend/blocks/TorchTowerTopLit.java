@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.registries.BlockInit;
-import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
@@ -24,11 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Random;
 
 import static com.superworldsun.superslegend.blocks.TorchTower.OUTPUT_POWER;
 

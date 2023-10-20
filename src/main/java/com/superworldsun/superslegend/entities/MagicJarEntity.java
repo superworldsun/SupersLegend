@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.entities;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.capability.magic.MagicProvider;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.core.BlockPos;

@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.client.render.arrows;
 
-import com.superworldsun.superslegend.entities.projectiles.arrows.ShockArrowEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.SilverArrowEntity;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

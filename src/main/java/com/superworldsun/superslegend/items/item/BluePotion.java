@@ -13,8 +13,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 public class BluePotion extends Item {
     public BluePotion(Properties pProperties) {
         super(pProperties);

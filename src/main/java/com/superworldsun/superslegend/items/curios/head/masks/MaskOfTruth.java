@@ -24,7 +24,6 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
-import java.util.UUID;
 
 public class MaskOfTruth extends Item implements ICurioItem {
     public MaskOfTruth(Properties pProperties) {

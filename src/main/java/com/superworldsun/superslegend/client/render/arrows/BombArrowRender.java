@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.client.render.arrows;
 
 import com.superworldsun.superslegend.entities.projectiles.arrows.BombArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.FireArrowEntity;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;

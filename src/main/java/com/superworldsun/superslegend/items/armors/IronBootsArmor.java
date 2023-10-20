@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.interfaces.IJumpingEntity;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,7 +15,6 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.joml.Vector3d;
 
 import java.util.UUID;
 

@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.entities;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.core.BlockPos;

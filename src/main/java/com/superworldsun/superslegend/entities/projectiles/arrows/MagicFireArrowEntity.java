@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
 import com.superworldsun.superslegend.registries.EntityTypeInit;
-import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

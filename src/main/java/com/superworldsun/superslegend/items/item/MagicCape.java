@@ -4,10 +4,7 @@ import com.superworldsun.superslegend.capability.magic.MagicProvider;
 import com.superworldsun.superslegend.registries.EffectInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.renderer.EffectInstance;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -22,7 +19,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Random;
 
 public class MagicCape extends Item {
     public static final float MANA_COST = 0.058F;

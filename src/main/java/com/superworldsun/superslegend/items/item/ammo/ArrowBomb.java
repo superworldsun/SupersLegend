@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.items.item.ammo;
 
 import com.superworldsun.superslegend.entities.projectiles.arrows.BombArrowEntity;
-import com.superworldsun.superslegend.entities.projectiles.arrows.FireArrowEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;

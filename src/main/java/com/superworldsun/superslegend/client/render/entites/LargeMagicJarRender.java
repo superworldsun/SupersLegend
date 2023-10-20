@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.entities.HeartEntity;
 import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
