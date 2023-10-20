@@ -128,7 +128,7 @@ public class BlueFloorSwitch extends BasePressurePlateBlock {
         pBuilder.add(POWERED);
     }
 
-    public static enum SensitivityMod {
+    public enum SensitivityMod {
         EVERYTHING,
         MOBS,
         PLAYER;
