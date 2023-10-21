@@ -4,8 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.entities.HeartEntity;
-import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import com.superworldsun.superslegend.entities.MagicJarEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -15,6 +13,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
@@ -29,7 +28,7 @@ public class MagicJarRender extends EntityRenderer<MagicJarEntity> {
         this.shadowStrength = 0.75F;
     }
 
-    public void render(MagicJarEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(@NotNull MagicJarEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
         pMatrixStack.pushPose();
         //Raise the entity slightly so that it is not cutting through the ground.
         pMatrixStack.translate(0.0F, 0.1F, 0.0F);
@@ -57,7 +56,7 @@ public class MagicJarRender extends EntityRenderer<MagicJarEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MagicJarEntity pEntity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull MagicJarEntity pEntity) {
         return TEXTURE_LOCATION;
     }
 }

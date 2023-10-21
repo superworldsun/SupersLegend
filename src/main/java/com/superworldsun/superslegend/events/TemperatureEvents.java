@@ -1,28 +1,7 @@
 package com.superworldsun.superslegend.events;
 
-import com.google.common.util.concurrent.AtomicDouble;
-import com.superworldsun.superslegend.Config;
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.registries.AttributeInit;
-import com.superworldsun.superslegend.registries.ItemInit;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraftforge.event.ItemAttributeModifierEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.joml.Math;
-
-import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class TemperatureEvents {

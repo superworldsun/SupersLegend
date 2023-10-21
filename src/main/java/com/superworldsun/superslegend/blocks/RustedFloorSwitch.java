@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -42,7 +43,7 @@ public class RustedFloorSwitch extends BasePressurePlateBlock {
     /**
      * Returns the block state that encodes the given signal.
      */
-    protected BlockState setSignalForState(BlockState pState, int pStrength) {
+    protected @NotNull BlockState setSignalForState(BlockState pState, int pStrength) {
         return pState.setValue(POWERED, Boolean.valueOf(pStrength > 0));
     }
 
@@ -58,7 +59,7 @@ public class RustedFloorSwitch extends BasePressurePlateBlock {
         world.playSound(null, pos, SoundInit.FLOOR_SWITCH.get(), SoundSource.BLOCKS, 0.3F, 0.4F);
     }
 
-    public void attack(BlockState blockState, Level level, BlockPos blockPos, Player playerEntity)
+    public void attack(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, Player playerEntity)
     {
         if (playerEntity.isHolding(ItemInit.MEGATON_HAMMER.get()) || playerEntity.isHolding(ItemInit.SKULL_HAMMER.get()))
         {
@@ -90,7 +91,7 @@ public class RustedFloorSwitch extends BasePressurePlateBlock {
     /**
      * Calculates what the signal strength of a pressure plate at the given location should be.
      */
-    protected int getSignalStrength(Level world, BlockPos pos) {
+    protected int getSignalStrength(Level world, @NotNull BlockPos pos) {
         return getSignalForState(world.getBlockState(pos));
     }
 

@@ -10,13 +10,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public class RazorSword extends ItemCustomSword {
     public RazorSword(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
         super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
     }
 
-    public boolean hurtEnemy(ItemStack itemStack, LivingEntity attacked, LivingEntity attacker) {
+    public boolean hurtEnemy(@NotNull ItemStack itemStack, @NotNull LivingEntity attacked, @NotNull LivingEntity attacker) {
         if(this.getTier() == ItemToolTiers.KOKIRI_SWORD) {
             return false;
         }
@@ -35,7 +36,7 @@ public class RazorSword extends ItemCustomSword {
     }
 
     @Override
-    public boolean mineBlock(ItemStack itemStack, Level level, BlockState blockstate, BlockPos pos, LivingEntity entity) {
+    public boolean mineBlock(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull BlockState blockstate, @NotNull BlockPos pos, @NotNull LivingEntity entity) {
         if(this.getTier() == ItemToolTiers.KOKIRI_SWORD) {
             return false;
         }

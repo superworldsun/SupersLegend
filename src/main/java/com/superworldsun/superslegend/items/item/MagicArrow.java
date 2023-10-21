@@ -17,6 +17,7 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public abstract class MagicArrow extends ArrowItem {
@@ -27,11 +28,11 @@ public abstract class MagicArrow extends ArrowItem {
     }
 
     @Override
-    public boolean isInfinite(ItemStack stack, ItemStack bow, Player player) {
+    public boolean isInfinite(@NotNull ItemStack stack, @NotNull ItemStack bow, @NotNull Player player) {
         return true;
     }
 
-    public AbstractArrow createArrow(Level level, ItemStack stack, LivingEntity shooter) {
+    public @NotNull AbstractArrow createArrow(@NotNull Level level, @NotNull ItemStack stack, @NotNull LivingEntity shooter) {
         boolean isPlayer = shooter instanceof Player;
 
         if (!isPlayer) {

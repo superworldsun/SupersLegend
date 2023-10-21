@@ -1,10 +1,7 @@
 package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
-import com.superworldsun.superslegend.registries.EffectInit;
 import com.superworldsun.superslegend.registries.ItemInit;
-import net.minecraft.client.player.Input;
-import net.minecraft.client.player.KeyboardInput;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -12,7 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.event.InputEvent;
 
 public class PegasusBootsArmor extends NonEnchantArmor {
     public PegasusBootsArmor(ArmorMaterial material, Type type, Properties properties) {

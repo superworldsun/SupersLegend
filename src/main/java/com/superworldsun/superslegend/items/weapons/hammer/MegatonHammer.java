@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class MegatonHammer extends HammerItem
 {
@@ -23,7 +24,7 @@ public class MegatonHammer extends HammerItem
         return 18;
     }
 
-    public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected)
+    public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int itemSlot, boolean isSelected)
     {
         if(entity instanceof Player)
         {

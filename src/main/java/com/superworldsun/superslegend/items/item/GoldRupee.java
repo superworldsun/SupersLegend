@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -19,7 +20,7 @@ public class GoldRupee extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> components, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
         if(!Screen.hasShiftDown()) {
             components.add(Component.literal("300 Rupee").withStyle(ChatFormatting.GOLD));
             components.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));

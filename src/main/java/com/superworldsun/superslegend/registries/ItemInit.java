@@ -350,8 +350,7 @@ public class ItemInit {
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DINS_FIRE = ITEMS.register("dins_fire",
             () -> new DinsFire(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> FARORES_WIND = ITEMS.register("farores_wind",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> FARORES_WIND = ITEMS.register("farores_wind", FaroresWindItem::new);
     public static final RegistryObject<Item> NAYRUS_LOVE = ITEMS.register("nayrus_love",
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DEKU_LEAF = ITEMS.register("deku_leaf",
@@ -476,55 +475,55 @@ public class ItemInit {
     public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap",
-            () -> new KokiriArmor(ArmorInit.ArmorTiers.KOKIRI, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new KokiriArmor(ArmorInit.KOKIRI, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> KOKIRI_TUNIC = ITEMS.register("kokiri_tunic",
-            () -> new KokiriArmor(ArmorInit.ArmorTiers.KOKIRI, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new KokiriArmor(ArmorInit.KOKIRI, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> KOKIRI_LEGGINGS = ITEMS.register("kokiri_leggings",
-            () -> new KokiriArmor(ArmorInit.ArmorTiers.KOKIRI, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new KokiriArmor(ArmorInit.KOKIRI, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> KOKIRI_BOOTS = ITEMS.register("kokiri_boots",
-            () -> new KokiriArmor(ArmorInit.ArmorTiers.KOKIRI, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new KokiriArmor(ArmorInit.KOKIRI, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> ZORA_CAP = ITEMS.register("zora_cap",
-            () -> new ZoraArmor(ArmorInit.ArmorTiers.ZORA, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new ZoraArmor(ArmorInit.ZORA, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> ZORA_TUNIC = ITEMS.register("zora_tunic",
-            () -> new ZoraArmor(ArmorInit.ArmorTiers.ZORA, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new ZoraArmor(ArmorInit.ZORA, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> ZORA_LEGGINGS = ITEMS.register("zora_leggings",
-            () -> new ZoraArmor(ArmorInit.ArmorTiers.ZORA, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new ZoraArmor(ArmorInit.ZORA, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
     public static final RegistryObject<Item> IRON_BOOTS = ITEMS.register("iron_boots",
-            () -> new IronBootsArmor(ArmorInit.ArmorTiers.IRON_BOOTS, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new IronBootsArmor(ArmorInit.IRON_BOOTS, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> ZORA_FLIPPERS = ITEMS.register("zoras_flippers",
-            () -> new ZoraFlippersArmor(ArmorInit.ArmorTiers.FLIPPERS, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new ZoraFlippersArmor(ArmorInit.FLIPPERS, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> GORON_CAP = ITEMS.register("goron_cap",
-            () -> new GoronArmor(ArmorInit.ArmorTiers.GORON, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new GoronArmor(ArmorInit.GORON, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> GORON_TUNIC = ITEMS.register("goron_tunic",
-            () -> new GoronArmor(ArmorInit.ArmorTiers.GORON, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new GoronArmor(ArmorInit.GORON, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> GORON_LEGGINGS = ITEMS.register("goron_leggings",
-            () -> new GoronArmor(ArmorInit.ArmorTiers.GORON, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new GoronArmor(ArmorInit.GORON, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
     public static final RegistryObject<Item> HOVER_BOOTS = ITEMS.register("hover_boots",
-            () -> new HoverBootsArmor(ArmorInit.ArmorTiers.HOVER_BOOTS, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new HoverBootsArmor(ArmorInit.HOVER_BOOTS, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> PURPLE_CAP = ITEMS.register("purple_cap",
-            () -> new PurpleArmor(ArmorInit.ArmorTiers.PURPLE, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new PurpleArmor(ArmorInit.PURPLE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> PURPLE_TUNIC = ITEMS.register("purple_tunic",
-            () -> new PurpleArmor(ArmorInit.ArmorTiers.PURPLE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new PurpleArmor(ArmorInit.PURPLE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> PURPLE_LEGGINGS = ITEMS.register("purple_leggings",
-            () -> new PurpleArmor(ArmorInit.ArmorTiers.PURPLE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new PurpleArmor(ArmorInit.PURPLE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
     public static final RegistryObject<Item> PEGASUS_BOOTS = ITEMS.register("pegasus_boots",
-            () -> new PegasusBootsArmor(ArmorInit.ArmorTiers.PEGASUS_BOOTS, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new PegasusBootsArmor(ArmorInit.PEGASUS_BOOTS, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> HEROS_NEW_CAP = ITEMS.register("heros_new_cap",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.HEROS_NEW, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new ArmorItem(ArmorInit.HEROS_NEW, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> HEROS_NEW_TUNIC = ITEMS.register("heros_new_tunic",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.HEROS_NEW, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new ArmorItem(ArmorInit.HEROS_NEW, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> HEROS_NEW_LEGGINGS = ITEMS.register("heros_new_leggings",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.HEROS_NEW, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new ArmorItem(ArmorInit.HEROS_NEW, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> HEROS_NEW_BOOTS = ITEMS.register("heros_new_boots",
-            () -> new ArmorItem(ArmorInit.ArmorTiers.HEROS_NEW, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new ArmorItem(ArmorInit.HEROS_NEW, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     /*public static final RegistryObject<Item> ENGINEERS_HAT = ITEMS.register("engineers_hat",
             () -> new ArmorHerosNew(EquipmentSlotType.HEAD, new Item.Properties().tab(SupersLegendMain.APPAREL)));
@@ -536,85 +535,85 @@ public class ItemInit {
             () -> new ArmorHerosNew(EquipmentSlotType.FEET, new Item.Properties().tab(SupersLegendMain.APPAREL)));*/
 
     public static final RegistryObject<Item> MAGIC_ARMOR_CAP = ITEMS.register("magic_armor_cap",
-            () -> new MagicArmor(ArmorInit.ArmorTiers.MAGIC, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new MagicArmor(ArmorInit.MAGIC, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> MAGIC_ARMOR_TUNIC = ITEMS.register("magic_armor_tunic",
-            () -> new MagicArmor(ArmorInit.ArmorTiers.MAGIC, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new MagicArmor(ArmorInit.MAGIC, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> MAGIC_ARMOR_LEGGINGS = ITEMS.register("magic_armor_leggings",
-            () -> new MagicArmor(ArmorInit.ArmorTiers.MAGIC, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new MagicArmor(ArmorInit.MAGIC, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> MAGIC_ARMOR_BOOTS = ITEMS.register("magic_armor_boots",
-            () -> new MagicArmor(ArmorInit.ArmorTiers.MAGIC, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new MagicArmor(ArmorInit.MAGIC, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> DARK_CAP = ITEMS.register("dark_cap",
-            () -> new DarkArmor(ArmorInit.ArmorTiers.DARK, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new DarkArmor(ArmorInit.DARK, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> DARK_TUNIC = ITEMS.register("dark_tunic",
-            () -> new DarkArmor(ArmorInit.ArmorTiers.DARK, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new DarkArmor(ArmorInit.DARK, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> DARK_LEGGINGS = ITEMS.register("dark_leggings",
-            () -> new DarkArmor(ArmorInit.ArmorTiers.DARK, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new DarkArmor(ArmorInit.DARK, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> DARK_BOOTS = ITEMS.register("dark_boots",
-            () -> new DarkArmor(ArmorInit.ArmorTiers.DARK, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new DarkArmor(ArmorInit.DARK, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> ZORA_ARMOR_CAP = ITEMS.register("zora_armor_cap",
-            () -> new ZoraArmorArmor(ArmorInit.ArmorTiers.ZORAARMOR, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new ZoraArmorArmor(ArmorInit.ZORAARMOR, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> ZORA_ARMOR_TUNIC = ITEMS.register("zora_armor_tunic",
-            () -> new ZoraArmorArmor(ArmorInit.ArmorTiers.ZORAARMOR, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new ZoraArmorArmor(ArmorInit.ZORAARMOR, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> ZORA_ARMOR_LEGGINGS = ITEMS.register("zora_armor_leggings",
-            () -> new ZoraArmorArmor(ArmorInit.ArmorTiers.ZORAARMOR, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new ZoraArmorArmor(ArmorInit.ZORAARMOR, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> ZORA_ARMOR_BOOTS = ITEMS.register("zora_armor_flippers",
-            () -> new ZoraArmorArmor(ArmorInit.ArmorTiers.ZORAARMOR, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new ZoraArmorArmor(ArmorInit.ZORAARMOR, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> FLAMEBREAKER_HELMET = ITEMS.register("flamebreaker_helmet",
-            () -> new FlamebreakerArmor(ArmorInit.ArmorTiers.FLAMEBREAKER, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new FlamebreakerArmor(ArmorInit.FLAMEBREAKER, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> FLAMEBREAKER_TUNIC = ITEMS.register("flamebreaker_tunic",
-            () -> new FlamebreakerArmor(ArmorInit.ArmorTiers.FLAMEBREAKER, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new FlamebreakerArmor(ArmorInit.FLAMEBREAKER, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> FLAMEBREAKER_LEGGINGS = ITEMS.register("flamebreaker_leggings",
-            () -> new FlamebreakerArmor(ArmorInit.ArmorTiers.FLAMEBREAKER, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new FlamebreakerArmor(ArmorInit.FLAMEBREAKER, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> FLAMEBREAKER_BOOTS = ITEMS.register("flamebreaker_boots",
-            () -> new FlamebreakerArmor(ArmorInit.ArmorTiers.FLAMEBREAKER, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new FlamebreakerArmor(ArmorInit.FLAMEBREAKER, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> ANCIENT_HELMET = ITEMS.register("ancient_helmet",
-            () -> new AncientArmor(ArmorInit.ArmorTiers.ANCIENT, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new AncientArmor(ArmorInit.ANCIENT, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> ANCIENT_CUIRASS = ITEMS.register("ancient_cuirass",
-            () -> new AncientArmor(ArmorInit.ArmorTiers.ANCIENT, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new AncientArmor(ArmorInit.ANCIENT, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> ANCIENT_GREAVES = ITEMS.register("ancient_greaves",
-            () -> new AncientArmor(ArmorInit.ArmorTiers.ANCIENT, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new AncientArmor(ArmorInit.ANCIENT, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> ANCIENT_BOOTS = ITEMS.register("ancient_boots",
-            () -> new AncientArmor(ArmorInit.ArmorTiers.ANCIENT, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new AncientArmor(ArmorInit.ANCIENT, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> BARBARIAN_HELMET = ITEMS.register("barbarian_helmet",
-            () -> new BarbarianArmor(ArmorInit.ArmorTiers.BARBARIAN, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new BarbarianArmor(ArmorInit.BARBARIAN, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> BARBARIAN_ARMOR = ITEMS.register("barbarian_armor",
-            () -> new BarbarianArmor(ArmorInit.ArmorTiers.BARBARIAN, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new BarbarianArmor(ArmorInit.BARBARIAN, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> BARBARIAN_LEG_WRAPS = ITEMS.register("barbarian_leg_wraps",
-            () -> new BarbarianArmor(ArmorInit.ArmorTiers.BARBARIAN, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new BarbarianArmor(ArmorInit.BARBARIAN, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> BARBARIAN_BOOTS = ITEMS.register("barbarian_boots",
-            () -> new BarbarianArmor(ArmorInit.ArmorTiers.BARBARIAN, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new BarbarianArmor(ArmorInit.BARBARIAN, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> CLIMBERS_BANDANNA = ITEMS.register("climbers_bandanna",
-            () -> new ClimbingGearArmor(ArmorInit.ArmorTiers.CLIMBING, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new ClimbingGearArmor(ArmorInit.CLIMBING, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> CLIMBING_GEAR = ITEMS.register("climbing_gear",
-            () -> new ClimbingGearArmor(ArmorInit.ArmorTiers.CLIMBING, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new ClimbingGearArmor(ArmorInit.CLIMBING, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> CLIMBING_PANTS = ITEMS.register("climbing_pants",
-            () -> new ClimbingGearArmor(ArmorInit.ArmorTiers.CLIMBING, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new ClimbingGearArmor(ArmorInit.CLIMBING, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> CLIMBING_BOOTS = ITEMS.register("climbing_boots",
-            () -> new ClimbingGearArmor(ArmorInit.ArmorTiers.CLIMBING, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new ClimbingGearArmor(ArmorInit.CLIMBING, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> DESERT_VOE_HEADBAND = ITEMS.register("desert_voe_headband",
-            () -> new DesertVoeHelmetItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new DesertVoeHelmetItem(ArmorInit.DESERTVOE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> DESERT_VOE_SPAULDER = ITEMS.register("desert_voe_spaulder",
-            () -> new DesertVoeArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new DesertVoeArmorItem(ArmorInit.DESERTVOE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> DESERT_VOE_TROUSERS = ITEMS.register("desert_voe_trousers",
-            () -> new DesertVoeLeggingsItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new DesertVoeLeggingsItem(ArmorInit.DESERTVOE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> DESERT_VOE_BOOTS = ITEMS.register("desert_voe_boots",
-            () -> new DesertVoeArmorItem(ArmorInit.ArmorTiers.DESERTVOE, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new DesertVoeArmorItem(ArmorInit.DESERTVOE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final RegistryObject<Item> SNOWQUILL_HEADDRESS = ITEMS.register("snowquill_headdress",
-            () -> new SnowquillArmor(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new SnowquillArmor(ArmorInit.SNOWQUILL, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> SNOWQUILL_TUNIC = ITEMS.register("snowquill_tunic",
-            () -> new SnowquillArmor(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> new SnowquillArmor(ArmorInit.SNOWQUILL, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> SNOWQUILL_TROUSERS = ITEMS.register("snowquill_trousers",
-            () -> new SnowquillArmor(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> new SnowquillArmor(ArmorInit.SNOWQUILL, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> SNOWQUILL_BOOTS = ITEMS.register("snowquill_boots",
-            () -> new SnowquillArmor(ArmorInit.ArmorTiers.SNOWQUILL, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> new SnowquillArmor(ArmorInit.SNOWQUILL, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     //Back
     public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver",

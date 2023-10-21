@@ -14,6 +14,7 @@ import net.minecraft.world.inventory.PlayerEnderChestContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class HerosSecretStash extends Item {
     public HerosSecretStash(Properties pProperties) {
@@ -22,7 +23,7 @@ public class HerosSecretStash extends Item {
     private static final Component CONTAINER_TITLE = Component.translatable("container.enderchest");
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand)
     {
 
         PlayerEnderChestContainer enderChest = player.getEnderChestInventory();

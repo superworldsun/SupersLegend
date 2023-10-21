@@ -16,6 +16,7 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -30,12 +31,12 @@ public class DinsFire extends Item {
      */
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, net.minecraft.world.level.Level level, LivingEntity livingEntity) {
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, net.minecraft.world.level.@NotNull Level level, @NotNull LivingEntity livingEntity) {
         return super.finishUsingItem(stack, level, livingEntity);
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
         return UseAnim.BOW;
     }
 
@@ -52,7 +53,7 @@ public class DinsFire extends Item {
     
     
     @Override
-    public void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int remainingUseTicks)
+    public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity livingEntity, int remainingUseTicks)
     {
         float manacost = 6F;
         Player player = (Player) livingEntity;
@@ -119,7 +120,7 @@ public class DinsFire extends Item {
     }
 
     @Override
-    public int getUseDuration(ItemStack itemStack) {
+    public int getUseDuration(@NotNull ItemStack itemStack) {
         return 72000;
     }
 
@@ -154,7 +155,7 @@ public class DinsFire extends Item {
      * If the player is using the item in their hand, start using it.
      */
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         player.startUsingItem(hand);
         return InteractionResultHolder.consume(itemstack);

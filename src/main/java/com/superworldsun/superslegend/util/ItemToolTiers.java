@@ -41,8 +41,8 @@ public enum ItemToolTiers implements Tier {
     private final int enchantability;
 
     //This sets and/or gets the values we specific for the material
-    private ItemToolTiers(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability,
-                          Supplier<Ingredient> repairMaterial) {
+	ItemToolTiers(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability,
+				  Supplier<Ingredient> repairMaterial) {
         this.harvestLevel = harvestLevel;
         this.maxUses = maxUses;
         this.efficiency = efficiency;

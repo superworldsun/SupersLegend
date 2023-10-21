@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
 import com.superworldsun.superslegend.registries.EntityTypeInit;
-import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -18,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class MagicFireArrowEntity extends AbstractArrow
 {
@@ -39,19 +39,19 @@ public class MagicFireArrowEntity extends AbstractArrow
     }
 
     @Override
-    protected ItemStack getPickupItem()
+    protected @NotNull ItemStack getPickupItem()
     {
         return null;
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket()
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket()
     {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected void doPostHurtEffects(LivingEntity entity)
+    protected void doPostHurtEffects(@NotNull LivingEntity entity)
     {
         super.doPostHurtEffects(entity);
         entity.setSecondsOnFire(6);

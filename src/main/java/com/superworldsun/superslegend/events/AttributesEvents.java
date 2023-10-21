@@ -1,8 +1,6 @@
 package com.superworldsun.superslegend.events;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.registries.AttributeInit;
-import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

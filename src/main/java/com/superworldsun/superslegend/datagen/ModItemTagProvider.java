@@ -18,6 +18,7 @@ import net.minecraft.world.item.RecordItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 public class ModItemTagProvider extends ItemTagsProvider {
 	public ModItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
@@ -26,7 +27,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
 	}
 
 	@Override
-	protected void addTags(HolderLookup.Provider provider) {
+	protected void addTags(HolderLookup.@NotNull Provider provider) {
 		fillItemTag(ItemTags.MUSIC_DISCS, RecordItem.class);
 	}
 

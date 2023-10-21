@@ -4,68 +4,62 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.api.IncomingDamageModifier;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ItemInit;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.fml.common.Mod;
-import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 
-import java.util.function.Consumer;
-
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class GoronArmor extends NonEnchantArmor implements IncomingDamageModifier, GeoItem {
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-    public GoronArmor(ArmorMaterial material, Type type, Properties properties) {
-        super(material, type, properties);
-    }
+	private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
-    private PlayState predicate(AnimationState animationState){
-        animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
-    }
+	public GoronArmor(ArmorMaterial material, Type type, Properties properties) {
+		super(material, type, properties);
+	}
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController(this, "controller", 0, this::predicate));
-    }
+	private PlayState predicate(AnimationState animationState) {
+		animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+		return PlayState.CONTINUE;
+	}
 
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
-    }
+	@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+		controllerRegistrar.add(new AnimationController(this, "controller", 0, this::predicate));
+	}
 
-    @Override
-    public void onArmorTick(ItemStack stack, Level level, Player player) {
-        super.onArmorTick(stack, level, player);
-        if (!level.isClientSide){
-            boolean isChestplateOn = player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.GORON_TUNIC.get();
+	@Override
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
+		return cache;
+	}
 
-            if (isChestplateOn)
-            {
-                player.clearFire();
-            }
-        }
-    }
-    //TODO, I want In Fire damage and lava to be exactly /3, and to be immune to Hot Floor damage
-    @Override
-    public boolean canModifyDamage(DamageSource damage) {
-        return damage.is(DamageTypes.IN_FIRE) || damage.is(DamageTypes.LAVA) || damage.is(DamageTypes.HOT_FLOOR);
-    }
+	@Override
+	public void onArmorTick(ItemStack stack, Level level, Player player) {
+		super.onArmorTick(stack, level, player);
+		if (!level.isClientSide) {
+			boolean isChestplateOn = player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.GORON_TUNIC.get();
 
-    @Override
-    public float getDamageModifier() {
-        return -0.5f;
-    }
+			if (isChestplateOn) {
+				player.clearFire();
+			}
+		}
+	}
+
+	@Override
+	public float modifyIncomingDamage(DamageSource source, float amount) {
+		if (source.is(DamageTypes.IN_FIRE) || source.is(DamageTypes.LAVA)) {
+			return amount / 3f;
+		} else if (source.is(DamageTypes.HOT_FLOOR)) {
+			return 0f;
+		}
+		return amount;
+	}
 }

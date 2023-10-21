@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class LensOfTruth extends Item {
 	private static final int MANA_SPENDING_FREQUENCY = 20;
@@ -21,17 +22,17 @@ public class LensOfTruth extends Item {
 	}
 
 	@Override
-	public int getUseDuration(ItemStack stack) {
+	public int getUseDuration(@NotNull ItemStack stack) {
 		return 72000;
 	}
 
 	@Override
-	public UseAnim getUseAnimation(ItemStack stack) {
+	public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
 		return UseAnim.BLOCK;
 	}
 
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+	public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		if (MagicProvider.hasMagic(player, MANA_COST)) {
 			player.playSound(SoundInit.LENS_OF_TRUTH_ON.get(), 1f, 1f);
@@ -44,12 +45,12 @@ public class LensOfTruth extends Item {
 	}
 
 	@Override
-	public void releaseUsing(ItemStack stack, Level level, LivingEntity player, int timeInUse) {
+	public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, LivingEntity player, int timeInUse) {
 		player.playSound(SoundInit.LENS_OF_TRUTH_OFF.get(), 1f, 1f);
 	}
 
 	@Override
-	public void onUseTick(Level level, LivingEntity user, ItemStack stack, int time) {
+	public void onUseTick(@NotNull Level level, @NotNull LivingEntity user, @NotNull ItemStack stack, int time) {
 		if (!(user instanceof Player player)) return;
 		if (!MagicProvider.hasMagic(player, MANA_COST)) {
 			user.stopUsingItem();

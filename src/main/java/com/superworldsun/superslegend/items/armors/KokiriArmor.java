@@ -13,29 +13,30 @@ import software.bernie.geckolib.core.object.PlayState;
 import java.util.function.Consumer;
 
 public class KokiriArmor extends NonEnchantArmor implements GeoItem {
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-    public KokiriArmor(ArmorMaterial material, Type type, Properties properties) {
-        super(material, type, properties);
-    }
+	private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
-    @Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        GeoArmorRendererExtension<KokiriArmor> extension = new GeoArmorRendererExtension<>("kokiri_armor");
-        consumer.accept(extension);
-    }
+	public KokiriArmor(ArmorMaterial material, Type type, Properties properties) {
+		super(material, type, properties);
+	}
 
-    private PlayState predicate(AnimationState<KokiriArmor> animationState) {
-        animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
-    }
+	@Override
+	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+		GeoArmorRendererExtension<KokiriArmor> extension = new GeoArmorRendererExtension<>("kokiri_armor");
+		consumer.accept(extension);
+	}
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
-    }
+	private PlayState predicate(AnimationState<KokiriArmor> animationState) {
+		animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+		return PlayState.CONTINUE;
+	}
 
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
-    }
+	@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+		controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
+	}
+
+	@Override
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
+		return cache;
+	}
 }

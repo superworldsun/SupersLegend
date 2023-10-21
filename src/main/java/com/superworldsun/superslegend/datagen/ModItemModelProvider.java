@@ -2,7 +2,6 @@ package com.superworldsun.superslegend.datagen;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.BlockInit;
-import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;

@@ -1,16 +1,9 @@
 package com.superworldsun.superslegend.client.render.entites;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.superworldsun.superslegend.entities.projectiles.bombs.AbstractBombEntity;
-import com.superworldsun.superslegend.util.RenderUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-
-import java.time.Duration;
-import java.time.Instant;
 
 public class BombRender<T extends AbstractBombEntity> extends ThrownItemRenderer<T> {
     //Bomb rendering, entity and logic code credited to Spelunkcraft contributor ntfwc

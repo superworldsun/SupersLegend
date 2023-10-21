@@ -21,6 +21,7 @@ import net.minecraft.world.item.crafting.Ingredient.TagValue;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 public class AppraisedRingBox extends Item {
     public AppraisedRingBox(Properties pProperties) {
@@ -28,7 +29,7 @@ public class AppraisedRingBox extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         Collection<ItemStack> drops = new TagValue(TagInit.APPRAISAL_LIST).getItems();
         ItemStack randomItem = drops.stream().skip(player.getRandom().nextInt(drops.size())).findFirst().get();
@@ -48,7 +49,7 @@ public class AppraisedRingBox extends Item {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         if (!Screen.hasShiftDown()) {
             tooltip.add(Component.literal("Contains an Appraised Ring")
                     .withStyle(ChatFormatting.GREEN));

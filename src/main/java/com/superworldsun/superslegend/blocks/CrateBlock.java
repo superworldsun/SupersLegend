@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.Tags;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -103,7 +103,7 @@ public class CrateBlock extends FallingBlock{
     ));
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
+    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit)
     {
         if (player.onGround()) {
             if (hit.getDirection().getAxis().isHorizontal()) {
@@ -157,7 +157,7 @@ public class CrateBlock extends FallingBlock{
                     } else {
                         soundEvent = SoundInit.BLOCK_PUSH_DIRT.get();
                     }
-                    level.playSound((Player) null, pos, soundEvent, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    level.playSound(null, pos, soundEvent, SoundSource.BLOCKS, 1.0F, 1.0F);
                     level.setBlock(pushPos, state, 3);
                     level.removeBlock(pos, false);
                     return InteractionResult.SUCCESS;
@@ -168,13 +168,13 @@ public class CrateBlock extends FallingBlock{
     }
 
     @Override
-    public void onLand(Level level, BlockPos pos, BlockState state, BlockState ReplaceableState, FallingBlockEntity fallingBlock) {
+    public void onLand(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull BlockState ReplaceableState, @NotNull FallingBlockEntity fallingBlock) {
         super.onLand(level, pos, state, ReplaceableState, fallingBlock);
-        level.playSound((Player) null, pos, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+        level.playSound(null, pos, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }

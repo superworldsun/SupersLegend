@@ -2,8 +2,6 @@ package com.superworldsun.superslegend.items.curios.charms;
 
 import com.superworldsun.superslegend.items.customclass.NonEnchantItem;
 import com.superworldsun.superslegend.registries.ItemInit;
-import net.minecraft.client.renderer.EffectInstance;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;

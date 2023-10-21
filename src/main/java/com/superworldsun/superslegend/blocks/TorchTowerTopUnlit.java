@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.entities.projectiles.arrows.FireArrowEntity;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -8,9 +7,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -25,6 +22,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class TorchTowerTopUnlit extends Block
 
@@ -35,12 +33,12 @@ public class TorchTowerTopUnlit extends Block
         super(properties);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState state)
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state)
     {
         return RenderShape.INVISIBLE;
     }
@@ -57,7 +55,7 @@ public class TorchTowerTopUnlit extends Block
     }
 
     @Override
-    public void destroy(LevelAccessor level, BlockPos pos, BlockState pState) {
+    public void destroy(LevelAccessor level, BlockPos pos, @NotNull BlockState pState) {
         level.setBlock(pos.below(), Blocks.AIR.defaultBlockState(), 3);
     }
 
@@ -82,7 +80,7 @@ public class TorchTowerTopUnlit extends Block
     }*/
 
     @Override
-    public InteractionResult use(BlockState blockstate, Level worldIn, BlockPos pos, Player playerentity, InteractionHand hand, BlockHitResult blocktrace) {
+    public @NotNull InteractionResult use(@NotNull BlockState blockstate, @NotNull Level worldIn, @NotNull BlockPos pos, Player playerentity, @NotNull InteractionHand hand, @NotNull BlockHitResult blocktrace) {
         ItemStack itemstack = playerentity.getItemInHand(hand);
         Item item = itemstack.getItem();
         if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE &&  item != ItemInit.BLUE_CANDLE.get() && item != ItemInit.RED_CANDLE.get())
@@ -93,7 +91,7 @@ public class TorchTowerTopUnlit extends Block
         {
             onCaughtFire(blockstate, worldIn, pos, blocktrace.getDirection(), playerentity);
             worldIn.setBlock(pos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState(), 1);
-            worldIn.playSound((Player) null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!playerentity.isCreative()) {
                 if (item == Items.FLINT_AND_STEEL) {
                     itemstack.hurtAndBreak(1, playerentity, (p_220287_1_) -> {
@@ -109,7 +107,7 @@ public class TorchTowerTopUnlit extends Block
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos neighborPos, boolean flag)
+    public void neighborChanged(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull Block block, @NotNull BlockPos neighborPos, boolean flag)
     {
         //TODO, probably not needed but couldnt port
         //DebugPacketSender.sendNeighborsUpdatePacket(world, pos);

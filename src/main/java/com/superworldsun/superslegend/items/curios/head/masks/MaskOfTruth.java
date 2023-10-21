@@ -19,11 +19,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
-import java.util.UUID;
 
 public class MaskOfTruth extends Item implements ICurioItem {
     public MaskOfTruth(Properties pProperties) {
@@ -65,7 +65,7 @@ public class MaskOfTruth extends Item implements ICurioItem {
             return;
         }
 
-        ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_MASKOFTRUTH.get(), (LivingEntity) event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        ItemStack maskStack = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_MASKOFTRUTH.get(), event.getEntity()).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 
         if (maskStack.isEmpty())
         {
@@ -181,7 +181,7 @@ public class MaskOfTruth extends Item implements ICurioItem {
     
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         tooltip.add(Component.literal("A mask that is said to see into").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("the hearts and minds of others").withStyle(ChatFormatting.GRAY));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);

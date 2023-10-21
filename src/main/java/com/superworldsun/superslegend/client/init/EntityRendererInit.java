@@ -2,11 +2,9 @@ package com.superworldsun.superslegend.client.init;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.render.arrows.*;
-import com.superworldsun.superslegend.client.render.entites.BombRender;
 import com.superworldsun.superslegend.client.render.entites.HeartRender;
 import com.superworldsun.superslegend.client.render.entites.LargeMagicJarRender;
 import com.superworldsun.superslegend.client.render.entites.MagicJarRender;
-import com.superworldsun.superslegend.entities.HeartEntity;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;

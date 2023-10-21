@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class CloakedEffect extends MobEffect {
@@ -28,7 +29,7 @@ public class CloakedEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
+    public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
         if (!(livingEntity instanceof Player)) {
             return;
         }
@@ -62,7 +63,7 @@ public class CloakedEffect extends MobEffect {
         boolean isTargetCloked = event.getEntity() != null && event.getEntity().hasEffect(EffectInit.CLOAKED.get());
 
         if (isTargetCloked) {
-            Entity entity = (Entity) event.getEntity();
+            Entity entity = event.getEntity();
             entity.startSeenByPlayer(null);
         }
     }
