@@ -1,5 +1,6 @@
 {
     "parent": "block/cube_all",
+    "render_type": "cutout",
     "texture_size": [64, 64],
     "textures": {
         "0": "superslegend:block/dins_sacred_pedestal",

@@ -1,5 +1,6 @@
 {
 	"parent": "minecraft:block/template_fire_side",
+	"render_type": "cutout",
 	"textures": {
 		"fire": "superslegend:block/dins_flame_0",
 		"particle": "superslegend:block/air"
