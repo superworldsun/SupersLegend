@@ -99,7 +99,6 @@ public class FireArrowEntity extends AbstractArrow
     }
 
     private void extinguishInWater() {
-        // TODO shouldn't this include rain?
         if (this.isInWater())
         {
             playSoundAtBlockPosition(SoundEvents.FIRE_EXTINGUISH);
