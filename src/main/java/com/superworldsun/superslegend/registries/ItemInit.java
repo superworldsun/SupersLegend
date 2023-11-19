@@ -297,7 +297,7 @@ public class ItemInit {
     //TODO, BugNet doesn't work
     public static final RegistryObject<Item> BUG_NET = ITEMS.register("bug_net",
             () -> new BugNet(new Item.Properties().stacksTo(1)));
-    //TODO, magic mirror isnt working
+
     public static final RegistryObject<Item> MAGIC_MIRROR = ITEMS.register("magic_mirror",
             () -> new MagicMirror(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MAGIC_CAPE = ITEMS.register("magic_cape",
@@ -689,7 +689,7 @@ public class ItemInit {
             () -> new RedLuckRing(new Item.Properties()));
     public static final RegistryObject<Item> STEADFAST_RING = ITEMS.register("steadfast_ring",
             () -> new SteadfastRing(new Item.Properties()));
-    //TODO, GreenHolyRing dosent work
+
     public static final RegistryObject<Item> GREEN_HOLY_RING = ITEMS.register("green_holy_ring",
             () -> new GreenHolyRing(new Item.Properties()));
     //public static final RegistryObject<Item> BLUE_HOLY_RING = ITEMS.register("blue_holy_ring", BlueHolyRing::new);
