@@ -18,6 +18,7 @@ import com.superworldsun.superslegend.items.weapons.hammer.MagicHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.MegatonHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.SkullHammer;
 import com.superworldsun.superslegend.items.weapons.other.DekuStick;
+import com.superworldsun.superslegend.items.weapons.other.DekuStickLit;
 import com.superworldsun.superslegend.items.weapons.swords.BiggoronsSword;
 import com.superworldsun.superslegend.items.weapons.swords.BrokenGiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.GiantsKnife;
@@ -343,8 +344,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod",
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick", DekuStick::new);
-    public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit", DekuStickLit::new);
     /*public static final RegistryObject<Item> DEKU_NUTS = ITEMS.register("deku_nuts",
             () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
     public static final RegistryObject<Item> EMPTY_CONTAINER = ITEMS.register("empty_container",
