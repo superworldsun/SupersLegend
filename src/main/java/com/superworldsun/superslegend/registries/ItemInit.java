@@ -342,8 +342,7 @@ public class ItemInit {
             () -> new FireRod(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod",
             () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick",
-            () -> new DekuStick(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick", DekuStick::new);
     public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit",
             () -> new Item(new Item.Properties().stacksTo(1)));
     /*public static final RegistryObject<Item> DEKU_NUTS = ITEMS.register("deku_nuts",
