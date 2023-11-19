@@ -13,7 +13,11 @@ public class FlameBreakerArmorSet extends ArmorSet implements SetIncomingDamageM
 
 	@Override
 	public float modifyIncomingDamage(DamageSource source, float amount, int armorPieces) {
-		if (source.is(DamageTypes.IN_FIRE) || source.is(DamageTypes.ON_FIRE) || source.is(DamageTypes.LAVA)) {
+		if (source.is(DamageTypes.IN_FIRE) || source.is(DamageTypes.ON_FIRE)) {
+			if (armorPieces == 4) return 0f;
+			return amount / (1f + 0.25f * armorPieces);
+		}
+		if (source.is(DamageTypes.LAVA)) {
 			return amount / (1f + 0.25f * armorPieces);
 		}
 		return amount;
