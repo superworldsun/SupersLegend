@@ -43,22 +43,19 @@ public class GoronArmor extends NonEnchantArmor implements IncomingDamageModifie
 
 	@Override
 	public void onArmorTick(ItemStack stack, Level level, Player player) {
-		super.onArmorTick(stack, level, player);
-		if (!level.isClientSide) {
-			boolean isChestplateOn = player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.GORON_TUNIC.get();
-
-			if (isChestplateOn) {
-				player.clearFire();
-			}
+		if (type == Type.CHESTPLATE) {
+			player.clearFire();
 		}
 	}
 
 	@Override
 	public float modifyIncomingDamage(DamageSource source, float amount) {
-		if (source.is(DamageTypes.IN_FIRE) || source.is(DamageTypes.LAVA)) {
-			return amount / 3f;
-		} else if (source.is(DamageTypes.HOT_FLOOR)) {
-			return 0f;
+		if (type == Type.CHESTPLATE) {
+			if (source.is(DamageTypes.IN_FIRE) || source.is(DamageTypes.ON_FIRE) || source.is(DamageTypes.LAVA)) {
+				return amount / 3f;
+			} else if (source.is(DamageTypes.HOT_FLOOR)) {
+				return 0f;
+			}
 		}
 		return amount;
 	}
