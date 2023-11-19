@@ -22,7 +22,6 @@ public class ZoraArmor extends NonEnchantArmor implements GeoItem {
         super(material, type, properties);
     }
 
-
     private PlayState predicate(AnimationState animationState){
         animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
         return PlayState.CONTINUE;
@@ -40,15 +39,10 @@ public class ZoraArmor extends NonEnchantArmor implements GeoItem {
 
     @Override
     public void onArmorTick(ItemStack stack, Level level, Player player) {
-        super.onArmorTick(stack, level, player);
-        if (!level.isClientSide){
-            boolean isChestplateOn = player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.ZORA_TUNIC.get();
-            if(isChestplateOn)
+        if (type == Type.CHESTPLATE) {
+            if(player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()))
             {
-                if(player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()))
-                {
-                    player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 10, 0, false, false, false));
-                }
+                player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 10, 0, false, false, false));
             }
         }
     }
