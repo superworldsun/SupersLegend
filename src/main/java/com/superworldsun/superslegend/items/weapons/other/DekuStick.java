@@ -7,6 +7,7 @@ import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,12 +22,16 @@ import org.jetbrains.annotations.NotNull;
 
 public class DekuStick extends NonEnchantItem {
 	public DekuStick() {
-		super(new Properties().stacksTo(16).durability(1));
+		super(new Properties().stacksTo(16));
 	}
 
 	@Override
 	public boolean hurtEnemy(ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
-		stack.hurtAndBreak(1, attacker, p -> p.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+		attacker.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+		stack.shrink(1);
+		if (stack.isEmpty()) {
+			attacker.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+		}
 		return true;
 	}
 
