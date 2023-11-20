@@ -28,14 +28,13 @@ public class BottledEntityItem extends Item {
 	@Override
 	public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, @NotNull InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
-		if (level.isClientSide) {
-			return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
+		if (!level.isClientSide) {
+			LivingEntity entity = entityType.create(player.level());
+			Objects.requireNonNull(entity).load(stack.getOrCreateTag().getCompound("EntityData"));
+			entity.moveTo(player.getX(), player.getY(), player.getZ(), player.yRotO, 0f);
+			player.level().addFreshEntity(entity);
 		}
 		player.playSound(SoundInit.BOTTLE_POP.get(), 1f, 1f);
-		LivingEntity entity = entityType.create(player.level());
-		entity.load(stack.getOrCreateTag().getCompound("EntityData"));
-		Objects.requireNonNull(entity).moveTo(player.getX(), player.getY(), player.getZ(), player.yRotO, 0f);
-		player.level().addFreshEntity(entity);
 		player.getCooldowns().addCooldown(this, 6);
 		stack.shrink(1);
 		if (stack.isEmpty()) {
