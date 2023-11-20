@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.items.curios.charms.GoldenScale;
 import com.superworldsun.superslegend.items.curios.charms.SilverScale;
 import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
+import com.superworldsun.superslegend.items.customclass.BottledEntityItem;
 import com.superworldsun.superslegend.items.customclass.ItemCustomBow;
 import com.superworldsun.superslegend.items.customclass.ItemCustomSword;
 import com.superworldsun.superslegend.items.item.*;
@@ -17,12 +18,14 @@ import com.superworldsun.superslegend.items.weapons.hammer.MagicHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.MegatonHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.SkullHammer;
 import com.superworldsun.superslegend.items.weapons.other.DekuStick;
+import com.superworldsun.superslegend.items.weapons.other.DekuStickLit;
 import com.superworldsun.superslegend.items.weapons.swords.BiggoronsSword;
 import com.superworldsun.superslegend.items.weapons.swords.BrokenGiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.GiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.RazorSword;
 import com.superworldsun.superslegend.items.weapons.wand.FireRod;
 import com.superworldsun.superslegend.util.ItemToolTiers;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -214,9 +217,9 @@ public class ItemInit {
     public static final RegistryObject<Item> DEKU_SEEDS = ITEMS.register("deku_seeds",
             () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow", () -> new MagicArrowFire());
-    public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow", () -> new MagicArrowIce());
-    public static final RegistryObject<Item> MAGIC_LIGHT_ARROW = ITEMS.register("magic_light_arrow", () -> new MagicArrowLight());
+    public static final RegistryObject<Item> MAGIC_FIRE_ARROW = ITEMS.register("magic_fire_arrow", MagicArrowFire::new);
+    public static final RegistryObject<Item> MAGIC_ICE_ARROW = ITEMS.register("magic_ice_arrow", MagicArrowIce::new);
+    public static final RegistryObject<Item> MAGIC_LIGHT_ARROW = ITEMS.register("magic_light_arrow", MagicArrowLight::new);
     public static final RegistryObject<Item> FIRE_ARROW = ITEMS.register("fire_arrow",
             () -> new ArrowFire(new Item.Properties()));
     public static final RegistryObject<Item> ICE_ARROW = ITEMS.register("ice_arrow",
@@ -340,10 +343,8 @@ public class ItemInit {
             () -> new FireRod(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod",
             () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick",
-            () -> new DekuStick(new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick", DekuStick::new);
+    public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit", DekuStickLit::new);
     /*public static final RegistryObject<Item> DEKU_NUTS = ITEMS.register("deku_nuts",
             () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
     public static final RegistryObject<Item> EMPTY_CONTAINER = ITEMS.register("empty_container",
@@ -381,11 +382,11 @@ public class ItemInit {
     public static final RegistryObject<Item> BLUE_POTION = ITEMS.register("blue_potion",
             () -> new BluePotion(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BOTTLED_BEE = ITEMS.register("bottled_bee",
-            () -> new BottledBee(new Item.Properties().stacksTo(1)));
+            () -> new BottledEntityItem(EntityType.BEE));
     public static final RegistryObject<Item> BOTTLED_SILVERFISH = ITEMS.register("bottled_silverfish",
-            () -> new BottledSilverfish(new Item.Properties().stacksTo(1)));
+            () -> new BottledEntityItem(EntityType.SILVERFISH));
     public static final RegistryObject<Item> BOTTLED_ENDERMITE = ITEMS.register("bottled_endermite",
-            () -> new BottledEndermite(new Item.Properties().stacksTo(1)));
+            () -> new BottledEntityItem(EntityType.ENDERMITE));
     public static final RegistryObject<Item> MAGNETIC_GLOVE = ITEMS.register("magnetic_glove",
             () -> new MagneticGlove(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> TRIFORCE = ITEMS.register("triforce",
