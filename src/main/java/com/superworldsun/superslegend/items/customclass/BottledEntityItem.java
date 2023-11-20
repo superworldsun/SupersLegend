@@ -33,8 +33,8 @@ public class BottledEntityItem extends Item {
 		}
 		player.playSound(SoundInit.BOTTLE_POP.get(), 1f, 1f);
 		LivingEntity entity = entityType.create(player.level());
-		Objects.requireNonNull(entity).moveTo(player.getX(), player.getY(), player.getZ(), player.yRotO, 0f);
 		entity.load(stack.getOrCreateTag().getCompound("EntityData"));
+		Objects.requireNonNull(entity).moveTo(player.getX(), player.getY(), player.getZ(), player.yRotO, 0f);
 		player.level().addFreshEntity(entity);
 		player.getCooldowns().addCooldown(this, 6);
 		stack.shrink(1);
