@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.items.weapons.other;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -8,6 +10,9 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +33,12 @@ public class DekuStickLit extends Item {
 		if (!(entity instanceof Player player)) return;
 		if (player.tickCount % 20 != 0) return;
 		stack.hurtAndBreak(20, player, p -> p.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+	}
+
+	@Override
+	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+		if (slot != EquipmentSlot.MAINHAND) return ImmutableMultimap.of();
+		return ImmutableMultimap.of(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "DekuStick", 7, AttributeModifier.Operation.ADDITION));
 	}
 
 	@Override
