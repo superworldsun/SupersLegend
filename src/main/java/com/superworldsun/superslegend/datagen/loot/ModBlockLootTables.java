@@ -93,6 +93,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.add(BlockInit.DUNGEON_DOOR.get(),
                 block -> createDoorTable(BlockInit.DUNGEON_DOOR.get()));
+        this.add(BlockInit.LOCKED_DUNGEON_DOOR.get(),
+                block -> createDoorTable(BlockInit.LOCKED_DUNGEON_DOOR.get()));
+        this.add(BlockInit.BOSS_DOOR.get(),
+                block -> createDoorTable(BlockInit.BOSS_DOOR.get()));
+        this.add(BlockInit.LOCKED_BOSS_DOOR.get(),
+                block -> createDoorTable(BlockInit.LOCKED_BOSS_DOOR.get()));
+        this.add(BlockInit.LOCKED_WOODEN_DOOR.get(),
+                block -> createDoorTable(BlockInit.LOCKED_WOODEN_DOOR.get()));
+        this.add(BlockInit.WOODEN_BOSS_DOOR.get(),
+                block -> createDoorTable(BlockInit.WOODEN_BOSS_DOOR.get()));
 
 
         this.add(BlockInit.MASTER_ORE_BLOCK.get(),

@@ -19,6 +19,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(BlockInit.DEEPSLATE_MASTER_ORE_BLOCK);
 
         doorBlockWithRenderType(((DoorBlock) BlockInit.DUNGEON_DOOR.get()), modLoc("block/dungeon_door_bottom"), modLoc("block/dungeon_door_top"),"cutout");
+        doorBlockWithRenderType(((DoorBlock) BlockInit.LOCKED_DUNGEON_DOOR.get()), modLoc("block/locked_dungeon_door_bottom"), modLoc("block/locked_dungeon_door_top"),"cutout");
+        doorBlockWithRenderType(((DoorBlock) BlockInit.BOSS_DOOR.get()), modLoc("block/boss_door_bottom"), modLoc("block/boss_door_top"),"cutout");
+        doorBlockWithRenderType(((DoorBlock) BlockInit.LOCKED_BOSS_DOOR.get()), modLoc("block/locked_boss_door_bottom"), modLoc("block/locked_boss_door_top"),"cutout");
+        doorBlockWithRenderType(((DoorBlock) BlockInit.LOCKED_WOODEN_DOOR.get()), modLoc("block/locked_wooden_door_bottom"), modLoc("block/locked_wooden_door_top"),"cutout");
+        doorBlockWithRenderType(((DoorBlock) BlockInit.WOODEN_BOSS_DOOR.get()), modLoc("block/wooden_boss_door_bottom"), modLoc("block/wooden_boss_door_top"),"cutout");
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
