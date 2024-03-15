@@ -13,18 +13,18 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "superslegend:boss_door",
+              "block": "superslegend:wooden_boss_door",
               "condition": "minecraft:block_state_property",
               "properties": {
                 "half": "lower"
               }
             }
           ],
-          "name": "superslegend:boss_door"
+          "name": "superslegend:wooden_boss_door"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "superslegend:blocks/boss_door"
+  "random_sequence": "superslegend:blocks/wooden_boss_door"
 }

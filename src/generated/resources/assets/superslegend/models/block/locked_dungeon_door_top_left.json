@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "superslegend:block/locked_dungeon_door_bottom",
+    "top": "superslegend:block/locked_dungeon_door_top"
+  }
+}

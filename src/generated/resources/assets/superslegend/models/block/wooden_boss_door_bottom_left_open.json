@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_left_open",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "superslegend:block/wooden_boss_door_bottom",
+    "top": "superslegend:block/wooden_boss_door_top"
+  }
+}
