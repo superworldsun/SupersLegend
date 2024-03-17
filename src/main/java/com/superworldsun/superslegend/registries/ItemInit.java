@@ -19,6 +19,9 @@ import com.superworldsun.superslegend.items.weapons.hammer.MegatonHammer;
 import com.superworldsun.superslegend.items.weapons.hammer.SkullHammer;
 import com.superworldsun.superslegend.items.weapons.other.DekuStick;
 import com.superworldsun.superslegend.items.weapons.other.DekuStickLit;
+import com.superworldsun.superslegend.items.weapons.shield.DekuShield;
+import com.superworldsun.superslegend.items.weapons.shield.HylianShield;
+import com.superworldsun.superslegend.items.weapons.shield.SacredShield;
 import com.superworldsun.superslegend.items.weapons.swords.BiggoronsSword;
 import com.superworldsun.superslegend.items.weapons.swords.BrokenGiantsKnife;
 import com.superworldsun.superslegend.items.weapons.swords.GiantsKnife;
@@ -49,44 +52,44 @@ public class ItemInit {
             () -> new GoldRupee(new Item.Properties()));
 
     public static final RegistryObject<Item> MEDALLION_LIGHT = ITEMS.register("medallion_light",
-            () -> new Item(new Item.Properties()));
+            () -> new ElementMedallion(new Item.Properties()));
     public static final RegistryObject<Item> MEDALLION_FOREST = ITEMS.register("medallion_forest",
-            () -> new Item(new Item.Properties()));
+            () -> new ElementMedallion(new Item.Properties()));
     public static final RegistryObject<Item> MEDALLION_FIRE = ITEMS.register("medallion_fire",
-            () -> new Item(new Item.Properties()));
+            () -> new ElementMedallion(new Item.Properties()));
     public static final RegistryObject<Item> MEDALLION_WATER = ITEMS.register("medallion_water",
-            () -> new Item(new Item.Properties()));
+            () -> new ElementMedallion(new Item.Properties()));
     public static final RegistryObject<Item> MEDALLION_SPIRIT = ITEMS.register("medallion_spirit",
-            () -> new Item(new Item.Properties()));
+            () -> new ElementMedallion(new Item.Properties()));
     public static final RegistryObject<Item> MEDALLION_SHADOW = ITEMS.register("medallion_shadow",
-            () -> new Item(new Item.Properties()));
+            () -> new ElementMedallion(new Item.Properties()));
 
     public static final RegistryObject<Item> SMALL_KEY = ITEMS.register("small_key",
-            () -> new Item(new Item.Properties()));
+            () -> new SmallKey(new Item.Properties()));
     public static final RegistryObject<Item> BOSS_KEY = ITEMS.register("boss_key",
-            () -> new Item(new Item.Properties()));
+            () -> new BossKey(new Item.Properties()));
     public static final RegistryObject<Item> MAGICAL_KEY = ITEMS.register("magical_key",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new MagicalKey(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> ARROW_BUNDLE = ITEMS.register("arrow_bundle",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowBundle(new Item.Properties()));
     public static final RegistryObject<Item> FIRE_ARROW_BUNDLE = ITEMS.register("fire_arrow_bundle",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowBundle(new Item.Properties()));
     public static final RegistryObject<Item> ICE_ARROW_BUNDLE = ITEMS.register("ice_arrow_bundle",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowBundle(new Item.Properties()));
     public static final RegistryObject<Item> SHOCK_ARROW_BUNDLE = ITEMS.register("shock_arrow_bundle",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowBundle(new Item.Properties()));
     public static final RegistryObject<Item> BOMB_ARROW_BUNDLE = ITEMS.register("bomb_arrow_bundle",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowBundle(new Item.Properties()));
     public static final RegistryObject<Item> ANCIENT_ARROW_BUNDLE = ITEMS.register("ancient_arrow_bundle",
-            () -> new Item(new Item.Properties()));
+            () -> new ArrowBundle(new Item.Properties()));
 
     public static final RegistryObject<Item> TRIFORCE_POWER_SHARD = ITEMS.register("triforce_power_shard",
-            () -> new Item(new Item.Properties()));
+            () -> new TriforceShard(new Item.Properties()));
     public static final RegistryObject<Item> TRIFORCE_WISDOM_SHARD = ITEMS.register("triforce_wisdom_shard",
-            () -> new Item(new Item.Properties()));
+            () -> new TriforceShard(new Item.Properties()));
     public static final RegistryObject<Item> TRIFORCE_COURAGE_SHARD = ITEMS.register("triforce_courage_shard",
-            () -> new Item(new Item.Properties()));
+            () -> new TriforceShard(new Item.Properties()));
 
     public static final RegistryObject<Item> ODOLWAS_REMAINS = ITEMS.register("odolwas_remains",
             () -> new Item(new Item.Properties().stacksTo(1)));
@@ -97,17 +100,17 @@ public class ItemInit {
     public static final RegistryObject<Item> TWINMOLDS_REMAINS = ITEMS.register("twinmolds_remains",
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> ANCIENT_CORE = ITEMS.register("ancient_core",
-            () -> new Item(new Item.Properties()));
+            () -> new AncientMaterial(new Item.Properties()));
     public static final RegistryObject<Item> ANCIENT_GEAR = ITEMS.register("ancient_gear",
-            () -> new Item(new Item.Properties()));
+            () -> new AncientMaterial(new Item.Properties()));
     public static final RegistryObject<Item> ANCIENT_CORE_GIANT = ITEMS.register("ancient_core_giant",
-            () -> new Item(new Item.Properties()));
+            () -> new AncientMaterial(new Item.Properties()));
     public static final RegistryObject<Item> ANCIENT_SCREW = ITEMS.register("ancient_screw",
-            () -> new Item(new Item.Properties()));
+            () -> new AncientMaterial(new Item.Properties()));
     public static final RegistryObject<Item> ANCIENT_SHAFT = ITEMS.register("ancient_shaft",
-            () -> new Item(new Item.Properties()));
+            () -> new AncientMaterial(new Item.Properties()));
     public static final RegistryObject<Item> ANCIENT_SPRING = ITEMS.register("ancient_spring",
-            () -> new Item(new Item.Properties()));
+            () -> new AncientMaterial(new Item.Properties()));
 
     public static final RegistryObject<Item> MASTER_ORE = ITEMS.register("master_ore",
             () -> new Item(new Item.Properties()));
@@ -202,17 +205,17 @@ public class ItemInit {
     public static final RegistryObject<Item> BIT_BOW = ITEMS.register("bit_bow",
             () -> new BitBow(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<BowItem> LYNEL_BOW_X3 = ITEMS.register("lynel_bow_x3",
-            () -> new LynelBowX3(new Item.Properties().stacksTo(1)));
+            () -> new LynelBowX3(new Item.Properties().stacksTo(1).durability(45)));
     public static final RegistryObject<BowItem> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
-            () -> new LynelBowX5(new Item.Properties().stacksTo(1)));
+            () -> new LynelBowX5(new Item.Properties().stacksTo(1).durability(45)));
     public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot",
             () -> new SlingShot(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<ShieldItem> DEKU_SHIELD = ITEMS.register("deku_shield",
-            () -> new ShieldItem(new Item.Properties().stacksTo(1).durability(500)));
+            () -> new DekuShield(new Item.Properties().stacksTo(1).durability(500)));
     public static final RegistryObject<ShieldItem> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
-            () -> new ShieldItem(new Item.Properties().stacksTo(1).durability(3000)));
+            () -> new HylianShield(new Item.Properties().stacksTo(1).durability(3000)));
     public static final RegistryObject<ShieldItem> SACRED_SHIELD = ITEMS.register("sacred_shield",
-            () -> new ShieldItem(new Item.Properties().stacksTo(1)));
+            () -> new SacredShield(new Item.Properties().stacksTo(1).durability(50)));
 
     public static final RegistryObject<Item> DEKU_SEEDS = ITEMS.register("deku_seeds",
             () -> new Item(new Item.Properties()));
