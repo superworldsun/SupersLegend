@@ -51,8 +51,8 @@ public class AppraisedRingBox extends Item {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         if (!Screen.hasShiftDown()) {
-            tooltip.add(Component.literal("Contains an Appraised Ring")
-                    .withStyle(ChatFormatting.GREEN));
+            tooltip.add(Component.literal("Contains an Appraised Ring").withStyle(ChatFormatting.GREEN));
+            tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
         } else {
             tooltip.add(Component.literal("Right-click to receive a random appraised ring")
                     .withStyle(ChatFormatting.GREEN).withStyle(ChatFormatting.ITALIC));

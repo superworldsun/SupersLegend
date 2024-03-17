@@ -4,6 +4,7 @@ import com.superworldsun.superslegend.items.customclass.ItemCustomBow;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -19,6 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BitBow extends ItemCustomBow
@@ -71,10 +73,18 @@ public class BitBow extends ItemCustomBow
         return new InteractionResultHolder<ItemStack>(InteractionResult.PASS, player.getItemInHand(hand));
     }
 
+
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        tooltip.add(Component.literal("Uses Green Rupee as ammo").withStyle(ChatFormatting.GRAY));
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        if(!Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("a relic with pixel perfect accuracy").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        else if(Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("Uses Green Rupee as ammo").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("Bow fires instantly at a set strength and has a short cool down between shots").withStyle(ChatFormatting.GRAY));
+        }
+        super.appendHoverText(stack, level, tooltip, flag);
     }
 }

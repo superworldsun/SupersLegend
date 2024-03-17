@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.item;
 
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -17,8 +18,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BugNet extends Item {
@@ -70,9 +74,16 @@ public class BugNet extends Item {
 		return false;
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-		tooltip.add(Component.literal("Bottles small critters on right click").withStyle(ChatFormatting.WHITE));
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+	public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+		if(!Screen.hasShiftDown()) {
+			tooltip.add(Component.literal("Used to bottle small critters").withStyle(ChatFormatting.WHITE));
+			tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
+		}
+		else if(Screen.hasShiftDown()) {
+			tooltip.add(Component.literal("Right-Click small bugs with a empty bottle in your inventory to capture them").withStyle(ChatFormatting.WHITE));
+		}
+		super.appendHoverText(stack, level, tooltip, flag);
 	}
 }

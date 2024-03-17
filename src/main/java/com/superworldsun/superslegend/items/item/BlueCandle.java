@@ -1,11 +1,16 @@
 package com.superworldsun.superslegend.items.item;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
@@ -15,7 +20,12 @@ import net.minecraft.world.level.block.CandleCakeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlueCandle extends Item {
     public BlueCandle(Item.Properties pProperties) {
@@ -52,5 +62,19 @@ public class BlueCandle extends Item {
 
             return InteractionResult.sidedSuccess(level.isClientSide());
         }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        if(!Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("The original tool for explorers").withStyle(ChatFormatting.BLUE));
+            tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        else if(Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("Right-Click to start a fire to where you're looking").withStyle(ChatFormatting.WHITE));
+            tooltip.add(Component.literal("Has a large cool down when used").withStyle(ChatFormatting.RED));
+        }
+        super.appendHoverText(stack, level, tooltip, flag);
     }
 }
