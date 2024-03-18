@@ -7,6 +7,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
@@ -93,17 +94,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.add(BlockInit.DUNGEON_DOOR.get(),
                 block -> createDoorTable(BlockInit.DUNGEON_DOOR.get()));
-        this.add(BlockInit.LOCKED_DUNGEON_DOOR.get(),
-                block -> createDoorTable(BlockInit.LOCKED_DUNGEON_DOOR.get()));
+        this.dropOther(BlockInit.LOCKED_DUNGEON_DOOR.get(), Blocks.AIR);
         this.add(BlockInit.BOSS_DOOR.get(),
                 block -> createDoorTable(BlockInit.BOSS_DOOR.get()));
-        this.add(BlockInit.LOCKED_BOSS_DOOR.get(),
-                block -> createDoorTable(BlockInit.LOCKED_BOSS_DOOR.get()));
-        this.add(BlockInit.LOCKED_WOODEN_DOOR.get(),
-                block -> createDoorTable(BlockInit.LOCKED_WOODEN_DOOR.get()));
-        this.add(BlockInit.WOODEN_BOSS_DOOR.get(),
-                block -> createDoorTable(BlockInit.WOODEN_BOSS_DOOR.get()));
-
+        this.dropOther(BlockInit.LOCKED_BOSS_DOOR.get(), Blocks.AIR);
+        this.dropOther(BlockInit.LOCKED_WOODEN_DOOR.get(), Blocks.AIR);
+        this.dropOther(BlockInit.WOODEN_BOSS_DOOR.get(), Blocks.AIR);
 
         this.add(BlockInit.MASTER_ORE_BLOCK.get(),
                block -> createCopperLikeOreDrops(BlockInit.MASTER_ORE_BLOCK.get(), ItemInit.MASTER_ORE_CHUNK.get()));
