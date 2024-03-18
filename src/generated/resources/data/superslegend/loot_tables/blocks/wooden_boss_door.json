@@ -11,7 +11,16 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "conditions": [
+            {
+              "block": "superslegend:wooden_boss_door",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "name": "superslegend:wooden_boss_door"
         }
       ],
       "rolls": 1.0

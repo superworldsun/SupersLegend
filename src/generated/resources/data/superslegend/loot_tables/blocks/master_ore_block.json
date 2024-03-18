@@ -30,6 +30,9 @@
               "type": "minecraft:item",
               "functions": [
                 {
+                  "function": "minecraft:explosion_decay"
+                },
+                {
                   "add": false,
                   "count": {
                     "type": "minecraft:uniform",
@@ -40,11 +43,12 @@
                 },
                 {
                   "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops",
-                  "function": "minecraft:apply_bonus"
-                },
-                {
-                  "function": "minecraft:explosion_decay"
+                  "formula": "minecraft:binomial_with_bonus_count",
+                  "function": "minecraft:apply_bonus",
+                  "parameters": {
+                    "extra": 1,
+                    "probability": 1.0
+                  }
                 }
               ],
               "name": "superslegend:master_ore_chunk"
