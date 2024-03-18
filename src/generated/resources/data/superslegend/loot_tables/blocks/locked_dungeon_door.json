@@ -11,16 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "superslegend:locked_dungeon_door",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "half": "lower"
-              }
-            }
-          ],
-          "name": "superslegend:locked_dungeon_door"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0

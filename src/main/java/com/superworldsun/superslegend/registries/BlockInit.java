@@ -44,15 +44,15 @@ public class BlockInit {
     public static final RegistryObject<Block> DUNGEON_DOOR = registerBlock("dungeon_door",
             () -> new DoorBlock(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE).sound(SoundType.METAL), BlockSetType.IRON));
     public static final RegistryObject<Block> LOCKED_DUNGEON_DOOR = registerBlock("locked_dungeon_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE).sound(SoundType.METAL), BlockSetType.IRON));
+            () -> new LockedDungeonDoor(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE).sound(SoundType.METAL), BlockSetType.IRON));
     public static final RegistryObject<Block> BOSS_DOOR = registerBlock("boss_door",
             () -> new DoorBlock(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE).sound(SoundType.METAL), BlockSetType.IRON));
     public static final RegistryObject<Block> LOCKED_BOSS_DOOR = registerBlock("locked_boss_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE).sound(SoundType.METAL), BlockSetType.IRON));
+            () -> new LockedBossDoor(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE).sound(SoundType.METAL), BlockSetType.IRON));
     public static final RegistryObject<Block> LOCKED_WOODEN_DOOR = registerBlock("locked_wooden_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE).sound(SoundType.METAL), BlockSetType.IRON));
+            () -> new LockedWoodenDoor(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE).sound(SoundType.METAL), BlockSetType.IRON));
     public static final RegistryObject<Block> WOODEN_BOSS_DOOR = registerBlock("wooden_boss_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE).sound(SoundType.METAL), BlockSetType.IRON));
+            () -> new LockedWoodenBossDoor(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(5).explosionResistance(99).noOcclusion().pushReaction(PushReaction.IGNORE).sound(SoundType.METAL), BlockSetType.IRON));
 
     public static final RegistryObject<Block> BUSH_BLOCK = registerBlock("bush_block",
             () -> new BushBlock(BlockBehaviour.Properties.of().noLootTable().destroyTime(0.1f).explosionResistance(0.1f).sound(SoundType.CROP)));
