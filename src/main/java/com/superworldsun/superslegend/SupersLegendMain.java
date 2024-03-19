@@ -39,6 +39,7 @@ public class SupersLegendMain
         SoundInit.register(modEventBus);
         EntityTypeInit.register(modEventBus);
         BiomeModifiers.register(modEventBus);
+        MenuTypeInit.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);

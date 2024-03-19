@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.armors.*;
+import com.superworldsun.superslegend.items.containers.LetterItem;
 import com.superworldsun.superslegend.items.curios.charms.GoldenScale;
 import com.superworldsun.superslegend.items.curios.charms.SilverScale;
 import com.superworldsun.superslegend.items.curios.head.masks.*;
@@ -252,9 +253,9 @@ public class ItemInit {
             () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> LETTER = ITEMS.register("letter",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new LetterItem(new Item.Properties()));
     public static final RegistryObject<Item> RED_LETTER = ITEMS.register("red_letter",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new LetterItem(new Item.Properties()));
 
 	/*public static final RegistryObject<Item> WALLET = ITEMS.register("wallet", SimpleResourceItem::new);
 	public static final RegistryObject<Item> MEDIUM_WALLET = ITEMS.register("medium_wallet", SimpleResourceItem::new);
