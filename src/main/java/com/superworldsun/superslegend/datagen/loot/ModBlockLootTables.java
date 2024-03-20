@@ -7,9 +7,9 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
@@ -91,29 +91,42 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropOther(BlockInit.WARP_PAD_WATER.get(), BlockInit.WARP_PAD.get());
         this.dropOther(BlockInit.WARP_PAD_SPIRIT.get(), BlockInit.WARP_PAD.get());
         this.dropOther(BlockInit.WARP_PAD_SHADOW.get(), BlockInit.WARP_PAD.get());
-
-        this.add(BlockInit.DUNGEON_DOOR.get(),
-                block -> createDoorTable(BlockInit.DUNGEON_DOOR.get()));
-        this.dropOther(BlockInit.LOCKED_DUNGEON_DOOR.get(), Blocks.AIR);
-        this.add(BlockInit.BOSS_DOOR.get(),
-                block -> createDoorTable(BlockInit.BOSS_DOOR.get()));
-        this.dropOther(BlockInit.LOCKED_BOSS_DOOR.get(), Blocks.AIR);
-        this.dropOther(BlockInit.LOCKED_WOODEN_DOOR.get(), Blocks.AIR);
-        this.dropOther(BlockInit.WOODEN_BOSS_DOOR.get(), Blocks.AIR);
-
-        this.add(BlockInit.MASTER_ORE_BLOCK.get(),
-               block -> createCopperLikeOreDrops(BlockInit.MASTER_ORE_BLOCK.get(), ItemInit.MASTER_ORE_CHUNK.get()));
-        this.add(BlockInit.DEEPSLATE_MASTER_ORE_BLOCK.get(),
-                block -> createCopperLikeOreDrops(BlockInit.DEEPSLATE_MASTER_ORE_BLOCK.get(), ItemInit.MASTER_ORE_CHUNK.get()));
+        this.dropDoor(BlockInit.DUNGEON_DOOR.get());
+        this.dropDoor(BlockInit.BOSS_DOOR.get());
+        this.dropDoor(BlockInit.WOODEN_BOSS_DOOR.get());
+        this.dropNothing(BlockInit.LOCKED_DUNGEON_DOOR.get());
+        this.dropNothing(BlockInit.LOCKED_BOSS_DOOR.get());
+        this.dropNothing(BlockInit.LOCKED_WOODEN_DOOR.get());
+        this.dropOre(BlockInit.MASTER_ORE_BLOCK.get(), ItemInit.MASTER_ORE_CHUNK.get());
+        this.dropOre(BlockInit.DEEPSLATE_MASTER_ORE_BLOCK.get(), ItemInit.MASTER_ORE_CHUNK.get());
     }
 
-    //TODO, look into and see if you can reduce the amount of items you get with fortune. I would like the max to be 1 without fortune, and 2 with
-    protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
-        return createSilkTouchDispatchTable(pBlock,
-                this.applyExplosionDecay(pBlock,
-                        LootItem.lootTableItem(item)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 1)))
-                                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+    private void dropNothing(@NotNull Block block) {
+        this.add(block, LootTable.lootTable());
+    }
+
+    private void dropOre(@NotNull Block oreBlock, @NotNull Item oreItem) {
+        this.add(oreBlock, b -> createOreTable(b, oreItem, 1, 1));
+    }
+
+    private void dropDoor(@NotNull Block doorBlock) {
+        this.add(doorBlock, block -> createDoorTable(doorBlock));
+    }
+
+    protected LootTable.Builder createOreTable(Block block, Item item, int count, int fortuneBonusCount) {
+        LootPoolSingletonContainer.Builder<?> loot = LootItem.lootTableItem(item);
+        applyExplosionDecay(item, loot);
+        applyCount(loot, count, count);
+        applyBonusCount(loot, 1f, fortuneBonusCount);
+        return createSilkTouchDispatchTable(block, loot);
+    }
+
+    protected void applyBonusCount(LootPoolSingletonContainer.Builder<?> loot, float probability, int count) {
+        loot.apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, probability, count));
+    }
+
+    protected void applyCount(LootPoolSingletonContainer.Builder<?> loot, int min, int max) {
+        loot.apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)));
     }
 
     @Override
