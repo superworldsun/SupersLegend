@@ -78,7 +78,7 @@ public class BitBow extends ItemCustomBow
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         if(!Screen.hasShiftDown()) {
-            tooltip.add(Component.literal("a relic with pixel perfect accuracy").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("A relic with pixel perfect accuracy").withStyle(ChatFormatting.GRAY));
             tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
         }
         else if(Screen.hasShiftDown()) {

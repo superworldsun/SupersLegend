@@ -22,10 +22,12 @@ public class MagicalKey extends Item {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         if(!Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("The Almighty key").withStyle(ChatFormatting.YELLOW));
             tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
         }
         else if(Screen.hasShiftDown()) {
-            tooltip.add(Component.literal("A magic key that wont break").withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
+            tooltip.add(Component.literal("A magic key that wont break when used on locekd doors").withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
+            tooltip.add(Component.literal("Does not work on boss doors").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC));
         }
         super.appendHoverText(stack, level, tooltip, flag);
     }

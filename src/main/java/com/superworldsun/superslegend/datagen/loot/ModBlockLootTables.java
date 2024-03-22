@@ -93,7 +93,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropOther(BlockInit.WARP_PAD_SHADOW.get(), BlockInit.WARP_PAD.get());
         this.dropDoor(BlockInit.DUNGEON_DOOR.get());
         this.dropDoor(BlockInit.BOSS_DOOR.get());
-        this.dropDoor(BlockInit.WOODEN_BOSS_DOOR.get());
+        this.dropNothing(BlockInit.WOODEN_BOSS_DOOR.get());
         this.dropNothing(BlockInit.LOCKED_DUNGEON_DOOR.get());
         this.dropNothing(BlockInit.LOCKED_BOSS_DOOR.get());
         this.dropNothing(BlockInit.LOCKED_WOODEN_DOOR.get());

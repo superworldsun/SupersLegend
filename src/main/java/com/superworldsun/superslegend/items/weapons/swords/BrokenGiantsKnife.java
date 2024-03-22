@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.weapons.swords;
 
 import com.superworldsun.superslegend.items.customclass.ItemCustomSword;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,6 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BrokenGiantsKnife extends ItemCustomSword {
@@ -42,8 +44,15 @@ public class BrokenGiantsKnife extends ItemCustomSword {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        tooltip.add(Component.literal("A Large Sword that requires two hands to wield").withStyle(ChatFormatting.GRAY));
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        if(!Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("A Large Sword that requires two hands to wield").withStyle(ChatFormatting.DARK_GRAY));
+            tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        else if(Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("When wielding the Giants knife it will need your offhand to be free").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("Any item placed in your offhand will be dropped").withStyle(ChatFormatting.RED));
+        }
+        super.appendHoverText(stack, level, tooltip, flag);
     }
 }

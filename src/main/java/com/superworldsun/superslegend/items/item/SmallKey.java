@@ -22,10 +22,12 @@ public class SmallKey extends Item {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         if(!Screen.hasShiftDown()) {
+            tooltip.add(Component.literal("Key").withStyle(ChatFormatting.GRAY));
             tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
         }
         else if(Screen.hasShiftDown()) {
             tooltip.add(Component.literal("Used to unlock locked dungeon doors").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("This key can only be used once").withStyle(ChatFormatting.GRAY));
         }
         super.appendHoverText(stack, level, tooltip, flag);
     }

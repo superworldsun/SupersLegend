@@ -119,7 +119,7 @@ public class ItemInit {
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> HEART_PIECE = ITEMS.register("heart_piece",
-            () -> new Item(new Item.Properties()));
+            () -> new HeartPiece(new Item.Properties()));
     public static final RegistryObject<Item> HEART_CONTAINER = ITEMS.register("heart_container",
             () -> new HeartContainer(new Item.Properties()));
     public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
@@ -357,7 +357,7 @@ public class ItemInit {
             () -> new DinsFire(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> FARORES_WIND = ITEMS.register("farores_wind", FaroresWindItem::new);
     public static final RegistryObject<Item> NAYRUS_LOVE = ITEMS.register("nayrus_love",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new NayrusLove(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DEKU_LEAF = ITEMS.register("deku_leaf",
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> LENS_OF_TRUTH = ITEMS.register("lens_of_truth",
