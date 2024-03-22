@@ -65,7 +65,7 @@ public class BlockInit {
     public static final RegistryObject<Block> YELLOW_DEKU_FLOWER_BLOCK = registerBlock("yellow_deku_flower_block",
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(0.1f).explosionResistance(0.1f).sound(SoundType.CROP)));
     public static final RegistryObject<Block> POT_BLOCK = registerBlock("pot_block",
-            () -> new Block(BlockBehaviour.Properties.of().noLootTable().requiresCorrectToolForDrops().destroyTime(0.1f).explosionResistance(0.1f).sound(SoundType.GLASS)));
+            () -> new Block(BlockBehaviour.Properties.of().noLootTable().requiresCorrectToolForDrops().destroyTime(0.1f).noOcclusion.explosionResistance(0.1f).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> JAR_BLOCK = registerBlock("jar_block",
             () -> new Block(BlockBehaviour.Properties.of().noLootTable().requiresCorrectToolForDrops().destroyTime(0.5f).explosionResistance(0.5f).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> POSTBOX_BLOCK = registerBlock("postbox_block",
