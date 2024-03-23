@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.items.item;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -17,11 +19,16 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class MagicMirror extends Item {
 	private static final int USE_DURATION = 25;
@@ -125,5 +132,20 @@ public class MagicMirror extends Item {
 
 	public static void setReturnPosition(ItemStack stack, BlockPos pos) {
 		stack.getOrCreateTag().put("SavedPos", NbtUtils.writeBlockPos(pos));
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void appendHoverText(@NotNull ItemStack stack, @javax.annotation.Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+		if(!Screen.hasShiftDown()) {
+			tooltip.add(Component.literal("Gaze into this mirror").withStyle(ChatFormatting.AQUA));
+			tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
+		}
+		else if(Screen.hasShiftDown()) {
+			tooltip.add(Component.literal("Use the Magic Mirror to warp back to any entrance").withStyle(ChatFormatting.AQUA).withStyle(ChatFormatting.ITALIC));
+			tooltip.add(Component.literal("The mirror will shimmer when it can be used").withStyle(ChatFormatting.AQUA).withStyle(ChatFormatting.ITALIC));
+			tooltip.add(Component.literal("Hold Right-click to return").withStyle(ChatFormatting.GREEN));
+		}
+		super.appendHoverText(stack, level, tooltip, flag);
 	}
 }

@@ -1,6 +1,8 @@
 package com.superworldsun.superslegend.items.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -11,7 +13,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class RedPotion extends Item {
     public RedPotion(Properties pProperties) {
@@ -75,5 +82,14 @@ public class RedPotion extends Item {
         }
 
         return stack;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        {
+            tooltip.add(Component.literal("The Medicine of Life").withStyle(ChatFormatting.RED));
+        }
+        super.appendHoverText(stack, level, tooltip, flag);
     }
 }

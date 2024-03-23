@@ -3,7 +3,10 @@ package com.superworldsun.superslegend.items.weapons.other;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.registries.ItemInit;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
@@ -16,12 +19,18 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class DekuStickLit extends Item {
 	public DekuStickLit() {
@@ -67,5 +76,20 @@ public class DekuStickLit extends Item {
 		player.getInventory().removeItem(item);
 		player.addItem(new ItemStack(ItemInit.DEKU_STICK.get()));
 		return InteractionResult.SUCCESS;
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+		if(!Screen.hasShiftDown()) {
+			tooltip.add(Component.literal("A stick with fire on the end").withStyle(ChatFormatting.YELLOW));
+			tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
+		}
+		else if(Screen.hasShiftDown()) {
+			tooltip.add(Component.literal("Can be used as a weapon, will break on 1 use").withStyle(ChatFormatting.YELLOW).withStyle(ChatFormatting.ITALIC));
+			tooltip.add(Component.literal("Will slowly burn away and break").withStyle(ChatFormatting.GREEN).withStyle(ChatFormatting.ITALIC));
+			tooltip.add(Component.literal("Right+Click webs to burn them away or ignite torch towers").withStyle(ChatFormatting.RED));
+		}
+		super.appendHoverText(stack, level, tooltip, flag);
 	}
 }
