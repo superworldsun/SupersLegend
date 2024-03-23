@@ -322,9 +322,9 @@ public class ItemInit {
     //public static final RegistryObject<Item> GALE_BOOMERANG = ITEMS.register("gale_boomerang",
     //		() -> new GaleBoomerangItem(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));
     public static final RegistryObject<Item> BOMB = ITEMS.register("bomb",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new BombItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> WATER_BOMB = ITEMS.register("water_bomb",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new WaterBombItem(new Item.Properties().stacksTo(1)));
     /*public static final RegistryObject<Item> BOMBCHU = ITEMS.register("bombchu",
             () -> new Item(new Item.Properties().stacksTo(1).tab(SupersLegendMain.RESOURCES)));*/
     public static final RegistryObject<Item> HOOKSHOT = ITEMS.register("hookshot",
@@ -365,7 +365,7 @@ public class ItemInit {
     public static final RegistryObject<Item> FAIRY_OCARINA = ITEMS.register("fairy_ocarina",
             () -> new FairyOcarina(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> OCARINA_OF_TIME = ITEMS.register("ocarina_of_time",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new OcarinaOfTime(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> RED_JELLY = ITEMS.register("red_jelly",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GREEN_JELLY = ITEMS.register("green_jelly",
@@ -394,13 +394,13 @@ public class ItemInit {
     public static final RegistryObject<Item> MAGNETIC_GLOVE = ITEMS.register("magnetic_glove",
             () -> new MagneticGlove(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> TRIFORCE = ITEMS.register("triforce",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new Triforce(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> TRIFORCE_POWER = ITEMS.register("triforce_power",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new TriforcePower(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> TRIFORCE_WISDOM = ITEMS.register("triforce_wisdom",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new TriforceWisdom(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> TRIFORCE_COURAGE = ITEMS.register("triforce_courage",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new TriforceCourage(new Item.Properties().stacksTo(1)));
 
 
     //Masks
