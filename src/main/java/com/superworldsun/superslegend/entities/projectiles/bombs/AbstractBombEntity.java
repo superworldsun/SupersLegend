@@ -2,15 +2,18 @@ package com.superworldsun.superslegend.entities.projectiles.bombs;
 
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.BlockHitResult;
@@ -99,7 +102,7 @@ public class AbstractBombEntity extends ThrowableItemProjectile {
 
     @Override
     public void tick() {
-        /*if(this.tickCount % 11 == 0)
+        if(this.tickCount % 11 == 0)
         {
             BlockPos currentPos = this.blockPosition();
             this.level().playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_FUSE.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
@@ -138,7 +141,7 @@ public class AbstractBombEntity extends ThrowableItemProjectile {
         else
         {
             super.tick();
-        }*/
+        }
     }
 
     public void spawnParticles(Vec3 currentPos, Vec3 newPos) {
@@ -219,9 +222,9 @@ public class AbstractBombEntity extends ThrowableItemProjectile {
         return ItemInit.BOMB.get();
     }
 
-    /*private BlockHitResult rayTrace(Vec3 position, Vec3 nextPosition) {
-        return level().clip(new RayTraceContext(position, nextPosition, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
-    }*/
+    private BlockHitResult rayTrace(Vec3 position, Vec3 nextPosition) {
+        return level().clip(new ClipContext(position, nextPosition, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
+    }
 
     private static class BounceSolution {
         Vector3d motion;
