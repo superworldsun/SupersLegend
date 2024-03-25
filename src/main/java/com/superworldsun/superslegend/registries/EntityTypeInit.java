@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.BombEntity;
+import com.superworldsun.superslegend.entities.projectiles.magic.MasterSwordBeamEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -54,11 +55,14 @@ public class EntityTypeInit
             () -> EntityType.Builder.<MagicLightArrowEntity>of(MagicLightArrowEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("magic_light_arrow"));
 
+    //TODO Size of the master_sword_beam dosent actually affect what it interacts with
+    public static final RegistryObject<EntityType<MasterSwordBeamEntity>> MASTERSWORD_SWORD_BEAM = ENTITY_TYPES.register("master_sword_beam",
+            () -> EntityType.Builder.<MasterSwordBeamEntity>of(MasterSwordBeamEntity::new, MobCategory.MISC)
+                    .sized(3F, 0.5F).build("master_sword_beam"));
+
     /*public static final RegistryObject<EntityType<AncientArrowEntity>> ICE_BEAM = ENTITY_TYPES.register("ice_beam",
             () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("ice_beam"));*/
-
-
 
     public static final RegistryObject<EntityType<HeartEntity>> HEART = ENTITY_TYPES.register("heart",
             () -> EntityType.Builder.<HeartEntity>of(HeartEntity::new, MobCategory.MISC)
