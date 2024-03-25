@@ -23,10 +23,7 @@ import com.superworldsun.superslegend.items.weapons.other.DekuStickLit;
 import com.superworldsun.superslegend.items.weapons.shield.DekuShield;
 import com.superworldsun.superslegend.items.weapons.shield.HylianShield;
 import com.superworldsun.superslegend.items.weapons.shield.SacredShield;
-import com.superworldsun.superslegend.items.weapons.swords.BiggoronsSword;
-import com.superworldsun.superslegend.items.weapons.swords.BrokenGiantsKnife;
-import com.superworldsun.superslegend.items.weapons.swords.GiantsKnife;
-import com.superworldsun.superslegend.items.weapons.swords.RazorSword;
+import com.superworldsun.superslegend.items.weapons.swords.*;
 import com.superworldsun.superslegend.items.weapons.wand.FireRod;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import net.minecraft.world.entity.EntityType;
@@ -189,7 +186,7 @@ public class ItemInit {
             () -> new ItemCustomSword(ItemToolTiers.GODDESS_WHITE_SWORD, 2, -2.4f, new Item.Properties()));
 
     public static final RegistryObject<SwordItem> MASTER_SWORD = ITEMS.register("master_sword",
-            () -> new ItemCustomSword(ItemToolTiers.MASTER_SWORD, 2, -2.4f, new Item.Properties()));
+            () -> new MasterSword(ItemToolTiers.MASTER_SWORD, 2, -2.4f, new Item.Properties()));
     public static final RegistryObject<SwordItem> MASTER_SWORD_V2 = ITEMS.register("master_sword_v2",
             () -> new ItemCustomSword(ItemToolTiers.MASTER_SWORD_V2, 2, -2.3f, new Item.Properties()));
     public static final RegistryObject<SwordItem> TRUE_MASTER_SWORD = ITEMS.register("true_master_sword",
@@ -197,7 +194,6 @@ public class ItemInit {
 
     public static final RegistryObject<SwordItem> GUARDIAN_SWORD = ITEMS.register("guardian_sword",
             () -> new ItemCustomSword(ItemToolTiers.GUARDIAN_SWORD, 2, -2.3f, new Item.Properties()));
-
 
     public static final RegistryObject<BowItem> FAIRY_BOW = ITEMS.register("fairy_bow",
             () -> new ItemCustomBow(new Item.Properties().stacksTo(1)));
