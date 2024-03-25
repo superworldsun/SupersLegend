@@ -2,8 +2,10 @@ package com.superworldsun.superslegend;
 
 import com.mojang.logging.LogUtils;
 import com.superworldsun.superslegend.client.init.ItemModelPropertiesInit;
+import com.superworldsun.superslegend.client.render.entites.BombRenderer;
 import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.world.biome.BiomeModifiers;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -74,6 +76,9 @@ public class SupersLegendMain
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             ItemModelPropertiesInit.addCustomItemProperties();
+
+            //EntityRenderers.register(EntityTypeInit.BOMB.get(), ThrownItemRenderer::new);
+            EntityRenderers.register(EntityTypeInit.BOMB.get(), ctx -> new BombRenderer(ctx));
         }
     }
 }
