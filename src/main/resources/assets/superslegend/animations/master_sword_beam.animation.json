@@ -1,0 +1,31 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.master_sword_beam.idle": {
+			"loop": true,
+			"animation_length": 0.66667,
+			"override_previous_animation": true,
+			"bones": {
+				"Body": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [0, -90, 0]
+						},
+						"0.3333": {
+							"vector": [0, -180, 0]
+						},
+						"0.5": {
+							"vector": [0, -270, 0]
+						},
+						"0.6667": {
+							"vector": [0, -360, 0]
+						}
+					}
+				}
+			}
+		}
+	}
+}

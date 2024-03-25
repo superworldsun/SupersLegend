@@ -3,6 +3,7 @@ package com.superworldsun.superslegend;
 import com.mojang.logging.LogUtils;
 import com.superworldsun.superslegend.client.init.ItemModelPropertiesInit;
 import com.superworldsun.superslegend.client.render.entites.BombRenderer;
+import com.superworldsun.superslegend.client.render.entites.MasterSwordBeamRenderer;
 import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.world.biome.BiomeModifiers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -79,6 +80,7 @@ public class SupersLegendMain
 
             //EntityRenderers.register(EntityTypeInit.BOMB.get(), ThrownItemRenderer::new);
             EntityRenderers.register(EntityTypeInit.BOMB.get(), ctx -> new BombRenderer(ctx));
+            EntityRenderers.register(EntityTypeInit.MASTERSWORD_SWORD_BEAM.get(), ctx -> new MasterSwordBeamRenderer(ctx));
         }
     }
 }
