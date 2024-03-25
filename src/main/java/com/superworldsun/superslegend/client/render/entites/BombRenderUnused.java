@@ -5,14 +5,14 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 
-public class BombRender<T extends AbstractBombEntity> extends ThrownItemRenderer<T> {
+public class BombRenderUnused<T extends AbstractBombEntity> extends ThrownItemRenderer<T> {
     //Bomb rendering, entity and logic code credited to Spelunkcraft contributor ntfwc
     public static final int INITIAL_FLASHING_RATE_IN_MILLISECONDS = 20 * 1000 / 60;
     public static final int RAPID_FLASHING_RATE_IN_MILLISECONDS = 4 * 1000 / 60;
 
     private ItemRenderer itemRenderer;
 
-    public BombRender(EntityRendererProvider.Context pContext, float pScale, boolean pFullBright) {
+    public BombRenderUnused(EntityRendererProvider.Context pContext, float pScale, boolean pFullBright) {
         super(pContext, pScale, pFullBright);
     }
 
