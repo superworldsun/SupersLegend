@@ -58,7 +58,7 @@ public class EntityTypeInit
     //TODO Size of the master_sword_beam dosent actually affect what it interacts with
     public static final RegistryObject<EntityType<MasterSwordBeamEntity>> MASTERSWORD_SWORD_BEAM = ENTITY_TYPES.register("master_sword_beam",
             () -> EntityType.Builder.<MasterSwordBeamEntity>of(MasterSwordBeamEntity::new, MobCategory.MISC)
-                    .sized(3F, 0.5F).build("master_sword_beam"));
+                    .sized(1F, 0.1F).build("master_sword_beam"));
 
     /*public static final RegistryObject<EntityType<AncientArrowEntity>> ICE_BEAM = ENTITY_TYPES.register("ice_beam",
             () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
