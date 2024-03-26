@@ -7,6 +7,7 @@ import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.BombEntity;
 import com.superworldsun.superslegend.entities.projectiles.magic.MasterSwordBeamEntity;
+import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -86,8 +87,8 @@ public class EntityTypeInit
 
 
 
-    public static final RegistryObject<EntityType<AncientArrowEntity>> DEKU_SEED = ENTITY_TYPES.register("deku_seed",
-            () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
+    public static final RegistryObject<EntityType<DekuSeedEntity>> DEKU_SEED = ENTITY_TYPES.register("deku_seed",
+            () -> EntityType.Builder.<DekuSeedEntity>of(DekuSeedEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("deku_seed"));
     public static final RegistryObject<EntityType<AncientArrowEntity>> WHEAT_SEED = ENTITY_TYPES.register("wheat_seed",
             () -> EntityType.Builder.<AncientArrowEntity>of(AncientArrowEntity::new, MobCategory.MISC)
