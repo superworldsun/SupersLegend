@@ -188,9 +188,9 @@ public class ItemInit {
     public static final RegistryObject<SwordItem> MASTER_SWORD = ITEMS.register("master_sword",
             () -> new MasterSword(ItemToolTiers.MASTER_SWORD, 2, -2.4f, new Item.Properties()));
     public static final RegistryObject<SwordItem> MASTER_SWORD_V2 = ITEMS.register("master_sword_v2",
-            () -> new ItemCustomSword(ItemToolTiers.MASTER_SWORD_V2, 2, -2.3f, new Item.Properties()));
+            () -> new MasterSwordV2(ItemToolTiers.MASTER_SWORD_V2, 2, -2.3f, new Item.Properties()));
     public static final RegistryObject<SwordItem> TRUE_MASTER_SWORD = ITEMS.register("true_master_sword",
-            () -> new ItemCustomSword(ItemToolTiers.TRUE_MASTER_SWORD, 2, -2.2f, new Item.Properties()));
+            () -> new TrueMasterSword(ItemToolTiers.TRUE_MASTER_SWORD, 2, -2.2f, new Item.Properties()));
 
     public static final RegistryObject<SwordItem> GUARDIAN_SWORD = ITEMS.register("guardian_sword",
             () -> new ItemCustomSword(ItemToolTiers.GUARDIAN_SWORD, 2, -2.3f, new Item.Properties()));
