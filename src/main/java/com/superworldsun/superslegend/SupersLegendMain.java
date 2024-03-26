@@ -77,10 +77,6 @@ public class SupersLegendMain
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             ItemModelPropertiesInit.addCustomItemProperties();
-
-            //EntityRenderers.register(EntityTypeInit.BOMB.get(), ThrownItemRenderer::new);
-            EntityRenderers.register(EntityTypeInit.BOMB.get(), ctx -> new BombRenderer(ctx));
-            EntityRenderers.register(EntityTypeInit.MASTERSWORD_SWORD_BEAM.get(), ctx -> new MasterSwordBeamRenderer(ctx));
         }
     }
 }
