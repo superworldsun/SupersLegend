@@ -8,6 +8,7 @@ import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.BombEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
 import com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity;
+import com.superworldsun.superslegend.entities.projectiles.magic.IceballEntity;
 import com.superworldsun.superslegend.entities.projectiles.magic.MasterSwordBeamEntity;
 import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
 import net.minecraft.world.entity.EntityType;
@@ -94,7 +95,10 @@ public class EntityTypeInit
 
     public static final RegistryObject<EntityType<FireballEntity>> FIREBALL = ENTITY_TYPES.register("fireball",
             () -> EntityType.Builder.<FireballEntity>of(FireballEntity::new, MobCategory.MISC)
-                    .sized(1F, 1F).build("fireball"));
+                    .sized(0.5F, 0.5F).build("fireball"));
+    public static final RegistryObject<EntityType<IceballEntity>> ICEBALL = ENTITY_TYPES.register("iceball",
+            () -> EntityType.Builder.<IceballEntity>of(IceballEntity::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F).build("iceball"));
 
     public static final RegistryObject<EntityType<DekuSeedEntity>> DEKU_SEED = ENTITY_TYPES.register("deku_seed",
             () -> EntityType.Builder.<DekuSeedEntity>of(DekuSeedEntity::new, MobCategory.MISC)

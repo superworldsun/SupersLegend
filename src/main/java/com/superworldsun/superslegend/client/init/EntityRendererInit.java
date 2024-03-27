@@ -5,6 +5,7 @@ import com.superworldsun.superslegend.client.render.arrows.*;
 import com.superworldsun.superslegend.client.render.entites.*;
 
 import com.superworldsun.superslegend.client.render.magic.FireBallRenderer;
+import com.superworldsun.superslegend.client.render.magic.IceBallRenderer;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -43,6 +44,7 @@ public class EntityRendererInit {
         event.registerEntityRenderer(EntityTypeInit.MASTERSWORD_SWORD_BEAM.get(), MasterSwordBeamRenderer::new);
         event.registerEntityRenderer(EntityTypeInit.WATER_BOMB.get(), AncientArrowRender::new);
         event.registerEntityRenderer(EntityTypeInit.FIREBALL.get(), FireBallRenderer::new);
+        event.registerEntityRenderer(EntityTypeInit.ICEBALL.get(), IceBallRenderer::new);
 
         //TODO FINISH BOOMERANG
         //event.registerEntityRenderer(EntityTypeInit.REGULAR_BOOMERANG.get(), BoomerangRenderer::new);

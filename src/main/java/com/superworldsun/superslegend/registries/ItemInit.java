@@ -25,6 +25,7 @@ import com.superworldsun.superslegend.items.weapons.shield.HylianShield;
 import com.superworldsun.superslegend.items.weapons.shield.SacredShield;
 import com.superworldsun.superslegend.items.weapons.swords.*;
 import com.superworldsun.superslegend.items.weapons.wand.FireRod;
+import com.superworldsun.superslegend.items.weapons.wand.IceRod;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
@@ -342,7 +343,7 @@ public class ItemInit {
     public static final RegistryObject<Item> FIRE_ROD = ITEMS.register("fire_rod",
             () -> new FireRod(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> ICE_ROD = ITEMS.register("ice_rod",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new IceRod(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DEKU_STICK = ITEMS.register("deku_stick", DekuStick::new);
     public static final RegistryObject<Item> DEKU_STICK_LIT = ITEMS.register("deku_stick_lit", DekuStickLit::new);
     /*public static final RegistryObject<Item> DEKU_NUTS = ITEMS.register("deku_nuts",
