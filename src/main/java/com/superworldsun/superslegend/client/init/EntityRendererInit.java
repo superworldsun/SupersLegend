@@ -2,8 +2,9 @@ package com.superworldsun.superslegend.client.init;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.render.arrows.*;
+import com.superworldsun.superslegend.client.render.boomerang.BoomerangRenderer;
 import com.superworldsun.superslegend.client.render.entites.*;
-import com.superworldsun.superslegend.client.render.seeds.DekuSeedRender;
+
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -41,6 +42,8 @@ public class EntityRendererInit {
         event.registerEntityRenderer(EntityTypeInit.BOMB.get(), BombRenderer::new);
         event.registerEntityRenderer(EntityTypeInit.MASTERSWORD_SWORD_BEAM.get(), MasterSwordBeamRenderer::new);
         event.registerEntityRenderer(EntityTypeInit.WATER_BOMB.get(), AncientArrowRender::new);
+        //TODO FINISH BOOMERANG
+        //event.registerEntityRenderer(EntityTypeInit.REGULAR_BOOMERANG.get(), BoomerangRenderer::new);
         //TODO, SeedRender not working
         //event.registerEntityRenderer(EntityTypeInit.DEKU_SEED.get(), DekuSeedRender::new);
         event.registerEntityRenderer(EntityTypeInit.WHEAT_SEED.get(), AncientArrowRender::new);
