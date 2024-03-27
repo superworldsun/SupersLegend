@@ -7,6 +7,7 @@ import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.BombEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
+import com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity;
 import com.superworldsun.superslegend.entities.projectiles.magic.MasterSwordBeamEntity;
 import com.superworldsun.superslegend.entities.projectiles.seeds.DekuSeedEntity;
 import net.minecraft.world.entity.EntityType;
@@ -91,6 +92,9 @@ public class EntityTypeInit
             () -> EntityType.Builder.<BoomerangEntity>of(BoomerangEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("boomerang"));*/
 
+    public static final RegistryObject<EntityType<FireballEntity>> FIREBALL = ENTITY_TYPES.register("fireball",
+            () -> EntityType.Builder.<FireballEntity>of(FireballEntity::new, MobCategory.MISC)
+                    .sized(1F, 1F).build("fireball"));
 
     public static final RegistryObject<EntityType<DekuSeedEntity>> DEKU_SEED = ENTITY_TYPES.register("deku_seed",
             () -> EntityType.Builder.<DekuSeedEntity>of(DekuSeedEntity::new, MobCategory.MISC)

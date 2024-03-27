@@ -1,13 +1,47 @@
 package com.superworldsun.superslegend.items.weapons.wand;
 
+import com.superworldsun.superslegend.blocks.TorchTowerTopUnlit;
+import com.superworldsun.superslegend.capability.magic.MagicProvider;
+import com.superworldsun.superslegend.entities.projectiles.bombs.BombEntity;
+import com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity;
+import com.superworldsun.superslegend.entities.projectiles.magic.MasterSwordBeamEntity;
 import com.superworldsun.superslegend.items.customclass.NonEnchantItem;
-import net.minecraft.world.item.Item;
+import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.registries.TagInit;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
+
+import java.util.function.Predicate;
 
 public class FireRod extends NonEnchantItem
 {
     public FireRod(Properties properties)
     {
-        super(new Item.Properties().stacksTo(1));
+        super(properties);
     }
 
     //TODO Fire should melt thin snow layers super easily with held right click
@@ -15,10 +49,9 @@ public class FireRod extends NonEnchantItem
 
 
     //TODO, need to finish port
-    /*@Override
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand Usehand)
     {
-        return super.use(level, player, Usehand);
         if (player.isCrouching())
         {
             if (!level.isClientSide)
@@ -29,14 +62,15 @@ public class FireRod extends NonEnchantItem
                 if (MagicProvider.hasMagic(player, manacost))
                 {
                     float fireballSpeed = 0.5F;
-                    Vec3 playerLookVec = Player.getLookAngle();
-                    Vec3 fireballPosition = Player.getEyePosition(1F).add(playerLookVec);
+                    Vec3 playerLookVec = player.getLookAngle();
+                    Vec3 fireballPosition = player.getEyePosition(1F).add(playerLookVec);
                     Vec3 fireballMotion = playerLookVec.multiply(fireballSpeed, fireballSpeed, fireballSpeed);
-                    FireballEntity fireballEntity = new FireballEntity(fireballPosition, fireballMotion, world, Player);
+                    FireballEntity fireballEntity = new FireballEntity(fireballPosition, fireballMotion, level, player);
                     level.addFreshEntity(fireballEntity);
                     MagicProvider.spendMagic(player, manacost);
                     player.getCooldowns().addCooldown(this, 16);
-                    level.playSound(null, Player.position().x, Player.position().y, Player.position().z, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1F, 1F);
+                    player.playSound(SoundInit.RUPEE_BLUE.get(), 1.0f, 1.0f);
+                    level.playSound(null, player, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1f, 1f);
                 }
             }
         }
@@ -94,15 +128,15 @@ public class FireRod extends NonEnchantItem
                 level.addParticle(ParticleTypes.FLAME, particleX, particleY, particleZ, particleMotionX, particleMotionY, particleMotionZ);
             }
 
-            EntityHitResult blockRayTraceResult = level.clip(new RayTraceContext(effectStart, effectEnd, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, null));
+            BlockHitResult blockRayTraceResult = level.clip(new ClipContext(effectStart, effectEnd, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, null));
 
             if (blockRayTraceResult.getType() != EntityHitResult.Type.MISS && !level.isClientSide()) {
                 // if we hit block, area of effect ends at the hit location
                 effectEnd = blockRayTraceResult.getLocation();
                 // blocks effect
                 // once between 5 - 15 Ticks at random
-                if (timeInUse % (5 + random.nextInt(10)) == 0) {
-                    BlockPos hitPos = blockRayTraceResult.getEntity().getOnPos();
+                if (timeInUse % (5 + player.getRandom().nextInt(10)) == 0) {
+                    BlockPos hitPos = blockRayTraceResult.getBlockPos();
 
                     if (level.getBlockState(hitPos).is(TagInit.CAN_MELT) || level.getBlockState(hitPos).is(BlockTags.ICE)) {
                         // replaces meltable blocks with air
@@ -114,9 +148,9 @@ public class FireRod extends NonEnchantItem
                         level.playSound(null, hitPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1F, 1F);
 					}
                     else {
-                        BlockPos firePos = hitPos.relative(blockRayTraceResult.getEntity().getDirection());
+                        BlockPos firePos = hitPos.relative(blockRayTraceResult.getDirection());
                         // sets other blocks on fire
-                        if (FireBlock.canBePlacedAt(level, firePos, blockRayTraceResult.getEntity().getDirection())) {
+                        if (FireBlock.canBePlacedAt(level, firePos, blockRayTraceResult.getDirection())) {
                             BlockState fireBlockState = FireBlock.getState(level, firePos);
                             level.setBlock(firePos, fireBlockState, 11);
                         }
@@ -131,9 +165,10 @@ public class FireRod extends NonEnchantItem
             // if we hit entity
             if (entityRayTraceResult != null)
             {
-                DamageSource damageSource = DamageSource.playerAttack(player).setIsFire();
+                //TODO Causes crashes / cant port
+                /*DamageSource damageSource = DamageSource.playerAttack(player).setIsFire();
                 entityRayTraceResult.getEntity().hurt(damageSource, damage);
-                entityRayTraceResult.getEntity().setSecondsOnFire(secondsOnFire);
+                entityRayTraceResult.getEntity().setSecondsOnFire(secondsOnFire);*/
             }
 
             MagicProvider.spendMagic(player, manacost);
@@ -144,5 +179,5 @@ public class FireRod extends NonEnchantItem
                 level.playSound(null, player.position().x, player.position().y, player.position().z, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1F, 1F);
             }
         }
-    }*/
+    }
 }
