@@ -69,7 +69,6 @@ public class FireRod extends NonEnchantItem
                     level.addFreshEntity(fireballEntity);
                     MagicProvider.spendMagic(player, manacost);
                     player.getCooldowns().addCooldown(this, 16);
-                    player.playSound(SoundInit.RUPEE_BLUE.get(), 1.0f, 1.0f);
                     level.playSound(null, player, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1f, 1f);
                 }
             }
