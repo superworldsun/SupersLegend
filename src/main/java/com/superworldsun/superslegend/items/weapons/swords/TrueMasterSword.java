@@ -10,8 +10,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -34,16 +33,25 @@ public class TrueMasterSword extends ItemCustomSword {
     }
 
     @SubscribeEvent
-    public static void livingDamageEvent(LivingDamageEvent event)
-    {
-        Mob entity = (Mob) event.getEntity();
-        // Check if is player doing the damage.
-        if (event.getSource().getDirectEntity() instanceof Player)
-        {
+    public static void livingDamageEvent(LivingDamageEvent event) {
+        // Check if the source of the damage is a player.
+        if (event.getSource().getDirectEntity() instanceof Player) {
+            // Get the player.
             Player player = (Player) event.getSource().getDirectEntity();
-            if (player.getMainHandItem().getItem() instanceof TrueMasterSword && entity.getType().is(TagInit.WEAK_TO_LIGHT) || entity.getMobType() == MobType.UNDEAD)
-            {
-                event.setAmount(event.getAmount() * 2);
+            // Check if the player is wielding the TrueMasterSword.
+            if (player.getMainHandItem().getItem() instanceof TrueMasterSword) {
+                // Check if the target entity is undead or weak to light.
+                Entity targetEntity = event.getEntity();
+                if (targetEntity instanceof LivingEntity) {
+                    LivingEntity livingEntity = (LivingEntity) targetEntity;
+                    // Check if the entity is undead or weak to light.
+                    boolean isUndead = livingEntity.getMobType() == MobType.UNDEAD;
+                    boolean isWeakToLight = livingEntity.getType().is(TagInit.WEAK_TO_LIGHT);
+                    if (isUndead || isWeakToLight) {
+                        // Increase the damage against undead or entities weak to light.
+                        event.setAmount(event.getAmount() * 2);
+                    }
+                }
             }
         }
     }
