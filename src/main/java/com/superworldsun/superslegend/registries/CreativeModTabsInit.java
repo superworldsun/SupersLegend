@@ -1,21 +1,21 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.*;
 
 public class CreativeModTabsInit {
+
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SupersLegendMain.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> ITEMS_TAB = CREATIVE_MODE_TABS.register("items_tab",
+    public static final RegistryObject<CreativeModeTab> ITEMS_TAB = CREATIVE_MODE_TABS.register("superslegend_items_tab",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("creativetab.items_tab"))
+                    .title(Component.translatable("creativetab.superslegend_items_tab"))
                     .icon(() -> new ItemStack(ItemInit.TRIFORCE.get()))
                     .displayItems(((pParameters, pOutput) -> {
                         pOutput.accept(ItemInit.RUPEE.get());
@@ -201,9 +201,9 @@ public class CreativeModTabsInit {
                     }))
                     .build());
 
-    public static final RegistryObject<CreativeModeTab> APPAREL_TAB = CREATIVE_MODE_TABS.register("apparel_tab",
+    public static final RegistryObject<CreativeModeTab> APPAREL_TAB = CREATIVE_MODE_TABS.register("superslegend_apparel_tab",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("creativetab.apparel_tab"))
+                    .title(Component.translatable("creativetab.superslegend_apparel_tab"))
                     .withTabsBefore(ITEMS_TAB.getId())
                     .icon(() -> new ItemStack(ItemInit.KOKIRI_TUNIC.get()))
                     .displayItems(((pParameters, pOutput) -> {
@@ -333,9 +333,9 @@ public class CreativeModTabsInit {
                     }))
                     .build());
 
-    public static final RegistryObject<CreativeModeTab> BLOCKS_TAB = CREATIVE_MODE_TABS.register("blocks_tab",
+    public static final RegistryObject<CreativeModeTab> BLOCKS_TAB = CREATIVE_MODE_TABS.register("superslegend_blocks_tab",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("creativetab.blocks_tab"))
+                    .title(Component.translatable("creativetab.superslegend_blocks_tab"))
                     .withTabsBefore(ITEMS_TAB.getId())
                     .withTabsBefore(APPAREL_TAB.getId())
                     .icon(() -> new ItemStack(BlockInit.BLOCK_OF_TIME.get()))
@@ -415,8 +415,7 @@ public class CreativeModTabsInit {
                     }))
                     .build());
 
-    public static void resiter(IEventBus eventBus)
-    {
+    public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }
 }

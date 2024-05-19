@@ -1,18 +1,20 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 issueTrackerURL = "https://github.com/superworldsun/SupersLegend/issues"
-license="GPL-3"
+license="${mod_license}"
 [[mods]]
-modId = "superslegend"
-version = "0.0.1"
-displayName = "SupersLegend"
+# While this shows an error, it does work fine, do not change it.
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
 logoFile="icon.png"
 displayURL = "https://discord.gg/nSAvsr5"
-authors = "superworldsun"
+authors = "${mod_authors}"
 credits = "All contributors and testers"
-description = '''This is a Zelda mod created by superworldsun'''
+description = "${mod_description}"
 
-[[dependencies.superslegend]]
+# While this shows an error, it does work fine, do not change it.
+[[dependencies.${mod_id}]]
     modId = "curios"
     mandatory = true
     versionRange = "[1.20.1-5.2.0,)"

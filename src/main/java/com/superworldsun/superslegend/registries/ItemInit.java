@@ -3,39 +3,25 @@ package com.superworldsun.superslegend.registries;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.armors.*;
 import com.superworldsun.superslegend.items.containers.LetterItem;
-import com.superworldsun.superslegend.items.curios.charms.GoldenScale;
-import com.superworldsun.superslegend.items.curios.charms.SilverScale;
+import com.superworldsun.superslegend.items.curios.charms.*;
 import com.superworldsun.superslegend.items.curios.head.masks.*;
 import com.superworldsun.superslegend.items.curios.rings.*;
-import com.superworldsun.superslegend.items.customclass.BottledEntityItem;
-import com.superworldsun.superslegend.items.customclass.ItemCustomBow;
-import com.superworldsun.superslegend.items.customclass.ItemCustomSword;
+import com.superworldsun.superslegend.items.customclass.*;
 import com.superworldsun.superslegend.items.item.*;
 import com.superworldsun.superslegend.items.item.ammo.*;
-import com.superworldsun.superslegend.items.weapons.boomerang.BoomerangItem;
-import com.superworldsun.superslegend.items.weapons.boomerang.MagicBoomerangItem;
-import com.superworldsun.superslegend.items.weapons.boomerang.SeaBreezeBoomerangItem;
-import com.superworldsun.superslegend.items.weapons.bow.BitBow;
-import com.superworldsun.superslegend.items.weapons.bow.LynelBowX3;
-import com.superworldsun.superslegend.items.weapons.bow.LynelBowX5;
-import com.superworldsun.superslegend.items.weapons.hammer.MagicHammer;
-import com.superworldsun.superslegend.items.weapons.hammer.MegatonHammer;
-import com.superworldsun.superslegend.items.weapons.hammer.SkullHammer;
-import com.superworldsun.superslegend.items.weapons.other.DekuStick;
-import com.superworldsun.superslegend.items.weapons.other.DekuStickLit;
-import com.superworldsun.superslegend.items.weapons.shield.DekuShield;
-import com.superworldsun.superslegend.items.weapons.shield.HylianShield;
-import com.superworldsun.superslegend.items.weapons.shield.SacredShield;
+import com.superworldsun.superslegend.items.weapons.boomerang.*;
+import com.superworldsun.superslegend.items.weapons.bow.*;
+import com.superworldsun.superslegend.items.weapons.hammer.*;
+import com.superworldsun.superslegend.items.weapons.other.*;
+import com.superworldsun.superslegend.items.weapons.shield.*;
 import com.superworldsun.superslegend.items.weapons.swords.*;
-import com.superworldsun.superslegend.items.weapons.wand.FireRod;
-import com.superworldsun.superslegend.items.weapons.wand.IceRod;
+import com.superworldsun.superslegend.items.weapons.wand.*;
 import com.superworldsun.superslegend.util.ItemToolTiers;
+
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.*;
 
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS =
@@ -887,8 +873,7 @@ public class ItemInit {
         }
     });*/
 
-        public static void register(IEventBus eventBus)
-    {
+    public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
 }

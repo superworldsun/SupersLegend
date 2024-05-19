@@ -1,7 +1,7 @@
 {
-  "creativetab.items_tab": "SupersLegend",
-  "creativetab.apparel_tab": "SupersLegend Apparel",
-  "creativetab.blocks_tab": "SupersLegend Blocks",
+  "creativetab.superslegend_items_tab": "SupersLegend",
+  "creativetab.superslegend_apparel_tab": "SupersLegend Apparel",
+  "creativetab.superslegend_blocks_tab": "SupersLegend Blocks",
 
   "item.superslegend.rupee": "Rupee",
   "item.superslegend.blue_rupee": "Blue Rupee",

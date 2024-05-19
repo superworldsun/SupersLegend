@@ -1,8 +1,6 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.items.armors.set.*;
-
-
 public class ArmorInit {
 	public static final ArmorSet KOKIRI = new KokiriArmorSet();
 	public static final ArmorSet ZORA = new ZoraArmorSet();

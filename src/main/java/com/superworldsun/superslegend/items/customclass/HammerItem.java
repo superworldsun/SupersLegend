@@ -2,37 +2,35 @@ package com.superworldsun.superslegend.items.customclass;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.TagInit;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+
+import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.*;
 import net.minecraftforge.fml.common.Mod;
+
 import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public abstract class HammerItem extends TieredItem implements Vanishable {
+
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
-
-    public HammerItem(Tier itemTier, int attackDamageBonus, Properties properties)
-    {
+    public HammerItem(Tier itemTier, int attackDamageBonus, Properties properties) {
         super(itemTier, properties);
         float attackDamage = attackDamageBonus + itemTier.getAttackDamageBonus();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
@@ -45,18 +43,15 @@ public abstract class HammerItem extends TieredItem implements Vanishable {
     }
 
     @SubscribeEvent
-    public static void onPlayerLeftClickBlock(PlayerInteractEvent.LeftClickBlock event)
-    {
+    public static void onPlayerLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
         // only for hammers
-        if (!(event.getItemStack().getItem() instanceof HammerItem))
-        {
+        if (!(event.getItemStack().getItem() instanceof HammerItem)) {
             return;
         }
 
         HammerItem hammerItem = (HammerItem) event.getItemStack().getItem();
 
-        if (event.getEntity().getCooldowns().isOnCooldown(hammerItem))
-        {
+        if (event.getEntity().getCooldowns().isOnCooldown(hammerItem)) {
             // can't click when on cooldown
             event.setUseItem(Event.Result.DENY);
             event.setUseBlock(Event.Result.DENY);
@@ -67,8 +62,7 @@ public abstract class HammerItem extends TieredItem implements Vanishable {
         BlockState blockState = event.getLevel().getBlockState(event.getPos());
         event.getEntity().getCooldowns().addCooldown(hammerItem, hammerItem.getLeftClickCooldown());
 
-        if (blockState.is(TagInit.FRAGILE))
-        {
+        if (blockState.is(TagInit.FRAGILE)) {
             event.getLevel().destroyBlock(event.getPos(), false, event.getEntity());
             Block.dropResources(blockState, event.getLevel(), event.getPos());
         }
@@ -76,10 +70,8 @@ public abstract class HammerItem extends TieredItem implements Vanishable {
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void onClickInput(InputEvent.InteractionKeyMappingTriggered event)
-    {
-        if (!event.isAttack())
-        {
+    public static void onClickInput(InputEvent.InteractionKeyMappingTriggered event) {
+        if (!event.isAttack()) {
             return;
         }
 
@@ -87,13 +79,11 @@ public abstract class HammerItem extends TieredItem implements Vanishable {
         Item mainHandItem = minecraft.player.getMainHandItem().getItem();
 
         // only for hammers
-        if (!(mainHandItem instanceof HammerItem))
-        {
+        if (!(mainHandItem instanceof HammerItem)) {
             return;
         }
 
-        if (minecraft.player.getCooldowns().isOnCooldown(mainHandItem))
-        {
+        if (minecraft.player.getCooldowns().isOnCooldown(mainHandItem)) {
             // can't click when on cooldown
             event.setCanceled(true);
             event.setSwingHand(false);
@@ -105,54 +95,45 @@ public abstract class HammerItem extends TieredItem implements Vanishable {
     }
 
     @Override
-    public boolean canAttackBlock(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, Player playerEntity)
-    {
+    public boolean canAttackBlock(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, Player playerEntity) {
         return !playerEntity.isCreative();
     }
 
     @Override
-    public float getDestroySpeed(@NotNull ItemStack itemStack, BlockState blockState)
-    {
-        if (blockState.is(Blocks.COBWEB))
-        {
+    public float getDestroySpeed(@NotNull ItemStack itemStack, BlockState blockState) {
+        if (blockState.is(Blocks.COBWEB)) {
             return 15.0F;
-        }
-        else
-        {
             //TODO, not sure how to check block material
-            //Material material = blockState.getMaterial();
-            //return material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.CORAL && !blockState.is(BlockTags.LEAVES) && material != Material.VEGETABLE ? 1.0F
-                    return 1.5F;
+            // TODO: Make your own custom tags and call them here to check the materials
+        } else if(blockState.is(Tags.Blocks.GLASS)) {
+            return 1.0F;
+            // material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.CORAL && !blockState.is(BlockTags.LEAVES) && material != Material.VEGETABLE ? 1.0F
+        } else {
+            return 1.5F;
         }
     }
 
     @Override
-    public boolean isCorrectToolForDrops(BlockState blockState)
-    {
+    public boolean isCorrectToolForDrops(BlockState blockState) {
         return blockState.is(Blocks.COBWEB);
     }
 
     @Override
-    public boolean hurtEnemy(ItemStack itemStack, @NotNull LivingEntity attackingEntity, @NotNull LivingEntity targetEntity)
-    {
+    public boolean hurtEnemy(ItemStack itemStack, @NotNull LivingEntity attackingEntity, @NotNull LivingEntity targetEntity) {
         itemStack.hurtAndBreak(1, targetEntity, entity -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         return true;
     }
 
     @Override
-    public boolean mineBlock(@NotNull ItemStack itemStack, @NotNull Level level, BlockState blockState, @NotNull BlockPos blockPos, @NotNull LivingEntity livingEntity)
-    {
-        if (blockState.getDestroySpeed(level, blockPos) != 0.0F)
-        {
+    public boolean mineBlock(@NotNull ItemStack itemStack, @NotNull Level level, BlockState blockState, @NotNull BlockPos blockPos, @NotNull LivingEntity livingEntity) {
+        if (blockState.getDestroySpeed(level, blockPos) != 0.0F) {
             itemStack.hurtAndBreak(2, livingEntity, entity -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         }
-
         return true;
     }
 
     @Override
-    public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slotType)
-    {
+    public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slotType) {
         return slotType == EquipmentSlot.MAINHAND ? this.defaultModifiers : ImmutableMultimap.of();
     }
 

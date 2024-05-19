@@ -2,14 +2,13 @@ package com.superworldsun.superslegend.items.curios.hands;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.customclass.HandsItem;
+
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
-public class TriforcePower extends HandsItem
-{
+public class TriforcePower extends HandsItem {
 
-    public TriforcePower(Properties properties)
-    {
+    public TriforcePower(Properties properties) {
         super(properties);
     }
 

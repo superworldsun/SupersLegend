@@ -1,10 +1,8 @@
 package com.superworldsun.superslegend.items.customclass;
 
-import net.minecraft.world.item.BowItem;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 
-public class ItemCustomBow extends BowItem
-{
+public class ItemCustomBow extends BowItem {
     public ItemCustomBow(Properties pProperties) {
         super(pProperties);
     }
@@ -13,5 +11,4 @@ public class ItemCustomBow extends BowItem
     public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
         return false;
     }
-
 }

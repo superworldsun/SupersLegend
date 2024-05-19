@@ -2,12 +2,12 @@ package com.superworldsun.superslegend.items.customclass;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
+
 import org.jetbrains.annotations.NotNull;
+
 import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.capability.ICurio;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
+import top.theillusivec4.curios.api.type.capability.*;
 
 public class HandsItem extends Item implements ICurioItem {
 
