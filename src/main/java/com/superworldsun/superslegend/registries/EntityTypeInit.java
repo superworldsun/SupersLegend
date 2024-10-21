@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.entities.projectiles.bombs.BombEntity;
 import com.superworldsun.superslegend.entities.projectiles.bombs.WaterBombEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.BoomerangEntity;
 import com.superworldsun.superslegend.entities.projectiles.boomerang.MagicBoomerangEntity;
+import com.superworldsun.superslegend.entities.projectiles.boomerang.SeaBreezeBoomerangEntity;
 import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity;
@@ -97,8 +98,8 @@ public class EntityTypeInit
             BoomerangEntity::createEntityType);
     public static final RegistryObject<EntityType<MagicBoomerangEntity>> MAGIC_BOOMERANG = ENTITY_TYPES.register("magic_boomerang",
             MagicBoomerangEntity::createEntityType);
-    public static final RegistryObject<EntityType<MagicBoomerangEntity>> SEA_BREEZE_BOOMERANG = ENTITY_TYPES.register("sea_breeze_boomerang",
-            MagicBoomerangEntity::createEntityType);
+    public static final RegistryObject<EntityType<SeaBreezeBoomerangEntity>> SEA_BREEZE_BOOMERANG = ENTITY_TYPES.register("sea_breeze_boomerang",
+            SeaBreezeBoomerangEntity::createEntityType);
 
     public static final RegistryObject<EntityType<FireballEntity>> FIREBALL = ENTITY_TYPES.register("fireball",
             () -> EntityType.Builder.<FireballEntity>of(FireballEntity::new, MobCategory.MISC)

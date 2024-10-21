@@ -59,6 +59,7 @@ public class AbstractBombEntity extends ThrowableItemProjectile {
 
     private static final double CHAIN_REACTION_RADIUS = 8.0;
     public boolean explodedByChainReaction = false;
+    private boolean exploding = false;
 
     public AbstractBombEntity(EntityType<? extends AbstractBombEntity> type, Level level, float secondsToExplode, float secondsToFlashRapidly, int explosionPower, double bounceDampeningFactor) {
         super(type, level);
@@ -191,7 +192,8 @@ public class AbstractBombEntity extends ThrowableItemProjectile {
 
 
     public void explode() {
-        if (!this.level().isClientSide) {
+        if (!this.level().isClientSide && !exploding) {
+            exploding = true;
             BlockPos explosionPos = this.blockPosition();
 
             // Trigger chain reaction before main explosion
@@ -229,10 +231,11 @@ public class AbstractBombEntity extends ThrowableItemProjectile {
                 explosionBox
         );
         for (AbstractBombEntity bomb : nearbyBombs) {
-            if (bomb != this && !bomb.explodedByChainReaction) {
-                bomb.explodedByChainReaction = true;
-                bomb.explode();
+            if (bomb == null || bomb == this || bomb.explodedByChainReaction || bomb.isRemoved()) {
+                continue;
             }
+            bomb.explodedByChainReaction = true;
+            bomb.explode();
         }
 
         // Get and trigger water bombs
@@ -241,10 +244,11 @@ public class AbstractBombEntity extends ThrowableItemProjectile {
                 explosionBox
         );
         for (AbstractWaterBombEntity waterBomb : nearbyWaterBombs) {
-            if (!waterBomb.explodedByChainReaction) {  // Assuming similar field exists in AbstractWaterBombEntity
-                waterBomb.explodedByChainReaction = true;
-                waterBomb.explode();
+            if (waterBomb == null || waterBomb.explodedByChainReaction || waterBomb.isRemoved()) {
+                continue;
             }
+            waterBomb.explodedByChainReaction = true;
+            waterBomb.explode();
         }
     }
 

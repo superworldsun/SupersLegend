@@ -12,6 +12,8 @@ public class Config {
 
     private static final ForgeConfigSpec.IntValue BASE_PLAYER_HEALTH = BUILDER.defineInRange("Base player health", 20, 1, 20);
     private static final ForgeConfigSpec.BooleanValue ENABLE_TEMPERATURE = BUILDER.define("Activate the temperature system", true);
+    public static final ForgeConfigSpec.BooleanValue SEA_BREEZE_BOOMERANG_FOLLOWS = BUILDER.comment("The WW Boomerang will follow your mouse till it hits it's range limit.")
+            .define("SeaBreezeBoomerangFollows", true);
     private static final ForgeConfigSpec.BooleanValue BOOMERANGS_TURN_BACK_ON_HIT = BUILDER.define("Boomerangs turn back on hit", true);
     private static final ForgeConfigSpec.BooleanValue BOOMERANGS_BREAK_SOFT_BLOCKS = BUILDER.define("Boomerangs break soft blocks", true);
     private static final ForgeConfigSpec.BooleanValue BOOMERANGS_ACTIVATE_LEVERS = BUILDER.define("Boomerangs activate levers", true);
@@ -26,6 +28,7 @@ public class Config {
 
     private static int base_player_heath;
     private static boolean enable_temperature;
+    private static boolean sea_breeze_boomerang_follows;
     private static boolean boomerangs_turn_back_on_hit;
     private static boolean boomerangs_break_soft_blocks;
     private static boolean boomerangs_activate_levers;
@@ -39,6 +42,7 @@ public class Config {
         if (event.getConfig().getSpec() == SPEC) {
             base_player_heath = BASE_PLAYER_HEALTH.get();
             enable_temperature = ENABLE_TEMPERATURE.get();
+            sea_breeze_boomerang_follows = SEA_BREEZE_BOOMERANG_FOLLOWS.get();
             boomerangs_turn_back_on_hit = BOOMERANGS_TURN_BACK_ON_HIT.get();
             boomerangs_break_soft_blocks = BOOMERANGS_BREAK_SOFT_BLOCKS.get();
             boomerangs_activate_levers = BOOMERANGS_ACTIVATE_LEVERS.get();
@@ -56,6 +60,10 @@ public class Config {
 
     public static boolean isTemperatureEnabled() {
         return isLoaded ? enable_temperature : ENABLE_TEMPERATURE.get();
+    }
+
+    public static boolean doSeaBreezeBoomerangFollows() {
+        return isLoaded ? sea_breeze_boomerang_follows : SEA_BREEZE_BOOMERANG_FOLLOWS.get();
     }
 
     public static boolean doBoomerangsTurnBackOnHit() {

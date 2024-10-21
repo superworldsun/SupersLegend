@@ -66,6 +66,7 @@ public class OcarinaScreen extends Screen {
     public OcarinaScreen(Player player) {
         super(Component.literal("Ocarina"));
         this.player = player;
+        this.minecraft = Minecraft.getInstance();
         clearPlayedNotes();
     }
 

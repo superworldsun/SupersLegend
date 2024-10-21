@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.entities.projectiles.boomerang;
 
+import com.superworldsun.superslegend.Config;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -21,7 +22,7 @@ public class SeaBreezeBoomerangEntity extends AbstractBoomerangEntity {
 
     public SeaBreezeBoomerangEntity(EntityType<SeaBreezeBoomerangEntity> type, Level level) {
         super(type, level);
-        turnBackTimer = 30;
+        turnBackTimer = 40;
         turningBack = false;
         bounceFactor = 0.84999999999999998D;
     }
@@ -41,46 +42,15 @@ public class SeaBreezeBoomerangEntity extends AbstractBoomerangEntity {
     }
 
     @Override
-    public void tick() {
-        Player owner = getOwner();
-        if (owner == null || owner.isDeadOrDying()) {
-            kill();
-            return;
-        }
+    protected void beforeTurnAround(Player player) {
+        if (!bouncing && Config.doSeaBreezeBoomerangFollows()) {
+            double x = -Mth.sin((player.getYRot() * 3.141593F) / 180F);
+            double z = Mth.cos((player.getYRot() * 3.141593F) / 180F);
 
-        if (tickCount % 4 == 0) {
-            level().playSound(null, getX(), getY(), getZ(), getFlyLoopSound(), SoundSource.PLAYERS, 1f, 1f);
-        }
-
-        updateCollision();
-        if (!turningBack)
-            updateGaleMotion();
-        determineRotation();
-        prevRotation = getRotation();
-        setRotation(Mth.wrapDegrees(getRotation() + 36F));
-        updateCarriedItems();
-        super.tick();
-    }
-
-    private void updateGaleMotion() {
-        Player owner = getOwner();
-        if (owner == null) return;
-
-        Vec3 lookAngle = owner.getLookAngle();
-        double motionX = lookAngle.x * getDefaultSpeed;
-        double motionY = lookAngle.y * getDefaultSpeed;
-        double motionZ = lookAngle.z * getDefaultSpeed;
-
-        setDeltaMovement(motionX, motionY, motionZ);
-
-        double xPos = getX() + getDeltaMovement().x;
-        double yPos = getY() + getDeltaMovement().y;
-        double zPos = getZ() + getDeltaMovement().z;
-        setPos(xPos, yPos, zPos);
-
-        double distanceToOwner = distanceTo(owner);
-        if (distanceToOwner < 1.5D) {
-            onReturnToOwner();
+            double motionX = 0.5D * x * (double) Mth.cos((player.getXRot() / 180F) * 3.141593F);
+            double motionY = -0.5D * (double) Mth.sin((player.getXRot() / 180F) * 3.141593F);
+            double motionZ = 0.5D * z * (double) Mth.cos((player.getXRot() / 180F) * 3.141593F);
+            this.setDeltaMovement(motionX, motionY, motionZ);
         }
     }
 

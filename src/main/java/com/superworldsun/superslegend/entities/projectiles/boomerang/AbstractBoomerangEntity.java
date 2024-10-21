@@ -138,9 +138,13 @@ public abstract class AbstractBoomerangEntity extends Entity {
                 bouncing = true;
                 setDeltaMovement(new Vec3(newX, newY, newZ).multiply(bounceFactor, bounceFactor, bounceFactor));
             }
-            if (turnBackTimer-- <= 0) {
-                turningBack = true;
+            if (owner != null) {
+                this.beforeTurnAround(owner);
+                if (turnBackTimer-- <= 0) {
+                    turningBack = true;
+                }
             }
+
         } else {
             if (owner == null) return;
             double x = owner.getX() - getX();
@@ -174,8 +178,7 @@ public abstract class AbstractBoomerangEntity extends Entity {
     }
 
     protected boolean canBreakBlock(Block block) {
-        if (block.defaultDestroyTime() == 0f && Config.doBoomerangsBreakSoftBlocks()) return true;
-        return false;
+        return block.defaultDestroyTime() == 0f && Config.doBoomerangsBreakSoftBlocks();
     }
 
     protected boolean canActivateBlock(Block block, BlockPos pos) {
@@ -200,6 +203,10 @@ public abstract class AbstractBoomerangEntity extends Entity {
         Vec3 destination = position().add(getDeltaMovement());
         ClipContext context = new ClipContext(position(), destination, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, null);
         return level().clip(context);
+    }
+
+    protected void beforeTurnAround(Player player) {
+        // NO-OP
     }
 
     public void onEntityHit(Entity entity) {

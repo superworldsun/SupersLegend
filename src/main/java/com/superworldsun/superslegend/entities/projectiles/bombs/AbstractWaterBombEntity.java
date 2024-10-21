@@ -56,6 +56,7 @@ public class AbstractWaterBombEntity extends ThrowableItemProjectile {
     private final double bounceDampeningFactor;
     private static final double CHAIN_REACTION_RADIUS = 8.0;
     public boolean explodedByChainReaction = false;
+    private boolean exploding = false;
 
 
     public AbstractWaterBombEntity(EntityType<? extends AbstractWaterBombEntity> type, Level level, float secondsToExplode, float secondsToFlashRapidly, int explosionPower, double bounceDampeningFactor) {
@@ -180,7 +181,8 @@ public class AbstractWaterBombEntity extends ThrowableItemProjectile {
 
 
     public void explode() {
-        if (!this.level().isClientSide()) {
+        if (!this.level().isClientSide() && !exploding) {
+            exploding = true;
             BlockPos explosionPos = this.blockPosition();
             triggerNearbyBombs();
 
@@ -230,10 +232,11 @@ public class AbstractWaterBombEntity extends ThrowableItemProjectile {
                 explosionBox
         );
         for (AbstractWaterBombEntity waterBomb : nearbyBombs) {
-            if (waterBomb != this && !waterBomb.explodedByChainReaction) {
-                waterBomb.explodedByChainReaction = true;
-                waterBomb.explode();
+            if (waterBomb == null || waterBomb == this || waterBomb.explodedByChainReaction || waterBomb.isRemoved()) {
+                continue;
             }
+            waterBomb.explodedByChainReaction = true;
+            waterBomb.explode();
         }
 
         // Get and trigger water bombs
@@ -242,10 +245,11 @@ public class AbstractWaterBombEntity extends ThrowableItemProjectile {
                 explosionBox
         );
         for (AbstractBombEntity bomb : nearbyWaterBombs) {
-            if (!bomb.explodedByChainReaction) {
-                bomb.explodedByChainReaction = true;
-                bomb.explode();
+            if (bomb == null || bomb.explodedByChainReaction || bomb.isRemoved()) {
+                continue;
             }
+            bomb.explodedByChainReaction = true;
+            bomb.explode();
         }
     }
 
