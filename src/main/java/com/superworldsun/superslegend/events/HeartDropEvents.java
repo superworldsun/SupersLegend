@@ -15,7 +15,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class HeartDropEvents {
-	private static final int HEART_HEALING = 1;
 	private static final double HEART_DROP_CHANCE = 0.30;
 
 	@SubscribeEvent
@@ -31,7 +30,6 @@ public class HeartDropEvents {
 				double yOffset = random.nextFloat() * 0.5F;
 				double zOffset = random.nextFloat() * 0.5F - 0.25F;
 				HeartEntity heart = new HeartEntity(level, entity.getX() + xOffset, entity.getY() + yOffset, entity.getZ() + zOffset);
-				heart.value = HEART_HEALING;
 				level.addFreshEntity(heart);
 			}
 		}

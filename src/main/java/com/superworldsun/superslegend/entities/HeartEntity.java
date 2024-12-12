@@ -25,7 +25,6 @@ public class HeartEntity extends Entity {
     public int age;
     public int throwTime;
     //Default amount of healing.
-    public int value = 2;
     private int health = 5;
 
     public HeartEntity(World p_i1585_1_, double p_i1585_2_, double p_i1585_4_, double p_i1585_6_) {
@@ -123,14 +122,12 @@ public class HeartEntity extends Entity {
     protected void readAdditionalSaveData(CompoundNBT p_70037_1_) {
         this.health = p_70037_1_.getShort("Health");
         this.age = p_70037_1_.getShort("Age");
-        this.value = p_70037_1_.getShort("Value");
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundNBT p_213281_1_) {
         p_213281_1_.putShort("Health", (short) this.health);
         p_213281_1_.putShort("Age", (short) this.age);
-        p_213281_1_.putShort("Value", (short) this.value);
     }
 
     /**
@@ -141,8 +138,7 @@ public class HeartEntity extends Entity {
         if (!this.level.isClientSide) {
             if (this.throwTime == 0 && player.getHealth() != player.getMaxHealth())
             {
-                player.heal(value);
-                player.heal(value);
+                player.heal(2);
                 this.playSound(SoundInit.HEART.get(), 1F, 1F);
                 this.remove();
 
@@ -161,10 +157,6 @@ public class HeartEntity extends Entity {
     @Override
     public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    public int getValue() {
-        return this.value;
     }
 	
 	public static EntityType<HeartEntity> createEntityType()
