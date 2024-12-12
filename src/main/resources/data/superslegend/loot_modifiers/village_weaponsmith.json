@@ -3,9 +3,9 @@
    "conditions":[
       {
          "condition":"forge:loot_table_id",
-         "loot_table_id":"minecraft:chests/village_weaponsmith"
+         "loot_table_id":"minecraft:chests/village/village_weaponsmith"
       }
    ],
-   "table":"superslegend:chests/village_weaponsmith",
+   "table":"superslegend:chests/village/village_weaponsmith",
    "chance":1.0
 }

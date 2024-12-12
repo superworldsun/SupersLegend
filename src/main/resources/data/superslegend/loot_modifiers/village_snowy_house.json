@@ -3,9 +3,9 @@
    "conditions":[
       {
          "condition":"forge:loot_table_id",
-         "loot_table_id":"minecraft:chests/village_snowy_house"
+         "loot_table_id":"minecraft:chests/village/village_snowy_house"
       }
    ],
-   "table":"superslegend:chests/village_snowy_house",
+   "table":"superslegend:chests/village/village_snowy_house",
    "chance":1.0
 }

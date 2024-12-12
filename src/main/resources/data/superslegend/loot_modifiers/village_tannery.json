@@ -3,9 +3,9 @@
    "conditions":[
       {
          "condition":"forge:loot_table_id",
-         "loot_table_id":"minecraft:chests/village_tannery"
+         "loot_table_id":"minecraft:chests/village/village_tannery"
       }
    ],
-   "table":"superslegend:chests/village_tannery",
+   "table":"superslegend:chests/village/village_tannery",
    "chance":1.0
 }
