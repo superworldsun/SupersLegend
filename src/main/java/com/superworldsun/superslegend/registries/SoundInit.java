@@ -77,7 +77,7 @@ public class SoundInit
 	public static final RegistryObject<SoundEvent> POE_LAUGH = register("item.poe_laugh");
 
 	public static final RegistryObject<SoundEvent> BOLERO_OF_FIRE = register("item.bolero_of_fire");
-	public static final RegistryObject<SoundEvent> ELEGY_OF_EMPTYNESS = register("item.elegy_of_emptyness");
+	public static final RegistryObject<SoundEvent> ELEGY_OF_EMPTINESS = register("item.elegy_of_emptiness");
 	public static final RegistryObject<SoundEvent> EPONAS_SONG = register("item.eponas_song");
 	public static final RegistryObject<SoundEvent> GORON_LULLABY = register("item.goron_lullaby");
 	public static final RegistryObject<SoundEvent> INVERTED_SONG_OF_TIME = register("item.inverted_song_of_time");

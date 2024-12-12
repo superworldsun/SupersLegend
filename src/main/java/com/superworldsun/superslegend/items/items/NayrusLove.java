@@ -78,7 +78,7 @@ public class NayrusLove extends Item {
 	@Override
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag) {
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.AQUA + "Grants invinciblity"));
+		list.add(new StringTextComponent(TextFormatting.AQUA + "Grants invincibility"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Right-click to use"));
 		list.add(new StringTextComponent(TextFormatting.GRAY + "Uses Magic on use"));
 	}

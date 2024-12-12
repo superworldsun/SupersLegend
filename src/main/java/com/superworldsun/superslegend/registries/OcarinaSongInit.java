@@ -33,6 +33,6 @@ public class OcarinaSongInit
 	/*17*/ public static final RegistryObject<OcarinaSong> SONATA_OF_AWAKENING = REGISTRY.register("sonata_of_awakening", SonataOfAwakening::new);
 	/*18*/ public static final RegistryObject<OcarinaSong> GORON_LULLABY = REGISTRY.register("goron_lullaby", GoronLullaby::new);
 	/*19*/ public static final RegistryObject<OcarinaSong> NEW_WAVE_BOSSA_NOVA = REGISTRY.register("new_wave_bossa_nova", NewWaveBossaNova::new);
-	/*20*/ public static final RegistryObject<OcarinaSong> ELEGY_OF_EMPTYNESS = REGISTRY.register("elegy_of_emptyness", ElegyOfEmptyness::new);
+	/*20*/ public static final RegistryObject<OcarinaSong> ELEGY_OF_EMPTINESS = REGISTRY.register("elegy_of_emptiness", ElegyOfEmptiness::new);
 	/*21*/ public static final RegistryObject<OcarinaSong> OATH_TO_ORDER = REGISTRY.register("oath_to_order", OathToOrder::new);
 }

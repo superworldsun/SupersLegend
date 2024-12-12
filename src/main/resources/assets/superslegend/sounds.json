@@ -196,10 +196,10 @@
 		"subtitle": "superslegend.subtitle.bolero_of_fire",
 		"sounds": [ "superslegend:item/bolero_of_fire" ]
 	},
-	"item.elegy_of_emptyness": {
+	"item.elegy_of_emptiness": {
 		"category": "player",
-		"subtitle": "superslegend.subtitle.elegy_of_emptyness",
-		"sounds": [ "superslegend:item/elegy_of_emptyness" ]
+		"subtitle": "superslegend.subtitle.elegy_of_emptiness",
+		"sounds": [ "superslegend:item/elegy_of_emptiness" ]
 	},
 	"item.eponas_song": {
 		"category": "player",

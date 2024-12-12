@@ -100,6 +100,6 @@ public class GreenPotion extends Item
 	public void appendHoverText(@Nonnull ItemStack stack, World world, @Nonnull List<ITextComponent> list, @Nonnull ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.GREEN + "The Medicine of Stamina"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "The Medicine of Magic"));
 	}
 }

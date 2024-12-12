@@ -39,9 +39,9 @@ public class DeliveryBagItem extends BagItem
 				item == ItemInit.INVERTED_SONG_OF_TIME_SHEET.get() || item == ItemInit.SONATA_OF_AWAKENING_SHEET.get() ||
 				item == ItemInit.SONG_OF_DOUBLE_TIME_SHEET.get() || item == ItemInit.PRELUDE_OF_LIGHT_SHEET.get() ||
 				item == ItemInit.GORON_LULLABY_SHEET.get() || item == ItemInit.OATH_TO_ORDER_SHEET.get() ||
-				item == ItemInit.NEW_WAVE_BOSSA_NOVA_SHEET.get() || item == ItemInit.ELEGY_OF_EMPTYNESS_SHEET.get() ||
+				item == ItemInit.NEW_WAVE_BOSSA_NOVA_SHEET.get() || item == ItemInit.ELEGY_OF_EMPTINESS_SHEET.get() ||
 				item == ItemInit.SONG_OF_HEALING_SHEET.get() || item == ItemInit.ALL_SONGS_SHEET.get() ||
-				item == ItemInit.AMNEISA_SHEET.get() ||
+				item == ItemInit.AMNESIA_SHEET.get() ||
 				item == Items.FILLED_MAP;
 	}
 

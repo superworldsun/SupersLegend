@@ -77,7 +77,7 @@ public class ArmorSnowquill extends NonEnchantArmor {
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.WHITE + "The armor of the Ritto"));
+		list.add(new StringTextComponent(TextFormatting.WHITE + "The armor of the Rito"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Provides resistance again the cold"));
 		list.add(new StringTextComponent(TextFormatting.GREEN + "Wearing full set makes you freezable"));
 	}

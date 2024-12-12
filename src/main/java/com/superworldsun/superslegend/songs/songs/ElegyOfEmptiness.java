@@ -7,9 +7,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class ElegyOfEmptyness extends OcarinaSong
+public class ElegyOfEmptiness extends OcarinaSong
 {
-	public ElegyOfEmptyness()
+	public ElegyOfEmptiness()
 	{
 		super("rlrdrul", 0x2E2719);
 	}
@@ -17,7 +17,7 @@ public class ElegyOfEmptyness extends OcarinaSong
 	@Override
 	public SoundEvent getPlayingSound()
 	{
-		return SoundInit.ELEGY_OF_EMPTYNESS.get();
+		return SoundInit.ELEGY_OF_EMPTINESS.get();
 	}
 
 	@Override

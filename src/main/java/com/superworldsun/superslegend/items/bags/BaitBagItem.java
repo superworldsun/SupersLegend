@@ -3,7 +3,6 @@ package com.superworldsun.superslegend.items.bags;
 import java.util.List;
 
 import com.superworldsun.superslegend.registries.ItemGroupInit;
-import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.block.CropsBlock;
 import net.minecraft.client.util.ITooltipFlag;
@@ -39,6 +38,6 @@ public class BaitBagItem extends BagItem
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.GOLD + "Holds all types of parchment and letters"));
+		list.add(new StringTextComponent(TextFormatting.GOLD + "Holds all types of food and bait"));
 	}
 }

@@ -34,8 +34,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class SlingShot extends BowItem {
-	public SlingShot() {
+public class Slingshot extends BowItem {
+	public Slingshot() {
 		super(new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES));
 	}
 
@@ -126,7 +126,7 @@ public class SlingShot extends BowItem {
 
 	@SubscribeEvent
 	public static void onLivingEntityUseItem(LivingEntityUseItemEvent event) {
-		if (event.getItem().getItem() instanceof SlingShot) {
+		if (event.getItem().getItem() instanceof Slingshot) {
 			if (event.getEntityLiving().isUsingItem()) {
 				if (event.getDuration() == 72000) {
 					event.getEntityLiving().level.playSound(null, event.getEntityLiving(), SoundInit.SLINGSHOT_PULL.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);

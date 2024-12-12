@@ -25,6 +25,6 @@ public class SacredPedestalItem extends ModBlockItem
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.GOLD + "Can be activated with a beam of the master sword"));
+		list.add(new StringTextComponent(TextFormatting.GOLD + "Can be activated with a beam of the Master Sword"));
 	}
 }

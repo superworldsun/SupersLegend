@@ -10,7 +10,7 @@ public class ElegyOfEmptinessSheet extends SongSheetItem
 {
 	public ElegyOfEmptinessSheet()
 	{
-		super(OcarinaSongInit.ELEGY_OF_EMPTYNESS);
+		super(OcarinaSongInit.ELEGY_OF_EMPTINESS);
 	}
 	
 	@Override

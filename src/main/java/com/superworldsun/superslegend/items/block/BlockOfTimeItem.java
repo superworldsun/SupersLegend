@@ -25,7 +25,7 @@ public class BlockOfTimeItem extends ModBlockItem
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.BLUE + "can be displaced & returned to their"));
+		list.add(new StringTextComponent(TextFormatting.BLUE + "Can be displaced & returned to their"));
 		list.add(new StringTextComponent(TextFormatting.BLUE + "original location by playing the \"Song of Time\""));
 	}
 }

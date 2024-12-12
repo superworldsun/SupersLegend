@@ -62,6 +62,6 @@ public class KokiriArmor extends NonEnchantArmor
 	public void appendHoverText(ItemStack stack, World world, java.util.List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "Traditional Heros Garb"));
+		list.add(new StringTextComponent(TextFormatting.DARK_GREEN + "Traditional Heroes' Garb"));
 	}
 }

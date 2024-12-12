@@ -86,8 +86,8 @@ public class AllNightMask extends NonEnchantItem implements ICurioItem
 	public void appendHoverText(ItemStack stack, World world, List<ITextComponent> list, ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new StringTextComponent(TextFormatting.WHITE + "Cant sleep huh?"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants nightvision"));
+		list.add(new StringTextComponent(TextFormatting.WHITE + "Can't sleep huh?"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants night vision"));
 	}
 	
 	@Override

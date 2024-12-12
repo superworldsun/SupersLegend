@@ -47,8 +47,8 @@ public class MagicArmor extends NonEnchantArmor
 	{
 		super.appendHoverText(stack, world, list, flag);
 		list.add(new StringTextComponent(TextFormatting.DARK_BLUE + "Magic Armor"));
-		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants invicibility from rupee"));
-		list.add(new StringTextComponent(TextFormatting.RED + "Slows user when rupee are depleted"));
+		list.add(new StringTextComponent(TextFormatting.GREEN + "Grants invincibility from Rupees"));
+		list.add(new StringTextComponent(TextFormatting.RED + "Slows user when Rupees are depleted"));
 	}
 
 	@SuppressWarnings("unchecked")

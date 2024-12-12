@@ -160,7 +160,7 @@ public class BluePotion extends Item
 	public void appendHoverText(@Nonnull ItemStack stack, World world,@Nonnull List<ITextComponent> list,@Nonnull ITooltipFlag flag)
 	{
 		super.appendHoverText(stack, world, list, flag);				
-		list.add(new StringTextComponent(TextFormatting.BLUE + "The Medicine of Life & Stamina"));
+		list.add(new StringTextComponent(TextFormatting.BLUE + "The Medicine of Life & Magic"));
 	}  
 	
 }
