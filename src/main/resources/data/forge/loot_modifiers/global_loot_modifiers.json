@@ -3,10 +3,25 @@
    "entries":[
       "superslegend:fishing",
       "superslegend:creeper_music_disc",
+
       "superslegend:abandoned_mineshaft",
+      "superslegend:bastion_hoglin_stable",
+      "superslegend:bastion_bridge",
+      "superslegend:nether_bridge",
+      "superslegend:shipwreck_map",
+      "superslegend:stronghold_corridor",
+      "superslegend:stronghold_crossing",
+
+      "superslegend:village_armorer",
+      "superslegend:village_butcher",
+      "superslegend:village_fletcher",
+      "superslegend:village_fisher",
+      "superslegend:village_mason",
+      "superslegend:village_savanna_house",
+      "superslegend:village_shepherd",
       "superslegend:village_cartographer",
       "superslegend:village_plains_house",
-
+      "superslegend:village_desert_house",
       "superslegend:village_snowy_house",
       "superslegend:village_taiga_house",
       "superslegend:village_tannery",
@@ -16,8 +31,8 @@
       "superslegend:simple_dungeon",
       "superslegend:spawn_bonus_chest",
       "superslegend:ruined_portal",
-
       "superslegend:village_temple",
+
       "superslegend:desert_pyramid",
       "superslegend:bastion_other",
       "superslegend:bastion_treasure",
