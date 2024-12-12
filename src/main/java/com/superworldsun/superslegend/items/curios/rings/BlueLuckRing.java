@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.curios.rings;
 
 import java.util.List;
 
+import com.superworldsun.superslegend.entities.projectiles.mastersword.MasterSwordSwordEntity;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import com.superworldsun.superslegend.SupersLegendMain;
@@ -46,7 +47,7 @@ public class BlueLuckRing extends RingItem
 			// Check if player is wearing it.
 			if (!stack.isEmpty())
 			{
-				if (event.getSource() instanceof IndirectEntityDamageSource && event.getSource().getEntity() instanceof GuardianEntity)
+				if (event.getSource() instanceof IndirectEntityDamageSource && event.getSource().getEntity() instanceof GuardianEntity || event.getSource().getEntity() instanceof MasterSwordSwordEntity)
 				{
 					event.setAmount(event.getAmount() / 2);
 				}
