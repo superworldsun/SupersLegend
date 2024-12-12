@@ -3,20 +3,20 @@
    "pools":[
       {
          "rolls": {
-            "min": 1.0,
-            "max": 2.0,
+            "min": 1,
+            "max": 2,
             "type": "minecraft:uniform"
          },
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 50,
+               "weight": 52,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 3.0,
-                        "max": 15.0,
+                        "min": 2,
+                        "max": 14,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -25,13 +25,13 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 30,
+               "weight": 33,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 3.0,
-                        "max": 6.0,
+                        "min": 1,
+                        "max": 5,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -40,13 +40,8 @@
             },
             {
                "type":"minecraft:item",
-               "weight":19,
-               "name":"superslegend:unappraised_ring"
-            },
-            {
-               "type":"minecraft:item",
-               "weight":1,
-               "name":"superslegend:master_ore"
+               "weight":15,
+               "name":"superslegend:goron_lullaby_sheet"
             }
          ]
       }
