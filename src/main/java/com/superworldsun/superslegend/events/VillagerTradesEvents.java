@@ -26,7 +26,13 @@ public class VillagerTradesEvents
 		List<VillagerTrades.ITrade> level3Trades = event.getTrades().get(3);
 		List<VillagerTrades.ITrade> level4Trades = event.getTrades().get(4);
 		List<VillagerTrades.ITrade> level5Trades = event.getTrades().get(5);
-		
+
+		if (event.getType() == VillagerProfession.FARMER)
+		{
+			level2Trades.add(createTrade(new ItemStack(ItemInit.SILVER_RUPEE.get(), 1), new ItemStack(ItemInit.EPONAS_SONG_SHEET.get()), 1, 100, 1F));
+			level4Trades.add(createTrade(new ItemStack(ItemInit.SILVER_RUPEE.get(), 1), new ItemStack(ItemInit.SARIAS_SONG_SHEET.get()), 1, 100, 1F));
+			level5Trades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 1), new ItemStack(ItemInit.ZELDAS_LULLABY_SHEET.get()), 1, 100, 1F));
+		}
 		if (event.getType() == VillagerProfession.TOOLSMITH)
 		{
 			level1Trades.add(createTrade(new ItemStack(ItemInit.RED_RUPEE.get()), new ItemStack(ItemInit.UNAPPRAISED_RING.get()), new ItemStack(ItemInit.APPRAISED_RING_BOX.get()), 99, 5, 0F));
@@ -47,7 +53,9 @@ public class VillagerTradesEvents
 		}
 		if (event.getType() == VillagerProfession.CLERIC)
 		{
+			level3Trades.add(createTrade(new ItemStack(ItemInit.SILVER_RUPEE.get(), 2), new ItemStack(ItemInit.PRELUDE_OF_LIGHT_SHEET.get()), 1, 150, 0F));
 			level5Trades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 5), new ItemStack(ItemInit.HEART_PIECE.get()), 1, 50, 0F));
+			level5Trades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 10), new ItemStack(ItemInit.MAGIC_LIGHT_ARROW.get()), 1, 700, 0F));
 		}
 		if (event.getType() == VillagerProfession.FISHERMAN)
 		{
@@ -59,7 +67,7 @@ public class VillagerTradesEvents
 		}
 		if (event.getType() == VillagerProfession.LIBRARIAN)
 		{
-			level2Trades.add(createTrade(new ItemStack(ItemInit.BLUE_RUPEE.get(), 4), new ItemStack(ItemInit.AMNEISA_SHEET.get()), 1, 25, 0F));
+			level2Trades.add(createTrade(new ItemStack(ItemInit.RED_RUPEE.get(), 1), new ItemStack(ItemInit.AMNESIA_SHEET.get()), 1, 25, 0F));
 			level4Trades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 1), new ItemStack(ItemInit.SONG_OF_TIME_SHEET.get()), 1, 25, 0F));
 			level5Trades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 1), new ItemStack(ItemInit.SONG_OF_HEALING_SHEET.get()), 1, 25, 0F));
 			level5Trades.add(createTrade(new ItemStack(ItemInit.GOLD_RUPEE.get(), 1), new ItemStack(ItemInit.SONG_OF_SOARING_SHEET.get()), 1, 25, 0F));
