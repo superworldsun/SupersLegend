@@ -51,20 +51,28 @@ public class StrengthHandItem extends HandItem {
 		int mobWeight = getMobWeight(target);
 		ItemStack strengthHandStack = getStrengthHandStack(player);
 		boolean canPickUp = mobWeight == 0;
+
 		if (!strengthHandStack.isEmpty()) {
 			StrengthHandItem strengthHand = (StrengthHandItem) strengthHandStack.getItem();
 			canPickUp = canPickUp || strengthHand.canPickUpEntity(target.getType());
 		}
+
 		if (player.getPassengers().isEmpty() && player.isCrouching() && canPickUp) {
-			LivingEntity rider = (LivingEntity) target;
-			if (!rider.isVehicle()) {
-				rider.startRiding(player, true);
-				BlockPos currentPos = player.blockPosition();
-				player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.PICKUP.get(), SoundCategory.PLAYERS, 1f, 1f);
+			// Ensure the target is a LivingEntity before casting
+			if (target instanceof LivingEntity) {
+				LivingEntity rider = (LivingEntity) target;
+				if (!rider.isVehicle()) {
+					rider.startRiding(player, true);
+					BlockPos currentPos = player.blockPosition();
+					player.level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(),
+							SoundInit.PICKUP.get(), SoundCategory.PLAYERS, 1f, 1f);
+				}
 			}
 		} else if (!player.getPassengers().isEmpty() && !player.isCrouching()) {
-			LivingEntity rider = (LivingEntity) target;
-			rider.stopRiding();
+			if (target instanceof LivingEntity) {
+				LivingEntity rider = (LivingEntity) target;
+				rider.stopRiding();
+			}
 		}
 	}
 
