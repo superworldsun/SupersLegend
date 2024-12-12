@@ -39,7 +39,7 @@ public abstract class SongSheetItem extends Item
 	
 	public SongSheetItem(Supplier<OcarinaSong> songSupplier)
 	{
-		super(new Item.Properties().tab(ItemGroupInit.RESOURCES).stacksTo(1));
+		super(new Item.Properties().tab(ItemGroupInit.RESOURCES).stacksTo(16));
 		this.songSupplier = songSupplier;
 	}
 	
