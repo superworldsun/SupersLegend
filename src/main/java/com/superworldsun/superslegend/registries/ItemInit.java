@@ -108,7 +108,7 @@ public class ItemInit
 	public static final RegistryObject<Item> VOID_CONTAINER = ITEMS.register("void_container",
 			() -> new VoidContainer(new Item.Properties().tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<Item> UNAPPRAISED_RING = ITEMS.register("unappraised_ring",
-			() -> new UnnapraisedRingItem(new Item.Properties().stacksTo(64).tab(ItemGroupInit.RESOURCES)));
+			() -> new UnappraisedRingItem(new Item.Properties().stacksTo(64).tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<Item> APPRAISED_RING_BOX = ITEMS.register("appraised_ring_box",
 			() -> new AppraisedRingBox(new Item.Properties().stacksTo(64).tab(ItemGroupInit.RESOURCES)));
 
@@ -132,10 +132,10 @@ public class ItemInit
 	public static final RegistryObject<Item> GORON_LULLABY_SHEET = ITEMS.register("goron_lullaby_sheet", GoronLullabySheet::new);
 	public static final RegistryObject<Item> OATH_TO_ORDER_SHEET = ITEMS.register("oath_to_order_sheet", OathToOrderSheet::new);
 	public static final RegistryObject<Item> NEW_WAVE_BOSSA_NOVA_SHEET = ITEMS.register("new_wave_bossa_sheet", NewWaveBossaNovaSheet::new);
-	public static final RegistryObject<Item> ELEGY_OF_EMPTYNESS_SHEET = ITEMS.register("elegy_of_emptyness_sheet", ElegyOfEmptinessSheet::new);
+	public static final RegistryObject<Item> ELEGY_OF_EMPTINESS_SHEET = ITEMS.register("elegy_of_emptiness_sheet", ElegyOfEmptinessSheet::new);
 	public static final RegistryObject<Item> SONG_OF_HEALING_SHEET = ITEMS.register("song_of_healing_sheet", SongOfHealingSheet::new);
 	public static final RegistryObject<Item> ALL_SONGS_SHEET = ITEMS.register("all_songs_sheet", AllSongsSheet::new);
-	public static final RegistryObject<Item> AMNEISA_SHEET = ITEMS.register("amneisa_sheet", AmnesiaSheet::new);
+	public static final RegistryObject<Item> AMNESIA_SHEET = ITEMS.register("amnesia_sheet", AmnesiaSheet::new);
 
 	/*public static final RegistryObject<Item> SPINNER = ITEMS.register("spinner",
 			() -> new SpinnerItem(new Item.Properties().tab(SupersLegendMain.RESOURCES)));*/	
@@ -201,7 +201,7 @@ public class ItemInit
 			() -> new LynelBowX3(1, new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<LynelBowX5> LYNEL_BOW_X5 = ITEMS.register("lynel_bow_x5",
 			() -> new LynelBowX5(1, new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
-	public static final RegistryObject<Item> SLING_SHOT = ITEMS.register("sling_shot", SlingShot::new);
+	public static final RegistryObject<Item> SLINGSHOT = ITEMS.register("slingshot", Slingshot::new);
 	public static final RegistryObject<ShieldItem> DEKU_SHIELD = ITEMS.register("deku_shield",
 			() -> new DekuShield(new Item.Properties().stacksTo(1).durability(500).tab(ItemGroupInit.RESOURCES)));
 	public static final RegistryObject<ShieldItem> HYLIAN_SHIELD = ITEMS.register("hylian_shield",
@@ -870,4 +870,4 @@ public class ItemInit
 			map.put(category, categoryItem);
 		}
 	});
-}
+	}
