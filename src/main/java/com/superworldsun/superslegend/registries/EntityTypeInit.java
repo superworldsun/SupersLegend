@@ -33,7 +33,6 @@ public class EntityTypeInit
 	public static final RegistryObject<EntityType<BoomerangEntity>> REGULAR_BOOMERANG = ENTITIES.register("boomerang", RegularBoomerang::createEntityType);
 	public static final RegistryObject<EntityType<MagicBoomerangEntity>> MAGIC_BOOMERANG = ENTITIES.register("magic_boomerang", MagicBoomerang::createEntityType);
 	public static final RegistryObject<EntityType<WWBoomerangEntity>> WW_BOOMERANG = ENTITIES.register("ww_boomerang", WWBoomerang::createEntityType);
-	public static final RegistryObject<EntityType<GaleBoomerangEntity>> GALE_BOOMERANG = ENTITIES.register("gale_boomerang", GaleBoomerang::createEntityType);
 	public static final RegistryObject<EntityType<MasterSwordSwordEntity>> MASTERSWORD_SWORD_ENTITY = ENTITIES.register("mastersword_sword", MasterSwordSwordEntity::createEntityType);
 	public static final RegistryObject<EntityType<LongshotEntity>> LONGSHOT_ENTITY = ENTITIES.register("longshot", LongshotEntity::createEntityType);
 	public static final RegistryObject<EntityType<ClawshotEntity>> CLAWSHOT_ENTITY = ENTITIES.register("clawshot", ClawshotEntity::createEntityType);

@@ -47,7 +47,6 @@ public class EntityRendererInit {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.REGULAR_BOOMERANG.get(), BoomerangRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MAGIC_BOOMERANG.get(), MagicBoomerangRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.WW_BOOMERANG.get(), WWBoomerangRender::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.GALE_BOOMERANG.get(), GaleBoomerangRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.MASTERSWORD_SWORD_ENTITY.get(), MasterSwordRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.BOMB.get(), BombRender::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypeInit.WATER_BOMB.get(), WaterBombRender::new);
