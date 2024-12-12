@@ -2,7 +2,20 @@
    "type":"minecraft:chest",
    "pools":[
       {
-         "rolls":1.0,
+         "rolls": {
+            "min": 0,
+            "max": 1,
+            "type": "minecraft:uniform"
+         },
+         "entries":[
+            {
+               "type": "minecraft:item",
+               "name": "superslegend:fire_temple_disc"
+            }
+         ]
+      },
+      {
+         "rolls": 3,
          "entries":[
             {
                "type": "minecraft:item",
@@ -11,8 +24,8 @@
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 3.0,
-                        "max": 13.0,
+                        "min": 3,
+                        "max": 13,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -26,8 +39,8 @@
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 1.0,
-                        "max": 4.0,
+                        "min": 1,
+                        "max": 4,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -36,27 +49,27 @@
             },
             {
                "type":"minecraft:item",
-               "weight":14,
+               "weight": 14,
                "name":"superslegend:heart_piece"
             },
             {
                "type":"minecraft:item",
-               "weight":10,
+               "weight": 10,
                "name":"superslegend:song_of_time_sheet"
             },
             {
                "type":"minecraft:item",
-               "weight":8,
+               "weight": 8,
                "name":"superslegend:song_of_double_time_sheet"
             },
             {
                "type":"minecraft:item",
-               "weight":8,
+               "weight": 8,
                "name":"superslegend:inverted_song_of_time_sheet"
             },
             {
                "type":"minecraft:item",
-               "weight":5,
+               "weight": 5,
                "name":"superslegend:gorons_bracelet"
             }
          ]

@@ -3,8 +3,21 @@
    "pools":[
       {
          "rolls": {
-            "min": 2.0,
-            "max": 3.0,
+            "min": 0,
+            "max": 1,
+            "type": "minecraft:uniform"
+         },
+         "entries":[
+            {
+               "type": "minecraft:item",
+               "name": "superslegend:fire_temple_disc"
+            }
+         ]
+      },
+      {
+         "rolls": {
+            "min": 2,
+            "max": 3,
             "type": "minecraft:uniform"
          },
          "entries":[
@@ -15,8 +28,8 @@
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 3.0,
-                        "max": 5.0,
+                        "min": 1,
+                        "max": 3,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -30,8 +43,8 @@
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 1.0,
-                        "max": 3.0,
+                        "min": 1,
+                        "max": 3,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -45,8 +58,8 @@
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 4.0,
-                        "max": 19.0,
+                        "min": 4,
+                        "max": 19,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -56,42 +69,22 @@
             {
                "type": "minecraft:item",
                "weight": 13,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 1.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
                "name": "superslegend:bolero_of_fire_sheet"
             },
             {
                "type": "minecraft:item",
+               "weight": 11,
+               "name": "superslegend:heart_piece"
+            },
+            {
+               "type": "minecraft:item",
                "weight": 8,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 1.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
                "name": "superslegend:gorons_bracelet"
             },
             {
-               "type":"minecraft:item",
-               "weight":11,
-               "name":"superslegend:heart_piece"
-            },
-            {
-               "type":"minecraft:item",
-               "weight":3,
-               "name":"superslegend:triforce_power_shard"
+               "type": "minecraft:item",
+               "weight": 3,
+               "name": "superslegend:triforce_power_shard"
             }
          ]
       }

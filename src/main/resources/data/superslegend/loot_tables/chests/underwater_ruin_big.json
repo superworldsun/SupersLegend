@@ -2,31 +2,50 @@
    "type":"minecraft:chest",
    "pools":[
       {
-         "rolls":1.0,
+         "rolls": {
+            "min": 0,
+            "max": 1,
+            "type": "minecraft:uniform"
+         },
          "entries":[
             {
                "type":"minecraft:item",
-               "weight":37,
-               "name":"superslegend:new_wave_bossa_sheet"
-            },
-            {
-               "type":"minecraft:item",
-               "weight":37,
-               "name":"superslegend:serenade_of_water_sheet"
-            },
-            {
-               "type":"minecraft:item",
-               "weight":11,
+               "weight": 50,
                "name":"superslegend:water_temple_disc"
             },
             {
                "type":"minecraft:item",
-               "weight":11,
+               "weight": 50,
+               "name":"superslegend:great_bay_temple_disc"
+            }
+         ]
+      },
+      {
+         "rolls": 1,
+         "entries":[
+            {
+               "type":"minecraft:item",
+               "weight":30,
+               "name":"superslegend:new_wave_bossa_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":30,
+               "name":"superslegend:serenade_of_water_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":15,
                "name":"superslegend:heart_piece"
             },
             {
                "type":"minecraft:item",
-               "weight":4,
+               "weight":14,
+               "name":"superslegend:song_of_storms_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":11,
                "name":"superslegend:triforce_courage_shard"
             }
          ]

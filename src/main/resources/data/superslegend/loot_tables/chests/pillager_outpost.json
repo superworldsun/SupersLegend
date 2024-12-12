@@ -2,22 +2,26 @@
    "type":"minecraft:chest",
    "pools":[
       {
-         "rolls":1.0,
-         "entries":[
-            {
-               "type":"minecraft:item",
-               "weight":70,
-               "name":"superslegend:song_of_soaring_sheet"
-            },
+         "rolls": 1,
+         "entries": [
             {
                "type": "minecraft:item",
-               "weight": 20,
+               "name": "superslegend:song_of_soaring_sheet"
+            }
+         ]
+      },
+      {
+         "rolls":2,
+         "entries":[
+            {
+               "type": "minecraft:item",
+               "weight": 55,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 2.0,
-                        "max": 6.0,
+                        "min": 2,
+                        "max": 6,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -26,12 +30,12 @@
             },
             {
                "type":"minecraft:item",
-               "weight":20,
+               "weight": 40,
                "name":"superslegend:heart_piece"
             },
             {
                "type":"minecraft:item",
-               "weight":5,
+               "weight": 5,
                "name":"superslegend:triforce_wisdom_shard"
             }
          ]

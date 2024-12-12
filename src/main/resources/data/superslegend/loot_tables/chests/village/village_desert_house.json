@@ -3,20 +3,20 @@
    "pools":[
       {
          "rolls": {
-            "min": 1.0,
-            "max": 2.0,
+            "min": 1,
+            "max": 2,
             "type": "minecraft:uniform"
          },
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 50,
+               "weight": 47,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 2.0,
-                        "max": 14.0,
+                        "min": 2,
+                        "max": 14,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -25,13 +25,13 @@
             },
             {
                "type": "minecraft:item",
-               "weight": 25,
+               "weight": 30,
                "functions": [
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 1.0,
-                        "max": 5.0,
+                        "min": 1,
+                        "max": 5,
                         "type": "minecraft:uniform"
                      }
                   }
@@ -41,17 +41,17 @@
             {
                "type":"minecraft:item",
                "weight":10,
-               "name":"superslegend:zeldas_lullaby_sheet"
+               "name":"superslegend:magic_ice_arrow"
             },
             {
                "type":"minecraft:item",
                "weight":10,
-               "name":"superslegend:eponas_song_sheet"
+               "name":"superslegend:suns_song_sheet"
             },
             {
                "type":"minecraft:item",
-               "weight":5,
-               "name":"superslegend:sarias_song_sheet"
+               "weight":3,
+               "name":"superslegend:requiem_of_spirit_sheet"
             }
          ]
       }

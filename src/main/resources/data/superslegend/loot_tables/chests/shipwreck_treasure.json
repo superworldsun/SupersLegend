@@ -3,44 +3,44 @@
    "pools":[
       {
          "rolls": {
-            "min": 1.0,
-            "max": 2.0,
+            "min": 1,
+            "max": 2,
             "type": "minecraft:uniform"
          },
          "entries":[
             {
                "type":"minecraft:item",
-               "weight":37,
-               "name":"superslegend:new_wave_bossa_sheet"
+               "weight": 55,
+               "name":"superslegend:silver_rupee"
             },
             {
                "type":"minecraft:item",
-               "weight":36,
-               "name":"superslegend:serenade_of_water_sheet"
-            },
-            {
-               "type": "minecraft:item",
-               "weight": 19,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 2.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
-               "name": "superslegend:silver_rupee"
+               "weight": 35,
+               "name":"superslegend:spoils_bag"
             },
             {
                "type":"minecraft:item",
-               "weight":7,
+               "weight": 10,
                "name":"superslegend:triforce_courage_shard"
+            }
+         ]
+      },
+      {
+         "rolls": 1,
+         "entries":[
+            {
+               "type":"minecraft:item",
+               "weight": 55,
+               "name":"superslegend:heart_piece"
             },
             {
                "type":"minecraft:item",
-               "weight":1,
+               "weight": 35,
+               "name":"superslegend:song_of_storms_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight": 10,
                "name":"superslegend:silver_gauntlets"
             }
          ]

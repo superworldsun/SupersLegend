@@ -2,71 +2,36 @@
    "type":"minecraft:chest",
    "pools":[
       {
-         "rolls": {
-            "min": 1.0,
-            "max": 1.0,
-            "type": "minecraft:uniform"
-         },
+         "rolls": 1,
+         "entries": [
+            {
+               "type": "minecraft:item",
+               "name": "superslegend:triforce_courage_shard"
+            }
+         ]
+      },
+      {
+         "rolls": 2,
          "entries":[
             {
                "type": "minecraft:item",
-               "weight": 40,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 1.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
+               "weight": 30,
                "name": "superslegend:new_wave_bossa_sheet"
             },
             {
                "type": "minecraft:item",
-               "weight": 40,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 1.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
+               "weight": 30,
                "name": "superslegend:serenade_of_water_sheet"
             },
             {
                "type": "minecraft:item",
-               "weight": 13,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 1.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
+               "weight": 20,
                "name": "superslegend:silver_rupee"
             },
             {
                "type": "minecraft:item",
-               "weight": 7,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 1.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
-               "name": "superslegend:triforce_courage_shard"
+               "weight": 20,
+               "name": "superslegend:heart_piece"
             }
          ]
       }

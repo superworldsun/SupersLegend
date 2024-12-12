@@ -3,8 +3,8 @@
    "pools":[
       {
          "rolls": {
-            "min": 3.0,
-            "max": 4.0,
+            "min": 3,
+            "max": 5,
             "type": "minecraft:uniform"
          },
          "entries":[
@@ -15,8 +15,9 @@
                   {
                      "function": "minecraft:set_count",
                      "count": {
-                        "min": 1.0,
-                        "max": 3.0
+                        "min": 1,
+                        "max": 3,
+                        "type": "minecraft:uniform"
                      }
                   }
                ],
@@ -25,61 +26,21 @@
             {
                "type": "minecraft:item",
                "weight": 30,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 1.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
                "name": "superslegend:bolero_of_fire_sheet"
             },
             {
                "type": "minecraft:item",
                "weight": 10,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 1.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
                "name": "superslegend:gorons_bracelet"
             },
             {
                "type": "minecraft:item",
                "weight": 5,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 1.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
                "name": "superslegend:triforce_power_shard"
             },
             {
                "type": "minecraft:item",
                "weight": 9,
-               "functions": [
-                  {
-                     "function": "minecraft:set_count",
-                     "count": {
-                        "min": 1.0,
-                        "max": 1.0,
-                        "type": "minecraft:uniform"
-                     }
-                  }
-               ],
                "name": "superslegend:heart_piece"
             }
          ]
