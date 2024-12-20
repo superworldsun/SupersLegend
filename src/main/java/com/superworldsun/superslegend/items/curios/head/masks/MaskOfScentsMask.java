@@ -17,6 +17,8 @@ public class MaskOfScentsMask extends Item implements ICurioItem {
     public MaskOfScentsMask(Properties pProperties) {
         super(pProperties);
     }
+    //TODO, adding a ability on top of smelling to detect nearby mushrooms easier, when the player is nearby a mushroom the player will make oinking sounds if within 20 blocks or so
+
 
     @OnlyIn(Dist.CLIENT)
     @Override
