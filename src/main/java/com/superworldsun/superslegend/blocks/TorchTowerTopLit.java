@@ -25,8 +25,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-import static com.superworldsun.superslegend.blocks.TorchTower.OUTPUT_POWER;
-
 public class TorchTowerTopLit extends Block
 
 {
@@ -139,7 +137,8 @@ public class TorchTowerTopLit extends Block
 
     @Override
     public void onPlace(@NotNull BlockState blockState, Level world, BlockPos blockPos, @NotNull BlockState oldBlockState, boolean b) {
-        world.setBlockAndUpdate(blockPos.below(), BlockInit.TORCH_TOWER.get().defaultBlockState().setValue(OUTPUT_POWER, 15));
+
+//        world.setBlockAndUpdate(blockPos.below(), BlockInit.TORCH_TOWER.get().defaultBlockState().setValue(OUTPUT_POWER, 15));
         world.setBlockAndUpdate(blockPos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState());
     }
 }
