@@ -4,9 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.superworldsun.superslegend.client.init.ItemModelPropertiesInit;
 import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.songs.LearnedSongs;
-import com.superworldsun.superslegend.world.biome.BiomeModifiers;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.damagesource.DamageType;
+import com.superworldsun.superslegend.worldgen.biome.BiomeModifiers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -19,7 +17,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 import software.bernie.geckolib.GeckoLib;
 

@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.world.biome;
+package com.superworldsun.superslegend.worldgen.biome;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
