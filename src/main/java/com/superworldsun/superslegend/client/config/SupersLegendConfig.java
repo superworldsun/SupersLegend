@@ -19,6 +19,7 @@ public class SupersLegendConfig {
     private final ForgeConfigSpec.BooleanValue songSheetConsumed;
     private final ForgeConfigSpec.BooleanValue shockArrowCreeper;
     private final ForgeConfigSpec.BooleanValue explosivegriefing;
+    private final ForgeConfigSpec.BooleanValue disableAncientArrowDrops;
 
     // Boomerang settings
     public final ForgeConfigSpec.BooleanValue turnAroundItem;
@@ -33,9 +34,9 @@ public class SupersLegendConfig {
     public final ForgeConfigSpec.IntValue WWBoomerangRange;
     public final ForgeConfigSpec.IntValue WWBoomerangDamage;
     public final ForgeConfigSpec.BooleanValue WWBoomerangFollows;
-    public final ForgeConfigSpec.IntValue GaleBoomerangRange;
-    public final ForgeConfigSpec.IntValue GaleBoomerangDamage;
-    public final ForgeConfigSpec.BooleanValue GaleBoomerangFollows;
+//    public final ForgeConfigSpec.IntValue GaleBoomerangRange;
+//    public final ForgeConfigSpec.IntValue GaleBoomerangDamage;
+//    public final ForgeConfigSpec.BooleanValue GaleBoomerangFollows;
     public final ForgeConfigSpec.BooleanValue breaksTorches;
     public final ForgeConfigSpec.BooleanValue breaksFlowers;
     public final ForgeConfigSpec.BooleanValue breaksTallGrass;
@@ -62,6 +63,10 @@ public class SupersLegendConfig {
         shockArrowCreeper = builder
                 .comment("Creepers transform into Charged Creepers with Shock Arrows.")
                 .define("shockArrowCreeper", true);
+
+        disableAncientArrowDrops = builder
+                .comment("If true, entities killed by Ancient Arrows will not drop items.")
+                .define("disableAncientArrowDrops", true);
 
         explosivegriefing = builder
                 .comment("Whether bombs & bomb arrows will cause block destruction")
@@ -101,15 +106,15 @@ public class SupersLegendConfig {
                 .comment("The WW Boomerang will follow your mouse till it hits it's range limit.")
                 .define("WWBoomerangFollows", true);
 
-        GaleBoomerangRange = builder
-                .comment("The maximum range of travel before returning to player.")
-                .defineInRange("GaleBoomerangRange", 40, 1, 200);
-        GaleBoomerangDamage = builder
-                .comment("The amount of damage that is done when hitting any living entity.")
-                .defineInRange("GaleBoomerangDamage", 5, 1, 500);
-        GaleBoomerangFollows = builder
-                .comment("The Gale Boomerang will follow your mouse till it hits it's range limit.")
-                .define("GaleBoomerangFollows", true);
+//        GaleBoomerangRange = builder
+//                .comment("The maximum range of travel before returning to player.")
+//                .defineInRange("GaleBoomerangRange", 40, 1, 200);
+//        GaleBoomerangDamage = builder
+//                .comment("The amount of damage that is done when hitting any living entity.")
+//                .defineInRange("GaleBoomerangDamage", 5, 1, 500);
+//        GaleBoomerangFollows = builder
+//                .comment("The Gale Boomerang will follow your mouse till it hits it's range limit.")
+//                .define("GaleBoomerangFollows", true);
 
         turnAroundItem = builder
                 .comment("Comes back to the player after picking up items.")
@@ -155,6 +160,7 @@ public class SupersLegendConfig {
     public boolean songSheetConsumed() { return songSheetConsumed.get(); }
     public boolean shockArrowCreeper() { return shockArrowCreeper.get(); }
     public boolean explosivegriefing() { return explosivegriefing.get(); }
+    public boolean disableAncientArrowDrops() { return disableAncientArrowDrops.get(); }
     public boolean turnAroundItem() { return turnAroundItem.get(); }
     public boolean turnAroundMob() { return turnAroundMob.get(); }
     public boolean turnAroundButton() { return turnAroundButton.get(); }
