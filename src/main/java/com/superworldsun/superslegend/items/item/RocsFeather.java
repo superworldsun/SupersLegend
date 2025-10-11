@@ -34,7 +34,6 @@ public class RocsFeather extends Item
 	private static boolean canDoubleJump;
 	private static boolean hasReleasedJumpKey;
 
-	//TODO, game crashes when using item
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public static void onClientTick(TickEvent.ClientTickEvent event)
