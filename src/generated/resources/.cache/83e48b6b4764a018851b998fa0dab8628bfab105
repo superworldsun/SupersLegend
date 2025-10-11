@@ -1,0 +1,8 @@
+// 1.20.1	2024-06-07T06:45:03.7996249	Tags for minecraft:block mod id superslegend
+936a292d3fea5b5a3c1570ea7934f84315f49aec data/forge/tags/blocks/needs_wood_tool.json
+bac3b4865a906971b0aa5ec0010a8d28f119477e data/minecraft/tags/blocks/mineable/axe.json
+20302551da3ab04d5e7f046e8f84be558d7719c1 data/minecraft/tags/blocks/mineable/hoe.json
+ad92c199f071a34a4d91e93889194f79499d53b3 data/minecraft/tags/blocks/mineable/pickaxe.json
+7f7ccccf501dd6f03beae766e0a46b8e2d863741 data/minecraft/tags/blocks/needs_diamond_tool.json
+5b3557590938405a1d48286302c59657b0cb05ed data/minecraft/tags/blocks/needs_iron_tool.json
+d9d76602f5cc5e75ea088f7e404afb302db3c139 data/minecraft/tags/blocks/needs_stone_tool.json

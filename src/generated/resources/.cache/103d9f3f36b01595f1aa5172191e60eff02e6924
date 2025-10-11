@@ -1,0 +1,4 @@
+// 1.20.1	2024-12-18T06:54:51.5502923	Registries
+4b5c569b552a2c53163e652a7a974c45083e9fcd data/superslegend/forge/biome_modifier/add_master_ore.json
+677c931a84bd00b633a470d6a96f0cd432f27460 data/superslegend/worldgen/configured_feature/master_ore.json
+5a5bc511d29d6eb930d5ca6f093dfba6435819db data/superslegend/worldgen/placed_feature/master_ore_placed.json
