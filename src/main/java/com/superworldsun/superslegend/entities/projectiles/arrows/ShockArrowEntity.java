@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.client.config.SupersLegendConfig;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -143,12 +144,19 @@ public class ShockArrowEntity extends AbstractArrow
                 livingentity.setArrowCount(livingentity.getArrowCount() - 1);
             }
         }
-        //TODO, turn this part back on when config is re added
-        /*super.onHitEntity(result);
+        //TODO make sure this works, should work but needs testing
+        super.onHitEntity(result);
         if (entity instanceof LivingEntity) {
             if(livingentity.level().isClientSide)
                 return;
-            if(livingentity instanceof Creeper && SupersLegendConfig.getInstance().shockArrowCreeper()) {
+            boolean allowCreeper = true;
+            try {
+                allowCreeper = SupersLegendConfig.getInstance().shockArrowCreeper();
+            } catch (IllegalStateException e) {
+                // Config not loaded yet, default to true to prevent crash
+                allowCreeper = true;
+            }
+            if(livingentity instanceof Creeper && allowCreeper) {
                 LightningBolt lightningBoltEntity = EntityType.LIGHTNING_BOLT.create((ServerLevel) livingentity.level());
                 livingentity.thunderHit((ServerLevel) livingentity.level(), lightningBoltEntity);
             }
@@ -156,7 +164,7 @@ public class ShockArrowEntity extends AbstractArrow
             if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
                 livingentity.setArrowCount(livingentity.getArrowCount() - 1);
             }
-        }*/
+        }
     }
 
     protected void doPostHurtEffects(LivingEntity entity) {
