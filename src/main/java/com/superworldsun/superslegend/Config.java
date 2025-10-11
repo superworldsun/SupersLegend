@@ -21,6 +21,8 @@ public class Config {
     private static final ForgeConfigSpec.BooleanValue BOOMERANGS_ACTIVATE_PRESSURE_PLATES = BUILDER.define("Boomerangs activate pressure plates", true);
     private static final ForgeConfigSpec.BooleanValue BOOMERANGS_ACTIVATE_TRIP_WIRES = BUILDER.define("Boomerangs activate trip wires", true);
     private static final ForgeConfigSpec.BooleanValue SONG_SHEET_CONSUMED = BUILDER.define("songSheetConsumed", true);
+    private static final ForgeConfigSpec.BooleanValue shockArrowCreeper = BUILDER.comment("Creepers transform into Charged Creepers with Shock Arrows.").define("shockArrowCreeper", true);
+    private static final ForgeConfigSpec.BooleanValue disableAncientArrowDrops = BUILDER.comment("If true, entities killed by Ancient Arrows will not drop items.").define("disableAncientArrowDrops", true);
     private static final ForgeConfigSpec.BooleanValue explosivegriefing =  BUILDER.comment("Whether bombs & bomb arrows will cause block destruction").define("explosivegriefing", true);
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
@@ -36,6 +38,8 @@ public class Config {
     private static boolean boomerangs_activate_pressure_plates;
     private static boolean boomerangs_activate_trip_wires;
     private static boolean song_sheet_consumed;
+    private static boolean shock_arrow_creeper;
+    private static boolean disable_ancient_arrow_drops;
 
     @SubscribeEvent
     static void load(ModConfigEvent event) {
@@ -50,6 +54,7 @@ public class Config {
             boomerangs_activate_pressure_plates = BOOMERANGS_ACTIVATE_PRESSURE_PLATES.get();
             boomerangs_activate_trip_wires = BOOMERANGS_ACTIVATE_TRIP_WIRES.get();
             song_sheet_consumed = SONG_SHEET_CONSUMED.get();
+            disable_ancient_arrow_drops = disableAncientArrowDrops.get();
             isLoaded = true;
         }
     }
@@ -92,6 +97,12 @@ public class Config {
 
     public static boolean isSongSheetConsumed() {
         return isLoaded ? song_sheet_consumed : SONG_SHEET_CONSUMED.get();
+    }
+
+    public static boolean shockArrowCreeper() { return shockArrowCreeper.get(); }
+
+    public static boolean disableAncientArrowDrops() {
+        return isLoaded ? disable_ancient_arrow_drops : disableAncientArrowDrops.get();
     }
 
     public static boolean explosivegriefing() { return explosivegriefing.get(); }
