@@ -17,4 +17,10 @@ public class RedStoneDisabledDoorBlock extends DoorBlock {
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         // Preventing the door from reacting to redstone
     }
+
+    @Override
+    public boolean canSurvive(BlockState state, net.minecraft.world.level.LevelReader world, BlockPos pos) {
+        // Always allow the door to survive, even if there is nothing underneath. Added to prevent breaking the door easily.
+        return true;
+    }
 }
