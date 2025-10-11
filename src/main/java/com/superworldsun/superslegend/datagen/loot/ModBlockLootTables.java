@@ -70,6 +70,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(BlockInit.SHADOW_BLOCK.get());
         this.dropSelf(BlockInit.FALSE_SHADOW_BLOCK.get());
         this.dropSelf(BlockInit.HIDDEN_SHADOW_BLOCK.get());
+        this.dropNothing(BlockInit.SHADOW_MODEL_BLOCK.get());
         this.dropSelf(BlockInit.TOMBSTONE_BLOCK.get());
         this.dropSelf(BlockInit.STONE_PATH_BLOCK.get());
         this.dropSelf(BlockInit.STONE_TILE_BLOCK.get());
