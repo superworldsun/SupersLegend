@@ -1,0 +1,13 @@
+{
+  "name": "superslegend:ocean_structures/the_lookout_platform",
+  "fallback": "minecraft:empty",
+  "elements": [{
+      "weight": 1,
+      "element": {
+        "location": "superslegend:ocean_structures/the_lookout_platform/lookout_platform",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }]
+}

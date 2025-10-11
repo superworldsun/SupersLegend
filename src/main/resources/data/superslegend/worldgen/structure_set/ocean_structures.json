@@ -1,0 +1,13 @@
+{
+    "placement": {
+      "type": "minecraft:random_spread",
+      "salt": 12309856,
+      "separation": 10,
+      "spacing": 20,
+      "spread_type": "triangular"
+    },
+    "structures": [{
+      "structure": "superslegend:ocean_structures",
+      "weight": 1
+    }]
+}
