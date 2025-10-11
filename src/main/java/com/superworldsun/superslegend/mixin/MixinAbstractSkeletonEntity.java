@@ -30,7 +30,6 @@ public abstract class MixinAbstractSkeletonEntity extends Monster implements Tam
 		super(null, null);
 	}
 
-	//TODO Skeletons will follow player but wont attack attackers when the player attacks monsters or gets attacked
 	@Inject(method = "registerGoals", at = @At("HEAD"))
 	private void injectRegisterGoals(CallbackInfo callbackInfo) {
 		goalSelector.addGoal(4, new FollowSkeletonOwnerGoal<>(this, 1D, 10F, 2F));

@@ -1,4 +1,4 @@
-package com.superworldsun.superslegend.world.biome;
+package com.superworldsun.superslegend.worldgen.biome;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.superworldsun.superslegend.SupersLegendMain;

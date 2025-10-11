@@ -25,7 +25,6 @@ public class LockedBossDoor extends RedStoneDisabledDoorBlock {
         super(pProperties, pType);
     }
 
-    //TODO, make it so the door cant be opened with redstone
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState blockstate, @NotNull Level worldIn, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult blocktrace) {
         ItemStack heldItem = player.getItemInHand(hand);

@@ -1,18 +1,13 @@
 package com.superworldsun.superslegend.songs.songs;
 
-import static net.minecraft.world.level.GameRules.RULE_RANDOMTICKING;
-
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.MinecraftServer;
 
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
@@ -20,7 +15,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.server.ServerLifecycleHooks;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class InvertedSongOfTime extends OcarinaSong
