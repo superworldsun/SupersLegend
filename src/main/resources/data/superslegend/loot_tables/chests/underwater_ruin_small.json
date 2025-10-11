@@ -1,0 +1,69 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls": {
+            "min": 1,
+            "max": 2,
+            "type": "minecraft:uniform"
+         },
+         "entries":[
+            {
+               "type": "minecraft:item",
+               "weight": 25,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 4,
+                        "max": 15,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:rupee"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":22,
+               "name":"superslegend:new_wave_bossa_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":22,
+               "name":"superslegend:serenade_of_water_sheet"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 13,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1,
+                        "max": 5,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:blue_rupee"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":10,
+               "name":"superslegend:heart_piece"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":6,
+               "name":"superslegend:song_of_storms_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":2,
+               "name":"superslegend:triforce_courage_shard"
+            }
+         ]
+      }
+   ]
+}

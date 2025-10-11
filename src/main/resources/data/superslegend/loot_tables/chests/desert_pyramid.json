@@ -1,0 +1,73 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls": {
+            "min": 0,
+            "max": 1,
+            "type": "minecraft:uniform"
+         },
+         "entries":[
+            {
+               "type": "minecraft:item",
+               "weight": 10,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 0,
+                        "max": 1,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:spirit_temple_disc"
+            }
+         ]
+      },
+      {
+         "rolls": {
+            "min": 1,
+            "max": 2,
+            "type": "minecraft:uniform"
+         },
+         "entries":[
+            {
+               "type": "minecraft:item",
+               "weight": 35,
+               "name": "superslegend:requiem_of_spirit_sheet"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 20,
+               "name": "superslegend:suns_song_sheet"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 15,
+               "name": "superslegend:magic_ice_arrow"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 9,
+               "name": "superslegend:silver_rupee"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 9,
+               "name": "superslegend:elegy_of_emptiness_sheet"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 7,
+               "name": "superslegend:silver_gauntlets"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 5,
+               "name": "superslegend:heart_piece"
+            }
+         ]
+      }
+   ]
+}

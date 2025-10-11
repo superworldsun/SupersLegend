@@ -1,0 +1,59 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls": {
+            "min": 1,
+            "max": 2,
+            "type": "minecraft:uniform"
+         },
+         "entries":[
+            {
+               "type": "minecraft:item",
+               "weight": 47,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 2,
+                        "max": 14,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:rupee"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 30,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1,
+                        "max": 5,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:blue_rupee"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":10,
+               "name":"superslegend:magic_ice_arrow"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":10,
+               "name":"superslegend:suns_song_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":3,
+               "name":"superslegend:requiem_of_spirit_sheet"
+            }
+         ]
+      }
+   ]
+}

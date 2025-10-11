@@ -1,0 +1,20 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls":1,
+         "entries":[
+            {
+               "type":"minecraft:item",
+               "weight":95,
+               "name":"superslegend:prelude_of_light_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":5,
+               "name":"superslegend:magic_light_arrow"
+            }
+         ]
+      }
+   ]
+}

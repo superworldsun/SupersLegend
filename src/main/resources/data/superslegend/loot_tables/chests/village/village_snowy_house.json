@@ -1,0 +1,54 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls": {
+            "min": 1,
+            "max": 2,
+            "type": "minecraft:uniform"
+         },
+         "entries":[
+            {
+               "type": "minecraft:item",
+               "weight": 43,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 2,
+                        "max": 14,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:rupee"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 30,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1,
+                        "max": 5,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:blue_rupee"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":20,
+               "name":"superslegend:goron_lullaby_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":7,
+               "name":"superslegend:magic_fire_arrow"
+            }
+         ]
+      }
+   ]
+}

@@ -1,0 +1,11 @@
+{
+   "type":"superslegend:add",
+   "conditions":[
+      {
+         "condition":"forge:loot_table_id",
+         "loot_table_id":"minecraft:chests/nether_bridge"
+      }
+   ],
+   "table":"superslegend:chests/nether_bridge",
+   "chance":1.0
+}

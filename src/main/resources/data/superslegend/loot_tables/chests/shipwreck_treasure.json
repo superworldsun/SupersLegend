@@ -1,0 +1,49 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls": {
+            "min": 1,
+            "max": 2,
+            "type": "minecraft:uniform"
+         },
+         "entries":[
+            {
+               "type":"minecraft:item",
+               "weight": 55,
+               "name":"superslegend:silver_rupee"
+            },
+            {
+               "type":"minecraft:item",
+               "weight": 35,
+               "name":"superslegend:spoils_bag"
+            },
+            {
+               "type":"minecraft:item",
+               "weight": 10,
+               "name":"superslegend:triforce_courage_shard"
+            }
+         ]
+      },
+      {
+         "rolls": 1,
+         "entries":[
+            {
+               "type":"minecraft:item",
+               "weight": 55,
+               "name":"superslegend:heart_piece"
+            },
+            {
+               "type":"minecraft:item",
+               "weight": 35,
+               "name":"superslegend:song_of_storms_sheet"
+            },
+            {
+               "type":"minecraft:item",
+               "weight": 10,
+               "name":"superslegend:silver_gauntlets"
+            }
+         ]
+      }
+   ]
+}

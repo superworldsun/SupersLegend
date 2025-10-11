@@ -1,0 +1,59 @@
+{
+   "type":"minecraft:chest",
+   "pools":[
+      {
+         "rolls": {
+            "min": 1,
+            "max": 2,
+            "type": "minecraft:uniform"
+         },
+         "entries":[
+            {
+               "type": "minecraft:item",
+               "weight": 50,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 2,
+                        "max": 14,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:rupee"
+            },
+            {
+               "type": "minecraft:item",
+               "weight": 25,
+               "functions": [
+                  {
+                     "function": "minecraft:set_count",
+                     "count": {
+                        "min": 1,
+                        "max": 5,
+                        "type": "minecraft:uniform"
+                     }
+                  }
+               ],
+               "name": "superslegend:blue_rupee"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":10,
+               "name":"superslegend:red_potion"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":10,
+               "name":"superslegend:green_potion"
+            },
+            {
+               "type":"minecraft:item",
+               "weight":5,
+               "name":"superslegend:blue_potion"
+            }
+         ]
+      }
+   ]
+}
