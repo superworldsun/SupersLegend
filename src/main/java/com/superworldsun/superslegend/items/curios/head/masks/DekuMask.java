@@ -1,7 +1,12 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.client.model.player.PlayerTransformationModels;
+import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -17,9 +22,23 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 
-public class DekuMask extends Item implements ICurioItem {
+public class DekuMask extends Item implements ICurioItem, IPlayerModelChanger {
+    private static final ResourceLocation PLAYER_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/deku_player.png");
+
     public DekuMask(Properties pProperties) {
         super(pProperties);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public PlayerModel<AbstractClientPlayer> getPlayerModel(AbstractClientPlayer player) {
+        return PlayerTransformationModels.getDeku();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public ResourceLocation getPlayerTexture(AbstractClientPlayer player) {
+        return PLAYER_TEXTURE;
     }
 
     /*@SubscribeEvent

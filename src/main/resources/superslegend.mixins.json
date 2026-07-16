@@ -8,5 +8,8 @@
     "MixinAbstractSkeletonEntity",
     "MixinFlowingFluid"
   ],
+  "client": [
+    "client.MixinPlayerRenderer"
+  ],
   "minVersion": "0.8"
 }
