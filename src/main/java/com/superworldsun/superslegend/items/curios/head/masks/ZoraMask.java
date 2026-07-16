@@ -3,7 +3,12 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.client.model.player.PlayerTransformationModels;
+import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
 import com.superworldsun.superslegend.registries.ItemInit;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -33,13 +38,26 @@ import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class ZoraMask extends Item implements ICurioItem
+public class ZoraMask extends Item implements ICurioItem, IPlayerModelChanger
 {
     private static final UUID ZORA_WATER_MODIFIER_ID = UUID.fromString("734af1f7-e76b-47f0-ba52-5a1a12a9edd2");
+    private static final ResourceLocation PLAYER_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/zora_player.png");
     float manaCost = 0.03F;
 
     public ZoraMask(Properties pProperties) {
         super(pProperties);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public PlayerModel<AbstractClientPlayer> getPlayerModel(AbstractClientPlayer player) {
+        return PlayerTransformationModels.getZora();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public ResourceLocation getPlayerTexture(AbstractClientPlayer player) {
+        return PLAYER_TEXTURE;
     }
 
     @Override

@@ -7,6 +7,9 @@ import com.superworldsun.superslegend.client.model.OpenOwlStatueModel;
 import com.superworldsun.superslegend.client.model.OwlStatueModel;
 import com.superworldsun.superslegend.client.model.hooks.HookshotModel;
 import com.superworldsun.superslegend.client.model.hooks.LongshotModel;
+import com.superworldsun.superslegend.client.model.player.DekuPlayerModel;
+import com.superworldsun.superslegend.client.model.player.GoronPlayerModel;
+import com.superworldsun.superslegend.client.model.player.ZoraPlayerModel;
 import com.superworldsun.superslegend.client.render.blocks.*;
 import com.superworldsun.superslegend.client.render.hookshot.HookshotRender;
 import com.superworldsun.superslegend.client.screen.PostboxScreen;
@@ -50,5 +53,8 @@ public class ClientModHandler {
         event.registerLayerDefinition(ModelLayers.FAN, FanModel::createBodyLayer);
         event.registerLayerDefinition(ModelLayers.HOOKSHOT, HookshotModel::createBodyLayer);
         event.registerLayerDefinition(ModelLayers.LONGSHOT, LongshotModel::createBodyLayer);
+        event.registerLayerDefinition(ModelLayers.GORON_PLAYER, GoronPlayerModel::createLayer);
+        event.registerLayerDefinition(ModelLayers.ZORA_PLAYER, ZoraPlayerModel::createLayer);
+        event.registerLayerDefinition(ModelLayers.DEKU_PLAYER, DekuPlayerModel::createLayer);
     }
 }
