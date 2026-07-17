@@ -1,4 +1,8 @@
 {
+  "key.categories.superslegend": "SupersLegend",
+  "key.mask_ability": "Use Mask Ability",
+  "key.drop_bomb": "Draw Bomb from Bag",
+  "key.crawl": "Toggle Crawling",
   "creativetab.items_tab": "SupersLegend",
   "creativetab.apparel_tab": "SupersLegend Apparel",
   "creativetab.blocks_tab": "SupersLegend Blocks",
