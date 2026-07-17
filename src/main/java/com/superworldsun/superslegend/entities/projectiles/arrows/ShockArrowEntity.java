@@ -68,10 +68,8 @@ public class ShockArrowEntity extends AbstractArrow
     @Override
     protected void onHitEntity(EntityHitResult result) {
         Entity entity = result.getEntity();
-        LivingEntity livingentity = (LivingEntity) entity;
-        if(livingentity instanceof LivingEntity)
+        if (entity instanceof LivingEntity livingentity)
         {
-            System.out.println("living entity hit");
             int armorPartsEquipped = 0;
 
             if (livingentity.getItemBySlot(EquipmentSlot.HEAD).getItem() == Items.IRON_HELMET)
@@ -125,43 +123,28 @@ public class ShockArrowEntity extends AbstractArrow
                     }
                 }
             }
-            if (!stack.isEmpty())
-            {
-                this.setBaseDamage(this.getBaseDamage() * 1.0F);
-            }
         }
 
         super.onHitEntity(result);
-        if (entity instanceof LivingEntity) {
-            if(livingentity.level().isClientSide)
+
+        if (entity instanceof LivingEntity livingentity) {
+            if (livingentity.level().isClientSide)
                 return;
-            if(livingentity instanceof Creeper) {
-                LightningBolt lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(livingentity.level());
-                livingentity.thunderHit((ServerLevel) livingentity.level(), lightningBoltEntity);
-            }
-            this.getBaseDamage();
-            if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
-                livingentity.setArrowCount(livingentity.getArrowCount() - 1);
-            }
-        }
-        //TODO make sure this works, should work but needs testing
-        super.onHitEntity(result);
-        if (entity instanceof LivingEntity) {
-            if(livingentity.level().isClientSide)
-                return;
-            boolean allowCreeper = true;
+
+            boolean allowCreeper;
             try {
                 allowCreeper = SupersLegendConfig.getInstance().shockArrowCreeper();
             } catch (IllegalStateException e) {
                 // Config not loaded yet, default to true to prevent crash
                 allowCreeper = true;
             }
-            if(livingentity instanceof Creeper && allowCreeper) {
-                LightningBolt lightningBoltEntity = EntityType.LIGHTNING_BOLT.create((ServerLevel) livingentity.level());
+
+            if (livingentity instanceof Creeper && allowCreeper) {
+                LightningBolt lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(livingentity.level());
                 livingentity.thunderHit((ServerLevel) livingentity.level(), lightningBoltEntity);
             }
-            this.getBaseDamage();
-            if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
+
+            if (this.getPierceLevel() <= 0) {
                 livingentity.setArrowCount(livingentity.getArrowCount() - 1);
             }
         }

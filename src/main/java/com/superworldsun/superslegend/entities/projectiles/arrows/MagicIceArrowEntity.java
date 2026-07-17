@@ -306,27 +306,28 @@ public class MagicIceArrowEntity extends AbstractArrow
     {
         super.onHitEntity(rayTraceResult);
         Entity entity = rayTraceResult.getEntity();
+        // Reset the damage immunity from the arrow hit so the bonus magic damage applies
+        entity.invulnerableTime = 0;
+        entity.hurt(damageSources().magic(), 5.0F);
 
-        if (entity.getType().is(TagInit.WEAK_TO_ICE))
+        if (entity.isAlive())
         {
-            setBaseDamage(getBaseDamage() * 2);
+            if (entity.getType().is(TagInit.WEAK_TO_ICE))
+            {
+                setBaseDamage(getBaseDamage() * 2);
+            }
+
+            if (entity.getType().is(TagInit.RESISTANT_TO_ICE))
+            {
+                setBaseDamage(getBaseDamage() / 2);
+            }
         }
 
-        if (entity.getType().is(TagInit.RESISTANT_TO_ICE))
-        {
-            setBaseDamage(getBaseDamage() / 2);
-        }
-
-        if (entity instanceof LivingEntity) {
-            LivingEntity livingentity = (LivingEntity) entity;
-
-            this.getBaseDamage();
+        if (entity instanceof LivingEntity livingentity) {
             if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
                 livingentity.setArrowCount(livingentity.getArrowCount() - 1);
             }
         }
-
-        super.onHitEntity(rayTraceResult);
     }
 
     @Override

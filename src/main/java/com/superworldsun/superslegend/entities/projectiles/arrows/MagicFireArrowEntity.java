@@ -1,7 +1,10 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.items.weapons.shield.DekuShield;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
+import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.registries.TagInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -10,9 +13,12 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -41,7 +47,37 @@ public class MagicFireArrowEntity extends AbstractArrow
     @Override
     protected @NotNull ItemStack getPickupItem()
     {
-        return null;
+        return new ItemStack(ItemInit.MAGIC_FIRE_ARROW.get());
+    }
+
+    @Override
+    protected void onHitEntity(EntityHitResult rayTraceResult)
+    {
+        super.onHitEntity(rayTraceResult);
+        Entity entity = rayTraceResult.getEntity();
+        // Reset the damage immunity from the arrow hit so the bonus magic damage applies
+        entity.invulnerableTime = 0;
+        entity.hurt(damageSources().magic(), 5.0F);
+
+        if (entity.isAlive())
+        {
+            if (entity.getType().is(TagInit.RESISTANT_TO_FIRE))
+            {
+                setBaseDamage(getBaseDamage() / 2);
+            }
+            else if (entity.getType().is(TagInit.WEAK_TO_FIRE))
+            {
+                setBaseDamage(getBaseDamage() * 2);
+            }
+        }
+
+        if (entity instanceof Player player)
+        {
+            if (player.getMainHandItem().getItem() instanceof DekuShield || player.getOffhandItem().getItem() instanceof DekuShield)
+            {
+                entity.setSecondsOnFire(6);
+            }
+        }
     }
 
     @Override
