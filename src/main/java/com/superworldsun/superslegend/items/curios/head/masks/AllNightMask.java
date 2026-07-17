@@ -70,7 +70,9 @@ public class AllNightMask extends Item implements ICurioItem, GeoItem {
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         Player player = (Player) livingEntity;
-        //TODO, dont know how to check if world.isClientSide atm
+        if (player.level().isClientSide()) {
+            return;
+        }
         if (player.isAlive()) {
             ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_ALLNIGHTMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
             if (!stack0.isEmpty()) {
@@ -80,8 +82,7 @@ public class AllNightMask extends Item implements ICurioItem, GeoItem {
         if (player.isSleeping())
         {
             player.stopSleeping();
-            //TODO, display client message
-            //player.displayClientMessage(new TextComponent(ChatFormatting.GRAY + "You feel restless"), true);
+            player.displayClientMessage(Component.literal("You feel restless").withStyle(ChatFormatting.GRAY), true);
         }
     }
 

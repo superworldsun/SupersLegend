@@ -170,11 +170,12 @@ public class MaskOfTruth extends Item implements ICurioItem {
         }
     }
 
-    //TODO, fix sendmessage
     private static void sendRandomMessage(Player player, Entity target, SoundEvent sound, String[] speeches)
     {
         int line = player.getRandom().nextInt(speeches.length);
-        //player.sendMessage(new StringTextComponent(speeches[line]), UUID.randomUUID());
+        if (!player.level().isClientSide()) {
+            player.sendSystemMessage(Component.literal(speeches[line]));
+        }
         target.playSound(sound, 1.0F, 1.0F);
     }
     

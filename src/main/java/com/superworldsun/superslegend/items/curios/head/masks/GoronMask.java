@@ -11,6 +11,7 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -115,15 +116,13 @@ public class GoronMask extends Item implements ICurioItem, IPlayerModelChanger, 
 
         if (!maskStack.isEmpty())
         {
-            //TODO, damagesource gone
-            /*if (event.getSource() == DamageSource.LAVA || event.getSource().isFire())
+            if (event.getSource().is(DamageTypeTags.IS_FIRE))
             {
                 event.setCanceled(true);
-            }*/
+            }
         }
     }
 
-    //TODO, i removed all the errors but crashes for IJumpingEntity
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event)
     {

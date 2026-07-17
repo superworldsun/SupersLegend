@@ -5,7 +5,9 @@ import com.superworldsun.superslegend.registries.EffectInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -38,7 +40,7 @@ public class MagicCape extends Item {
         if (hasEffect) {
             player.removeEffect(EffectInit.CLOAKED.get());
             player.getCooldowns().addCooldown(this, 8);
-            //addSmokeParticles(player);
+            addSmokeParticles(player);
             player.playSound(SoundInit.MAGIC_CAPE_OFF.get(), 1f, 1f);
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, capeStack);
         } else if (hasMana) {
@@ -51,9 +53,8 @@ public class MagicCape extends Item {
         return new InteractionResultHolder<>(InteractionResult.SUCCESS.FAIL, capeStack);
     }
 
-    //TODO, Random random causes a crash, not sure why.
-    /*private void addSmokeParticles(Player player) {
-        Random random = (Random) player.level().random;
+    private void addSmokeParticles(Player player) {
+        RandomSource random = player.level().random;
 
         for (int i = 0; i < 45; i++) {
             double particleX = player.getX() + (random.nextBoolean() ? -1 : 1) * Math.pow(random.nextFloat(), 2) * 2;
@@ -61,7 +62,7 @@ public class MagicCape extends Item {
             double particleZ = player.getZ() + (random.nextBoolean() ? -1 : 1) * Math.pow(random.nextFloat(), 2) * 2;
             player.level().addParticle(ParticleTypes.SMOKE, particleX, particleY, particleZ, 0, 0.105D, 0);
         }
-    }*/
+    }
 
     @OnlyIn(Dist.CLIENT)
     @Override

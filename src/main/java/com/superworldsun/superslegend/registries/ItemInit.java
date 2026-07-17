@@ -443,7 +443,6 @@ public class ItemInit {
             () -> new BremenMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_GREATFAIRYMASK = ITEMS.register("mask_greatfairymask",
             () -> new GreatfairyMask(new Item.Properties().stacksTo(1)));
-    //TODO, Deku mask needs DamageSource changed
     public static final RegistryObject<Item> MASK_DEKUMASK = ITEMS.register("mask_dekumask",
             () -> new DekuMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_KEATONMASK = ITEMS.register("mask_keatonmask",
@@ -454,7 +453,6 @@ public class ItemInit {
             () -> new DongerosMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_MASKOFSCENTS = ITEMS.register("mask_maskofscents",
             () -> new MaskOfScentsMask(new Item.Properties().stacksTo(1)));
-    //TODO, GORON MASK DOSENT WORK
     public static final RegistryObject<Item> MASK_GORONMASK = ITEMS.register("mask_goronmask",
             () -> new GoronMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_ROMANISMASK = ITEMS.register("mask_romanismask",

@@ -88,12 +88,6 @@ public class PostboxBlock extends Block implements EntityBlock {
 	}
 
 
-	//TODO This part says "Method hasBlockEntity is never used", was used in 1.16.5 but the override is giving an error. This was required to work in 1.16.5
-//	@Override
-//	public boolean hasBlockEntity(BlockState state) {
-//		return true;
-//	}
-
 	@Override
 	public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
 
