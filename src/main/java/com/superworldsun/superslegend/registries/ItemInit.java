@@ -1,6 +1,9 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.items.ammobags.BigQuiver;
+import com.superworldsun.superslegend.items.ammobags.MediumQuiver;
+import com.superworldsun.superslegend.items.ammobags.SmallQuiver;
 import com.superworldsun.superslegend.items.armors.*;
 import com.superworldsun.superslegend.items.bags.*;
 import com.superworldsun.superslegend.items.block.*;
@@ -651,12 +654,9 @@ public class ItemInit {
 
 
     //Back
-    public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", SmallQuiver::new);
+    public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", MediumQuiver::new);
+    public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", BigQuiver::new);
 
     //Belt
     public static final RegistryObject<Item> BULLET_BAG = ITEMS.register("bullet_bag",

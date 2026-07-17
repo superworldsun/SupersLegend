@@ -41,6 +41,7 @@ public class SupersLegendMain
         BlockEntityInit.BLOCK_ENTITIES.register(modEventBus);
         BiomeModifiers.register(modEventBus);
         MenuTypeInit.MENU_TYPES.register(modEventBus);
+        RecipeSerializerInit.RECIPE_SERIALIZERS.register(modEventBus);
         OcarinaSongInit.OCARINA_SONGS.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);

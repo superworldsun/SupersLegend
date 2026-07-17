@@ -1,7 +1,9 @@
 package com.superworldsun.superslegend.mixin;
 
 import com.google.common.util.concurrent.AtomicDouble;
+import com.superworldsun.superslegend.items.ammobags.AmmoContainerItem;
 import com.superworldsun.superslegend.registries.ItemInit;
+import org.apache.commons.lang3.tuple.Pair;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -119,9 +121,7 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IHoverin
             for (int i = 0; i < curios.getSlots(); i++) {
                 ItemStack curioStack = curios.getStackInSlot(i);
 
-                //TODO re enable when Ammo is back added
-                /*if (!curioStack.isEmpty() && curioStack.getItem() instanceof AmmoContainerItem) {
-                    AmmoContainerItem quiverItem = (AmmoContainerItem) curioStack.getItem();
+                if (!curioStack.isEmpty() && curioStack.getItem() instanceof AmmoContainerItem quiverItem) {
                     Pair<ItemStack, Integer> quiverContents = quiverItem.getContents(curioStack);
 
                     if (quiverContents == null) {
@@ -146,7 +146,7 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IHoverin
 
                         return;
                     }
-                }*/
+                }
             }
         });
     }
