@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
@@ -26,6 +27,24 @@ import java.util.List;
 public class GibdoMask extends Item implements ICurioItem {
     public GibdoMask(Properties pProperties) {
         super(pProperties);
+    }
+
+    // Clears targets that were acquired before the mask was equipped
+    @SubscribeEvent
+    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        if (!(event.getEntity() instanceof Mob mobEntity)) {
+            return;
+        }
+
+        LivingEntity target = mobEntity.getTarget();
+        if (target == null || !isEntityAffected(mobEntity)) {
+            return;
+        }
+
+        ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIBDOMASK.get(), target).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        if (!stack0.isEmpty()) {
+            mobEntity.setTarget(null);
+        }
     }
 
     @SubscribeEvent
