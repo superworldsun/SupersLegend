@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.player.PlayerTransformationModels;
+import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
 import com.superworldsun.superslegend.interfaces.JumpingEntity;
 import com.superworldsun.superslegend.registries.ItemInit;
@@ -37,12 +38,17 @@ import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class GoronMask extends Item implements ICurioItem, IPlayerModelChanger {
+public class GoronMask extends Item implements ICurioItem, IPlayerModelChanger, IEntityResizer {
     private static final UUID GORON_WATER_MODIFIER_ID = UUID.fromString("9198efe1-249e-4dc9-825b-e79aa2d3e2cf");
     private static final ResourceLocation PLAYER_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/goron_player.png");
 
     public GoronMask(Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    public float getScale(Player player) {
+        return 1.52F;
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -18,3 +18,10 @@ description = '''This is a Zelda mod created by superworldsun'''
     versionRange = "[1.20.1-5.2.0,)"
     ordering = "AFTER"
     side = "BOTH"
+
+[[dependencies.superslegend]]
+    modId = "pehkui"
+    mandatory = true
+    versionRange = "[3.8.2,)"
+    ordering = "AFTER"
+    side = "BOTH"
