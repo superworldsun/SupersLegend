@@ -1,9 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.items.ammobags.BigQuiver;
-import com.superworldsun.superslegend.items.ammobags.MediumQuiver;
-import com.superworldsun.superslegend.items.ammobags.SmallQuiver;
+import com.superworldsun.superslegend.items.ammobags.*;
 import com.superworldsun.superslegend.items.armors.*;
 import com.superworldsun.superslegend.items.bags.*;
 import com.superworldsun.superslegend.items.block.*;
@@ -659,19 +657,13 @@ public class ItemInit {
     public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", BigQuiver::new);
 
     //Belt
-    public static final RegistryObject<Item> BULLET_BAG = ITEMS.register("bullet_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIG_BULLET_BAG = ITEMS.register("big_bullet_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BULLET_BAG = ITEMS.register("bullet_bag", SmallBulletBag::new);
+    public static final RegistryObject<Item> BIG_BULLET_BAG = ITEMS.register("big_bullet_bag", MediumBulletBag::new);
+    public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag", BigBulletBag::new);
 
-    public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIG_BOMB_BAG = ITEMS.register("big_bomb_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIGGEST_BOMB_BAG = ITEMS.register("biggest_bomb_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag", SmallBombBag::new);
+    public static final RegistryObject<Item> BIG_BOMB_BAG = ITEMS.register("big_bomb_bag", MediumBombBag::new);
+    public static final RegistryObject<Item> BIGGEST_BOMB_BAG = ITEMS.register("biggest_bomb_bag", BigBombBag::new);
 
     //Hands (gloves, gauntlets, bracelets)
     //public static final RegistryObject<Item> POWER_BRACELETS = ITEMS.register("power_bracelets",
