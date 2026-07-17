@@ -2,7 +2,12 @@ package com.superworldsun.superslegend.client.model.player;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import com.superworldsun.superslegend.interfaces.IHandRenderer;
+import net.minecraft.client.renderer.ItemInHandRenderer;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -373,5 +378,15 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
         handOverlay.xRot = 0;
         handOverlay.y = 7.0F;
         handOverlay.render(poseStack, buffer.getBuffer(RenderType.entityTranslucent(texture)), packedLight, OverlayTexture.NO_OVERLAY);
+    }
+
+    @Override
+    public void renderThirdPersonItem(ItemInHandRenderer itemInHandRenderer, LivingEntity livingEntity, ItemStack itemStack, ItemDisplayContext displayContext, HumanoidArm arm,
+            PoseStack poseStack, MultiBufferSource buffer, int light) {
+        boolean leftHand = arm == HumanoidArm.LEFT;
+        poseStack.mulPose(Axis.XP.rotationDegrees(-90F));
+        poseStack.mulPose(Axis.YP.rotationDegrees(170F));
+        poseStack.translate(leftHand ? 0.05D : -0.25D, 0.125D, -0.625D);
+        itemInHandRenderer.renderItem(livingEntity, itemStack, displayContext, leftHand, poseStack, buffer, light);
     }
 }
