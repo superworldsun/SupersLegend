@@ -4,6 +4,7 @@ import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.registries.TagInit;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
@@ -66,19 +67,20 @@ public class MasterSwordBeamEntity extends ThrowableProjectile implements GeoEnt
     protected void onHitEntity(EntityHitResult result) {
         if (!this.level().isClientSide) {
             Entity entity = result.getEntity();
-            if (entity instanceof Mob) {
-                Mob mob = (Mob) entity;
+            DamageSource damageSource = getOwner() instanceof LivingEntity owner
+                    ? level().damageSources().mobProjectile(this, owner)
+                    : level().damageSources().generic();
+
+            if (entity instanceof Mob mob) {
                 boolean isWeakToLight = mob.getType().is(TagInit.WEAK_TO_LIGHT);
                 if (isWeakToLight || mob.getMobType() == MobType.UNDEAD) {
-                    mob.hurt(level().damageSources().generic(), DAMAGE_AMOUNT * 2);
-                    System.out.println("weak to light");
+                    mob.hurt(damageSource, DAMAGE_AMOUNT * 2);
                 } else {
-                    mob.hurt(level().damageSources().generic(), DAMAGE_AMOUNT);
-                    System.out.println("normal damage");
+                    mob.hurt(damageSource, DAMAGE_AMOUNT);
                 }
             } else {
                 // Apply normal damage to non-Mob entities like Carts, Boats, etc.
-                entity.hurt(level().damageSources().generic(), DAMAGE_AMOUNT);
+                entity.hurt(damageSource, DAMAGE_AMOUNT);
             }
             this.discard();
         }
@@ -89,7 +91,6 @@ public class MasterSwordBeamEntity extends ThrowableProjectile implements GeoEnt
         this.discard();
     }
 
-    //TODO, not everything was ported over, check old code
     @Override
     public void tick() {
         super.tick();
