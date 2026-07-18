@@ -12,6 +12,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -28,15 +29,29 @@ public class GibdoMask extends Item implements ICurioItem {
         super(pProperties);
     }
 
+    // Clears targets that were acquired before the mask was equipped
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
-        LivingEntity entity = event.getEntity();
-
-        if (!(entity instanceof Mob mobEntity)) {
+        if (!(event.getEntity() instanceof Mob mobEntity)) {
             return;
         }
 
         LivingEntity target = mobEntity.getTarget();
+        if (target == null || !isEntityAffected(mobEntity)) {
+            return;
+        }
+
+        ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIBDOMASK.get(), target).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+        if (!stack0.isEmpty()) {
+            mobEntity.setTarget(null);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingChangeTarget(LivingChangeTargetEvent event) {
+        LivingEntity entity = event.getEntity();
+        LivingEntity target = event.getNewTarget();
+
         if (target == null) {
             return;
         }
@@ -45,19 +60,15 @@ public class GibdoMask extends Item implements ICurioItem {
             return;
         }
 
-        //TODO Right now if the player attacks a Undead Mob while wearing the mask they will fight back, make it so they never fight back
-
-        // Reset target if target has mask equipped
         ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_GIBDOMASK.get(), target).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
         if (!stack0.isEmpty()) {
-            mobEntity.setTarget(null);
-            //((Mob) event.getEntity()).setTarget(null);
+            event.setCanceled(true);
         }
     }
 
     private static boolean isEntityAffected(LivingEntity entity) {
         return entity.getMobType() == MobType.UNDEAD && entity.getType() != EntityType.WITHER && entity.getType() != EntityType.PHANTOM
-                && !EntityTypeTags.SKELETONS.equals(entity.getType());
+                && !entity.getType().is(EntityTypeTags.SKELETONS);
     }
 
     @OnlyIn(Dist.CLIENT)

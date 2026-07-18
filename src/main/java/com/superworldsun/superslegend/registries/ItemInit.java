@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.registries;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.items.ammobags.*;
 import com.superworldsun.superslegend.items.armors.*;
 import com.superworldsun.superslegend.items.bags.*;
 import com.superworldsun.superslegend.items.block.*;
@@ -443,7 +444,6 @@ public class ItemInit {
             () -> new BremenMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_GREATFAIRYMASK = ITEMS.register("mask_greatfairymask",
             () -> new GreatfairyMask(new Item.Properties().stacksTo(1)));
-    //TODO, Deku mask needs DamageSource changed
     public static final RegistryObject<Item> MASK_DEKUMASK = ITEMS.register("mask_dekumask",
             () -> new DekuMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_KEATONMASK = ITEMS.register("mask_keatonmask",
@@ -454,7 +454,6 @@ public class ItemInit {
             () -> new DongerosMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_MASKOFSCENTS = ITEMS.register("mask_maskofscents",
             () -> new MaskOfScentsMask(new Item.Properties().stacksTo(1)));
-    //TODO, GORON MASK DOSENT WORK
     public static final RegistryObject<Item> MASK_GORONMASK = ITEMS.register("mask_goronmask",
             () -> new GoronMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_ROMANISMASK = ITEMS.register("mask_romanismask",
@@ -653,27 +652,18 @@ public class ItemInit {
 
 
     //Back
-    public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> QUIVER = ITEMS.register("quiver", SmallQuiver::new);
+    public static final RegistryObject<Item> BIG_QUIVER = ITEMS.register("big_quiver", MediumQuiver::new);
+    public static final RegistryObject<Item> BIGGEST_QUIVER = ITEMS.register("biggest_quiver", BigQuiver::new);
 
     //Belt
-    public static final RegistryObject<Item> BULLET_BAG = ITEMS.register("bullet_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIG_BULLET_BAG = ITEMS.register("big_bullet_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BULLET_BAG = ITEMS.register("bullet_bag", SmallBulletBag::new);
+    public static final RegistryObject<Item> BIG_BULLET_BAG = ITEMS.register("big_bullet_bag", MediumBulletBag::new);
+    public static final RegistryObject<Item> BIGGEST_BULLET_BAG = ITEMS.register("biggest_bullet_bag", BigBulletBag::new);
 
-    public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIG_BOMB_BAG = ITEMS.register("big_bomb_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BIGGEST_BOMB_BAG = ITEMS.register("biggest_bomb_bag",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BOMB_BAG = ITEMS.register("bomb_bag", SmallBombBag::new);
+    public static final RegistryObject<Item> BIG_BOMB_BAG = ITEMS.register("big_bomb_bag", MediumBombBag::new);
+    public static final RegistryObject<Item> BIGGEST_BOMB_BAG = ITEMS.register("biggest_bomb_bag", BigBombBag::new);
 
     //Hands (gloves, gauntlets, bracelets)
     //public static final RegistryObject<Item> POWER_BRACELETS = ITEMS.register("power_bracelets",

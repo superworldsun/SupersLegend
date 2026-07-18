@@ -8,6 +8,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -84,8 +86,7 @@ public class DinsFire extends Item {
 
                     if (!foundTarget.isEmpty() && hasMagic && getUseDuration(stack) >= 72000)
                     {
-                        //TODO, idk how to fix random.nextfloat
-                        //level.playSound(player, player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
+                        level.playSound(null, player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
                         for (LivingEntity living : foundTarget)
                         {
                             MagicProvider.spendMagic(player, manaCost);

@@ -26,7 +26,6 @@ public class GiantsMask extends Item implements ICurioItem {
     private static final float MANA_COST = 0.01F;
 
 
-    //TODO, right now the size doesn't transition when done with curio tick but does with curio equip and un-equip.
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         MagicProvider.spendMagic((Player) livingEntity, MANA_COST);
@@ -39,62 +38,62 @@ public class GiantsMask extends Item implements ICurioItem {
         {
             ScaleData height = ScaleTypes.HEIGHT.getScaleData(livingEntity);
             height.setTargetScale(6.22f);
-            height.setScaleTickDelay(height.getScaleTickDelay());
+            height.setScaleTickDelay(20);
             ScaleData width = ScaleTypes.WIDTH.getScaleData(livingEntity);
             width.setTargetScale(6.22f);
-            width.setScaleTickDelay(width.getScaleTickDelay());
+            width.setScaleTickDelay(20);
             ScaleData reach = ScaleTypes.BLOCK_REACH.getScaleData(livingEntity);
             reach.setTargetScale(2f);
-            reach.setScaleTickDelay(reach.getScaleTickDelay());
+            reach.setScaleTickDelay(20);
             ScaleData ereach = ScaleTypes.ENTITY_REACH.getScaleData(livingEntity);
             ereach.setTargetScale(2f);
-            ereach.setScaleTickDelay(ereach.getScaleTickDelay());
+            ereach.setScaleTickDelay(20);
             ScaleData motion = ScaleTypes.MOTION.getScaleData(livingEntity);
             motion.setTargetScale(3f);
-            motion.setScaleTickDelay(motion.getScaleTickDelay());
+            motion.setScaleTickDelay(20);
             ScaleData jump = ScaleTypes.JUMP_HEIGHT.getScaleData(livingEntity);
             jump.setTargetScale(1.5f);
-            jump.setScaleTickDelay(jump.getScaleTickDelay());
+            jump.setScaleTickDelay(20);
             ScaleData fall = ScaleTypes.FALLING.getScaleData(livingEntity);
             fall.setTargetScale(0.4f);
-            fall.setScaleTickDelay(fall.getScaleTickDelay());
+            fall.setScaleTickDelay(20);
             ScaleData step = ScaleTypes.STEP_HEIGHT.getScaleData(livingEntity);
             step.setTargetScale(0.8f);
-            step.setScaleTickDelay(step.getScaleTickDelay());
+            step.setScaleTickDelay(20);
             ScaleData mining = ScaleTypes.MINING_SPEED.getScaleData(livingEntity);
             mining.setTargetScale(2f);
-            mining.setScaleTickDelay(mining.getScaleTickDelay());
+            mining.setScaleTickDelay(20);
         }
         else
         if (!hasMagic)
         {
             ScaleData height = ScaleTypes.HEIGHT.getScaleData(livingEntity);
             height.setTargetScale(1f);
-            height.setScaleTickDelay(height.getScaleTickDelay());
+            height.setScaleTickDelay(20);
             ScaleData width = ScaleTypes.WIDTH.getScaleData(livingEntity);
             width.setTargetScale(1f);
-            width.setScaleTickDelay(width.getScaleTickDelay());
+            width.setScaleTickDelay(20);
             ScaleData reach = ScaleTypes.BLOCK_REACH.getScaleData(livingEntity);
             reach.setTargetScale(1f);
-            reach.setScaleTickDelay(reach.getScaleTickDelay());
+            reach.setScaleTickDelay(20);
             ScaleData ereach = ScaleTypes.ENTITY_REACH.getScaleData(livingEntity);
             ereach.setTargetScale(1f);
-            ereach.setScaleTickDelay(ereach.getScaleTickDelay());
+            ereach.setScaleTickDelay(20);
             ScaleData motion = ScaleTypes.MOTION.getScaleData(livingEntity);
             motion.setTargetScale(1f);
-            motion.setScaleTickDelay(motion.getScaleTickDelay());
+            motion.setScaleTickDelay(20);
             ScaleData jump = ScaleTypes.JUMP_HEIGHT.getScaleData(livingEntity);
             jump.setTargetScale(1f);
-            jump.setScaleTickDelay(jump.getScaleTickDelay());
+            jump.setScaleTickDelay(20);
             ScaleData fall = ScaleTypes.FALLING.getScaleData(livingEntity);
             fall.setTargetScale(1f);
-            fall.setScaleTickDelay(fall.getScaleTickDelay());
+            fall.setScaleTickDelay(20);
             ScaleData step = ScaleTypes.STEP_HEIGHT.getScaleData(livingEntity);
             step.setTargetScale(1f);
-            step.setScaleTickDelay(step.getScaleTickDelay());
+            step.setScaleTickDelay(20);
             ScaleData mining = ScaleTypes.MINING_SPEED.getScaleData(livingEntity);
             mining.setTargetScale(1f);
-            mining.setScaleTickDelay(mining.getScaleTickDelay());
+            mining.setScaleTickDelay(20);
         }
     }
 
@@ -110,31 +109,31 @@ public class GiantsMask extends Item implements ICurioItem {
         if (hasMagic) {
             ScaleData height = ScaleTypes.HEIGHT.getScaleData(livingEntity);
             height.setTargetScale(6.22f);
-            height.setScaleTickDelay(height.getScaleTickDelay());
+            height.setScaleTickDelay(20);
             ScaleData width = ScaleTypes.WIDTH.getScaleData(livingEntity);
             width.setTargetScale(6.22f);
-            width.setScaleTickDelay(width.getScaleTickDelay());
+            width.setScaleTickDelay(20);
             ScaleData reach = ScaleTypes.BLOCK_REACH.getScaleData(livingEntity);
             reach.setTargetScale(2f);
-            reach.setScaleTickDelay(reach.getScaleTickDelay());
+            reach.setScaleTickDelay(20);
             ScaleData ereach = ScaleTypes.ENTITY_REACH.getScaleData(livingEntity);
             ereach.setTargetScale(2f);
-            ereach.setScaleTickDelay(ereach.getScaleTickDelay());
+            ereach.setScaleTickDelay(20);
             ScaleData motion = ScaleTypes.MOTION.getScaleData(livingEntity);
             motion.setTargetScale(3f);
-            motion.setScaleTickDelay(motion.getScaleTickDelay());
+            motion.setScaleTickDelay(20);
             ScaleData jump = ScaleTypes.JUMP_HEIGHT.getScaleData(livingEntity);
             jump.setTargetScale(1.5f);
-            jump.setScaleTickDelay(jump.getScaleTickDelay());
+            jump.setScaleTickDelay(20);
             ScaleData fall = ScaleTypes.FALLING.getScaleData(livingEntity);
             fall.setTargetScale(0.4f);
-            fall.setScaleTickDelay(fall.getScaleTickDelay());
+            fall.setScaleTickDelay(20);
             ScaleData step = ScaleTypes.STEP_HEIGHT.getScaleData(livingEntity);
             step.setTargetScale(0.8f);
-            step.setScaleTickDelay(step.getScaleTickDelay());
+            step.setScaleTickDelay(20);
             ScaleData mining = ScaleTypes.MINING_SPEED.getScaleData(livingEntity);
             mining.setTargetScale(2f);
-            mining.setScaleTickDelay(mining.getScaleTickDelay());
+            mining.setScaleTickDelay(20);
         }
     }
 
@@ -144,31 +143,31 @@ public class GiantsMask extends Item implements ICurioItem {
 
         ScaleData height = ScaleTypes.HEIGHT.getScaleData(livingEntity);
         height.setTargetScale(1f);
-        height.setScaleTickDelay(height.getScaleTickDelay());
+        height.setScaleTickDelay(20);
         ScaleData width = ScaleTypes.WIDTH.getScaleData(livingEntity);
         width.setTargetScale(1f);
-        width.setScaleTickDelay(width.getScaleTickDelay());
+        width.setScaleTickDelay(20);
         ScaleData reach = ScaleTypes.BLOCK_REACH.getScaleData(livingEntity);
         reach.setTargetScale(1f);
-        reach.setScaleTickDelay(reach.getScaleTickDelay());
+        reach.setScaleTickDelay(20);
         ScaleData ereach = ScaleTypes.ENTITY_REACH.getScaleData(livingEntity);
         ereach.setTargetScale(1f);
-        ereach.setScaleTickDelay(ereach.getScaleTickDelay());
+        ereach.setScaleTickDelay(20);
         ScaleData motion = ScaleTypes.MOTION.getScaleData(livingEntity);
         motion.setTargetScale(1f);
-        motion.setScaleTickDelay(motion.getScaleTickDelay());
+        motion.setScaleTickDelay(20);
         ScaleData jump = ScaleTypes.JUMP_HEIGHT.getScaleData(livingEntity);
         jump.setTargetScale(1f);
-        jump.setScaleTickDelay(jump.getScaleTickDelay());
+        jump.setScaleTickDelay(20);
         ScaleData fall = ScaleTypes.FALLING.getScaleData(livingEntity);
         fall.setTargetScale(1f);
-        fall.setScaleTickDelay(fall.getScaleTickDelay());
+        fall.setScaleTickDelay(20);
         ScaleData step = ScaleTypes.STEP_HEIGHT.getScaleData(livingEntity);
         step.setTargetScale(1f);
-        step.setScaleTickDelay(step.getScaleTickDelay());
+        step.setScaleTickDelay(20);
         ScaleData mining = ScaleTypes.MINING_SPEED.getScaleData(livingEntity);
         mining.setTargetScale(1f);
-        mining.setScaleTickDelay(mining.getScaleTickDelay());
+        mining.setScaleTickDelay(20);
     }
 
     @OnlyIn(Dist.CLIENT)

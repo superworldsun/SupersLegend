@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.client.model.player.PlayerTransformationModels;
+import com.superworldsun.superslegend.interfaces.IEntityResizer;
 import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.model.PlayerModel;
@@ -38,7 +39,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class ZoraMask extends Item implements ICurioItem, IPlayerModelChanger
+public class ZoraMask extends Item implements ICurioItem, IPlayerModelChanger, IEntityResizer
 {
     private static final UUID ZORA_WATER_MODIFIER_ID = UUID.fromString("734af1f7-e76b-47f0-ba52-5a1a12a9edd2");
     private static final ResourceLocation PLAYER_TEXTURE = new ResourceLocation(SupersLegendMain.MOD_ID, "textures/entity/zora_player.png");
@@ -46,6 +47,11 @@ public class ZoraMask extends Item implements ICurioItem, IPlayerModelChanger
 
     public ZoraMask(Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    public float getScale(Player player) {
+        return 1.32F;
     }
 
     @OnlyIn(Dist.CLIENT)

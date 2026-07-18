@@ -23,9 +23,15 @@ public class BlastMask extends Item implements IMaskAbility, ICurioItem {
         super(pProperties);
     }
 
-    //TODO, when blowing up blocks it sometimes creates a couple "ghost blocks" on the outer edge of the blast
     public void startUsingAbility(Player player)
     {
+        // The explosion must only happen on the server, a second client-side
+        // explosion desyncs blocks on the edge of the blast
+        if (player.level().isClientSide())
+        {
+            return;
+        }
+
         // Do nothing if on cooldown
         if (player.getCooldowns().isOnCooldown(ItemInit.MASK_BLASTMASK.get()))
         {
@@ -39,8 +45,7 @@ public class BlastMask extends Item implements IMaskAbility, ICurioItem {
 
         if (!player.isBlocking())
         {
-            //TODO change damage type to explosion
-            player.hurt(player.damageSources().generic(),2);
+            player.hurt(player.damageSources().explosion(player, player), 2);
         }
         else if (player.isBlocking())
         {

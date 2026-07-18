@@ -2,7 +2,12 @@ package com.superworldsun.superslegend.client.model.player;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import com.superworldsun.superslegend.interfaces.IHandRenderer;
+import net.minecraft.client.renderer.ItemInHandRenderer;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -40,84 +45,89 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
         root.addOrReplaceChild("left_pants", CubeListBuilder.create(), PartPose.ZERO);
         root.addOrReplaceChild("right_pants", CubeListBuilder.create(), PartPose.ZERO);
 
-        PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create()
-                .texOffs(33, 0).addBox(-3.5F, 3.0F, -2.5F, 7.0F, 4.0F, 5.0F)
-                .texOffs(20, 42).addBox(-3.0F, 0.0F, -2.0F, 6.0F, 3.0F, 4.0F),
+        PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create()
+                .texOffs(0, 19).addBox(-4.5F, -9.0F, -3.5F, 9.0F, 9.0F, 8.0F)
+                .texOffs(14, 48).addBox(-2.0F, -4.1F, -5.25F, 4.0F, 4.0F, 2.0F),
                 PartPose.offset(0.0F, 8.0F, 0.0F));
-        body.addOrReplaceChild("cube_r1", CubeListBuilder.create()
-                .texOffs(0, 14).addBox(0.0F, -1.0F, -3.5F, 0.0F, 2.0F, 5.0F),
-                PartPose.offsetAndRotation(3.8836F, 7.9235F, 1.0F, 0.0F, 0.0F, -0.3927F));
-        body.addOrReplaceChild("cube_r2", CubeListBuilder.create()
-                .texOffs(0, 16).addBox(0.0F, -1.0F, -3.5F, 0.0F, 2.0F, 5.0F),
-                PartPose.offsetAndRotation(-3.8827F, 7.9239F, 1.0F, 0.0F, 0.0F, 0.3927F));
-        body.addOrReplaceChild("cube_r3", CubeListBuilder.create()
-                .texOffs(16, 39).addBox(-3.5F, 0.0F, 0.0F, 7.0F, 2.0F, 0.0F),
-                PartPose.offsetAndRotation(0.0F, 7.0F, 2.5F, 0.3927F, 0.0F, 0.0F));
-        body.addOrReplaceChild("cube_r4", CubeListBuilder.create()
-                .texOffs(51, 10).addBox(-3.5F, 0.0F, 0.0F, 7.0F, 2.0F, 0.0F),
-                PartPose.offsetAndRotation(0.0F, 6.9996F, -2.5009F, -0.3927F, 0.0F, 0.0F));
 
-        PartDefinition rightLeg = root.addOrReplaceChild("right_leg", CubeListBuilder.create(),
-                PartPose.offset(2.0F, 16.0F, -0.5F));
-        rightLeg.addOrReplaceChild("cube_r5", CubeListBuilder.create()
-                .texOffs(54, 6).addBox(2.3695F, -1.125F, -11.8814F, 3.0F, 1.0F, 3.0F)
-                .texOffs(20, 41).addBox(3.3695F, -5.125F, -10.8814F, 1.0F, 4.0F, 1.0F)
-                .texOffs(36, 42).addBox(2.8695F, -0.125F, -11.3814F, 2.0F, 2.0F, 2.0F)
-                .texOffs(15, 49).addBox(2.3695F, 1.875F, -13.8814F, 3.0F, 2.0F, 5.0F),
-                PartPose.offsetAndRotation(-7.5F, 4.125F, 8.25F, 0.0F, -0.3927F, 0.0F));
+        PartDefinition hair = head.addOrReplaceChild("hair", CubeListBuilder.create(),
+                PartPose.offset(0.0F, -10.5F, 7.4F));
+        hair.addOrReplaceChild("cube_r1", CubeListBuilder.create()
+                .texOffs(34, 16).addBox(6.975F, -2.5F, -5.0F, 0.0F, 5.0F, 8.0F),
+                PartPose.offsetAndRotation(-2.0F, 4.0918F, -6.6068F, -0.3927F, 0.0F, 0.0F));
+        hair.addOrReplaceChild("cube_r2", CubeListBuilder.create()
+                .texOffs(25, 0).addBox(-1.0F, 0.25F, 3.0F, 10.0F, 0.0F, 3.0F),
+                PartPose.offsetAndRotation(-4.0F, -1.5103F, -12.9455F, -0.3927F, 0.0F, 0.0F));
+        hair.addOrReplaceChild("cube_r3", CubeListBuilder.create()
+                .texOffs(28, 3).addBox(-5.0F, -2.0F, 0.0F, 10.0F, 5.0F, 0.0F),
+                PartPose.offsetAndRotation(0.0F, 1.7164F, -11.0349F, -0.3927F, 0.0F, 0.0F));
+        hair.addOrReplaceChild("cube_r4", CubeListBuilder.create()
+                .texOffs(22, 35).addBox(-5.476F, 3.0F, -10.0F, 0.0F, 5.0F, 8.0F),
+                PartPose.offsetAndRotation(0.501F, 0.9239F, 0.1173F, -0.3927F, 0.0F, 0.0F));
 
-        PartDefinition leftLeg = root.addOrReplaceChild("left_leg", CubeListBuilder.create(),
-                PartPose.offset(-2.5F, 16.0F, -0.5F));
-        leftLeg.addOrReplaceChild("cube_r6", CubeListBuilder.create()
-                .texOffs(52, 0).addBox(-1.5F, -1.125F, -1.25F, 3.0F, 1.0F, 3.0F)
-                .texOffs(33, 0).addBox(-0.5F, -5.125F, -0.25F, 1.0F, 4.0F, 1.0F)
-                .texOffs(0, 23).addBox(-1.0F, -0.125F, -0.75F, 2.0F, 2.0F, 2.0F)
-                .texOffs(40, 42).addBox(-1.5F, 1.875F, -3.25F, 3.0F, 2.0F, 5.0F),
-                PartPose.offsetAndRotation(0.0F, 4.125F, 0.25F, 0.0F, 0.3927F, 0.0F));
+        PartDefinition dekuHat = head.addOrReplaceChild("deku_hat", CubeListBuilder.create(),
+                PartPose.offset(0.5F, 9.0981F, 6.0812F));
+        dekuHat.addOrReplaceChild("cube_r5", CubeListBuilder.create()
+                .texOffs(30, 13).addBox(-4.0F, -9.5F, -7.5F, 8.0F, 5.0F, 6.0F),
+                PartPose.offsetAndRotation(-0.5F, -4.7132F, 8.815F, 0.3927F, 0.0F, 0.0F));
+        dekuHat.addOrReplaceChild("cube_r6", CubeListBuilder.create()
+                .texOffs(0, 0).addBox(-5.0F, -2.1F, -8.5F, 10.0F, 11.0F, 8.0F),
+                PartPose.offsetAndRotation(-0.5F, -20.0981F, 1.3188F, 0.48F, 0.0F, 0.0F));
+        dekuHat.addOrReplaceChild("cube_r7", CubeListBuilder.create()
+                .texOffs(0, 46).addBox(-2.0F, -3.5F, -2.0F, 4.0F, 5.0F, 3.0F),
+                PartPose.offsetAndRotation(-0.5F, 0.0766F, 2.8102F, -0.0873F, 0.0F, 0.0F));
+        dekuHat.addOrReplaceChild("cube_r8", CubeListBuilder.create()
+                .texOffs(0, 36).addBox(-3.0F, -0.2039F, -1.9567F, 6.0F, 5.0F, 5.0F),
+                PartPose.offsetAndRotation(-0.5F, -7.3896F, 1.8762F, 0.1745F, 0.0F, 0.0F));
 
-        PartDefinition leftArm = root.addOrReplaceChild("left_arm", CubeListBuilder.create(),
-                PartPose.offset(4.0F, 9.5F, 0.5F));
-        leftArm.addOrReplaceChild("cube_r7", CubeListBuilder.create()
-                .texOffs(0, 50).addBox(-1.5F, 6.5F, -1.5F, 3.0F, 3.0F, 3.0F)
-                .texOffs(54, 47).addBox(-1.0F, 5.5F, -1.0F, 2.0F, 1.0F, 2.0F)
-                .texOffs(51, 42).addBox(-1.5F, 4.5F, -1.5F, 3.0F, 1.0F, 3.0F)
-                .texOffs(30, 24).addBox(-0.5F, 0.5F, -0.5F, 1.0F, 4.0F, 1.0F)
-                .texOffs(0, 4).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 2.0F, 2.0F),
-                PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -0.3927F));
+        PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create()
+                .texOffs(30, 32).addBox(-3.5F, 0.0F, -1.5F, 7.0F, 7.0F, 4.0F),
+                PartPose.offset(0.0F, 8.0F, 0.0F));
+        body.addOrReplaceChild("cube_r9", CubeListBuilder.create()
+                .texOffs(26, 20).addBox(4.0F, 0.0F, -2.0F, 0.0F, 2.0F, 4.0F),
+                PartPose.offsetAndRotation(-0.4658F, 7.5221F, 0.5F, 0.0F, 0.0F, -0.1309F));
+        body.addOrReplaceChild("cube_r10", CubeListBuilder.create()
+                .texOffs(34, 25).addBox(0.001F, 0.0F, -2.0F, 0.0F, 2.0F, 4.0F),
+                PartPose.offsetAndRotation(-3.5F, 7.0F, 0.5F, 0.0F, 0.0F, 0.1309F));
+        body.addOrReplaceChild("cube_r11", CubeListBuilder.create()
+                .texOffs(36, 10).addBox(-3.0F, 0.0F, 0.0F, 7.0F, 2.0F, 0.0F),
+                PartPose.offsetAndRotation(-0.5F, 7.0004F, 2.4991F, 0.2618F, 0.0F, 0.0F));
+        body.addOrReplaceChild("cube_r12", CubeListBuilder.create()
+                .texOffs(48, 0).addBox(-3.0F, 0.0F, 0.0F, 7.0F, 2.0F, 0.0F),
+                PartPose.offsetAndRotation(-0.5F, 7.0F, -1.5F, 0.0F, 0.0F, -0.2618F));
 
         PartDefinition rightArm = root.addOrReplaceChild("right_arm", CubeListBuilder.create(),
-                PartPose.offset(-4.0F, 9.5F, 0.5F));
-        rightArm.addOrReplaceChild("cube_r8", CubeListBuilder.create()
-                .texOffs(45, 49).addBox(-1.5F, 6.5F, -1.5F, 3.0F, 3.0F, 3.0F)
-                .texOffs(9, 50).addBox(-1.0F, 5.5F, -1.0F, 2.0F, 1.0F, 2.0F)
-                .texOffs(42, 9).addBox(-1.5F, 4.5F, -1.5F, 3.0F, 1.0F, 3.0F)
-                .texOffs(30, 19).addBox(-0.5F, 0.5F, -0.5F, 1.0F, 4.0F, 1.0F)
-                .texOffs(0, 0).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 2.0F, 2.0F),
-                PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.3927F));
+                PartPose.offset(-7.0F, 9.0F, 0.5F));
+        rightArm.addOrReplaceChild("arm", CubeListBuilder.create()
+                .texOffs(47, 26).addBox(-2.8007F, 5.5463F, 0.5F, 3.0F, 3.0F, 3.0F)
+                .texOffs(22, 40).addBox(-2.3007F, 4.5463F, 1.0F, 2.0F, 1.0F, 2.0F)
+                .texOffs(17, 36).addBox(-2.8007F, 3.5463F, 0.5F, 3.0F, 1.0F, 3.0F)
+                .texOffs(0, 0).addBox(-2.3007F, -1.4537F, 1.0F, 2.0F, 5.0F, 2.0F),
+                PartPose.offset(3.8008F, 0.4536F, -2.0F));
 
-        PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create()
-                .texOffs(0, 19).addBox(-5.0F, -10.0F, -5.0F, 10.0F, 10.0F, 10.0F)
-                .texOffs(0, 39).addBox(-3.0F, 2.305F, 7.7802F, 6.0F, 7.0F, 4.0F)
-                .texOffs(31, 49).addBox(-2.5F, -5.0F, -7.0F, 5.0F, 5.0F, 2.0F),
-                PartPose.offset(0.0F, 8.0F, 0.0F));
-        head.addOrReplaceChild("cube_r9", CubeListBuilder.create()
-                .texOffs(26, 49).addBox(-6.0F, 4.75F, -10.0F, 2.0F, 3.0F, 0.0F)
-                .texOffs(6, 21).addBox(-5.5F, 4.75F, -9.0F, 0.0F, 2.0F, 2.0F)
-                .texOffs(0, 25).addBox(5.5F, 4.75F, -9.0F, 0.0F, 2.0F, 2.0F)
-                .texOffs(45, 55).addBox(4.0F, 4.75F, -10.0F, 2.0F, 3.0F, 0.0F)
-                .texOffs(0, 39).addBox(-1.0F, 4.75F, -10.0F, 2.0F, 4.0F, 0.0F)
-                .texOffs(4, 27).addBox(-3.5F, 4.75F, -10.0F, 2.0F, 2.0F, 0.0F)
-                .texOffs(49, 55).addBox(1.5F, 4.75F, -10.0F, 2.0F, 3.0F, 0.0F)
-                .texOffs(30, 29).addBox(-5.5F, 1.75F, -10.0F, 11.0F, 3.0F, 10.0F),
-                PartPose.offsetAndRotation(0.0F, -10.5F, 6.0F, -0.3927F, 0.0F, 0.0F));
-        head.addOrReplaceChild("cube_r10", CubeListBuilder.create()
-                .texOffs(36, 13).addBox(-4.0F, -5.5F, -5.5F, 8.0F, 10.0F, 6.0F),
-                PartPose.offsetAndRotation(0.0F, -1.6612F, 10.5962F, 0.3927F, 0.0F, 0.0F));
-        head.addOrReplaceChild("cube_r11", CubeListBuilder.create()
-                .texOffs(0, 0).addBox(-6.0F, -5.0F, -8.5F, 12.0F, 10.0F, 9.0F),
-                PartPose.offsetAndRotation(0.0F, -10.5F, 6.0F, 0.7854F, 0.0F, 0.0F));
+        PartDefinition leftArm = root.addOrReplaceChild("left_arm", CubeListBuilder.create(),
+                PartPose.offset(6.3F, 9.0F, 0.5F));
+        leftArm.addOrReplaceChild("arm", CubeListBuilder.create()
+                .texOffs(46, 47).addBox(-1.1993F, 5.5463F, 0.5F, 3.0F, 3.0F, 3.0F)
+                .texOffs(52, 36).addBox(-0.6993F, 4.5463F, 1.0F, 2.0F, 1.0F, 2.0F)
+                .texOffs(44, 43).addBox(-1.1993F, 3.5463F, 0.5F, 3.0F, 1.0F, 3.0F)
+                .texOffs(0, 19).addBox(-0.6993F, -1.4537F, 1.0F, 2.0F, 5.0F, 2.0F),
+                PartPose.offset(-2.1008F, 0.4537F, -2.0F));
 
-        return LayerDefinition.create(mesh, 128, 128);
+        root.addOrReplaceChild("right_leg", CubeListBuilder.create()
+                .texOffs(48, 32).addBox(-1.75F, 4.0F, -0.75F, 3.0F, 1.0F, 3.0F)
+                .texOffs(34, 50).addBox(-1.25F, 0.0F, -0.25F, 2.0F, 4.0F, 2.0F)
+                .texOffs(52, 14).addBox(-1.25F, 5.0F, -0.25F, 2.0F, 2.0F, 2.0F)
+                .texOffs(33, 43).addBox(-1.75F, 7.0F, -2.75F, 3.0F, 2.0F, 5.0F),
+                PartPose.offset(-2.0F, 15.0F, -0.25F));
+        root.addOrReplaceChild("left_leg", CubeListBuilder.create()
+                .texOffs(17, 36).addBox(-2.25F, 4.0F, -0.75F, 3.0F, 1.0F, 3.0F)
+                .texOffs(26, 48).addBox(-1.75F, 0.0F, -0.25F, 2.0F, 4.0F, 2.0F)
+                .texOffs(52, 10).addBox(-1.75F, 5.0F, -0.25F, 2.0F, 2.0F, 2.0F)
+                .texOffs(43, 3).addBox(-2.25F, 7.0F, -2.75F, 3.0F, 2.0F, 5.0F),
+                PartPose.offset(3.0F, 15.0F, -0.25F));
+
+        return LayerDefinition.create(mesh, 64, 64);
     }
 
     @Override
@@ -147,9 +157,9 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
 
         this.body.yRot = 0.0F;
         this.rightArm.z = 0.5F;
-        this.rightArm.x = -4.0F;
+        this.rightArm.x = -7.0F;
         this.leftArm.z = 0.5F;
-        this.leftArm.x = 4.0F;
+        this.leftArm.x = 6.3F;
         float f = 1.0F;
         if (flag) {
             f = (float) player.getDeltaMovement().lengthSqr();
@@ -199,24 +209,14 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
             this.body.xRot = 0.5F;
             this.rightArm.xRot += 0.4F;
             this.leftArm.xRot += 0.4F;
-            this.rightLeg.z = 3.5F;
-            this.leftLeg.z = 3.5F;
-            this.rightLeg.y = 16.2F;
-            this.leftLeg.y = 16.2F;
+            this.rightLeg.z = 3.65F;
+            this.leftLeg.z = 3.65F;
+            this.rightLeg.y = 15.2F;
+            this.leftLeg.y = 15.2F;
             this.head.y = 12.2F;
             this.body.y = 11.2F;
-            this.leftArm.y = 12.7F;
-            this.rightArm.y = 12.7F;
-        } else {
-            this.body.xRot = 0.0F;
-            this.rightLeg.z = -0.4F;
-            this.leftLeg.z = -0.4F;
-            this.rightLeg.y = 16.0F;
-            this.leftLeg.y = 16.0F;
-            this.head.y = 8.0F;
-            this.body.y = 8.0F;
-            this.leftArm.y = 9.5F;
-            this.rightArm.y = 9.5F;
+            this.leftArm.y = 12.2F;
+            this.rightArm.y = 12.2F;
         }
 
         AnimationUtils.bobArms(this.rightArm, this.leftArm, ageInTicks);
@@ -268,10 +268,10 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
                 this.body.yRot *= -1.0F;
             }
 
-            this.rightArm.z = Mth.sin(this.body.yRot) * 4.0F;
-            this.rightArm.x = -Mth.cos(this.body.yRot) * 4.0F;
-            this.leftArm.z = -Mth.sin(this.body.yRot) * 4.0F;
-            this.leftArm.x = Mth.cos(this.body.yRot) * 4.0F;
+            this.rightArm.z = Mth.sin(this.body.yRot) * 7.0F;
+            this.rightArm.x = -Mth.cos(this.body.yRot) * 7.0F;
+            this.leftArm.z = -Mth.sin(this.body.yRot) * 6.3F;
+            this.leftArm.x = Mth.cos(this.body.yRot) * 6.3F;
             this.rightArm.yRot += this.body.yRot;
             this.leftArm.yRot += this.body.yRot;
             this.leftArm.xRot += this.body.yRot;
@@ -373,10 +373,20 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
     public void renderFirstPersonHand(PoseStack poseStack, MultiBufferSource buffer, int packedLight, AbstractClientPlayer player, ModelPart hand, ModelPart handOverlay,
             ResourceLocation texture) {
         hand.xRot = 0;
-        hand.y = 7.5F;
+        hand.y = 7.0F;
         hand.render(poseStack, buffer.getBuffer(RenderType.entitySolid(texture)), packedLight, OverlayTexture.NO_OVERLAY);
         handOverlay.xRot = 0;
-        handOverlay.y = 7.5F;
+        handOverlay.y = 7.0F;
         handOverlay.render(poseStack, buffer.getBuffer(RenderType.entityTranslucent(texture)), packedLight, OverlayTexture.NO_OVERLAY);
+    }
+
+    @Override
+    public void renderThirdPersonItem(ItemInHandRenderer itemInHandRenderer, LivingEntity livingEntity, ItemStack itemStack, ItemDisplayContext displayContext, HumanoidArm arm,
+            PoseStack poseStack, MultiBufferSource buffer, int light) {
+        boolean leftHand = arm == HumanoidArm.LEFT;
+        poseStack.mulPose(Axis.XP.rotationDegrees(-90F));
+        poseStack.mulPose(Axis.YP.rotationDegrees(170F));
+        poseStack.translate(leftHand ? 0.05D : -0.25D, 0.125D, -0.625D);
+        itemInHandRenderer.renderItem(livingEntity, itemStack, displayContext, leftHand, poseStack, buffer, light);
     }
 }

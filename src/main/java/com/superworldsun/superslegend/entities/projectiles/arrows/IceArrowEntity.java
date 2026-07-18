@@ -114,7 +114,6 @@ public class IceArrowEntity extends AbstractArrow {
                 livingEntity.setArrowCount(livingEntity.getArrowCount() - 1);
             }
         }
-        super.onHitEntity(result);
     }
 
     @Override

@@ -28,7 +28,9 @@ public class DongerosMask extends Item implements ICurioItem {
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         Player player = (Player) livingEntity;
-        //TODO, dont know how to check if world.isClientSide atm
+        if (player.level().isClientSide()) {
+            return;
+        }
         if (player.isAlive()) {
             ItemStack stack0 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_DONGEROSMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
             if (!stack0.isEmpty()) {
