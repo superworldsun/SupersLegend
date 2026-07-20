@@ -94,7 +94,7 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
                 PartPose.offsetAndRotation(-0.5F, 7.0004F, 2.4991F, 0.2618F, 0.0F, 0.0F));
         body.addOrReplaceChild("cube_r12", CubeListBuilder.create()
                 .texOffs(48, 0).addBox(-3.0F, 0.0F, 0.0F, 7.0F, 2.0F, 0.0F),
-                PartPose.offsetAndRotation(-0.5F, 7.0F, -1.5F, 0.0F, 0.0F, -0.2618F));
+                PartPose.offsetAndRotation(-0.5F, 7.0F, -1.5F, -0.2618F, 0.0F, 0.0F));
 
         PartDefinition rightArm = root.addOrReplaceChild("right_arm", CubeListBuilder.create(),
                 PartPose.offset(-7.0F, 9.0F, 0.5F));
