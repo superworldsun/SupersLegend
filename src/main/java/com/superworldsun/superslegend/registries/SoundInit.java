@@ -23,6 +23,7 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> RUPEE_BLUE = register("item.rupee_blue");
     public static final RegistryObject<SoundEvent> RUPEE_RED = register("item.rupee_red");
     public static final RegistryObject<SoundEvent> RUPEE_SILVER = register("item.rupee_silver");
+    public static final RegistryObject<SoundEvent> RUPEE_GOLD = register("item.rupee_gold");
     public static final RegistryObject<SoundEvent> BOOK_OF_MUDORA = register("item.book_of_mudora");
     public static final RegistryObject<SoundEvent> HEART = register("item.heart");
     public static final RegistryObject<SoundEvent> FIRE_IGNITE = register("item.fire_ignite");
@@ -35,6 +36,15 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> ARROW_HIT_ANCIENT = register("item.arrow_hit_ancient");
     public static final RegistryObject<SoundEvent> BITBOW_ARROW = register("item.bitbow_arrow");
     public static final RegistryObject<SoundEvent> DEKU_SEED_HIT = register("item.deku_seed_hit");
+    public static final RegistryObject<SoundEvent> DEKU_LINK_WATER_HOP = register("entity.deku_link_water_hop");
+    public static final RegistryObject<SoundEvent> DEKU_LINK_BUBBLE_BLOW = register("entity.deku_link_bubble_blow");
+    public static final RegistryObject<SoundEvent> DEKU_LINK_BUBBLE_FIRE = register("entity.deku_link_bubble_fire");
+    public static final RegistryObject<SoundEvent> DEKU_LINK_BUBBLE_POP = register("entity.deku_link_bubble_pop");
+    public static final RegistryObject<SoundEvent> DEKU_LINK_BUBBLE_SPIT = register("entity.deku_link_bubble_spit");
+    public static final RegistryObject<SoundEvent> DEKU_LINK_DIVE = register("entity.deku_link_dive");
+    public static final RegistryObject<SoundEvent> DEKU_LINK_FLAP = register("entity.deku_link_flap");
+    public static final RegistryObject<SoundEvent> DEKU_LINK_DROP = register("entity.deku_link_drop");
+    public static final RegistryObject<SoundEvent> DEKU_LINK_LAUNCH = register("entity.deku_link_launch");
     public static final RegistryObject<SoundEvent> HOVER_BOOTS = register("item.hover_boots");
     public static final RegistryObject<SoundEvent> OOT_BOOMERANG_FLY_LOOP = register("item.oot_boomerang_fly_loop");
     public static final RegistryObject<SoundEvent> ALTTP_BOOMERANG_FLY_LOOP = register("item.alttp_boomerang_fly_loop");

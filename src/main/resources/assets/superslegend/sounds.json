@@ -356,6 +356,16 @@
 		"subtitle": "superslegend.subtitle.rupee_silver",
 		"sounds": [ "superslegend:item/rupee_silver" ]
 	},
+	"item.rupee_gold": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_gold",
+		"sounds": [
+			{
+				"name": "superslegend:item/rupee_silver",
+				"pitch": 1.25
+			}
+		]
+	},
 	"item.book_of_mudora": {
 		"category": "player",
 		"subtitle": "superslegend.subtitle.book_of_mudora",
@@ -630,5 +640,55 @@
 		"category": "player",
 		"subtitle": "superslegend.subtitle.item.ocarina.note_a",
 		"sounds": [ "superslegend:item/ocarina/note_a" ]
+	},
+	"entity.deku_link_water_hop": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_link_water_hop",
+		"sounds": [ "superslegend:entity/deku_link_water_hop" ]
+	},
+	"entity.deku_link_bubble_blow": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_link_bubble_blow",
+		"sounds": [ "superslegend:entity/deku_link_bubble_blow" ]
+	},
+	"entity.deku_link_bubble_fire": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_link_bubble_fire",
+		"sounds": [ "superslegend:entity/deku_link_bubble_fire" ]
+	},
+	"entity.deku_link_bubble_pop": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_link_bubble_pop",
+		"sounds": [ "superslegend:entity/deku_link_bubble_pop" ]
+	},
+	"entity.deku_link_bubble_spit": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_link_bubble_spit",
+		"sounds": [ "superslegend:entity/deku_link_bubble_spit" ]
+	},
+	"entity.deku_link_dive": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_link_dive",
+		"sounds": [ "superslegend:entity/deku_link_dive" ]
+	},
+	"entity.deku_link_flap": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_link_flap",
+		"sounds": [ "superslegend:entity/deku_link_flap" ]
+	},
+	"entity.deku_link_drop": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_link_drop",
+		"sounds": [ "superslegend:entity/deku_link_drop" ]
+	},
+	"entity.deku_link_launch": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.deku_link_launch",
+		"sounds": [
+			"superslegend:entity/deku_link_launch1",
+			"superslegend:entity/deku_link_launch2",
+			"superslegend:entity/deku_link_launch3",
+			"superslegend:entity/deku_link_launch4"
+		]
 	}
 }
