@@ -13,7 +13,6 @@ public class CreativeModTabsInit {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SupersLegendMain.MOD_ID);
 
-    //TODO, make a new tab for weapons & tools
     public static final RegistryObject<CreativeModeTab> ITEMS_TAB = CREATIVE_MODE_TABS.register("items_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("creativetab.items_tab"))
@@ -24,6 +23,13 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.RED_RUPEE.get());
                         pOutput.accept(ItemInit.SILVER_RUPEE.get());
                         pOutput.accept(ItemInit.GOLD_RUPEE.get());
+                        pOutput.accept(ItemInit.WALLET.get());
+                        pOutput.accept(ItemInit.SMALL_WALLET.get());
+                        pOutput.accept(ItemInit.MEDIUM_WALLET.get());
+                        pOutput.accept(ItemInit.BIG_WALLET.get());
+                        pOutput.accept(ItemInit.ADULT_WALLET.get());
+                        pOutput.accept(ItemInit.GIANTS_WALLET.get());
+                        pOutput.accept(ItemInit.COLOSSAL_WALLET.get());
                         pOutput.accept(ItemInit.MEDALLION_LIGHT.get());
                         pOutput.accept(ItemInit.MEDALLION_FOREST.get());
                         pOutput.accept(ItemInit.MEDALLION_FIRE.get());
@@ -89,45 +95,10 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.COOKED_HYRULE_BASS.get());
                         pOutput.accept(ItemInit.HYLIAN_LOACH.get());
                         pOutput.accept(ItemInit.COOKED_HYLIAN_LOACH.get());
-                        pOutput.accept(ItemInit.KOKIRI_SWORD.get());
-                        pOutput.accept(ItemInit.RAZOR_SWORD.get());
-                        pOutput.accept(ItemInit.GILDED_SWORD.get());
-                        pOutput.accept(ItemInit.GIANTS_KNIFE.get());
-                        pOutput.accept(ItemInit.BROKEN_GIANTS_KNIFE.get());
-                        pOutput.accept(ItemInit.BIGGORONS_SWORD.get());
-
                         pOutput.accept(ItemInit.DARK_SHOVEL.get());
                         pOutput.accept(ItemInit.DARK_PICKAXE.get());
                         pOutput.accept(ItemInit.DARK_AXE.get());
                         pOutput.accept(ItemInit.DARK_HOE.get());
-                        pOutput.accept(ItemInit.DARK_SWORD.get());
-
-                        pOutput.accept(ItemInit.GODDESS_SWORD.get());
-                        pOutput.accept(ItemInit.GODDESS_LONGSWORD.get());
-                        pOutput.accept(ItemInit.GODDESS_WHITE_SWORD.get());
-                        pOutput.accept(ItemInit.MASTER_SWORD.get());
-                        pOutput.accept(ItemInit.MASTER_SWORD_V2.get());
-                        pOutput.accept(ItemInit.TRUE_MASTER_SWORD.get());
-                        pOutput.accept(ItemInit.GUARDIAN_SWORD.get());
-                        pOutput.accept(ItemInit.FAIRY_BOW.get());
-                        pOutput.accept(ItemInit.HEROS_BOW.get());
-                        pOutput.accept(ItemInit.BIT_BOW.get());
-                        pOutput.accept(ItemInit.LYNEL_BOW_X3.get());
-                        pOutput.accept(ItemInit.LYNEL_BOW_X5.get());
-                        pOutput.accept(ItemInit.SLING_SHOT.get());
-                        pOutput.accept(ItemInit.DEKU_SHIELD.get());
-                        pOutput.accept(ItemInit.HYLIAN_SHIELD.get());
-                        pOutput.accept(ItemInit.SACRED_SHIELD.get());
-                        pOutput.accept(ItemInit.DEKU_SEEDS.get());
-                        pOutput.accept(ItemInit.MAGIC_FIRE_ARROW.get());
-                        pOutput.accept(ItemInit.MAGIC_ICE_ARROW.get());
-                        pOutput.accept(ItemInit.MAGIC_LIGHT_ARROW.get());
-                        pOutput.accept(ItemInit.FIRE_ARROW.get());
-                        pOutput.accept(ItemInit.ICE_ARROW.get());
-                        pOutput.accept(ItemInit.SHOCK_ARROW.get());
-                        pOutput.accept(ItemInit.BOMB_ARROW.get());
-                        pOutput.accept(ItemInit.ANCIENT_ARROW.get());
-                        pOutput.accept(ItemInit.SILVER_ARROW.get());
                         pOutput.accept(ItemInit.SPOILS_BAG.get());
                         pOutput.accept(ItemInit.DELIVERY_BAG.get());
                         pOutput.accept(ItemInit.BAIT_BAG.get());
@@ -156,23 +127,6 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.MAGIC_MIRROR.get());
                         pOutput.accept(ItemInit.MAGIC_CAPE.get());
                         //pOutput.accept(ItemInit.MAGIC_POWDER.get());
-                        pOutput.accept(ItemInit.BOOMERANG.get());
-                        pOutput.accept(ItemInit.MAGIC_BOOMERANG.get());
-                        pOutput.accept(ItemInit.SEA_BREEZE_BOOMERANG.get());
-                        //pOutput.accept(ItemInit.GALE_BOOMERANG.get());
-                        pOutput.accept(ItemInit.BOMB.get());
-                        pOutput.accept(ItemInit.WATER_BOMB.get());
-                        //pOutput.accept(ItemInit.BOMBCHU.get());
-                        pOutput.accept(ItemInit.HOOKSHOT.get());
-                        pOutput.accept(ItemInit.LONGSHOT.get());
-                        //pOutput.accept(ItemInit.CLAWSHOT.get());
-                        pOutput.accept(ItemInit.MAGIC_HAMMER.get());
-                        pOutput.accept(ItemInit.MEGATON_HAMMER.get());
-                        pOutput.accept(ItemInit.SKULL_HAMMER.get());
-                        pOutput.accept(ItemInit.FIRE_ROD.get());
-                        pOutput.accept(ItemInit.ICE_ROD.get());
-                        pOutput.accept(ItemInit.DEKU_STICK.get());
-                        pOutput.accept(ItemInit.DEKU_STICK_LIT.get());
                         pOutput.accept(ItemInit.EMPTY_CONTAINER.get());
                         pOutput.accept(ItemInit.DINS_FIRE.get());
                         pOutput.accept(ItemInit.FARORES_WIND.get());
@@ -346,6 +300,68 @@ public class CreativeModTabsInit {
                         //pOutput.accept(ItemInit.RED_HOLY_RING.get());
                         pOutput.accept(ItemInit.SWIMMERS_RING.get());
 //                        pOutput.accept(ItemInit.HIDDEN_SHADOW_BLOCK.get());
+                    }))
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> WEAPONS_TAB = CREATIVE_MODE_TABS.register("weapons_tab",
+            () -> CreativeModeTab.builder()
+                    .title(Component.literal("SupersLegend Weapons"))
+                    .withTabsAfter(APPAREL_TAB.getId())
+                    .withTabsBefore(ITEMS_TAB.getId())
+                    .icon(() -> new ItemStack(ItemInit.MASTER_SWORD.get()))
+                    .displayItems(((pParameters, pOutput) -> {
+                        pOutput.accept(ItemInit.KOKIRI_SWORD.get());
+                        pOutput.accept(ItemInit.RAZOR_SWORD.get());
+                        pOutput.accept(ItemInit.GILDED_SWORD.get());
+                        pOutput.accept(ItemInit.GIANTS_KNIFE.get());
+                        pOutput.accept(ItemInit.BROKEN_GIANTS_KNIFE.get());
+                        pOutput.accept(ItemInit.BIGGORONS_SWORD.get());
+                        pOutput.accept(ItemInit.DARK_SWORD.get());
+                        pOutput.accept(ItemInit.GODDESS_SWORD.get());
+                        pOutput.accept(ItemInit.GODDESS_LONGSWORD.get());
+                        pOutput.accept(ItemInit.GODDESS_WHITE_SWORD.get());
+                        pOutput.accept(ItemInit.MASTER_SWORD.get());
+                        pOutput.accept(ItemInit.MASTER_SWORD_V2.get());
+                        pOutput.accept(ItemInit.TRUE_MASTER_SWORD.get());
+                        pOutput.accept(ItemInit.GUARDIAN_SWORD.get());
+
+                        pOutput.accept(ItemInit.FAIRY_BOW.get());
+                        pOutput.accept(ItemInit.HEROS_BOW.get());
+                        pOutput.accept(ItemInit.BIT_BOW.get());
+                        pOutput.accept(ItemInit.LYNEL_BOW_X3.get());
+                        pOutput.accept(ItemInit.LYNEL_BOW_X5.get());
+                        pOutput.accept(ItemInit.SLING_SHOT.get());
+                        pOutput.accept(ItemInit.DEKU_SEEDS.get());
+                        pOutput.accept(ItemInit.MAGIC_FIRE_ARROW.get());
+                        pOutput.accept(ItemInit.MAGIC_ICE_ARROW.get());
+                        pOutput.accept(ItemInit.MAGIC_LIGHT_ARROW.get());
+                        pOutput.accept(ItemInit.FIRE_ARROW.get());
+                        pOutput.accept(ItemInit.ICE_ARROW.get());
+                        pOutput.accept(ItemInit.SHOCK_ARROW.get());
+                        pOutput.accept(ItemInit.BOMB_ARROW.get());
+                        pOutput.accept(ItemInit.ANCIENT_ARROW.get());
+                        pOutput.accept(ItemInit.SILVER_ARROW.get());
+
+                        pOutput.accept(ItemInit.DEKU_SHIELD.get());
+                        pOutput.accept(ItemInit.HYLIAN_SHIELD.get());
+                        pOutput.accept(ItemInit.SACRED_SHIELD.get());
+                        pOutput.accept(ItemInit.BOOMERANG.get());
+                        pOutput.accept(ItemInit.MAGIC_BOOMERANG.get());
+                        pOutput.accept(ItemInit.SEA_BREEZE_BOOMERANG.get());
+                        //pOutput.accept(ItemInit.GALE_BOOMERANG.get());
+                        pOutput.accept(ItemInit.BOMB.get());
+                        pOutput.accept(ItemInit.WATER_BOMB.get());
+                        //pOutput.accept(ItemInit.BOMBCHU.get());
+                        pOutput.accept(ItemInit.HOOKSHOT.get());
+                        pOutput.accept(ItemInit.LONGSHOT.get());
+                        //pOutput.accept(ItemInit.CLAWSHOT.get());
+                        pOutput.accept(ItemInit.MAGIC_HAMMER.get());
+                        pOutput.accept(ItemInit.MEGATON_HAMMER.get());
+                        pOutput.accept(ItemInit.SKULL_HAMMER.get());
+                        pOutput.accept(ItemInit.FIRE_ROD.get());
+                        pOutput.accept(ItemInit.ICE_ROD.get());
+                        pOutput.accept(ItemInit.DEKU_STICK.get());
+                        pOutput.accept(ItemInit.DEKU_STICK_LIT.get());
                     }))
                     .build());
 
