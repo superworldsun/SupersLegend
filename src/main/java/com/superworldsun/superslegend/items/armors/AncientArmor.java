@@ -2,7 +2,6 @@ package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
-import com.superworldsun.superslegend.items.weapons.swords.GuardianSword;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -35,7 +34,8 @@ public class AncientArmor extends NonEnchantArmor {
             boolean isChestplateOn = player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.ANCIENT_CUIRASS.get();
             boolean isLeggingsOn = player.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemInit.ANCIENT_GREAVES.get();
             boolean isBootsOn = player.getItemBySlot(EquipmentSlot.FEET).getItem() == ItemInit.ANCIENT_BOOTS.get();
-            if (player.getMainHandItem().getItem() instanceof GuardianSword & isHelmetOn & isChestplateOn & isLeggingsOn & isBootsOn)
+            if (player.getMainHandItem().is(ItemInit.GUARDIAN_SWORD.get())
+                    && isHelmetOn && isChestplateOn && isLeggingsOn && isBootsOn)
             {
                 event.setAmount(event.getAmount() * 1.8f);
             }
