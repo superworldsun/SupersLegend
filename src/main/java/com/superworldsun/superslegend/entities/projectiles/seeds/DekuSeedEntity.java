@@ -15,6 +15,7 @@ public class DekuSeedEntity extends SeedEntity {
     private static final float HITBOX_HEIGHT = 0.5f;
     private static final float HITBOX_WIDTH = 0.5f;
     private static final float WATER_INERTIA = 0f;
+    private static final float FLIGHT_SPEED = 2.55f;
 
     public DekuSeedEntity(EntityType<? extends DekuSeedEntity> type, Level level) {
         super(type, level);
@@ -41,7 +42,7 @@ public class DekuSeedEntity extends SeedEntity {
 
     @Override
     protected float getFlightSpeed() {
-        return 3F;
+        return FLIGHT_SPEED;
     }
 
     @Override
@@ -62,6 +63,7 @@ public class DekuSeedEntity extends SeedEntity {
     public static EntityType<DekuSeedEntity> createEntityType() {
         return EntityType.Builder.<DekuSeedEntity>of(DekuSeedEntity::new, MobCategory.MISC)
                 .sized(HITBOX_WIDTH, HITBOX_HEIGHT)
+                .updateInterval(1)
                 .build(SupersLegendMain.MOD_ID + ":deku_seed");
     }
 }
