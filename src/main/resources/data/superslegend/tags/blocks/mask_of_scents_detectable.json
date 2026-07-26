@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "superslegend:odd_mushroom",
+    "superslegend:magic_mushroom",
+    "minecraft:red_mushroom",
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom_block",
+    "minecraft:brown_mushroom_block",
+    "minecraft:mushroom_stem",
+    "minecraft:potted_red_mushroom",
+    "minecraft:potted_brown_mushroom",
+    "minecraft:crimson_fungus",
+    "minecraft:warped_fungus",
+    "minecraft:potted_crimson_fungus",
+    "minecraft:potted_warped_fungus"
+  ]
+}
