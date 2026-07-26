@@ -1,12 +1,14 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.client.sound.BremenMaskSound;
 import com.superworldsun.superslegend.entities.ai.FollowBremenMaskGoal;
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
+import com.superworldsun.superslegend.network.NetworkDispatcher;
+import com.superworldsun.superslegend.network.message.BremenMaskSoundMessage;
+import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -23,9 +25,12 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
@@ -33,6 +38,8 @@ import java.util.UUID;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class BremenMask extends Item implements IMaskAbility, ICurioItem {
+    private static final UUID SLOW_MODIFIER_ID = UUID.fromString("7176f8ab-df6b-4065-9232-3c314fadb655");
+
     public BremenMask(Properties pProperties) {
         super(pProperties);
     }
@@ -54,6 +61,22 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem {
         }
     }
 
+    @SubscribeEvent
+    public static void onPlayerStartsTracking(PlayerEvent.StartTracking event) {
+        if (!(event.getEntity() instanceof ServerPlayer listener)
+                || !(event.getTarget() instanceof Player marchingPlayer)
+                || !IMaskAbility.PLAYERS_USING_MASKS.contains(marchingPlayer)
+                || CuriosApi.getCuriosHelper()
+                .findFirstCurio(marchingPlayer, ItemInit.MASK_BREMANMASK.get()).isEmpty()) {
+            return;
+        }
+
+        NetworkDispatcher.network_channel.send(
+                PacketDistributor.PLAYER.with(() -> listener),
+                new BremenMaskSoundMessage(marchingPlayer.getId(), true)
+        );
+    }
+
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
     {
@@ -69,24 +92,29 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem {
     @Override
     public void startUsingAbility(Player player)
     {
-        if (player.level().isClientSide)
-        {
-            playMaskSound(player);
-        }
+        boolean wasAlreadyUsing = isPlayerUsingAbility(player);
 
-        UUID slowId = UUID.fromString("7176f8ab-df6b-4065-9232-3c314fadb655");
         // -0.3 is 30% slower
-        AttributeModifier modifier = new AttributeModifier(slowId, "Bremen Mask Slow", -0.3, AttributeModifier.Operation.MULTIPLY_BASE);
+        AttributeModifier modifier = new AttributeModifier(SLOW_MODIFIER_ID, "Bremen Mask Slow", -0.3, AttributeModifier.Operation.MULTIPLY_BASE);
         AttributeInstance movespeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
-        movespeed.addTransientModifier(modifier);
+        if (movespeed.getModifier(SLOW_MODIFIER_ID) == null)
+        {
+            movespeed.addTransientModifier(modifier);
+        }
         IMaskAbility.super.startUsingAbility(player);
+
+        if (!player.level().isClientSide && !wasAlreadyUsing) {
+            syncMarchSound(player, true);
+        }
     }
 
     @Override
     public void stopUsingAbility(Player player)
     {
-        UUID slowId = UUID.fromString("7176f8ab-df6b-4065-9232-3c314fadb655");
-        AttributeModifier modifier = player.getAttribute(Attributes.MOVEMENT_SPEED).getModifier(slowId);
+        boolean wasUsingAbility = isPlayerUsingAbility(player);
+        FollowBremenMaskGoal.stopFollowing(player);
+
+        AttributeModifier modifier = player.getAttribute(Attributes.MOVEMENT_SPEED).getModifier(SLOW_MODIFIER_ID);
         AttributeInstance movespeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 
         if (modifier != null)
@@ -95,13 +123,25 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem {
         }
 
         IMaskAbility.super.stopUsingAbility(player);
+
+        if (!player.level().isClientSide && wasUsingAbility) {
+            syncMarchSound(player, false);
+        }
     }
 
-    @OnlyIn(Dist.CLIENT)
-    private void playMaskSound(Player player)
-    {
-        Minecraft client = Minecraft.getInstance();
-        client.getSoundManager().play(new BremenMaskSound(player));
+    @Override
+    public void onUnequip(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
+        ICurioItem.super.onUnequip(identifier, index, livingEntity, stack);
+        if (livingEntity instanceof Player player && isPlayerUsingAbility(player)) {
+            stopUsingAbility(player);
+        }
+    }
+
+    private static void syncMarchSound(Player player, boolean playing) {
+        NetworkDispatcher.network_channel.send(
+                PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player),
+                new BremenMaskSoundMessage(player.getId(), playing)
+        );
     }
 
     @OnlyIn(Dist.CLIENT)
