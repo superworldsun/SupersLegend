@@ -20,6 +20,7 @@ import com.superworldsun.superslegend.items.hookshot.LongshotItem;
 import com.superworldsun.superslegend.items.item.*;
 import com.superworldsun.superslegend.items.item.ammo.*;
 import com.superworldsun.superslegend.items.item.songs.*;
+import com.superworldsun.superslegend.items.wallet.RupeeWalletItem;
 import com.superworldsun.superslegend.items.weapons.boomerang.BoomerangItem;
 import com.superworldsun.superslegend.items.weapons.boomerang.MagicBoomerangItem;
 import com.superworldsun.superslegend.items.weapons.boomerang.SeaBreezeBoomerangItem;
@@ -49,17 +50,16 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, SupersLegendMain.MOD_ID);
 
-    //TODO, make think about making rupees into entities, can allow them to make sounds on pick up, or make an event to do this.
     public static final RegistryObject<Item> RUPEE = ITEMS.register("rupee",
-            () -> new Rupee(new Item.Properties().stacksTo(64)));
+            () -> new Rupee(new Item.Properties().stacksTo(5)));
     public static final RegistryObject<Item> BLUE_RUPEE = ITEMS.register("blue_rupee",
-            () -> new BlueRupee(new Item.Properties().stacksTo(64)));
+            () -> new BlueRupee(new Item.Properties().stacksTo(5)));
     public static final RegistryObject<Item> RED_RUPEE = ITEMS.register("red_rupee",
-            () -> new RedRupee(new Item.Properties().stacksTo(64)));
+            () -> new RedRupee(new Item.Properties().stacksTo(5)));
     public static final RegistryObject<Item> SILVER_RUPEE = ITEMS.register("silver_rupee",
-            () -> new SilverRupee(new Item.Properties().stacksTo(64)));
+            () -> new SilverRupee(new Item.Properties().stacksTo(5)));
     public static final RegistryObject<Item> GOLD_RUPEE = ITEMS.register("gold_rupee",
-            () -> new GoldRupee(new Item.Properties().stacksTo(64)));
+            () -> new GoldRupee(new Item.Properties().stacksTo(5)));
 
 //    public static final RegistryObject<Item> MEDALLION_LIGHT = ITEMS.register("medallion_light",
 //            () -> new ElementMedallion(new Item.Properties().stacksTo(1)));
@@ -287,10 +287,20 @@ public class ItemInit {
     public static final RegistryObject<Item> RED_LETTER = ITEMS.register("red_letter",
             () -> new LetterItem(new Item.Properties().stacksTo(1)));
 
-	/*public static final RegistryObject<Item> WALLET = ITEMS.register("wallet", SimpleResourceItem::new);
-	public static final RegistryObject<Item> MEDIUM_WALLET = ITEMS.register("medium_wallet", SimpleResourceItem::new);
-	public static final RegistryObject<Item> GIANTS_WALLET = ITEMS.register("giants_wallet", SimpleResourceItem::new);
-	public static final RegistryObject<Item> COLOSSAL_WALLET = ITEMS.register("colossal_wallet", SimpleResourceItem::new);*/
+    public static final RegistryObject<Item> WALLET = ITEMS.register("wallet",
+            () -> new RupeeWalletItem(99));
+    public static final RegistryObject<Item> SMALL_WALLET = ITEMS.register("small_wallet",
+            () -> new RupeeWalletItem(300));
+    public static final RegistryObject<Item> MEDIUM_WALLET = ITEMS.register("medium_wallet",
+            () -> new RupeeWalletItem(500));
+    public static final RegistryObject<Item> BIG_WALLET = ITEMS.register("big_wallet",
+            () -> new RupeeWalletItem(1000));
+    public static final RegistryObject<Item> ADULT_WALLET = ITEMS.register("adult_wallet",
+            () -> new RupeeWalletItem(2000));
+    public static final RegistryObject<Item> GIANTS_WALLET = ITEMS.register("giants_wallet",
+            () -> new RupeeWalletItem(5000));
+    public static final RegistryObject<Item> COLOSSAL_WALLET = ITEMS.register("colossal_wallet",
+            () -> new RupeeWalletItem(9999));
 
     //Sets
 
@@ -323,10 +333,8 @@ public class ItemInit {
             () -> new RedCandle(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> HEROS_SECRET_STASH = ITEMS.register("heros_secret_stash",
             () -> new HerosSecretStash(new Item.Properties().stacksTo(1)));
-    //TODO, change how the book of mudora works to translate new hylian text.
     public static final RegistryObject<Item> BOOK_OF_MUDORA = ITEMS.register("book_of_mudora",
             () -> new Item(new Item.Properties().stacksTo(1)));
-    //TODO, re implement rocs feather, currently dosent do anything
     public static final RegistryObject<Item> ROCS_FEATHER = ITEMS.register("rocs_feather",
             () -> new RocsFeather(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> FISHING_ROD = ITEMS.register("fishing_rod",
@@ -439,7 +447,6 @@ public class ItemInit {
             () -> new BlastMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_STONEMASK = ITEMS.register("mask_stonemask",
             () -> new StoneMask(new Item.Properties().stacksTo(1)));
-    //TODO, Needs marching re added
     public static final RegistryObject<Item> MASK_BREMANMASK = ITEMS.register("mask_bremenmask",
             () -> new BremenMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_GREATFAIRYMASK = ITEMS.register("mask_greatfairymask",
@@ -474,10 +481,8 @@ public class ItemInit {
             () -> new GibdoMask(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MASK_GAROSMASK = ITEMS.register("mask_garosmask",
             () -> new GarosMask(new Item.Properties().stacksTo(1)));
-    //TODO, CaptainsHat needs function re added
     public static final RegistryObject<Item> MASK_CAPTAINSHAT = ITEMS.register("mask_captainshat",
             () -> new CaptainsHatMask(new Item.Properties().stacksTo(1)));
-    //TODO, skipped
     public static final RegistryObject<Item> MASK_GIANTSMASK = ITEMS.register("mask_giantsmask",
             () -> new GiantsMask(new Item.Properties().stacksTo(1)));
     //TODO, skipped
