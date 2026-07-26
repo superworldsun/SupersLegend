@@ -1,50 +1,42 @@
 package com.superworldsun.superslegend.util;
 
-import com.superworldsun.superslegend.registries.BlockInit;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ForgeBlockTagsProvider;
-import net.minecraftforge.registries.ForgeRegistries;
+import com.superworldsun.superslegend.registries.TagInit;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
 
-import java.rmi.registry.Registry;
-import java.util.ArrayList;
-import java.util.List;
-
-public class HookBlockList {
-
-    /**
-     * Here you write the list of blocks to which the hook can be hooked. It is easy to add blocks.
-     */
-    public static List<Block> hookableBlocks = new ArrayList<>();
-
-    public static void setHookableBlocks() {
-        hookableBlocks.clear();
-        hookableBlocks.add(BlockInit.GRAPPLE_BLOCK.get());
-
-        // Include wooden blocks using tags
-        //TODO, make sure all wood blocks from my mod are included, probably should add things like pegs to a wood tag of some sort
-        for (Block block : ForgeRegistries.BLOCKS) {
-            if (block.defaultBlockState().is(BlockTags.PLANKS) ||
-                    block.defaultBlockState().is(BlockTags.LOGS) ||
-                    block.defaultBlockState().is(BlockTags.WOODEN_DOORS) ||
-                    block.defaultBlockState().is(BlockTags.WOODEN_STAIRS) ||
-                    block.defaultBlockState().is(BlockTags.WOODEN_SLABS) ||
-                    block.defaultBlockState().is(BlockTags.WOODEN_TRAPDOORS) ||
-                    block.defaultBlockState().is(Tags.Blocks.CHESTS_WOODEN) ||
-                    block.defaultBlockState().is(Tags.Blocks.BARRELS_WOODEN) ||
-                    block.defaultBlockState().is(Tags.Blocks.BOOKSHELVES) ||
-                    block.defaultBlockState().is(Tags.Blocks.FENCE_GATES_WOODEN) ||
-                    block.defaultBlockState().is(Tags.Blocks.FENCES_WOODEN) ||
-                    block.defaultBlockState().is(BlockTags.WOODEN_FENCES))
-            {
-                hookableBlocks.add(block);
-            }
-        }
+/**
+ * Determines which blocks can hold a hookshot.
+ *
+ * <p>The data tags are checked on every impact so datapack reloads and blocks
+ * supplied by other mods are handled without rebuilding a cached block list.
+ * The sound-type fallback covers wooden blocks which were not added to the
+ * conventional Minecraft or Forge wood tags.</p>
+ */
+public final class HookBlockList {
+    private HookBlockList() {
     }
-    static {
-        setHookableBlocks();
+
+    public static boolean isHookable(BlockState state) {
+        if (state.is(TagInit.HOOKSHOT_UNHOOKABLE)) {
+            return false;
+        }
+
+        if (state.is(TagInit.HOOKSHOT_HOOKABLE)) {
+            return true;
+        }
+
+        SoundType soundType = state.getSoundType();
+        return soundType == SoundType.WOOD
+                || soundType == SoundType.NETHER_WOOD
+                || soundType == SoundType.STEM
+                || soundType == SoundType.CHERRY_WOOD
+                || soundType == SoundType.BAMBOO_WOOD
+                || soundType == SoundType.HANGING_SIGN
+                || soundType == SoundType.NETHER_WOOD_HANGING_SIGN
+                || soundType == SoundType.BAMBOO_WOOD_HANGING_SIGN
+                || soundType == SoundType.CHERRY_WOOD_HANGING_SIGN
+                || soundType == SoundType.CHISELED_BOOKSHELF
+                || soundType == SoundType.LADDER
+                || soundType == SoundType.MANGROVE_ROOTS;
     }
 }
