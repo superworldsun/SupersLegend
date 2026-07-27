@@ -2,6 +2,6 @@ package com.superworldsun.superslegend.items.ammobags;
 
 public class MediumQuiver extends QuiverItem {
     public MediumQuiver() {
-        super(150);
+        super(150, 2);
     }
 }

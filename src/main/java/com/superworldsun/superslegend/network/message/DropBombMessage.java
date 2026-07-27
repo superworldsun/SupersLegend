@@ -6,66 +6,65 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.network.NetworkEvent;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
-import org.apache.commons.lang3.tuple.Pair;
 import top.theillusivec4.curios.api.CuriosApi;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
-public class DropBombMessage
-{
-	public DropBombMessage()
-	{
-	}
+public class DropBombMessage {
+    public static DropBombMessage decode(FriendlyByteBuf buffer) {
+        return new DropBombMessage();
+    }
 
-	public static DropBombMessage decode(FriendlyByteBuf buf)
-	{
-		return new DropBombMessage();
-	}
+    public void encode(FriendlyByteBuf buffer) {
+    }
 
-	public void encode(FriendlyByteBuf buf)
-	{
-	}
+    public static void receive(DropBombMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
+        NetworkEvent.Context context = contextSupplier.get();
+        ServerPlayer player = context.getSender();
+        if (player != null) {
+            context.enqueueWork(() -> pullBombFromFirstAvailableBag(player));
+        }
+        context.setPacketHandled(true);
+    }
 
-	public static void receive(DropBombMessage message, Supplier<NetworkEvent.Context> ctxSupplier)
-	{
-		NetworkEvent.Context ctx = ctxSupplier.get();
-		ServerPlayer player = ctx.getSender();
-		ctx.setPacketHandled(true);
-		ItemStack bombBag = CuriosApi.getCuriosHelper().findEquippedCurio(stack -> stack.getItem() instanceof BombBagItem, player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
+    private static void pullBombFromFirstAvailableBag(ServerPlayer player) {
+        ItemStack bombBagStack = findFirstNonEmptyBombBag(player);
+        if (bombBagStack.isEmpty()) {
+            return;
+        }
 
-		if (bombBag.isEmpty())
-			return;
+        InteractionHand emptyHand;
+        if (player.getMainHandItem().isEmpty()) {
+            emptyHand = InteractionHand.MAIN_HAND;
+        } else if (player.getOffhandItem().isEmpty()) {
+            emptyHand = InteractionHand.OFF_HAND;
+        } else {
+            player.sendSystemMessage(Component.literal("You'll need to free your hands for that"));
+            return;
+        }
 
-		BombBagItem bombBagItem = (BombBagItem) bombBag.getItem();
-		Pair<ItemStack, Integer> bagContents = bombBagItem.getContents(bombBag);
+        BombBagItem bombBagItem = (BombBagItem) bombBagStack.getItem();
+        bombBagItem.removeStack(bombBagStack).ifPresent(bomb -> player.setItemInHand(emptyHand, bomb));
+    }
 
-		if (bagContents == null)
-			return;
+    private static ItemStack findFirstNonEmptyBombBag(ServerPlayer player) {
+        Optional<IItemHandlerModifiable> optionalCurios =
+                CuriosApi.getCuriosHelper().getEquippedCurios(player).resolve();
+        if (optionalCurios.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
 
-		int bombsCount = bagContents.getRight();
-
-		if (bombsCount == 0)
-			return;
-
-		InteractionHand emptyHand;
-
-		if (player.getMainHandItem().isEmpty())
-		{
-			emptyHand = InteractionHand.MAIN_HAND;
-		}
-		else if (player.getOffhandItem().isEmpty())
-		{
-			emptyHand = InteractionHand.OFF_HAND;
-		}
-		else
-		{
-			player.sendSystemMessage(Component.literal("You'll need to free your hands for that"));
-			return;
-		}
-
-		player.setItemInHand(emptyHand, new ItemStack(bagContents.getKey().getItem()));
-		bombBagItem.setCount(bombBag, bombsCount - 1);
-	}
+        IItemHandlerModifiable curios = optionalCurios.get();
+        for (int slot = 0; slot < curios.getSlots(); slot++) {
+            ItemStack stack = curios.getStackInSlot(slot);
+            if (stack.getItem() instanceof BombBagItem bombBagItem
+                    && bombBagItem.getTotalStoredItemCount(stack) > 0) {
+                return stack;
+            }
+        }
+        return ItemStack.EMPTY;
+    }
 }

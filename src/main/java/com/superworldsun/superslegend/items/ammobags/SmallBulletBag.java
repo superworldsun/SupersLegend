@@ -2,6 +2,6 @@ package com.superworldsun.superslegend.items.ammobags;
 
 public class SmallBulletBag extends BulletBagItem {
     public SmallBulletBag() {
-        super(100);
+        super(100, 1);
     }
 }
