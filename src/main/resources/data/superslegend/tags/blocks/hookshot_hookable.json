@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "superslegend:grapple_block",
+    "#minecraft:logs",
+    "#minecraft:planks",
+    "#minecraft:wooden_buttons",
+    "#minecraft:wooden_doors",
+    "#minecraft:wooden_fences",
+    "#minecraft:wooden_pressure_plates",
+    "#minecraft:wooden_slabs",
+    "#minecraft:wooden_stairs",
+    "#minecraft:wooden_trapdoors",
+    "#minecraft:all_signs",
+    "#minecraft:bamboo_blocks",
+    "#forge:chests/wooden",
+    "#forge:barrels/wooden",
+    "#forge:bookshelves",
+    "#forge:fence_gates/wooden",
+    "#forge:fences/wooden"
+  ]
+}

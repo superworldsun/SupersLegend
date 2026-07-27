@@ -2,6 +2,10 @@ package com.superworldsun.superslegend.entities.projectiles.hooks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.capability.hookshot.HookModel;
+import com.superworldsun.superslegend.entities.HeartEntity;
+import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
+import com.superworldsun.superslegend.entities.MagicJarEntity;
+import com.superworldsun.superslegend.events.HookshotPullPoseEvents;
 import com.superworldsun.superslegend.items.hookshot.HookshotItem;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -13,8 +17,10 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.boss.EnderDragonPart;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -26,23 +32,33 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.NetworkHooks;
 
 import static com.superworldsun.superslegend.items.hookshot.HookshotItem.SPRITE;
-import static com.superworldsun.superslegend.util.HookBlockList.hookableBlocks;
-import static com.superworldsun.superslegend.util.HookBlockList.setHookableBlocks;
+import static com.superworldsun.superslegend.util.HookBlockList.isHookable;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class HookshotEntity extends AbstractArrow {
+    private static final int RETURN_FINISH_DELAY_TICKS = 1;
+    private static final int NETWORK_UPDATE_INTERVAL_TICKS = 5;
+    private static final double CARRIED_RETURN_SPEED_MULTIPLIER = 0.65D;
+    private static final double TARGET_FOLLOW_CORRECTION = 0.75D;
+    private static final double TARGET_ARRIVAL_DISTANCE_SQR = 0.04D;
 
     private static final EntityDataAccessor<Integer> HOOKED_ENTITY_ID = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> OWNER_ENTITY_ID = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> FIRED_FROM_OFFHAND = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> RETRIEVING = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Float> RETURN_SPEED = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Integer> RETURN_ARRIVAL_TICKS = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> PULLING = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Float> VISUAL_DIRECTION_X = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Float> VISUAL_DIRECTION_Y = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Float> VISUAL_DIRECTION_Z = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.FLOAT);
     boolean useBlockList = true;
     private double maxRange = 0D;
     private double maxSpeed = 0D;
@@ -50,6 +66,7 @@ public class HookshotEntity extends AbstractArrow {
     private Player owner;
     private Entity hookedEntity;
     private ItemStack stack;
+    private Vec3 launchPosition;
     private boolean motionUp = false;
     private double prevDistance = 30.D;
 
@@ -58,6 +75,10 @@ public class HookshotEntity extends AbstractArrow {
         this.setSoundEvent(SoundInit.HOOKSHOT_TARGET.get());
         this.setNoGravity(true);
         this.setBaseDamage(0);
+        this.entityData.set(OWNER_ENTITY_ID, owner.getId());
+        if (owner instanceof Player player) {
+            this.owner = player;
+        }
     }
 
     public HookshotEntity(EntityType<HookshotEntity> hookshotEntityEntityType, Level world) {
@@ -68,19 +89,58 @@ public class HookshotEntity extends AbstractArrow {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(HOOKED_ENTITY_ID, 0);
+        this.entityData.define(OWNER_ENTITY_ID, -1);
+        this.entityData.define(FIRED_FROM_OFFHAND, false);
+        this.entityData.define(RETRIEVING, false);
+        this.entityData.define(RETURN_SPEED, 0.1F);
+        this.entityData.define(RETURN_ARRIVAL_TICKS, 0);
+        this.entityData.define(PULLING, false);
+        this.entityData.define(VISUAL_DIRECTION_X, 0.0F);
+        this.entityData.define(VISUAL_DIRECTION_Y, 0.0F);
+        this.entityData.define(VISUAL_DIRECTION_Z, -1.0F);
+    }
+
+    @Override
+    protected AABB makeBoundingBox() {
+        double halfWidth = getBbWidth() * 0.5D;
+        double halfHeight = getBbHeight() * 0.5D;
+        return new AABB(getX() - halfWidth, getY() - halfHeight, getZ() - halfWidth,
+                getX() + halfWidth, getY() + halfHeight, getZ() + halfWidth);
     }
 
     @Override
     public void tick() {
+        Player resolvedOwner = getHookOwner();
+        if (resolvedOwner != null) {
+            owner = resolvedOwner;
+        }
+        if (isRetrieving() && owner != null) {
+            updateReturnMotion();
+        }
+
+        if (!level().isClientSide && !isRetrieving()) {
+            Entity retrievalTarget = HookshotRetrievalTarget.findAlongPath(this);
+            if (retrievalTarget != null) {
+                beginRetrieving(retrievalTarget);
+            }
+        }
+
         super.tick();
+        if (!isAlive()) {
+            return;
+        }
+
         if (this.tickCount % 3 == 0) {
             BlockPos currentPos = this.blockPosition();
             this.level().playSound(null, currentPos, SoundInit.HOOKSHOT_EXTENDED.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
         }
 
-        if (getOwner() instanceof Player) {
-            owner = (Player) getOwner();
+        if (isRetrieving()) {
+            tickRetrieval();
+            return;
+        }
 
+        if (owner != null) {
             if (isPulling && tickCount % 2 == 0) {
                 // Uncomment if you want to play a sound while pulling
                 // level.playSound(null, owner.blockPosition(), SoundEvents.AXE_STRIP, SoundCategory.PLAYERS, 1F, 1F);
@@ -88,27 +148,26 @@ public class HookshotEntity extends AbstractArrow {
 
             if (!level().isClientSide) {
                 if (this.hookedEntity != null) {
-                    if (isAlive()) {
+                    if (!this.hookedEntity.isAlive()) {
                         this.hookedEntity = null;
-                        onRemovedFromWorld();
+                        beginReturning();
+                        return;
                     } else {
                         this.absMoveTo(this.hookedEntity.getX(), this.hookedEntity.getY(0.8D), this.hookedEntity.getZ());
                     }
                 }
 
-                if (owner != null) {
-                    if (owner.isDeadOrDying() || tickCount == 35 ||
-                            !HookModel.get(owner).getHasHook() ||
-                            owner.distanceTo(this) > maxRange ||
-                            !(owner.getMainHandItem().getItem() instanceof HookshotItem ||
-                                    owner.getOffhandItem().getItem() instanceof HookshotItem)) {
-
-                        SPRITE = false;
-                        kill();
-                    }
-                } else {
+                if (owner.isDeadOrDying() ||
+                        !(owner.getMainHandItem().getItem() instanceof HookshotItem ||
+                                owner.getOffhandItem().getItem() instanceof HookshotItem)) {
                     SPRITE = false;
                     kill();
+                    return;
+                }
+
+                if (tickCount >= 35 || !HookModel.get(owner).getHasHook() || (!isPulling && hasReachedMaxRange())) {
+                    beginReturning();
+                    return;
                 }
 
                 if (owner.getMainHandItem() == stack || owner.getOffhandItem() == stack) {
@@ -116,12 +175,204 @@ public class HookshotEntity extends AbstractArrow {
                         performPulling();
                     }
                 } else {
-                    SPRITE = false;
-                    HookModel.get(owner).setHasHook(false);
-                    kill();
+                    beginReturning();
+                    return;
                 }
             }
+        } else if (!level().isClientSide) {
+            kill();
         }
+    }
+
+    private void beginRetrieving(Entity target) {
+        hookedEntity = target;
+        entityData.set(HOOKED_ENTITY_ID, target.getId() + 1);
+        entityData.set(RETRIEVING, true);
+        entityData.set(RETURN_ARRIVAL_TICKS, 0);
+        setPulling(false);
+        noPhysics = true;
+        setNoGravity(true);
+        setPos(target.getX(), target.getY(0.5D), target.getZ());
+        updateReturnMotion();
+        hasImpulse = true;
+        prepareRetrievalTarget(target);
+        updateRetrievalTargetMotion(target);
+    }
+
+    private void beginReturning() {
+        if (isRetrieving()) {
+            return;
+        }
+
+        hookedEntity = null;
+        entityData.set(HOOKED_ENTITY_ID, 0);
+        entityData.set(RETRIEVING, true);
+        entityData.set(RETURN_ARRIVAL_TICKS, 0);
+        setPulling(false);
+        noPhysics = true;
+        setNoGravity(true);
+        if (owner != null) {
+            owner.setNoGravity(false);
+            HookModel.get(owner).setHasHook(true);
+        }
+        updateReturnMotion();
+        hasImpulse = true;
+    }
+
+    private void tickRetrieval() {
+        noPhysics = true;
+        setNoGravity(true);
+        Entity target = getRetrievalTarget();
+        if (target != null && target.isAlive()) {
+            prepareRetrievalTarget(target);
+        } else {
+            hookedEntity = null;
+            entityData.set(HOOKED_ENTITY_ID, 0);
+        }
+
+        if (owner == null) {
+            if (!level().isClientSide) {
+                kill();
+            }
+            return;
+        }
+
+        Vec3 destination = getReturnDestination();
+        if (position().distanceToSqr(destination) <= 0.01D) {
+            setPos(destination.x, destination.y, destination.z);
+            setDeltaMovement(Vec3.ZERO);
+            if (target != null && target.isAlive()) {
+                Vec3 attachmentPosition = getRetrievalAttachmentPosition(target);
+                updateRetrievalTargetMotion(target);
+                if (target.position().distanceToSqr(attachmentPosition) > TARGET_ARRIVAL_DISTANCE_SQR) {
+                    if (!level().isClientSide) {
+                        entityData.set(RETURN_ARRIVAL_TICKS, 0);
+                    }
+                    return;
+                }
+                target.setPos(attachmentPosition.x, attachmentPosition.y, attachmentPosition.z);
+                target.setDeltaMovement(Vec3.ZERO);
+            }
+            if (!level().isClientSide) {
+                int arrivalTicks = entityData.get(RETURN_ARRIVAL_TICKS) + 1;
+                entityData.set(RETURN_ARRIVAL_TICKS, arrivalTicks);
+                if (arrivalTicks >= RETURN_FINISH_DELAY_TICKS) {
+                    finishRetrieval();
+                }
+            }
+            return;
+        }
+        if (!level().isClientSide) {
+            entityData.set(RETURN_ARRIVAL_TICKS, 0);
+        }
+        updateReturnMotion();
+        if (target != null && target.isAlive()) {
+            updateRetrievalTargetMotion(target);
+        }
+    }
+
+    private Vec3 getReturnDestination() {
+        return owner == null
+                ? position()
+                : HookshotLaunchPosition.getFiringHandPosition(owner, getFiredHand());
+    }
+
+    private boolean hasReachedMaxRange() {
+        if (launchPosition == null) {
+            launchPosition = position();
+        }
+        return launchPosition.distanceToSqr(position()) >= maxRange * maxRange;
+    }
+
+    private void updateReturnMotion() {
+        if (owner == null) {
+            return;
+        }
+        Vec3 destination = getReturnDestination();
+        Vec3 direction = destination.subtract(position());
+        if (direction.lengthSqr() > 1.0E-7D) {
+            double returnSpeed = Math.max(0.1D, entityData.get(RETURN_SPEED));
+            if (getRetrievalTarget() != null) {
+                returnSpeed *= CARRIED_RETURN_SPEED_MULTIPLIER;
+            }
+            setDeltaMovement(direction.normalize().scale(Math.min(returnSpeed, direction.length())));
+        } else {
+            setDeltaMovement(Vec3.ZERO);
+        }
+    }
+
+    private Entity getRetrievalTarget() {
+        if (hookedEntity != null && hookedEntity.isAlive()) {
+            return hookedEntity;
+        }
+        int targetId = entityData.get(HOOKED_ENTITY_ID) - 1;
+        if (targetId >= 0) {
+            Entity syncedTarget = level().getEntity(targetId);
+            if (HookshotRetrievalTarget.canRetrieve(syncedTarget)) {
+                hookedEntity = syncedTarget;
+                return syncedTarget;
+            }
+        }
+        return null;
+    }
+
+    private void prepareRetrievalTarget(Entity target) {
+        target.noPhysics = true;
+        target.setNoGravity(true);
+        target.hurtMarked = true;
+        if (target instanceof HeartEntity heart) {
+            heart.age = 0;
+        } else if (target instanceof LargeMagicJarEntity largeMagicJar) {
+            largeMagicJar.age = 0;
+        } else if (target instanceof MagicJarEntity magicJar) {
+            magicJar.age = 0;
+        }
+    }
+
+    private Vec3 getRetrievalAttachmentPosition(Entity target) {
+        return new Vec3(getX(), getY() - target.getBbHeight() * 0.5D, getZ());
+    }
+
+    private void updateRetrievalTargetMotion(Entity target) {
+        Vec3 correction = getRetrievalAttachmentPosition(target).subtract(target.position());
+        target.setDeltaMovement(getDeltaMovement().add(correction.scale(TARGET_FOLLOW_CORRECTION)));
+        target.hasImpulse = true;
+        target.hurtMarked = true;
+    }
+
+    private void finishRetrieval() {
+        Entity target = getRetrievalTarget();
+        if (target != null) {
+            releaseRetrievalTarget(target);
+            Vec3 attachmentPosition = getRetrievalAttachmentPosition(target);
+            target.setPos(attachmentPosition.x, attachmentPosition.y, attachmentPosition.z);
+            if (target instanceof ItemEntity item) {
+                item.setNoPickUpDelay();
+                item.playerTouch(owner);
+            } else if (target instanceof HeartEntity heart) {
+                heart.throwTime = 0;
+                heart.playerTouch(owner);
+            } else if (target instanceof LargeMagicJarEntity largeMagicJar) {
+                largeMagicJar.throwTime = 0;
+                largeMagicJar.playerTouch(owner);
+            } else if (target instanceof MagicJarEntity magicJar) {
+                magicJar.throwTime = 0;
+                magicJar.playerTouch(owner);
+            }
+        }
+        hookedEntity = null;
+        entityData.set(HOOKED_ENTITY_ID, 0);
+        entityData.set(RETRIEVING, false);
+        entityData.set(RETURN_ARRIVAL_TICKS, 0);
+        noPhysics = false;
+        kill();
+    }
+
+    private void releaseRetrievalTarget(Entity target) {
+        target.noPhysics = false;
+        target.setNoGravity(false);
+        target.setDeltaMovement(Vec3.ZERO);
+        target.hurtMarked = true;
     }
 
     private void performPulling() {
@@ -135,7 +386,14 @@ public class HookshotEntity extends AbstractArrow {
         }
 
         double pullSpeed = maxSpeed / 9D;
-        Vec3 distance = origin.position().subtract(target.position().add(0, target.getBbHeight() / 2, 0));
+        Vec3 targetPullOrigin = target == owner
+                ? HookshotPullPoseEvents.getPullOrigin(owner)
+                : target.position().add(0, target.getBbHeight() / 2, 0);
+        Vec3 distance = origin.position().subtract(targetPullOrigin);
+        if (hookedEntity == null && distance.lengthSqr() <= 2.25D) {
+            beginReturning();
+            return;
+        }
         Vec3 motion = distance.normalize().scale(pullSpeed);
 
         // Adjust motion for ground level movement
@@ -145,30 +403,36 @@ public class HookshotEntity extends AbstractArrow {
             motion = new Vec3(0, motion.y, 0);
         }
 
+        if (target == owner && hookedEntity == null) {
+            Vec3 horizontalMotion = new Vec3(motion.x, 0.0D, motion.z);
+            boolean blockedAhead = horizontalMotion.lengthSqr() > 1.0E-7D
+                    && !level().noCollision(owner,
+                    owner.getBoundingBox().deflate(1.0E-4D).move(horizontalMotion));
+            if (blockedAhead || owner.horizontalCollision) {
+                motion = new Vec3(motion.x, Math.max(motion.y, 0.32D), motion.z);
+            }
+        }
+
         target.fallDistance = 0;
         target.setDeltaMovement(motion);
         target.hurtMarked = true;
 
         if (hookedEntity != null) {
             if (distance.length() > prevDistance && prevDistance < 1) {
-                kill();
-                SPRITE = false;
-                HookModel.get(owner).setHasHook(false);
+                beginReturning();
+                return;
             }
             if (tickCount > 50) {
-                kill();
-                SPRITE = false;
-                HookModel.get(owner).setHasHook(false);
+                beginReturning();
+                return;
             }
         } else {
             if (distance.length() > prevDistance && prevDistance < 1) {
-                kill();
-                SPRITE = false;
-                HookModel.get(owner).setHasHook(false);
+                beginReturning();
+                return;
             } else if (new Vec3(distance.x, 0, distance.z).length() < 0.3D) {
-                kill();
-                SPRITE = false;
-                HookModel.get(owner).setHasHook(false);
+                beginReturning();
+                return;
             }
         }
         prevDistance = distance.length();
@@ -192,10 +456,20 @@ public class HookshotEntity extends AbstractArrow {
 
     @Override
     public void kill() {
+        setPulling(false);
+        Entity retrievalTarget = isRetrieving() ? getRetrievalTarget() : null;
+        if (retrievalTarget != null) {
+            releaseRetrievalTarget(retrievalTarget);
+        }
+        entityData.set(RETRIEVING, false);
+        entityData.set(RETURN_ARRIVAL_TICKS, 0);
+        entityData.set(HOOKED_ENTITY_ID, 0);
+        hookedEntity = null;
+        noPhysics = false;
+
         if (!level().isClientSide && owner != null) {
             HookModel.get(owner).setHasHook(false);
             owner.setNoGravity(false);
-            owner.setPose(Pose.STANDING);
             owner.setDeltaMovement(0, 0, 0);
 
             SPRITE = false;
@@ -213,6 +487,10 @@ public class HookshotEntity extends AbstractArrow {
 
     @Override
     public void remove(RemovalReason reason) {
+        Entity retrievalTarget = isRetrieving() ? getRetrievalTarget() : null;
+        if (retrievalTarget != null) {
+            releaseRetrievalTarget(retrievalTarget);
+        }
         super.remove(reason);
         if (this.getOwner() instanceof Player player) {
             HookshotItem.resetSprite(player);
@@ -226,43 +504,51 @@ public class HookshotEntity extends AbstractArrow {
 
     @Override
     protected void onHitBlock(BlockHitResult blockHitResult) {
+        if (!level().isClientSide()) {
+            boolean hookable = !useBlockList
+                    || isHookable(level().getBlockState(blockHitResult.getBlockPos()));
+            level().playSound(
+                    null,
+                    blockHitResult.getLocation().x,
+                    blockHitResult.getLocation().y,
+                    blockHitResult.getLocation().z,
+                    hookable ? SoundEvents.CHAIN_PLACE : SoundEvents.SHIELD_BLOCK,
+                    SoundSource.PLAYERS,
+                    1.0F,
+                    hookable ? 0.85F : 1.15F
+            );
+        }
+        if (!level().isClientSide() && isBeyondMaxRange(blockHitResult.getLocation())) {
+            setPulling(false);
+            beginReturning();
+            return;
+        }
+        if (!level().isClientSide() && useBlockList
+                && !isHookable(level().getBlockState(blockHitResult.getBlockPos()))) {
+            setPulling(false);
+            beginReturning();
+            return;
+        }
+
         super.onHitBlock(blockHitResult);
 
-        isPulling = true;
-//        setHookableBlocks();
-
         if (!level().isClientSide() && owner != null && hookedEntity == null) {
-            owner.setNoGravity(true);  // Disable gravity for smooth pulling
-
-            // If using block list, check if the block is hookable
-            if (useBlockList) {
-                if (!hookableBlocks.contains(level().getBlockState(blockHitResult.getBlockPos()).getBlock())) {
-                    HookModel.get(owner).setHasHook(false);
-                    isPulling = false;
-                    onRemovedFromWorld();
-                    return;
-                }
-                List<ItemEntity> list = level().getEntitiesOfClass(ItemEntity.class, this.getBoundingBox().expandTowards(1D, 0.5D, 1D));
-
-                if(!list.isEmpty()){
-                    for (Entity entity : list) {
-                        hookedEntity = entity;
-                    }
-                    HookModel.get(owner).setHasHook(true);
-                    isPulling = true;
-                    onRemovedFromWorld();
-                }
-            }
+            setPulling(true);
+            owner.setNoGravity(true);
         }
     }
 
     @Override
     protected void onHitEntity(EntityHitResult entityHitResult) {
+        if (!level().isClientSide() && HookshotRetrievalTarget.canRetrieve(entityHitResult.getEntity())) {
+            beginRetrieving(entityHitResult.getEntity());
+            return;
+        }
         if (!level().isClientSide() && owner != null && entityHitResult.getEntity() != owner) {
             if ((entityHitResult.getEntity() instanceof LivingEntity || entityHitResult.getEntity() instanceof EnderDragonPart) && hookedEntity == null) {
                 hookedEntity = entityHitResult.getEntity();
                 entityData.set(HOOKED_ENTITY_ID, hookedEntity.getId() + 1);
-                isPulling = true;
+                setPulling(true);
                 owner.setNoGravity(true);
             }
         }
@@ -273,9 +559,22 @@ public class HookshotEntity extends AbstractArrow {
         super.readAdditionalSaveData(tag);
         maxRange = tag.getDouble("maxRange");
         maxSpeed = tag.getDouble("maxSpeed");
-        isPulling = tag.getBoolean("isPulling");
+        setPulling(tag.getBoolean("isPulling"));
+        entityData.set(RETRIEVING, tag.getBoolean("retrieving"));
+        noPhysics = isRetrieving();
+        entityData.set(FIRED_FROM_OFFHAND, tag.getBoolean("firedFromOffhand"));
+        entityData.set(RETURN_SPEED, tag.contains("returnSpeed") ? tag.getFloat("returnSpeed") : (float) (maxSpeed * 0.15D));
+        if (tag.contains("visualDirectionX")) {
+            entityData.set(VISUAL_DIRECTION_X, tag.getFloat("visualDirectionX"));
+            entityData.set(VISUAL_DIRECTION_Y, tag.getFloat("visualDirectionY"));
+            entityData.set(VISUAL_DIRECTION_Z, tag.getFloat("visualDirectionZ"));
+        }
+        if (tag.contains("launchX")) {
+            launchPosition = new Vec3(tag.getDouble("launchX"), tag.getDouble("launchY"), tag.getDouble("launchZ"));
+        }
         stack = ItemStack.of(tag.getCompound("hookshotItem"));
 
+        entityData.set(OWNER_ENTITY_ID, tag.getInt("owner"));
         if (level().getEntity(tag.getInt("owner")) instanceof Player)
             owner = (Player) level().getEntity(tag.getInt("owner"));
     }
@@ -286,6 +585,17 @@ public class HookshotEntity extends AbstractArrow {
         tag.putDouble("maxRange", maxRange);
         tag.putDouble("maxSpeed", maxSpeed);
         tag.putBoolean("isPulling", isPulling);
+        tag.putBoolean("retrieving", isRetrieving());
+        tag.putBoolean("firedFromOffhand", entityData.get(FIRED_FROM_OFFHAND));
+        tag.putFloat("returnSpeed", entityData.get(RETURN_SPEED));
+        tag.putFloat("visualDirectionX", entityData.get(VISUAL_DIRECTION_X));
+        tag.putFloat("visualDirectionY", entityData.get(VISUAL_DIRECTION_Y));
+        tag.putFloat("visualDirectionZ", entityData.get(VISUAL_DIRECTION_Z));
+        if (launchPosition != null) {
+            tag.putDouble("launchX", launchPosition.x);
+            tag.putDouble("launchY", launchPosition.y);
+            tag.putDouble("launchZ", launchPosition.z);
+        }
         tag.put("hookshotItem", stack.save(new CompoundTag()));
         tag.putInt("owner", owner.getId());
     }
@@ -296,10 +606,94 @@ public class HookshotEntity extends AbstractArrow {
         float y = -Mth.sin((pitch + roll) * f);
         float z = Mth.cos(yaw * f) * Mth.cos(pitch * f);
         this.shoot(x, y, z, modifierZ, 0);
+        captureVisualDirection();
 
         this.stack = stack;
         this.maxRange = maxRange;
         this.maxSpeed = maxVelocity;
+        this.entityData.set(RETURN_SPEED, (float) this.getDeltaMovement().length());
+    }
+
+    private void captureVisualDirection() {
+        Vec3 movement = getDeltaMovement();
+        if (movement.lengthSqr() <= 1.0E-7D) {
+            return;
+        }
+        Vec3 directionToPlayer = movement.normalize().scale(-1.0D);
+        entityData.set(VISUAL_DIRECTION_X, (float) directionToPlayer.x);
+        entityData.set(VISUAL_DIRECTION_Y, (float) directionToPlayer.y);
+        entityData.set(VISUAL_DIRECTION_Z, (float) directionToPlayer.z);
+    }
+
+    public Vec3 getVisualDirection() {
+        return new Vec3(
+                entityData.get(VISUAL_DIRECTION_X),
+                entityData.get(VISUAL_DIRECTION_Y),
+                entityData.get(VISUAL_DIRECTION_Z)
+        );
+    }
+
+    public void setFiredHand(InteractionHand hand) {
+        entityData.set(FIRED_FROM_OFFHAND, hand == InteractionHand.OFF_HAND);
+        if (getOwner() instanceof LivingEntity livingOwner) {
+            entityData.set(OWNER_ENTITY_ID, livingOwner.getId());
+            HookshotLaunchPosition.moveToFiringHand(this, livingOwner, hand, maxRange);
+            captureVisualDirection();
+            launchPosition = livingOwner.getEyePosition();
+        }
+    }
+
+    private boolean isBeyondMaxRange(Vec3 location) {
+        return launchPosition != null && launchPosition.distanceToSqr(location) > maxRange * maxRange;
+    }
+
+    public Player getHookOwner() {
+        if (getOwner() instanceof Player player) {
+            return player;
+        }
+        Entity syncedOwner = level().getEntity(entityData.get(OWNER_ENTITY_ID));
+        return syncedOwner instanceof Player player ? player : null;
+    }
+
+    public InteractionHand getFiredHand() {
+        return entityData.get(FIRED_FROM_OFFHAND) ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
+    }
+
+    public boolean isRetrieving() {
+        return entityData.get(RETRIEVING);
+    }
+
+    public boolean isPullingPlayer() {
+        return level().isClientSide ? entityData.get(PULLING) : isPulling;
+    }
+
+    public boolean isLatchedToBlock() {
+        return isPullingPlayer()
+                && !isRetrieving()
+                && entityData.get(HOOKED_ENTITY_ID) == 0;
+    }
+
+    private void setPulling(boolean pulling) {
+        isPulling = pulling;
+        entityData.set(PULLING, pulling);
+        if (owner != null) {
+            if (pulling) {
+                HookshotPullPoseEvents.apply(owner);
+            } else {
+                HookshotPullPoseEvents.release(owner);
+            }
+        }
+    }
+
+    public float getReturnArrivalProgress(float partialTick) {
+        int arrivalTicks = entityData.get(RETURN_ARRIVAL_TICKS);
+        if (!isRetrieving() || arrivalTicks <= 0) {
+            return 0.0F;
+        }
+        if (RETURN_FINISH_DELAY_TICKS <= 1) {
+            return 1.0F;
+        }
+        return Mth.clamp((arrivalTicks - 1.0F + partialTick) / (RETURN_FINISH_DELAY_TICKS - 1.0F), 0.0F, 1.0F);
     }
 
     @Override
@@ -313,26 +707,11 @@ public class HookshotEntity extends AbstractArrow {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        Player player = event.player;
-        if (true) {
-            double maxRange = 15;
-            List<HookshotEntity> entities = player.level().getEntitiesOfClass(HookshotEntity.class,
-                    new AABB(player.blockPosition().offset((int) -maxRange, (int) -maxRange, (int) -maxRange), player.blockPosition().offset((int) maxRange, (int) maxRange, (int) maxRange))
-            );
-            for (HookshotEntity entity : entities) {
-                if (entity.getOwner() == player) {
-                    if (entity.isPulling) {
-                        player.setPose(Pose.SWIMMING);
-                        player.setSwimming(true);
-                    }
-                }
-            }
-        }
-    }
-
     public static EntityType<HookshotEntity> createEntityType() {
-        return EntityType.Builder.<HookshotEntity>of(HookshotEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).build(SupersLegendMain.MOD_ID + ":hookshot");
+        return EntityType.Builder.<HookshotEntity>of(HookshotEntity::new, MobCategory.MISC)
+                .sized(0.2F, 0.2F)
+                .clientTrackingRange(4)
+                .updateInterval(NETWORK_UPDATE_INTERVAL_TICKS)
+                .build(SupersLegendMain.MOD_ID + ":hookshot");
     }
 }

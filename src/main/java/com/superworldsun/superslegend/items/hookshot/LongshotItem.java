@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.items.hookshot;
 import com.superworldsun.superslegend.capability.hookshot.HookModel;
 import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
 import com.superworldsun.superslegend.items.customclass.NonEnchantItem;
+import com.superworldsun.superslegend.items.curios.head.masks.GiantsMask;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -45,7 +46,7 @@ public class LongshotItem extends NonEnchantItem {
         ItemStack maskStack3 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_ZORAMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
         ItemStack maskStack4 = CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_FIERCEDEITYSMASK.get(), player).map(ImmutableTriple::getRight).orElse(ItemStack.EMPTY);
 
-        if(!maskStack.isEmpty() || !maskStack0.isEmpty() || !maskStack1.isEmpty() ||
+        if(!maskStack.isEmpty() || (!maskStack0.isEmpty() && GiantsMask.hasTransformationMagic(player)) || !maskStack1.isEmpty() ||
                 !maskStack2.isEmpty() || !maskStack3.isEmpty() || !maskStack4.isEmpty())
             return InteractionResultHolder.fail(itemstack);
 
@@ -70,16 +71,14 @@ public class LongshotItem extends NonEnchantItem {
     //Function that manages what happens when you launch the hook.
     @Override
     public void releaseUsing(ItemStack itemStack, Level world, LivingEntity player, int remainingUseTicks) {
-
-        BlockPos currentPos = player.blockPosition();
-        world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOOKSHOT_FIRE.get(), SoundSource.PLAYERS, 1f, 1f);
-
         ItemStack stack = player.getItemInHand(player.getUsedItemHand());
         //Get Charge
         int i = this.getUseDuration(itemStack) - remainingUseTicks;
 
         if (!world.isClientSide) {
             if (!HookModel.get((Player) player).getHasHook()) {
+                BlockPos currentPos = player.blockPosition();
+                world.playSound(null, currentPos, SoundInit.HOOKSHOT_FIRE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 double maxRange = 30D;
                 if(needCharge) {
                     maxRange = 30D * getPowerForTime(i);
@@ -88,6 +87,7 @@ public class LongshotItem extends NonEnchantItem {
                 //Get Entity, set properties and spawn in the world.
                 LongshotEntity hookshot = new LongshotEntity(EntityTypeInit.LONGSHOT_ENTITY.get(), player, world);
                 hookshot.setProperties(stack, maxRange, maxSpeed, player.getXRot(), player.getYRot(), 0f, 1.5f * (float) (maxSpeed / 10));
+                hookshot.setFiredHand(player.getUsedItemHand());
                 world.addFreshEntity(hookshot);
                 LONG_SPRITE = true;
                 if (player instanceof Player serverPlayer) {

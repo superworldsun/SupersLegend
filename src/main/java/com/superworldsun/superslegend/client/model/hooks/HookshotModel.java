@@ -26,7 +26,7 @@ public class HookshotModel<T extends Entity> extends EntityModel<T> {
                         .texOffs(0, 0).addBox(-1.0F, -1.0F, -2.0F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F))
                         .texOffs(0, 4).addBox(0.0F, -1.0F, 0.0F, 2.0F, 1.0F, 1.0F, new CubeDeformation(0.0F))
                         .texOffs(5, 0).addBox(0.0F, -1.0F, -1.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)),
-                PartPose.offsetAndRotation(-1.0F, 3.0F, -7.0F, 3.1416F, -0.7854F, 3.1416F));
+                PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 3.1416F, -0.7854F, 3.1416F));
 
         return LayerDefinition.create(meshdefinition, 16, 16);
     }

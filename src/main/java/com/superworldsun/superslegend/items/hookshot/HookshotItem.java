@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.items.hookshot;
 import com.superworldsun.superslegend.capability.hookshot.HookModel;
 import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
 import com.superworldsun.superslegend.items.customclass.NonEnchantItem;
+import com.superworldsun.superslegend.items.curios.head.masks.GiantsMask;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -36,7 +37,8 @@ public class HookshotItem extends NonEnchantItem {
         ItemStack itemstack = player.getItemInHand(hand);
 
         if (CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.GNAT_HAT.get()).isPresent() ||
-                CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.MASK_GIANTSMASK.get()).isPresent() ||
+                (CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.MASK_GIANTSMASK.get()).isPresent()
+                        && GiantsMask.hasTransformationMagic(player)) ||
                 CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.MASK_DEKUMASK.get()).isPresent() ||
                 CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.MASK_GORONMASK.get()).isPresent() ||
                 CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.MASK_ZORAMASK.get()).isPresent() ||
@@ -63,18 +65,18 @@ public class HookshotItem extends NonEnchantItem {
 
     @Override
     public void releaseUsing(ItemStack itemStack, Level world, LivingEntity player, int remainingUseTicks) {
-        BlockPos currentPos = player.blockPosition();
-        world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.HOOKSHOT_FIRE.get(), SoundSource.PLAYERS, 1f, 1f);
-
         ItemStack stack = player.getItemInHand(player.getUsedItemHand());
         int i = this.getUseDuration(itemStack) - remainingUseTicks;
 
         if (!world.isClientSide) {
             if (!HookModel.get((Player) player).getHasHook()) {
+                BlockPos currentPos = player.blockPosition();
+                world.playSound(null, currentPos, SoundInit.HOOKSHOT_FIRE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 double maxRange = needCharge ? 15D * getPowerForTime(i) : 15D;
                 double maxSpeed = 10D;
                 HookshotEntity hookshot = new HookshotEntity(EntityTypeInit.HOOKSHOT_ENTITY.get(), player, world);
                 hookshot.setProperties(stack, maxRange, maxSpeed, player.getXRot(), player.getYRot(), 0f, 1.5f * (float) (maxSpeed / 10));
+                hookshot.setFiredHand(player.getUsedItemHand());
                 world.addFreshEntity(hookshot);
                 SPRITE = true;
                 if (player instanceof Player serverPlayer) {

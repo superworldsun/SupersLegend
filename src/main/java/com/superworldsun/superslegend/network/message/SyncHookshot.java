@@ -8,7 +8,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.PacketDistributor;
 
@@ -39,16 +41,20 @@ public class SyncHookshot {
 
     public void handle(Supplier<NetworkEvent.Context> contextSupplier) {
         NetworkEvent.Context context = contextSupplier.get();
-        context.enqueueWork(() -> {
-            if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
-                ClientLevel world = Minecraft.getInstance().level;
-                Player player = Minecraft.getInstance().player;
-                if (world != null && player != null) {
-                    HookModel.get(player).deserializeNBT(hookModelData);
-                }
-            }
-        });
+        context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(
+                Dist.CLIENT,
+                () -> () -> handleClientPacket(hookModelData)
+        ));
         context.setPacketHandled(true);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private static void handleClientPacket(CompoundTag hookModelData) {
+        ClientLevel world = Minecraft.getInstance().level;
+        Player player = Minecraft.getInstance().player;
+        if (world != null && player != null) {
+            HookModel.get(player).deserializeNBT(hookModelData);
+        }
     }
 
     // Optional: Method to trigger a sync from server to client
