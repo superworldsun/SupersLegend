@@ -14,22 +14,26 @@ import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkEvent.Context;
 
 public class SyncMagicMessage {
+	private int playerId;
 	private float magic;
 
 	private SyncMagicMessage() {
 	}
 
 	public SyncMagicMessage(Player player) {
+		playerId = player.getId();
 		magic = MagicProvider.getMagic(player);
 	}
 
 	public static SyncMagicMessage decode(FriendlyByteBuf buf) {
 		SyncMagicMessage result = new SyncMagicMessage();
+		result.playerId = buf.readVarInt();
 		result.magic = buf.readFloat();
 		return result;
 	}
 
 	public void encode(FriendlyByteBuf buf) {
+		buf.writeVarInt(playerId);
 		buf.writeFloat(magic);
 	}
 
@@ -42,6 +46,8 @@ public class SyncMagicMessage {
 	@OnlyIn(value = Dist.CLIENT)
 	private static void handlePacket(SyncMagicMessage message, NetworkEvent.Context ctx) {
 		Minecraft minecraft = Minecraft.getInstance();
-		MagicProvider.setMagic(minecraft.player, message.magic);
+		if (minecraft.level != null && minecraft.level.getEntity(message.playerId) instanceof Player player) {
+			MagicProvider.setMagicFromSync(player, message.magic);
+		}
 	}
 }
