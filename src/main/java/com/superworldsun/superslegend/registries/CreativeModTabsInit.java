@@ -20,7 +20,9 @@ public class CreativeModTabsInit {
                     .displayItems(((pParameters, pOutput) -> {
                         pOutput.accept(ItemInit.RUPEE.get());
                         pOutput.accept(ItemInit.BLUE_RUPEE.get());
+                        pOutput.accept(ItemInit.YELLOW_RUPEE.get());
                         pOutput.accept(ItemInit.RED_RUPEE.get());
+                        pOutput.accept(ItemInit.PURPLE_RUPEE.get());
                         pOutput.accept(ItemInit.SILVER_RUPEE.get());
                         pOutput.accept(ItemInit.GOLD_RUPEE.get());
                         pOutput.accept(ItemInit.WALLET.get());
@@ -128,6 +130,8 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.MAGIC_CAPE.get());
                         //pOutput.accept(ItemInit.MAGIC_POWDER.get());
                         pOutput.accept(ItemInit.EMPTY_CONTAINER.get());
+                        pOutput.accept(ItemInit.POISON_BUCKET.get());
+                        pOutput.accept(ItemInit.MUD_BUCKET.get());
                         pOutput.accept(ItemInit.DINS_FIRE.get());
                         pOutput.accept(ItemInit.FARORES_WIND.get());
                         pOutput.accept(ItemInit.NAYRUS_LOVE.get());
