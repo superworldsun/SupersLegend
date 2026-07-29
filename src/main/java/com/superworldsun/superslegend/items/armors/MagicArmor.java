@@ -3,80 +3,85 @@ package com.superworldsun.superslegend.items.armors;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.util.RupeeWalletUtil;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class MagicArmor extends NonEnchantArmor {
+    private static final int UPKEEP_INTERVAL_TICKS = 10;
+    private static final int UPKEEP_COST = 1;
+    private static final int DAMAGE_COST = 12;
+
     public MagicArmor(ArmorMaterial material, Type type, Properties properties) {
         super(material, type, properties);
     }
 
-    //When the player takes damage it takes 12 rupees from the players inventory
-    //TODO Add some sound effect for the damage
-    @SubscribeEvent
+    /**
+     * Prevents the final health damage while leaving vanilla's hurt animation,
+     * camera shake, sounds and knockback intact. Void damage is intentionally
+     * never protected against.
+     */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingHurt(LivingHurtEvent event) {
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-            boolean isHelmetOn = player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ItemInit.MAGIC_ARMOR_CAP.get();
-            boolean isChestplateOn = player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.MAGIC_ARMOR_TUNIC.get();
-            boolean isLeggingsOn = player.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemInit.MAGIC_ARMOR_LEGGINGS.get();
-            boolean isBootsOn = player.getItemBySlot(EquipmentSlot.FEET).getItem() == ItemInit.MAGIC_ARMOR_BOOTS.get();
-            if (isHelmetOn && isChestplateOn && isLeggingsOn && isBootsOn) {
-                int rupeesTaken = 0;
-                for (int i = 0; i < player.getInventory().getContainerSize() && rupeesTaken < 12; i++) {
-                    ItemStack armorStack = player.getInventory().getItem(i);
-                    if (armorStack.getItem() == ItemInit.RUPEE.get()) {
-                        int stackSize = armorStack.getCount();
-                        if (stackSize >= 12 - rupeesTaken) {
-                            armorStack.shrink(12 - rupeesTaken);
-                            rupeesTaken = 12;
-                        } else {
-                            armorStack.setCount(0);
-                            rupeesTaken += stackSize;
-                        }
-                    }
-                }
-            }
+        if (!(event.getEntity() instanceof Player player)
+                || player.level().isClientSide
+                || event.getAmount() <= 0.0F
+                || event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)
+                || !isFullSetEquipped(player)
+                || RupeeWalletUtil.getStoredRupees(player) <= 0) {
+            return;
+        }
+
+        RupeeWalletUtil.spend(player, DAMAGE_COST);
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                SoundEvents.SHIELD_BLOCK, SoundSource.PLAYERS, 1.0F, 1.15F);
+
+        // LivingEntity continues processing the hit after LivingHurtEvent. A zero
+        // amount prevents heart loss while retaining its normal impact response.
+        event.setAmount(0.0F);
+    }
+
+    /** Runs once per player rather than once for every equipped armor piece. */
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END
+                || event.player.level().isClientSide
+                || !event.player.isAlive()) {
+            return;
+        }
+
+        Player player = event.player;
+        if (!isFullSetEquipped(player)) {
+            return;
+        }
+
+        if (RupeeWalletUtil.getStoredRupees(player) <= 0) {
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
+                    15, 3, false, false, false));
+            return;
+        }
+
+        if (player.tickCount % UPKEEP_INTERVAL_TICKS == 0) {
+            RupeeWalletUtil.spend(player, UPKEEP_COST);
         }
     }
 
-    @Override
-    public void onArmorTick(ItemStack stack, Level level, Player player) {
-        super.onArmorTick(stack, level, player);
-        if (!level.isClientSide) {
-            boolean isHelmetOn = player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ItemInit.MAGIC_ARMOR_CAP.get();
-            boolean isChestplateOn = player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.MAGIC_ARMOR_TUNIC.get();
-            boolean isLeggingsOn = player.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemInit.MAGIC_ARMOR_LEGGINGS.get();
-            boolean isBootsOn = player.getItemBySlot(EquipmentSlot.FEET).getItem() == ItemInit.MAGIC_ARMOR_BOOTS.get();
-            if (isHelmetOn & isChestplateOn & isLeggingsOn & isBootsOn) {
-                MobEffectInstance effect = player.getEffect(MobEffects.DAMAGE_RESISTANCE);
-                if (effect != null && effect.getAmplifier() == 100)
-                    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 14, 99, false, false, false));
-                else {
-                    boolean hasRupees = false;
-                    for (int i = 0; i < player.getInventory().getContainerSize(); ++i) {
-                        ItemStack armorStack = player.getInventory().getItem(i);
-                        if (armorStack.getItem() == ItemInit.RUPEE.get()) {
-                            armorStack.shrink(1);
-                            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 10, 100, false, false, false));
-                            hasRupees = true;
-                            break;
-                        }
-                    }
-                    if (!hasRupees) {
-                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 3, false, false, false));
-                    }
-                }
-            }
-        }
+    private static boolean isFullSetEquipped(Player player) {
+        return player.getItemBySlot(EquipmentSlot.HEAD).is(ItemInit.MAGIC_ARMOR_CAP.get())
+                && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemInit.MAGIC_ARMOR_TUNIC.get())
+                && player.getItemBySlot(EquipmentSlot.LEGS).is(ItemInit.MAGIC_ARMOR_LEGGINGS.get())
+                && player.getItemBySlot(EquipmentSlot.FEET).is(ItemInit.MAGIC_ARMOR_BOOTS.get());
     }
 }
