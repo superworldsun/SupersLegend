@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.registries.AttributeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.player.Player;
@@ -19,45 +20,46 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class TemperatureEvents {
     private static final float UNDERGROUND_TEMPERATURE = 0.5F;
     private static final float NETHER_TEMPERATURE = 2.0F;
 
     @SubscribeEvent
     public static void onItemAttributeModifier(ItemAttributeModifierEvent event) {
-        addColdResistance(event, Items.LEATHER_HELMET, 0.05F, event.getSlotType());
-        addColdResistance(event, Items.LEATHER_CHESTPLATE, 0.15F, event.getSlotType());
-        addColdResistance(event, Items.LEATHER_LEGGINGS, 0.1F, event.getSlotType());
-        addColdResistance(event, Items.LEATHER_BOOTS, 0.05F, event.getSlotType());
+        addColdResistance(event, Items.LEATHER_HELMET, 0.05F, EquipmentSlot.HEAD);
+        addColdResistance(event, Items.LEATHER_CHESTPLATE, 0.15F, EquipmentSlot.CHEST);
+        addColdResistance(event, Items.LEATHER_LEGGINGS, 0.1F, EquipmentSlot.LEGS);
+        addColdResistance(event, Items.LEATHER_BOOTS, 0.05F, EquipmentSlot.FEET);
         // TODO:mod items should add their modifiers in their classes
-        addHeatResistance(event, ItemInit.DESERT_VOE_HEADBAND.get(), 0.15F, event.getSlotType());
-        addHeatResistance(event, ItemInit.DESERT_VOE_SPAULDER.get(), 0.4F, event.getSlotType());
-        addHeatResistance(event, ItemInit.DESERT_VOE_TROUSERS.get(), 0.3F, event.getSlotType());
-        addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.15F, event.getSlotType());
-        addColdResistance(event, ItemInit.SNOWQUILL_HEADDRESS.get(), 0.15F, event.getSlotType());
-        addColdResistance(event, ItemInit.SNOWQUILL_TUNIC.get(), 0.4F, event.getSlotType());
-        addColdResistance(event, ItemInit.SNOWQUILL_TROUSERS.get(), 0.3F, event.getSlotType());
-        addColdResistance(event, ItemInit.SNOWQUILL_BOOTS.get(), 0.15F, event.getSlotType());
-        addHellHeatResistance(event, ItemInit.FLAMEBREAKER_HELMET.get(), 0.5F, event.getSlotType());
-        addHellHeatResistance(event, ItemInit.FLAMEBREAKER_TUNIC.get(), 0.5F, event.getSlotType());
-        addHellHeatResistance(event, ItemInit.FLAMEBREAKER_LEGGINGS.get(), 0.5F, event.getSlotType());
-        addHellHeatResistance(event, ItemInit.FLAMEBREAKER_BOOTS.get(), 0.5F, event.getSlotType());
-        addHellHeatResistance(event, ItemInit.GORON_TUNIC.get(), 1.0F, event.getSlotType());
+        addHeatResistance(event, ItemInit.DESERT_VOE_HEADBAND.get(), 0.15F, EquipmentSlot.HEAD);
+        addHeatResistance(event, ItemInit.DESERT_VOE_SPAULDER.get(), 0.4F, EquipmentSlot.CHEST);
+        addHeatResistance(event, ItemInit.DESERT_VOE_TROUSERS.get(), 0.3F, EquipmentSlot.LEGS);
+        addHeatResistance(event, ItemInit.DESERT_VOE_BOOTS.get(), 0.15F, EquipmentSlot.FEET);
+        addColdResistance(event, ItemInit.SNOWQUILL_HEADDRESS.get(), 0.15F, EquipmentSlot.HEAD);
+        addColdResistance(event, ItemInit.SNOWQUILL_TUNIC.get(), 0.4F, EquipmentSlot.CHEST);
+        addColdResistance(event, ItemInit.SNOWQUILL_TROUSERS.get(), 0.3F, EquipmentSlot.LEGS);
+        addColdResistance(event, ItemInit.SNOWQUILL_BOOTS.get(), 0.15F, EquipmentSlot.FEET);
+        addHellHeatResistance(event, ItemInit.FLAMEBREAKER_HELMET.get(), 0.5F, EquipmentSlot.HEAD);
+        addHellHeatResistance(event, ItemInit.FLAMEBREAKER_TUNIC.get(), 0.5F, EquipmentSlot.CHEST);
+        addHellHeatResistance(event, ItemInit.FLAMEBREAKER_LEGGINGS.get(), 0.5F, EquipmentSlot.LEGS);
+        addHellHeatResistance(event, ItemInit.FLAMEBREAKER_BOOTS.get(), 0.5F, EquipmentSlot.FEET);
+        addHellHeatResistance(event, ItemInit.GORON_TUNIC.get(), 1.0F, EquipmentSlot.CHEST);
     }
 
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent event) {
-        if (event.phase == Phase.START || !Config.isTemperatureEnabled()) {
+        if (event.phase == Phase.START
+                || event.player.level().isClientSide
+                || !Config.isTemperatureEnabled()
+                || event.player.isCreative()
+                || event.player.isSpectator()) {
             return;
         }
 
@@ -87,7 +89,7 @@ public class TemperatureEvents {
                     : heatResistance > 0.0D ? (float)heatResistance : 0.0F);
 
             if (temperature > dangerousHeatTemperature) {
-                if (isInNether && !player.isCreative() && !player.isSpectator()) {
+                if (isInNether) {
                     player.setSecondsOnFire(1);
                     player.hurt(damageSources.onFire(), 1.0F);
                 } else if (!isInNether) {
