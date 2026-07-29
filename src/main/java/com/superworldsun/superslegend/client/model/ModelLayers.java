@@ -13,5 +13,6 @@ public class ModelLayers {
     public static final ModelLayerLocation GORON_PLAYER = new ModelLayerLocation(new ResourceLocation(SupersLegendMain.MOD_ID, "goron_player"), "main");
     public static final ModelLayerLocation ZORA_PLAYER = new ModelLayerLocation(new ResourceLocation(SupersLegendMain.MOD_ID, "zora_player"), "main");
     public static final ModelLayerLocation DEKU_PLAYER = new ModelLayerLocation(new ResourceLocation(SupersLegendMain.MOD_ID, "deku_player"), "main");
+    public static final ModelLayerLocation DEKU_MAGIC_BUBBLE = new ModelLayerLocation(new ResourceLocation(SupersLegendMain.MOD_ID, "deku_magic_bubble"), "main");
 
 }
