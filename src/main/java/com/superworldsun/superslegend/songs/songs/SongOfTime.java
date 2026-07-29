@@ -25,6 +25,11 @@ public class SongOfTime extends OcarinaSong {
 	}
 
 	@Override
+	public boolean requiresOcarinaOfTime() {
+		return true;
+	}
+
+	@Override
 	public void onSongPlayed(Player player, Level level) {
 		getBlocksInAreaOfEffect(player).forEach(pos -> {
 			toggleTimeBlock(level, pos);
