@@ -30,9 +30,12 @@ public class SupersLegendMain
     public SupersLegendMain()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModGameRules.register();
 
         CreativeModTabsInit.register(modEventBus);
 
+        FluidInit.FLUID_TYPES.register(modEventBus);
+        FluidInit.FLUIDS.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
         EffectInit.MOB_EFFECT.register(modEventBus);
