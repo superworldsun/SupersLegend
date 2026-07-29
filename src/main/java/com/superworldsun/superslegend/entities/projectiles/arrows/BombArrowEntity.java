@@ -5,17 +5,20 @@ import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.util.ProjectileFluidCollisionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
@@ -64,6 +67,7 @@ public class BombArrowEntity extends AbstractArrow
     @Override
     public void tick()
     {
+        Vec3 previousPosition = this.position();
         super.tick();
         if (!level().isClientSide)
         {
@@ -113,8 +117,10 @@ public class BombArrowEntity extends AbstractArrow
             }
         }
 
+        if (defuseAtWaterSurface(previousPosition)) {
+            return;
+        }
         addSmokeToFlightPath();
-        defuseInWater();
         explodeInHeat();
         playFuseSoundEveryNinthTick();
     }
@@ -127,14 +133,22 @@ public class BombArrowEntity extends AbstractArrow
         }
     }
 
-    private void defuseInWater()
+    private boolean defuseAtWaterSurface(Vec3 previousPosition)
     {
-        if (this.wasTouchingWater)
-        {
-            BlockPos currentPos = this.blockPosition();
-            this.level().playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.BOMB_DEFUSE.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
-            this.discard();
+        if (this.level().isClientSide || this.isRemoved()) {
+            return false;
         }
+
+        var contact = ProjectileFluidCollisionHelper.findContact(
+                this.level(), this, previousPosition, this.position(), FluidTags.WATER, false);
+        if (contact == null) {
+            return false;
+        }
+
+        this.level().playSound(null, contact.location().x, contact.location().y, contact.location().z,
+                SoundInit.BOMB_DEFUSE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+        this.discard();
+        return true;
     }
 
     private void explodeInHeat()
