@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -25,20 +26,32 @@ public class OcarinaOfTime extends Item
         super(properties);
     }
 
-    //TODO When the player plays any notes from the ocarina, make it so other players can hear the notes
-
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> showOcarinaScreen(player));
-        return InteractionResultHolder.success(player.getItemInHand(hand));
+        player.startUsingItem(hand);
+        if (level.isClientSide) {
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> showOcarinaScreen(player, hand));
+        }
+        return InteractionResultHolder.consume(player.getItemInHand(hand));
+    }
+
+    @Override
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
+        // The third-person Ocarina pose is applied by OcarinaPlayerPoseEvents.
+        // NONE keeps the first-person item from receiving vanilla's bow-draw transform.
+        return UseAnim.NONE;
+    }
+
+    @Override
+    public int getUseDuration(@NotNull ItemStack stack) {
+        return 72000;
     }
 
     @OnlyIn(value = Dist.CLIENT)
-    private void showOcarinaScreen(Player player)
+    private void showOcarinaScreen(Player player, InteractionHand hand)
     {
         Minecraft client = Minecraft.getInstance();
-        //TODO, re add OcarinaScreen
-        client.setScreen(new OcarinaScreen(player));
+        client.execute(() -> client.setScreen(new OcarinaScreen(player, hand)));
     }
 
     @OnlyIn(Dist.CLIENT)

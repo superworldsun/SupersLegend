@@ -27,7 +27,7 @@ public abstract class OcarinaSong {
     public abstract SoundEvent getPlayingSound();
 
     public boolean requiresOcarinaOfTime() {
-        return true;
+        return false;
     }
 
     public int getSongIconColor() {
@@ -35,6 +35,14 @@ public abstract class OcarinaSong {
     }
 
     public abstract void onSongPlayed(Player player, Level level);
+
+    /**
+     * Client view information is only relevant to songs with camera-aware effects.
+     * Existing songs continue through the original two-argument method.
+     */
+    public void onSongPlayed(Player player, Level level, boolean rearFacingCamera) {
+        onSongPlayed(player, level);
+    }
 
     public void setRegistryName(ResourceLocation name) {
         if (this.registryName != null) {

@@ -1,13 +1,14 @@
 package com.superworldsun.superslegend.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.superworldsun.superslegend.Config;
 import com.superworldsun.superslegend.SupersLegendMain;
-//import com.superworldsun.superslegend.client.sound.OcarinaSongSound;
 import com.superworldsun.superslegend.client.sound.OcarinaSongSound;
+import com.superworldsun.superslegend.items.item.OcarinaOfTime;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
-//import com.superworldsun.superslegend.network.message.PlaySongMessage;
 import com.superworldsun.superslegend.network.message.PlaySongMessage;
-import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.network.message.PlayOcarinaNoteMessage;
+import com.superworldsun.superslegend.network.message.SetOcarinaPlayingMessage;
 import com.superworldsun.superslegend.registries.OcarinaSongInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.songs.LearnedSongs;
@@ -26,6 +27,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.InteractionHand;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.RegistryObject;
@@ -60,12 +62,14 @@ public class OcarinaScreen extends Screen {
     private int hintTimer;
     private int hintNoteTimer;
     private int closeDelay = -1;
-    private boolean initialized = false;
+    private boolean playingStateSent = false;
     static public Player player;
+    private final InteractionHand playingHand;
 
-    public OcarinaScreen(Player player) {
+    public OcarinaScreen(Player player, InteractionHand playingHand) {
         super(Component.literal("Ocarina"));
         this.player = player;
+        this.playingHand = playingHand;
         this.minecraft = Minecraft.getInstance();
         clearPlayedNotes();
     }
@@ -73,18 +77,16 @@ public class OcarinaScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        if (this.minecraft == null) {
-            this.minecraft = Minecraft.getInstance();
-        } else if (this.font == null) {
-            this.font = Minecraft.getInstance().font;
-        }
-        this.initialized = true;
+        ensureClientReferences();
+        sendPlayingStateOnce();
     }
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        if (!ensureValidLayout()) {
+            return;
+        }
         super.render(guiGraphics, mouseX, mouseY, partialTick);
-        if (!checkInit()) return;
         renderBackground(guiGraphics);
         renderOcarinaBackground(guiGraphics);
         renderControls(guiGraphics);
@@ -94,8 +96,6 @@ public class OcarinaScreen extends Screen {
 
     }
     private void renderControls(GuiGraphics guiGraphics) {
-        if (!checkInit()) return;
-
         int controlsWidth = NOTE_ICON_SIZE * 5 + NOTE_ICON_SPACING * 4 + NOTE_ICON_TEXT_SPACING * 5;
 
         for (Note note : Note.values()) {
@@ -121,8 +121,6 @@ public class OcarinaScreen extends Screen {
     }
 
     private void renderPlayedNotes(GuiGraphics guiGraphics) {
-        if (!checkInit()) return;
-
         minecraft.getTextureManager().bindForSetup(TEXTURE);
         int notesX = (width - 156) / 2 + 23;
         int notesY = (int) (height * PLAYED_NOTES_Y) - 30 / 2;
@@ -134,8 +132,6 @@ public class OcarinaScreen extends Screen {
     }
 
     private void renderSongsIcons(GuiGraphics guiGraphics) {
-        if (!checkInit()) return;
-
         minecraft.getTextureManager().bindForSetup(TEXTURE);
         int songsRowWidth = SONG_ICON_WIDTH * 7 + SONG_ICON_HORIZONTAL_SPACING * 6;
         int songsX = (width - songsRowWidth) / 2;
@@ -167,8 +163,6 @@ public class OcarinaScreen extends Screen {
     }
 
     private void renderSongsHoverText(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        if (!checkInit()) return;
-
         int songsRowWidth = SONG_ICON_WIDTH * 7 + SONG_ICON_HORIZONTAL_SPACING * 6;
         int songsX = (width - songsRowWidth) / 2;
         int songsY = (int) (height * SONGS_Y);
@@ -194,15 +188,42 @@ public class OcarinaScreen extends Screen {
         }
     }
 
-    private boolean checkInit() {
-        if (!this.initialized || this.minecraft == null || this.font == null) {
-            init();
-            if (!this.initialized || this.minecraft == null || this.font == null) {
-                System.err.println("Failed to initialize OcarinaScreen");
-                return this.initialized = false;
-            }
+    private void ensureClientReferences() {
+        if (this.minecraft == null) {
+            this.minecraft = Minecraft.getInstance();
         }
+        if (this.font == null && this.minecraft != null) {
+            this.font = this.minecraft.font;
+        }
+    }
+
+    private boolean ensureValidLayout() {
+        ensureClientReferences();
+        if (this.minecraft == null || this.font == null) {
+            return false;
+        }
+
+        int currentWidth = this.minecraft.getWindow().getGuiScaledWidth();
+        int currentHeight = this.minecraft.getWindow().getGuiScaledHeight();
+        if (currentWidth <= 0 || currentHeight <= 0) {
+            return false;
+        }
+
+        // A screen can occasionally reach its first render before the normal Screen#init dimensions have
+        // been applied. Always use the live GUI dimensions so centered elements can never collapse at (0, 0).
+        if (this.width != currentWidth || this.height != currentHeight) {
+            this.width = currentWidth;
+            this.height = currentHeight;
+        }
+        sendPlayingStateOnce();
         return true;
+    }
+
+    private void sendPlayingStateOnce() {
+        if (!this.playingStateSent) {
+            NetworkDispatcher.network_channel.sendToServer(new SetOcarinaPlayingMessage(true, playingHand));
+            this.playingStateSent = true;
+        }
     }
 
     @Override
@@ -322,9 +343,12 @@ public class OcarinaScreen extends Screen {
 
     private void updateDelayedClose() {
         if (closeDelay == 0) {
-            boolean canApplySongEffect = player.isHolding(ItemInit.OCARINA_OF_TIME.get()) || !playedSong.requiresOcarinaOfTime();
+            boolean canApplySongEffect = player.getItemInHand(playingHand).getItem() instanceof OcarinaOfTime
+                    || Config.canFairyOcarinaApply(playedSong);
+            boolean rearFacingCamera = minecraft.options.getCameraType().isMirrored();
+            NetworkDispatcher.network_channel.sendToServer(
+                    new PlaySongMessage(playedSong, rearFacingCamera, playingHand));
             if (canApplySongEffect) {
-                NetworkDispatcher.network_channel.sendToServer(new PlaySongMessage(playedSong));
                 int songColor = playedSong.getSongIconColor();
                 MutableComponent songName = playedSong.getLocalizedName().copy()
                         .withStyle(style -> style.withColor(TextColor.fromRgb(songColor)));
@@ -346,6 +370,22 @@ public class OcarinaScreen extends Screen {
     @Override
     public boolean isPauseScreen() {
         return false;
+    }
+
+    @Override
+    public void removed() {
+        super.removed();
+        if (this.playingStateSent) {
+            NetworkDispatcher.network_channel.sendToServer(new SetOcarinaPlayingMessage(false, playingHand));
+            this.playingStateSent = false;
+        }
+        if (minecraft != null && minecraft.gameMode != null && player != null && player.isUsingItem()) {
+            minecraft.gameMode.releaseUsingItem(player);
+        }
+    }
+
+    public InteractionHand getPlayingHand() {
+        return playingHand;
     }
 
     private void clearPlayedNotes() {
@@ -433,6 +473,8 @@ public class OcarinaScreen extends Screen {
                     return true;
                 }
             });
+
+            NetworkDispatcher.network_channel.sendToServer(new PlayOcarinaNoteMessage(ordinal()));
 
             playedNotes.add(this);
             playedPattern += this.name().toLowerCase();
