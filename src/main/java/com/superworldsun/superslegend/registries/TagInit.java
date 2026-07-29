@@ -4,6 +4,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
@@ -20,9 +21,18 @@ public class TagInit {
 
     public static final TagKey<Item> PELLETS = registerItemTag("pellets");
     public static final TagKey<Item> APPRAISAL_LIST = registerItemTag("appraisal_list");
+    public static final TagKey<Item> METALIC_ARMOR = registerItemTag("metalic_armor");
 
     public static final TagKey<Block> CAN_MELT = registerBlockTag("can_melt");
     public static final TagKey<Block> FRAGILE = registerBlockTag("fragile");
+    public static final TagKey<Block> HAMMER_BREAKABLE_PLANTS = registerBlockTag("hammer_breakable_plants");
+    public static final TagKey<Block> PEGASUS_BOOTS_BREAKABLE = registerBlockTag("pegasus_boots_breakable");
+    public static final TagKey<Block> PEGASUS_BOOTS_BREAKABLE_JARS = registerBlockTag("pegasus_boots_breakable_jars");
+    public static final TagKey<Block> PEGASUS_BOOTS_BREAKABLE_PLANTS = registerBlockTag("pegasus_boots_breakable_plants");
+    public static final TagKey<Block> HOOKSHOT_HOOKABLE = registerBlockTag("hookshot_hookable");
+    public static final TagKey<Block> HOOKSHOT_UNHOOKABLE = registerBlockTag("hookshot_unhookable");
+    public static final TagKey<Block> HOVER_BOOTS_HOVERABLE = registerBlockTag("hover_boots_hoverable");
+    public static final TagKey<DamageType> HOVER_BOOTS_BLOCK_DAMAGE = registerDamageTypeTag("hover_boots_block_damage");
 
     //public static final TagKey<Biome> SPAWNS_THING = registerBiomeTag("spawns_thing");
     //public static final TagKey<Structure> SPAWNS_THING2 = registerStructureTag("spawns_thing2");
@@ -38,6 +48,10 @@ public class TagInit {
 
     private static TagKey<Block> registerBlockTag(String name) {
         return TagKey.create(Registries.BLOCK, new ResourceLocation(SupersLegendMain.MOD_ID, name));
+    }
+
+    private static TagKey<DamageType> registerDamageTypeTag(String name) {
+        return TagKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(SupersLegendMain.MOD_ID, name));
     }
 
     private static TagKey<Biome> registerBiomeTag(String name) {
