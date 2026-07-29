@@ -5,6 +5,8 @@ import com.superworldsun.superslegend.util.ItemToolTiers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -19,15 +21,19 @@ public class MagicHammer extends HammerItem
 {
     public MagicHammer(Properties properties)
     {
-        super(ItemToolTiers.MAGIC_HAMMER, 2, new Properties());
+        super(ItemToolTiers.MAGIC_HAMMER, 2, properties);
     }
 
-    //TODO When breaking plants there is no particle effect or sound played
     //TODO Add blocks to the Init, list isnt full
-    //TODO Add a sound for when the hammer hits a block & entity
     @Override
     protected int getLeftClickCooldown() {
         return 12;
+    }
+
+    @Override
+    protected SoundEvent getHitSound() {
+        // Placeholder kept separate so the Magic Hammer can receive its own custom sound.
+        return SoundEvents.ANVIL_LAND;
     }
 
     @OnlyIn(Dist.CLIENT)
