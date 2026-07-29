@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "superslegend:spikes_block",
+    "minecraft:magma_block",
+    "minecraft:cactus",
+    "minecraft:campfire",
+    "minecraft:soul_campfire"
+  ]
+}
