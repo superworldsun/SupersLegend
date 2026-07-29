@@ -346,10 +346,26 @@
 		"subtitle": "superslegend.subtitle.rupee_blue",
 		"sounds": [ "superslegend:item/rupee_blue" ]
 	},
+	"item.rupee_yellow": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_yellow",
+		"sounds": [{
+			"name": "superslegend:item/rupee_blue",
+			"pitch": 1.15
+		}]
+	},
 	"item.rupee_red": {
 		"category": "player",
 		"subtitle": "superslegend.subtitle.rupee_red",
 		"sounds": [ "superslegend:item/rupee_red" ]
+	},
+	"item.rupee_purple": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.rupee_purple",
+		"sounds": [{
+			"name": "superslegend:item/rupee_red",
+			"pitch": 1.15
+		}]
 	},
 	"item.rupee_silver": {
 		"category": "player",
