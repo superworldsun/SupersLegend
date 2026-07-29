@@ -44,8 +44,15 @@ public class MagicProvider implements ICapabilitySerializable<CompoundTag> {
 		sync(player);
 	}
 
+	@SubscribeEvent
+	public static void startTracking(PlayerEvent.StartTracking event) {
+		if (event.getEntity() instanceof ServerPlayer receiver && event.getTarget() instanceof ServerPlayer target) {
+			NetworkDispatcher.network_channel.send(PacketDistributor.PLAYER.with(() -> receiver), new SyncMagicMessage(target));
+		}
+	}
+
 	private static void sync(ServerPlayer player) {
-		NetworkDispatcher.network_channel.send(PacketDistributor.PLAYER.with(() -> player), new SyncMagicMessage(player));
+		NetworkDispatcher.network_channel.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player), new SyncMagicMessage(player));
 	}
 
 	@Override
@@ -93,6 +100,11 @@ public class MagicProvider implements ICapabilitySerializable<CompoundTag> {
 	public static void setMagic(Player player, float amount) {
 		get(player).setMagic(amount);
 		if (player instanceof ServerPlayer) sync((ServerPlayer) player);
+	}
+
+	/** Applies an authoritative server update without sending another packet. */
+	public static void setMagicFromSync(Player player, float amount) {
+		get(player).setMagic(amount);
 	}
 
 	public static boolean isFullMagic(Player player) {
