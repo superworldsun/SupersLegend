@@ -8,7 +8,6 @@ import com.superworldsun.superslegend.capability.waypoint.WaypointsProvider;
 import com.superworldsun.superslegend.capability.waypoint.WaypointsServerData;
 import com.superworldsun.superslegend.client.screen.WaypointCreationScreen;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
-import com.superworldsun.superslegend.network.message.RemoveWaypointMessage;
 import com.superworldsun.superslegend.network.message.ShowWaystoneCreationScreenMessage;
 
 import net.minecraft.ChatFormatting;
@@ -130,8 +129,18 @@ public class OwlStatueBlock extends Block implements EntityBlock {
                 // if a waypoint exist on server
                 if (waypoint != null)
                 {
-                    WaypointsServerData.get((ServerLevel) level).removeWaypoint(waypointPos);
-                    NetworkDispatcher.network_channel.sendToServer(new RemoveWaypointMessage(waypointPos));
+                    ServerLevel serverLevel = (ServerLevel) level;
+                    WaypointsServerData.get(serverLevel).removeWaypoint(waypointPos);
+
+                    String dimension = serverLevel.dimension().location().toString();
+                    serverLevel.getServer().getPlayerList().getPlayers().forEach(serverPlayer -> {
+                        Waypoints savedWaypoints = WaypointsProvider.get(serverPlayer);
+                        Waypoint savedWaypoint = savedWaypoints.getWaypoint(waypointPos);
+                        if (savedWaypoint != null && dimension.equals(savedWaypoint.getDimension())) {
+                            savedWaypoints.removeWaypoint(waypointPos);
+                            WaypointsProvider.sync(serverPlayer);
+                        }
+                    });
                 }
             }
 
