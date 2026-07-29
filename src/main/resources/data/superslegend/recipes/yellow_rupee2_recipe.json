@@ -1,22 +1,22 @@
 {
 	"type": "minecraft:crafting_shaped",
-	
+
 	"pattern":
 	[
-		"Y"
+		"R"
 	],
-	
+
 	"key":
 	{
-		"Y":
+		"R":
 		{
-			"item": "superslegend:yellow_rupee"
+			"item": "superslegend:red_rupee"
 		}
 	},
-	
+
 	"result":
 	{
-		"item": "superslegend:blue_rupee",
+		"item": "superslegend:yellow_rupee",
 		"count": 2
 	}
 }
