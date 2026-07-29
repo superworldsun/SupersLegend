@@ -28,7 +28,7 @@ public class LargeMagicJarEntity extends Entity {
     private int health = 5;
 
     public LargeMagicJarEntity(Level p_i1585_1_, double p_i1585_2_, double p_i1585_4_, double p_i1585_6_) {
-        this(EntityTypeInit.MAGIC_JAR.get(), p_i1585_1_);
+        this(EntityTypeInit.LARGE_MAGIC_JAR.get(), p_i1585_1_);
         this.setPos(p_i1585_2_, p_i1585_4_, p_i1585_6_);
         this.yRotO = (float) (this.random.nextDouble() * 360.0D);
         this.setDeltaMovement((this.random.nextDouble() * (double) 0.2F - (double) 0.1F) * 2.0D, this.random.nextDouble() * 0.2D * 2.0D, (this.random.nextDouble() * (double) 0.2F - (double) 0.1F) * 2.0D);

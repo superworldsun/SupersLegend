@@ -3,7 +3,7 @@ package com.superworldsun.superslegend.events;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.HeartEntity;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -19,7 +19,10 @@ public class HeartDropEvents {
 
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
-        if (event.getSource().getEntity() instanceof Player && event.getEntity() instanceof Monster) {
+        if (SpawnerMobDropProtection.isSpawnerMob(event.getEntity())) {
+            return;
+        }
+        if (event.getSource().getEntity() instanceof Player && event.getEntity() instanceof Enemy) {
             Entity entity = event.getEntity();
             Player player = (Player) event.getSource().getEntity();
             Level level = player.level();

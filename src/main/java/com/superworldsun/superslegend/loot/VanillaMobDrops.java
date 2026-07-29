@@ -3,7 +3,12 @@ package com.superworldsun.superslegend.loot;
 import java.util.Collection;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
+import com.superworldsun.superslegend.entities.MagicJarEntity;
+import com.superworldsun.superslegend.entities.RupeeEntity;
+import com.superworldsun.superslegend.events.SpawnerMobDropProtection;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.util.RupeeValue;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -17,6 +22,7 @@ import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.ElderGuardian;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Endermite;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.monster.Guardian;
@@ -47,16 +53,31 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class VanillaMobDrops {
+    private static final double MAGIC_JAR_DROP_CHANCE = 0.15D;
+    private static final double LARGE_MAGIC_JAR_DROP_CHANCE = 0.05D;
+
     @SubscribeEvent
     public static void customLootMonsterEntity(LivingDropsEvent event) {
         LivingEntity entity = event.getEntity();
+        if (SpawnerMobDropProtection.isSpawnerMob(entity)) {
+            return;
+        }
         ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
         Entity attacker = event.getSource().getEntity();
         if (attacker instanceof Player player) {
             RandomSource random = player.getRandom();
+            boolean moddedEntity = !entityId.getNamespace().equals("minecraft");
+            boolean hostileEntity = entity instanceof Enemy;
+
+            // Enemy is the vanilla marker used by hostile mobs. Modded hostile
+            // mobs normally implement it as well, while passive additions do not.
+            if (hostileEntity) {
+                dropMagicJarLoot(entity, random);
+            }
+
             // This should make it so any type of monster from other mods should also drop
             // rupees occasionally
-            if (!entityId.getNamespace().equals("minecraft"))
+            if (moddedEntity && hostileEntity)
                 dropModdedMonsterLoot(event, entity, random);
             if (entity instanceof Monster)
                 dropMonsterLoot(event, entity, random);
@@ -358,7 +379,33 @@ public class VanillaMobDrops {
             addDrop(event.getDrops(), entity, new ItemStack(ItemInit.BLUE_RUPEE.get(), 1));
     }
 
+    private static void dropMagicJarLoot(LivingEntity entity, RandomSource random) {
+        if (entity.level().isClientSide()) {
+            return;
+        }
+
+        if (random.nextDouble() <= MAGIC_JAR_DROP_CHANCE) {
+            MagicJarEntity jar = new MagicJarEntity(entity.level(),
+                    entity.getX() + random.nextFloat() * 0.5F - 0.25F,
+                    entity.getY() + random.nextFloat() * 0.5F,
+                    entity.getZ() + random.nextFloat() * 0.5F - 0.25F);
+            entity.level().addFreshEntity(jar);
+        }
+
+        if (random.nextDouble() <= LARGE_MAGIC_JAR_DROP_CHANCE) {
+            LargeMagicJarEntity jar = new LargeMagicJarEntity(entity.level(),
+                    entity.getX() + random.nextFloat() * 0.5F - 0.25F,
+                    entity.getY() + random.nextFloat() * 0.5F,
+                    entity.getZ() + random.nextFloat() * 0.5F - 0.25F);
+            entity.level().addFreshEntity(jar);
+        }
+    }
+
     private static void addDrop(Collection<ItemEntity> items, LivingEntity entity, ItemStack stack) {
-        items.add(new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), stack));
+        if (RupeeValue.from(stack) != null) {
+            items.add(new RupeeEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), stack));
+        } else {
+            items.add(new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), stack));
+        }
     }
 }
