@@ -41,5 +41,20 @@ public class NetworkDispatcher {
 		network_channel.registerMessage(18, SyncHookshot.class, SyncHookshot::encode, SyncHookshot::new, SyncHookshot::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
 		network_channel.registerMessage(16, SyncFreezeEffectMessage.class, SyncFreezeEffectMessage::encode, SyncFreezeEffectMessage::decode, SyncFreezeEffectMessage::receive, Optional.of(PLAY_TO_CLIENT));
 		network_channel.registerMessage(19, DropBombMessage.class, DropBombMessage::encode, DropBombMessage::decode, DropBombMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(20, PegasusBootsInputMessage.class, PegasusBootsInputMessage::encode, PegasusBootsInputMessage::decode, PegasusBootsInputMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(21, SelectAmmoContainerItemMessage.class, SelectAmmoContainerItemMessage::encode, SelectAmmoContainerItemMessage::decode, SelectAmmoContainerItemMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(22, SyncTimeSongModeMessage.class, SyncTimeSongModeMessage::encode, SyncTimeSongModeMessage::decode, SyncTimeSongModeMessage::receive, Optional.of(PLAY_TO_CLIENT));
+		network_channel.registerMessage(23, DekuWaterHopMessage.class, DekuWaterHopMessage::encode, DekuWaterHopMessage::decode, DekuWaterHopMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(24, DekuWaterHopInputMessage.class, DekuWaterHopInputMessage::encode, DekuWaterHopInputMessage::decode, DekuWaterHopInputMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(25, GiantGroundParticleMessage.class, GiantGroundParticleMessage::encode, GiantGroundParticleMessage::decode, GiantGroundParticleMessage::receive, Optional.of(PLAY_TO_CLIENT));
+		network_channel.registerMessage(26, PlayOcarinaNoteMessage.class, PlayOcarinaNoteMessage::encode, PlayOcarinaNoteMessage::decode, PlayOcarinaNoteMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(27, SetOcarinaPlayingMessage.class, SetOcarinaPlayingMessage::encode, SetOcarinaPlayingMessage::decode, SetOcarinaPlayingMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(28, DekuFlowerInputMessage.class, DekuFlowerInputMessage::encode, DekuFlowerInputMessage::decode, DekuFlowerInputMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(29, BremenMaskSoundMessage.class, BremenMaskSoundMessage::encode, BremenMaskSoundMessage::decode, BremenMaskSoundMessage::receive, Optional.of(PLAY_TO_CLIENT));
+		network_channel.registerMessage(30, WithdrawRupeesMessage.class, WithdrawRupeesMessage::encode, WithdrawRupeesMessage::decode, WithdrawRupeesMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(31, OpenTradeChoiceMessage.class, OpenTradeChoiceMessage::encode, OpenTradeChoiceMessage::decode, OpenTradeChoiceMessage::receive, Optional.of(PLAY_TO_CLIENT));
+		network_channel.registerMessage(32, SelectTradeModeMessage.class, SelectTradeModeMessage::encode, SelectTradeModeMessage::decode, SelectTradeModeMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(33, BuyRupeeTradeMessage.class, BuyRupeeTradeMessage::encode, BuyRupeeTradeMessage::decode, BuyRupeeTradeMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(34, SwitchToRupeeTradeMessage.class, SwitchToRupeeTradeMessage::encode, SwitchToRupeeTradeMessage::decode, SwitchToRupeeTradeMessage::receive, Optional.of(PLAY_TO_SERVER));
 	}
 }
