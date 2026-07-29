@@ -8,6 +8,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -26,6 +27,16 @@ public class BlockInit {
 
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, SupersLegendMain.MOD_ID);
+
+    // Fluid blocks intentionally have no BlockItem; their buckets are registered in ItemInit.
+    public static final RegistryObject<LiquidBlock> LIQUID_POISON = BLOCKS.register("poison",
+            () -> new LiquidBlock(FluidInit.POISON_SOURCE,
+                    BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.WATER)
+                            .mapColor(MapColor.COLOR_GREEN).noLootTable()));
+    public static final RegistryObject<LiquidBlock> LIQUID_MUD = BLOCKS.register("mud",
+            () -> new LiquidBlock(FluidInit.MUD_SOURCE,
+                    BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.WATER)
+                            .mapColor(MapColor.DIRT).noLootTable()));
 
     public static final RegistryObject<Block> RUPEE_BLOCK = registerBlock("rupee_block",
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(2).explosionResistance(2).sound(SoundType.GLASS)));

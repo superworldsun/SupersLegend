@@ -21,7 +21,9 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> LENS_OF_TRUTH_OFF = register("item.lens_of_truth_off");
     public static final RegistryObject<SoundEvent> RUPEE_GREEN = register("item.rupee_green");
     public static final RegistryObject<SoundEvent> RUPEE_BLUE = register("item.rupee_blue");
+    public static final RegistryObject<SoundEvent> RUPEE_YELLOW = register("item.rupee_yellow");
     public static final RegistryObject<SoundEvent> RUPEE_RED = register("item.rupee_red");
+    public static final RegistryObject<SoundEvent> RUPEE_PURPLE = register("item.rupee_purple");
     public static final RegistryObject<SoundEvent> RUPEE_SILVER = register("item.rupee_silver");
     public static final RegistryObject<SoundEvent> RUPEE_GOLD = register("item.rupee_gold");
     public static final RegistryObject<SoundEvent> BOOK_OF_MUDORA = register("item.book_of_mudora");

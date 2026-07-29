@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.client.init;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.registries.FluidInit;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,5 +18,9 @@ public class BlockRenderLayerInit {
         ItemBlockRenderTypes.setRenderLayer(BlockInit.GRATE_BLOCK.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockInit.DEKU_FLOWER_BLOCK.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockInit.YELLOW_DEKU_FLOWER_BLOCK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(FluidInit.POISON_SOURCE.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(FluidInit.POISON_FLOWING.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(FluidInit.MUD_SOURCE.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(FluidInit.MUD_FLOWING.get(), RenderType.translucent());
     }
 }

@@ -51,15 +51,19 @@ public class ItemInit {
             DeferredRegister.create(ForgeRegistries.ITEMS, SupersLegendMain.MOD_ID);
 
     public static final RegistryObject<Item> RUPEE = ITEMS.register("rupee",
-            () -> new Rupee(new Item.Properties().stacksTo(5)));
+            () -> new Rupee(new Item.Properties().stacksTo(8)));
     public static final RegistryObject<Item> BLUE_RUPEE = ITEMS.register("blue_rupee",
-            () -> new BlueRupee(new Item.Properties().stacksTo(5)));
+            () -> new BlueRupee(new Item.Properties().stacksTo(8)));
+    public static final RegistryObject<Item> YELLOW_RUPEE = ITEMS.register("yellow_rupee",
+            () -> new YellowRupee(new Item.Properties().stacksTo(8)));
     public static final RegistryObject<Item> RED_RUPEE = ITEMS.register("red_rupee",
-            () -> new RedRupee(new Item.Properties().stacksTo(5)));
+            () -> new RedRupee(new Item.Properties().stacksTo(8)));
+    public static final RegistryObject<Item> PURPLE_RUPEE = ITEMS.register("purple_rupee",
+            () -> new PurpleRupee(new Item.Properties().stacksTo(8)));
     public static final RegistryObject<Item> SILVER_RUPEE = ITEMS.register("silver_rupee",
-            () -> new SilverRupee(new Item.Properties().stacksTo(5)));
+            () -> new SilverRupee(new Item.Properties().stacksTo(8)));
     public static final RegistryObject<Item> GOLD_RUPEE = ITEMS.register("gold_rupee",
-            () -> new GoldRupee(new Item.Properties().stacksTo(5)));
+            () -> new GoldRupee(new Item.Properties().stacksTo(8)));
 
 //    public static final RegistryObject<Item> MEDALLION_LIGHT = ITEMS.register("medallion_light",
 //            () -> new ElementMedallion(new Item.Properties().stacksTo(1)));
@@ -728,10 +732,12 @@ public class ItemInit {
     //When Adding Rings, Remember to Add them to AppraisedRingBox
 
     //BUCKETS
-    /*public static final RegistryObject<Item> POISON_BUCKET = ITEMS.register("poison_bucket",
-            () -> new BucketItem(FluidInit.POISON_SOURCE, new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));
+    public static final RegistryObject<Item> POISON_BUCKET = ITEMS.register("poison_bucket",
+            () -> new BucketItem(FluidInit.POISON_SOURCE,
+                    new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<Item> MUD_BUCKET = ITEMS.register("mud_bucket",
-            () -> new BucketItem(FluidInit.MUD_SOURCE, new Item.Properties().stacksTo(1).tab(ItemGroupInit.RESOURCES)));*/
+            () -> new BucketItem(FluidInit.MUD_SOURCE,
+                    new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
     //Music Discs
 
