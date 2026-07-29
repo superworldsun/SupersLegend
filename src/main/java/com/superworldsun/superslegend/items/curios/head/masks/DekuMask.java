@@ -10,6 +10,7 @@ import com.superworldsun.superslegend.interfaces.IPlayerModelChanger;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.DekuWaterHopMessage;
 import com.superworldsun.superslegend.network.message.DekuWaterHopInputMessage;
+import com.superworldsun.superslegend.registries.FluidInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.core.BlockPos;
@@ -29,6 +30,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -274,7 +276,7 @@ public class DekuMask extends Item implements IMaskAbility, ICurioItem, IPlayerM
             return;
         }
 
-        boolean isInWater = player.isInWater();
+        boolean isInWater = isInDekuHopFluid(player);
         WaterHopState hopState = hopStates.computeIfAbsent(player, ignored -> new WaterHopState(isInWater));
         if (!player.level().isClientSide && hopState.finalHopFallGraceTicks > 0) {
             hopState.finalHopFallGraceTicks--;
@@ -285,6 +287,16 @@ public class DekuMask extends Item implements IMaskAbility, ICurioItem, IPlayerM
         if (isChargingMagicBubble(player)) {
             stopPlayerMovementWhileCharging(player);
             hopState.wasInWater = isInWater;
+            return;
+        }
+
+        // Creative flight controls movement independently. Starting or preserving
+        // a water-hop glide here would overwrite those controls until landing.
+        if (player.getAbilities().flying) {
+            hopState.resetSequence();
+            hopState.wasInWater = isInWater;
+            hopState.lastAirMomentum = Vec3.ZERO;
+            hopState.finalHopFallGraceTicks = 0;
             return;
         }
 
@@ -346,7 +358,7 @@ public class DekuMask extends Item implements IMaskAbility, ICurioItem, IPlayerM
         }
     }
 
-    private static boolean isDekuMaskEquipped(Player player) {
+    public static boolean isDekuMaskEquipped(Player player) {
         return CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.MASK_DEKUMASK.get(), player).isPresent();
     }
 
@@ -576,7 +588,7 @@ public class DekuMask extends Item implements IMaskAbility, ICurioItem, IPlayerM
 
         WaterHopState hopState = SERVER_WATER_HOP_STATES.computeIfAbsent(
                 player,
-                ignored -> new WaterHopState(player.isInWater())
+                ignored -> new WaterHopState(isInDekuHopFluid(player))
         );
         hopState.lastWaterBlockY = waterBlockY;
         hopState.finalHopFallGraceTicks = FINAL_HOP_FALL_GRACE_TICKS;
@@ -615,7 +627,7 @@ public class DekuMask extends Item implements IMaskAbility, ICurioItem, IPlayerM
             for (int x = minX; x <= maxX; x++) {
                 for (int z = minZ; z <= maxZ; z++) {
                     position.set(x, y, z);
-                    if (player.level().getFluidState(position).is(FluidTags.WATER)) {
+                    if (isDekuHopFluid(player.level().getFluidState(position))) {
                         return y;
                     }
                 }
@@ -623,6 +635,18 @@ public class DekuMask extends Item implements IMaskAbility, ICurioItem, IPlayerM
         }
 
         return Mth.floor(player.getY());
+    }
+
+    private static boolean isInDekuHopFluid(Player player) {
+        return player.isInWater()
+                || player.getFluidTypeHeight(FluidInit.MUD_TYPE.get()) > 0.0D
+                || player.getFluidTypeHeight(FluidInit.POISON_TYPE.get()) > 0.0D;
+    }
+
+    private static boolean isDekuHopFluid(FluidState fluidState) {
+        return fluidState.is(FluidTags.WATER)
+                || fluidState.getType().isSame(FluidInit.MUD_SOURCE.get())
+                || fluidState.getType().isSame(FluidInit.POISON_SOURCE.get());
     }
 
     @SubscribeEvent
