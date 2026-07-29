@@ -27,6 +27,7 @@ public class GnatHat extends Item implements ICurioItem {
     @Override
     public void onEquip(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         ICurioItem.super.onEquip(identifier, index, livingEntity, stack);
+        if (livingEntity.level().isClientSide) return;
         ScaleData height = ScaleTypes.HEIGHT.getScaleData(livingEntity);
         height.setScaleTickDelay(20);
         height.setTargetScale(0.1f);
@@ -56,6 +57,7 @@ public class GnatHat extends Item implements ICurioItem {
     @Override
     public void onUnequip(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
         ICurioItem.super.onUnequip(identifier, index, livingEntity, stack);
+        if (livingEntity.level().isClientSide) return;
         ScaleData height = ScaleTypes.HEIGHT.getScaleData(livingEntity);
         height.setTargetScale(1f);
         ScaleData width = ScaleTypes.WIDTH.getScaleData(livingEntity);
