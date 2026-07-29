@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.item;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.capability.magic.MagicProvider;
+import com.superworldsun.superslegend.util.PlayerAnimationUtil;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -50,6 +51,26 @@ public class DekuLeaf extends Item
                 }
             }
         }
+    }
+
+    /** Keeps the shared raised-arms pose synchronized for exactly as long as the leaf is gliding. */
+    @SubscribeEvent
+    public static void updateFlyingPose(TickEvent.PlayerTickEvent event)
+    {
+        if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide)
+        {
+            return;
+        }
+
+        Player player = event.player;
+        boolean flyingWithLeaf = player.isUsingItem()
+                && player.getUseItem().getItem() instanceof DekuLeaf
+                && !player.isFallFlying()
+                && !player.onGround()
+                && !player.isInWater()
+                && MagicProvider.hasMagic(player, MANA_COST);
+        PlayerAnimationUtil.setArmsRaised(player, PlayerAnimationUtil.ArmsRaisedSource.DEKU_LEAF,
+                flyingWithLeaf);
     }
 
     @Override
