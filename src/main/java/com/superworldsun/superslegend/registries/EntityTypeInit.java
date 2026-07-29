@@ -4,6 +4,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.HeartEntity;
 import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import com.superworldsun.superslegend.entities.MagicJarEntity;
+import com.superworldsun.superslegend.entities.RupeeEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.BombEntity;
 import com.superworldsun.superslegend.entities.projectiles.bombs.WaterBombEntity;
@@ -13,6 +14,7 @@ import com.superworldsun.superslegend.entities.projectiles.boomerang.SeaBreezeBo
 import com.superworldsun.superslegend.entities.projectiles.hooks.HookshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.hooks.LongshotEntity;
 import com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity;
+import com.superworldsun.superslegend.entities.projectiles.magic.DekuMagicBubbleEntity;
 import com.superworldsun.superslegend.entities.projectiles.magic.IceballEntity;
 import com.superworldsun.superslegend.entities.projectiles.magic.MasterSwordBeamEntity;
 import com.superworldsun.superslegend.entities.projectiles.seeds.*;
@@ -88,6 +90,13 @@ public class EntityTypeInit
             () -> EntityType.Builder.<LargeMagicJarEntity>of(LargeMagicJarEntity::new, MobCategory.MISC)
                     .sized(1F, 1F).build("large_magic_jar"));
 
+    public static final RegistryObject<EntityType<RupeeEntity>> RUPEE_ENTITY = ENTITY_TYPES.register("rupee",
+            () -> EntityType.Builder.<RupeeEntity>of(RupeeEntity::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(6)
+                    .updateInterval(10)
+                    .build("rupee"));
+
     public static final RegistryObject<EntityType<BombEntity>> BOMB = ENTITY_TYPES.register("bomb",
             BombEntity::createEntityType);
 
@@ -107,6 +116,12 @@ public class EntityTypeInit
     public static final RegistryObject<EntityType<IceballEntity>> ICEBALL = ENTITY_TYPES.register("iceball",
             () -> EntityType.Builder.<IceballEntity>of(IceballEntity::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).build("iceball"));
+    public static final RegistryObject<EntityType<DekuMagicBubbleEntity>> DEKU_MAGIC_BUBBLE = ENTITY_TYPES.register("deku_magic_bubble",
+            () -> EntityType.Builder.<DekuMagicBubbleEntity>of(DekuMagicBubbleEntity::new, MobCategory.MISC)
+                    .sized(DekuMagicBubbleEntity.MAX_VISUAL_SIZE, DekuMagicBubbleEntity.MAX_VISUAL_SIZE)
+                    .clientTrackingRange(8)
+                    .updateInterval(1)
+                    .build("deku_magic_bubble"));
 
     public static final RegistryObject<EntityType<DekuSeedEntity>> DEKU_SEED = ENTITY_TYPES.register("deku_seed",
             DekuSeedEntity::createEntityType);
