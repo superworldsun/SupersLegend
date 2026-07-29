@@ -5,19 +5,16 @@ import com.superworldsun.superslegend.capability.waypoint.WaypointsProvider;
 import com.superworldsun.superslegend.capability.waypoint.WaypointsServerData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundPlayerPositionPacket;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkEvent;
 
-import java.util.Collections;
 import java.util.Set;
-import java.util.UUID;
 import java.util.function.Supplier;
 
 public class AttemptTeleportationMessage {
@@ -42,47 +39,52 @@ public class AttemptTeleportationMessage {
             ServerPlayer player = context.getSender();
 
             if (player != null) {
-                Waypoint serverWaypoint = WaypointsServerData.get(player.serverLevel()).getWaypoint(message.pos);
-                if (serverWaypoint == null) {
-                    WaypointsProvider.get(player).removeWaypoint(message.pos);
-                    player.displayClientMessage(Component.literal("Waypoint not found on server").withStyle(ChatFormatting.RED), true);
-                } else {
-                    player.getCapability(WaypointsProvider.WAYPOINTS_CAPABILITY).ifPresent(waypoints -> {
-                        Waypoint waypoint = waypoints.getWaypoint(message.pos);
-                        if (waypoint != null) {
-                            if (player.level().dimension().location().toString().equals(waypoint.getDimension())) {
-                                // Use the teleportPos from the waypoint
+                player.getCapability(WaypointsProvider.WAYPOINTS_CAPABILITY).ifPresent(waypoints -> {
+                    Waypoint savedWaypoint = waypoints.getWaypoint(message.pos);
+                    if (savedWaypoint == null) {
+                        WaypointsProvider.sync(player);
+                        player.displayClientMessage(Component.literal("Waypoint not found in player data")
+                                .withStyle(ChatFormatting.RED), true);
+                        return;
+                    }
 
-                                float yaw = waypoint.getFacing().getOpposite().toYRot();
-                                player.setYRot(yaw);
-                                player.setYHeadRot(yaw);
+                    ResourceLocation dimensionId = ResourceLocation.tryParse(savedWaypoint.getDimension());
+                    ServerLevel waypointLevel = dimensionId == null ? null : player.getServer().getLevel(
+                            ResourceKey.create(Registries.DIMENSION, dimensionId));
+                    Waypoint serverWaypoint = waypointLevel == null ? null
+                            : WaypointsServerData.get(waypointLevel).getWaypoint(message.pos);
 
-                                // Update client
-                                player.connection.send(new ClientboundPlayerPositionPacket(
-                                        waypoint.getTeleportPos().x, waypoint.getTeleportPos().y, waypoint.getTeleportPos().z,
-                                        yaw, player.getXRot(), Set.of(), 0
-                                ));
+                    if (serverWaypoint == null) {
+                        waypoints.removeWaypoint(message.pos);
+                        WaypointsProvider.sync(player);
+                        player.displayClientMessage(Component.literal("Waypoint not found on server")
+                                .withStyle(ChatFormatting.RED), true);
+                        return;
+                    }
 
-                                player.displayClientMessage(Component.literal("Teleported to waypoint").withStyle(ChatFormatting.DARK_GREEN)
-                                        .append(String.format(" x: %d", (int) waypoint.getTeleportPos().x))
-                                        .append(String.format(" y: %d", (int) waypoint.getTeleportPos().y))
-                                        .append(String.format(" z: %d", (int) waypoint.getTeleportPos().z)), true);
-                                System.out.println("Teleported player to: " + waypoint);
-                            } else {
-                                System.out.println("Player dimension: " + player.level().dimension().location());
-                                System.out.println("Waypoint dimension: " + waypoint.getDimension());
-                                player.displayClientMessage(Component.literal("Cannot teleport between dimensions").withStyle(ChatFormatting.RED), true);
-                            }
-                        } else {
-                            System.out.println("Waypoint not found in player capability at position: " + message.pos);
-                            waypoints.removeWaypoint(message.pos);
-                            WaypointsProvider.sync(player);
-                            player.displayClientMessage(Component.literal("Waypoint not found in player data").withStyle(ChatFormatting.RED), true);
-                        }
-                    });
-                }
-            } else {
-                System.out.println("Player not found");
+                    if (waypointLevel != player.serverLevel()) {
+                        player.displayClientMessage(Component.literal("Cannot teleport between dimensions")
+                                .withStyle(ChatFormatting.RED), true);
+                        return;
+                    }
+
+                    float yaw = serverWaypoint.getFacing().getOpposite().toYRot();
+                    player.teleportTo(
+                            waypointLevel,
+                            serverWaypoint.getTeleportPos().x,
+                            serverWaypoint.getTeleportPos().y,
+                            serverWaypoint.getTeleportPos().z,
+                            Set.of(),
+                            yaw,
+                            player.getXRot()
+                    );
+
+                    player.displayClientMessage(Component.literal("Teleported to waypoint")
+                            .withStyle(ChatFormatting.DARK_GREEN)
+                            .append(String.format(" x: %d", (int) serverWaypoint.getTeleportPos().x))
+                            .append(String.format(" y: %d", (int) serverWaypoint.getTeleportPos().y))
+                            .append(String.format(" z: %d", (int) serverWaypoint.getTeleportPos().z)), true);
+                });
             }
         });
 
