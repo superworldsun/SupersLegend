@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "superslegend:wallet",
+    "superslegend:small_wallet",
+    "superslegend:medium_wallet",
+    "superslegend:big_wallet",
+    "superslegend:adult_wallet",
+    "superslegend:giants_wallet",
+    "superslegend:colossal_wallet"
+  ]
+}
