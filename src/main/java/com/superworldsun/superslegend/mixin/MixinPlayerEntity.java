@@ -1,12 +1,15 @@
 package com.superworldsun.superslegend.mixin;
 
 import com.google.common.util.concurrent.AtomicDouble;
+import com.superworldsun.superslegend.events.HookshotPullPoseEvents;
 import com.superworldsun.superslegend.items.ammobags.AmmoContainerItem;
 import com.superworldsun.superslegend.registries.ItemInit;
 import org.apache.commons.lang3.tuple.Pair;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -19,30 +22,75 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.superworldsun.superslegend.interfaces.IHoveringEntity;
+import com.superworldsun.superslegend.interfaces.IPlayerAnimationState;
 import com.superworldsun.superslegend.interfaces.JumpingEntity;
 import com.superworldsun.superslegend.registries.EffectInit;
 
 import net.minecraft.stats.Stats;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraftforge.common.ForgeHooks;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(Player.class)
-public abstract class MixinPlayerEntity extends LivingEntity implements IHoveringEntity, JumpingEntity {
+public abstract class MixinPlayerEntity extends LivingEntity implements IHoveringEntity, JumpingEntity, IPlayerAnimationState {
+    private static final EntityDataAccessor<Integer> SUPERSLEGEND_ANIMATION_FLAGS =
+            SynchedEntityData.defineId(Player.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> SUPERSLEGEND_HOVER_TICKS =
+            SynchedEntityData.defineId(Player.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> SUPERSLEGEND_HOVERING =
+            SynchedEntityData.defineId(Player.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> SUPERSLEGEND_HAZARD_HOVERING =
+            SynchedEntityData.defineId(Player.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> SUPERSLEGEND_BOUNCE_HOVERING =
+            SynchedEntityData.defineId(Player.class, EntityDataSerializers.BOOLEAN);
     public @Shadow @Final Abilities abilities;
     private float targetScale = 1.0F;
     private float scale = 1.0F;
     private float targetRenderScale = 1.0F;
     private float renderScale = 1.0F;
     private float prevRenderScale = 1.0F;
-    private int hoverTime;
-    private int hoverHeight;
+    private double hoverHeight;
     private boolean jumpedFromGround;
+    private boolean wasWearingHoverBoots;
+    private boolean wasOnStickyHoverBlock;
+    private boolean stickyBouncePending;
+    private int normalHoverDeadline = Integer.MIN_VALUE;
     private boolean isLit;
     //private EntityLightEmitter lightEmitter = new EntityLightEmitter(() -> level, this::getLightRayVector, this::getLightRayPosition, this);
 
     // This constructor is fake and never used
     protected MixinPlayerEntity() {
         super(null, null);
+    }
+
+    @Inject(method = "defineSynchedData", at = @At("TAIL"))
+    private void superslegend$defineAnimationData(org.spongepowered.asm.mixin.injection.callback.CallbackInfo callbackInfo) {
+        entityData.define(SUPERSLEGEND_ANIMATION_FLAGS, 0);
+        entityData.define(SUPERSLEGEND_HOVER_TICKS, 0);
+        entityData.define(SUPERSLEGEND_HOVERING, false);
+        entityData.define(SUPERSLEGEND_HAZARD_HOVERING, false);
+        entityData.define(SUPERSLEGEND_BOUNCE_HOVERING, false);
+    }
+
+    @Override
+    public int superslegend$getAnimationFlags() {
+        return entityData.get(SUPERSLEGEND_ANIMATION_FLAGS);
+    }
+
+    @Override
+    public void superslegend$setAnimationFlags(int animationFlags) {
+        entityData.set(SUPERSLEGEND_ANIMATION_FLAGS, animationFlags);
+    }
+
+    @Inject(method = "getStandingEyeHeight", at = @At("HEAD"), cancellable = true)
+    private void superslegend$keepHookshotEyeHeight(Pose pose, EntityDimensions dimensions,
+                                                    CallbackInfoReturnable<Float> callbackInfo) {
+        Player player = (Player) (Object) this;
+        if (pose == Pose.SWIMMING && HookshotPullPoseEvents.isHookPullPoseActive(player)) {
+            callbackInfo.setReturnValue(player.getEyeHeight(Pose.STANDING));
+        }
     }
 
 //    @Inject(method = "getDimensions", at = @At("RETURN"), cancellable = true)
@@ -236,27 +284,99 @@ public abstract class MixinPlayerEntity extends LivingEntity implements IHoverin
 
     @Override
     public int getHoverTime() {
-        return hoverTime;
+        return entityData.get(SUPERSLEGEND_HOVER_TICKS);
     }
 
     @Override
     public void setHoverTime(int amount) {
-        hoverTime = amount;
+        entityData.set(SUPERSLEGEND_HOVER_TICKS, amount);
     }
 
     @Override
     public int increaseHoverTime() {
-        return hoverTime++;
+        int hoverTime = getHoverTime();
+        setHoverTime(hoverTime + 1);
+        return hoverTime;
     }
 
     @Override
-    public void setHoverHeight(int height) {
+    public void setHoverHeight(double height) {
         hoverHeight = height;
     }
 
     @Override
-    public int getHoverHeight() {
+    public double getHoverHeight() {
         return hoverHeight;
+    }
+
+    @Override
+    public void setHovering(boolean hovering) {
+        entityData.set(SUPERSLEGEND_HOVERING, hovering);
+    }
+
+    @Override
+    public boolean isHovering() {
+        return entityData.get(SUPERSLEGEND_HOVERING);
+    }
+
+    @Override
+    public void setHazardHovering(boolean hazardHovering) {
+        entityData.set(SUPERSLEGEND_HAZARD_HOVERING, hazardHovering);
+    }
+
+    @Override
+    public boolean isHazardHovering() {
+        return entityData.get(SUPERSLEGEND_HAZARD_HOVERING);
+    }
+
+    @Override
+    public void setBounceHovering(boolean bounceHovering) {
+        entityData.set(SUPERSLEGEND_BOUNCE_HOVERING, bounceHovering);
+    }
+
+    @Override
+    public boolean isBounceHovering() {
+        return entityData.get(SUPERSLEGEND_BOUNCE_HOVERING);
+    }
+
+    @Override
+    public void setStickyBouncePending(boolean stickyBouncePending) {
+        this.stickyBouncePending = stickyBouncePending;
+    }
+
+    @Override
+    public boolean isStickyBouncePending() {
+        return stickyBouncePending;
+    }
+
+    @Override
+    public void setWasWearingHoverBoots(boolean wearingHoverBoots) {
+        wasWearingHoverBoots = wearingHoverBoots;
+    }
+
+    @Override
+    public boolean wasWearingHoverBoots() {
+        return wasWearingHoverBoots;
+    }
+
+    @Override
+    public void setWasOnStickyHoverBlock(boolean onStickyHoverBlock) {
+        wasOnStickyHoverBlock = onStickyHoverBlock;
+    }
+
+    @Override
+    public boolean wasOnStickyHoverBlock() {
+        return wasOnStickyHoverBlock;
+    }
+
+    @Override
+    public void setNormalHoverDeadline(int deadlineTick) {
+        normalHoverDeadline = deadlineTick;
+    }
+
+    @Override
+    public int getNormalHoverDeadline() {
+        return normalHoverDeadline;
     }
 
     @Override
