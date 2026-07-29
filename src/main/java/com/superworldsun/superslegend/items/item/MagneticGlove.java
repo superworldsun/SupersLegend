@@ -1,18 +1,19 @@
 package com.superworldsun.superslegend.items.item;
 
+import com.superworldsun.superslegend.registries.TagInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -25,6 +26,16 @@ import java.util.List;
 
 public class MagneticGlove extends Item
 {
+    private static final int RANGE = 15;
+    private static final int MAXIMUM_PULLED_ITEMS = 200;
+    private static final double ITEM_PULL_SPEED = 0.7D;
+    private static final double ARMOR_POINT_PULL_SPEED = 0.11D;
+    private static final EquipmentSlot[] ARMOR_SLOTS = {
+            EquipmentSlot.HEAD,
+            EquipmentSlot.CHEST,
+            EquipmentSlot.LEGS,
+            EquipmentSlot.FEET
+    };
     public MagneticGlove(Properties properties)
     {
         super(properties);
@@ -46,81 +57,85 @@ public class MagneticGlove extends Item
 
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
+        player.startUsingItem(hand);
+        if (!level.isClientSide) {
+            pullNearbyTargets(player);
+        }
+        return InteractionResultHolder.consume(player.getItemInHand(hand));
+    }
 
+    @Override
+    public void onUseTick(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack, int remainingUseTicks) {
+        if (!level.isClientSide && livingEntity instanceof Player player) {
+            pullNearbyTargets(player);
+        }
+    }
+
+    @Override
+    public int getUseDuration(@NotNull ItemStack stack) {
+        return 72000;
+    }
+
+    @Override
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
+        return UseAnim.NONE;
+    }
+
+    private static void pullNearbyTargets(Player player) {
         Vec3 playerPos = player.position().add(0, 0.75, 0);
-
-        int range = 15;
-        List<ItemEntity> itemEntityList = player.level().getEntitiesOfClass(ItemEntity.class, new AABB(playerPos.x - range, playerPos.y - range, playerPos.z - range, playerPos.x + range, playerPos.y + range, playerPos.z + range));
-        List<LivingEntity> livingEntityList = player.level().getEntitiesOfClass(LivingEntity.class, new AABB(playerPos.x - range, playerPos.y - range, playerPos.z - range, playerPos.x + range, playerPos.y + range, playerPos.z + range));
+        AABB pullArea = new AABB(
+                playerPos.x - RANGE, playerPos.y - RANGE, playerPos.z - RANGE,
+                playerPos.x + RANGE, playerPos.y + RANGE, playerPos.z + RANGE
+        );
+        List<ItemEntity> itemEntityList = player.level().getEntitiesOfClass(ItemEntity.class, pullArea);
+        List<LivingEntity> livingEntityList = player.level().getEntitiesOfClass(LivingEntity.class, pullArea);
         int pulled = 0;
+
         for (ItemEntity item : itemEntityList) {
             if (item.isAlive() && !item.hasPickUpDelay() && !item.getPersistentData().getBoolean("PreventRemoteMovement")) {
-                if (pulled++ > 200) {
+                if (pulled++ >= MAXIMUM_PULLED_ITEMS) {
                     break;
                 }
 
-                Vec3 motion = playerPos.subtract(item.position().add(0, item.getBbHeight() / 2, 0));
-                if (Math.sqrt(motion.x * motion.x + motion.y * motion.y + motion.z * motion.z) > 1) {
-                    motion = motion.normalize();
-                }
-                item.setDeltaMovement(motion.scale(0.7));
+                pullEntity(item, playerPos, ITEM_PULL_SPEED);
             }
         }
 
         for (LivingEntity entity : livingEntityList) {
-            if (entity.isAlive() && !entity.equals(player)) {  // Check if the entity is not the player
-                int pullStrength = 0;
-                for (ItemStack armor : entity.getArmorSlots()) {
-                    if (armor.getItem() == Items.IRON_HELMET) {
-                        pullStrength += 1;
-                    } else if (armor.getItem() == Items.IRON_CHESTPLATE) {
-                        pullStrength += 2;
-                    } else if (armor.getItem() == Items.IRON_LEGGINGS) {
-                        pullStrength += 1;
-                    } else if (armor.getItem() == Items.IRON_BOOTS) {
-                        pullStrength += 1;
-                    }
-                    else if (armor.getItem() == Items.GOLDEN_HELMET) {
-                        pullStrength += 1;
-                    } else if (armor.getItem() == Items.GOLDEN_CHESTPLATE) {
-                        pullStrength += 2;
-                    } else if (armor.getItem() == Items.GOLDEN_LEGGINGS) {
-                        pullStrength += 1;
-                    } else if (armor.getItem() == Items.GOLDEN_BOOTS) {
-                        pullStrength += 1;
-                    }
-                    else if (armor.getItem() == Items.CHAINMAIL_HELMET) {
-                        pullStrength += 1;
-                    } else if (armor.getItem() == Items.CHAINMAIL_CHESTPLATE) {
-                        pullStrength += 2;
-                    } else if (armor.getItem() == Items.CHAINMAIL_LEGGINGS) {
-                        pullStrength += 1;
-                    } else if (armor.getItem() == Items.CHAINMAIL_BOOTS) {
-                        pullStrength += 1;
-                    }
-                    else if (armor.getItem() == Items.NETHERITE_HELMET) {
-                        pullStrength += 1;
-                    } else if (armor.getItem() == Items.NETHERITE_CHESTPLATE) {
-                        pullStrength += 2;
-                    } else if (armor.getItem() == Items.NETHERITE_LEGGINGS) {
-                        pullStrength += 1;
-                    } else if (armor.getItem() == Items.NETHERITE_BOOTS) {
-                        pullStrength += 1;
-                    }
-                }
+            if (!entity.isAlive() || entity == player) {
+                continue;
+            }
 
-                if (pullStrength > 0) {
-                    Vec3 motion = playerPos.subtract(entity.position().add(0, entity.getBbHeight() / 2, 0));
-                    if (Math.sqrt(motion.x * motion.x + motion.y * motion.y + motion.z * motion.z) > 1) {
-                        motion = motion.normalize();
-                    }
-                    motion = motion.scale(0.15 * pullStrength);
-                    entity.setDeltaMovement(motion);
-                }
+            int armorPoints = getArmorPoints(entity);
+            if (armorPoints > 0) {
+                pullEntity(entity, playerPos, ARMOR_POINT_PULL_SPEED * armorPoints);
             }
         }
+    }
 
-        return new InteractionResultHolder<>(InteractionResult.PASS, player.getItemInHand(hand));
+    private static int getArmorPoints(LivingEntity entity) {
+        int points = 0;
+        for (EquipmentSlot slot : ARMOR_SLOTS) {
+            if (entity.getItemBySlot(slot).is(TagInit.METALIC_ARMOR)) {
+                points += slot == EquipmentSlot.CHEST ? 2 : 1;
+            }
+        }
+        return points;
+    }
+
+    private static void pullEntity(net.minecraft.world.entity.Entity entity, Vec3 destination, double speed) {
+        Vec3 direction = destination.subtract(entity.position().add(0, entity.getBbHeight() / 2.0D, 0));
+        if (direction.lengthSqr() > 1.0D) {
+            direction = direction.normalize();
+        }
+
+        entity.setDeltaMovement(direction.scale(speed));
+        entity.hasImpulse = true;
+        if (entity instanceof LivingEntity livingEntity) {
+            // This forces the server's velocity onto remote players instead of
+            // allowing their next movement packet to immediately overwrite it.
+            livingEntity.hurtMarked = true;
+        }
     }
 
     @OnlyIn(Dist.CLIENT)
