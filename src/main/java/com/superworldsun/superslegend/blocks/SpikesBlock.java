@@ -1,7 +1,9 @@
 package com.superworldsun.superslegend.blocks;
 
+import com.superworldsun.superslegend.items.armors.HoverBootsArmor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -26,6 +28,12 @@ public class SpikesBlock extends Block
 
     @Override
     public void entityInside(@NotNull BlockState pState, Level level, @NotNull BlockPos pPos, Entity entity) {
+        // Spike collision is reported even when the player is exactly level with the top of the
+        // surrounding floor. Let active Hover Boots consume that contact before applying damage.
+        // If their hazard hover has expired, this returns false and spikes hurt normally.
+        if (entity instanceof Player player && HoverBootsArmor.handleSpikeContact(player, pPos)) {
+            return;
+        }
         entity.hurt(level.damageSources().cactus(), 6.0F);
     }
 
