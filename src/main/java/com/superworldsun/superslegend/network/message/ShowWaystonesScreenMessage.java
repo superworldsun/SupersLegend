@@ -8,7 +8,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
-import software.bernie.shadowed.eliotlash.mclib.math.functions.limit.Min;
 
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -37,7 +36,6 @@ public class ShowWaystonesScreenMessage {
 
     @OnlyIn(Dist.CLIENT)
     private static void handleClientPacket(UUID playerUUID) {
-        // TODO WaypointsScreen
         Player player = Minecraft.getInstance().level.getPlayerByUUID(playerUUID);
         if (player != null)
             Minecraft.getInstance().setScreen(new WaypointsScreen(player));

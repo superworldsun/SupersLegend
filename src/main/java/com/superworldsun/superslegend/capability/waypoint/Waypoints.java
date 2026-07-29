@@ -82,7 +82,7 @@ public class Waypoints implements INBTSerializable<CompoundTag> {
             teleportTag.putDouble("x", teleportPos.x);
             teleportTag.putDouble("y", teleportPos.y);
             teleportTag.putDouble("z", teleportPos.z);
-            nbt.put("teleportPos", teleportTag);
+            waypointTag.put("teleportPos", teleportTag);
 
             Direction facing = waypoint.getFacing();
             waypointTag.putInt("facing", facing.get3DDataValue());
@@ -113,7 +113,7 @@ public class Waypoints implements INBTSerializable<CompoundTag> {
             String name = waypointTag.getString("name");
             String dimLocation = waypointTag.getString("dimension");
 
-            CompoundTag teleportTag = nbt.getCompound("teleportPos");
+            CompoundTag teleportTag = waypointTag.getCompound("teleportPos");
             Vec3 teleportPos = new Vec3(
                     teleportTag.getDouble("x"),
                     teleportTag.getDouble("y"),
