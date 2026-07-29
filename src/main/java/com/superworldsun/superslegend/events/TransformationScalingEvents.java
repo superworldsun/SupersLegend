@@ -12,10 +12,6 @@ import virtuoel.pehkui.api.ScaleTypes;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class TransformationScalingEvents {
-    // Only the hitbox and eye height are scaled: the transformation models are already
-    // modelled at their actual size, so the render scale has to stay at 1.
-    private static final ScaleType[] SCALED_TYPES = { ScaleTypes.HITBOX_WIDTH, ScaleTypes.HITBOX_HEIGHT, ScaleTypes.EYE_HEIGHT };
-
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
@@ -29,16 +25,43 @@ public class TransformationScalingEvents {
 
         IEntityResizer resizer = IEntityResizer.get(event.player);
         float scale = resizer != null ? resizer.getScale(event.player) : 1.0F;
-        applyScale(event.player, scale);
+        float eyeHeightScale = resizer != null
+                ? resizer.getEyeHeightScale(event.player, event.player.getPose())
+                : 1.0F;
+        float hitboxHeightScale = resizer != null
+                ? resizer.getHitboxHeightScale(event.player, event.player.getPose())
+                : 1.0F;
+        applyScale(ScaleTypes.HITBOX_WIDTH, event.player, scale);
+        applyScale(
+                ScaleTypes.HITBOX_HEIGHT,
+                event.player,
+                hitboxHeightScale,
+                resizer != null && resizer.hasInstantHitboxHeightChanges()
+        );
+        applyScale(
+                ScaleTypes.EYE_HEIGHT,
+                event.player,
+                eyeHeightScale,
+                resizer != null && resizer.hasInstantEyeHeightChanges()
+        );
     }
 
-    private static void applyScale(Player player, float scale) {
-        for (ScaleType scaleType : SCALED_TYPES) {
-            ScaleData scaleData = scaleType.getScaleData(player);
+    private static void applyScale(ScaleType scaleType, Player player, float scale) {
+        applyScale(scaleType, player, scale, false);
+    }
 
-            if (scaleData.getTargetScale() != scale) {
-                scaleData.setTargetScale(scale);
-            }
+    private static void applyScale(ScaleType scaleType, Player player, float scale, boolean immediate) {
+        ScaleData scaleData = scaleType.getScaleData(player);
+
+        if (immediate) {
+            scaleData.setScaleTickDelay(0);
+            scaleData.setScale(scale);
+            scaleData.setTargetScale(scale);
+            return;
+        }
+
+        if (scaleData.getTargetScale() != scale) {
+            scaleData.setTargetScale(scale);
         }
     }
 }
