@@ -30,7 +30,10 @@ public class CloakedEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
-        if (!(livingEntity instanceof Player)) {
+        // The server owns the cape state and synchronizes the resulting effect.
+        // Remote clients do not have another player's complete inventory and
+        // must not remove the effect based on an incomplete local copy.
+        if (livingEntity.level().isClientSide || !(livingEntity instanceof Player)) {
             return;
         }
 
