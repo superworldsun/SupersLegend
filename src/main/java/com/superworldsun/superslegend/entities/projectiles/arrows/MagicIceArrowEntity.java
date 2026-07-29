@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.entities.projectiles.arrows;
 
 import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.util.BuildingHelper;
+import com.superworldsun.superslegend.util.ProjectileFluidCollisionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
@@ -62,9 +63,9 @@ public class MagicIceArrowEntity extends AbstractArrow
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    //TODO, needs to be finished porting
     @Override
     public void tick() {
+        Vec3 previousPosition = this.position();
         baseTick();
 
         if (!this.inGround) {
@@ -73,12 +74,7 @@ public class MagicIceArrowEntity extends AbstractArrow
         }
 
         BlockPos blockPos = getOnPos();
-        if (isInWater()) {
-            List<BlockPos> platformShape = BuildingHelper.createRoundPlatformShape(blockPos, 4);
-            platformShape.removeIf(pos -> !this.level().getBlockState(pos).getFluidState().is(FluidTags.WATER));
-            platformShape.forEach(pos -> this.level().setBlockAndUpdate(pos, Blocks.FROSTED_ICE.defaultBlockState()));
-            this.discard();
-        } if (isInLava()) {
+        if (isInLava()) {
             if (level().getBlockState(blockPos).getValue(LiquidBlock.LEVEL) == 0) {
                 this.level().setBlockAndUpdate(blockPos, Blocks.OBSIDIAN.defaultBlockState());
             } else {
@@ -227,6 +223,27 @@ public class MagicIceArrowEntity extends AbstractArrow
             this.setPos(newX, newY, newZ);
             this.checkInsideBlocks();
         }
+
+        freezeAtWaterSurface(previousPosition);
+    }
+
+    private void freezeAtWaterSurface(Vec3 previousPosition) {
+        if (this.level().isClientSide) {
+            return;
+        }
+
+        var contact = ProjectileFluidCollisionHelper.findContact(
+                this.level(), this, previousPosition, this.position(), FluidTags.WATER, false);
+        if (contact == null) {
+            return;
+        }
+
+        List<BlockPos> platformShape = BuildingHelper.createRoundPlatformShape(contact.blockPos(), 4);
+        platformShape.removeIf(pos -> !this.level().getFluidState(pos).is(FluidTags.WATER));
+        platformShape.forEach(pos -> this.level().setBlockAndUpdate(pos, Blocks.FROSTED_ICE.defaultBlockState()));
+        this.level().playSound(null, contact.location().x, contact.location().y, contact.location().z,
+                SoundInit.ARROW_HIT_ICE.get(), net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+        this.discard();
     }
 
     private boolean shouldFallOutOfGround(BlockState currentState) {

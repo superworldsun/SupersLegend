@@ -5,6 +5,7 @@ import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import com.superworldsun.superslegend.registries.TagInit;
+import com.superworldsun.superslegend.util.ProjectileFluidCollisionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,6 +14,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,6 +24,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,7 +37,7 @@ public class MagicFireArrowEntity extends AbstractArrow
 
     public MagicFireArrowEntity(Level worldIn, LivingEntity shooter)
     {
-        super(EntityTypeInit.FIRE_ARROW.get(), shooter, worldIn);
+        super(EntityTypeInit.MAGIC_FIRE_ARROW.get(), shooter, worldIn);
     }
 
     @Override
@@ -102,11 +105,14 @@ public class MagicFireArrowEntity extends AbstractArrow
     @Override
     public void tick()
     {
+        Vec3 previousPosition = this.position();
         super.tick();
 
+        if (extinguishAtWaterSurface(previousPosition)) {
+            return;
+        }
         addFireParticlesToFlightPath();
         burnGroundOnImpact();
-        extinguishInWater();
     }
 
     private void burnGroundOnImpact() {
@@ -133,12 +139,21 @@ public class MagicFireArrowEntity extends AbstractArrow
         }
     }
 
-    private void extinguishInWater() {
-        if (this.isInWater())
-        {
-            playSoundAtBlockPosition(SoundEvents.FIRE_EXTINGUISH);
-            this.discard();
+    private boolean extinguishAtWaterSurface(Vec3 previousPosition) {
+        if (this.level().isClientSide) {
+            return false;
         }
+
+        var contact = ProjectileFluidCollisionHelper.findContact(
+                this.level(), this, previousPosition, this.position(), FluidTags.WATER, false);
+        if (contact == null) {
+            return false;
+        }
+
+        this.level().playSound(null, contact.location().x, contact.location().y, contact.location().z,
+                SoundEvents.FIRE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.0F);
+        this.discard();
+        return true;
     }
 
 
