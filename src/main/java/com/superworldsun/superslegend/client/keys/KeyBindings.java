@@ -2,14 +2,15 @@ package com.superworldsun.superslegend.client.keys;
 
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
 import com.superworldsun.superslegend.items.ammobags.BombBagItem;
+import com.superworldsun.superslegend.events.HookshotPullPoseEvents;
 import com.superworldsun.superslegend.network.message.DropBombMessage;
 import com.superworldsun.superslegend.network.message.MaskAbilityMessage;
 import com.superworldsun.superslegend.network.message.ToggleCrawlingMessage;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.event.TickEvent;
 import org.lwjgl.glfw.GLFW;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
@@ -65,11 +66,8 @@ public class KeyBindings {
 
         private static void crawlKeyPressed(Minecraft minecraft, int keyAction) {
             if (keyAction == GLFW.GLFW_PRESS) {
-                if (minecraft.player.getForcedPose() != Pose.SWIMMING)
-                    minecraft.player.setForcedPose(Pose.SWIMMING);
-                else
-                    minecraft.player.setForcedPose(null);
-                NetworkDispatcher.network_channel.sendToServer(new ToggleCrawlingMessage());
+                boolean crawling = HookshotPullPoseEvents.toggleManualCrawling(minecraft.player);
+                NetworkDispatcher.network_channel.sendToServer(new ToggleCrawlingMessage(crawling));
             }
         }
 
@@ -80,13 +78,41 @@ public class KeyBindings {
                 IMaskAbility mask = (IMaskAbility) maskStack.getItem();
 
                 if (keyAction == GLFW.GLFW_PRESS) {
-                    mask.startUsingAbility(minecraft.player);
-                    NetworkDispatcher.network_channel.sendToServer(new MaskAbilityMessage(true));
+                    if (!mask.isPlayerUsingAbility(minecraft.player)) {
+                        mask.startUsingAbility(minecraft.player);
+                        NetworkDispatcher.network_channel.sendToServer(new MaskAbilityMessage(true));
+                    }
                 } else if (keyAction == GLFW.GLFW_RELEASE) {
-                    mask.stopUsingAbility(minecraft.player);
-                    NetworkDispatcher.network_channel.sendToServer(new MaskAbilityMessage(false));
+                    stopUsingMask(minecraft, mask);
                 }
             });
+        }
+
+        @SubscribeEvent
+        public static void onClientTick(TickEvent.ClientTickEvent event) {
+            if (event.phase != TickEvent.Phase.END) {
+                return;
+            }
+
+            Minecraft minecraft = Minecraft.getInstance();
+            if (minecraft.player == null || KEY_USE_MASK.isDown()) {
+                return;
+            }
+
+            Predicate<ItemStack> isMaskWithAbility = stack -> stack.getItem() instanceof IMaskAbility;
+            CuriosApi.getCuriosHelper().findEquippedCurio(isMaskWithAbility, minecraft.player).ifPresent(i -> {
+                IMaskAbility mask = (IMaskAbility) i.getRight().getItem();
+                stopUsingMask(minecraft, mask);
+            });
+        }
+
+        private static void stopUsingMask(Minecraft minecraft, IMaskAbility mask) {
+            if (!mask.isPlayerUsingAbility(minecraft.player)) {
+                return;
+            }
+
+            mask.stopUsingAbility(minecraft.player);
+            NetworkDispatcher.network_channel.sendToServer(new MaskAbilityMessage(false));
         }
 
         private static void dropBombKeyPressed(Minecraft minecraft, int keyAction) {
