@@ -56,5 +56,7 @@ public class NetworkDispatcher {
 		network_channel.registerMessage(32, SelectTradeModeMessage.class, SelectTradeModeMessage::encode, SelectTradeModeMessage::decode, SelectTradeModeMessage::receive, Optional.of(PLAY_TO_SERVER));
 		network_channel.registerMessage(33, BuyRupeeTradeMessage.class, BuyRupeeTradeMessage::encode, BuyRupeeTradeMessage::decode, BuyRupeeTradeMessage::receive, Optional.of(PLAY_TO_SERVER));
 		network_channel.registerMessage(34, SwitchToRupeeTradeMessage.class, SwitchToRupeeTradeMessage::encode, SwitchToRupeeTradeMessage::decode, SwitchToRupeeTradeMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(35, RequestRupeeTradeAvailabilityMessage.class, RequestRupeeTradeAvailabilityMessage::encode, RequestRupeeTradeAvailabilityMessage::decode, RequestRupeeTradeAvailabilityMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(36, RupeeTradeAvailabilityMessage.class, RupeeTradeAvailabilityMessage::encode, RupeeTradeAvailabilityMessage::decode, RupeeTradeAvailabilityMessage::receive, Optional.of(PLAY_TO_CLIENT));
 	}
 }
