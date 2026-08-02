@@ -48,7 +48,6 @@ public class IceRod extends NonEnchantItem {
         super(properties);
     }
 
-    //TODO Fire should melt thin snow layers super easily with held right click
     //TODO Change the fire ball explosion sound
 
     @Override

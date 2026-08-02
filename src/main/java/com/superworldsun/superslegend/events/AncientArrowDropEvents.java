@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class AncientArrowDropEvents {
-    //TODO Make sure config works
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingDrops(LivingDropsEvent event) {
         if (event.getSource().getDirectEntity() instanceof AncientArrowEntity) {
