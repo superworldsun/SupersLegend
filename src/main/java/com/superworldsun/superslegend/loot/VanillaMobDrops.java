@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.entities.RupeeEntity;
+import com.superworldsun.superslegend.entities.mobs.GoldSkulltulaEntity;
 import com.superworldsun.superslegend.events.SpawnerMobDropProtection;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.RupeeValue;
@@ -59,7 +60,8 @@ public class VanillaMobDrops {
     @SubscribeEvent
     public static void customLootMonsterEntity(LivingDropsEvent event) {
         LivingEntity entity = event.getEntity();
-        if (SpawnerMobDropProtection.isSpawnerMob(entity)) {
+        // Gold Skulltulas are collectibles: their dedicated token is their only reward.
+        if (entity instanceof GoldSkulltulaEntity || SpawnerMobDropProtection.isSpawnerMob(entity)) {
             return;
         }
         ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
