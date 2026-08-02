@@ -47,6 +47,8 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> DEKU_LINK_FLAP = register("entity.deku_link_flap");
     public static final RegistryObject<SoundEvent> DEKU_LINK_DROP = register("entity.deku_link_drop");
     public static final RegistryObject<SoundEvent> DEKU_LINK_LAUNCH = register("entity.deku_link_launch");
+    public static final RegistryObject<SoundEvent> SKULLTULA_IDLE = registerFixedRange("entity.skulltula_idle", 32.0F);
+    public static final RegistryObject<SoundEvent> SKULLTULA_DEATH = register("entity.skulltula_death");
     public static final RegistryObject<SoundEvent> HOVER_BOOTS = register("item.hover_boots");
     public static final RegistryObject<SoundEvent> OOT_BOOMERANG_FLY_LOOP = register("item.oot_boomerang_fly_loop");
     public static final RegistryObject<SoundEvent> ALTTP_BOOMERANG_FLY_LOOP = register("item.alttp_boomerang_fly_loop");
@@ -129,6 +131,11 @@ public class SoundInit {
     private static RegistryObject<SoundEvent> register(String sound)
     {
         return SOUNDS.register(sound, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(SupersLegendMain.MOD_ID, sound)));
+    }
+
+    private static RegistryObject<SoundEvent> registerFixedRange(String sound, float range) {
+        return SOUNDS.register(sound, () -> SoundEvent.createFixedRangeEvent(
+                new ResourceLocation(SupersLegendMain.MOD_ID, sound), range));
     }
 
     public static void register(IEventBus eventBus) {

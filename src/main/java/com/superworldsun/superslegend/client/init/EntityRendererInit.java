@@ -64,6 +64,8 @@ public class EntityRendererInit {
         event.registerEntityRenderer(EntityTypeInit.COCOA_BEAN.get(), CocoaBeanRenderer::new);
         event.registerEntityRenderer(EntityTypeInit.HOOKSHOT_ENTITY.get(),  HookshotRender::new);
         event.registerEntityRenderer(EntityTypeInit.LONGSHOT_ENTITY.get(),  LongshotRender::new);
+        event.registerEntityRenderer(EntityTypeInit.GOLD_SKULLTULA.get(), GoldSkulltulaRenderer::new);
+        event.registerEntityRenderer(EntityTypeInit.NAYRUS_LOVE_CRYSTAL.get(), NayrusLoveCrystalRenderer::new);
     }
 
     private static <T extends LivingEntity, M extends EntityModel<T>> void attachRenderLayers(LivingEntityRenderer<T, M> renderer) {

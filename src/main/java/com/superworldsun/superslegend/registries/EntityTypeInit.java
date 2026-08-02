@@ -4,7 +4,9 @@ import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.entities.HeartEntity;
 import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import com.superworldsun.superslegend.entities.MagicJarEntity;
+import com.superworldsun.superslegend.entities.NayrusLoveCrystalEntity;
 import com.superworldsun.superslegend.entities.RupeeEntity;
+import com.superworldsun.superslegend.entities.mobs.GoldSkulltulaEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.BombEntity;
 import com.superworldsun.superslegend.entities.projectiles.bombs.WaterBombEntity;
@@ -29,6 +31,29 @@ import net.minecraftforge.registries.RegistryObject;
 public class EntityTypeInit
 {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, SupersLegendMain.MOD_ID);
+
+    public static final RegistryObject<EntityType<GoldSkulltulaEntity>> GOLD_SKULLTULA = ENTITY_TYPES.register("gold_skulltula",
+            () -> EntityType.Builder.of(GoldSkulltulaEntity::new, MobCategory.MONSTER)
+                    // Kept deliberately close to the visible body at the renderer's 0.36 scale.
+                    // The legs extend beyond this box so players must touch the spider itself,
+                    // rather than taking contact damage from the empty space around its legs.
+                    .sized(0.42F, 0.55F)
+                    .clientTrackingRange(8)
+                    .updateInterval(2)
+                    .build("gold_skulltula"));
+
+    public static final RegistryObject<EntityType<NayrusLoveCrystalEntity>> NAYRUS_LOVE_CRYSTAL =
+            ENTITY_TYPES.register("nayrus_love_crystal",
+                    () -> EntityType.Builder.<NayrusLoveCrystalEntity>of(
+                                    NayrusLoveCrystalEntity::new, MobCategory.MISC)
+                              // The entity is non-colliding, but render culling still uses these
+                              // dimensions. Match the tall crystal instead of a tiny point so its
+                              // upper/lower facets do not disappear at the edge of the camera.
+                              .sized(1.0F, 2.5F)
+                            .clientTrackingRange(10)
+                            .updateInterval(1)
+                            .fireImmune()
+                            .build("nayrus_love_crystal"));
 
     public static final RegistryObject<EntityType<FireArrowEntity>> FIRE_ARROW = ENTITY_TYPES.register("fire_arrow",
             () -> EntityType.Builder.<FireArrowEntity>of(FireArrowEntity::new, MobCategory.MISC)

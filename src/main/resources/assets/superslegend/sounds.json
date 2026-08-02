@@ -706,5 +706,15 @@
 			"superslegend:entity/deku_link_launch3",
 			"superslegend:entity/deku_link_launch4"
 		]
+	},
+	"entity.skulltula_idle": {
+		"category": "hostile",
+		"subtitle": "superslegend.subtitle.skulltula_idle",
+		"sounds": [ "superslegend:entity/skulltulla_idle" ]
+	},
+	"entity.skulltula_death": {
+		"category": "hostile",
+		"subtitle": "superslegend.subtitle.skulltula_death",
+		"sounds": [ "superslegend:entity/skulltula_death" ]
 	}
 }
