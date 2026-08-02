@@ -31,7 +31,8 @@ public class RupeeTradeMenu extends AbstractContainerMenu {
     private static final int TRADER_LEVEL_DATA_INDEX = 1;
     private static final int TRADER_XP_DATA_INDEX = 2;
     private static final int SHOW_PROGRESS_DATA_INDEX = 3;
-    private static final int STOCK_DATA_START = 4;
+    private static final int WALLET_CAPACITY_DATA_INDEX = 4;
+    private static final int STOCK_DATA_START = 5;
 
     private final Player player;
     private final AbstractVillager trader;
@@ -84,6 +85,9 @@ public class RupeeTradeMenu extends AbstractContainerMenu {
                     if (index == SHOW_PROGRESS_DATA_INDEX) {
                         return trader != null && trader.showProgressBar() ? 1 : 0;
                     }
+                    if (index == WALLET_CAPACITY_DATA_INDEX) {
+                        return RupeeWalletUtil.getWalletCapacity(player);
+                    }
                     int tradeIndex = index - STOCK_DATA_START;
                     return trader == null || tradeIndex < 0 || tradeIndex >= trades.size() ? 0
                             : RupeeTradeService.getRemainingStock(trader, trades.get(tradeIndex));
@@ -129,9 +133,25 @@ public class RupeeTradeMenu extends AbstractContainerMenu {
         return data.get(SHOW_PROGRESS_DATA_INDEX) != 0;
     }
 
+    public int getWalletCapacity() {
+        return data.get(WALLET_CAPACITY_DATA_INDEX);
+    }
+
     public int getRemainingStock(int tradeIndex) {
         return tradeIndex >= 0 && tradeIndex < trades.size()
                 ? data.get(STOCK_DATA_START + tradeIndex) : 0;
+    }
+
+    public int getRemainingStock(RupeeTrade trade) {
+        if (trade == null) {
+            return 0;
+        }
+        for (int index = 0; index < trades.size(); index++) {
+            if (trades.get(index).id().equals(trade.id())) {
+                return getRemainingStock(index);
+            }
+        }
+        return 0;
     }
 
     public RupeeTradeService.PurchaseStatus purchase(ServerPlayer serverPlayer,

@@ -46,6 +46,7 @@ public final class RupeeTradeService {
         INVALID_QUANTITY,
         OUT_OF_STOCK,
         INSUFFICIENT_RUPEES,
+        WALLET_FULL,
         MISSING_INGREDIENTS,
         ALREADY_COMMITTED;
 
@@ -117,7 +118,7 @@ public final class RupeeTradeService {
         if (quantity <= 0 || quantity > MAX_PURCHASE_QUANTITY) {
             return false;
         }
-        return planIngredientRemoval(player.getInventory(), trade, quantity) != null;
+        return planInputRemoval(player.getInventory(), trade, quantity) != null;
     }
 
     /**
@@ -190,18 +191,24 @@ public final class RupeeTradeService {
         }
 
         TransactionPlan plan = result.plan;
-        if (!RupeeWalletUtil.trySpendExact(prepared.player, plan.totalRupeeCost)) {
+        if (plan.trade.isSellTrade()) {
+            if (!RupeeWalletUtil.tryDepositExact(prepared.player, plan.totalRupeeAmount)) {
+                return PurchaseStatus.WALLET_FULL;
+            }
+        } else if (!RupeeWalletUtil.trySpendExact(prepared.player, plan.totalRupeeAmount)) {
             return PurchaseStatus.INSUFFICIENT_RUPEES;
         }
 
         applyIngredientRemoval(prepared.player.getInventory(), plan.inputPlan);
         addUses(prepared.trader, plan.trade.id(), prepared.quantity);
 
-        for (ItemStack output : plan.outputs) {
-            ItemStack remainder = output.copy();
-            prepared.player.getInventory().add(remainder);
-            if (!remainder.isEmpty()) {
-                prepared.player.drop(remainder, false);
+        if (!plan.trade.isSellTrade()) {
+            for (ItemStack output : plan.outputs) {
+                ItemStack remainder = output.copy();
+                prepared.player.getInventory().add(remainder);
+                if (!remainder.isEmpty()) {
+                    prepared.player.drop(remainder, false);
+                }
             }
         }
         prepared.player.getInventory().setChanged();
@@ -230,26 +237,35 @@ public final class RupeeTradeService {
             return PlanResult.failed(PurchaseStatus.OUT_OF_STOCK);
         }
 
-        int totalRupeeCost;
+        int totalRupeeAmount;
         try {
-            totalRupeeCost = Math.multiplyExact(trade.rupeeCost(), quantity);
+            totalRupeeAmount = Math.multiplyExact(trade.rupeeCost(), quantity);
         } catch (ArithmeticException overflow) {
             return PlanResult.failed(PurchaseStatus.INVALID_QUANTITY);
         }
-        if (!RupeeWalletUtil.canAfford(player, totalRupeeCost)) {
+        if (trade.isSellTrade() && RupeeWalletUtil.getAvailableSpace(player) < totalRupeeAmount) {
+            return PlanResult.failed(PurchaseStatus.WALLET_FULL);
+        }
+        if (!trade.isSellTrade() && !RupeeWalletUtil.canAfford(player, totalRupeeAmount)) {
             return PlanResult.failed(PurchaseStatus.INSUFFICIENT_RUPEES);
         }
 
-        InputPlan inputPlan = planIngredientRemoval(player.getInventory(), trade, quantity);
+        InputPlan inputPlan = planInputRemoval(player.getInventory(), trade, quantity);
         if (inputPlan == null) {
             return PlanResult.failed(PurchaseStatus.MISSING_INGREDIENTS);
         }
 
         List<ItemStack> outputs = new ArrayList<>(quantity);
-        for (int unit = 0; unit < quantity; unit++) {
-            outputs.add(trade.createResult(inputPlan.copiedInputs.get(unit)));
+        if (trade.isSellTrade()) {
+            for (int unit = 0; unit < quantity; unit++) {
+                outputs.add(trade.result());
+            }
+        } else {
+            for (int unit = 0; unit < quantity; unit++) {
+                outputs.add(trade.createResult(inputPlan.copiedInputs.get(unit)));
+            }
         }
-        return PlanResult.ready(new TransactionPlan(trade, totalRupeeCost, inputPlan, outputs));
+        return PlanResult.ready(new TransactionPlan(trade, totalRupeeAmount, inputPlan, outputs));
     }
 
     private static boolean validTradingContext(ServerPlayer player, AbstractVillager trader) {
@@ -267,7 +283,7 @@ public final class RupeeTradeService {
         return trader.getTradingPlayer() == player;
     }
 
-    private static InputPlan planIngredientRemoval(Inventory inventory, RupeeTrade trade, int quantity) {
+    private static InputPlan planInputRemoval(Inventory inventory, RupeeTrade trade, int quantity) {
         int slotCount = inventory.items.size();
         int[] available = new int[slotCount];
         int[] removals = new int[slotCount];
@@ -275,7 +291,8 @@ public final class RupeeTradeService {
             available[slot] = inventory.items.get(slot).getCount();
         }
 
-        List<ItemStack> ingredients = trade.ingredients();
+        List<ItemStack> ingredients = trade.isSellTrade() ? List.of(trade.result()) : trade.ingredients();
+        int copyNbtFromIngredient = trade.isSellTrade() ? -1 : trade.copyNbtFromIngredient();
         List<ItemStack> copiedInputs = new ArrayList<>(quantity);
         for (int unit = 0; unit < quantity; unit++) {
             ItemStack copiedInput = ItemStack.EMPTY;
@@ -289,7 +306,7 @@ public final class RupeeTradeService {
                         continue;
                     }
                     int taken = Math.min(needed, available[slot]);
-                    if (ingredientIndex == trade.copyNbtFromIngredient() && copiedInput.isEmpty()) {
+                    if (ingredientIndex == copyNbtFromIngredient && copiedInput.isEmpty()) {
                         copiedInput = candidate.copyWithCount(1);
                     }
                     available[slot] -= taken;
@@ -537,13 +554,13 @@ public final class RupeeTradeService {
 
     private static final class TransactionPlan {
         private final RupeeTrade trade;
-        private final int totalRupeeCost;
+        private final int totalRupeeAmount;
         private final InputPlan inputPlan;
         private final List<ItemStack> outputs;
 
-        private TransactionPlan(RupeeTrade trade, int totalRupeeCost, InputPlan inputPlan, List<ItemStack> outputs) {
+        private TransactionPlan(RupeeTrade trade, int totalRupeeAmount, InputPlan inputPlan, List<ItemStack> outputs) {
             this.trade = trade;
-            this.totalRupeeCost = totalRupeeCost;
+            this.totalRupeeAmount = totalRupeeAmount;
             this.inputPlan = inputPlan;
             this.outputs = outputs;
         }

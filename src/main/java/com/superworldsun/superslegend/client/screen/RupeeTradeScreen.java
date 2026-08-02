@@ -23,12 +23,14 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** Wallet-backed trader shop, intentionally separate from vanilla merchant slots. */
 @OnlyIn(Dist.CLIENT)
@@ -50,6 +52,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
     private int page;
     private int quantity = 1;
     private int tradesPerPage = MAX_ROWS_PER_PAGE;
+    private RupeeTrade.Type selectedType = RupeeTrade.Type.BUY;
 
     private int listLeft;
     private int listTop;
@@ -68,6 +71,9 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
     private HyruleButton minusButton;
     private HyruleButton plusButton;
     private HyruleButton buyButton;
+    private HyruleButton buyTabButton;
+    private HyruleButton sellTabButton;
+    private HyruleButton dailyDealTabButton;
 
     public RupeeTradeScreen(RupeeTradeMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -90,20 +96,36 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         detailsTop = listTop;
         detailsWidth = leftPos + imageWidth - 9 - detailsLeft;
 
-        rowsTop = listTop + 25;
+        rowsTop = listTop + 47;
         paginationY = listTop + contentHeight - 24;
         int availableRowsHeight = Math.max(MIN_ROW_HEIGHT * 3, paginationY - rowsTop - 2);
         tradesPerPage = Mth.clamp(availableRowsHeight / MIN_ROW_HEIGHT, 3, MAX_ROWS_PER_PAGE);
         rowHeight = Math.max(MIN_ROW_HEIGHT, availableRowsHeight / tradesPerPage);
         quantityY = detailsTop + contentHeight - 57;
 
+        normalizeSelectedType();
         normalizeSelection();
         rowButtons.clear();
 
-        addRenderableWidget(new HyruleButton(leftPos + 13, topPos + 26, 74, 18,
-                Component.literal("Emeralds"), button -> switchToEmeralds(), HyruleButton.Style.TAB));
+        addRenderableWidget(new HyruleButton(leftPos + 13, topPos + 26, 92, 18,
+                Component.literal("Emeralds"), button -> switchToEmeralds(), HyruleButton.Style.TAB)
+                .setIcon(new ItemStack(Items.EMERALD)));
         addRenderableWidget(new HyruleButton(leftPos + imageWidth - 31, topPos + 10, 20, 18,
                 Component.literal("X"), button -> onClose(), HyruleButton.Style.BROWN));
+
+        int tabGap = 3;
+        int tabAreaWidth = listWidth - 12;
+        int shortTabWidth = (tabAreaWidth - tabGap * 2) * 27 / 100;
+        int tabY = listTop + 24;
+        buyTabButton = addRenderableWidget(new HyruleButton(listLeft + 6, tabY, shortTabWidth, 18,
+                Component.literal("Buy"), button -> selectType(RupeeTrade.Type.BUY), HyruleButton.Style.TAB));
+        sellTabButton = addRenderableWidget(new HyruleButton(listLeft + 6 + shortTabWidth + tabGap, tabY,
+                shortTabWidth, 18, Component.literal("Sell"), button -> selectType(RupeeTrade.Type.SELL),
+                HyruleButton.Style.TAB));
+        int dailyX = listLeft + 6 + (shortTabWidth + tabGap) * 2;
+        dailyDealTabButton = addRenderableWidget(new HyruleButton(dailyX, tabY,
+                listLeft + listWidth - 6 - dailyX, 18, Component.literal("Daily Deal"),
+                button -> selectType(RupeeTrade.Type.DAILY_DEAL), HyruleButton.Style.TAB));
 
         int firstTrade = page * tradesPerPage;
         List<RupeeTrade> trades = trades();
@@ -132,7 +154,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
                 Component.literal("+"), button -> adjustQuantity(quantityStep()), HyruleButton.Style.BROWN));
         buyButton = addRenderableWidget(new HyruleButton(detailsLeft + 10,
                 detailsTop + contentHeight - 29, detailsWidth - 20, 21,
-                Component.literal("Trade"), button -> purchase(), HyruleButton.Style.GREEN));
+                Component.literal("Buy"), button -> purchase(), HyruleButton.Style.GREEN));
 
         updateButtonStates();
         TradeCursorMemory.restoreIfPending();
@@ -219,7 +241,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         }
 
         ItemStack result = trade.result();
-        graphics.drawString(font, Component.literal("You will receive:"),
+        graphics.drawString(font, Component.literal(trade.isSellTrade() ? "You will sell:" : "You will receive:"),
                 detailsLeft + 11, detailsTop + 28, HyruleGuiTheme.TEXT_MUTED, false);
         int resultX = detailsLeft + 12;
         int resultY = resultItemY();
@@ -244,26 +266,31 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         graphics.drawString(font, stockText, resultTextX, resultY + 11,
                 remainingStock > 0 ? HyruleGuiTheme.TEXT_MUTED : HyruleGuiTheme.TEXT_RED, false);
 
-        List<ItemStack> ingredients = trade.ingredients();
+        List<ItemStack> ingredients = transactionRequirements(trade);
         if (!isCompactDetails()) {
             if (!isTradeUnlocked(trade)) {
                 graphics.drawString(font, Component.literal("Unlocks at level " + trade.unlockLevel()),
                         detailsLeft + 11, detailsTop + 68, HyruleGuiTheme.TEXT_RED, false);
             } else {
                 graphics.drawString(font,
-                        Component.literal(ingredients.isEmpty() ? "Wallet purchase" : "Required items:"),
+                        Component.literal(trade.isSellTrade() ? "Wallet payout"
+                                : ingredients.isEmpty() ? "Wallet purchase" : "Required items:"),
                         detailsLeft + 11, detailsTop + 68, HyruleGuiTheme.TEXT_LIGHT, false);
             }
-            renderIngredientIcons(graphics, ingredients);
+            if (!trade.isSellTrade()) {
+                renderIngredientIcons(graphics, ingredients);
+            }
         }
 
         long totalCost = totalRupeeCost(trade);
         int costY = quantityY - 17;
         graphics.renderItem(rupeeIconForValue(totalCost), detailsLeft + 11, costY - 4);
-        int costColor = totalCost <= menu.getBalance()
-                ? HyruleGuiTheme.TEXT_GOLD : HyruleGuiTheme.TEXT_RED;
+        int costColor = trade.isSellTrade()
+                ? totalCost <= walletSpace() ? HyruleGuiTheme.TEXT_GREEN : HyruleGuiTheme.TEXT_RED
+                : totalCost <= menu.getBalance() ? HyruleGuiTheme.TEXT_GOLD : HyruleGuiTheme.TEXT_RED;
         graphics.drawString(font,
-                Component.literal(trade.rupeeCost() == 0 ? "No rupee fee" : totalCost + " total"),
+                Component.literal(trade.rupeeCost() == 0 ? "No rupee amount"
+                        : (trade.isSellTrade() ? "+" : "") + totalCost + " total"),
                 detailsLeft + 31, costY + 1, costColor, false);
 
         int valueLeft = detailsLeft + 38;
@@ -417,7 +444,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
             return;
         }
 
-        List<ItemStack> ingredients = trade.ingredients();
+        List<ItemStack> ingredients = trade.isSellTrade() ? List.of() : trade.ingredients();
         if (isCompactDetails()) {
             return;
         }
@@ -462,6 +489,17 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         updateButtonStates();
     }
 
+    private void selectType(RupeeTrade.Type type) {
+        if (type == selectedType || !hasTradesOfType(type)) {
+            return;
+        }
+        selectedType = type;
+        selectedTradeIndex = -1;
+        page = 0;
+        quantity = 1;
+        rebuildWidgets();
+    }
+
     private void changePage(int direction) {
         int targetPage = Mth.clamp(page + direction, 0, Math.max(0, pageCount() - 1));
         if (targetPage == page) {
@@ -488,6 +526,10 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
     }
 
     private void updateButtonStates() {
+        updateCategoryButton(buyTabButton, RupeeTrade.Type.BUY);
+        updateCategoryButton(sellTabButton, RupeeTrade.Type.SELL);
+        updateCategoryButton(dailyDealTabButton, RupeeTrade.Type.DAILY_DEAL);
+
         int pageCount = pageCount();
         if (previousPageButton != null) {
             previousPageButton.active = page > 0;
@@ -506,9 +548,22 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         if (buyButton != null) {
             boolean purchasable = canPurchase();
             buyButton.active = purchasable;
-            buyButton.setMessage(Component.literal(quantity > 1 ? "Trade x" + quantity : "Trade"));
+            String action = selectedTrade() != null && selectedTrade().isSellTrade() ? "Sell" : "Buy";
+            buyButton.setMessage(Component.literal(quantity > 1 ? action + " x" + quantity : action));
             buyButton.setTooltip(purchasable ? null : Tooltip.create(purchaseFailureMessage()));
         }
+    }
+
+    private void updateCategoryButton(HyruleButton button, RupeeTrade.Type type) {
+        if (button == null) {
+            return;
+        }
+        boolean selected = selectedType == type;
+        button.setSelected(selected);
+        button.active = !selected && hasTradesOfType(type);
+        button.setTooltip(hasTradesOfType(type) ? null : Tooltip.create(Component.literal(
+                type == RupeeTrade.Type.DAILY_DEAL ? "No daily deal is available today"
+                        : "This trader has no " + type.name().toLowerCase() + " offers")));
     }
 
     private Component purchaseFailureMessage() {
@@ -522,7 +577,10 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         if (remainingStock() < quantity) {
             return Component.literal("This trade is out of stock");
         }
-        if (totalRupeeCost(trade) > menu.getBalance()) {
+        if (trade.isSellTrade() && totalRupeeCost(trade) > walletSpace()) {
+            return Component.literal("Not enough room in your equipped wallet");
+        }
+        if (!trade.isSellTrade() && totalRupeeCost(trade) > menu.getBalance()) {
             return Component.literal("Not enough rupees in your equipped wallet");
         }
         if (!hasRequiredIngredients(trade, quantity)) {
@@ -537,7 +595,8 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
                 && isTradeUnlocked(trade)
                 && quantity > 0
                 && remainingStock() >= quantity
-                && totalRupeeCost(trade) <= menu.getBalance()
+                && (trade.isSellTrade() ? totalRupeeCost(trade) <= walletSpace()
+                : totalRupeeCost(trade) <= menu.getBalance())
                 && hasRequiredIngredients(trade, quantity);
     }
 
@@ -548,7 +607,9 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         }
 
         int maximum = Math.min(MAX_PURCHASE_QUANTITY, Math.max(0, remainingStock()));
-        if (trade.rupeeCost() > 0) {
+        if (trade.rupeeCost() > 0 && trade.isSellTrade()) {
+            maximum = Math.min(maximum, walletSpace() / trade.rupeeCost());
+        } else if (trade.rupeeCost() > 0) {
             maximum = Math.min(maximum, menu.getBalance() / trade.rupeeCost());
         }
         maximum = Math.min(maximum, maximumIngredientPurchases(trade, maximum));
@@ -556,7 +617,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
     }
 
     private int maximumIngredientPurchases(RupeeTrade trade, int limit) {
-        if (trade.ingredients().isEmpty()) {
+        if (transactionRequirements(trade).isEmpty()) {
             return limit;
         }
         int supported = 0;
@@ -571,7 +632,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
 
     private boolean hasRequiredIngredients(RupeeTrade trade, int requestedQuantity) {
         if (minecraft == null || minecraft.player == null || requestedQuantity <= 0) {
-            return trade.ingredients().isEmpty();
+            return transactionRequirements(trade).isEmpty();
         }
 
         List<ItemStack> simulatedInventory = new ArrayList<>();
@@ -580,7 +641,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         }
 
         for (int purchase = 0; purchase < requestedQuantity; purchase++) {
-            for (ItemStack requirement : trade.ingredients()) {
+            for (ItemStack requirement : transactionRequirements(trade)) {
                 int remaining = requirement.getCount();
                 for (ItemStack available : simulatedInventory) {
                     if (remaining <= 0) {
@@ -641,8 +702,26 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         }
     }
 
+    private void normalizeSelectedType() {
+        if (hasTradesOfType(selectedType)) {
+            return;
+        }
+        for (RupeeTrade.Type type : RupeeTrade.Type.values()) {
+            if (hasTradesOfType(type)) {
+                selectedType = type;
+                return;
+            }
+        }
+    }
+
+    private boolean hasTradesOfType(RupeeTrade.Type type) {
+        return menu.getTrades().stream().anyMatch(trade -> trade.type() == type);
+    }
+
     private List<RupeeTrade> trades() {
-        return menu.getTrades();
+        return menu.getTrades().stream()
+                .filter(trade -> trade.type() == selectedType)
+                .collect(Collectors.toList());
     }
 
     private RupeeTrade selectedTrade() {
@@ -655,7 +734,16 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
     }
 
     private int remainingStock() {
-        return selectedTradeIndex < 0 ? 0 : Math.max(0, menu.getRemainingStock(selectedTradeIndex));
+        RupeeTrade trade = selectedTrade();
+        return trade == null ? 0 : Math.max(0, menu.getRemainingStock(trade));
+    }
+
+    private int walletSpace() {
+        return Math.max(0, menu.getWalletCapacity() - menu.getBalance());
+    }
+
+    private List<ItemStack> transactionRequirements(RupeeTrade trade) {
+        return trade.isSellTrade() ? List.of(trade.result()) : trade.ingredients();
     }
 
     private int pageCount() {
@@ -730,7 +818,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
 
             boolean selected = tradeIndex == selectedTradeIndex;
             boolean unlocked = isTradeUnlocked(trade);
-            int stock = Math.max(0, menu.getRemainingStock(tradeIndex));
+            int stock = Math.max(0, menu.getRemainingStock(trade));
             int border = selected ? HyruleGuiTheme.GOLD_BRIGHT
                     : isHoveredOrFocused() ? 0xFFC89A42 : 0xFF5D4021;
             int top = selected ? HyruleGuiTheme.GREEN_TOP
@@ -768,7 +856,9 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
             int priceX = getX() + width - priceWidth;
             graphics.renderItem(rupeeIconForValue(trade.rupeeCost()),
                     priceX, getY() + (height - 16) / 2);
-            int costColor = menu.getBalance() >= trade.rupeeCost()
+            int costColor = trade.isSellTrade()
+                    ? walletSpace() >= trade.rupeeCost() ? HyruleGuiTheme.TEXT_GREEN : HyruleGuiTheme.TEXT_RED
+                    : menu.getBalance() >= trade.rupeeCost()
                     ? HyruleGuiTheme.TEXT_GOLD : HyruleGuiTheme.TEXT_RED;
             String price = trade.rupeeCost() == 0 ? "--" : Integer.toString(trade.rupeeCost());
             graphics.drawString(font, price, priceX + 17, getY() + (height - 8) / 2,

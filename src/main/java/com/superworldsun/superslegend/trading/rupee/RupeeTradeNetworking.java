@@ -5,6 +5,7 @@ import com.superworldsun.superslegend.menus.RupeeTradeMenu;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.OpenTradeChoiceMessage;
 import com.superworldsun.superslegend.network.message.SelectTradeModeMessage;
+import com.superworldsun.superslegend.network.message.RupeeTradeAvailabilityMessage;
 import net.minecraft.network.chat.Component;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
@@ -93,6 +94,23 @@ public final class RupeeTradeNetworking {
         // slots and releases its reservation before the Rupee menu reclaims it.
         player.closeContainer();
         openRupeeMenu(player, trader);
+    }
+
+    /** Reports whether the trader belonging to the player's current vanilla menu has Rupee trades. */
+    public static void sendTradeAvailability(ServerPlayer player, int containerId) {
+        boolean available = false;
+        if (player.containerMenu instanceof MerchantMenu merchantMenu
+                && merchantMenu.containerId == containerId) {
+            Object merchant = ((MerchantMenuAccessor) merchantMenu).superslegend$getTrader();
+            available = merchant instanceof AbstractVillager trader
+                    && trader.getTradingPlayer() == player
+                    && !RupeeTradeRegistry.getTrades(trader).isEmpty();
+        }
+
+        boolean finalAvailable = available;
+        NetworkDispatcher.network_channel.send(
+                PacketDistributor.PLAYER.with(() -> player),
+                new RupeeTradeAvailabilityMessage(containerId, finalAvailable));
     }
 
     private static void openRupeeMenu(ServerPlayer player, AbstractVillager trader) {

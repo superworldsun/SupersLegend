@@ -21,6 +21,7 @@ public final class RupeeTrade {
     public static final int NO_NBT_COPY = -1;
 
     private final ResourceLocation id;
+    private final Type type;
     private final int order;
     private final int unlockLevel;
     private final int rupeeCost;
@@ -32,6 +33,7 @@ public final class RupeeTrade {
 
     private RupeeTrade(Builder builder) {
         this.id = builder.id;
+        this.type = builder.type;
         this.order = builder.order;
         this.unlockLevel = builder.unlockLevel;
         this.rupeeCost = builder.rupeeCost;
@@ -52,6 +54,14 @@ public final class RupeeTrade {
 
     public ResourceLocation id() {
         return id;
+    }
+
+    public Type type() {
+        return type;
+    }
+
+    public boolean isSellTrade() {
+        return type == Type.SELL;
     }
 
     public int order() {
@@ -138,6 +148,7 @@ public final class RupeeTrade {
         private final ResourceLocation id;
         private final List<ItemStack> ingredients = new ArrayList<>();
         private ItemStack result;
+        private Type type = Type.BUY;
         private int order;
         private int unlockLevel = 1;
         private int rupeeCost;
@@ -153,6 +164,24 @@ public final class RupeeTrade {
         public Builder order(int order) {
             this.order = order;
             return this;
+        }
+
+        /** Places this offer in the Buy, Sell, or Daily Deal tab. */
+        public Builder type(Type type) {
+            this.type = Objects.requireNonNull(type, "type");
+            return this;
+        }
+
+        public Builder buy() {
+            return type(Type.BUY);
+        }
+
+        public Builder sell() {
+            return type(Type.SELL);
+        }
+
+        public Builder dailyDeal() {
+            return type(Type.DAILY_DEAL);
         }
 
         /** Lower numbers appear first in the trader menu. Use gaps such as 10, 20, 30. */
@@ -178,6 +207,11 @@ public final class RupeeTrade {
         /** Rupees removed from the equipped wallet for one purchase. Zero is allowed. */
         public Builder priceInRupees(int price) {
             return rupeeCost(price);
+        }
+
+        /** Rupees added to the equipped wallet for each item sold. */
+        public Builder payoutInRupees(int payout) {
+            return rupeeCost(payout);
         }
 
         public Builder ingredient(ItemLike item, int count) {
@@ -259,5 +293,11 @@ public final class RupeeTrade {
             }
             return new RupeeTrade(this);
         }
+    }
+
+    public enum Type {
+        BUY,
+        SELL,
+        DAILY_DEAL
     }
 }

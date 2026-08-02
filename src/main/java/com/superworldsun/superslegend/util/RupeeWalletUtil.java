@@ -23,6 +23,16 @@ public final class RupeeWalletUtil {
                 .orElse(0);
     }
 
+    public static int getWalletCapacity(Player player) {
+        return findEquippedWallet(player)
+                .map(result -> ((RupeeWalletItem) result.stack().getItem()).getCapacity())
+                .orElse(0);
+    }
+
+    public static int getAvailableSpace(Player player) {
+        return Math.max(0, getWalletCapacity(player) - getStoredRupees(player));
+    }
+
     /** A zero-cost action is affordable even when no wallet is equipped. */
     public static boolean canAfford(Player player, int requestedAmount) {
         return requestedAmount >= 0 && (requestedAmount == 0 || getStoredRupees(player) >= requestedAmount);
@@ -56,6 +66,15 @@ public final class RupeeWalletUtil {
         CuriosApi.getCuriosHelper().setEquippedCurio(player, result.slotContext().identifier(),
                 result.slotContext().index(), updatedWallet);
         return accepted;
+    }
+
+    /** Deposits the entire amount or leaves the wallet unchanged. */
+    public static boolean tryDepositExact(Player player, int requestedAmount) {
+        if (requestedAmount < 0) {
+            return false;
+        }
+        return requestedAmount == 0 || getAvailableSpace(player) >= requestedAmount
+                && deposit(player, requestedAmount) == requestedAmount;
     }
 
     /**
