@@ -29,7 +29,8 @@ public class ModConfiguredFeatures {
                 BlockInit.MASTER_ORE_BLOCK.get().defaultBlockState()), OreConfiguration.target(deepslateReplaceables,
                 BlockInit.DEEPSLATE_MASTER_ORE_BLOCK.get().defaultBlockState()));
 
-        register(context, OVERWORLD_MASTER_ORE_KEY, Feature.ORE, new OreConfiguration(overworldSapphireOres, 9));
+        // Scattered ore supports a size of one correctly; the normal ore-vein feature's tiny sphere can place nothing.
+        register(context, OVERWORLD_MASTER_ORE_KEY, Feature.SCATTERED_ORE, new OreConfiguration(overworldSapphireOres, 1));
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
