@@ -25,6 +25,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.PURPLE_RUPEE.get());
                         pOutput.accept(ItemInit.SILVER_RUPEE.get());
                         pOutput.accept(ItemInit.GOLD_RUPEE.get());
+                        pOutput.accept(ItemInit.GOLD_SKULLTULA_TOKEN.get());
                         pOutput.accept(ItemInit.WALLET.get());
                         pOutput.accept(ItemInit.SMALL_WALLET.get());
                         pOutput.accept(ItemInit.MEDIUM_WALLET.get());
@@ -167,6 +168,7 @@ public class CreativeModTabsInit {
                         pOutput.accept(ItemInit.GREAT_BAY_TEMPLE_DISC.get());
                         pOutput.accept(ItemInit.STONE_TOWER_TEMPLE_REALITY_DISC.get());
                         pOutput.accept(ItemInit.STONE_TOWER_TEMPLE_ILLUSION_DISC.get());
+                        pOutput.accept(ItemInit.GOLD_SKULLTULA_SPAWN_EGG.get());
                     }))
                     .build());
 
