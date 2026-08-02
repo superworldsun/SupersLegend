@@ -92,8 +92,6 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem {
     @Override
     public void startUsingAbility(Player player)
     {
-        boolean wasAlreadyUsing = isPlayerUsingAbility(player);
-
         // -0.3 is 30% slower
         AttributeModifier modifier = new AttributeModifier(SLOW_MODIFIER_ID, "Bremen Mask Slow", -0.3, AttributeModifier.Operation.MULTIPLY_BASE);
         AttributeInstance movespeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
@@ -103,7 +101,11 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem {
         }
         IMaskAbility.super.startUsingAbility(player);
 
-        if (!player.level().isClientSide && !wasAlreadyUsing) {
+        // The client starts the ability before notifying the server. In an
+        // integrated server both sides share PLAYERS_USING_MASKS, so using that
+        // set as a sound gate can make the server think the sound already began.
+        // The client sound manager already ignores duplicate start packets.
+        if (!player.level().isClientSide) {
             syncMarchSound(player, true);
         }
     }
@@ -111,7 +113,6 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem {
     @Override
     public void stopUsingAbility(Player player)
     {
-        boolean wasUsingAbility = isPlayerUsingAbility(player);
         FollowBremenMaskGoal.stopFollowing(player);
 
         AttributeModifier modifier = player.getAttribute(Attributes.MOVEMENT_SPEED).getModifier(SLOW_MODIFIER_ID);
@@ -124,7 +125,7 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem {
 
         IMaskAbility.super.stopUsingAbility(player);
 
-        if (!player.level().isClientSide && wasUsingAbility) {
+        if (!player.level().isClientSide) {
             syncMarchSound(player, false);
         }
     }
