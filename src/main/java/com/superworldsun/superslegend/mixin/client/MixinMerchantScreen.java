@@ -1,15 +1,19 @@
 package com.superworldsun.superslegend.mixin.client;
 
 import com.superworldsun.superslegend.client.gui.widget.HyruleButton;
+import com.superworldsun.superslegend.client.screen.MerchantRupeeButtonState;
 import com.superworldsun.superslegend.client.screen.TradeCursorMemory;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
+import com.superworldsun.superslegend.network.message.RequestRupeeTradeAvailabilityMessage;
 import com.superworldsun.superslegend.network.message.SwitchToRupeeTradeMessage;
+import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MerchantMenu;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /** Adds a direct route from vanilla emerald trading to the wallet-backed shop. */
 @Mixin(MerchantScreen.class)
 public abstract class MixinMerchantScreen extends AbstractContainerScreen<MerchantMenu> {
-    private static final int SUPERSLEGEND$BUTTON_WIDTH = 72;
+    private static final int SUPERSLEGEND$BUTTON_WIDTH = 92;
     private static final int SUPERSLEGEND$BUTTON_HEIGHT = 20;
     private static final int SUPERSLEGEND$BUTTON_GAP = 2;
 
@@ -56,10 +60,13 @@ public abstract class MixinMerchantScreen extends AbstractContainerScreen<Mercha
                 Component.literal("Rupees"),
                 button -> superslegend$switchToRupeeTrading(),
                 HyruleButton.Style.GREEN
-        );
-        rupeesButton.setTooltip(Tooltip.create(
-                Component.literal("Pay from your equipped rupee wallet")));
+        ).setIcon(new ItemStack(ItemInit.RUPEE.get()));
+        rupeesButton.active = false;
+        rupeesButton.setTooltip(Tooltip.create(Component.literal("Checking for Rupee trades...")));
         addRenderableWidget(rupeesButton);
+        MerchantRupeeButtonState.track(menu.containerId, rupeesButton);
+        NetworkDispatcher.network_channel.sendToServer(
+                new RequestRupeeTradeAvailabilityMessage(menu.containerId));
         TradeCursorMemory.restoreIfPending();
     }
 

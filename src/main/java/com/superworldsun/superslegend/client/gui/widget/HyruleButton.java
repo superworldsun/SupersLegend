@@ -6,11 +6,13 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 
 /** A narrated vanilla button with Hyrule-style rendering. */
 public class HyruleButton extends Button {
     private final Style style;
     private boolean selected;
+    private ItemStack icon = ItemStack.EMPTY;
 
     public HyruleButton(int x, int y, int width, int height, Component message,
                         OnPress onPress, Style style) {
@@ -25,6 +27,12 @@ public class HyruleButton extends Button {
 
     public boolean isSelected() {
         return selected;
+    }
+
+    /** Adds a 16px item icon and centers it together with the button label. */
+    public HyruleButton setIcon(ItemStack icon) {
+        this.icon = icon.copy();
+        return this;
     }
 
     @Override
@@ -61,13 +69,22 @@ public class HyruleButton extends Button {
 
         Font font = Minecraft.getInstance().font;
         String fullText = getMessage().getString();
-        int availableWidth = Math.max(0, width - 8);
+        int iconSpace = icon.isEmpty() ? 0 : 19;
+        int availableWidth = Math.max(0, width - 8 - iconSpace);
         String visibleText = font.plainSubstrByWidth(fullText, availableWidth);
         if (visibleText.length() < fullText.length() && availableWidth > font.width("...")) {
             visibleText = font.plainSubstrByWidth(fullText, availableWidth - font.width("...")) + "...";
         }
-        graphics.drawCenteredString(font, visibleText, x + width / 2,
-                y + (height - 8) / 2, textColor);
+        if (icon.isEmpty()) {
+            graphics.drawCenteredString(font, visibleText, x + width / 2,
+                    y + (height - 8) / 2, textColor);
+        } else {
+            int contentWidth = 19 + font.width(visibleText);
+            int contentX = x + (width - contentWidth) / 2;
+            graphics.renderItem(icon, contentX, y + (height - 16) / 2);
+            graphics.drawString(font, visibleText, contentX + 19,
+                    y + (height - 8) / 2, textColor, false);
+        }
     }
 
     public enum Style {
