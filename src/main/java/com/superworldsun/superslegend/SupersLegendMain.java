@@ -2,6 +2,7 @@ package com.superworldsun.superslegend;
 
 import com.mojang.logging.LogUtils;
 import com.superworldsun.superslegend.client.init.ItemModelPropertiesInit;
+import com.superworldsun.superslegend.loot.ModLootModifiers;
 import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.songs.LearnedSongs;
 import com.superworldsun.superslegend.worldgen.biome.BiomeModifiers;
@@ -46,6 +47,7 @@ public class SupersLegendMain
         MenuTypeInit.MENU_TYPES.register(modEventBus);
         RecipeSerializerInit.RECIPE_SERIALIZERS.register(modEventBus);
         OcarinaSongInit.OCARINA_SONGS.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
