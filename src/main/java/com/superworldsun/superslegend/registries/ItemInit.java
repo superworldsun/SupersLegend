@@ -41,6 +41,7 @@ import com.superworldsun.superslegend.items.weapons.wand.IceRod;
 import com.superworldsun.superslegend.util.ItemToolTiers;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -64,6 +65,11 @@ public class ItemInit {
             () -> new SilverRupee(new Item.Properties().stacksTo(8)));
     public static final RegistryObject<Item> GOLD_RUPEE = ITEMS.register("gold_rupee",
             () -> new GoldRupee(new Item.Properties().stacksTo(8)));
+    public static final RegistryObject<Item> GOLD_SKULLTULA_TOKEN = ITEMS.register("gold_skulltula_token",
+            () -> new Item(new Item.Properties().stacksTo(64).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> GOLD_SKULLTULA_SPAWN_EGG = ITEMS.register("gold_skulltula_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypeInit.GOLD_SKULLTULA, 0xD4AF37, 0x3A2412,
+                    new Item.Properties()));
 
 //    public static final RegistryObject<Item> MEDALLION_LIGHT = ITEMS.register("medallion_light",
 //            () -> new ElementMedallion(new Item.Properties().stacksTo(1)));
