@@ -42,6 +42,15 @@ public class Config {
     private static final ForgeConfigSpec.BooleanValue RANDOMIZE_DEKU_BUBBLE_FLIGHT_PATH;
     private static final ForgeConfigSpec.BooleanValue PEGASUS_BOOTS_BREAK_JARS_AND_POTS;
     private static final ForgeConfigSpec.BooleanValue PEGASUS_BOOTS_BREAK_PLANTS_AND_CROPS;
+    private static final ForgeConfigSpec.BooleanValue ENABLE_GOLD_SKULLTULAS;
+    private static final ForgeConfigSpec.IntValue GOLD_SKULLTULA_MAX_LIGHT;
+    private static final ForgeConfigSpec.IntValue GOLD_SKULLTULA_CHUNK_COOLDOWN_NIGHTS;
+    private static final ForgeConfigSpec.IntValue GOLD_SKULLTULA_MEMORY_RADIUS;
+    private static final ForgeConfigSpec.IntValue GOLD_SKULLTULA_MIN_SEPARATION;
+    private static final ForgeConfigSpec.IntValue GOLD_SKULLTULA_MIN_PLAYER_DISTANCE;
+    private static final ForgeConfigSpec.IntValue GOLD_SKULLTULA_MAX_PLAYER_DISTANCE;
+    private static final ForgeConfigSpec.IntValue GOLD_SKULLTULA_MIN_PER_PLAYER;
+    private static final ForgeConfigSpec.IntValue GOLD_SKULLTULA_MAX_PER_PLAYER;
 
     public enum FairyOcarinaRestriction {
         LIGHT,
@@ -97,6 +106,29 @@ public class Config {
         PEGASUS_BOOTS_BREAK_PLANTS_AND_CROPS = BUILDER.comment(
                         "Pegasus Boots charges break plants, flowers, foliage, sugar cane, and crops while a charge weapon is held.")
                 .define("breakPlantsAndCrops", true);
+        BUILDER.pop();
+
+        BUILDER.push("goldSkulltula");
+        ENABLE_GOLD_SKULLTULAS = BUILDER.comment("Enables nightly Gold Skulltula collectible spawns.")
+                .define("enabled", true);
+        GOLD_SKULLTULA_MAX_LIGHT = BUILDER.comment("Highest local light level where one may spawn.")
+                .defineInRange("maximumLightLevel", 10, 0, 15);
+        GOLD_SKULLTULA_CHUNK_COOLDOWN_NIGHTS = BUILDER.comment(
+                        "Nights a surviving Gold Skulltula location is remembered and reused.",
+                        "After this many nights the location expires and a new one may be selected.")
+                .defineInRange("chunkCooldownNights", 7, 1, 1000);
+        GOLD_SKULLTULA_MEMORY_RADIUS = BUILDER.comment("Blocks around a remembered spawn that remain unavailable during its cooldown.")
+                .defineInRange("spawnMemoryRadius", 48, 8, 256);
+        GOLD_SKULLTULA_MIN_SEPARATION = BUILDER.comment("Minimum distance between living Gold Skulltulas.")
+                .defineInRange("minimumLivingSeparation", 32, 8, 256);
+        GOLD_SKULLTULA_MIN_PLAYER_DISTANCE = BUILDER.comment("Preferred minimum spawn distance from every player.")
+                .defineInRange("minimumPlayerDistance", 34, 8, 128);
+        GOLD_SKULLTULA_MAX_PLAYER_DISTANCE = BUILDER.comment("Farthest distance searched around each player.")
+                .defineInRange("maximumPlayerDistance", 90, 24, 192);
+        GOLD_SKULLTULA_MIN_PER_PLAYER = BUILDER.comment("Minimum nightly spawn allowance generated for each player.")
+                .defineInRange("minimumPerPlayerPerNight", 3, 0, 16);
+        GOLD_SKULLTULA_MAX_PER_PLAYER = BUILDER.comment("Maximum nightly spawn allowance generated for each player.")
+                .defineInRange("maximumPerPlayerPerNight", 8, 0, 16);
         BUILDER.pop();
     }
 
@@ -222,6 +254,16 @@ public class Config {
     public static boolean pegasusBootsBreakPlantsAndCrops() {
         return PEGASUS_BOOTS_BREAK_PLANTS_AND_CROPS.get();
     }
+
+    public static boolean goldSkulltulasEnabled() { return ENABLE_GOLD_SKULLTULAS.get(); }
+    public static int goldSkulltulaMaxLight() { return GOLD_SKULLTULA_MAX_LIGHT.get(); }
+    public static int goldSkulltulaChunkCooldownNights() { return GOLD_SKULLTULA_CHUNK_COOLDOWN_NIGHTS.get(); }
+    public static int goldSkulltulaMemoryRadius() { return GOLD_SKULLTULA_MEMORY_RADIUS.get(); }
+    public static int goldSkulltulaMinimumSeparation() { return GOLD_SKULLTULA_MIN_SEPARATION.get(); }
+    public static int goldSkulltulaMinimumPlayerDistance() { return GOLD_SKULLTULA_MIN_PLAYER_DISTANCE.get(); }
+    public static int goldSkulltulaMaximumPlayerDistance() { return GOLD_SKULLTULA_MAX_PLAYER_DISTANCE.get(); }
+    public static int goldSkulltulaMinimumPerPlayer() { return GOLD_SKULLTULA_MIN_PER_PLAYER.get(); }
+    public static int goldSkulltulaMaximumPerPlayer() { return GOLD_SKULLTULA_MAX_PER_PLAYER.get(); }
 
     public static boolean canFairyOcarinaApply(OcarinaSong song) {
         if (song == null || song.getRegistryName() == null) {
