@@ -1,12 +1,14 @@
 package com.superworldsun.superslegend.items.item;
 
 import com.superworldsun.superslegend.capability.magic.MagicProvider;
+import com.superworldsun.superslegend.entities.NayrusLoveCrystalEntity;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -54,8 +56,13 @@ public class NayrusLove extends Item {
                         0, 0.105D, 0);
             }
 
-            player.addEffect(new MobEffectInstance(MobEffects.GLOWING, 300, 0, false, true, true));
-            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 300, 99, false, false, false));
+            player.addEffect(new MobEffectInstance(MobEffects.GLOWING,
+                    NayrusLoveCrystalEntity.EFFECT_DURATION_TICKS, 0, false, true, true));
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,
+                    NayrusLoveCrystalEntity.EFFECT_DURATION_TICKS, 99, false, false, false));
+            if (level instanceof ServerLevel serverLevel) {
+                NayrusLoveCrystalEntity.spawnFor(serverLevel, player);
+            }
             player.getCooldowns().addCooldown(this, 100);
         } else {
             BlockPos currentPos = player.blockPosition();
@@ -74,7 +81,7 @@ public class NayrusLove extends Item {
             tooltip.add(Component.literal("[Hold Shift for Info]").withStyle(ChatFormatting.DARK_GRAY));
         }
         else if(Screen.hasShiftDown()) {
-            tooltip.add(Component.literal("Right-click to use for 14 seconds of invincibility").withStyle(ChatFormatting.GREEN).withStyle(ChatFormatting.ITALIC));
+            tooltip.add(Component.literal("Right-click to use for 15 seconds of invincibility").withStyle(ChatFormatting.GREEN).withStyle(ChatFormatting.ITALIC));
             tooltip.add(Component.literal("Uses Magic on use").withStyle(ChatFormatting.GRAY));
         }
         super.appendHoverText(stack, level, tooltip, flag);
