@@ -12,9 +12,11 @@ import com.superworldsun.superslegend.client.model.player.DekuPlayerModel;
 import com.superworldsun.superslegend.client.model.player.GoronPlayerModel;
 import com.superworldsun.superslegend.client.model.player.ZoraPlayerModel;
 import com.superworldsun.superslegend.client.render.blocks.*;
+import com.superworldsun.superslegend.client.render.curio.head.AllNightMaskRenderer;
 import com.superworldsun.superslegend.client.screen.PostboxScreen;
 import com.superworldsun.superslegend.client.screen.RupeeTradeScreen;
 import com.superworldsun.superslegend.registries.BlockEntityInit;
+import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.MenuTypeInit;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,6 +24,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientModHandler {
@@ -30,6 +33,7 @@ public class ClientModHandler {
         event.enqueueWork(() -> {
             MenuScreens.register(MenuTypeInit.POSTBOX_MENU.get(), PostboxScreen::new);
             MenuScreens.register(MenuTypeInit.RUPEE_TRADE_MENU.get(), RupeeTradeScreen::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_ALLNIGHTMASK.get(), AllNightMaskRenderer::new);
         });
     }
 
