@@ -2,7 +2,9 @@ package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.entity.HiddenShadowBlockEntity;
+import com.superworldsun.superslegend.registries.ItemInit;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -12,6 +14,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderHighlightEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
@@ -46,6 +50,29 @@ public class HiddenShadowBlock extends ShadowBlock {
     @Override
     public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return Shapes.empty();
+    }
+
+    /**
+     * Keep the invisible block from revealing itself through Minecraft's selection outline.
+     * While the Lens of Truth is actively revealing the block, the outline is allowed again,
+     */
+    @SubscribeEvent
+    public static void onRenderBlockHighlight(RenderHighlightEvent.Block event) {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.level == null || minecraft.player == null) {
+            return;
+        }
+
+        BlockPos targetPos = event.getTarget().getBlockPos();
+        if (!(minecraft.level.getBlockState(targetPos).getBlock() instanceof HiddenShadowBlock)) {
+            return;
+        }
+
+        boolean usingLens = minecraft.player.isUsingItem()
+                && minecraft.player.getUseItem().getItem() == ItemInit.LENS_OF_TRUTH.get();
+        if (!usingLens) {
+            event.setCanceled(true);
+        }
     }
 
     @Override
