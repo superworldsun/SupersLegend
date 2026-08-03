@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "superslegend:dark_ore_upper_placed",
+    "superslegend:dark_ore_middle_placed",
+    "superslegend:dark_ore_deep_placed"
+  ],
+  "step": "underground_ores"
+}
