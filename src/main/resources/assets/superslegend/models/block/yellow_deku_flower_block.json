@@ -1,5 +1,6 @@
 {
     "parent": "block/cube_all",
+	"ambientocclusion": false,
 	"render_type": "cutout",
 	"textures": {
 		"1": "superslegend:block/yellow_deku_flower_block",
