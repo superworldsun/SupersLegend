@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#forge:is_swamp",
+  "features": "superslegend:odd_mushroom_placed",
+  "step": "vegetal_decoration"
+}

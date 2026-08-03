@@ -5,7 +5,6 @@ import com.superworldsun.superslegend.client.init.ItemModelPropertiesInit;
 import com.superworldsun.superslegend.loot.ModLootModifiers;
 import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.songs.LearnedSongs;
-import com.superworldsun.superslegend.worldgen.biome.BiomeModifiers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -43,7 +42,6 @@ public class SupersLegendMain
         SoundInit.SOUNDS.register(modEventBus);
         EntityTypeInit.ENTITY_TYPES.register(modEventBus);
         BlockEntityInit.BLOCK_ENTITIES.register(modEventBus);
-        BiomeModifiers.register(modEventBus);
         MenuTypeInit.MENU_TYPES.register(modEventBus);
         RecipeSerializerInit.RECIPE_SERIALIZERS.register(modEventBus);
         OcarinaSongInit.OCARINA_SONGS.register(modEventBus);

@@ -1,9 +1,9 @@
 {
-  "feature": "superslegend:overworld_odd_mushroom",
+  "feature": "superslegend:odd_mushroom",
   "placement": [
     {
       "type": "minecraft:rarity_filter",
-      "chance": 16
+      "chance": 8
     },
     {
       "type": "minecraft:in_square"

@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#forge:is_swamp",
+  "features": "superslegend:yellow_deku_flower_placed",
+  "step": "vegetal_decoration"
+}
