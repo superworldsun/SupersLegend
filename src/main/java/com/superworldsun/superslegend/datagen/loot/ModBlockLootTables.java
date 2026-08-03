@@ -99,8 +99,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropNothing(BlockInit.LOCKED_DUNGEON_DOOR.get());
         this.dropNothing(BlockInit.LOCKED_BOSS_DOOR.get());
         this.dropNothing(BlockInit.LOCKED_WOODEN_DOOR.get());
-        this.dropOre(BlockInit.DARK_ORE_BLOCK.get(), ItemInit.DARK_ORE.get());
-        this.dropOre(BlockInit.DEEPSLATE_DARK_ORE_BLOCK.get(), ItemInit.DARK_ORE.get());
+        this.dropVanillaFortuneOre(BlockInit.DARK_ORE_BLOCK.get(), ItemInit.DARK_ORE.get());
+        this.dropVanillaFortuneOre(BlockInit.DEEPSLATE_DARK_ORE_BLOCK.get(), ItemInit.DARK_ORE.get());
         this.dropOre(BlockInit.MASTER_ORE_BLOCK.get(), ItemInit.MASTER_ORE_CHUNK.get());
         this.dropOre(BlockInit.DEEPSLATE_MASTER_ORE_BLOCK.get(), ItemInit.MASTER_ORE_CHUNK.get());
     }
@@ -111,6 +111,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     private void dropOre(@NotNull Block oreBlock, @NotNull Item oreItem) {
         this.add(oreBlock, b -> createOreTable(b, oreItem, 1, 1));
+    }
+
+    /**
+     * Uses Minecraft's standard ore drop formula: Silk Touch drops the block,
+     * while Fortune increases the raw item drop using the vanilla ore curve.
+     */
+    private void dropVanillaFortuneOre(@NotNull Block oreBlock, @NotNull Item oreItem) {
+        this.add(oreBlock, b -> createOreDrop(b, oreItem));
     }
 
     private void dropDoor(@NotNull Block doorBlock) {
