@@ -1,6 +1,5 @@
 package com.superworldsun.superslegend.blocks;
 
-import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.blocks.entity.FalseShadowBlockEntity;
 
 import net.minecraft.core.BlockPos;
@@ -9,12 +8,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID, value = Dist.CLIENT)
 public class FalseShadowBlock extends ShadowBlock {
 
     public FalseShadowBlock(Properties properties) {
@@ -31,15 +26,19 @@ public class FalseShadowBlock extends ShadowBlock {
         return Shapes.empty();
     }
 
+    /**
+     * Collision and light occlusion are deliberately separate for this block. The player can
+     * pass through it, but lighting should treat it like the block it is impersonating.
+     */
     @Override
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
-        return true;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public float getShadeBrightness(BlockState state, BlockGetter world, BlockPos pos) {
-        return 1.0F;
+    public int getLightBlock(BlockState state, BlockGetter level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof FalseShadowBlockEntity falseShadowBlockEntity) {
+            BlockState disguise = falseShadowBlockEntity.getDisguise();
+            if (disguise != null && !(disguise.getBlock() instanceof ShadowBlock)) {
+                return disguise.getLightBlock(level, pos);
+            }
+        }
+        return super.getLightBlock(state, level, pos);
     }
 
     @Override
