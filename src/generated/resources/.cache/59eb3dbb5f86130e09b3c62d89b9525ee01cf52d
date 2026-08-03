@@ -1,4 +1,4 @@
-// 1.20.1	2024-12-18T06:37:36.6271412	Loot Tables
+// 1.20.1	2026-08-02T08:35:57.1150812	Loot Tables
 0d93d866bad83c3d6716802616767f8633375e86 data/superslegend/loot_tables/blocks/acacia_peg_block.json
 ab8f51e7f8e04d40055776c99fdd4c7477b949e9 data/superslegend/loot_tables/blocks/birch_peg_block.json
 2419146b04c975283d8bf65effb2a66b741cfceb data/superslegend/loot_tables/blocks/black_push_stone.json
@@ -10,8 +10,8 @@ fe2407236a6f6c6e7c0de5f2a2df9f10f0ec5d5b data/superslegend/loot_tables/blocks/bl
 c5bc150eaa71d6f473bc04d21602885934017a57 data/superslegend/loot_tables/blocks/chain_link_fence_block.json
 63d54e0381dadd14f05b86d81df1ba536b5d2465 data/superslegend/loot_tables/blocks/crate_block.json
 50c263170017e0bf4bb17199e98f7eb4db5fd9d4 data/superslegend/loot_tables/blocks/dark_oak_peg_block.json
-285a3c21ea583f4d98983fde0100b865c66e6618 data/superslegend/loot_tables/blocks/dark_ore_block.json
-343a963172dedb54406c1a09564c9f638cfc5856 data/superslegend/loot_tables/blocks/deepslate_dark_ore_block.json
+435117fba8608dc0e231a42152ba904cf42b4e67 data/superslegend/loot_tables/blocks/dark_ore_block.json
+c42d58ac21c84894be5ac984afa856b49498f052 data/superslegend/loot_tables/blocks/deepslate_dark_ore_block.json
 46d0b06e436472efe9ac86dc04af08af06e753d0 data/superslegend/loot_tables/blocks/deepslate_master_ore_block.json
 d4e9ba3f72bc81350f425fc242a1a17592a80d72 data/superslegend/loot_tables/blocks/deku_flower_block.json
 55d1d5c5e3d36fa291eab146b0b63a1158c04acb data/superslegend/loot_tables/blocks/dins_sacred_pedestal.json

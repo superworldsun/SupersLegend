@@ -57,6 +57,9 @@ public class ShadowBlockEntity extends BlockEntity  {
             setChanged();
             if (level != null) {
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                // A disguise can have different skylight/light-blocking behavior than the
+                // placeholder state that existed when this block entity was first placed.
+                level.getLightEngine().checkBlock(getBlockPos());
             }
         }
     }
