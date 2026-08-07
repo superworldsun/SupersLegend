@@ -37,11 +37,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class BremenMask extends Item implements IMaskAbility, ICurioItem {
+public class BremenMask extends GeoCurioMaskItem implements IMaskAbility {
     private static final UUID SLOW_MODIFIER_ID = UUID.fromString("7176f8ab-df6b-4065-9232-3c314fadb655");
 
     public BremenMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "bremen_mask");
     }
 
     // Adds goal for following players with Bremen mask into every animal
@@ -132,7 +132,7 @@ public class BremenMask extends Item implements IMaskAbility, ICurioItem {
 
     @Override
     public void onUnequip(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        ICurioItem.super.onUnequip(identifier, index, livingEntity, stack);
+        super.onUnequip(identifier, index, livingEntity, stack);
         if (livingEntity instanceof Player player && isPlayerUsingAbility(player)) {
             stopUsingAbility(player);
         }

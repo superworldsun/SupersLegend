@@ -17,9 +17,9 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 
-public class PostmansHat extends Item implements ICurioItem {
+public class PostmansHat extends GeoCurioMaskItem {
     public PostmansHat(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "postmans_hat");
     }
 
     @OnlyIn(Dist.CLIENT)

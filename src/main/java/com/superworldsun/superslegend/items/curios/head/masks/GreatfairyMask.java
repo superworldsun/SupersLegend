@@ -13,9 +13,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class GreatfairyMask extends Item implements ICurioItem {
+public class GreatfairyMask extends GeoCurioMaskItem {
     public GreatfairyMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "great_fairy_mask");
     }
 
 

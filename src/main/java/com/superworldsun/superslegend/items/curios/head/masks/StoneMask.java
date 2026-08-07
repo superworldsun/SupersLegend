@@ -21,9 +21,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class StoneMask extends Item implements ICurioItem {
+public class StoneMask extends GeoCurioMaskItem {
     public StoneMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "stone_mask");
     }
 
 

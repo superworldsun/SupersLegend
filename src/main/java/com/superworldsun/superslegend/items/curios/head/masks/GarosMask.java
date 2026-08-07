@@ -13,9 +13,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class GarosMask extends Item implements ICurioItem {
+public class GarosMask extends GeoCurioMaskItem {
     public GarosMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "garos_mask");
     }
 
     @OnlyIn(Dist.CLIENT)

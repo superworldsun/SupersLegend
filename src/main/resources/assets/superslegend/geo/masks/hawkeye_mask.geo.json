@@ -1,0 +1,38 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 32,
+				"texture_height": 32,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "bipedHead",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "armorHead",
+					"parent": "bipedHead",
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-1.98688, 24, -5.31469], "size": [2, 3, 0], "pivot": [-0.02037, 26, -5.18969], "rotation": [-10.34527, 14.76689, -2.66399], "uv": [4, 16]},
+						{"origin": [-5.01356, 24, -5.09233], "size": [5, 8, 0], "pivot": [-0.21356, 27, -5.09233], "rotation": [0, 15, 0], "uv": [0, 0]},
+						{"origin": [-8.85, 24, -3.85], "size": [4, 8, 0], "pivot": [-4.85, 28, -3.85], "rotation": [0, 60, 0], "uv": [10, 8]},
+						{"origin": [-6.85, 28, -3.85], "size": [2, 1, 0], "pivot": [-4.85, 28, -3.85], "rotation": [0, 52.5, 0], "uv": [8, 17]},
+						{"origin": [-6.85, 26, -3.85], "size": [2, 1, 0], "pivot": [-4.85, 28, -3.85], "rotation": [0, 52.5, 0], "uv": [16, 16]},
+						{"origin": [0.0103, 24, -5.37703], "size": [5, 8, 0], "pivot": [-0.8897, 27, -5.37703], "rotation": [0, -15, 0], "uv": [0, 8]},
+						{"origin": [4.80926, 24, -3.85], "size": [4, 8, 0], "pivot": [4.80926, 28, -3.85], "rotation": [0, -60, 0], "uv": [10, 0]},
+						{"origin": [4.80926, 26, -3.85], "size": [2, 1, 0], "pivot": [4.80926, 28, -3.85], "rotation": [0, -42.5, 0], "uv": [12, 16]},
+						{"origin": [4.80926, 28, -3.85], "size": [2, 1, 0], "pivot": [4.80926, 28, -3.85], "rotation": [0, -42.5, 0], "uv": [8, 16]},
+						{"origin": [-0.05386, 24, -5.31469], "size": [2, 3, 0], "pivot": [-0.02037, 26, -5.18969], "rotation": [-10.34527, -14.76689, 2.66399], "uv": [0, 16]}
+					]
+				}
+			]
+		}
+	]
+}

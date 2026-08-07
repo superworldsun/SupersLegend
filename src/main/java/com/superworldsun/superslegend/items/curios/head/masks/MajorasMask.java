@@ -20,9 +20,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class MajorasMask extends Item implements ICurioItem {
+public class MajorasMask extends GeoCurioMaskItem {
     public MajorasMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "majoras_mask");
     }
 
     @Override

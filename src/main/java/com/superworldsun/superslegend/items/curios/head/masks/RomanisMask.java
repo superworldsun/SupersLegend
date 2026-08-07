@@ -13,9 +13,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class RomanisMask extends Item implements ICurioItem {
+public class RomanisMask extends GeoCurioMaskItem {
     public RomanisMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "romanis_mask");
     }
 
     @OnlyIn(Dist.CLIENT)

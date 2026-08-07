@@ -24,9 +24,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class GibdoMask extends Item implements ICurioItem {
+public class GibdoMask extends GeoCurioMaskItem {
     public GibdoMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "gibdo_mask");
     }
 
     // Clears targets that were acquired before the mask was equipped

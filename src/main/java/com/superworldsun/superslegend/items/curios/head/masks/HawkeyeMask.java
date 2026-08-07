@@ -13,9 +13,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class HawkeyeMask extends Item implements ICurioItem {
+public class HawkeyeMask extends GeoCurioMaskItem {
     public HawkeyeMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "hawkeye_mask");
     }
 
     @OnlyIn(Dist.CLIENT)

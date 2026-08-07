@@ -13,9 +13,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class CouplesMask extends Item implements ICurioItem {
+public class CouplesMask extends GeoCurioMaskItem {
     public CouplesMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "couples_mask");
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -13,6 +13,7 @@ import com.superworldsun.superslegend.client.model.player.GoronPlayerModel;
 import com.superworldsun.superslegend.client.model.player.ZoraPlayerModel;
 import com.superworldsun.superslegend.client.render.blocks.*;
 import com.superworldsun.superslegend.client.render.curio.head.AllNightMaskRenderer;
+import com.superworldsun.superslegend.client.render.curio.head.GeoCurioMaskRenderer;
 import com.superworldsun.superslegend.client.screen.PostboxScreen;
 import com.superworldsun.superslegend.client.screen.RupeeTradeScreen;
 import com.superworldsun.superslegend.registries.BlockEntityInit;
@@ -34,6 +35,27 @@ public class ClientModHandler {
             MenuScreens.register(MenuTypeInit.POSTBOX_MENU.get(), PostboxScreen::new);
             MenuScreens.register(MenuTypeInit.RUPEE_TRADE_MENU.get(), RupeeTradeScreen::new);
             CuriosRendererRegistry.register(ItemInit.MASK_ALLNIGHTMASK.get(), AllNightMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_BLASTMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_BREMANMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_BUNNYHOOD.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_GREATFAIRYMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_KEATONMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_POSTMANSHAT.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_COUPLESMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_GAROSMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_GIANTSMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_GIBDOMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.GNAT_HAT.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_HAWKEYEMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_KAFEISMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_KAMAROSMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_MAJORASMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_MASKOFSCENTS.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_MASKOFTRUTH.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_MOONMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_ROMANISMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_STONEMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_TROUPELEADERSMASK.get(), GeoCurioMaskRenderer::new);
         });
     }
 

@@ -18,9 +18,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class BlastMask extends Item implements IMaskAbility, ICurioItem {
+public class BlastMask extends GeoCurioMaskItem implements IMaskAbility {
     public BlastMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "blast_mask");
     }
 
     public void startUsingAbility(Player player)

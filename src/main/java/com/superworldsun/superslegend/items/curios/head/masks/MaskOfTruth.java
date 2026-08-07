@@ -27,9 +27,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
-public class MaskOfTruth extends Item implements ICurioItem {
+public class MaskOfTruth extends GeoCurioMaskItem {
     public MaskOfTruth(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "mask_of_truth");
     }
 
     private static final String[] BEE_SPEECHES = { "BZZZZ off, im working here", "I only work for my queen" };

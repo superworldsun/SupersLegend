@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class GiantsMask extends Item implements ICurioItem {
+public class GiantsMask extends GeoCurioMaskItem {
     private static final float MANA_COST_PER_TICK = 0.01F;
     private static final int MAGIC_DRAIN_INTERVAL = 5;
     private static final int TRANSITION_TICKS = 20;
@@ -59,7 +59,7 @@ public class GiantsMask extends Item implements ICurioItem {
     private static final Map<Player, Integer> SERVER_LAST_LANDING_TICKS = new WeakHashMap<>();
 
     public GiantsMask(Properties properties) {
-        super(properties);
+        super(properties, "giants_mask");
     }
 
     @Override
@@ -92,7 +92,6 @@ public class GiantsMask extends Item implements ICurioItem {
 
     @Override
     public void onEquip(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        ICurioItem.super.onEquip(identifier, index, livingEntity, stack);
         if (livingEntity instanceof Player player && !player.level().isClientSide) {
             applyTransformation(player, MagicProvider.hasMagic(player, MANA_COST_PER_TICK));
         }
@@ -100,7 +99,6 @@ public class GiantsMask extends Item implements ICurioItem {
 
     @Override
     public void onUnequip(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        ICurioItem.super.onUnequip(identifier, index, livingEntity, stack);
         if (livingEntity.level().isClientSide) {
             return;
         }

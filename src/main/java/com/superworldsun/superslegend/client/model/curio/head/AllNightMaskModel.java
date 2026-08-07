@@ -8,7 +8,7 @@ import software.bernie.geckolib.model.GeoModel;
 public class AllNightMaskModel extends GeoModel<AllNightMask> {
     @Override
     public ResourceLocation getModelResource(AllNightMask animatable) {
-        return new ResourceLocation(SupersLegendMain.MOD_ID, "geo/all_night_mask.geo.json");
+        return new ResourceLocation(SupersLegendMain.MOD_ID, "geo/masks/all_night_mask.geo.json");
     }
 
     @Override

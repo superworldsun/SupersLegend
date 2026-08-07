@@ -17,9 +17,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class TroupeLeadersMask extends Item implements ICurioItem {
+public class TroupeLeadersMask extends GeoCurioMaskItem {
     public TroupeLeadersMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "troupe_leaders_mask");
     }
 
     @Override

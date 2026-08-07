@@ -17,9 +17,9 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 
-public class KeatonMask extends Item implements ICurioItem {
+public class KeatonMask extends GeoCurioMaskItem {
     public KeatonMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "keaton_mask");
     }
 
     @OnlyIn(Dist.CLIENT)

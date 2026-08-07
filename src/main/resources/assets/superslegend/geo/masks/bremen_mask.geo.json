@@ -1,0 +1,33 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.AllNightMaskModel",
+				"texture_width": 32,
+				"texture_height": 32,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "bipedHead",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "armorHead",
+					"parent": "bipedHead",
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-2.5, 26, -6.5], "size": [5, 4, 1], "uv": [0, 0]},
+						{"origin": [4.25, 25.5, -9], "size": [0, 6, 8], "pivot": [4.75, 28.5, -4], "rotation": [0, 45, 0], "uv": [0, 6]},
+						{"origin": [-4.25, 25.5, -9], "size": [0, 6, 8], "pivot": [-4.75, 28.5, -4], "rotation": [0, -45, 0], "uv": [0, 0]},
+						{"origin": [-1, 26.25, -8.25], "size": [2, 2, 2], "pivot": [0, 27.75, -5.75], "rotation": [22.5, 0, 0], "uv": [10, 3]},
+						{"origin": [-0.75, 27.25, -9.25], "size": [1.5, 1.5, 2], "pivot": [0, 27.75, -5.75], "rotation": [45, 0, 0], "uv": [0, 5]}
+					]
+				}
+			]
+		}
+	]
+}

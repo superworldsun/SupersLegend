@@ -24,7 +24,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class MaskOfScentsMask extends Item implements ICurioItem {
+public class MaskOfScentsMask extends GeoCurioMaskItem {
     private static final TagKey<Block> SCENT_DETECTABLE_MUSHROOMS = TagKey.create(
             Registries.BLOCK,
             new ResourceLocation(SupersLegendMain.MOD_ID, "mask_of_scents_detectable")
@@ -37,7 +37,7 @@ public class MaskOfScentsMask extends Item implements ICurioItem {
     private static final int FAR_OINK_INTERVAL_TICKS = 50;
 
     public MaskOfScentsMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "mask_of_scents");
     }
 
     @Override

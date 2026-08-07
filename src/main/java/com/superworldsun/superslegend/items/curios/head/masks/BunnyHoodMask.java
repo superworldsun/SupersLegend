@@ -20,9 +20,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class BunnyHoodMask extends Item implements ICurioItem {
+public class BunnyHoodMask extends GeoCurioMaskItem {
     public BunnyHoodMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "bunny_hood");
     }
 
     @Override
