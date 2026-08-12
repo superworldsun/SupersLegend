@@ -1,7 +1,9 @@
 package com.superworldsun.superslegend.blocks;
 
+import com.superworldsun.superslegend.fluid.LoggedFluid;
 import com.superworldsun.superslegend.registries.BlockInit;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,20 +20,33 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class TorchTowerTopLit extends Block
+public class TorchTowerTopLit extends Block implements SimpleWaterloggedBlock
 
 {
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 13.0D, 9.0D, 13.0D);
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public TorchTowerTopLit(Properties properties) {
         super(properties);
+        registerDefaultState(stateDefinition.any().setValue(WATERLOGGED, false));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(WATERLOGGED);
     }
 
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
@@ -46,6 +61,9 @@ public class TorchTowerTopLit extends Block
 
     public void animateTick(@NotNull BlockState pState, Level level, BlockPos pos, @NotNull RandomSource rand)
     {
+        if (BaseTorchTower.isSubmerged(pState)) {
+            return;
+        }
         double d0 = (double)pos.getX() + 0.5D;
         double d1 = (double)pos.getY() + 0.5D;
         double d2 = (double)pos.getZ() + 0.5D;
@@ -110,17 +128,7 @@ public class TorchTowerTopLit extends Block
     public @NotNull InteractionResult use(@NotNull BlockState blockstate, @NotNull Level worldIn, @NotNull BlockPos pos, Player playerentity, @NotNull InteractionHand hand, @NotNull BlockHitResult blocktrace) {
         ItemStack itemstack = playerentity.getItemInHand(hand);
         Item item = itemstack.getItem();
-        if (item != Items.WATER_BUCKET)
-        {
-            return super.use(blockstate, worldIn, pos, playerentity, hand, blocktrace);
-        }
-        else
-        {
-            worldIn.setBlock(pos, BlockInit.TORCH_TOWER_TOP_UNLIT.get().defaultBlockState(), 1);
-            worldIn.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-
-            return InteractionResult.sidedSuccess(worldIn.isClientSide);
-        }
+        return super.use(blockstate, worldIn, pos, playerentity, hand, blocktrace);
     }
 
     @Override
@@ -137,8 +145,29 @@ public class TorchTowerTopLit extends Block
 
     @Override
     public void onPlace(@NotNull BlockState blockState, Level world, BlockPos blockPos, @NotNull BlockState oldBlockState, boolean b) {
+        super.onPlace(blockState, world, blockPos, oldBlockState, b);
+        if (!world.isClientSide && BaseTorchTower.isSubmerged(blockState)) {
+            BaseTorchTower.setTopLit(world, blockPos, false);
+            return;
+        }
+        BaseTorchTower.topPlaced(world, blockPos, oldBlockState, blockState, true);
+    }
 
-//        world.setBlockAndUpdate(blockPos.below(), BlockInit.TORCH_TOWER.get().defaultBlockState().setValue(OUTPUT_POWER, 15));
-        world.setBlockAndUpdate(blockPos, BlockInit.TORCH_TOWER_TOP_LIT.get().defaultBlockState());
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockState state = defaultBlockState();
+        FluidState fluid = context.getLevel().getFluidState(context.getClickedPos());
+        return LoggedFluid.isSupported(fluid.getType()) ? LoggedFluid.fill(state, fluid.getType()) : state;
+    }
+
+    @Override
+    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction,
+                                            @NotNull BlockState neighborState, @NotNull LevelAccessor level,
+                                            @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+        if (BaseTorchTower.isSubmerged(state)) {
+            FluidState fluid = LoggedFluid.getFluidState(state);
+            level.scheduleTick(pos, fluid.getType(), fluid.getType().getTickDelay(level));
+        }
+        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
 }
