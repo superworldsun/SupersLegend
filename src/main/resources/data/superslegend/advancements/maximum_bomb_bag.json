@@ -1,0 +1,33 @@
+{
+    "parent":  "superslegend:fully_equipped",
+    "display":  {
+                    "title":  {
+                                  "text":  "Demolition Expert",
+                                  "color":  "red"
+                              },
+                    "description":  {
+                                        "text":  "Obtain the Biggest Bomb Bag"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:biggest_bomb_bag"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "max_bomb_bag":  {
+                                          "trigger":  "minecraft:inventory_changed",
+                                          "conditions":  {
+                                                             "items":  [
+                                                                           {
+                                                                               "items":  [
+                                                                                             "superslegend:biggest_bomb_bag"
+                                                                                         ]
+                                                                           }
+                                                                       ]
+                                                         }
+                                      }
+                 }
+}

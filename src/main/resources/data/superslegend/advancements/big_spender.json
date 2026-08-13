@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:regular_customer",
+    "display":  {
+                    "title":  {
+                                  "text":  "Big Spender",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Spend 1,000 rupees through trading"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:silver_rupee"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "spent_rupees":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

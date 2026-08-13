@@ -2,8 +2,10 @@ package com.superworldsun.superslegend.entities.projectiles.hooks;
 
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.capability.hookshot.HookModel;
 import com.superworldsun.superslegend.entities.HeartEntity;
+import com.superworldsun.superslegend.entities.GoldSkulltulaTokenEntity;
 import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.events.HookshotPullPoseEvents;
@@ -19,6 +21,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -48,6 +51,7 @@ public class LongshotEntity extends AbstractArrow {
     private static final double CARRIED_RETURN_SPEED_MULTIPLIER = 0.65D;
     private static final double TARGET_FOLLOW_CORRECTION = 0.75D;
     private static final double TARGET_ARRIVAL_DISTANCE_SQR = 0.04D;
+    private static final double ADVANCEMENT_PULL_DISTANCE_SQR = 30.0D * 30.0D;
 
     /**
      * useBlockList serves to enable or disable the block list that can be hooked on the hook.
@@ -74,6 +78,7 @@ public class LongshotEntity extends AbstractArrow {
     private Vec3 launchPosition;
     private boolean motionUp = false;
     private double prevDistance = 30D;
+    private Vec3 advancementPullStart;
 
 
     public LongshotEntity(EntityType<? extends AbstractArrow> type, LivingEntity owner, Level world) {
@@ -181,6 +186,7 @@ public class LongshotEntity extends AbstractArrow {
 
                 if (owner.getMainHandItem() == stack || owner.getOffhandItem() == stack) {
                     if (isPulling) { //Movement start
+                        checkPullTravelAdvancement();
                         Entity target = owner;
                         Entity origin = this;
 
@@ -255,8 +261,20 @@ public class LongshotEntity extends AbstractArrow {
                         prevDistance = distance.length();
 
                         //Take the entity if it is an item and check that it is in your inventory to kill the hook.
-                        if(hookedEntity instanceof ItemEntity){
-                            if(owner.getInventory().add(((ItemEntity) hookedEntity).getItem())) {
+                        if(hookedEntity instanceof ItemEntity item){
+                            boolean collected;
+                            if (item instanceof GoldSkulltulaTokenEntity token) {
+                                collected = token.collectWithRemoteTool(owner);
+                            } else {
+                                int countBeforePickup = item.getItem().getCount();
+                                item.setNoPickUpDelay();
+                                item.playerTouch(owner);
+                                collected = !item.isAlive() || item.getItem().getCount() < countBeforePickup;
+                            }
+                            if(collected) {
+                                if (owner instanceof ServerPlayer serverPlayer) {
+                                    ModAdvancementHelper.award(serverPlayer, "hooked_delivery", "picked_up_item");
+                                }
                                 LONG_SPRITE = false;
                                 HookModel.get(owner).setHasHook(false);
                                 kill();
@@ -277,6 +295,9 @@ public class LongshotEntity extends AbstractArrow {
     }
 
     private void beginRetrieving(Entity target) {
+        if (target instanceof GoldSkulltulaTokenEntity token) {
+            token.markRemoteToolPickup();
+        }
         hookedEntity = target;
         entityData.set(HOOKED_ENTITY_ID, target.getId() + 1);
         entityData.set(RETRIEVING, true);
@@ -439,8 +460,18 @@ public class LongshotEntity extends AbstractArrow {
             Vec3 attachmentPosition = getRetrievalAttachmentPosition(target);
             target.setPos(attachmentPosition.x, attachmentPosition.y, attachmentPosition.z);
             if (target instanceof ItemEntity item) {
-                item.setNoPickUpDelay();
-                item.playerTouch(owner);
+                int countBeforePickup = item.getItem().getCount();
+                boolean collected;
+                if (item instanceof GoldSkulltulaTokenEntity token) {
+                    collected = token.collectWithRemoteTool(owner);
+                } else {
+                    item.setNoPickUpDelay();
+                    item.playerTouch(owner);
+                    collected = !item.isAlive() || item.getItem().getCount() < countBeforePickup;
+                }
+                if (collected && owner instanceof ServerPlayer serverPlayer) {
+                    ModAdvancementHelper.award(serverPlayer, "hooked_delivery", "picked_up_item");
+                }
             } else if (target instanceof HeartEntity heart) {
                 heart.throwTime = 0;
                 heart.playerTouch(owner);
@@ -555,6 +586,9 @@ public class LongshotEntity extends AbstractArrow {
         if (!level().isClientSide && owner != null && hookedEntity == null) {
             setPulling(true);
             owner.setNoGravity(true);
+            if (owner instanceof ServerPlayer serverPlayer) {
+                ModAdvancementHelper.award(serverPlayer, "hooked_a_block", "hooked_block");
+            }
         }
     }
 
@@ -704,6 +738,11 @@ public class LongshotEntity extends AbstractArrow {
     }
 
     private void setPulling(boolean pulling) {
+        if (pulling && !isPulling && owner != null) {
+            advancementPullStart = owner.position();
+        } else if (!pulling) {
+            advancementPullStart = null;
+        }
         isPulling = pulling;
         entityData.set(PULLING, pulling);
         if (owner != null) {
@@ -712,6 +751,15 @@ public class LongshotEntity extends AbstractArrow {
             } else {
                 HookshotPullPoseEvents.release(owner);
             }
+        }
+    }
+
+    private void checkPullTravelAdvancement() {
+        if (hookedEntity == null && advancementPullStart != null
+                && owner instanceof ServerPlayer serverPlayer
+                && owner.position().distanceToSqr(advancementPullStart) >= ADVANCEMENT_PULL_DISTANCE_SQR) {
+            ModAdvancementHelper.award(serverPlayer, "hooked_on_travel", "thirty_blocks");
+            advancementPullStart = null;
         }
     }
 

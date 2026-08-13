@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:weight_of_emptiness",
+    "display":  {
+                    "title":  {
+                                  "text":  "Done already?",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Use the Song of Double Time, then finish and collect a smelted or brewed item while time is accelerated"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:song_of_double_time_sheet"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "collected_result":  {
+                                              "trigger":  "minecraft:impossible"
+                                          }
+                 }
+}

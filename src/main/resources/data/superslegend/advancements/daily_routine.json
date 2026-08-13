@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:a_heros_allowance",
+    "display":  {
+                    "title":  {
+                                  "text":  "Daily Routine",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Complete Daily Quests on seven different days"
+                                    },
+                    "icon":  {
+                                 "item":  "minecraft:clock"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "seven_days":  {
+                                        "trigger":  "minecraft:impossible"
+                                    }
+                 }
+}

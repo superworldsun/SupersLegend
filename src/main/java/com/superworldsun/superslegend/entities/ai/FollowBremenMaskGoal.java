@@ -1,9 +1,11 @@
 package com.superworldsun.superslegend.entities.ai;
 
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -393,6 +395,10 @@ public class FollowBremenMaskGoal extends Goal {
         // Once every chick has grown, the result is permanent. Removing the temporary
         // state without restoring the saved ages commits all of them as adults.
         CHICK_TRANSFORMATIONS.remove(playerId);
+        ServerPlayer player = serverLevel.getServer().getPlayerList().getPlayer(playerId);
+        if (player != null) {
+            ModAdvancementHelper.award(player, "march_of_the_chicks", "ten_adult_chickens");
+        }
     }
 
     private static void revertChickTransformations(ServerLevel serverLevel, UUID playerId) {

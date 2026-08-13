@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:root",
+    "display":  {
+                    "title":  {
+                                  "text":  "Equipment",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  ""
+                                    },
+                    "icon":  {
+                                 "item":  "minecraft:bow"
+                             },
+                    "frame":  "task",
+                    "show_toast":  false,
+                    "announce_to_chat":  false,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "branch":  {
+                                    "trigger":  "minecraft:tick"
+                                }
+                 }
+}

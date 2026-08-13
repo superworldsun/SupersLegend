@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:elemental_arsenal",
+    "display":  {
+                    "title":  {
+                                  "text":  "Light in the Dark",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  "Strike an undead mob with a Light Arrow"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:magic_light_arrow"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "hit_undead":  {
+                                        "trigger":  "minecraft:impossible"
+                                    }
+                 }
+}

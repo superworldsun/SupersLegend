@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:fully_equipped",
+    "display":  {
+                    "title":  {
+                                  "text":  "Lynel Barrage",
+                                  "color":  "dark_red"
+                              },
+                    "description":  {
+                                        "text":  "Hit at least 3 different entities with one shot from either Lynel Bow"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:lynel_bow_x3"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "three_targets_one_volley":  {
+                                                      "trigger":  "minecraft:impossible"
+                                                  }
+                 }
+}

@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:against_the_clock",
+    "display":  {
+                    "title":  {
+                                  "text":  "Maestro of Time",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Collect every song sheet"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:all_songs_sheet"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "all_songs":  {
+                                       "trigger":  "minecraft:impossible"
+                                   }
+                 }
+}

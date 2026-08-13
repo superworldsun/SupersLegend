@@ -1,9 +1,11 @@
 package com.superworldsun.superslegend.items.weapons.shield;
 
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.TooltipFlag;
@@ -16,6 +18,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 public class SacredShield extends ShieldItem
 {
+    private static final String TOTAL_HEALED_TAG = "SupersLegendSacredShieldTotalHealed";
     private static final int HEAL_INTERVAL = 200; // 5 seconds (20 ticks per second)
     private static final int HEAL_AMOUNT = 1; // Amount of damage healed per interval
     private int ticksSinceLastHeal = 0;
@@ -45,6 +48,11 @@ public class SacredShield extends ShieldItem
 
                     // Heal the shield by reducing its damage
                     stack.setDamageValue(stack.getDamageValue() - damageToHeal);
+                    int totalHealed = stack.getOrCreateTag().getInt(TOTAL_HEALED_TAG) + damageToHeal;
+                    stack.getOrCreateTag().putInt(TOTAL_HEALED_TAG, totalHealed);
+                    if (totalHealed >= 150 && player instanceof ServerPlayer serverPlayer) {
+                        ModAdvancementHelper.award(serverPlayer, "sacred_restoration", "healed_150_durability");
+                    }
                 }
             }
     }

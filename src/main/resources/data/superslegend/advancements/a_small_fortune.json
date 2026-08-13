@@ -1,0 +1,33 @@
+{
+    "parent":  "superslegend:obtain_purple_rupee",
+    "display":  {
+                    "title":  {
+                                  "text":  "A Small Fortune",
+                                  "color":  "gray"
+                              },
+                    "description":  {
+                                        "text":  "Obtain a Silver Rupee"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:silver_rupee"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "silver_rupee":  {
+                                          "trigger":  "minecraft:inventory_changed",
+                                          "conditions":  {
+                                                             "items":  [
+                                                                           {
+                                                                               "items":  [
+                                                                                             "superslegend:silver_rupee"
+                                                                                         ]
+                                                                           }
+                                                                       ]
+                                                         }
+                                      }
+                 }
+}

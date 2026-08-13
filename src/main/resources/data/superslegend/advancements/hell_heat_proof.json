@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:obtain_goron_tunic",
+    "display":  {
+                    "title":  {
+                                  "text":  "Dressed for Hell",
+                                  "color":  "red"
+                              },
+                    "description":  {
+                                        "text":  "Wear enough armor to withstand the Nether\u0027s hell heat"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:flamebreaker_tunic"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "withstood_hell_heat":  {
+                                                 "trigger":  "minecraft:impossible"
+                                             }
+                 }
+}

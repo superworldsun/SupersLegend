@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:its_dangerous_to_go_alone",
+    "display":  {
+                    "title":  {
+                                  "text":  "Fully Equipped",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Carry a sword, shield, bow, bombs, and an ocarina at the same time"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:hylian_shield"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "full_loadout":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

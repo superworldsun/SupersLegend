@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.magic;
 
 import com.superworldsun.superslegend.Config;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.core.BlockPos;
@@ -13,6 +14,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -22,6 +24,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
@@ -344,7 +347,12 @@ public class DekuMagicBubbleEntity extends AbstractHurtingProjectile implements 
             DamageSource damageSource = owner instanceof LivingEntity livingOwner
                     ? level().damageSources().mobProjectile(this, livingOwner)
                     : level().damageSources().magic();
-            result.getEntity().hurt(damageSource, getDamage());
+            boolean damaged = result.getEntity().hurt(damageSource, getDamage());
+            if (damaged && owner instanceof ServerPlayer player
+                    && result.getEntity() instanceof Mob
+                    && player.distanceTo(result.getEntity()) >= 10.0F) {
+                ModAdvancementHelper.award(player, "long_distance_bubble", "distant_hit");
+            }
         }
         pop(true);
     }

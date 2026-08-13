@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:five_hop_finish",
+    "display":  {
+                    "title":  {
+                                  "text":  "Like a Leaf on the Wind",
+                                  "color":  "green"
+                              },
+                    "description":  {
+                                        "text":  "Glide 12 blocks from a Deku Flower"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:deku_flower_block"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "glide_distance":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

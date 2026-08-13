@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:wallet_2000_rupees",
+    "display":  {
+                    "title":  {
+                                  "text":  "A Giant Fortune",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Hold 5,000 rupees in your equipped wallet"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:giants_wallet"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "balance":  {
+                                     "trigger":  "minecraft:impossible"
+                                 }
+                 }
+}

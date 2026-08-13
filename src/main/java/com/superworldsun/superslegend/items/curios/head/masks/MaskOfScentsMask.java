@@ -1,6 +1,8 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -57,6 +59,9 @@ public class MaskOfScentsMask extends GeoCurioMaskItem {
             // Finding a new scent should produce feedback immediately instead of retaining an old cooldown.
             player.getPersistentData().putLong(NEXT_OINK_TIME, gameTime);
             return;
+        }
+        if (player instanceof ServerPlayer serverPlayer) {
+            ModAdvancementHelper.award(serverPlayer, "nose_for_magic", "found_mushroom");
         }
 
         if (gameTime < player.getPersistentData().getLong(NEXT_OINK_TIME)) {

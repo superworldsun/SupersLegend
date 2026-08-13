@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:root",
+    "display":  {
+                    "title":  {
+                                  "text":  "Magic Items",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  ""
+                                    },
+                    "icon":  {
+                                 "item":  "minecraft:blaze_powder"
+                             },
+                    "frame":  "task",
+                    "show_toast":  false,
+                    "announce_to_chat":  false,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "branch":  {
+                                    "trigger":  "minecraft:tick"
+                                }
+                 }
+}

@@ -1,0 +1,33 @@
+{
+    "parent":  "superslegend:branch_09_exploration",
+    "display":  {
+                    "title":  {
+                                  "text":  "Shadow in the Stone",
+                                  "color":  "dark_purple"
+                              },
+                    "description":  {
+                                        "text":  "Obtain Dark Ore"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:dark_ore"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "dark_ore":  {
+                                      "trigger":  "minecraft:inventory_changed",
+                                      "conditions":  {
+                                                         "items":  [
+                                                                       {
+                                                                           "items":  [
+                                                                                         "superslegend:dark_ore"
+                                                                                     ]
+                                                                       }
+                                                                   ]
+                                                     }
+                                  }
+                 }
+}

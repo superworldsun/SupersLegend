@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:obtain_clay_mask",
+    "display":  {
+                    "title":  {
+                                  "text":  "Aquatic Transformation",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Wear the Zora Mask for the first time"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_zoramask"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "wore_mask":  {
+                                       "trigger":  "minecraft:impossible"
+                                   }
+                 }
+}

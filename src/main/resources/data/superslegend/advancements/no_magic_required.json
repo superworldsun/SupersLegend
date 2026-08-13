@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:branch_06_magic",
+    "display":  {
+                    "title":  {
+                                  "text":  "No Magic Required",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Completely empty your magic meter"
+                                    },
+                    "icon":  {
+                                 "item":  "minecraft:experience_bottle"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "emptied_magic":  {
+                                           "trigger":  "minecraft:impossible"
+                                       }
+                 }
+}

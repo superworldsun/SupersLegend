@@ -1,0 +1,31 @@
+{
+    "parent":  "superslegend:gone_fishing",
+    "display":  {
+                    "title":  {
+                                  "text":  "Legendary Angler",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Catch a Hylian Loach"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:hylian_loach"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "hylian_loach":  {
+                                          "trigger":  "minecraft:fishing_rod_hooked",
+                                          "conditions":  {
+                                                             "item":  {
+                                                                          "items":  [
+                                                                                        "superslegend:hylian_loach"
+                                                                                    ]
+                                                                      }
+                                                         }
+                                      }
+                 }
+}

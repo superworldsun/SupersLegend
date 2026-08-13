@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:storm_warning",
+    "display":  {
+                    "title":  {
+                                  "text":  "Call of the Wild",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Call your horse with Epona\u0027s Song"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:eponas_song_sheet"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "called_epona":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

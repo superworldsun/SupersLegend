@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.interfaces;
 
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.HashSet;
@@ -22,6 +24,9 @@ public interface IMaskAbility
     default void startUsingAbility(Player player)
     {
         PLAYERS_USING_MASKS.add(player);
+        if (player instanceof ServerPlayer serverPlayer) {
+            ModAdvancementHelper.award(serverPlayer, "a_familiar_face", "used_mask");
+        }
     };
 
     default void stopUsingAbility(Player player)

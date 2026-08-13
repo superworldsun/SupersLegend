@@ -1,0 +1,33 @@
+{
+    "parent":  "superslegend:obtain_red_rupee",
+    "display":  {
+                    "title":  {
+                                  "text":  "Royal Wealth",
+                                  "color":  "light_purple"
+                              },
+                    "description":  {
+                                        "text":  "Obtain a Purple Rupee"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:purple_rupee"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "purple_rupee":  {
+                                          "trigger":  "minecraft:inventory_changed",
+                                          "conditions":  {
+                                                             "items":  [
+                                                                           {
+                                                                               "items":  [
+                                                                                             "superslegend:purple_rupee"
+                                                                                         ]
+                                                                           }
+                                                                       ]
+                                                         }
+                                      }
+                 }
+}

@@ -1,0 +1,15 @@
+{
+    "parent": "superslegend:full_dark_tunic_set",
+    "display": {
+        "title": { "text": "Unbridled Power", "color": "red" },
+        "description": { "text": "Wear the full Barbarian Armor set" },
+        "icon": { "item": "superslegend:barbarian_armor" },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "equipped_set": { "trigger": "minecraft:impossible" }
+    }
+}

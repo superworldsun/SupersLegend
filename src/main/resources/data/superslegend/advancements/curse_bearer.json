@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:a_cursed_appraisal",
+    "display":  {
+                    "title":  {
+                                  "text":  "Curse Bearer",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Wear the Cursed Ring for a full Minecraft day"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:cursed_ring"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "full_day":  {
+                                      "trigger":  "minecraft:impossible"
+                                  }
+                 }
+}

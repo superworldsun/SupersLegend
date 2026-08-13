@@ -3,6 +3,7 @@ package com.superworldsun.superslegend.items.item;
 import java.util.List;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.events.PlayerHealthEvents;
 
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -14,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -39,6 +41,12 @@ public class HeartContainer extends Item {
 			return InteractionResultHolder.fail(stack);
 		} else {
 			PlayerHealthEvents.addBaseHealthModifier(player, 2F);
+			if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
+				ModAdvancementHelper.award(serverPlayer, "a_heartier_hero", "increased_health");
+				if (PlayerHealthEvents.getBaseHealth(player) >= 40.0D) {
+					ModAdvancementHelper.award(serverPlayer, "twenty_hearts", "maximum_health");
+				}
+			}
 			if (!player.getAbilities().instabuild) stack.shrink(1);
 			BlockPos pos = player.blockPosition();
 			level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundInit.HEART.get(), SoundSource.PLAYERS, 1f, 1f);

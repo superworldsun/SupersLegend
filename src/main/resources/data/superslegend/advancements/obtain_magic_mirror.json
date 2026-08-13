@@ -1,0 +1,28 @@
+{
+    "display":  {
+                    "title":  {
+                                  "text":  "Back to the Surface",
+                                  "color":  "white",
+                                  "bold":  false,
+                                  "italic":  false,
+                                  "underlined":  false,
+                                  "strikethrough":  false
+                              },
+                    "description":  {
+                                        "text":  "Use the Magic Mirror to escape a cave"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:magic_mirror"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  true
+                },
+    "criteria":  {
+                     "escaped_cave":  {
+                                           "trigger":  "minecraft:impossible"
+                                       }
+                 },
+    "parent":  "superslegend:magnetic_personality"
+}

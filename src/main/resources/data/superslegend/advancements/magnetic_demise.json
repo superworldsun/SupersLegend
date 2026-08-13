@@ -1,0 +1,24 @@
+{
+    "parent": "superslegend:magnetic_personality",
+    "display": {
+        "title": {
+            "text": "Fatal Attraction",
+            "color": "dark_red"
+        },
+        "description": {
+            "text": "Use the Magnetic Glove to pull an entity into a fatal fall or environmental hazard"
+        },
+        "icon": {
+            "item": "superslegend:magnetic_glove"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "environmental_kill": {
+            "trigger": "minecraft:impossible"
+        }
+    }
+}

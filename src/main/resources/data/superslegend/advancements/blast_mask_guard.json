@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:among_the_dead",
+    "display":  {
+                    "title":  {
+                                  "text":  "Not in the Face!",
+                                  "color":  "red"
+                              },
+                    "description":  {
+                                        "text":  "Block your own Blast Mask explosion"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_blastmask"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "blocked_own_blast":  {
+                                               "trigger":  "minecraft:impossible"
+                                           }
+                 }
+}

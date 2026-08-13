@@ -1,0 +1,34 @@
+{
+    "display":  {
+                    "title":  {
+                                  "text":  "Obtain Great Wisdom",
+                                  "color":  "aqua",
+                                  "italic":  false
+                              },
+                    "description":  {
+                                        "text":  "Using the collected Shards from mobs you\u0027ve made a great discovery."
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:triforce_wisdom"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "be_alive":  {
+                                      "trigger":  "minecraft:inventory_changed",
+                                      "conditions":  {
+                                                         "items":  [
+                                                                       {
+                                                                           "items":  [
+                                                                                         "superslegend:triforce_wisdom"
+                                                                                     ]
+                                                                       }
+                                                                   ]
+                                                     }
+                                  }
+                 },
+    "parent":  "superslegend:branch_09_exploration"
+}

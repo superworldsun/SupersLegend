@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:gold_skulltula_hunter",
+    "display":  {
+                    "title":  {
+                                  "text":  "Halfway to Salvation",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Collect 50 Gold Skulltula Tokens"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:gold_skulltula_token"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "tokens":  {
+                                    "trigger":  "minecraft:impossible"
+                                }
+                 }
+}

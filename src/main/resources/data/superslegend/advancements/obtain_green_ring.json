@@ -1,0 +1,33 @@
+{
+    "parent": "superslegend:obtain_blue_ring",
+    "display": {
+        "title": {
+            "text": "Both in Green",
+            "color": "green"
+        },
+        "description": {
+            "text": "Obtain the Green Ring"
+        },
+        "icon": {
+            "item": "superslegend:green_ring"
+        },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "obtained_ring": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "superslegend:green_ring"
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

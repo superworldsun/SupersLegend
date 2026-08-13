@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:web_burner",
+    "display":  {
+                    "title":  {
+                                  "text":  "Two-for-One Flame",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Light two Torch Towers with a single action"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:torch_tower"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "lit_two_towers":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

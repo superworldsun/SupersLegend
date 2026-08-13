@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:branch_07_tools",
+    "display":  {
+                    "title":  {
+                                  "text":  "Return to Sender",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  "Pick up an item with a boomerang"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:boomerang"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "picked_up_item":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

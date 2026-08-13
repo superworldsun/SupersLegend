@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:the_song_remains_the_same",
+    "display":  {
+                    "title":  {
+                                  "text":  "The Sun’s Song",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Use the Sun\u0027s Song to turn night into day"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:suns_song_sheet"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "turned_to_day":  {
+                                           "trigger":  "minecraft:impossible"
+                                       }
+                 }
+}

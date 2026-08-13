@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:fully_equipped",
+    "display":  {
+                    "title":  {
+                                  "text":  "Bombs Away",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Kill a foe with a Bomb Arrow"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:bomb_arrow"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "bomb_arrow_kill":  {
+                                             "trigger":  "minecraft:impossible"
+                                         }
+                 }
+}

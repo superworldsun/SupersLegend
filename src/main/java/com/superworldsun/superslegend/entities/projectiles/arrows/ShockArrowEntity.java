@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
 import com.superworldsun.superslegend.Config;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.interfaces.IShockChargeableCreeper;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
@@ -12,6 +13,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -107,6 +109,9 @@ public class ShockArrowEntity extends AbstractArrow
             if (stack.isEmpty() && entity.isAlive()) {
                 int armorPieces = getMetalicArmorPieces(livingentity);
                 setBaseDamage(normalBaseDamage * getMetalicArmorDamageMultiplier(armorPieces));
+                if (armorPieces == 4 && getOwner() instanceof ServerPlayer player) {
+                    ModAdvancementHelper.award(player, "fully_conductive", "shocked_full_metal_armor");
+                }
             }
         }
 
@@ -146,14 +151,23 @@ public class ShockArrowEntity extends AbstractArrow
                 WATER_SHOCK_RADIUS * 2.0D);
         double radiusSquared = WATER_SHOCK_RADIUS * WATER_SHOCK_RADIUS;
 
+        int entitiesHit = 0;
         for (LivingEntity target : this.level().getEntitiesOfClass(LivingEntity.class, affectedArea,
                 LivingEntity::isAlive)) {
             Vec3 targetCenter = target.getBoundingBox().getCenter();
             if (targetCenter.distanceToSqr(center) <= radiusSquared) {
                 // Do not exclude the owner, firing a Shock Arrow at nearby
                 // water is intentionally dangerous to its user as well.
-                target.hurt(this.damageSources().arrow(this, this.getOwner()), WATER_SHOCK_DAMAGE);
+                if (target.hurt(this.damageSources().arrow(this, this.getOwner()), WATER_SHOCK_DAMAGE)) {
+                    entitiesHit++;
+                    if (getMetalicArmorPieces(target) == 4 && getOwner() instanceof ServerPlayer player) {
+                        ModAdvancementHelper.award(player, "fully_conductive", "shocked_full_metal_armor");
+                    }
+                }
             }
+        }
+        if (entitiesHit >= 5 && getOwner() instanceof ServerPlayer player) {
+            ModAdvancementHelper.award(player, "chain_reaction", "five_entity_water_shock");
         }
     }
 

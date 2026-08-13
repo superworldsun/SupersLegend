@@ -1,0 +1,33 @@
+{
+    "parent":  "superslegend:pocket_change",
+    "display":  {
+                    "title":  {
+                                  "text":  "Golden Pocket Change",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  "Obtain a Yellow Rupee"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:yellow_rupee"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "yellow_rupee":  {
+                                          "trigger":  "minecraft:inventory_changed",
+                                          "conditions":  {
+                                                             "items":  [
+                                                                           {
+                                                                               "items":  [
+                                                                                             "superslegend:yellow_rupee"
+                                                                                         ]
+                                                                           }
+                                                                       ]
+                                                         }
+                                      }
+                 }
+}

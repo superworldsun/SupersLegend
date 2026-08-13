@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:triple_blast",
+    "display":  {
+                    "title":  {
+                                  "text":  "Depth Charge",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Kill an Aquatic Enemy while underwater with a Water Bomb"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:water_bomb"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "underwater_kill":  {
+                                             "trigger":  "minecraft:impossible"
+                                         }
+                 }
+}

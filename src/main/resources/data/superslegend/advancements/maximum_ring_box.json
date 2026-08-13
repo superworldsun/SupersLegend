@@ -1,0 +1,33 @@
+{
+    "parent":  "superslegend:first_appraisal",
+    "display":  {
+                    "title":  {
+                                  "text":  "A Ring for Every Occasion",
+                                  "color":  "light_purple"
+                              },
+                    "description":  {
+                                        "text":  "Obtain the largest Ring Box"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:ring_box_l3"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "max_ring_box":  {
+                                          "trigger":  "minecraft:inventory_changed",
+                                          "conditions":  {
+                                                             "items":  [
+                                                                           {
+                                                                               "items":  [
+                                                                                             "superslegend:ring_box_l3"
+                                                                                         ]
+                                                                           }
+                                                                       ]
+                                                         }
+                                      }
+                 }
+}

@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:branch_05_equipment",
+    "display":  {
+                    "title":  {
+                                  "text":  "It\u0027s Dangerous to Go Alone",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  "Obtain your first sword"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:kokiri_sword"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "obtained_sword":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

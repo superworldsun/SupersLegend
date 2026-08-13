@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:supporting_local_business",
+    "display":  {
+                    "title":  {
+                                  "text":  "Regular Customer",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Complete ten rupee trades"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:yellow_rupee"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "ten_trades":  {
+                                        "trigger":  "minecraft:impossible"
+                                    }
+                 }
+}

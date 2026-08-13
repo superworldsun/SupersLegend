@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:branch_07_tools",
+    "display":  {
+                    "title":  {
+                                  "text":  "Worth Its Weight",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Pick up an entity that requires the Golden Gauntlets"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:golden_gauntlets"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "lifted_heavy_entity":  {
+                                                 "trigger":  "minecraft:impossible"
+                                             }
+                 }
+}

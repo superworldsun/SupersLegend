@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:stone_whisperer",
+    "display":  {
+                    "title":  {
+                                  "text":  "A Perfect Match",
+                                  "color":  "light_purple"
+                              },
+                    "description":  {
+                                        "text":  "Breed two animals while wearing the Couple\u0027s Mask"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_couplesmask"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "bred_animals":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

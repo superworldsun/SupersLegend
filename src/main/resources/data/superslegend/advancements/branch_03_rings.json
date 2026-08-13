@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:root",
+    "display":  {
+                    "title":  {
+                                  "text":  "Rings",
+                                  "color":  "light_purple"
+                              },
+                    "description":  {
+                                        "text":  ""
+                                    },
+                    "icon":  {
+                                 "item":  "minecraft:ender_eye"
+                             },
+                    "frame":  "task",
+                    "show_toast":  false,
+                    "announce_to_chat":  false,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "branch":  {
+                                    "trigger":  "minecraft:tick"
+                                }
+                 }
+}

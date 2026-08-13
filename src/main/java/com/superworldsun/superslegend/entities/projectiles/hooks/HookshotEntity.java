@@ -1,8 +1,10 @@
 package com.superworldsun.superslegend.entities.projectiles.hooks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.capability.hookshot.HookModel;
 import com.superworldsun.superslegend.entities.HeartEntity;
+import com.superworldsun.superslegend.entities.GoldSkulltulaTokenEntity;
 import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.events.HookshotPullPoseEvents;
@@ -48,6 +50,7 @@ public class HookshotEntity extends AbstractArrow {
     private static final double CARRIED_RETURN_SPEED_MULTIPLIER = 0.65D;
     private static final double TARGET_FOLLOW_CORRECTION = 0.75D;
     private static final double TARGET_ARRIVAL_DISTANCE_SQR = 0.04D;
+    private static final double ADVANCEMENT_PULL_DISTANCE_SQR = 30.0D * 30.0D;
 
     private static final EntityDataAccessor<Integer> HOOKED_ENTITY_ID = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> OWNER_ENTITY_ID = SynchedEntityData.defineId(HookshotEntity.class, EntityDataSerializers.INT);
@@ -69,6 +72,7 @@ public class HookshotEntity extends AbstractArrow {
     private Vec3 launchPosition;
     private boolean motionUp = false;
     private double prevDistance = 30.D;
+    private Vec3 advancementPullStart;
 
     public HookshotEntity(EntityType<? extends AbstractArrow> type, LivingEntity owner, Level world) {
         super(type, owner, world);
@@ -172,6 +176,7 @@ public class HookshotEntity extends AbstractArrow {
 
                 if (owner.getMainHandItem() == stack || owner.getOffhandItem() == stack) {
                     if (isPulling) {
+                        checkPullTravelAdvancement();
                         performPulling();
                     }
                 } else {
@@ -185,6 +190,9 @@ public class HookshotEntity extends AbstractArrow {
     }
 
     private void beginRetrieving(Entity target) {
+        if (target instanceof GoldSkulltulaTokenEntity token) {
+            token.markRemoteToolPickup();
+        }
         hookedEntity = target;
         entityData.set(HOOKED_ENTITY_ID, target.getId() + 1);
         entityData.set(RETRIEVING, true);
@@ -347,8 +355,18 @@ public class HookshotEntity extends AbstractArrow {
             Vec3 attachmentPosition = getRetrievalAttachmentPosition(target);
             target.setPos(attachmentPosition.x, attachmentPosition.y, attachmentPosition.z);
             if (target instanceof ItemEntity item) {
-                item.setNoPickUpDelay();
-                item.playerTouch(owner);
+                int countBeforePickup = item.getItem().getCount();
+                boolean collected;
+                if (item instanceof GoldSkulltulaTokenEntity token) {
+                    collected = token.collectWithRemoteTool(owner);
+                } else {
+                    item.setNoPickUpDelay();
+                    item.playerTouch(owner);
+                    collected = !item.isAlive() || item.getItem().getCount() < countBeforePickup;
+                }
+                if (collected && owner instanceof ServerPlayer serverPlayer) {
+                    ModAdvancementHelper.award(serverPlayer, "hooked_delivery", "picked_up_item");
+                }
             } else if (target instanceof HeartEntity heart) {
                 heart.throwTime = 0;
                 heart.playerTouch(owner);
@@ -438,8 +456,20 @@ public class HookshotEntity extends AbstractArrow {
         prevDistance = distance.length();
 
         // Handle item entity being hooked
-        if (hookedEntity instanceof ItemEntity) {
-            if (owner.getInventory().add(((ItemEntity) hookedEntity).getItem())) {
+        if (hookedEntity instanceof ItemEntity item) {
+            boolean collected;
+            if (item instanceof GoldSkulltulaTokenEntity token) {
+                collected = token.collectWithRemoteTool(owner);
+            } else {
+                int countBeforePickup = item.getItem().getCount();
+                item.setNoPickUpDelay();
+                item.playerTouch(owner);
+                collected = !item.isAlive() || item.getItem().getCount() < countBeforePickup;
+            }
+            if (collected) {
+                if (owner instanceof ServerPlayer serverPlayer) {
+                    ModAdvancementHelper.award(serverPlayer, "hooked_delivery", "picked_up_item");
+                }
                 SPRITE = false;
                 HookModel.get(owner).setHasHook(false);
                 kill();
@@ -535,6 +565,9 @@ public class HookshotEntity extends AbstractArrow {
         if (!level().isClientSide() && owner != null && hookedEntity == null) {
             setPulling(true);
             owner.setNoGravity(true);
+            if (owner instanceof ServerPlayer serverPlayer) {
+                ModAdvancementHelper.award(serverPlayer, "hooked_a_block", "hooked_block");
+            }
         }
     }
 
@@ -674,6 +707,11 @@ public class HookshotEntity extends AbstractArrow {
     }
 
     private void setPulling(boolean pulling) {
+        if (pulling && !isPulling && owner != null) {
+            advancementPullStart = owner.position();
+        } else if (!pulling) {
+            advancementPullStart = null;
+        }
         isPulling = pulling;
         entityData.set(PULLING, pulling);
         if (owner != null) {
@@ -682,6 +720,15 @@ public class HookshotEntity extends AbstractArrow {
             } else {
                 HookshotPullPoseEvents.release(owner);
             }
+        }
+    }
+
+    private void checkPullTravelAdvancement() {
+        if (hookedEntity == null && advancementPullStart != null
+                && owner instanceof ServerPlayer serverPlayer
+                && owner.position().distanceToSqr(advancementPullStart) >= ADVANCEMENT_PULL_DISTANCE_SQR) {
+            ModAdvancementHelper.award(serverPlayer, "hooked_on_travel", "thirty_blocks");
+            advancementPullStart = null;
         }
     }
 

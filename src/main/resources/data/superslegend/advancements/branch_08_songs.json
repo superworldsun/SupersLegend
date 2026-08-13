@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:root",
+    "display":  {
+                    "title":  {
+                                  "text":  "Ocarinas \u0026 Songs",
+                                  "color":  "dark_aqua"
+                              },
+                    "description":  {
+                                        "text":  ""
+                                    },
+                    "icon":  {
+                                 "item":  "minecraft:note_block"
+                             },
+                    "frame":  "task",
+                    "show_toast":  false,
+                    "announce_to_chat":  false,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "branch":  {
+                                    "trigger":  "minecraft:tick"
+                                }
+                 }
+}

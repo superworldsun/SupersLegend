@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:wallet_99_rupees",
+    "display":  {
+                    "title":  {
+                                  "text":  "Savings Account",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Hold 300 rupees in your equipped wallet"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:small_wallet"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "balance":  {
+                                     "trigger":  "minecraft:impossible"
+                                 }
+                 }
+}

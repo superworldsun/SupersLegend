@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:hooked_delivery",
+    "display":  {
+                    "title":  {
+                                  "text":  "Hooked on Travel",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Travel 30 blocks while being pulled toward a hook"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:longshot"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "thirty_blocks":  {
+                                           "trigger":  "minecraft:impossible"
+                                       }
+                 }
+}

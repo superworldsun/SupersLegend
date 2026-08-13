@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:obtain_kokiri_tunic",
+    "display":  {
+                    "title":  {
+                                  "text":  "Built for the Climb",
+                                  "color":  "green"
+                              },
+                    "description":  {
+                                        "text":  "Wear the complete Climbing Gear set"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:climbing_gear"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "equipped_set":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:no_magic_required",
+    "display":  {
+                    "title":  {
+                                  "text":  "Truth Revealed",
+                                  "color":  "light_purple"
+                              },
+                    "description":  {
+                                        "text":  "Reveal an invisible mob with the Lens of Truth"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:lens_of_truth"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "revealed_mob":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

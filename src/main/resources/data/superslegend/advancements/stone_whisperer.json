@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:stone_cold_stealth",
+    "display":  {
+                    "title":  {
+                                  "text":  "Stone Whisperer",
+                                  "color":  "gray"
+                              },
+                    "description":  {
+                                        "text":  "Talk to a Gossip Stone while wearing the Mask of Truth"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_maskoftruth"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "spoke_to_stone":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

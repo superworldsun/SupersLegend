@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:first_appraisal",
+    "display":  {
+                    "title":  {
+                                  "text":  "Ring Collector",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Collect ten different appraised rings"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:appraised_ring_box"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "ten_rings":  {
+                                       "trigger":  "minecraft:impossible"
+                                   }
+                 }
+}

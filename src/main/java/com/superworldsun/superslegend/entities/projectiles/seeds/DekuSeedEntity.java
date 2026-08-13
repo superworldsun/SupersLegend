@@ -1,12 +1,16 @@
 package com.superworldsun.superslegend.entities.projectiles.seeds;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
@@ -58,6 +62,16 @@ public class DekuSeedEntity extends SeedEntity {
     @Override
     protected @NotNull ItemStack getPickupItem() {
         return new ItemStack(ItemInit.DEKU_SEEDS.get());
+    }
+
+    @Override
+    protected void onHitEntity(@NotNull EntityHitResult result) {
+        if (!level().isClientSide && result.getEntity() instanceof Mob
+                && getOwner() instanceof ServerPlayer player
+                && player.distanceToSqr(result.getEntity()) >= 2500.0D) {
+            ModAdvancementHelper.award(player, "sniper_king", "fifty_block_seed_hit");
+        }
+        super.onHitEntity(result);
     }
 
     public static EntityType<DekuSeedEntity> createEntityType() {

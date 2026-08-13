@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:first_warp_pad_trip",
+    "display":  {
+                    "title":  {
+                                  "text":  "Warp Pad Traveler",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Travel to each of the six Warp Pads"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:warp_pad"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "all_warp_pads":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

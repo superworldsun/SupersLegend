@@ -1,0 +1,15 @@
+{
+    "parent": "superslegend:full_barbarian_set",
+    "display": {
+        "title": { "text": "Desert Voe", "color": "gold" },
+        "description": { "text": "Wear the full Desert Voe Armor set" },
+        "icon": { "item": "superslegend:desert_voe_spaulder" },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "equipped_set": { "trigger": "minecraft:impossible" }
+    }
+}

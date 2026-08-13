@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:big_spender",
+    "display":  {
+                    "title":  {
+                                  "text":  "Rupee Tycoon",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Earn 10,000 rupees through trading"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:gold_rupee"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "earned_rupees":  {
+                                           "trigger":  "minecraft:impossible"
+                                       }
+                 }
+}

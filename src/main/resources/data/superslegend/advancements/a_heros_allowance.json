@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:supporting_local_business",
+    "display":  {
+                    "title":  {
+                                  "text":  "A Hero\u0027s Allowance",
+                                  "color":  "green"
+                              },
+                    "description":  {
+                                        "text":  "Earn rupees by completing a Daily Quest"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:rupee"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "daily_quest":  {
+                                         "trigger":  "minecraft:impossible"
+                                     }
+                 }
+}

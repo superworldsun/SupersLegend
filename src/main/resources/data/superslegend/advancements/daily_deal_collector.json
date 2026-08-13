@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:supporting_local_business",
+    "display":  {
+                    "title":  {
+                                  "text":  "Deal Hunter",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Purchase 20 unique Daily Deals"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:red_rupee"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "twenty_unique_deals":  {
+                                                 "trigger":  "minecraft:impossible"
+                                             }
+                 }
+}

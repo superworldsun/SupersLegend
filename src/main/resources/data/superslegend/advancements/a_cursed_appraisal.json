@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:first_appraisal",
+    "display":  {
+                    "title":  {
+                                  "text":  "A Cursed Appraisal",
+                                  "color":  "dark_purple"
+                              },
+                    "description":  {
+                                        "text":  "Open an Appraised Ring Box and receive a Cursed Ring"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:cursed_ring"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  true
+                },
+    "criteria":  {
+                     "cursed_ring":  {
+                                         "trigger":  "minecraft:impossible"
+                                     }
+                 }
+}

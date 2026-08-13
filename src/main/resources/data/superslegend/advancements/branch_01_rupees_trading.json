@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:root",
+    "display":  {
+                    "title":  {
+                                  "text":  "Rupees \u0026 Trading",
+                                  "color":  "green"
+                              },
+                    "description":  {
+                                        "text":  ""
+                                    },
+                    "icon":  {
+                                 "item":  "minecraft:emerald"
+                             },
+                    "frame":  "task",
+                    "show_toast":  false,
+                    "announce_to_chat":  false,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "branch":  {
+                                    "trigger":  "minecraft:tick"
+                                }
+                 }
+}

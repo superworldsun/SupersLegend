@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:regular_customer",
+    "display":  {
+                    "title":  {
+                                  "text":  "Merchant of Hyrule",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Trade with every supported villager profession"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:giants_wallet"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "all_professions":  {
+                                             "trigger":  "minecraft:impossible"
+                                         }
+                 }
+}

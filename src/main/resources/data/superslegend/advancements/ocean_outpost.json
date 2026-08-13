@@ -1,0 +1,37 @@
+{
+    "parent":  "superslegend:branch_09_exploration",
+    "display":  {
+                    "title":  {
+                                  "text":  "Ocean Outpost",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Discover a Lookout Platform"
+                                    },
+                    "icon":  {
+                                 "item":  "minecraft:spyglass"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "lookout_platform":  {
+                                              "trigger":  "minecraft:location",
+                                              "conditions":  {
+                                                                 "player":  [
+                                                                                {
+                                                                                    "condition":  "minecraft:entity_properties",
+                                                                                    "entity":  "this",
+                                                                                    "predicate":  {
+                                                                                                      "location":  {
+                                                                                                                       "structure":  "superslegend:ocean_structures"
+                                                                                                                   }
+                                                                                                  }
+                                                                                }
+                                                                            ]
+                                                             }
+                                          }
+                 }
+}

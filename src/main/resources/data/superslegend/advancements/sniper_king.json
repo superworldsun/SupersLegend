@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:fully_equipped",
+    "display":  {
+                    "title":  {
+                                  "text":  "Sniper King",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Hit a mob at least 50 blocks away with a Deku Seed fired from a Slingshot"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:sling_shot"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "fifty_block_seed_hit":  {
+                                                  "trigger":  "minecraft:impossible"
+                                              }
+                 }
+}

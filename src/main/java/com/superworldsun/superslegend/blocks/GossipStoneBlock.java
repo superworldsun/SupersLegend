@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.blocks;
 
 import com.superworldsun.superslegend.blocks.entity.GossipStoneBlockEntity;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.client.screen.GossipStoneScreen;
 import com.superworldsun.superslegend.registries.BlockInit;
 import net.minecraft.client.Minecraft;
@@ -90,6 +91,11 @@ public class GossipStoneBlock extends BaseEntityBlock {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof GossipStoneBlockEntity gossipStoneBlockEntity) {
                 player.sendSystemMessage((gossipStoneBlockEntity).getMessage(player));
+                if (player instanceof net.minecraft.server.level.ServerPlayer serverPlayer
+                        && top.theillusivec4.curios.api.CuriosApi.getCuriosHelper()
+                        .findEquippedCurio(com.superworldsun.superslegend.registries.ItemInit.MASK_MASKOFTRUTH.get(), player).isPresent()) {
+                    ModAdvancementHelper.award(serverPlayer, "stone_whisperer", "spoke_to_stone");
+                }
             }
         }
         return InteractionResult.SUCCESS;

@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:wallet_300_rupees",
+    "display":  {
+                    "title":  {
+                                  "text":  "Deep Pockets",
+                                  "color":  "blue"
+                              },
+                    "description":  {
+                                        "text":  "Hold 500 rupees in your equipped wallet"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:medium_wallet"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "balance":  {
+                                     "trigger":  "minecraft:impossible"
+                                 }
+                 }
+}

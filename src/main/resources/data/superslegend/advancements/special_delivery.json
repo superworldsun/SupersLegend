@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:rainy_rehearsal",
+    "display":  {
+                    "title":  {
+                                  "text":  "Special Delivery",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Lock a mailbox while wearing the Postman\u0027s Hat"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_postmanshat"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "locked_mailbox":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

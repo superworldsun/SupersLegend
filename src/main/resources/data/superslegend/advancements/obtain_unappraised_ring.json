@@ -1,0 +1,33 @@
+{
+    "parent": "superslegend:branch_03_rings",
+    "display": {
+        "title": {
+            "text": "A Mystery to Uncover",
+            "color": "light_purple"
+        },
+        "description": {
+            "text": "Collect an Unappraised Ring"
+        },
+        "icon": {
+            "item": "superslegend:unappraised_ring"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "obtained_ring": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "superslegend:unappraised_ring"
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

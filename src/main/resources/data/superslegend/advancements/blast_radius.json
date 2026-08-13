@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:blast_mask_guard",
+    "display":  {
+                    "title":  {
+                                  "text":  "Blast Radius",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Kill a foe with the Blast Mask"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_blastmask"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "blast_mask_kill":  {
+                                             "trigger":  "minecraft:impossible"
+                                         }
+                 }
+}

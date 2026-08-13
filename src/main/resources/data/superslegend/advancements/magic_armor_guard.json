@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:branch_02_armors",
+    "display":  {
+                    "title":  {
+                                  "text":  "Rupees Over Wounds",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Block damage while protected by the Magic Armor"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:magic_armor_tunic"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "blocked_damage":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

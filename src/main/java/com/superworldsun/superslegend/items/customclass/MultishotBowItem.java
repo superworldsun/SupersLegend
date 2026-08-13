@@ -19,6 +19,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import java.util.UUID;
 
 public class MultishotBowItem extends BowItem {
 	public final int arrowsShot;
@@ -51,12 +52,14 @@ public class MultishotBowItem extends BowItem {
 
 	private void shootArrows(@NotNull ItemStack stack, @NotNull Level level, Player player, ItemStack arrowStack, float power, boolean infiniteArrows) {
 		if (level.isClientSide) return;
+		UUID volleyId = UUID.randomUUID();
 		float velocity = 2.95f;
 		float inaccuracy = 1f;
 		float spread = 5f;
 		for (int i = 0; i < arrowsShot; i++) {
 			ArrowItem arrowitem = (ArrowItem) (arrowStack.getItem() instanceof ArrowItem ? arrowStack.getItem() : Items.ARROW);
 			AbstractArrow arrow = arrowitem.createArrow(level, arrowStack, player);
+			arrow.getPersistentData().putUUID("SupersLegendLynelVolley", volleyId);
 			arrow = customArrow(arrow);
 			shootArrow(arrow, player, power * velocity, inaccuracy, spread * (i - arrowsShot / 2));
 			if (power == 1) {

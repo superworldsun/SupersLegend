@@ -1,0 +1,25 @@
+{
+    "parent":  "superslegend:gold_skulltula_collector",
+    "display":  {
+                    "title":  {
+                                  "text":  "Curse Broken",
+                                  "color":  "gold",
+                                  "bold":  true
+                              },
+                    "description":  {
+                                        "text":  "Collect 100 Gold Skulltula Tokens"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:gold_skulltula_token"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "tokens":  {
+                                    "trigger":  "minecraft:impossible"
+                                }
+                 }
+}

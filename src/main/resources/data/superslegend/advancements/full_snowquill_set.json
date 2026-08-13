@@ -1,0 +1,15 @@
+{
+    "parent": "superslegend:full_desert_voe_set",
+    "display": {
+        "title": { "text": "Feathered for the Cold", "color": "aqua" },
+        "description": { "text": "Wear the full Snowquill Armor set" },
+        "icon": { "item": "superslegend:snowquill_tunic" },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "equipped_set": { "trigger": "minecraft:impossible" }
+    }
+}

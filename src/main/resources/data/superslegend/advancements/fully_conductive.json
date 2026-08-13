@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:elemental_arsenal",
+    "display":  {
+                    "title":  {
+                                  "text":  "Fully Conductive",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  "Hit an entity wearing a full set of metal armor with a Shock Arrow"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:shock_arrow"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "shocked_full_metal_armor":  {
+                                                      "trigger":  "minecraft:impossible"
+                                                  }
+                 }
+}

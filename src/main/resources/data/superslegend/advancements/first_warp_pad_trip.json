@@ -1,0 +1,24 @@
+{
+    "parent": "superslegend:the_song_remains_the_same",
+    "display": {
+        "title": {
+            "text": "Through the Warp",
+            "color": "aqua"
+        },
+        "description": {
+            "text": "Teleport to a Warp Pad"
+        },
+        "icon": {
+            "item": "superslegend:prelude_of_light_sheet"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "warp_pad_teleport": {
+            "trigger": "minecraft:impossible"
+        }
+    }
+}

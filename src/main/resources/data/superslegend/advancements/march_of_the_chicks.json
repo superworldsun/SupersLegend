@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:nose_for_magic",
+    "display":  {
+                    "title":  {
+                                  "text":  "March of the Chicks",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  "Use the Bremen Mask to turn ten chicks into adult chickens"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_bremenmask"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "ten_adult_chickens":  {
+                                                "trigger":  "minecraft:impossible"
+                                            }
+                 }
+}

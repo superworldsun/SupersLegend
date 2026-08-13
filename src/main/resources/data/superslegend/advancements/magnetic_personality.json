@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:boomerang_delivery",
+    "display":  {
+                    "title":  {
+                                  "text":  "Magnetic Personality",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Pull a living entity wearing metal armor with the Magnetic Glove"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:magnetic_glove"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "pulled_armored_entity":  {
+                                                   "trigger":  "minecraft:impossible"
+                                               }
+                 }
+}

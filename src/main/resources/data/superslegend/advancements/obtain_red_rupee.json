@@ -1,0 +1,33 @@
+{
+    "parent":  "superslegend:obtain_yellow_rupee",
+    "display":  {
+                    "title":  {
+                                  "text":  "Seeing Red",
+                                  "color":  "red"
+                              },
+                    "description":  {
+                                        "text":  "Obtain a Red Rupee"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:red_rupee"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "red_rupee":  {
+                                       "trigger":  "minecraft:inventory_changed",
+                                       "conditions":  {
+                                                          "items":  [
+                                                                        {
+                                                                            "items":  [
+                                                                                          "superslegend:red_rupee"
+                                                                                      ]
+                                                                        }
+                                                                    ]
+                                                      }
+                                   }
+                 }
+}

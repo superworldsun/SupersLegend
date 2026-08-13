@@ -2,6 +2,8 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 
 import com.superworldsun.superslegend.client.render.curio.head.AllNightMaskRenderer;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.network.chat.Component;
@@ -81,6 +83,9 @@ public class AllNightMask extends Item implements ICurioItem, GeoItem {
         }
         if (player.isSleeping())
         {
+            if (player instanceof ServerPlayer serverPlayer) {
+                ModAdvancementHelper.award(serverPlayer, "restless_night", "failed_sleep");
+            }
             player.stopSleeping();
             player.displayClientMessage(Component.literal("You feel restless").withStyle(ChatFormatting.GRAY), true);
         }

@@ -6,7 +6,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -19,7 +18,6 @@ import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
@@ -66,7 +64,7 @@ public class GibdoMask extends GeoCurioMaskItem {
         }
     }
 
-    private static boolean isEntityAffected(LivingEntity entity) {
+    public static boolean isEntityAffected(LivingEntity entity) {
         return entity.getMobType() == MobType.UNDEAD && entity.getType() != EntityType.WITHER && entity.getType() != EntityType.PHANTOM
                 && !entity.getType().is(EntityTypeTags.SKELETONS);
     }

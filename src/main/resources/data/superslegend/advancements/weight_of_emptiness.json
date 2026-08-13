@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:call_of_the_wild",
+    "display":  {
+                    "title":  {
+                                  "text":  "Weight of Emptiness",
+                                  "color":  "gray"
+                              },
+                    "description":  {
+                                        "text":  "Play the Elegy of Emptiness and place its statue on a switch or pressure plate"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:elegy_of_emptyness_sheet"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "placed_on_switch":  {
+                                              "trigger":  "minecraft:impossible"
+                                          }
+                 }
+}

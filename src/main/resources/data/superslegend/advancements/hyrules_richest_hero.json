@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:wallet_5000_rupees",
+    "display":  {
+                    "title":  {
+                                  "text":  "Hyrule\u0027s Richest Hero",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Hold 9,999 rupees in your equipped wallet"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:colossal_wallet"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "filled_wallet":  {
+                                           "trigger":  "minecraft:impossible"
+                                       }
+                 }
+}

@@ -7,6 +7,7 @@ import com.superworldsun.superslegend.songs.TimeSongSavedData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -39,6 +40,9 @@ public class SongOfDoubleTime extends OcarinaSong {
         TimeSongSavedData timeData = TimeSongSavedData.get(serverLevel.getServer().overworld());
         boolean activated = timeData.activateOrCancel(TimeSongSavedData.Mode.DOUBLE,
                 serverLevel.getServer().overworld());
+        if (player instanceof ServerPlayer serverPlayer) {
+            serverPlayer.getPersistentData().putBoolean("SupersLegendUsedDoubleTime", activated);
+        }
         timeData.syncToAllPlayers();
         String message = activated ? "text.ocarina.doubled" : "text.ocarina.doubled_second";
         ChatFormatting color = activated ? ChatFormatting.GREEN : ChatFormatting.YELLOW;

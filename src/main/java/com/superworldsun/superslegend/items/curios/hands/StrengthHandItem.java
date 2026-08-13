@@ -5,6 +5,9 @@ import java.util.Map;
 
 import com.superworldsun.superslegend.items.customclass.HandsItem;
 import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
+import com.superworldsun.superslegend.registries.ItemInit;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
@@ -59,6 +62,10 @@ public class StrengthHandItem extends HandsItem {
 			LivingEntity rider = (LivingEntity) target;
 			if (!rider.isVehicle()) {
 				rider.startRiding(player, true);
+				if (player instanceof ServerPlayer serverPlayer && mobWeight == 3
+						&& strengthHandStack.is(ItemInit.GOLDEN_GAUNTLETS.get())) {
+					ModAdvancementHelper.award(serverPlayer, "golden_lift", "lifted_heavy_entity");
+				}
 				BlockPos currentPos = player.blockPosition();
 				player.level().playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundInit.PICKUP.get(), SoundSource.PLAYERS, 1f, 1f);
 			}

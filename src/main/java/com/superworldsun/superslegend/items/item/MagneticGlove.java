@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items.item;
 
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.registries.TagInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -10,6 +11,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -26,6 +28,8 @@ import java.util.List;
 
 public class MagneticGlove extends Item
 {
+    public static final String PULLER_TAG = "SupersLegendMagneticGlovePuller";
+    public static final String LAST_PULL_TIME_TAG = "SupersLegendMagneticGlovePullTime";
     private static final int RANGE = 15;
     private static final int MAXIMUM_PULLED_ITEMS = 200;
     private static final double ITEM_PULL_SPEED = 0.7D;
@@ -109,6 +113,11 @@ public class MagneticGlove extends Item
             int armorPoints = getArmorPoints(entity);
             if (armorPoints > 0) {
                 pullEntity(entity, playerPos, ARMOR_POINT_PULL_SPEED * armorPoints);
+                if (player instanceof ServerPlayer serverPlayer) {
+                    entity.getPersistentData().putUUID(PULLER_TAG, serverPlayer.getUUID());
+                    entity.getPersistentData().putLong(LAST_PULL_TIME_TAG, entity.level().getGameTime());
+                    ModAdvancementHelper.award(serverPlayer, "magnetic_personality", "pulled_armored_entity");
+                }
             }
         }
     }

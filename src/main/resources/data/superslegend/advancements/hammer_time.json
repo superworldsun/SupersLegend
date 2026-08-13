@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:branch_07_tools",
+    "display":  {
+                    "title":  {
+                                  "text":  "Hammer Time",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  "Drive down a peg with a hammer"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:magic_hammer"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "hammered_peg":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

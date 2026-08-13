@@ -1,0 +1,33 @@
+{
+    "parent":  "superslegend:obtain_rupee",
+    "display":  {
+                    "title":  {
+                                  "text":  "Pocket Change",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Obtain a Blue Rupee"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:blue_rupee"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "blue_rupee":  {
+                                        "trigger":  "minecraft:inventory_changed",
+                                        "conditions":  {
+                                                           "items":  [
+                                                                         {
+                                                                             "items":  [
+                                                                                           "superslegend:blue_rupee"
+                                                                                       ]
+                                                                         }
+                                                                     ]
+                                                       }
+                                    }
+                 }
+}

@@ -19,7 +19,6 @@ public final class HylianTextUtil {
 
     private HylianTextUtil() {
     }
-
     public static boolean isHoldingBookOfMudora(Player player) {
         return player != null
                 && (player.getMainHandItem().is(ItemInit.BOOK_OF_MUDORA.get())
@@ -49,7 +48,7 @@ public final class HylianTextUtil {
         return false;
     }
 
-    private static boolean usesHylianFont(Component component) {
+    public static boolean usesHylianFont(Component component) {
         if (component.getString().isEmpty()) {
             return false;
         }

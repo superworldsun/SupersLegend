@@ -1,0 +1,34 @@
+{
+    "parent": "superslegend:first_appraisal",
+    "display": {
+        "title": {
+            "text": "Power in Red",
+            "color": "red"
+        },
+        "description": {
+            "text": "Obtain the Red Ring",
+            "color":  "red"
+        },
+        "icon": {
+            "item": "superslegend:red_ring"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "obtained_ring": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "superslegend:red_ring"
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

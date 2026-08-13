@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.superworldsun.superslegend.registries.TagInit;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
+import com.superworldsun.superslegend.registries.ItemInit;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -14,6 +16,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -34,6 +37,12 @@ public class AppraisedRingBox extends Item {
         Collection<ItemStack> drops = new TagValue(TagInit.APPRAISAL_LIST).getItems();
         ItemStack randomItem = drops.stream().skip(player.getRandom().nextInt(drops.size())).findFirst().get();
         addOrDrop(player, randomItem);
+        if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
+            ModAdvancementHelper.award(serverPlayer, "first_appraisal", "opened_ring_box");
+            if (randomItem.is(ItemInit.CURSED_RING.get())) {
+                ModAdvancementHelper.award(serverPlayer, "a_cursed_appraisal", "cursed_ring");
+            }
+        }
         player.playSound(SoundEvents.ITEM_PICKUP, 1.0f, 1.0f);
         if (!player.getAbilities().instabuild) {
             stack.shrink(1);

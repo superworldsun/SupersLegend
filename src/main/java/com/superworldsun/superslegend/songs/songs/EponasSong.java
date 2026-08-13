@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.songs.songs;
 
 import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 import com.superworldsun.superslegend.songs.epona.EponasHorseManager;
 import net.minecraft.server.level.ServerPlayer;
@@ -28,6 +29,7 @@ public class EponasSong extends OcarinaSong {
 	public void onSongPlayed(Player player, Level level) {
 		if (player instanceof ServerPlayer serverPlayer) {
 			EponasHorseManager.summonMarkedHorse(serverPlayer, false);
+			ModAdvancementHelper.award(serverPlayer, "call_of_the_wild", "called_epona");
 		}
 	}
 
@@ -35,6 +37,7 @@ public class EponasSong extends OcarinaSong {
 	public void onSongPlayed(Player player, Level level, boolean rearFacingCamera) {
 		if (player instanceof ServerPlayer serverPlayer) {
 			EponasHorseManager.summonMarkedHorse(serverPlayer, rearFacingCamera);
+			ModAdvancementHelper.award(serverPlayer, "call_of_the_wild", "called_epona");
 		}
 	}
 }

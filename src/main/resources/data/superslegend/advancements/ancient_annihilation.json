@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:elemental_arsenal",
+    "display":  {
+                    "title":  {
+                                  "text":  "Ancient Annihilation",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Defeat a full-health mob in one hit with an Ancient Arrow"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:ancient_arrow"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "one_hit_kill":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:obtain_gold_rupee",
+    "display":  {
+                    "title":  {
+                                  "text":  "A Full Purse",
+                                  "color":  "green"
+                              },
+                    "description":  {
+                                        "text":  "Hold 99 rupees in your equipped wallet"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:wallet"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "balance":  {
+                                     "trigger":  "minecraft:impossible"
+                                 }
+                 }
+}

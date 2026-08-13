@@ -1,0 +1,25 @@
+{
+    "parent":  "superslegend:a_heartier_hero",
+    "display":  {
+                    "title":  {
+                                  "text":  "A Hero at Heart",
+                                  "color":  "red",
+                                  "bold":  true
+                              },
+                    "description":  {
+                                        "text":  "Increase your maximum base health to twenty hearts"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:heart_container"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "maximum_health":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.events;
 
 import com.google.common.base.Predicates;
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.util.PlayerAnimationUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.protocol.game.ClientboundSetPassengersPacket;
@@ -19,11 +20,18 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 @EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
 public class PlayerMobPickupEvents {
+	private static final int CHICKEN_GLIDE_ADVANCEMENT_TICKS = 100;
+	private static final Map<UUID, Integer> CHICKEN_GLIDE_TICKS = new HashMap<>();
 	/**
 	 * Reconciles carried-player dismounts for every tracking client.
 	 *
@@ -92,8 +100,23 @@ public class PlayerMobPickupEvents {
 					Vec3 movement = player.getDeltaMovement();
 					player.setDeltaMovement(new Vec3(movement.x, -0.08, movement.z));
 				}
+				if (!player.level().isClientSide && !player.onGround() && player instanceof ServerPlayer serverPlayer) {
+					int glideTicks = CHICKEN_GLIDE_TICKS.merge(player.getUUID(), 1, Integer::sum);
+					if (glideTicks >= CHICKEN_GLIDE_ADVANCEMENT_TICKS) {
+						ModAdvancementHelper.award(serverPlayer, "cucco_glider", "five_second_glide");
+					}
+				} else if (!player.level().isClientSide) {
+					CHICKEN_GLIDE_TICKS.remove(player.getUUID());
+				}
+			} else if (!player.level().isClientSide) {
+				CHICKEN_GLIDE_TICKS.remove(player.getUUID());
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+		CHICKEN_GLIDE_TICKS.remove(event.getEntity().getUUID());
 	}
 
 	// Removes the player's first-person hand when holding a mob

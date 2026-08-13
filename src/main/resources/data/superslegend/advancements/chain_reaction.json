@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:fully_conductive",
+    "display":  {
+                    "title":  {
+                                  "text":  "Chain Reaction",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  "Damage at least 5 entities with one Shock Arrow water discharge"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:shock_arrow"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "five_entity_water_shock":  {
+                                                     "trigger":  "minecraft:impossible"
+                                                 }
+                 }
+}

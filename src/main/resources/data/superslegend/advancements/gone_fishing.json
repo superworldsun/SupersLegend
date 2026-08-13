@@ -1,0 +1,31 @@
+{
+    "parent":  "superslegend:branch_10_other",
+    "display":  {
+                    "title":  {
+                                  "text":  "Gone Fishing",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Catch a Hyrule Bass"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:hyrule_bass"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "hyrule_bass":  {
+                                         "trigger":  "minecraft:fishing_rod_hooked",
+                                         "conditions":  {
+                                                            "item":  {
+                                                                         "items":  [
+                                                                                       "superslegend:hyrule_bass"
+                                                                                   ]
+                                                                     }
+                                                        }
+                                     }
+                 }
+}

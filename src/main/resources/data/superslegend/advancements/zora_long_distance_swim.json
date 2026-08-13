@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:wear_zora_mask",
+    "display":  {
+                    "title":  {
+                                  "text":  "Current Rider",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Swim 1,000 blocks while transformed as a Zora"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_zoramask"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "long_swim":  {
+                                       "trigger":  "minecraft:impossible"
+                                   }
+                 }
+}

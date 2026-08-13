@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:heavy_metal",
+    "display":  {
+                    "title":  {
+                                  "text":  "Walking on Air",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Cross open air using the Hover Boots"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:hover_boots"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "crossed_gap":  {
+                                         "trigger":  "minecraft:impossible"
+                                     }
+                 }
+}

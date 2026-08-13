@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:create_the_master_sword",
+    "display":  {
+                    "title":  {
+                                  "text":  "Evil’s Bane",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Slay a powerful undead foe with the Master Sword"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:master_sword"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "powerful_undead":  {
+                                             "trigger":  "minecraft:impossible"
+                                         }
+                 }
+}

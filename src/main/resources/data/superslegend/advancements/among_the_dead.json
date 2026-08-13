@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:false_fox",
+    "display":  {
+                    "title":  {
+                                  "text":  "Among the Dead",
+                                  "color":  "dark_gray"
+                              },
+                    "description":  {
+                                        "text":  "Walk close to an undead mob that ignores your Gibdo Mask"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_gibdomask"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "walked_unnoticed":  {
+                                              "trigger":  "minecraft:impossible"
+                                          }
+                 }
+}

@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:hooked_a_block",
+    "display":  {
+                    "title":  {
+                                  "text":  "Hooked Delivery",
+                                  "color":  "gray"
+                              },
+                    "description":  {
+                                        "text":  "Pick up an item with a Hookshot or Longshot"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:hookshot"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "picked_up_item":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

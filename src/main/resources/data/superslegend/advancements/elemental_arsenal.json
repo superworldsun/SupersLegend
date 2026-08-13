@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:bombs_away",
+    "display":  {
+                    "title":  {
+                                  "text":  "Elemental Arsenal",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Hit foes with fire, ice, shock, and light arrows"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:magic_light_arrow"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "all_elements":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

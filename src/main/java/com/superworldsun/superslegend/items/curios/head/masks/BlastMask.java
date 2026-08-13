@@ -2,11 +2,11 @@ package com.superworldsun.superslegend.items.curios.head.masks;
 
 import com.superworldsun.superslegend.interfaces.IMaskAbility;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -14,7 +14,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
@@ -52,6 +51,9 @@ public class BlastMask extends GeoCurioMaskItem implements IMaskAbility {
             int shieldDamage = 1;
             player.getUseItem().hurtAndBreak(shieldDamage, player, p -> p.broadcastBreakEvent(player.getUsedItemHand()));
             player.playSound(SoundEvents.SHIELD_BLOCK, 1F, 1F);
+            if (player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+                ModAdvancementHelper.award(serverPlayer, "blast_mask_guard", "blocked_own_blast");
+            }
         }
     }
 

@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:heavy_switch",
+    "display":  {
+                    "title":  {
+                                  "text":  "Skull Crusher",
+                                  "color":  "dark_red"
+                              },
+                    "description":  {
+                                        "text":  "Drive down a Spiked Peg with the Skull Hammer"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:skull_hammer"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "skull_hammer_spiked_peg":  {
+                                                     "trigger":  "minecraft:impossible"
+                                                 }
+                 }
+}

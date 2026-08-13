@@ -1,0 +1,33 @@
+{
+    "parent":  "superslegend:fully_equipped",
+    "display":  {
+                    "title":  {
+                                  "text":  "Seed Stockpile",
+                                  "color":  "green"
+                              },
+                    "description":  {
+                                        "text":  "Obtain the Biggest Bullet Bag"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:biggest_bullet_bag"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "max_bullet_bag":  {
+                                            "trigger":  "minecraft:inventory_changed",
+                                            "conditions":  {
+                                                               "items":  [
+                                                                             {
+                                                                                 "items":  [
+                                                                                               "superslegend:biggest_bullet_bag"
+                                                                                           ]
+                                                                             }
+                                                                         ]
+                                                           }
+                                        }
+                 }
+}

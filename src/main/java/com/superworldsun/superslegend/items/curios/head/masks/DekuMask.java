@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.items.curios.head.masks;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.capability.magic.MagicProvider;
 import com.superworldsun.superslegend.client.model.player.PlayerTransformationModels;
 import com.superworldsun.superslegend.entities.projectiles.magic.DekuMagicBubbleEntity;
@@ -301,6 +302,9 @@ public class DekuMask extends Item implements IMaskAbility, ICurioItem, IPlayerM
         }
 
         if (!isInWater && player.onGround()) {
+            if (hopState.completedHops >= MAX_WATER_HOPS && player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+                ModAdvancementHelper.award(serverPlayer, "five_hop_finish", "landed_after_five_hops");
+            }
             hopState.resetSequence();
         } else if (isInWater && !hopState.wasInWater) {
             if (hopState.completedHops < MAX_WATER_HOPS) {

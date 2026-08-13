@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:happy_mask_salesman",
+    "display":  {
+                    "title":  {
+                                  "text":  "A Familiar Face",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Use a mask\u0027s special ability"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_blastmask"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "used_mask":  {
+                                       "trigger":  "minecraft:impossible"
+                                   }
+                 }
+}

@@ -1,0 +1,33 @@
+{
+    "parent":  "superslegend:fully_equipped",
+    "display":  {
+                    "title":  {
+                                  "text":  "Endless Volley",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  "Obtain the Biggest Quiver"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:biggest_quiver"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "max_quiver":  {
+                                        "trigger":  "minecraft:inventory_changed",
+                                        "conditions":  {
+                                                           "items":  [
+                                                                         {
+                                                                             "items":  [
+                                                                                           "superslegend:biggest_quiver"
+                                                                                       ]
+                                                                         }
+                                                                     ]
+                                                       }
+                                    }
+                 }
+}

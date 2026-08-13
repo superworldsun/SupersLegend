@@ -22,6 +22,8 @@ import net.minecraftforge.network.PacketDistributor;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class TimeSongSavedData extends SavedData {
+    public static final String ITEM_REAL_LIFETIME_TAG = "SupersLegendRealItemLifetime";
+    public static final String ITEM_INVERTED_EXTENDED_TAG = "SupersLegendInvertedExtendedItem";
     private static final String DATA_ID = SupersLegendMain.MOD_ID + "_time_song";
     private static final String MODE_TAG = "Mode";
     private static final String REMAINING_TICKS_TAG = "RemainingTicks";

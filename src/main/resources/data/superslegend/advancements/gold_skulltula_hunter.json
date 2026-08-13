@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:sacred_ground",
+    "display":  {
+                    "title":  {
+                                  "text":  "The Curse Begins",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Collect your first Gold Skulltula Token"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:gold_skulltula_token"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "tokens":  {
+                                    "trigger":  "minecraft:impossible"
+                                }
+                 }
+}

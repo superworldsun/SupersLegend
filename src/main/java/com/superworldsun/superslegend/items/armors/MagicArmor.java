@@ -1,22 +1,35 @@
 package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.client.model.armor.MagicArmorModel;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.RupeeWalletUtil;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.function.Consumer;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class MagicArmor extends NonEnchantArmor {
@@ -26,6 +39,25 @@ public class MagicArmor extends NonEnchantArmor {
 
     public MagicArmor(ArmorMaterial material, Type type, Properties properties) {
         super(material, type, properties);
+    }
+
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            private final Map<EquipmentSlot, HumanoidModel<?>> models = new EnumMap<>(EquipmentSlot.class);
+
+            @Override
+            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity entity, ItemStack stack,
+                                                          EquipmentSlot slot, HumanoidModel<?> original) {
+                return models.computeIfAbsent(slot, MagicArmorModel::new);
+            }
+        });
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+        return SupersLegendMain.MOD_ID + ":textures/models/armor/magic_armor.png";
     }
 
     /**
@@ -51,6 +83,9 @@ public class MagicArmor extends NonEnchantArmor {
         // LivingEntity continues processing the hit after LivingHurtEvent. A zero
         // amount prevents heart loss while retaining its normal impact response.
         event.setAmount(0.0F);
+        if (player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+            ModAdvancementHelper.award(serverPlayer, "magic_armor_guard", "blocked_damage");
+        }
     }
 
     /** Runs once per player rather than once for every equipped armor piece. */

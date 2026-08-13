@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:walking_on_air",
+    "display":  {
+                    "title":  {
+                                  "text":  "Speed Demon",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Maintain Pegasus Boots speed for five seconds"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:pegasus_boots"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "sustained_speed":  {
+                                             "trigger":  "minecraft:impossible"
+                                         }
+                 }
+}

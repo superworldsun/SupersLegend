@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:wallet_500_rupees",
+    "display":  {
+                    "title":  {
+                                  "text":  "Four Digits",
+                                  "color":  "yellow"
+                              },
+                    "description":  {
+                                        "text":  "Hold 1,000 rupees in your equipped wallet"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:big_wallet"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "balance":  {
+                                     "trigger":  "minecraft:impossible"
+                                 }
+                 }
+}

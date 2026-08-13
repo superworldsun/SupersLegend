@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:its_dangerous_to_go_alone",
+    "display":  {
+                    "title":  {
+                                  "text":  "A Giant\u0027s Blade",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Craft Biggoron\u0027s Sword"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:biggorons_sword"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "crafted_sword":  {
+                                           "trigger":  "minecraft:impossible"
+                                       }
+                 }
+}

@@ -1,0 +1,34 @@
+{
+    "parent": "superslegend:obtain_red_ring",
+    "display": {
+        "title": {
+            "text": "Protection in Blue",
+            "color": "blue"
+        },
+        "description": {
+            "text": "Obtain the Blue Ring",
+            "color":  "blue"
+        },
+        "icon": {
+            "item": "superslegend:blue_ring"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "obtained_ring": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "superslegend:blue_ring"
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

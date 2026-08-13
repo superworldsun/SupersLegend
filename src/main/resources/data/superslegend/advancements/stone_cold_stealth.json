@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:special_delivery",
+    "display":  {
+                    "title":  {
+                                  "text":  "Stone-Cold Stealth",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Strike a monster while wearing the Stone Mask"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_stonemask"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "surprise_attack":  {
+                                             "trigger":  "minecraft:impossible"
+                                         }
+                 }
+}

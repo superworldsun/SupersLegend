@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:zora_long_distance_swim",
+    "display":  {
+                    "title":  {
+                                  "text":  "At Home Below",
+                                  "color":  "aqua"
+                              },
+                    "description":  {
+                                        "text":  "Remain underwater for 5 minutes without surfacing while transformed as a Zora"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_zoramask"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "five_minutes":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

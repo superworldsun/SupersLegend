@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.songs.songs;
 
 import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
 import net.minecraft.server.level.ServerLevel;
@@ -26,6 +27,9 @@ public class SongOfStorms extends OcarinaSong
 	{
 		if (level.dimension() == Level.OVERWORLD && !level.isRaining() && !level.isClientSide)
 		{
+			if (player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+				ModAdvancementHelper.award(serverPlayer, "storm_warning", "called_storm");
+			}
 			((ServerLevel) level).setWeatherParameters(0, 6000, true, false);
 		}
 	}

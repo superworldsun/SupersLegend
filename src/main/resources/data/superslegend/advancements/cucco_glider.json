@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:branch_10_other",
+    "display":  {
+                    "title":  {
+                                  "text":  "Cucco Glider",
+                                  "color":  "white"
+                              },
+                    "description":  {
+                                        "text":  "Glide through the air with a carried chicken for five seconds"
+                                    },
+                    "icon":  {
+                                 "item":  "minecraft:feather"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "five_second_glide":  {
+                                               "trigger":  "minecraft:impossible"
+                                           }
+                 }
+}

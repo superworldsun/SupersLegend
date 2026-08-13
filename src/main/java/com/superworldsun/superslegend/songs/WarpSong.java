@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.songs;
 
 import com.superworldsun.superslegend.blocks.WarpPadBlock;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.warppads.WarpPadsServerData;
 import com.superworldsun.superslegend.warppads.WarpPadsStorage;
 import net.minecraft.ChatFormatting;
@@ -8,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -46,5 +48,8 @@ public abstract class WarpSong extends OcarinaSong {
 
         BlockPos pos = warpPos.get();
         player.teleportTo(pos.getX() + 0.5, pos.getY() , pos.getZ() + 0.5);
+        if (player instanceof ServerPlayer serverPlayer) {
+            ModAdvancementHelper.recordWarpPadTeleport(serverPlayer, warpPad);
+        }
     }
 }

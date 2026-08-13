@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:captains_company",
+    "display":  {
+                    "title":  {
+                                  "text":  "Bone Battalion",
+                                  "color":  "dark_gray"
+                              },
+                    "description":  {
+                                        "text":  "Have three different kinds of skeleton following you"
+                                    },
+                    "icon":  {
+                                 "item":  "minecraft:skeleton_skull"
+                             },
+                    "frame":  "goal",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "three_skeleton_types":  {
+                                                  "trigger":  "minecraft:impossible"
+                                              }
+                 }
+}

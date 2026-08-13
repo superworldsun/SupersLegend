@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:the_suns_song",
+    "display":  {
+                    "title":  {
+                                  "text":  "Storm Warning",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Play the Song of Storms during clear weather"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:song_of_storms_sheet"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "called_storm":  {
+                                          "trigger":  "minecraft:impossible"
+                                      }
+                 }
+}

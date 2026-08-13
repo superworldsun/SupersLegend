@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:perfect_match",
+    "display":  {
+                    "title":  {
+                                  "text":  "False Fox",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Kill a fox while wearing the Keaton Mask"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:mask_keatonmask"
+                             },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "killed_fox":  {
+                                        "trigger":  "minecraft:impossible"
+                                    }
+                 }
+}
