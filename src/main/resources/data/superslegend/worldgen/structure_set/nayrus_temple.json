@@ -1,0 +1,10 @@
+{
+  "structures": [{ "structure": "superslegend:nayrus_temple", "weight": 1 }],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 48,
+    "separation": 32,
+    "salt": 663414589,
+    "spread_type": "linear"
+  }
+}
