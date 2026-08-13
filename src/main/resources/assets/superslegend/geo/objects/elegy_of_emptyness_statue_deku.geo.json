@@ -1,0 +1,108 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "bone",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-6, 1, -6], "size": [12, 1, 12], "uv": [0, 15]},
+						{"origin": [-7, 0, -7], "size": [14, 1, 14], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "DekuScrub",
+					"pivot": [0, 15, 0]
+				},
+				{
+					"name": "Head",
+					"parent": "DekuScrub",
+					"pivot": [0, 15, 0],
+					"cubes": [
+						{"origin": [-4.5, 15, -3.5], "size": [9, 9, 8], "uv": [0, 28]},
+						{"origin": [-2, 15.1, -5.25], "size": [4, 4, 2], "uv": [34, 39]}
+					]
+				},
+				{
+					"name": "hair",
+					"parent": "Head",
+					"pivot": [0, 25.5, 7.4],
+					"cubes": [
+						{"origin": [-5, 22.5, 1.4], "size": [4, 9, 0], "pivot": [-3, 27, 1.4], "rotation": [-16.24074, -6.60796, -21.55613], "uv": [24, 45]},
+						{"origin": [-2, 23.5, -0.6], "size": [4, 9, 0], "pivot": [0, 23.5, 0.4], "rotation": [-17.5, 0, 0], "uv": [24, 45]},
+						{"origin": [1, 22.5, 1.4], "size": [4, 9, 0], "pivot": [3, 27, 1.4], "rotation": [-16.24074, 6.60796, 21.55613], "uv": [24, 45]}
+					]
+				},
+				{
+					"name": "Body",
+					"parent": "DekuScrub",
+					"pivot": [0.0002, 11.51695, 0.49982],
+					"cubes": [
+						{"origin": [-3.5, 8, -1.5], "size": [7, 7, 4], "uv": [34, 28]}
+					]
+				},
+				{
+					"name": "LeftArm",
+					"parent": "DekuScrub",
+					"pivot": [4.5, 13.25, 0.5],
+					"rotation": [0, 0, 22.5],
+					"cubes": [
+						{"origin": [3.40951, 8.86237, -0.5], "size": [2, 6, 2], "pivot": [4.1088, 13.40865, -1.5], "rotation": [0, 0, -22.5], "uv": [32, 45]},
+						{"origin": [3.40951, 7.86237, -0.5], "size": [2, 1, 2], "pivot": [4.1088, 13.40865, -1.5], "rotation": [0, 0, -22.5], "uv": [48, 23]},
+						{"origin": [2.90951, 4.86237, -1], "size": [3, 3, 3], "pivot": [4.1088, 13.40865, -1.5], "rotation": [0, 0, -22.5], "uv": [0, 45]}
+					]
+				},
+				{
+					"name": "LeftHandItem",
+					"parent": "LeftArm",
+					"pivot": [7.08311, 7.01381, 0.5],
+					"rotation": [0, 0, -22.5]
+				},
+				{
+					"name": "RightArm",
+					"parent": "DekuScrub",
+					"pivot": [-4.5, 13.25, 0.5],
+					"rotation": [0, 0, -22.5],
+					"cubes": [
+						{"origin": [-5.48563, 8.47969, -0.5], "size": [2, 6, 2], "pivot": [-3.18493, 13.02597, -1.5], "rotation": [0, 0, 22.5], "uv": [40, 45]},
+						{"origin": [-5.48563, 7.47969, -0.5], "size": [2, 1, 2], "pivot": [-3.18493, 13.02597, -1.5], "rotation": [0, 0, 22.5], "uv": [48, 47]},
+						{"origin": [-5.98563, 4.47969, -1], "size": [3, 3, 3], "pivot": [-3.18493, 13.02597, -1.5], "rotation": [0, 0, 22.5], "uv": [12, 45]}
+					]
+				},
+				{
+					"name": "RightHandItem",
+					"parent": "RightArm",
+					"pivot": [-7.08311, 7.01381, 0.5],
+					"rotation": [0, 0, 22.5]
+				},
+				{
+					"name": "LeftLeg",
+					"parent": "DekuScrub",
+					"pivot": [2.25, 7.375, 0.5],
+					"rotation": [0, 22.5, 0],
+					"cubes": [
+						{"origin": [1.47992, 2, -0.1559], "size": [2, 6, 2], "pivot": [3.22992, 2.875, 0.0941], "rotation": [0, -22.5, 0], "uv": [48, 15]}
+					]
+				},
+				{
+					"name": "RightLeg",
+					"parent": "DekuScrub",
+					"pivot": [-2.25, 7.375, 0.5],
+					"rotation": [0, -22.5, 0],
+					"cubes": [
+						{"origin": [-3.55604, 2, -0.53858], "size": [2, 6, 2], "pivot": [-2.30604, 2.875, -0.28858], "rotation": [0, 22.5, 0], "uv": [48, 39]}
+					]
+				}
+			]
+		}
+	]
+}
