@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.util.IceExtinguishUtil;
+
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.util.BuildingHelper;
@@ -18,34 +20,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import net.minecraftforge.network.NetworkHooks;
-
-import java.util.List;
 
 public class IceArrowEntity extends AbstractArrow {
 
@@ -101,6 +88,7 @@ public class IceArrowEntity extends AbstractArrow {
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
         Entity entity = result.getEntity();
+        IceExtinguishUtil.extinguishIfBurning(entity);
 
         if (entity.getType().is(TagInit.WEAK_TO_ICE)) {
             setBaseDamage(getBaseDamage() * 2);
