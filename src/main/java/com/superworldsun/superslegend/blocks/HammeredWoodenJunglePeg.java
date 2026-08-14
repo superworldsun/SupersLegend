@@ -33,6 +33,7 @@ public class HammeredWoodenJunglePeg extends Block
     {
         super.randomTick(state, level, pos, random);
         {
+            PegPopUpUtil.liftPlayers(level, pos, false);
             level.setBlockAndUpdate(pos, BlockInit.JUNGLE_PEG_BLOCK.get().defaultBlockState());
 
             BlockPos currentPos = pos;
@@ -47,6 +48,7 @@ public class HammeredWoodenJunglePeg extends Block
         BlockPos currentPos = player.blockPosition();
         level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.WOOD_HIT, SoundSource.PLAYERS, 1f, 1f);
 
+        PegPopUpUtil.liftPlayers(level, pos, false);
         level.setBlock(pos, BlockInit.JUNGLE_PEG_BLOCK.get().defaultBlockState(), 3);
 
         return InteractionResult.SUCCESS;

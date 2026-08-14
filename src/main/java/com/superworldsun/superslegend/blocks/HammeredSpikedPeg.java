@@ -22,7 +22,7 @@ public class HammeredSpikedPeg extends Block
 
 {
 
-    protected static final VoxelShape SHAPE = Block.box(3.75D, 0.0D, 3.75D, 12.25D, 1.0D, 12.25D);
+    protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D);
 
     public HammeredSpikedPeg(Properties properties) {
         super(properties);
@@ -33,6 +33,7 @@ public class HammeredSpikedPeg extends Block
     {
         super.randomTick(state, level, pos, random);
         {
+            PegPopUpUtil.liftPlayers(level, pos, true);
             level.setBlockAndUpdate(pos, BlockInit.SPIKED_PEG_BLOCK.get().defaultBlockState());
 
             BlockPos currentPos = pos;
@@ -47,6 +48,7 @@ public class HammeredSpikedPeg extends Block
         BlockPos currentPos = player.blockPosition();
         level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.IRON_TRAPDOOR_OPEN, SoundSource.PLAYERS, 1f, 1f);
 
+        PegPopUpUtil.liftPlayers(level, pos, true);
         level.setBlock(pos, BlockInit.SPIKED_PEG_BLOCK.get().defaultBlockState(), 3);
 
         return InteractionResult.SUCCESS;

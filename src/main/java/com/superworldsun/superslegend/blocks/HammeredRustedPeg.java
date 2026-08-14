@@ -33,6 +33,7 @@ public class HammeredRustedPeg extends Block
     {
         super.randomTick(state, level, pos, random);
         {
+            PegPopUpUtil.liftPlayers(level, pos, false);
             level.setBlockAndUpdate(pos, BlockInit.RUSTED_PEG_BLOCK.get().defaultBlockState());
 
             BlockPos currentPos = pos;
@@ -48,6 +49,7 @@ public class HammeredRustedPeg extends Block
         BlockPos currentPos = player.blockPosition();
         level.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SoundEvents.ARMOR_EQUIP_IRON, SoundSource.PLAYERS, 1f, 1f);
 
+        PegPopUpUtil.liftPlayers(level, pos, false);
         level.setBlock(pos, BlockInit.RUSTED_PEG_BLOCK.get().defaultBlockState(), 3);
 
         return InteractionResult.SUCCESS;
