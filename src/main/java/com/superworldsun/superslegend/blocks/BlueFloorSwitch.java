@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.blocks;
 
+import com.superworldsun.superslegend.entities.statue.ElegyStatueEntity;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -107,7 +108,8 @@ public class BlueFloorSwitch extends BasePressurePlateBlock {
                 list = world.getEntitiesOfClass(LivingEntity.class, axisalignedbb);
                 break;
             case PLAYER:
-                list = world.getEntitiesOfClass(Player.class, axisalignedbb);
+                list = world.getEntities((Entity) null, axisalignedbb,
+                        entity -> entity instanceof Player || entity instanceof ElegyStatueEntity);
                 break;
             default:
                 return 0;
