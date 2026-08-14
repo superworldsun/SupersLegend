@@ -1,8 +1,12 @@
 package com.superworldsun.superslegend.network.message;
 
 import com.superworldsun.superslegend.interfaces.JumpingEntity;
+import com.superworldsun.superslegend.items.armors.PegasusBootsArmor;
+import com.superworldsun.superslegend.items.item.RocsFeather;
+import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -27,7 +31,10 @@ public class DoubleJumpMessage
 	{
 		ServerPlayer player = ctxSupplier.get().getSender();
 
-		if (player != null)
+		if (player != null && !PegasusBootsArmor.isCharging(player)
+				&& (player.getItemBySlot(EquipmentSlot.CHEST).is(ItemInit.ROCS_CAPE.get())
+				|| player.getMainHandItem().getItem() instanceof RocsFeather
+				|| player.getOffhandItem().getItem() instanceof RocsFeather))
 		{
 			ctxSupplier.get().enqueueWork(() -> ((JumpingEntity) player).doubleJump());
 		}
