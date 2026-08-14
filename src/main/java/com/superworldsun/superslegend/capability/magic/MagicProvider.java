@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.api.MagicContainer;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.SyncMagicMessage;
@@ -94,6 +95,9 @@ public class MagicProvider implements ICapabilitySerializable<CompoundTag> {
 	public static void spendMagic(Player player, float amount) {
 		if (player.getAbilities().instabuild) return;
 		get(player).spendMagic(amount);
+		if (player instanceof ServerPlayer serverPlayer && getMagic(player) <= 0.0F) {
+			ModAdvancementHelper.award(serverPlayer, "no_magic_required", "emptied_magic");
+		}
 		if (player instanceof ServerPlayer) sync((ServerPlayer) player);
 	}
 

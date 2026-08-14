@@ -2,10 +2,10 @@ package com.superworldsun.superslegend.entities.projectiles.boomerang;
 
 import com.superworldsun.superslegend.Config;
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.entities.GoldSkulltulaTokenEntity;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.SoundInit;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -15,8 +15,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
-import software.bernie.shadowed.eliotlash.mclib.utils.MathHelper;
 
 public class SeaBreezeBoomerangEntity extends AbstractBoomerangEntity {
 
@@ -58,7 +56,12 @@ public class SeaBreezeBoomerangEntity extends AbstractBoomerangEntity {
     public void onEntityHit(Entity entity) {
         Player owner = getOwner();
         if (entity instanceof ItemEntity item) {
-            pickedItems.add(item);
+            if (!pickedItems.contains(item)) {
+                pickedItems.add(item);
+                if (item instanceof GoldSkulltulaTokenEntity token) {
+                    token.markRemoteToolPickup();
+                }
+            }
         } else if (entity instanceof LivingEntity && entity != owner) {
             entity.hurt(getDamageSource(owner), getDamage());
         }

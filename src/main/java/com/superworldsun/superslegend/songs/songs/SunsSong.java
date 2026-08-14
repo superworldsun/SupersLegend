@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.songs.songs;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.songs.OcarinaSong;
 
 import net.minecraft.network.protocol.game.ClientboundSetTimePacket;
@@ -37,6 +38,9 @@ public class SunsSong extends OcarinaSong {
 	@Override
 	public void onSongPlayed(Player player, Level level) {
 		if (level.dimension() == Level.OVERWORLD) {
+			if (!level.isDay() && player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+				ModAdvancementHelper.award(serverPlayer, "the_suns_song", "turned_to_day");
+			}
 			was_played = true;
 			played_at_day = level.isDay();
 		}

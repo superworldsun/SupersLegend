@@ -2,6 +2,8 @@ package com.superworldsun.superslegend.items.item;
 
 import com.superworldsun.superslegend.capability.magic.MagicProvider;
 import com.superworldsun.superslegend.registries.BlockInit;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -120,10 +122,15 @@ public class DinsFire extends Item {
     }
 
     private void replaceBlocksAroundPlayer(Player player, Level world, BlockPos playerPos, int radius, BlockState blockToReplace, BlockState blockToReplaceWith) {
+        int lit = 0;
         for (BlockPos pos : BlockPos.betweenClosed(playerPos.offset(-radius, -radius, -radius), playerPos.offset(radius, radius, radius))) {
-            if (pos.distSqr(playerPos) <= radius * radius && world.getBlockState(pos) == blockToReplace) {
+            if (pos.distSqr(playerPos) <= radius * radius && world.getBlockState(pos).is(blockToReplace.getBlock())) {
                 world.setBlock(pos, blockToReplaceWith, 3);
+                lit++;
             }
+        }
+        if (lit >= 2 && player instanceof ServerPlayer serverPlayer) {
+            ModAdvancementHelper.award(serverPlayer, "two_for_one_flame", "lit_two_towers");
         }
     }
 

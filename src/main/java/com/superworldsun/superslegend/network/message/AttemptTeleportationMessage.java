@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.network.message;
 
 import com.superworldsun.superslegend.capability.waypoint.Waypoint;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.capability.waypoint.WaypointsProvider;
 import com.superworldsun.superslegend.capability.waypoint.WaypointsServerData;
 import net.minecraft.ChatFormatting;
@@ -78,6 +79,8 @@ public class AttemptTeleportationMessage {
                             yaw,
                             player.getXRot()
                     );
+                    ModAdvancementHelper.recordOwlStatueTeleport(player,
+                            waypointLevel.dimension().location(), message.pos);
 
                     player.displayClientMessage(Component.literal("Teleported to waypoint")
                             .withStyle(ChatFormatting.DARK_GREEN)

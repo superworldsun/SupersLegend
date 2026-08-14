@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:ocean_outpost",
+    "display":  {
+                    "title":  {
+                                  "text":  "Sacred Ground",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Come within 5 blocks of one of the three sacred pedestals"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:dins_sacred_pedestal"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "found_pedestal":  {
+                                            "trigger":  "minecraft:impossible"
+                                        }
+                 }
+}

@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.menus.PostboxMenu;
 import com.superworldsun.superslegend.registries.BlockEntityInit;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -135,6 +136,9 @@ public class PostboxBlockEntity extends BlockEntity implements MenuProvider {
 			level.playSound(null, player, SoundEvents.IRON_DOOR_CLOSE, SoundSource.BLOCKS, 1F, 1F);
 		}
 		isLocked ^= true;
+		if (isLocked) {
+			ModAdvancementHelper.award(player, "special_delivery", "locked_mailbox");
+		}
 		String lockStatus = isLocked ? "locked" : "unlocked";
 		player.displayClientMessage(Component.translatable("Postbox " + lockStatus), true);
 	}

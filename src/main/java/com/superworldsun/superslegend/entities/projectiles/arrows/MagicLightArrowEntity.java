@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
@@ -10,6 +11,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -51,6 +53,11 @@ public class MagicLightArrowEntity extends AbstractArrow
     protected void onHitEntity(EntityHitResult result)
     {
         Entity entity = result.getEntity();
+
+        if (!level().isClientSide && entity instanceof LivingEntity living
+                && living.getMobType() == MobType.UNDEAD && getOwner() instanceof ServerPlayer player) {
+            ModAdvancementHelper.award(player, "light_in_the_dark", "hit_undead");
+        }
 
         applyResistanceAndWeakness(entity);
 

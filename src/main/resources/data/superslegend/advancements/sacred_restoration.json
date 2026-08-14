@@ -1,0 +1,24 @@
+{
+    "parent":  "superslegend:ashes_to_ashes",
+    "display":  {
+                    "title":  {
+                                  "text":  "Sacred Restoration",
+                                  "color":  "gold"
+                              },
+                    "description":  {
+                                        "text":  "Let one Sacred Shield restore 150 durability in total"
+                                    },
+                    "icon":  {
+                                 "item":  "superslegend:sacred_shield"
+                             },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  true,
+                    "hidden":  false
+                },
+    "criteria":  {
+                     "healed_150_durability":  {
+                                                   "trigger":  "minecraft:impossible"
+                                               }
+                 }
+}

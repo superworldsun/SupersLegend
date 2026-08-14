@@ -1,5 +1,6 @@
 package com.superworldsun.superslegend.items.item;
 
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -83,6 +84,7 @@ public class MagicMirror extends Item {
 		if (player.isPassenger()) {
 			player.stopRiding();
 		}
+		boolean exitingCave = !level.canSeeSky(player.blockPosition());
 		teleportEntity(entity, returnLoc);
 		BlockPos currentPos = player.blockPosition();
 		level.playSound(null,
@@ -94,6 +96,9 @@ public class MagicMirror extends Item {
 				1f,
 				1f);
 		player.displayClientMessage(Component.literal("Returned to saved position"), true);
+		if (exitingCave) {
+			ModAdvancementHelper.award(player, "obtain_magic_mirror", "escaped_cave");
+		}
 		return stack;
 	}
 
