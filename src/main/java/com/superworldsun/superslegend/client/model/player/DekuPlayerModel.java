@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.superworldsun.superslegend.interfaces.IHandRenderer;
+import com.superworldsun.superslegend.events.DekuFlowerFlightEvents;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -27,6 +28,21 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 
 public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implements IHandRenderer {
+    private static final float ARM_SHOULDER_X = 4.5F;
+    private static final float ARM_SHOULDER_Y = 9.75F;
+    private static final float RIGHT_ARM_BASE_Z_ROT = -0.3927F;
+    private static final float LEFT_ARM_BASE_Z_ROT = 0.3927F;
+    // These offsets reproduce the original, correctly aligned item anchor from
+    // inside the visible arm child. Keeping the anchor in that child makes held
+    // items follow the hand instead of sliding during the idle arm animation.
+    // The visible right-arm child is modeled one pixel farther left than the
+    // left-arm child, so -3.1008 is the true mirrored counterpart of the
+    // working left-hand anchor rather than a simple sign flip.
+    private static final float RIGHT_ITEM_ANCHOR_X = -3.1008F;
+    private static final float LEFT_ITEM_ANCHOR_X = 2.1008F;
+    private static final float ITEM_ANCHOR_Y = -1.9537F;
+    private static final float ITEM_ANCHOR_Z = 2.0F;
+
     public DekuPlayerModel(ModelPart root) {
         super(root, false);
     }
@@ -97,22 +113,26 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
                 PartPose.offsetAndRotation(-0.5F, 7.0F, -1.5F, -0.2618F, 0.0F, 0.0F));
 
         PartDefinition rightArm = root.addOrReplaceChild("right_arm", CubeListBuilder.create(),
-                PartPose.offset(-7.0F, 9.0F, 0.5F));
+                PartPose.offsetAndRotation(-ARM_SHOULDER_X, ARM_SHOULDER_Y, 0.5F,
+                        0.0F, 0.0F, RIGHT_ARM_BASE_Z_ROT));
         rightArm.addOrReplaceChild("arm", CubeListBuilder.create()
                 .texOffs(47, 26).addBox(-2.8007F, 5.5463F, 0.5F, 3.0F, 3.0F, 3.0F)
                 .texOffs(22, 40).addBox(-2.3007F, 4.5463F, 1.0F, 2.0F, 1.0F, 2.0F)
                 .texOffs(17, 36).addBox(-2.8007F, 3.5463F, 0.5F, 3.0F, 1.0F, 3.0F)
                 .texOffs(0, 0).addBox(-2.3007F, -1.4537F, 1.0F, 2.0F, 5.0F, 2.0F),
-                PartPose.offset(3.8008F, 0.4536F, -2.0F));
+                PartPose.offsetAndRotation(1.3151F, 0.224F, -2.0F,
+                        0.0F, 0.0F, 0.3927F));
 
         PartDefinition leftArm = root.addOrReplaceChild("left_arm", CubeListBuilder.create(),
-                PartPose.offset(6.3F, 9.0F, 0.5F));
+                PartPose.offsetAndRotation(ARM_SHOULDER_X, ARM_SHOULDER_Y, 0.5F,
+                        0.0F, 0.0F, LEFT_ARM_BASE_Z_ROT));
         leftArm.addOrReplaceChild("arm", CubeListBuilder.create()
                 .texOffs(46, 47).addBox(-1.1993F, 5.5463F, 0.5F, 3.0F, 3.0F, 3.0F)
                 .texOffs(52, 36).addBox(-0.6993F, 4.5463F, 1.0F, 2.0F, 1.0F, 2.0F)
                 .texOffs(44, 43).addBox(-1.1993F, 3.5463F, 0.5F, 3.0F, 1.0F, 3.0F)
                 .texOffs(0, 19).addBox(-0.6993F, -1.4537F, 1.0F, 2.0F, 5.0F, 2.0F),
-                PartPose.offset(-2.1008F, 0.4537F, -2.0F));
+                PartPose.offsetAndRotation(-0.3912F, -0.1587F, -2.0F,
+                        0.0F, 0.0F, -0.3927F));
 
         root.addOrReplaceChild("right_leg", CubeListBuilder.create()
                 .texOffs(48, 32).addBox(-1.75F, 4.0F, -0.75F, 3.0F, 1.0F, 3.0F)
@@ -157,9 +177,11 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
 
         this.body.yRot = 0.0F;
         this.rightArm.z = 0.5F;
-        this.rightArm.x = -7.0F;
+        this.rightArm.x = -ARM_SHOULDER_X;
+        this.rightArm.y = ARM_SHOULDER_Y;
         this.leftArm.z = 0.5F;
-        this.leftArm.x = 6.3F;
+        this.leftArm.x = ARM_SHOULDER_X;
+        this.leftArm.y = ARM_SHOULDER_Y;
         float f = 1.0F;
         if (flag) {
             f = (float) player.getDeltaMovement().lengthSqr();
@@ -173,8 +195,8 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
 
         this.rightArm.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F / f;
         this.leftArm.xRot = Mth.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / f;
-        this.rightArm.zRot = 0.0F;
-        this.leftArm.zRot = 0.0F;
+        this.rightArm.zRot = RIGHT_ARM_BASE_Z_ROT;
+        this.leftArm.zRot = LEFT_ARM_BASE_Z_ROT;
         this.rightLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / f;
         this.leftLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / f;
         this.rightLeg.yRot = 0.0F;
@@ -254,6 +276,27 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
             this.rightLeg.xRot = Mth.lerp(this.swimAmount, this.rightLeg.xRot, 0.3F * Mth.cos(limbSwing * 0.33333334F));
         }
 
+        // Hold both flower gliders above and outside the body while gliding.
+        // This is intentionally applied last so item, attack, and swimming poses
+        // cannot pull the hands away from the flower attachment points.
+        if (DekuFlowerFlightEvents.isGliding(player)) {
+            // The arm origins are true shoulder pivots now, so they can rotate
+            // into a T-pose without translating away from the torso.
+            this.rightArm.x = -ARM_SHOULDER_X;
+            this.rightArm.y = ARM_SHOULDER_Y;
+            this.rightArm.z = 0.5F;
+            this.rightArm.xRot = 0.0F;
+            this.rightArm.yRot = 0.0F;
+            this.rightArm.zRot = RIGHT_ARM_BASE_Z_ROT + (float) Math.PI / 2.0F;
+
+            this.leftArm.x = ARM_SHOULDER_X;
+            this.leftArm.y = ARM_SHOULDER_Y;
+            this.leftArm.z = 0.5F;
+            this.leftArm.xRot = 0.0F;
+            this.leftArm.yRot = 0.0F;
+            this.leftArm.zRot = LEFT_ARM_BASE_Z_ROT - (float) Math.PI / 2.0F;
+        }
+
         this.hat.copyFrom(this.head);
     }
 
@@ -268,10 +311,10 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
                 this.body.yRot *= -1.0F;
             }
 
-            this.rightArm.z = Mth.sin(this.body.yRot) * 7.0F;
-            this.rightArm.x = -Mth.cos(this.body.yRot) * 7.0F;
-            this.leftArm.z = -Mth.sin(this.body.yRot) * 6.3F;
-            this.leftArm.x = Mth.cos(this.body.yRot) * 6.3F;
+            this.rightArm.z = Mth.sin(this.body.yRot) * ARM_SHOULDER_X;
+            this.rightArm.x = -Mth.cos(this.body.yRot) * ARM_SHOULDER_X;
+            this.leftArm.z = -Mth.sin(this.body.yRot) * ARM_SHOULDER_X;
+            this.leftArm.x = Mth.cos(this.body.yRot) * ARM_SHOULDER_X;
             this.rightArm.yRot += this.body.yRot;
             this.leftArm.yRot += this.body.yRot;
             this.leftArm.xRot += this.body.yRot;
@@ -367,6 +410,26 @@ public class DekuPlayerModel extends PlayerModel<AbstractClientPlayer> implement
     @Override
     protected Iterable<ModelPart> bodyParts() {
         return ImmutableList.of(this.body, this.rightArm, this.leftArm, this.rightLeg, this.leftLeg);
+    }
+
+    @Override
+    public void translateToHand(HumanoidArm arm, PoseStack poseStack) {
+        ModelPart shoulder = this.getArm(arm);
+        shoulder.translateAndRotate(poseStack);
+
+        // The cubes that make up each Deku arm live in this child part. Apply
+        // its transform before positioning the item so both always animate as
+        // one rigid assembly.
+        ModelPart visibleArm = shoulder.getChild("arm");
+        visibleArm.translateAndRotate(poseStack);
+
+        // Compensate for the arm child's original modeling offset. At rest this
+        // produces the exact item matrix used before the shoulder-pivot repair,
+        // while still inheriting every movement of the corrected visible arm.
+        poseStack.translate(
+                (arm == HumanoidArm.RIGHT ? RIGHT_ITEM_ANCHOR_X : LEFT_ITEM_ANCHOR_X) / 16.0F,
+                ITEM_ANCHOR_Y / 16.0F,
+                ITEM_ANCHOR_Z / 16.0F);
     }
 
     @Override
