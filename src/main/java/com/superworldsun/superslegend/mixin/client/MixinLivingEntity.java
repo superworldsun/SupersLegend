@@ -34,11 +34,19 @@ public class MixinLivingEntity implements IHookshotSwimAnimation {
 
     @ModifyVariable(method = "travel", at = @At("HEAD"), argsOnly = true)
     private Vec3 holdPegasusBootsPlayerInPlace(Vec3 travelVector) {
-        if ((Object) this == Minecraft.getInstance().player && PegasusBootsInputEvents.isWarmingUp()) {
+        if ((Object) this != Minecraft.getInstance().player) {
+            return travelVector;
+        }
+        if (PegasusBootsInputEvents.isWarmingUp()) {
             LivingEntity player = (LivingEntity) (Object) this;
             Vec3 movement = player.getDeltaMovement();
             player.setDeltaMovement(0.0D, movement.y, 0.0D);
             return new Vec3(0.0D, travelVector.y, 0.0D);
+        }
+        if (PegasusBootsInputEvents.isCharging()) {
+            // Preserve the forward charge while allowing only a small amount of
+            // left/right steering from A and D.
+            return new Vec3(travelVector.x * 0.3D, travelVector.y, travelVector.z);
         }
         return travelVector;
     }
