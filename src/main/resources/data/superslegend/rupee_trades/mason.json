@@ -1,0 +1,115 @@
+{
+  "profession": "minecraft:mason",
+  "trades": [
+    {
+      "id": "superslegend:mason/sell_stone",
+      "type": "sell",
+      "item": { "id": "minecraft:stone", "count": 32 },
+      "rupees": 10,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:mason/sell_clay",
+      "type": "sell",
+      "item": { "id": "minecraft:clay_ball", "count": 32 },
+      "rupees": 14,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 20
+    },
+    {
+      "id": "superslegend:mason/sell_granite",
+      "type": "sell",
+      "item": { "id": "minecraft:granite", "count": 32 },
+      "rupees": 12,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 30
+    },
+    {
+      "id": "superslegend:mason/sell_diorite",
+      "type": "sell",
+      "item": { "id": "minecraft:diorite", "count": 32 },
+      "rupees": 12,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 40
+    },
+    {
+      "id": "superslegend:mason/sell_quartz",
+      "type": "sell",
+      "item": { "id": "minecraft:quartz", "count": 16 },
+      "rupees": 20,
+      "stock": 10,
+      "level": 3,
+      "villager_xp": 5,
+      "order": 50
+    },
+    {
+      "id": "superslegend:mason/daily_bricks",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:bricks" },
+      "rupees": 8,
+      "stock": 8,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:mason/daily_terracotta",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:terracotta" },
+      "rupees": 6,
+      "stock": 8,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 20
+    },
+    {
+      "id": "superslegend:mason/daily_quartz_block",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:quartz_block" },
+      "rupees": 10,
+      "stock": 6,
+      "level": 3,
+      "villager_xp": 4,
+      "order": 30
+    },
+    {
+      "id": "superslegend:mason/daily_request_stone",
+      "type": "daily_request",
+      "item": { "id": "minecraft:stone", "count": 64 },
+      "rupees": 24,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:mason/daily_request_clay",
+      "type": "daily_request",
+      "item": { "id": "minecraft:clay_ball", "count": 48 },
+      "rupees": 28,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 5,
+      "order": 20
+    },
+    {
+      "id": "superslegend:mason/daily_request_quartz",
+      "type": "daily_request",
+      "item": { "id": "minecraft:quartz", "count": 24 },
+      "rupees": 38,
+      "stock": 2,
+      "level": 3,
+      "villager_xp": 6,
+      "order": 30
+    }
+  ]
+}

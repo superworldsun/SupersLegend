@@ -1,0 +1,115 @@
+{
+  "profession": "minecraft:butcher",
+  "trades": [
+    {
+      "id": "superslegend:butcher/sell_chicken",
+      "type": "sell",
+      "item": { "id": "minecraft:chicken", "count": 8 },
+      "rupees": 10,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:butcher/sell_porkchop",
+      "type": "sell",
+      "item": { "id": "minecraft:porkchop", "count": 8 },
+      "rupees": 14,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 20
+    },
+    {
+      "id": "superslegend:butcher/sell_beef",
+      "type": "sell",
+      "item": { "id": "minecraft:beef", "count": 8 },
+      "rupees": 14,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 30
+    },
+    {
+      "id": "superslegend:butcher/sell_mutton",
+      "type": "sell",
+      "item": { "id": "minecraft:mutton", "count": 8 },
+      "rupees": 12,
+      "stock": 16,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 40
+    },
+    {
+      "id": "superslegend:butcher/sell_rabbit",
+      "type": "sell",
+      "item": { "id": "minecraft:rabbit", "count": 4 },
+      "rupees": 12,
+      "stock": 12,
+      "level": 3,
+      "villager_xp": 4,
+      "order": 50
+    },
+    {
+      "id": "superslegend:butcher/daily_cooked_chicken",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:cooked_chicken" },
+      "rupees": 3,
+      "stock": 8,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:butcher/daily_cooked_beef",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:cooked_beef" },
+      "rupees": 4,
+      "stock": 8,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 20
+    },
+    {
+      "id": "superslegend:butcher/daily_rabbit_stew",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:rabbit_stew" },
+      "rupees": 12,
+      "stock": 4,
+      "level": 3,
+      "villager_xp": 5,
+      "order": 30
+    },
+    {
+      "id": "superslegend:butcher/daily_request_chicken",
+      "type": "daily_request",
+      "item": { "id": "minecraft:chicken", "count": 16 },
+      "rupees": 24,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:butcher/daily_request_porkchop",
+      "type": "daily_request",
+      "item": { "id": "minecraft:porkchop", "count": 12 },
+      "rupees": 26,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 20
+    },
+    {
+      "id": "superslegend:butcher/daily_request_beef",
+      "type": "daily_request",
+      "item": { "id": "minecraft:beef", "count": 12 },
+      "rupees": 26,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 30
+    }
+  ]
+}

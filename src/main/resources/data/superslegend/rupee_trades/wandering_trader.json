@@ -1,0 +1,85 @@
+{
+  "entity_type": "minecraft:wandering_trader",
+  "trades": [
+    {
+      "id": "superslegend:wandering/deku_seeds",
+      "type": "buy",
+      "item": { "id": "superslegend:deku_seeds" },
+      "rupees": 1,
+      "stock": 64,
+      "level": 1,
+      "villager_xp": 5,
+      "order": 10
+    },
+    {
+      "id": "superslegend:wandering/appraised_ring_box",
+      "type": "buy",
+      "item": { "id": "superslegend:appraised_ring_box" },
+      "rupees": 60,
+      "stock": 4,
+      "level": 1,
+      "villager_xp": 30,
+      "order": 20
+    },
+    {
+      "id": "superslegend:wandering/heart_piece",
+      "type": "buy",
+      "item": { "id": "superslegend:heart_piece" },
+      "rupees": 100,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 200,
+      "order": 30
+    },
+    {
+      "id": "superslegend:wandering/gorons_bracelet",
+      "type": "buy",
+      "item": { "id": "superslegend:gorons_bracelet" },
+      "rupees": 700,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 200,
+      "order": 40
+    },
+    {
+      "id": "superslegend:wandering/silver_gauntlets",
+      "type": "buy",
+      "item": { "id": "superslegend:silver_gauntlets" },
+      "rupees": 1500,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 200,
+      "order": 50
+    },
+    {
+      "id": "superslegend:wandering/golden_gauntlets",
+      "type": "buy",
+      "item": { "id": "superslegend:golden_gauntlets" },
+      "rupees": 4500,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 600,
+      "order": 60
+    },
+    {
+      "id": "superslegend:wandering/magic_fire_arrow",
+      "type": "buy",
+      "item": { "id": "superslegend:magic_fire_arrow" },
+      "rupees": 1200,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 400,
+      "order": 70
+    },
+    {
+      "id": "superslegend:wandering/magic_ice_arrow",
+      "type": "buy",
+      "item": { "id": "superslegend:magic_ice_arrow" },
+      "rupees": 1200,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 400,
+      "order": 80
+    }
+  ]
+}

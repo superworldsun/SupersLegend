@@ -1,0 +1,115 @@
+{
+  "profession": "minecraft:fletcher",
+  "trades": [
+    {
+      "id": "superslegend:fletcher/fairy_bow",
+      "type": "buy",
+      "item": { "id": "superslegend:fairy_bow" },
+      "rupees": 100,
+      "stock": 1,
+      "level": 2,
+      "villager_xp": 50,
+      "order": 10
+    },
+    {
+      "id": "superslegend:fletcher/sell_sticks",
+      "type": "sell",
+      "item": { "id": "minecraft:stick", "count": 32 },
+      "rupees": 8,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:fletcher/sell_flint",
+      "type": "sell",
+      "item": { "id": "minecraft:flint", "count": 16 },
+      "rupees": 12,
+      "stock": 12,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 20
+    },
+    {
+      "id": "superslegend:fletcher/sell_feathers",
+      "type": "sell",
+      "item": { "id": "minecraft:feather", "count": 16 },
+      "rupees": 14,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 30
+    },
+    {
+      "id": "superslegend:fletcher/sell_string",
+      "type": "sell",
+      "item": { "id": "minecraft:string", "count": 16 },
+      "rupees": 14,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 40
+    },
+    {
+      "id": "superslegend:fletcher/daily_bow",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:bow" },
+      "rupees": 20,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 10
+    },
+    {
+      "id": "superslegend:fletcher/daily_crossbow",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:crossbow" },
+      "rupees": 35,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 5,
+      "order": 20
+    },
+    {
+      "id": "superslegend:fletcher/daily_spectral_arrow",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:spectral_arrow" },
+      "rupees": 4,
+      "stock": 12,
+      "level": 3,
+      "villager_xp": 4,
+      "order": 30
+    },
+    {
+      "id": "superslegend:fletcher/daily_request_sticks",
+      "type": "daily_request",
+      "item": { "id": "minecraft:stick", "count": 64 },
+      "rupees": 18,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:fletcher/daily_request_feathers",
+      "type": "daily_request",
+      "item": { "id": "minecraft:feather", "count": 24 },
+      "rupees": 25,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 5,
+      "order": 20
+    },
+    {
+      "id": "superslegend:fletcher/daily_request_flint",
+      "type": "daily_request",
+      "item": { "id": "minecraft:flint", "count": 24 },
+      "rupees": 22,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 5,
+      "order": 30
+    }
+  ]
+}

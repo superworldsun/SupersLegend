@@ -1,0 +1,345 @@
+{
+  "profession": "minecraft:farmer",
+  "trades": [
+    {
+      "id": "superslegend:farmer/melon_slice",
+      "type": "buy",
+      "item": { "id": "minecraft:melon_slice" },
+      "rupees": 4,
+      "stock": 15,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 1
+    },
+    {
+      "id": "superslegend:farmer/beetroot",
+      "type": "buy",
+      "item": { "id": "minecraft:beetroot" },
+      "rupees": 5,
+      "stock": 6,
+      "level": 1,
+      "villager_xp": 6,
+      "order": 2
+    },
+    {
+      "id": "superslegend:farmer/potato",
+      "type": "buy",
+      "item": { "id": "minecraft:potato" },
+      "rupees": 10,
+      "stock": 10,
+      "level": 1,
+      "villager_xp": 5,
+      "order": 3
+    },
+    {
+      "id": "superslegend:farmer/carrot",
+      "type": "buy",
+      "item": { "id": "minecraft:carrot" },
+      "rupees": 15,
+      "stock": 5,
+      "level": 2,
+      "villager_xp": 8,
+      "order": 4
+    },
+    {
+      "id": "superslegend:farmer/apple",
+      "type": "buy",
+      "item": { "id": "minecraft:apple" },
+      "rupees": 20,
+      "stock": 6,
+      "level": 2,
+      "villager_xp": 12,
+      "order": 5
+    },
+    {
+      "id": "superslegend:farmer/sweet_berries",
+      "type": "buy",
+      "item": { "id": "minecraft:sweet_berries" },
+      "rupees": 5,
+      "stock": 20,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 6
+    },
+    {
+      "id": "superslegend:farmer/wheat",
+      "type": "buy",
+      "item": { "id": "minecraft:wheat" },
+      "rupees": 2,
+      "stock": 30,
+      "level": 3,
+      "villager_xp": 4,
+      "order": 7
+    },
+    {
+      "id": "superslegend:farmer/bone_meal",
+      "type": "buy",
+      "item": { "id": "minecraft:bone_meal" },
+      "rupees": 5,
+      "stock": 10,
+      "level": 3,
+      "villager_xp": 8,
+      "order": 8
+    },
+    {
+      "id": "superslegend:farmer/glow_berries",
+      "type": "buy",
+      "item": { "id": "minecraft:glow_berries" },
+      "rupees": 10,
+      "stock": 5,
+      "level": 4,
+      "villager_xp": 15,
+      "order": 9
+    },
+    {
+      "id": "superslegend:farmer/cake",
+      "type": "buy",
+      "item": { "id": "minecraft:cake" },
+      "rupees": 25,
+      "stock": 3,
+      "level": 4,
+      "villager_xp": 20,
+      "order": 10
+    },
+    {
+      "id": "superslegend:farmer/pumpkin_pie",
+      "type": "buy",
+      "item": { "id": "minecraft:pumpkin_pie" },
+      "rupees": 20,
+      "stock": 10,
+      "level": 4,
+      "villager_xp": 20,
+      "order": 11
+    },
+    {
+      "id": "superslegend:farmer/honey_bottle",
+      "type": "buy",
+      "item": { "id": "minecraft:honey_bottle" },
+      "rupees": 20,
+      "stock": 10,
+      "level": 4,
+      "villager_xp": 20,
+      "order": 12
+    },
+    {
+      "id": "superslegend:farmer/diamond_hoe",
+      "type": "buy",
+      "item": { "id": "minecraft:diamond_hoe" },
+      "rupees": 120,
+      "stock": 1,
+      "level": 5,
+      "villager_xp": 40,
+      "order": 13
+    },
+    {
+      "id": "superslegend:farmer/sell_wheat",
+      "type": "sell",
+      "item": { "id": "minecraft:wheat", "count": 16 },
+      "rupees": 8,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:farmer/sell_carrots",
+      "type": "sell",
+      "item": { "id": "minecraft:carrot", "count": 12 },
+      "rupees": 9,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 20
+    },
+    {
+      "id": "superslegend:farmer/sell_potatoes",
+      "type": "sell",
+      "item": { "id": "minecraft:potato", "count": 12 },
+      "rupees": 9,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 30
+    },
+    {
+      "id": "superslegend:farmer/sell_beetroots",
+      "type": "sell",
+      "item": { "id": "minecraft:beetroot", "count": 12 },
+      "rupees": 10,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 40
+    },
+    {
+      "id": "superslegend:farmer/sell_melon_slices",
+      "type": "sell",
+      "item": { "id": "minecraft:melon_slice", "count": 16 },
+      "rupees": 8,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 50
+    },
+    {
+      "id": "superslegend:farmer/sell_pumpkins",
+      "type": "sell",
+      "item": { "id": "minecraft:pumpkin", "count": 4 },
+      "rupees": 10,
+      "stock": 12,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 60
+    },
+    {
+      "id": "superslegend:farmer/sell_sweet_berries",
+      "type": "sell",
+      "item": { "id": "minecraft:sweet_berries", "count": 16 },
+      "rupees": 8,
+      "stock": 16,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 70
+    },
+    {
+      "id": "superslegend:farmer/sell_apples",
+      "type": "sell",
+      "item": { "id": "minecraft:apple", "count": 6 },
+      "rupees": 12,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 80
+    },
+    {
+      "id": "superslegend:farmer/sell_glow_berries",
+      "type": "sell",
+      "item": { "id": "minecraft:glow_berries", "count": 12 },
+      "rupees": 12,
+      "stock": 12,
+      "level": 3,
+      "villager_xp": 4,
+      "order": 90
+    },
+    {
+      "id": "superslegend:farmer/sell_honey_bottles",
+      "type": "sell",
+      "item": { "id": "minecraft:honey_bottle", "count": 4 },
+      "rupees": 16,
+      "stock": 8,
+      "level": 3,
+      "villager_xp": 5,
+      "order": 100
+    },
+    {
+      "id": "superslegend:farmer/sell_deku_seeds",
+      "type": "sell",
+      "item": { "id": "superslegend:deku_seeds", "count": 16 },
+      "rupees": 12,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 110
+    },
+    {
+      "id": "superslegend:farmer/sell_deku_flowers",
+      "type": "sell",
+      "item": { "id": "superslegend:deku_flower_block", "count": 4 },
+      "rupees": 16,
+      "stock": 8,
+      "level": 3,
+      "villager_xp": 5,
+      "order": 120
+    },
+    {
+      "id": "superslegend:farmer/sell_yellow_deku_flowers",
+      "type": "sell",
+      "item": { "id": "superslegend:yellow_deku_flower_block", "count": 4 },
+      "rupees": 24,
+      "stock": 6,
+      "level": 4,
+      "villager_xp": 8,
+      "order": 130
+    },
+    {
+      "id": "superslegend:farmer/sell_odd_mushrooms",
+      "type": "sell",
+      "item": { "id": "superslegend:odd_mushroom", "count": 4 },
+      "rupees": 20,
+      "stock": 8,
+      "level": 3,
+      "villager_xp": 6,
+      "order": 140
+    },
+    {
+      "id": "superslegend:farmer/sell_magic_mushrooms",
+      "type": "sell",
+      "item": { "id": "superslegend:magic_mushroom", "count": 2 },
+      "rupees": 30,
+      "stock": 6,
+      "level": 4,
+      "villager_xp": 10,
+      "order": 150
+    },
+    {
+      "id": "superslegend:farmer/daily_golden_carrot",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:golden_carrot" },
+      "rupees": 8,
+      "stock": 6,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 10
+    },
+    {
+      "id": "superslegend:farmer/daily_pumpkin_pie",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:pumpkin_pie" },
+      "rupees": 10,
+      "stock": 4,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 20
+    },
+    {
+      "id": "superslegend:farmer/daily_cake",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:cake" },
+      "rupees": 18,
+      "stock": 2,
+      "level": 3,
+      "villager_xp": 5,
+      "order": 30
+    },
+    {
+      "id": "superslegend:farmer/daily_request_wheat",
+      "type": "daily_request",
+      "item": { "id": "minecraft:wheat", "count": 16 },
+      "rupees": 10,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:farmer/daily_request_carrots",
+      "type": "daily_request",
+      "item": { "id": "minecraft:carrot", "count": 8 },
+      "rupees": 10,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 20
+    },
+    {
+      "id": "superslegend:farmer/daily_request_pumpkins",
+      "type": "daily_request",
+      "item": { "id": "minecraft:pumpkin", "count": 4 },
+      "rupees": 12,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 30
+    }
+  ]
+}

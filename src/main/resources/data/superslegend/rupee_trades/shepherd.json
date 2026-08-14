@@ -1,0 +1,115 @@
+{
+  "profession": "minecraft:shepherd",
+  "trades": [
+    {
+      "id": "superslegend:shepherd/sell_white_wool",
+      "type": "sell",
+      "item": { "id": "minecraft:white_wool", "count": 16 },
+      "rupees": 12,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:shepherd/sell_black_wool",
+      "type": "sell",
+      "item": { "id": "minecraft:black_wool", "count": 16 },
+      "rupees": 14,
+      "stock": 12,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 20
+    },
+    {
+      "id": "superslegend:shepherd/sell_brown_wool",
+      "type": "sell",
+      "item": { "id": "minecraft:brown_wool", "count": 16 },
+      "rupees": 14,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 30
+    },
+    {
+      "id": "superslegend:shepherd/sell_string",
+      "type": "sell",
+      "item": { "id": "minecraft:string", "count": 16 },
+      "rupees": 10,
+      "stock": 12,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 40
+    },
+    {
+      "id": "superslegend:shepherd/sell_dyes",
+      "type": "sell",
+      "item": { "id": "minecraft:green_dye", "count": 12 },
+      "rupees": 14,
+      "stock": 10,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 50
+    },
+    {
+      "id": "superslegend:shepherd/daily_bed",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:white_bed" },
+      "rupees": 15,
+      "stock": 3,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 10
+    },
+    {
+      "id": "superslegend:shepherd/daily_painting",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:painting" },
+      "rupees": 12,
+      "stock": 4,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 20
+    },
+    {
+      "id": "superslegend:shepherd/daily_banner",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:white_banner" },
+      "rupees": 20,
+      "stock": 3,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 30
+    },
+    {
+      "id": "superslegend:shepherd/daily_request_wool",
+      "type": "daily_request",
+      "item": { "id": "minecraft:white_wool", "count": 24 },
+      "rupees": 26,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:shepherd/daily_request_string",
+      "type": "daily_request",
+      "item": { "id": "minecraft:string", "count": 32 },
+      "rupees": 24,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 20
+    },
+    {
+      "id": "superslegend:shepherd/daily_request_dye",
+      "type": "daily_request",
+      "item": { "id": "minecraft:green_dye", "count": 20 },
+      "rupees": 28,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 5,
+      "order": 30
+    }
+  ]
+}

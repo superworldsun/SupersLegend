@@ -1,0 +1,188 @@
+{
+  "profession": "minecraft:weaponsmith",
+  "trades": [
+    {
+      "id": "superslegend:weaponsmith/master_sword_v2_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:master_sword_v2" },
+      "rupees": 0,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 70,
+      "order": 10,
+      "requirements": [
+        { "id": "superslegend:master_sword" },
+        { "id": "superslegend:master_ore", "count": 2 }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:weaponsmith/kokiri_sword",
+      "type": "buy",
+      "item": { "id": "superslegend:kokiri_sword" },
+      "rupees": 40,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 10,
+      "order": 20
+    },
+    {
+      "id": "superslegend:weaponsmith/magic_boomerang_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:magic_boomerang" },
+      "rupees": 120,
+      "stock": 1,
+      "level": 2,
+      "villager_xp": 20,
+      "order": 30,
+      "requirements": [
+        { "id": "superslegend:boomerang" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:weaponsmith/razor_sword_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:razor_sword" },
+      "rupees": 200,
+      "stock": 6,
+      "level": 3,
+      "villager_xp": 30,
+      "order": 40,
+      "requirements": [
+        { "id": "superslegend:kokiri_sword" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:weaponsmith/gilded_sword_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:gilded_sword" },
+      "rupees": 0,
+      "stock": 1,
+      "level": 4,
+      "villager_xp": 70,
+      "order": 50,
+      "requirements": [
+        { "id": "superslegend:razor_sword" },
+        { "id": "minecraft:gold_block", "count": 2 }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:weaponsmith/true_master_sword_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:true_master_sword" },
+      "rupees": 0,
+      "stock": 1,
+      "level": 5,
+      "villager_xp": 100,
+      "order": 60,
+      "requirements": [
+        { "id": "superslegend:master_sword_v2" },
+        { "id": "superslegend:master_ore", "count": 6 }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:weaponsmith/sell_coal",
+      "type": "sell",
+      "item": { "id": "minecraft:coal", "count": 16 },
+      "rupees": 10,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:weaponsmith/sell_iron",
+      "type": "sell",
+      "item": { "id": "minecraft:iron_ingot", "count": 8 },
+      "rupees": 24,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 20
+    },
+    {
+      "id": "superslegend:weaponsmith/sell_gold",
+      "type": "sell",
+      "item": { "id": "minecraft:gold_ingot", "count": 4 },
+      "rupees": 18,
+      "stock": 10,
+      "level": 3,
+      "villager_xp": 5,
+      "order": 30
+    },
+    {
+      "id": "superslegend:weaponsmith/sell_diamond",
+      "type": "sell",
+      "item": { "id": "minecraft:diamond" },
+      "rupees": 35,
+      "stock": 6,
+      "level": 4,
+      "villager_xp": 8,
+      "order": 40
+    },
+    {
+      "id": "superslegend:weaponsmith/daily_iron_sword",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:iron_sword" },
+      "rupees": 28,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:weaponsmith/daily_shield",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:shield" },
+      "rupees": 30,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 20
+    },
+    {
+      "id": "superslegend:weaponsmith/daily_diamond_sword",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:diamond_sword" },
+      "rupees": 120,
+      "stock": 1,
+      "level": 4,
+      "villager_xp": 10,
+      "order": 30
+    },
+    {
+      "id": "superslegend:weaponsmith/daily_request_coal",
+      "type": "daily_request",
+      "item": { "id": "minecraft:coal", "count": 32 },
+      "rupees": 24,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:weaponsmith/daily_request_iron",
+      "type": "daily_request",
+      "item": { "id": "minecraft:iron_ingot", "count": 12 },
+      "rupees": 45,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 6,
+      "order": 20
+    },
+    {
+      "id": "superslegend:weaponsmith/daily_request_diamond",
+      "type": "daily_request",
+      "item": { "id": "minecraft:diamond", "count": 2 },
+      "rupees": 80,
+      "stock": 1,
+      "level": 4,
+      "villager_xp": 10,
+      "order": 30
+    }
+  ]
+}

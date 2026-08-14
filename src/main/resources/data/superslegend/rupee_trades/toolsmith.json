@@ -1,0 +1,214 @@
+{
+  "profession": "minecraft:toolsmith",
+  "trades": [
+    {
+      "id": "superslegend:toolsmith/appraise_ring",
+      "type": "buy",
+      "item": { "id": "superslegend:appraised_ring_box" },
+      "rupees": 20,
+      "stock": 99,
+      "level": 1,
+      "villager_xp": 5,
+      "order": 10,
+      "requirements": [
+        { "id": "superslegend:unappraised_ring" }
+      ]
+    },
+    {
+      "id": "superslegend:toolsmith/bomb",
+      "type": "buy",
+      "item": { "id": "superslegend:bomb" },
+      "rupees": 15,
+      "stock": 20,
+      "level": 1,
+      "villager_xp": 8,
+      "order": 20
+    },
+    {
+      "id": "superslegend:toolsmith/water_bomb",
+      "type": "buy",
+      "item": { "id": "superslegend:water_bomb" },
+      "rupees": 20,
+      "stock": 10,
+      "level": 1,
+      "villager_xp": 10,
+      "order": 30
+    },
+    {
+      "id": "superslegend:toolsmith/deku_shield",
+      "type": "buy",
+      "item": { "id": "superslegend:deku_shield" },
+      "rupees": 40,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 20,
+      "order": 40
+    },
+    {
+      "id": "superslegend:toolsmith/ring_box_l1",
+      "type": "buy",
+      "item": { "id": "superslegend:ring_box_l1" },
+      "rupees": 100,
+      "stock": 5,
+      "level": 2,
+      "villager_xp": 10,
+      "order": 50
+    },
+    {
+      "id": "superslegend:toolsmith/ring_box_l2_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:ring_box_l2" },
+      "rupees": 150,
+      "stock": 5,
+      "level": 3,
+      "villager_xp": 30,
+      "order": 60,
+      "requirements": [
+        { "id": "superslegend:ring_box_l1" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:toolsmith/ring_box_l3_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:ring_box_l3" },
+      "rupees": 300,
+      "stock": 5,
+      "level": 4,
+      "villager_xp": 70,
+      "order": 70,
+      "requirements": [
+        { "id": "superslegend:ring_box_l2" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:toolsmith/blue_ring",
+      "type": "buy",
+      "item": { "id": "superslegend:blue_ring" },
+      "rupees": 60,
+      "stock": 5,
+      "level": 5,
+      "villager_xp": 70,
+      "order": 80,
+      "requirements": [
+        { "id": "superslegend:armor_ring_l3" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:toolsmith/red_ring",
+      "type": "buy",
+      "item": { "id": "superslegend:red_ring" },
+      "rupees": 60,
+      "stock": 5,
+      "level": 5,
+      "villager_xp": 70,
+      "order": 90,
+      "requirements": [
+        { "id": "superslegend:power_ring_l3" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:toolsmith/sell_iron_ingots",
+      "type": "sell",
+      "item": { "id": "minecraft:iron_ingot", "count": 4 },
+      "rupees": 12,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:toolsmith/sell_coal",
+      "type": "sell",
+      "item": { "id": "minecraft:coal", "count": 16 },
+      "rupees": 10,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 20
+    },
+    {
+      "id": "superslegend:toolsmith/sell_copper",
+      "type": "sell",
+      "item": { "id": "minecraft:copper_ingot", "count": 16 },
+      "rupees": 16,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 30
+    },
+    {
+      "id": "superslegend:toolsmith/sell_diamond",
+      "type": "sell",
+      "item": { "id": "minecraft:diamond" },
+      "rupees": 32,
+      "stock": 6,
+      "level": 4,
+      "villager_xp": 8,
+      "order": 40
+    },
+    {
+      "id": "superslegend:toolsmith/daily_iron_pickaxe",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:iron_pickaxe" },
+      "rupees": 25,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 5,
+      "order": 10
+    },
+    {
+      "id": "superslegend:toolsmith/daily_diamond_axe",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:diamond_axe" },
+      "rupees": 100,
+      "stock": 1,
+      "level": 4,
+      "villager_xp": 9,
+      "order": 20
+    },
+    {
+      "id": "superslegend:toolsmith/daily_diamond_hoe",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:diamond_hoe" },
+      "rupees": 80,
+      "stock": 1,
+      "level": 4,
+      "villager_xp": 8,
+      "order": 30
+    },
+    {
+      "id": "superslegend:toolsmith/daily_request_iron",
+      "type": "daily_request",
+      "item": { "id": "minecraft:iron_ingot", "count": 4 },
+      "rupees": 15,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 10
+    },
+    {
+      "id": "superslegend:toolsmith/daily_request_copper",
+      "type": "daily_request",
+      "item": { "id": "minecraft:copper_ingot", "count": 24 },
+      "rupees": 28,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 5,
+      "order": 20
+    },
+    {
+      "id": "superslegend:toolsmith/daily_request_diamond",
+      "type": "daily_request",
+      "item": { "id": "minecraft:diamond", "count": 2 },
+      "rupees": 70,
+      "stock": 1,
+      "level": 4,
+      "villager_xp": 9,
+      "order": 30
+    }
+  ]
+}

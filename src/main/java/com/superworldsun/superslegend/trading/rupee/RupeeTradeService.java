@@ -1,11 +1,14 @@
 package com.superworldsun.superslegend.trading.rupee;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.RupeeWalletUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -21,9 +24,11 @@ import net.minecraft.world.item.trading.MerchantOffers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 /** Server-authoritative validation, stock, and transaction logic for rupee trades. */
 public final class RupeeTradeService {
@@ -35,6 +40,9 @@ public final class RupeeTradeService {
     private static final String LEGACY_OFFERS_MIGRATION_TAG = SupersLegendMain.MOD_ID
             + ":RupeeTradeOffersMigration";
     private static final int LEGACY_OFFERS_MIGRATION_VERSION = 1;
+    private static final String ADVANCEMENT_TRADES_TAG = SupersLegendMain.MOD_ID + ":AdvancementTrades";
+    private static final String DISCOVERED_DAILY_ITEMS_TAG = "DiscoveredDailyItems";
+    private static final String UNIQUE_DAILY_DEALS_TAG = "UniqueDailyDeals";
 
     private RupeeTradeService() {
     }
@@ -106,6 +114,20 @@ public final class RupeeTradeService {
     public static int getUsesToday(AbstractVillager trader, ResourceLocation tradeId) {
         CompoundTag uses = getCurrentUsesTag(trader);
         return Math.max(0, uses.getInt(tradeId.toString()));
+    }
+
+    public static Set<ResourceLocation> getDiscoveredDailyTradeItems(Player player) {
+        CompoundTag persisted = player.getPersistentData().getCompound(Player.PERSISTED_NBT_TAG);
+        CompoundTag tradeData = persisted.getCompound(ADVANCEMENT_TRADES_TAG);
+        CompoundTag discovered = tradeData.getCompound(DISCOVERED_DAILY_ITEMS_TAG);
+        Set<ResourceLocation> ids = new HashSet<>();
+        for (String key : discovered.getAllKeys()) {
+            ResourceLocation id = ResourceLocation.tryParse(key);
+            if (id != null && discovered.getBoolean(key)) {
+                ids.add(id);
+            }
+        }
+        return Set.copyOf(ids);
     }
 
     /** Explicit administrative/testing reset; normal stock resets on day change. */
@@ -213,7 +235,77 @@ public final class RupeeTradeService {
         }
         prepared.player.getInventory().setChanged();
         awardVillagerXp(prepared.player, prepared.trader, plan.trade, plan.outputs);
+        recordAdvancementTrade(prepared.player, prepared.trader, plan.trade, plan.totalRupeeAmount);
+        if (plan.trade.type() == RupeeTrade.Type.DAILY_DEAL) {
+            ModAdvancementHelper.award(prepared.player, "supporting_local_business", "daily_deal");
+        } else if (plan.trade.type() == RupeeTrade.Type.DAILY_REQUEST) {
+            ModAdvancementHelper.award(prepared.player, "a_heros_allowance", "daily_quest");
+        }
         return PurchaseStatus.SUCCESS;
+    }
+
+    private static void recordAdvancementTrade(ServerPlayer player, AbstractVillager trader,
+                                               RupeeTrade trade, int rupees) {
+        CompoundTag root = player.getPersistentData();
+        CompoundTag persisted = root.getCompound(Player.PERSISTED_NBT_TAG);
+        CompoundTag data = persisted.getCompound(ADVANCEMENT_TRADES_TAG);
+
+        int trades = data.getInt("Count") + 1;
+        data.putInt("Count", trades);
+        if (trades >= 10) {
+            ModAdvancementHelper.award(player, "regular_customer", "ten_trades");
+        }
+
+        if (trader instanceof Villager villager) {
+            CompoundTag professions = data.getCompound("Professions");
+            professions.putBoolean(villager.getVillagerData().getProfession().toString(), true);
+            data.put("Professions", professions);
+            if (professions.getAllKeys().size() >= 13) {
+                ModAdvancementHelper.award(player, "merchant_of_hyrule", "all_professions");
+            }
+        }
+
+        if (trade.isSellTrade()) {
+            long earned = data.getLong("Earned") + rupees;
+            data.putLong("Earned", earned);
+            if (earned >= 10_000L) {
+                ModAdvancementHelper.award(player, "rupee_tycoon", "earned_rupees");
+            }
+        } else {
+            long spent = data.getLong("Spent") + rupees;
+            data.putLong("Spent", spent);
+            if (spent >= 1_000L) {
+                ModAdvancementHelper.award(player, "big_spender", "spent_rupees");
+            }
+        }
+
+        if (trade.isDailyRequest()) {
+            CompoundTag days = data.getCompound("DailyQuestDays");
+            days.putBoolean(Long.toString(player.level().getDayTime() / 24_000L), true);
+            data.put("DailyQuestDays", days);
+            if (days.getAllKeys().size() >= 7) {
+                ModAdvancementHelper.award(player, "daily_routine", "seven_days");
+            }
+        }
+
+        if (trade.type() == RupeeTrade.Type.DAILY_DEAL
+                || trade.type() == RupeeTrade.Type.DAILY_REQUEST) {
+            CompoundTag discovered = data.getCompound(DISCOVERED_DAILY_ITEMS_TAG);
+            ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(trade.result().getItem());
+            discovered.putBoolean(itemId.toString(), true);
+            data.put(DISCOVERED_DAILY_ITEMS_TAG, discovered);
+        }
+        if (trade.type() == RupeeTrade.Type.DAILY_DEAL) {
+            CompoundTag uniqueDeals = data.getCompound(UNIQUE_DAILY_DEALS_TAG);
+            uniqueDeals.putBoolean(trade.id().toString(), true);
+            data.put(UNIQUE_DAILY_DEALS_TAG, uniqueDeals);
+            if (uniqueDeals.getAllKeys().size() >= 20) {
+                ModAdvancementHelper.award(player, "daily_deal_collector", "twenty_unique_deals");
+            }
+        }
+
+        persisted.put(ADVANCEMENT_TRADES_TAG, data);
+        root.put(Player.PERSISTED_NBT_TAG, persisted);
     }
 
     private static PlanResult createPlan(ServerPlayer player, AbstractVillager trader,

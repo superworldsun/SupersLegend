@@ -37,6 +37,8 @@ public enum RupeeWalletHud implements IGuiOverlay {
     private int animationTargetValue;
     private long animationStartTime;
     private boolean animationInitialized;
+    private Integer pendingInstantBalance;
+    private long pendingInstantBalanceTime;
 
     @Override
     public void render(ForgeGui gui, GuiGraphics graphics, float partialTick, int screenWidth, int screenHeight) {
@@ -78,6 +80,20 @@ public enum RupeeWalletHud implements IGuiOverlay {
             return storedRupees;
         }
 
+        if (pendingInstantBalance != null) {
+            if (now - pendingInstantBalanceTime <= 1_500L) {
+                int instantBalance = pendingInstantBalance;
+                animationStartValue = instantBalance;
+                animationTargetValue = instantBalance;
+                animationStartTime = now;
+                if (storedRupees == instantBalance) {
+                    pendingInstantBalance = null;
+                }
+                return instantBalance;
+            }
+            pendingInstantBalance = null;
+        }
+
         int displayedRupees = calculateDisplayedRupees(now);
         if (storedRupees != animationTargetValue) {
             animationStartValue = displayedRupees;
@@ -103,6 +119,12 @@ public enum RupeeWalletHud implements IGuiOverlay {
         animationInitialized = false;
         trackedPlayer = null;
         trackedWallet = null;
+        pendingInstantBalance = null;
+    }
+
+    public static void requestInstantBalance(int balance) {
+        INSTANCE.pendingInstantBalance = Math.max(0, balance);
+        INSTANCE.pendingInstantBalanceTime = System.currentTimeMillis();
     }
 
     /** Keeps every wallet display using the same tier-to-rupee icon mapping. */

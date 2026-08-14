@@ -1,0 +1,249 @@
+{
+  "profession": "minecraft:leatherworker",
+  "trades": [
+    {
+      "id": "superslegend:leatherworker/bait_bag",
+      "type": "buy",
+      "item": { "id": "superslegend:bait_bag" },
+      "rupees": 20,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 8,
+      "order": 10
+    },
+    {
+      "id": "superslegend:leatherworker/spoils_bag",
+      "type": "buy",
+      "item": { "id": "superslegend:spoils_bag" },
+      "rupees": 20,
+      "stock": 1,
+      "level": 2,
+      "villager_xp": 8,
+      "order": 20
+    },
+    {
+      "id": "superslegend:leatherworker/delivery_bag",
+      "type": "buy",
+      "item": { "id": "superslegend:delivery_bag" },
+      "rupees": 20,
+      "stock": 1,
+      "level": 2,
+      "villager_xp": 8,
+      "order": 30
+    },
+    {
+      "id": "superslegend:leatherworker/quiver",
+      "type": "buy",
+      "item": { "id": "superslegend:quiver" },
+      "rupees": 100,
+      "stock": 1,
+      "level": 3,
+      "villager_xp": 8,
+      "order": 40
+    },
+    {
+      "id": "superslegend:leatherworker/big_quiver_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:big_quiver" },
+      "rupees": 150,
+      "stock": 5,
+      "level": 4,
+      "villager_xp": 30,
+      "order": 50,
+      "requirements": [
+        { "id": "superslegend:quiver" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:leatherworker/biggest_quiver_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:biggest_quiver" },
+      "rupees": 300,
+      "stock": 5,
+      "level": 5,
+      "villager_xp": 30,
+      "order": 60,
+      "requirements": [
+        { "id": "superslegend:big_quiver" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:leatherworker/bullet_bag",
+      "type": "buy",
+      "item": { "id": "superslegend:bullet_bag" },
+      "rupees": 100,
+      "stock": 1,
+      "level": 3,
+      "villager_xp": 8,
+      "order": 70
+    },
+    {
+      "id": "superslegend:leatherworker/big_bullet_bag_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:big_bullet_bag" },
+      "rupees": 150,
+      "stock": 5,
+      "level": 4,
+      "villager_xp": 30,
+      "order": 80,
+      "requirements": [
+        { "id": "superslegend:bullet_bag" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:leatherworker/biggest_bullet_bag_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:biggest_bullet_bag" },
+      "rupees": 300,
+      "stock": 5,
+      "level": 5,
+      "villager_xp": 30,
+      "order": 90,
+      "requirements": [
+        { "id": "superslegend:big_bullet_bag" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:leatherworker/bomb_bag",
+      "type": "buy",
+      "item": { "id": "superslegend:bomb_bag" },
+      "rupees": 100,
+      "stock": 1,
+      "level": 3,
+      "villager_xp": 8,
+      "order": 100
+    },
+    {
+      "id": "superslegend:leatherworker/big_bomb_bag_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:big_bomb_bag" },
+      "rupees": 150,
+      "stock": 5,
+      "level": 4,
+      "villager_xp": 30,
+      "order": 110,
+      "requirements": [
+        { "id": "superslegend:bomb_bag" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:leatherworker/biggest_bomb_bag_upgrade",
+      "type": "buy",
+      "item": { "id": "superslegend:biggest_bomb_bag" },
+      "rupees": 300,
+      "stock": 5,
+      "level": 5,
+      "villager_xp": 30,
+      "order": 120,
+      "requirements": [
+        { "id": "superslegend:big_bomb_bag" }
+      ],
+      "copy_data_from_requirement": 0
+    },
+    {
+      "id": "superslegend:leatherworker/sell_leather",
+      "type": "sell",
+      "item": { "id": "minecraft:leather", "count": 12 },
+      "rupees": 18,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 10
+    },
+    {
+      "id": "superslegend:leatherworker/sell_rabbit_hide",
+      "type": "sell",
+      "item": { "id": "minecraft:rabbit_hide", "count": 12 },
+      "rupees": 16,
+      "stock": 12,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 20
+    },
+    {
+      "id": "superslegend:leatherworker/sell_scute",
+      "type": "sell",
+      "item": { "id": "minecraft:scute", "count": 4 },
+      "rupees": 24,
+      "stock": 8,
+      "level": 3,
+      "villager_xp": 6,
+      "order": 30
+    },
+    {
+      "id": "superslegend:leatherworker/sell_string",
+      "type": "sell",
+      "item": { "id": "minecraft:string", "count": 16 },
+      "rupees": 12,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 40
+    },
+    {
+      "id": "superslegend:leatherworker/daily_leather_boots",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:leather_boots" },
+      "rupees": 12,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 10
+    },
+    {
+      "id": "superslegend:leatherworker/daily_item_frame",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:item_frame" },
+      "rupees": 8,
+      "stock": 6,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 20
+    },
+    {
+      "id": "superslegend:leatherworker/daily_saddle",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:saddle" },
+      "rupees": 55,
+      "stock": 1,
+      "level": 3,
+      "villager_xp": 7,
+      "order": 30
+    },
+    {
+      "id": "superslegend:leatherworker/daily_request_leather",
+      "type": "daily_request",
+      "item": { "id": "minecraft:leather", "count": 20 },
+      "rupees": 40,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 5,
+      "order": 10
+    },
+    {
+      "id": "superslegend:leatherworker/daily_request_rabbit_hide",
+      "type": "daily_request",
+      "item": { "id": "minecraft:rabbit_hide", "count": 20 },
+      "rupees": 35,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 5,
+      "order": 20
+    },
+    {
+      "id": "superslegend:leatherworker/daily_request_scute",
+      "type": "daily_request",
+      "item": { "id": "minecraft:scute", "count": 5 },
+      "rupees": 40,
+      "stock": 2,
+      "level": 4,
+      "villager_xp": 7,
+      "order": 30
+    }
+  ]
+}

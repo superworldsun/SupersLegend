@@ -6,6 +6,7 @@ import com.superworldsun.superslegend.trading.rupee.RupeeTradeRegistry;
 import com.superworldsun.superslegend.trading.rupee.RupeeTradeService;
 import com.superworldsun.superslegend.util.RupeeWalletUtil;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -15,10 +16,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * A slotless, server-authoritative menu for wallet-backed villager trades.
@@ -37,31 +40,55 @@ public class RupeeTradeMenu extends AbstractContainerMenu {
     private final Player player;
     private final AbstractVillager trader;
     private final List<RupeeTrade> trades;
+    private final Set<ResourceLocation> discoveredDailyItems;
     private final int[] syncedValues;
     private final ContainerData data;
 
     /** Forge network constructor. */
     public RupeeTradeMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
         this(containerId, inventory,
-                resolveTrader(inventory.player, buffer.readVarInt()), readTradeIds(buffer));
+                resolveTrader(inventory.player, buffer.readVarInt()), readTrades(buffer),
+                readDiscoveredDailyItemIds(buffer));
     }
 
     /** Server constructor. */
     public RupeeTradeMenu(int containerId, Inventory inventory, AbstractVillager trader) {
-        this(containerId, inventory, trader, null);
+        this(containerId, inventory, trader, null,
+                RupeeTradeService.getDiscoveredDailyTradeItems(inventory.player));
     }
 
     private RupeeTradeMenu(int containerId, Inventory inventory, AbstractVillager trader,
-                           List<ResourceLocation> serverTradeIds) {
+                           List<RupeeTrade> clientTrades,
+                           Set<ResourceLocation> discoveredDailyItems) {
         super(MenuTypeInit.RUPEE_TRADE_MENU.get(), containerId);
         this.player = inventory.player;
         this.trader = trader;
-        this.trades = serverTradeIds == null
-                ? trader == null ? List.of() : RupeeTradeRegistry.getTrades(trader)
-                : RupeeTradeRegistry.getTradesById(serverTradeIds);
+        this.trades = clientTrades == null
+                ? trader == null ? List.of() : RupeeTradeRegistry.getVisibleTrades(trader)
+                : List.copyOf(clientTrades);
+        this.discoveredDailyItems = Set.copyOf(discoveredDailyItems);
         this.syncedValues = new int[trades.size() + STOCK_DATA_START];
         this.data = createDataView();
         addDataSlots(data);
+        addPlayerInventorySyncSlots(inventory);
+    }
+
+    /**
+     * The custom screen does not draw an inventory, but the open menu still
+     * needs player slots so ordinary pickups, drops, and inventory mutations
+     * synchronize every tick. Keeping them off-screen preserves the current UI.
+     */
+    private void addPlayerInventorySyncSlots(Inventory inventory) {
+        final int hiddenCoordinate = -10_000;
+        for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 9; column++) {
+                addSlot(new Slot(inventory, column + row * 9 + 9,
+                        hiddenCoordinate, hiddenCoordinate));
+            }
+        }
+        for (int column = 0; column < 9; column++) {
+            addSlot(new Slot(inventory, column, hiddenCoordinate, hiddenCoordinate));
+        }
     }
 
     private ContainerData createDataView() {
@@ -115,6 +142,11 @@ public class RupeeTradeMenu extends AbstractContainerMenu {
 
     public List<RupeeTrade> getTrades() {
         return trades;
+    }
+
+    public boolean hasDiscoveredDailyTrade(RupeeTrade trade) {
+        return trade != null && discoveredDailyItems.contains(
+                BuiltInRegistries.ITEM.getKey(trade.result().getItem()));
     }
 
     public int getBalance() {
@@ -195,15 +227,27 @@ public class RupeeTradeMenu extends AbstractContainerMenu {
         return entity instanceof AbstractVillager abstractVillager ? abstractVillager : null;
     }
 
-    private static List<ResourceLocation> readTradeIds(FriendlyByteBuf buffer) {
+    private static List<RupeeTrade> readTrades(FriendlyByteBuf buffer) {
         int count = buffer.readVarInt();
         if (count < 0 || count > 256) {
             throw new IllegalArgumentException("Invalid rupee trade count: " + count);
         }
-        java.util.ArrayList<ResourceLocation> ids = new java.util.ArrayList<>(count);
+        java.util.ArrayList<RupeeTrade> trades = new java.util.ArrayList<>(count);
+        for (int index = 0; index < count; index++) {
+            trades.add(RupeeTrade.read(buffer));
+        }
+        return List.copyOf(trades);
+    }
+
+    private static Set<ResourceLocation> readDiscoveredDailyItemIds(FriendlyByteBuf buffer) {
+        int count = buffer.readVarInt();
+        if (count < 0 || count > 2048) {
+            throw new IllegalArgumentException("Invalid discovered daily trade count: " + count);
+        }
+        java.util.HashSet<ResourceLocation> ids = new java.util.HashSet<>(count);
         for (int index = 0; index < count; index++) {
             ids.add(buffer.readResourceLocation());
         }
-        return List.copyOf(ids);
+        return Set.copyOf(ids);
     }
 }

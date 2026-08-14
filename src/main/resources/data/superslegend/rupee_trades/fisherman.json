@@ -1,0 +1,158 @@
+{
+  "profession": "minecraft:fisherman",
+  "trades": [
+    {
+      "id": "superslegend:fisherman/hyrule_bass",
+      "type": "buy",
+      "item": { "id": "superslegend:hyrule_bass" },
+      "rupees": 20,
+      "stock": 30,
+      "level": 1,
+      "villager_xp": 5,
+      "order": 1
+    },
+    {
+      "id": "superslegend:fisherman/hylian_bass",
+      "type": "buy",
+      "item": { "id": "superslegend:hylian_loach" },
+      "rupees": 35,
+      "stock": 20,
+      "level": 1,
+      "villager_xp": 8,
+      "order": 2
+    },
+    {
+      "id": "superslegend:fisherman/fishing_rod",
+      "type": "buy",
+      "item": { "id": "superslegend:fishing_rod" },
+      "rupees": 60,
+      "stock": 1,
+      "level": 3,
+      "villager_xp": 50,
+      "order": 10
+    },
+
+    {
+      "id": "superslegend:fisherman/raw_cod",
+      "type": "sell",
+      "item": { "id": "minecraft:cod" },
+      "rupees": 4,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 1
+    },
+    {
+      "id": "superslegend:fisherman/sell_salmon",
+      "type": "sell",
+      "item": { "id": "minecraft:salmon", "count": 4 },
+      "rupees": 14,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:fisherman/sell_pufferfish",
+      "type": "sell",
+      "item": { "id": "minecraft:pufferfish", "count": 4 },
+      "rupees": 16,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 20
+    },
+    {
+      "id": "superslegend:fisherman/sell_tropical_fish",
+      "type": "sell",
+      "item": { "id": "minecraft:tropical_fish", "count": 4 },
+      "rupees": 18,
+      "stock": 10,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 30
+    },
+    {
+      "id": "superslegend:fisherman/sell_hyrule_bass",
+      "type": "sell",
+      "item": { "id": "superslegend:hyrule_bass", "count": 2 },
+      "rupees": 18,
+      "stock": 10,
+      "level": 3,
+      "villager_xp": 5,
+      "order": 40
+    },
+    {
+      "id": "superslegend:fisherman/sell_hylian_loach",
+      "type": "sell",
+      "item": { "id": "superslegend:hylian_loach", "count": 2 },
+      "rupees": 24,
+      "stock": 8,
+      "level": 4,
+      "villager_xp": 7,
+      "order": 50
+    },
+
+    {
+      "id": "superslegend:fisherman/daily_swimmers_ring",
+      "type": "daily_deal",
+      "item": { "id": "superslegend:swimmers_ring" },
+      "rupees": 100,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 5,
+      "order": 1
+    },
+    {
+      "id": "superslegend:fisherman/daily_cooked_cod",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:cooked_cod" },
+      "rupees": 5,
+      "stock": 8,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:fisherman/daily_cooked_hyrule_bass",
+      "type": "daily_deal",
+      "item": { "id": "superslegend:cooked_hyrule_bass" },
+      "rupees": 12,
+      "stock": 4,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 20
+    },
+
+    {
+      "id": "superslegend:fisherman/daily_request_salmon",
+      "type": "daily_request",
+      "item": { "id": "minecraft:salmon", "count": 4 },
+      "rupees": 20,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 10
+    },
+    {
+      "id": "superslegend:fisherman/daily_request_pufferfish",
+      "type": "daily_request",
+      "item": { "id": "minecraft:pufferfish", "count": 6 },
+      "rupees": 30,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 5,
+      "order": 20
+    },
+    {
+      "id": "superslegend:fisherman/daily_request_hylian_loach",
+      "type": "daily_request",
+      "item": { "id": "superslegend:hylian_loach", "count": 2 },
+      "rupees": 35,
+      "stock": 2,
+      "level": 4,
+      "villager_xp": 7,
+      "order": 30
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "profession": "minecraft:armorer",
+  "trades": [
+    {
+      "id": "superslegend:armorer/deku_shield",
+      "type": "buy",
+      "item": { "id": "superslegend:deku_shield" },
+      "rupees": 40,
+      "stock": 1,
+      "level": 1,
+      "villager_xp": 9,
+      "order": 10
+    },
+    {
+      "id": "superslegend:armorer/sacred_shield",
+      "type": "buy",
+      "item": { "id": "superslegend:sacred_shield" },
+      "rupees": 500,
+      "stock": 1,
+      "level": 3,
+      "villager_xp": 30,
+      "order": 20
+    },
+    {
+      "id": "superslegend:armorer/magic_armor",
+      "type": "buy",
+      "item": { "id": "superslegend:magic_armor_set" },
+      "rupees": 600,
+      "stock": 1,
+      "level": 4,
+      "villager_xp": 200,
+      "order": 30
+    },
+    {
+      "id": "superslegend:armorer/sell_coal",
+      "type": "sell",
+      "item": { "id": "minecraft:coal", "count": 16 },
+      "rupees": 10,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:armorer/sell_iron",
+      "type": "sell",
+      "item": { "id": "minecraft:iron_ingot", "count": 8 },
+      "rupees": 24,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 20
+    },
+    {
+      "id": "superslegend:armorer/sell_copper",
+      "type": "sell",
+      "item": { "id": "minecraft:copper_ingot", "count": 16 },
+      "rupees": 16,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 30
+    },
+    {
+      "id": "superslegend:armorer/sell_diamond",
+      "type": "sell",
+      "item": { "id": "minecraft:diamond" },
+      "rupees": 35,
+      "stock": 6,
+      "level": 4,
+      "villager_xp": 8,
+      "order": 40
+    },
+    {
+      "id": "superslegend:armorer/daily_shield",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:shield" },
+      "rupees": 30,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:armorer/daily_iron_chestplate",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:iron_chestplate" },
+      "rupees": 50,
+      "stock": 1,
+      "level": 2,
+      "villager_xp": 6,
+      "order": 20
+    },
+    {
+      "id": "superslegend:armorer/daily_diamond_helmet",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:diamond_helmet" },
+      "rupees": 120,
+      "stock": 1,
+      "level": 4,
+      "villager_xp": 10,
+      "order": 30
+    },
+    {
+      "id": "superslegend:armorer/daily_request_coal",
+      "type": "daily_request",
+      "item": { "id": "minecraft:coal", "count": 32 },
+      "rupees": 24,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:armorer/daily_request_iron",
+      "type": "daily_request",
+      "item": { "id": "minecraft:iron_ingot", "count": 12 },
+      "rupees": 45,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 6,
+      "order": 20
+    },
+    {
+      "id": "superslegend:armorer/daily_request_diamond",
+      "type": "daily_request",
+      "item": { "id": "minecraft:diamond", "count": 2 },
+      "rupees": 80,
+      "stock": 1,
+      "level": 4,
+      "villager_xp": 10,
+      "order": 30
+    }
+  ]
+}

@@ -29,6 +29,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,6 +45,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
     private static final int MAX_PURCHASE_QUANTITY = 64;
     private static final int MIN_ROW_HEIGHT = 24;
     private static final int MAX_ROWS_PER_PAGE = 5;
+    private static final long BALANCE_ANIMATION_DURATION_MS = 1000L;
 
     private final List<TradeRowButton> rowButtons = new ArrayList<>();
     private final ItemStack defaultRupeeIcon = new ItemStack(ItemInit.RUPEE.get());
@@ -65,6 +67,10 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
     private int rowHeight;
     private int paginationY;
     private int quantityY;
+    private int displayedBalanceStart;
+    private int displayedBalanceTarget;
+    private long displayedBalanceStartTime;
+    private boolean displayedBalanceInitialized;
 
     private HyruleButton previousPageButton;
     private HyruleButton nextPageButton;
@@ -74,6 +80,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
     private HyruleButton buyTabButton;
     private HyruleButton sellTabButton;
     private HyruleButton dailyDealTabButton;
+    private HyruleButton dailyRequestTabButton;
 
     public RupeeTradeScreen(RupeeTradeMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -91,7 +98,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         listLeft = leftPos + 9;
         listTop = topPos + 48;
         contentHeight = imageHeight - 57;
-        listWidth = Math.max(151, (imageWidth - 24) * 53 / 100);
+        listWidth = Math.max(180, (imageWidth - 24) * 60 / 100);
         detailsLeft = listLeft + listWidth + bodyGap;
         detailsTop = listTop;
         detailsWidth = leftPos + imageWidth - 9 - detailsLeft;
@@ -115,17 +122,23 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
 
         int tabGap = 3;
         int tabAreaWidth = listWidth - 12;
-        int shortTabWidth = (tabAreaWidth - tabGap * 2) * 27 / 100;
+        int usableTabWidth = tabAreaWidth - tabGap * 3;
+        int shortTabWidth = usableTabWidth * 18 / 100;
+        int dailyDealWidth = usableTabWidth * 30 / 100;
         int tabY = listTop + 24;
         buyTabButton = addRenderableWidget(new HyruleButton(listLeft + 6, tabY, shortTabWidth, 18,
                 Component.literal("Buy"), button -> selectType(RupeeTrade.Type.BUY), HyruleButton.Style.TAB));
         sellTabButton = addRenderableWidget(new HyruleButton(listLeft + 6 + shortTabWidth + tabGap, tabY,
                 shortTabWidth, 18, Component.literal("Sell"), button -> selectType(RupeeTrade.Type.SELL),
                 HyruleButton.Style.TAB));
-        int dailyX = listLeft + 6 + (shortTabWidth + tabGap) * 2;
-        dailyDealTabButton = addRenderableWidget(new HyruleButton(dailyX, tabY,
-                listLeft + listWidth - 6 - dailyX, 18, Component.literal("Daily Deal"),
+        int dailyDealX = listLeft + 6 + (shortTabWidth + tabGap) * 2;
+        dailyDealTabButton = addRenderableWidget(new HyruleButton(dailyDealX, tabY,
+                dailyDealWidth, 18, Component.literal("Daily Deal"),
                 button -> selectType(RupeeTrade.Type.DAILY_DEAL), HyruleButton.Style.TAB));
+        int dailyRequestX = dailyDealX + dailyDealWidth + tabGap;
+        dailyRequestTabButton = addRenderableWidget(new HyruleButton(dailyRequestX, tabY,
+                listLeft + listWidth - 6 - dailyRequestX, 18, Component.literal("Daily Quest"),
+                button -> selectType(RupeeTrade.Type.DAILY_REQUEST), HyruleButton.Style.TAB));
 
         int firstTrade = page * tradesPerPage;
         List<RupeeTrade> trades = trades();
@@ -135,8 +148,11 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
                 break;
             }
             ItemStack result = trades.get(tradeIndex).result();
-            Component narration = Component.literal(result.getHoverName().getString()
-                    + ", " + trades.get(tradeIndex).rupeeCost() + " rupees");
+            RupeeTrade trade = trades.get(tradeIndex);
+            Component narration = isMysteryDailyTrade(trade)
+                    ? Component.literal("Unknown trade, unlocks at level " + trade.unlockLevel())
+                    : Component.literal(result.getHoverName().getString()
+                    + ", " + trade.rupeeCost() + " rupees");
             TradeRowButton rowButton = new TradeRowButton(listLeft + 6,
                     rowsTop + row * rowHeight, listWidth - 12, rowHeight - 2,
                     narration, tradeIndex);
@@ -183,7 +199,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         int balanceRight = leftPos + imageWidth - 39;
         int balanceX = Math.max(leftPos + 171, balanceRight - 78);
         graphics.renderItem(walletRupeeIcon(), balanceX, topPos + 27);
-        graphics.drawString(font, Integer.toString(menu.getBalance()), balanceX + 19, topPos + 32,
+        graphics.drawString(font, Integer.toString(animatedWalletBalance()), balanceX + 19, topPos + 32,
                 0xFF24512A, false);
         renderVillagerProgressBar(graphics, balanceX);
 
@@ -203,6 +219,37 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
     protected void renderLabels(@NotNull GuiGraphics graphics, int mouseX, int mouseY) {
         // All labels use absolute positions in renderBg so the responsive panels
         // and their widgets share a single coordinate system.
+    }
+
+    /** Matches the wallet HUD's one-second count animation without affecting trade validation. */
+    private int animatedWalletBalance() {
+        long now = System.currentTimeMillis();
+        int balance = menu.getBalance();
+        if (!displayedBalanceInitialized) {
+            displayedBalanceStart = balance;
+            displayedBalanceTarget = balance;
+            displayedBalanceStartTime = now;
+            displayedBalanceInitialized = true;
+            return balance;
+        }
+
+        int displayedBalance = calculateAnimatedWalletBalance(now);
+        if (balance != displayedBalanceTarget) {
+            displayedBalanceStart = displayedBalance;
+            displayedBalanceTarget = balance;
+            displayedBalanceStartTime = now;
+        }
+        return calculateAnimatedWalletBalance(now);
+    }
+
+    private int calculateAnimatedWalletBalance(long now) {
+        if (displayedBalanceStart == displayedBalanceTarget) {
+            return displayedBalanceTarget;
+        }
+        float progress = Math.min(1.0F,
+                (float) (now - displayedBalanceStartTime) / (float) BALANCE_ANIMATION_DURATION_MS);
+        return displayedBalanceStart
+                + Math.round((displayedBalanceTarget - displayedBalanceStart) * progress);
     }
 
     @Override
@@ -240,58 +287,79 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
             return;
         }
 
+        if (isMysteryDailyTrade(trade)) {
+            graphics.drawCenteredString(font, Component.literal("???"),
+                    detailsLeft + detailsWidth / 2, detailsTop + 43, 0xFFA0A0A0);
+            graphics.drawString(font,
+                    Component.literal("LOCKED - Unlocks at level " + trade.unlockLevel()),
+                    detailsLeft + 11, detailsTop + 68, 0xFFA0A0A0, false);
+            return;
+        }
+
+        boolean unlocked = isTradeUnlocked(trade);
         ItemStack result = trade.result();
-        graphics.drawString(font, Component.literal(trade.isSellTrade() ? "You will sell:" : "You will receive:"),
+        graphics.drawString(font, Component.literal(trade.isDailyRequest() ? "They request:"
+                        : trade.isSellTrade() ? "You will sell:" : "You will receive:"),
                 detailsLeft + 11, detailsTop + 28, HyruleGuiTheme.TEXT_MUTED, false);
         int resultX = detailsLeft + 12;
         int resultY = resultItemY();
         graphics.fill(resultX - 3, resultY - 3, resultX + 21, resultY + 21, 0xAA0B0806);
         HyruleGuiTheme.drawBorder(graphics, resultX - 3, resultY - 3, 24, 24,
-                isTradeUnlocked(trade) ? HyruleGuiTheme.GOLD_BRIGHT : 0xFF6C4A38);
+                unlocked ? HyruleGuiTheme.GOLD_BRIGHT : 0xFF686868);
         graphics.renderItem(result, resultX + 1, resultY + 1);
         int totalResultCount = safeProduct(result.getCount(), quantity);
-        graphics.renderItemDecorations(font, result, resultX + 1, resultY + 1,
-                totalResultCount > 1 ? Integer.toString(totalResultCount) : null);
+        if (unlocked) {
+            graphics.renderItemDecorations(font, result, resultX + 1, resultY + 1,
+                    totalResultCount > 1 ? Integer.toString(totalResultCount) : null);
+        }
+        if (!unlocked) {
+            graphics.fill(resultX + 1, resultY + 1, resultX + 17, resultY + 17, 0x99585858);
+        }
 
         int resultTextX = resultX + 27;
         int resultTextWidth = Math.max(25, detailsWidth - 51);
         String resultName = fit(result.getHoverName().getString(), resultTextWidth);
         graphics.drawString(font, resultName, resultTextX, resultY,
-                isTradeUnlocked(trade) ? HyruleGuiTheme.TEXT_GREEN : HyruleGuiTheme.TEXT_MUTED, false);
+                unlocked ? HyruleGuiTheme.TEXT_GREEN : 0xFFA0A0A0, false);
 
-        int remainingStock = remainingStock();
-        Component stockText = remainingStock > 0
-                ? Component.literal("Stock: " + remainingStock + " / " + trade.maxUses())
-                : Component.literal("Out of stock");
-        graphics.drawString(font, stockText, resultTextX, resultY + 11,
-                remainingStock > 0 ? HyruleGuiTheme.TEXT_MUTED : HyruleGuiTheme.TEXT_RED, false);
+        if (unlocked) {
+            int remainingStock = remainingStock();
+            Component stockText = remainingStock > 0
+                    ? Component.literal("Stock: " + remainingStock + " / " + trade.maxUses())
+                    : Component.literal("Out of stock");
+            graphics.drawString(font, stockText, resultTextX, resultY + 11,
+                    remainingStock > 0 ? HyruleGuiTheme.TEXT_MUTED : HyruleGuiTheme.TEXT_RED, false);
+        }
 
         List<ItemStack> ingredients = transactionRequirements(trade);
         if (!isCompactDetails()) {
-            if (!isTradeUnlocked(trade)) {
-                graphics.drawString(font, Component.literal("Unlocks at level " + trade.unlockLevel()),
-                        detailsLeft + 11, detailsTop + 68, HyruleGuiTheme.TEXT_RED, false);
+            if (!unlocked) {
+                graphics.drawString(font,
+                        Component.literal("LOCKED - Unlocks at level " + trade.unlockLevel()),
+                        detailsLeft + 11, detailsTop + 68, 0xFFA0A0A0, false);
             } else {
                 graphics.drawString(font,
                         Component.literal(trade.isSellTrade() ? "Wallet payout"
                                 : ingredients.isEmpty() ? "Wallet purchase" : "Required items:"),
                         detailsLeft + 11, detailsTop + 68, HyruleGuiTheme.TEXT_LIGHT, false);
             }
-            if (!trade.isSellTrade()) {
-                renderIngredientIcons(graphics, ingredients);
+            if (unlocked && !trade.isSellTrade()) {
+                renderIngredientIcons(graphics, ingredients, unlocked);
             }
         }
 
-        long totalCost = totalRupeeCost(trade);
-        int costY = quantityY - 17;
-        graphics.renderItem(rupeeIconForValue(totalCost), detailsLeft + 11, costY - 4);
-        int costColor = trade.isSellTrade()
-                ? totalCost <= walletSpace() ? HyruleGuiTheme.TEXT_GREEN : HyruleGuiTheme.TEXT_RED
-                : totalCost <= menu.getBalance() ? HyruleGuiTheme.TEXT_GOLD : HyruleGuiTheme.TEXT_RED;
-        graphics.drawString(font,
-                Component.literal(trade.rupeeCost() == 0 ? "No rupee amount"
-                        : (trade.isSellTrade() ? "+" : "") + totalCost + " total"),
-                detailsLeft + 31, costY + 1, costColor, false);
+        if (unlocked) {
+            long totalCost = totalRupeeCost(trade);
+            int costY = quantityY - 17;
+            graphics.renderItem(rupeeIconForValue(totalCost), detailsLeft + 11, costY - 4);
+            int costColor = trade.isSellTrade()
+                    ? totalCost <= walletSpace() ? HyruleGuiTheme.TEXT_GREEN : HyruleGuiTheme.TEXT_RED
+                    : totalCost <= menu.getBalance() ? HyruleGuiTheme.TEXT_GOLD : HyruleGuiTheme.TEXT_RED;
+            graphics.drawString(font,
+                    Component.literal(trade.rupeeCost() == 0 ? "No rupee amount"
+                            : (trade.isSellTrade() ? "+" : "") + totalCost + " Rupees"),
+                    detailsLeft + 31, costY + 1, costColor, false);
+        }
 
         int valueLeft = detailsLeft + 38;
         int valueRight = detailsLeft + detailsWidth - 38;
@@ -299,10 +367,11 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         HyruleGuiTheme.drawBorder(graphics, valueLeft, quantityY,
                 Math.max(1, valueRight - valueLeft), 20, HyruleGuiTheme.GOLD_DARK);
         graphics.drawCenteredString(font, Integer.toString(quantity),
-                (valueLeft + valueRight) / 2, quantityY + 6, HyruleGuiTheme.TEXT_LIGHT);
+                (valueLeft + valueRight) / 2, quantityY + 6,
+                unlocked ? HyruleGuiTheme.TEXT_LIGHT : 0xFF888888);
     }
 
-    private void renderIngredientIcons(GuiGraphics graphics, List<ItemStack> ingredients) {
+    private void renderIngredientIcons(GuiGraphics graphics, List<ItemStack> ingredients, boolean unlocked) {
         int y = ingredientIconsY();
         if (ingredients.isEmpty()) {
             graphics.drawString(font, fit("No item payment required.", detailsWidth - 22),
@@ -323,6 +392,9 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
             graphics.renderItem(ingredient, x, y);
             int needed = safeProduct(ingredient.getCount(), quantity);
             graphics.renderItemDecorations(font, ingredient, x, y, Integer.toString(needed));
+            if (!unlocked) {
+                graphics.fill(x, y, x + 16, y + 16, 0x99585858);
+            }
         }
 
         if (ingredients.size() > shown) {
@@ -425,7 +497,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
             int itemY = rowButton.getY() + (rowButton.getHeight() - 16) / 2;
             if (HyruleGuiTheme.contains(mouseX, mouseY, itemX, itemY, 16, 16)) {
                 RupeeTrade trade = tradeAt(rowButton.tradeIndex);
-                if (trade != null) {
+                if (trade != null && !isMysteryDailyTrade(trade)) {
                     graphics.renderTooltip(font, trade.result(), mouseX, mouseY);
                 }
                 return;
@@ -434,6 +506,9 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
 
         RupeeTrade trade = selectedTrade();
         if (trade == null) {
+            return;
+        }
+        if (isMysteryDailyTrade(trade)) {
             return;
         }
 
@@ -529,6 +604,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         updateCategoryButton(buyTabButton, RupeeTrade.Type.BUY);
         updateCategoryButton(sellTabButton, RupeeTrade.Type.SELL);
         updateCategoryButton(dailyDealTabButton, RupeeTrade.Type.DAILY_DEAL);
+        updateCategoryButton(dailyRequestTabButton, RupeeTrade.Type.DAILY_REQUEST);
 
         int pageCount = pageCount();
         if (previousPageButton != null) {
@@ -548,7 +624,8 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         if (buyButton != null) {
             boolean purchasable = canPurchase();
             buyButton.active = purchasable;
-            String action = selectedTrade() != null && selectedTrade().isSellTrade() ? "Sell" : "Buy";
+            String action = selectedTrade() != null && selectedTrade().isDailyRequest() ? "Fulfill"
+                    : selectedTrade() != null && selectedTrade().isSellTrade() ? "Sell" : "Buy";
             buyButton.setMessage(Component.literal(quantity > 1 ? action + " x" + quantity : action));
             buyButton.setTooltip(purchasable ? null : Tooltip.create(purchaseFailureMessage()));
         }
@@ -563,6 +640,7 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
         button.active = !selected && hasTradesOfType(type);
         button.setTooltip(hasTradesOfType(type) ? null : Tooltip.create(Component.literal(
                 type == RupeeTrade.Type.DAILY_DEAL ? "No daily deal is available today"
+                        : type == RupeeTrade.Type.DAILY_REQUEST ? "No daily request is available today"
                         : "This trader has no " + type.name().toLowerCase() + " offers")));
     }
 
@@ -721,6 +799,9 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
     private List<RupeeTrade> trades() {
         return menu.getTrades().stream()
                 .filter(trade -> trade.type() == selectedType)
+                // Stream sorting is stable: this moves locked offers behind all
+                // available offers without changing either group's configured order.
+                .sorted(Comparator.comparingInt(trade -> isTradeUnlocked(trade) ? 0 : 1))
                 .collect(Collectors.toList());
     }
 
@@ -757,6 +838,14 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
 
     private boolean isTradeUnlocked(RupeeTrade trade) {
         return trade.isUnlockedAt(traderLevel());
+    }
+
+    private boolean isMysteryDailyTrade(RupeeTrade trade) {
+        return trade != null
+                && !isTradeUnlocked(trade)
+                && (trade.type() == RupeeTrade.Type.DAILY_DEAL
+                || trade.type() == RupeeTrade.Type.DAILY_REQUEST)
+                && !menu.hasDiscoveredDailyTrade(trade);
     }
 
     private boolean isCompactDetails() {
@@ -818,15 +907,20 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
 
             boolean selected = tradeIndex == selectedTradeIndex;
             boolean unlocked = isTradeUnlocked(trade);
+            boolean mystery = isMysteryDailyTrade(trade);
             int stock = Math.max(0, menu.getRemainingStock(trade));
-            int border = selected ? HyruleGuiTheme.GOLD_BRIGHT
+            int border = !unlocked ? selected ? 0xFFAAAAAA : 0xFF686868
+                    : selected ? HyruleGuiTheme.GOLD_BRIGHT
                     : isHoveredOrFocused() ? 0xFFC89A42 : 0xFF5D4021;
-            int top = selected ? HyruleGuiTheme.GREEN_TOP
+            int top = !unlocked ? selected ? 0xFF555555 : 0xFF414141
+                    : selected ? HyruleGuiTheme.GREEN_TOP
                     : isHoveredOrFocused() ? 0xFF49301C : 0xFF322115;
-            int bottom = selected ? HyruleGuiTheme.GREEN_BOTTOM
+            int bottom = !unlocked ? selected ? 0xFF383838 : 0xFF292929
+                    : selected ? HyruleGuiTheme.GREEN_BOTTOM
                     : isHoveredOrFocused() ? 0xFF2B1B11 : 0xFF1D130D;
 
-            graphics.fill(getX(), getY(), getX() + width, getY() + height, HyruleGuiTheme.BROWN_OUTER);
+            graphics.fill(getX(), getY(), getX() + width, getY() + height,
+                    unlocked ? HyruleGuiTheme.BROWN_OUTER : 0xFF242424);
             HyruleGuiTheme.drawBorder(graphics, getX() + 1, getY() + 1,
                     width - 2, height - 2, border);
             graphics.fillGradient(getX() + 3, getY() + 3,
@@ -835,34 +929,44 @@ public class RupeeTradeScreen extends AbstractContainerScreen<RupeeTradeMenu> {
             ItemStack result = trade.result();
             int itemX = getX() + 5;
             int itemY = getY() + (height - 16) / 2;
-            graphics.renderItem(result, itemX, itemY);
-            graphics.renderItemDecorations(font, result, itemX, itemY);
+            if (!mystery) {
+                graphics.renderItem(result, itemX, itemY);
+                if (unlocked) {
+                    graphics.renderItemDecorations(font, result, itemX, itemY);
+                }
+                if (!unlocked) {
+                    graphics.fill(itemX, itemY, itemX + 16, itemY + 16, 0x99585858);
+                }
+            }
 
-            int priceWidth = Math.min(57, Math.max(43, width / 3));
-            int nameX = getX() + 26;
+            int priceWidth = unlocked ? Math.min(57, Math.max(43, width / 3)) : 0;
+            int nameX = mystery ? getX() + 7 : getX() + 26;
             int nameWidth = Math.max(20, width - 31 - priceWidth);
-            String name = fit(result.getHoverName().getString(), nameWidth);
+            String name = mystery ? "???" : fit(result.getHoverName().getString(), nameWidth);
             graphics.drawString(font, name, nameX, getY() + 4,
                     unlocked ? HyruleGuiTheme.TEXT_LIGHT : 0xFF8E8272, false);
 
             Component status = !unlocked
-                    ? Component.literal("Level " + trade.unlockLevel())
+                    ? Component.literal("Locked - Lv. " + trade.unlockLevel())
                     : stock <= 0 ? Component.literal("Out of stock")
                     : Component.literal("Stock " + stock);
-            int statusColor = unlocked && stock > 0
-                    ? HyruleGuiTheme.TEXT_MUTED : HyruleGuiTheme.TEXT_RED;
-            graphics.drawString(font, status, nameX, getY() + height - 10, statusColor, false);
+            int statusColor = !unlocked ? 0xFFAAAAAA
+                    : stock > 0 ? HyruleGuiTheme.TEXT_MUTED : HyruleGuiTheme.TEXT_RED;
+            graphics.drawString(font, fit(status.getString(), nameWidth), nameX,
+                    getY() + height - 10, statusColor, false);
 
-            int priceX = getX() + width - priceWidth;
-            graphics.renderItem(rupeeIconForValue(trade.rupeeCost()),
-                    priceX, getY() + (height - 16) / 2);
-            int costColor = trade.isSellTrade()
-                    ? walletSpace() >= trade.rupeeCost() ? HyruleGuiTheme.TEXT_GREEN : HyruleGuiTheme.TEXT_RED
-                    : menu.getBalance() >= trade.rupeeCost()
-                    ? HyruleGuiTheme.TEXT_GOLD : HyruleGuiTheme.TEXT_RED;
-            String price = trade.rupeeCost() == 0 ? "--" : Integer.toString(trade.rupeeCost());
-            graphics.drawString(font, price, priceX + 17, getY() + (height - 8) / 2,
-                    costColor, false);
+            if (unlocked) {
+                int priceX = getX() + width - priceWidth;
+                graphics.renderItem(rupeeIconForValue(trade.rupeeCost()),
+                        priceX, getY() + (height - 16) / 2);
+                int costColor = trade.isSellTrade()
+                        ? walletSpace() >= trade.rupeeCost() ? HyruleGuiTheme.TEXT_GREEN : HyruleGuiTheme.TEXT_RED
+                        : menu.getBalance() >= trade.rupeeCost()
+                        ? HyruleGuiTheme.TEXT_GOLD : HyruleGuiTheme.TEXT_RED;
+                String price = trade.rupeeCost() == 0 ? "--" : Integer.toString(trade.rupeeCost());
+                graphics.drawString(font, price, priceX + 17, getY() + (height - 8) / 2,
+                        costColor, false);
+            }
         }
     }
 }

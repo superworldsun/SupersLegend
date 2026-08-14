@@ -8,6 +8,7 @@ import com.superworldsun.superslegend.network.message.SelectTradeModeMessage;
 import com.superworldsun.superslegend.network.message.RupeeTradeAvailabilityMessage;
 import net.minecraft.network.chat.Component;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleMenuProvider;
@@ -104,7 +105,7 @@ public final class RupeeTradeNetworking {
             Object merchant = ((MerchantMenuAccessor) merchantMenu).superslegend$getTrader();
             available = merchant instanceof AbstractVillager trader
                     && trader.getTradingPlayer() == player
-                    && !RupeeTradeRegistry.getTrades(trader).isEmpty();
+                    && !RupeeTradeRegistry.getVisibleTrades(trader).isEmpty();
         }
 
         boolean finalAvailable = available;
@@ -119,7 +120,10 @@ public final class RupeeTradeNetworking {
         }
         trader.setTradingPlayer(player);
         Component title = traderTypeName(trader);
-        var availableTrades = RupeeTradeRegistry.getTrades(trader);
+        var availableTrades = RupeeTradeRegistry.getVisibleTrades(trader);
+        var discoveredDailyItems = RupeeTradeService.getDiscoveredDailyTradeItems(player).stream()
+                .sorted(java.util.Comparator.comparing(ResourceLocation::toString))
+                .toList();
         NetworkHooks.openScreen(player,
                 new SimpleMenuProvider((containerId, inventory, ignored) ->
                         new RupeeTradeMenu(containerId, inventory, trader), title),
@@ -127,7 +131,11 @@ public final class RupeeTradeNetworking {
                     buffer.writeVarInt(trader.getId());
                     buffer.writeVarInt(availableTrades.size());
                     for (var trade : availableTrades) {
-                        buffer.writeResourceLocation(trade.id());
+                        trade.write(buffer);
+                    }
+                    buffer.writeVarInt(discoveredDailyItems.size());
+                    for (var itemId : discoveredDailyItems) {
+                        buffer.writeResourceLocation(itemId);
                     }
                 });
     }
@@ -153,7 +161,7 @@ public final class RupeeTradeNetworking {
         if (!player.isAlive() || player.isSpectator() || !trader.isAlive() || trader.isBaby()
                 || player.level() != trader.level()
                 || player.distanceToSqr(trader) > MAX_TRADING_DISTANCE_SQUARED
-                || RupeeTradeRegistry.getTrades(trader).isEmpty()) {
+                || RupeeTradeRegistry.getVisibleTrades(trader).isEmpty()) {
             return false;
         }
         return trader.getTradingPlayer() == null

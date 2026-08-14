@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.trading.rupee;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.registries.ItemInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
@@ -12,9 +11,6 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.WanderingTrader;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.util.RandomSource;
 
 import java.util.ArrayList;
@@ -50,6 +46,8 @@ public final class RupeeTradeRegistry {
     private static final Map<ResourceLocation, RupeeTrade> TRADES_BY_ID = new LinkedHashMap<>();
     private static final Map<VillagerProfession, List<RupeeTrade>> PROFESSION_TRADES = new HashMap<>();
     private static final Map<EntityType<?>, List<RupeeTrade>> ENTITY_TYPE_TRADES = new HashMap<>();
+    private static Map<VillagerProfession, List<RupeeTrade>> dataDrivenProfessionTrades = Map.of();
+    private static Map<EntityType<?>, List<RupeeTrade>> dataDrivenEntityTypeTrades = Map.of();
     private static boolean builtInsLoaded;
 
     private RupeeTradeRegistry() {
@@ -99,11 +97,14 @@ public final class RupeeTradeRegistry {
 
             int level = traderLevel(trader);
             List<RupeeTrade> unlocked = new ArrayList<>();
-            List<RupeeTrade> dailyCandidates = new ArrayList<>();
+            List<RupeeTrade> dailyDealCandidates = new ArrayList<>();
+            List<RupeeTrade> dailyRequestCandidates = new ArrayList<>();
             for (RupeeTrade trade : matches.values()) {
                 if (trade.isUnlockedAt(level)) {
                     if (trade.type() == RupeeTrade.Type.DAILY_DEAL) {
-                        dailyCandidates.add(trade);
+                        dailyDealCandidates.add(trade);
+                    } else if (trade.type() == RupeeTrade.Type.DAILY_REQUEST) {
+                        dailyRequestCandidates.add(trade);
                     } else {
                         unlocked.add(trade);
                     }
@@ -113,14 +114,66 @@ public final class RupeeTradeRegistry {
             if (trader instanceof WanderingTrader wanderingTrader) {
                 unlocked = selectWanderingTraderOffers(wanderingTrader, unlocked);
             }
-            selectDailyDeal(trader, dailyCandidates).ifPresent(unlocked::add);
+            selectDailyOffer(trader, dailyDealCandidates, 0L).ifPresent(unlocked::add);
+            selectDailyOffer(trader, dailyRequestCandidates, 0x6A09E667F3BCC909L).ifPresent(unlocked::add);
             return List.copyOf(unlocked);
         }
     }
 
+    /**
+     * Returns every offer the trade screen may display. Villagers expose their
+     * future Buy and Sell offers, plus future-level Daily pool entries, while
+     * {@link #getTrades(AbstractVillager)} remains the authoritative unlocked
+     * list used for transactions.
+     */
+    public static List<RupeeTrade> getVisibleTrades(AbstractVillager trader) {
+        Objects.requireNonNull(trader, "trader");
+        ensureBuiltIns();
+
+        // Traders without villager levels have no future progression to preview.
+        if (!(trader instanceof Villager villager)) {
+            return getTrades(trader);
+        }
+
+        synchronized (LOCK) {
+            Map<ResourceLocation, RupeeTrade> matches = new LinkedHashMap<>();
+            addMatches(matches, ENTITY_TYPE_TRADES.get(trader.getType()));
+            addMatches(matches, PROFESSION_TRADES.get(villager.getVillagerData().getProfession()));
+
+            int level = traderLevel(trader);
+            List<RupeeTrade> visible = new ArrayList<>();
+            List<RupeeTrade> unlockedDailyDeals = new ArrayList<>();
+            List<RupeeTrade> unlockedDailyRequests = new ArrayList<>();
+            List<RupeeTrade> lockedDailyTrades = new ArrayList<>();
+
+            for (RupeeTrade trade : matches.values()) {
+                if (trade.type() == RupeeTrade.Type.DAILY_DEAL
+                        || trade.type() == RupeeTrade.Type.DAILY_REQUEST) {
+                    if (!trade.isUnlockedAt(level)) {
+                        lockedDailyTrades.add(trade);
+                    } else if (trade.type() == RupeeTrade.Type.DAILY_DEAL) {
+                        unlockedDailyDeals.add(trade);
+                    } else {
+                        unlockedDailyRequests.add(trade);
+                    }
+                } else {
+                    visible.add(trade);
+                }
+            }
+
+            visible.sort(DISPLAY_ORDER);
+            selectDailyOffer(trader, unlockedDailyDeals, 0L).ifPresent(visible::add);
+            selectDailyOffer(trader, unlockedDailyRequests, 0x6A09E667F3BCC909L).ifPresent(visible::add);
+            lockedDailyTrades.sort(DISPLAY_ORDER);
+            visible.addAll(lockedDailyTrades);
+            return List.copyOf(visible);
+        }
+    }
+
     /** Returns the one stable offer chosen for this trader during the current Minecraft day. */
-    private static Optional<RupeeTrade> selectDailyDeal(AbstractVillager trader,
-                                                         List<RupeeTrade> candidates) {
+    private static Optional<RupeeTrade> selectDailyOffer(AbstractVillager trader,
+                                                          List<RupeeTrade> candidates,
+                                                          long seedSalt) {
         if (candidates.isEmpty()) {
             return Optional.empty();
         }
@@ -128,7 +181,8 @@ public final class RupeeTradeRegistry {
         long day = Math.floorDiv(trader.level().getDayTime(), 24000L);
         long seed = trader.getUUID().getMostSignificantBits()
                 ^ Long.rotateLeft(trader.getUUID().getLeastSignificantBits(), 23)
-                ^ day * 0x9E3779B97F4A7C15L;
+                ^ day * 0x9E3779B97F4A7C15L
+                ^ seedSalt;
         return Optional.of(candidates.get(RandomSource.create(seed).nextInt(candidates.size())));
     }
 
@@ -178,6 +232,26 @@ public final class RupeeTradeRegistry {
             List<RupeeTrade> trades = new ArrayList<>(TRADES_BY_ID.values());
             trades.sort(DISPLAY_ORDER);
             return List.copyOf(trades);
+        }
+    }
+
+    /** Atomically replaces trades loaded from each namespace's rupee_trades data folder. */
+    public static void replaceDataDrivenTrades(
+            Map<VillagerProfession, List<RupeeTrade>> professionTrades,
+            Map<EntityType<?>, List<RupeeTrade>> entityTypeTrades) {
+        Objects.requireNonNull(professionTrades, "professionTrades");
+        Objects.requireNonNull(entityTypeTrades, "entityTypeTrades");
+        synchronized (LOCK) {
+            Map<VillagerProfession, List<RupeeTrade>> professionCopy = new HashMap<>();
+            professionTrades.forEach((profession, trades) ->
+                    professionCopy.put(profession, List.copyOf(trades)));
+            Map<EntityType<?>, List<RupeeTrade>> entityCopy = new HashMap<>();
+            entityTypeTrades.forEach((entityType, trades) ->
+                    entityCopy.put(entityType, List.copyOf(trades)));
+            dataDrivenProfessionTrades = Map.copyOf(professionCopy);
+            dataDrivenEntityTypeTrades = Map.copyOf(entityCopy);
+            builtInsLoaded = false;
+            ensureBuiltIns();
         }
     }
 
@@ -297,318 +371,16 @@ public final class RupeeTradeRegistry {
     }
 
     private static void registerBuiltIns() {
-        registerFarmerTrades();
-        registerToolsmithTrades();
-        registerArmorerTrades();
-        registerClericTrades();
-        registerFishermanTrades();
-        registerFletcherTrades();
-        registerWeaponsmithTrades();
-        registerLeatherworkerTrades();
-        registerWanderingTraderTrades();
-        registerSellTrades();
-        registerDailyDealTrades();
-    }
-
-    /*
-     * HOW TO ADD A RUPEE TRADE
-     * ------------------------
-     * Copy one of these entries and change its values:
-     *
-     * villagerTrade(VillagerProfession.FARMER, trade("farmer/example", Items.APPLE)
-     *         .displayOrder(10)          // Lower numbers appear first in the menu.
-     *         .requiredVillagerLevel(1)  // 1=Novice, 2=Apprentice, 3=Journeyman, 4=Expert, 5=Master.
-     *         .priceInRupees(25)         // Rupees removed from the equipped wallet per purchase.
-     *         .stock(4)                  // Number of purchases this individual trader allows.
-     *         .xpReward(10));            // Villager profession XP earned by each purchase.
-     *
-     * Optional item payments can be appended with .requires(Items.DIAMOND, 1).
-     * Upgrade trades should also use .preserveFirstIngredientData() so the
-     * first input item's damage, enchantments, and custom data carry forward.
-     *
-     * Use entityTrade(EntityType.WANDERING_TRADER, ...) for the wandering
-     * trader pool. Each wandering trader randomly keeps only three pool entries.
-     *
-     * CATEGORY EXAMPLES
-     * -----------------
-     * Normal Buy entry: use trade(...) exactly as above; Buy is the default.
-     * Sell entry: use sellTrade("farmer/wheat", Items.WHEAT)
-     *         .payoutInRupees(2).stock(64).xpReward(1)
-     * Daily Deal pool entry: use dailyDeal("farmer/apple_deal", Items.APPLE)
-     *         .priceInRupees(3).stock(16).xpReward(2)
-     * Only one unlocked Daily Deal pool entry is shown per trader per Minecraft day.
-     */
-
-    private static void registerFarmerTrades() {
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/melon_slice", Items.MELON_SLICE)
-                .displayOrder(1).requiredVillagerLevel(1).priceInRupees(4).stock(15).xpReward(4));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/beetroot", Items.BEETROOT)
-                .displayOrder(2).requiredVillagerLevel(1).priceInRupees(5).stock(6).xpReward(6));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/potato", Items.POTATO)
-                .displayOrder(3).requiredVillagerLevel(1).priceInRupees(10).stock(10).xpReward(5));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/carrot", Items.CARROT)
-                .displayOrder(4).requiredVillagerLevel(2).priceInRupees(15).stock(5).xpReward(8));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/apple", Items.APPLE)
-                .displayOrder(5).requiredVillagerLevel(2).priceInRupees(20).stock(6).xpReward(12));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/sweet_berries", Items.SWEET_BERRIES)
-                .displayOrder(6).requiredVillagerLevel(2).priceInRupees(5).stock(20).xpReward(4));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/wheat", Items.WHEAT)
-                .displayOrder(7).requiredVillagerLevel(3).priceInRupees(2).stock(30).xpReward(4));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/bone_meal", Items.BONE_MEAL)
-                .displayOrder(8).requiredVillagerLevel(3).priceInRupees(5).stock(10).xpReward(8));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/glow_berries", Items.GLOW_BERRIES)
-                .displayOrder(9).requiredVillagerLevel(4).priceInRupees(10).stock(5).xpReward(15));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/cake", Items.CAKE)
-                .displayOrder(10).requiredVillagerLevel(4).priceInRupees(25).stock(3).xpReward(20));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/pumpkin_pie", Items.PUMPKIN_PIE)
-                .displayOrder(11).requiredVillagerLevel(4).priceInRupees(20).stock(10).xpReward(20));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/honey_bottle", Items.HONEY_BOTTLE)
-                .displayOrder(12).requiredVillagerLevel(4).priceInRupees(20).stock(10).xpReward(20));
-        villagerTrade(VillagerProfession.FARMER, trade("farmer/diamond_hoe", Items.DIAMOND_HOE)
-                .displayOrder(13).requiredVillagerLevel(5).priceInRupees(120).stock(1).xpReward(40));
-    }
-
-    private static void registerToolsmithTrades() {
-        villagerTrade(VillagerProfession.TOOLSMITH, trade("toolsmith/appraise_ring", ItemInit.APPRAISED_RING_BOX.get())
-                .displayOrder(10).requiredVillagerLevel(1).priceInRupees(20).stock(99).xpReward(5)
-                .requires(ItemInit.UNAPPRAISED_RING.get(), 1));
-        villagerTrade(VillagerProfession.TOOLSMITH, trade("toolsmith/bomb", ItemInit.BOMB.get())
-                .displayOrder(20).requiredVillagerLevel(1).priceInRupees(15).stock(20).xpReward(8));
-        villagerTrade(VillagerProfession.TOOLSMITH, trade("toolsmith/water_bomb", ItemInit.WATER_BOMB.get())
-                .displayOrder(30).requiredVillagerLevel(1).priceInRupees(20).stock(10).xpReward(10));
-        villagerTrade(VillagerProfession.TOOLSMITH, trade("toolsmith/deku_shield", ItemInit.DEKU_SHIELD.get())
-                .displayOrder(40).requiredVillagerLevel(1).priceInRupees(40).stock(1).xpReward(20));
-        villagerTrade(VillagerProfession.TOOLSMITH, trade("toolsmith/ring_box_l1", ItemInit.RING_BOX_L1.get())
-                .displayOrder(50).requiredVillagerLevel(2).priceInRupees(100).stock(5).xpReward(10));
-        villagerTrade(VillagerProfession.TOOLSMITH, trade("toolsmith/ring_box_l2_upgrade", ItemInit.RING_BOX_L2.get())
-                .displayOrder(60).requiredVillagerLevel(3).priceInRupees(150).stock(5).xpReward(30)
-                .requires(ItemInit.RING_BOX_L1.get(), 1).preserveFirstIngredientData());
-        villagerTrade(VillagerProfession.TOOLSMITH, trade("toolsmith/ring_box_l3_upgrade", ItemInit.RING_BOX_L3.get())
-                .displayOrder(70).requiredVillagerLevel(4).priceInRupees(300).stock(5).xpReward(70)
-                .requires(ItemInit.RING_BOX_L2.get(), 1).preserveFirstIngredientData());
-        villagerTrade(VillagerProfession.TOOLSMITH, trade("toolsmith/blue_ring", ItemInit.BLUE_RING.get())
-                .displayOrder(80).requiredVillagerLevel(5).priceInRupees(60).stock(5).xpReward(70)
-                .requires(ItemInit.ARMOR_RING_L3.get(), 1).preserveFirstIngredientData());
-        villagerTrade(VillagerProfession.TOOLSMITH, trade("toolsmith/red_ring", ItemInit.RED_RING.get())
-                .displayOrder(90).requiredVillagerLevel(5).priceInRupees(60).stock(5).xpReward(70)
-                .requires(ItemInit.POWER_RING_L3.get(), 1).preserveFirstIngredientData());
-    }
-
-    private static void registerArmorerTrades() {
-        villagerTrade(VillagerProfession.ARMORER, trade("armorer/deku_shield", ItemInit.DEKU_SHIELD.get())
-                .displayOrder(10).requiredVillagerLevel(1).priceInRupees(40).stock(1).xpReward(9));
-        villagerTrade(VillagerProfession.ARMORER, trade("armorer/sacred_shield", ItemInit.SACRED_SHIELD.get())
-                .displayOrder(20).requiredVillagerLevel(3).priceInRupees(500).stock(1).xpReward(30));
-        villagerTrade(VillagerProfession.ARMORER, trade("armorer/magic_armor", ItemInit.MAGIC_ARMOR_SET.get())
-                .displayOrder(30).requiredVillagerLevel(4).priceInRupees(600).stock(1).xpReward(200));
-    }
-
-    private static void registerClericTrades() {
-        villagerTrade(VillagerProfession.CLERIC, trade("cleric/heart_piece", ItemInit.HEART_PIECE.get())
-                .displayOrder(10).requiredVillagerLevel(5).priceInRupees(1500).stock(1).xpReward(50));
-    }
-
-    private static void registerFishermanTrades() {
-
-        villagerTrade(VillagerProfession.FISHERMAN, trade("fisherman/hyrule_bass", ItemInit.HYRULE_BASS.get())
-                .displayOrder(1).requiredVillagerLevel(1).priceInRupees(20).stock(30).xpReward(5));
-        villagerTrade(VillagerProfession.FISHERMAN, trade("fisherman/hylian_bass", ItemInit.HYLIAN_LOACH.get())
-                .displayOrder(2).requiredVillagerLevel(1).priceInRupees(35).stock(20).xpReward(8));
-
-        villagerTrade(VillagerProfession.FISHERMAN, trade("fisherman/fishing_rod", ItemInit.FISHING_ROD.get())
-                .displayOrder(10).requiredVillagerLevel(3).priceInRupees(60).stock(1).xpReward(50));
-    }
-
-    private static void registerFletcherTrades() {
-        villagerTrade(VillagerProfession.FLETCHER, trade("fletcher/fairy_bow", ItemInit.FAIRY_BOW.get())
-                .displayOrder(10).requiredVillagerLevel(2).priceInRupees(100).stock(1).xpReward(50));
-    }
-
-    private static void registerWeaponsmithTrades() {
-        villagerTrade(VillagerProfession.WEAPONSMITH,
-                trade("weaponsmith/master_sword_v2_upgrade", ItemInit.MASTER_SWORD_V2.get())
-                        .displayOrder(10).requiredVillagerLevel(1).priceInRupees(0).stock(1).xpReward(70)
-                        .requires(ItemInit.MASTER_SWORD.get(), 1)
-                        .requires(ItemInit.MASTER_ORE.get(), 2)
-                        .preserveFirstIngredientData());
-        villagerTrade(VillagerProfession.WEAPONSMITH, trade("weaponsmith/kokiri_sword", ItemInit.KOKIRI_SWORD.get())
-                .displayOrder(20).requiredVillagerLevel(1).priceInRupees(40).stock(1).xpReward(10));
-        villagerTrade(VillagerProfession.WEAPONSMITH,
-                trade("weaponsmith/magic_boomerang_upgrade", ItemInit.MAGIC_BOOMERANG.get())
-                        .displayOrder(30).requiredVillagerLevel(2).priceInRupees(120).stock(1).xpReward(20)
-                        .requires(ItemInit.BOOMERANG.get(), 1).preserveFirstIngredientData());
-        villagerTrade(VillagerProfession.WEAPONSMITH,
-                trade("weaponsmith/razor_sword_upgrade", ItemInit.RAZOR_SWORD.get())
-                        .displayOrder(40).requiredVillagerLevel(3).priceInRupees(200).stock(6).xpReward(30)
-                        .requires(ItemInit.KOKIRI_SWORD.get(), 1).preserveFirstIngredientData());
-        villagerTrade(VillagerProfession.WEAPONSMITH,
-                trade("weaponsmith/gilded_sword_upgrade", ItemInit.GILDED_SWORD.get())
-                        .displayOrder(50).requiredVillagerLevel(4).priceInRupees(0).stock(1).xpReward(70)
-                        .requires(ItemInit.RAZOR_SWORD.get(), 1)
-                        .requires(Items.GOLD_BLOCK, 2)
-                        .preserveFirstIngredientData());
-        villagerTrade(VillagerProfession.WEAPONSMITH,
-                trade("weaponsmith/true_master_sword_upgrade", ItemInit.TRUE_MASTER_SWORD.get())
-                        .displayOrder(60).requiredVillagerLevel(5).priceInRupees(0).stock(1).xpReward(100)
-                        .requires(ItemInit.MASTER_SWORD_V2.get(), 1)
-                        .requires(ItemInit.MASTER_ORE.get(), 6)
-                        .preserveFirstIngredientData());
-    }
-
-    private static void registerLeatherworkerTrades() {
-        villagerTrade(VillagerProfession.LEATHERWORKER, trade("leatherworker/bait_bag", ItemInit.BAIT_BAG.get())
-                .displayOrder(10).requiredVillagerLevel(1).priceInRupees(20).stock(1).xpReward(8));
-        villagerTrade(VillagerProfession.LEATHERWORKER, trade("leatherworker/spoils_bag", ItemInit.SPOILS_BAG.get())
-                .displayOrder(20).requiredVillagerLevel(2).priceInRupees(20).stock(1).xpReward(8));
-        villagerTrade(VillagerProfession.LEATHERWORKER, trade("leatherworker/delivery_bag", ItemInit.DELIVERY_BAG.get())
-                .displayOrder(30).requiredVillagerLevel(2).priceInRupees(20).stock(1).xpReward(8));
-
-        villagerTrade(VillagerProfession.LEATHERWORKER, trade("leatherworker/quiver", ItemInit.QUIVER.get())
-                .displayOrder(40).requiredVillagerLevel(3).priceInRupees(100).stock(1).xpReward(8));
-        villagerTrade(VillagerProfession.LEATHERWORKER,
-                trade("leatherworker/big_quiver_upgrade", ItemInit.BIG_QUIVER.get())
-                        .displayOrder(50).requiredVillagerLevel(4).priceInRupees(150).stock(5).xpReward(30)
-                        .requires(ItemInit.QUIVER.get(), 1).preserveFirstIngredientData());
-        villagerTrade(VillagerProfession.LEATHERWORKER,
-                trade("leatherworker/biggest_quiver_upgrade", ItemInit.BIGGEST_QUIVER.get())
-                        .displayOrder(60).requiredVillagerLevel(5).priceInRupees(300).stock(5).xpReward(30)
-                        .requires(ItemInit.BIG_QUIVER.get(), 1).preserveFirstIngredientData());
-
-        villagerTrade(VillagerProfession.LEATHERWORKER, trade("leatherworker/bullet_bag", ItemInit.BULLET_BAG.get())
-                .displayOrder(70).requiredVillagerLevel(3).priceInRupees(100).stock(1).xpReward(8));
-        villagerTrade(VillagerProfession.LEATHERWORKER,
-                trade("leatherworker/big_bullet_bag_upgrade", ItemInit.BIG_BULLET_BAG.get())
-                        .displayOrder(80).requiredVillagerLevel(4).priceInRupees(150).stock(5).xpReward(30)
-                        .requires(ItemInit.BULLET_BAG.get(), 1).preserveFirstIngredientData());
-        villagerTrade(VillagerProfession.LEATHERWORKER,
-                trade("leatherworker/biggest_bullet_bag_upgrade", ItemInit.BIGGEST_BULLET_BAG.get())
-                        .displayOrder(90).requiredVillagerLevel(5).priceInRupees(300).stock(5).xpReward(30)
-                        .requires(ItemInit.BIG_BULLET_BAG.get(), 1).preserveFirstIngredientData());
-
-        villagerTrade(VillagerProfession.LEATHERWORKER, trade("leatherworker/bomb_bag", ItemInit.BOMB_BAG.get())
-                .displayOrder(100).requiredVillagerLevel(3).priceInRupees(100).stock(1).xpReward(8));
-        villagerTrade(VillagerProfession.LEATHERWORKER,
-                trade("leatherworker/big_bomb_bag_upgrade", ItemInit.BIG_BOMB_BAG.get())
-                        .displayOrder(110).requiredVillagerLevel(4).priceInRupees(150).stock(5).xpReward(30)
-                        .requires(ItemInit.BOMB_BAG.get(), 1).preserveFirstIngredientData());
-        villagerTrade(VillagerProfession.LEATHERWORKER,
-                trade("leatherworker/biggest_bomb_bag_upgrade", ItemInit.BIGGEST_BOMB_BAG.get())
-                        .displayOrder(120).requiredVillagerLevel(5).priceInRupees(300).stock(5).xpReward(30)
-                        .requires(ItemInit.BIG_BOMB_BAG.get(), 1).preserveFirstIngredientData());
-    }
-
-    private static void registerWanderingTraderTrades() {
-        entityTrade(EntityType.WANDERING_TRADER, trade("wandering/deku_seeds", ItemInit.DEKU_SEEDS.get())
-                .displayOrder(10).requiredVillagerLevel(1).priceInRupees(1).stock(64).xpReward(5));
-        entityTrade(EntityType.WANDERING_TRADER,
-                trade("wandering/appraised_ring_box", ItemInit.APPRAISED_RING_BOX.get())
-                        .displayOrder(20).requiredVillagerLevel(1).priceInRupees(60).stock(4).xpReward(30));
-        entityTrade(EntityType.WANDERING_TRADER, trade("wandering/heart_piece", ItemInit.HEART_PIECE.get())
-                .displayOrder(30).requiredVillagerLevel(1).priceInRupees(100).stock(1).xpReward(200));
-        entityTrade(EntityType.WANDERING_TRADER, trade("wandering/gorons_bracelet", ItemInit.GORONS_BRACELET.get())
-                .displayOrder(40).requiredVillagerLevel(1).priceInRupees(700).stock(2).xpReward(200));
-        entityTrade(EntityType.WANDERING_TRADER, trade("wandering/silver_gauntlets", ItemInit.SILVER_GAUNTLETS.get())
-                .displayOrder(50).requiredVillagerLevel(1).priceInRupees(1500).stock(1).xpReward(200));
-        entityTrade(EntityType.WANDERING_TRADER, trade("wandering/golden_gauntlets", ItemInit.GOLDEN_GAUNTLETS.get())
-                .displayOrder(60).requiredVillagerLevel(1).priceInRupees(4500).stock(1).xpReward(600));
-        entityTrade(EntityType.WANDERING_TRADER, trade("wandering/magic_fire_arrow", ItemInit.MAGIC_FIRE_ARROW.get())
-                .displayOrder(70).requiredVillagerLevel(1).priceInRupees(1200).stock(1).xpReward(400));
-        entityTrade(EntityType.WANDERING_TRADER, trade("wandering/magic_ice_arrow", ItemInit.MAGIC_ICE_ARROW.get())
-                .displayOrder(80).requiredVillagerLevel(1).priceInRupees(1200).stock(1).xpReward(400));
-    }
-
-    /**
-     * SELL LIST
-     * Add offers here when a trader should buy an item from the player. The
-     * item/count in the ItemStack is removed once per selected quantity and
-     * the payout is deposited directly into the equipped wallet.
-     *
-     * Example:
-     * villagerTrade(VillagerProfession.FARMER,
-     *         sellTrade("farmer/sell_wheat", new ItemStack(Items.WHEAT, 16))
-     *                 .displayOrder(10).requiredVillagerLevel(1)
-     *                 .payoutInRupees(5).stock(64).xpReward(1));
-     */
-    private static void registerSellTrades() {
-
-
-
-        villagerTrade(VillagerProfession.FISHERMAN,
-                sellTrade("fisherman/raw_cod", new ItemStack(Items.COD, 1))
-                        .displayOrder(1)
-                        .requiredVillagerLevel(1)
-                        .payoutInRupees(4)
-                        .stock(16)
-                        .xpReward(2));
-
-        // Example Toolsmith sell offer: the player sells four iron ingots for 12 rupees.
-        villagerTrade(VillagerProfession.TOOLSMITH,
-                sellTrade("toolsmith/sell_iron_ingots", new ItemStack(Items.IRON_INGOT, 4))
-                        .displayOrder(10)
-                        .requiredVillagerLevel(1)
-                        .payoutInRupees(12)
-                        .stock(16)
-                        .xpReward(2));
-    }
-
-    /**
-     * DAILY DEAL POOLS
-     * Add as many candidates as desired for each profession/entity. Exactly
-     * one unlocked candidate is chosen for each individual trader each
-     * Minecraft day, and its stock resets when the day changes.
-     *
-     * Example:
-     * villagerTrade(VillagerProfession.FARMER,
-     *         dailyDeal("farmer/daily_apple", Items.APPLE)
-     *                 .displayOrder(10).requiredVillagerLevel(1)
-     *                 .priceInRupees(3).stock(16).xpReward(2));
-     */
-    private static void registerDailyDealTrades() {
-
-
-        villagerTrade(VillagerProfession.FISHERMAN,
-                dailyDeal("fisherman/daily_swimmers_ring", ItemInit.SWIMMERS_RING.get())
-                        .displayOrder(1)
-                        .requiredVillagerLevel(1)
-                        .priceInRupees(100)
-                        .stock(1)
-                        .xpReward(5));
-
-        // Example Toolsmith daily deal: one iron pickaxe for 25 rupees.
-        villagerTrade(VillagerProfession.TOOLSMITH,
-                dailyDeal("toolsmith/daily_iron_pickaxe", Items.IRON_PICKAXE)
-                        .displayOrder(10)
-                        .requiredVillagerLevel(1)
-                        .priceInRupees(25)
-                        .stock(1)
-                        .xpReward(5));
-    }
-
-    private static RupeeTrade.Builder trade(String path, ItemLike result) {
-        return RupeeTrade.builder(id(path), result);
-    }
-
-    private static RupeeTrade.Builder sellTrade(String path, ItemLike itemSoldByPlayer) {
-        return RupeeTrade.builder(id(path), itemSoldByPlayer).sell();
-    }
-
-    private static RupeeTrade.Builder sellTrade(String path, ItemStack itemSoldByPlayer) {
-        return RupeeTrade.builder(id(path), itemSoldByPlayer).sell();
-    }
-
-    private static RupeeTrade.Builder dailyDeal(String path, ItemLike result) {
-        return RupeeTrade.builder(id(path), result).dailyDeal();
-    }
-
-    private static void villagerTrade(VillagerProfession profession, RupeeTrade.Builder builder) {
-        registerInternal(PROFESSION_TRADES, profession, builder.build());
-    }
-
-    private static void entityTrade(EntityType<?> entityType, RupeeTrade.Builder builder) {
-        registerInternal(ENTITY_TYPE_TRADES, entityType, builder.build());
-    }
-
-    private static ResourceLocation id(String path) {
-        return new ResourceLocation(SupersLegendMain.MOD_ID, path);
+        dataDrivenProfessionTrades.forEach((profession, trades) -> {
+            for (RupeeTrade trade : trades) {
+                registerInternal(PROFESSION_TRADES, profession, trade);
+            }
+        });
+        dataDrivenEntityTypeTrades.forEach((entityType, trades) -> {
+            for (RupeeTrade trade : trades) {
+                registerInternal(ENTITY_TYPE_TRADES, entityType, trade);
+            }
+        });
     }
 }
+

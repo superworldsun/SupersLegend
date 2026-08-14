@@ -1,0 +1,115 @@
+{
+  "profession": "minecraft:cleric",
+  "trades": [
+    {
+      "id": "superslegend:cleric/heart_piece",
+      "type": "buy",
+      "item": { "id": "superslegend:heart_piece" },
+      "rupees": 1500,
+      "stock": 1,
+      "level": 5,
+      "villager_xp": 50,
+      "order": 10
+    },
+    {
+      "id": "superslegend:cleric/sell_rotten_flesh",
+      "type": "sell",
+      "item": { "id": "minecraft:rotten_flesh", "count": 32 },
+      "rupees": 12,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:cleric/sell_redstone",
+      "type": "sell",
+      "item": { "id": "minecraft:redstone", "count": 16 },
+      "rupees": 12,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 20
+    },
+    {
+      "id": "superslegend:cleric/sell_gold",
+      "type": "sell",
+      "item": { "id": "minecraft:gold_ingot", "count": 4 },
+      "rupees": 20,
+      "stock": 10,
+      "level": 3,
+      "villager_xp": 5,
+      "order": 30
+    },
+    {
+      "id": "superslegend:cleric/sell_glowstone",
+      "type": "sell",
+      "item": { "id": "minecraft:glowstone_dust", "count": 12 },
+      "rupees": 18,
+      "stock": 10,
+      "level": 3,
+      "villager_xp": 5,
+      "order": 40
+    },
+    {
+      "id": "superslegend:cleric/daily_ender_pearl",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:ender_pearl" },
+      "rupees": 20,
+      "stock": 4,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:cleric/daily_glowstone",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:glowstone" },
+      "rupees": 12,
+      "stock": 4,
+      "level": 2,
+      "villager_xp": 4,
+      "order": 20
+    },
+    {
+      "id": "superslegend:cleric/daily_experience_bottle",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:experience_bottle" },
+      "rupees": 30,
+      "stock": 3,
+      "level": 4,
+      "villager_xp": 7,
+      "order": 30
+    },
+    {
+      "id": "superslegend:cleric/daily_request_rotten_flesh",
+      "type": "daily_request",
+      "item": { "id": "minecraft:rotten_flesh", "count": 48 },
+      "rupees": 24,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:cleric/daily_request_gold",
+      "type": "daily_request",
+      "item": { "id": "minecraft:gold_ingot", "count": 8 },
+      "rupees": 45,
+      "stock": 2,
+      "level": 3,
+      "villager_xp": 6,
+      "order": 20
+    },
+    {
+      "id": "superslegend:cleric/daily_request_ender_pearl",
+      "type": "daily_request",
+      "item": { "id": "minecraft:ender_pearl", "count": 4 },
+      "rupees": 45,
+      "stock": 2,
+      "level": 4,
+      "villager_xp": 7,
+      "order": 30
+    }
+  ]
+}

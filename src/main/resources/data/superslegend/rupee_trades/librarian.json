@@ -1,0 +1,105 @@
+{
+  "profession": "minecraft:librarian",
+  "trades": [
+    {
+      "id": "superslegend:librarian/sell_paper",
+      "type": "sell",
+      "item": { "id": "minecraft:paper", "count": 24 },
+      "rupees": 10,
+      "stock": 16,
+      "level": 1,
+      "villager_xp": 2,
+      "order": 10
+    },
+    {
+      "id": "superslegend:librarian/sell_books",
+      "type": "sell",
+      "item": { "id": "minecraft:book", "count": 8 },
+      "rupees": 16,
+      "stock": 12,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 20
+    },
+    {
+      "id": "superslegend:librarian/sell_ink",
+      "type": "sell",
+      "item": { "id": "minecraft:ink_sac", "count": 12 },
+      "rupees": 14,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 30
+    },
+    {
+      "id": "superslegend:librarian/sell_feathers",
+      "type": "sell",
+      "item": { "id": "minecraft:feather", "count": 16 },
+      "rupees": 10,
+      "stock": 12,
+      "level": 2,
+      "villager_xp": 3,
+      "order": 40
+    },
+    {
+      "id": "superslegend:librarian/daily_bookshelf",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:bookshelf" },
+      "rupees": 18,
+      "stock": 4,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 10
+    },
+    {
+      "id": "superslegend:librarian/daily_book_and_quill",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:writable_book" },
+      "rupees": 12,
+      "stock": 3,
+      "level": 1,
+      "villager_xp": 3,
+      "order": 20
+    },
+    {
+      "id": "superslegend:librarian/daily_name_tag",
+      "type": "daily_deal",
+      "item": { "id": "minecraft:name_tag" },
+      "rupees": 40,
+      "stock": 2,
+      "level": 3,
+      "villager_xp": 6,
+      "order": 30
+    },
+    {
+      "id": "superslegend:librarian/daily_request_paper",
+      "type": "daily_request",
+      "item": { "id": "minecraft:paper", "count": 48 },
+      "rupees": 24,
+      "stock": 2,
+      "level": 1,
+      "villager_xp": 4,
+      "order": 10
+    },
+    {
+      "id": "superslegend:librarian/daily_request_books",
+      "type": "daily_request",
+      "item": { "id": "minecraft:book", "count": 12 },
+      "rupees": 30,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 5,
+      "order": 20
+    },
+    {
+      "id": "superslegend:librarian/daily_request_ink",
+      "type": "daily_request",
+      "item": { "id": "minecraft:ink_sac", "count": 16 },
+      "rupees": 25,
+      "stock": 2,
+      "level": 2,
+      "villager_xp": 5,
+      "order": 30
+    }
+  ]
+}

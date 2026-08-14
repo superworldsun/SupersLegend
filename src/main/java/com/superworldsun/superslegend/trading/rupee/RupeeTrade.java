@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.trading.rupee;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
@@ -19,6 +20,7 @@ import java.util.Objects;
  */
 public final class RupeeTrade {
     public static final int NO_NBT_COPY = -1;
+    public static final int MAX_REQUIREMENTS = 6;
 
     private final ResourceLocation id;
     private final Type type;
@@ -61,7 +63,11 @@ public final class RupeeTrade {
     }
 
     public boolean isSellTrade() {
-        return type == Type.SELL;
+        return type == Type.SELL || type == Type.DAILY_REQUEST;
+    }
+
+    public boolean isDailyRequest() {
+        return type == Type.DAILY_REQUEST;
     }
 
     public int order() {
@@ -105,6 +111,49 @@ public final class RupeeTrade {
 
     public boolean isUnlockedAt(int traderLevel) {
         return traderLevel >= unlockLevel;
+    }
+
+    /** Sends data-pack trades to clients when their trade menu opens. */
+    public void write(FriendlyByteBuf buffer) {
+        buffer.writeResourceLocation(id);
+        buffer.writeEnum(type);
+        buffer.writeVarInt(order);
+        buffer.writeVarInt(unlockLevel);
+        buffer.writeVarInt(rupeeCost);
+        buffer.writeVarInt(maxUses);
+        buffer.writeVarInt(villagerXp);
+        buffer.writeVarInt(copyNbtFromIngredient + 1);
+        buffer.writeItem(result);
+        buffer.writeVarInt(ingredients.size());
+        for (ItemStack ingredient : ingredients) {
+            buffer.writeItem(ingredient);
+        }
+    }
+
+    public static RupeeTrade read(FriendlyByteBuf buffer) {
+        ResourceLocation id = buffer.readResourceLocation();
+        Type type = buffer.readEnum(Type.class);
+        int order = buffer.readVarInt();
+        int unlockLevel = buffer.readVarInt();
+        int rupeeCost = buffer.readVarInt();
+        int maxUses = buffer.readVarInt();
+        int villagerXp = buffer.readVarInt();
+        int copyIndex = buffer.readVarInt() - 1;
+        Builder builder = builder(id, buffer.readItem())
+                .type(type)
+                .order(order)
+                .unlockLevel(unlockLevel)
+                .rupeeCost(rupeeCost)
+                .maxUses(maxUses)
+                .villagerXp(villagerXp);
+        int ingredientCount = buffer.readVarInt();
+        if (ingredientCount < 0 || ingredientCount > MAX_REQUIREMENTS) {
+            throw new IllegalArgumentException("Invalid rupee trade ingredient count: " + ingredientCount);
+        }
+        for (int index = 0; index < ingredientCount; index++) {
+            builder.ingredient(buffer.readItem());
+        }
+        return builder.copyNbtFromIngredient(copyIndex).build();
     }
 
     /**
@@ -184,6 +233,10 @@ public final class RupeeTrade {
             return type(Type.DAILY_DEAL);
         }
 
+        public Builder dailyRequest() {
+            return type(Type.DAILY_REQUEST);
+        }
+
         /** Lower numbers appear first in the trader menu. Use gaps such as 10, 20, 30. */
         public Builder displayOrder(int displayOrder) {
             return order(displayOrder);
@@ -227,6 +280,10 @@ public final class RupeeTrade {
             ItemStack copy = Objects.requireNonNull(ingredient, "ingredient").copy();
             if (copy.isEmpty() || copy.getCount() <= 0) {
                 throw new IllegalArgumentException("Trade ingredient must not be empty");
+            }
+            if (ingredients.size() >= MAX_REQUIREMENTS) {
+                throw new IllegalArgumentException("Rupee trades support at most "
+                        + MAX_REQUIREMENTS + " item requirements: " + id);
             }
             ingredients.add(copy);
             return this;
@@ -288,6 +345,10 @@ public final class RupeeTrade {
             if (villagerXp < 0) {
                 throw new IllegalStateException("Villager XP cannot be negative: " + id);
             }
+            if (ingredients.size() > MAX_REQUIREMENTS) {
+                throw new IllegalStateException("Rupee trades support at most "
+                        + MAX_REQUIREMENTS + " item requirements: " + id);
+            }
             if (copyNbtFromIngredient < NO_NBT_COPY || copyNbtFromIngredient >= ingredients.size()) {
                 throw new IllegalStateException("NBT-copy ingredient index is invalid: " + id);
             }
@@ -298,6 +359,7 @@ public final class RupeeTrade {
     public enum Type {
         BUY,
         SELL,
-        DAILY_DEAL
+        DAILY_DEAL,
+        DAILY_REQUEST
     }
 }
