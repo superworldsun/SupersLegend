@@ -51,7 +51,6 @@ public class WarpPadBlock extends HorizontalDirectionalBlock {
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        VoxelShape baseShape = Block.box(0, 0, 0, 16, 3, 16);
         return getShapeForState(blockState);
     }
 
@@ -159,8 +158,10 @@ public class WarpPadBlock extends HorizontalDirectionalBlock {
     }
 
     private VoxelShape getShapeForState(BlockState blockState) {
-        VoxelShape baseShape = Block.box(0, 0, 0, 16, 3, 16);
-        return baseShape;
+        VoxelShape baseShape = Block.box(-16, 0, -16, 32, 3, 32);
+        int blockShapeShiftX = -getBlockPartX(blockState);
+        int blockShapeShiftZ = -getBlockPartZ(blockState);
+        return baseShape.move(blockShapeShiftX, 0, blockShapeShiftZ);
     }
 
     protected boolean isCenterBlock(BlockState blockState) {
