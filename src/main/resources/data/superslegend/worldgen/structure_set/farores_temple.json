@@ -1,0 +1,10 @@
+{
+  "structures": [{ "structure": "superslegend:farores_temple", "weight": 1 }],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 48,
+    "separation": 32,
+    "salt": 532414726,
+    "spread_type": "linear"
+  }
+}
