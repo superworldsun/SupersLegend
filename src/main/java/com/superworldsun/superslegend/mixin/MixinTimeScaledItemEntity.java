@@ -17,6 +17,10 @@ public abstract class MixinTimeScaledItemEntity {
     @Inject(method = "tick", at = @At("TAIL"))
     private void superslegend$scaleItemDespawnAge(CallbackInfo callbackInfo) {
         ItemEntity item = (ItemEntity) (Object) this;
+        if (!item.level().isClientSide && age != Short.MIN_VALUE) {
+            item.getPersistentData().putInt(TimeSongSavedData.ITEM_REAL_LIFETIME_TAG,
+                    item.getPersistentData().getInt(TimeSongSavedData.ITEM_REAL_LIFETIME_TAG) + 1);
+        }
         if (item.level().isClientSide || age == Short.MIN_VALUE
                 || !Config.timeSongsAffectItemDespawn()) {
             return;
@@ -28,6 +32,7 @@ public abstract class MixinTimeScaledItemEntity {
         } else if (mode == TimeSongSavedData.Mode.INVERTED
                 && !TimeSongSavedData.shouldRunInvertedTick(item.level())) {
             age--;
+            item.getPersistentData().putBoolean(TimeSongSavedData.ITEM_INVERTED_EXTENDED_TAG, true);
         }
     }
 }
