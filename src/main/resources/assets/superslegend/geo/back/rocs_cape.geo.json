@@ -12,7 +12,12 @@
 			},
 			"bones": [
 				{
-					"name": "Cape",
+					"name": "bipedBody",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "armorBody",
+					"parent": "bipedBody",
 					"pivot": [0.5, 14.925, 1.5],
 					"cubes": [
 						{"origin": [-4.25, 23.475, -2.75], "size": [2, 1, 1], "uv": [50, 60]},
