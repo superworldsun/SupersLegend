@@ -1,6 +1,17 @@
 {
   "parent": "minecraft:item/generated",
+  "loader": "forge:item_layers",
   "textures": {
-    "layer0": "superslegend:item/gold_skulltula_token"
+    "layer0": "superslegend:item/gold_skulltula_token",
+    "layer1": "superslegend:item/gold_skulltula_token_e"
+  },
+  "forge_data": {
+    "layers": {
+      "1": {
+        "block_light": 15,
+        "sky_light": 15,
+        "ambient_occlusion": false
+      }
+    }
   }
 }
