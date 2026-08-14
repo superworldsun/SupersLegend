@@ -1,6 +1,9 @@
 package com.superworldsun.superslegend.entities.projectiles.boomerang;
 
 import com.superworldsun.superslegend.Config;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
+import com.superworldsun.superslegend.entities.GoldSkulltulaTokenEntity;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -212,7 +215,15 @@ public abstract class AbstractBoomerangEntity extends Entity {
     public void onEntityHit(Entity entity) {
         Player owner = getOwner();
         if (entity instanceof ItemEntity item) {
-            pickedItems.add(item);
+            if (!pickedItems.contains(item)) {
+                pickedItems.add(item);
+                if (item instanceof GoldSkulltulaTokenEntity token) {
+                    token.markRemoteToolPickup();
+                }
+                if (owner instanceof ServerPlayer serverPlayer) {
+                    ModAdvancementHelper.award(serverPlayer, "boomerang_delivery", "picked_up_item");
+                }
+            }
         } else if (entity instanceof LivingEntity && entity != owner) {
             entity.hurt(getDamageSource(owner), getDamage());
         } else {
@@ -226,6 +237,9 @@ public abstract class AbstractBoomerangEntity extends Entity {
     public void onReturnToOwner() {
         Player owner = getOwner();
         if (owner != null) {
+            if (!level().isClientSide) {
+                collectCarriedItems(owner);
+            }
             if (selfStack != null) {
                 if (owner.getMainHandItem().isEmpty()) {
                     owner.setItemInHand(InteractionHand.MAIN_HAND, selfStack);
@@ -237,6 +251,26 @@ public abstract class AbstractBoomerangEntity extends Entity {
             }
         }
         kill();
+    }
+
+    private void collectCarriedItems(Player owner) {
+        for (ItemEntity item : pickedItems) {
+            if (!item.isAlive()) {
+                continue;
+            }
+
+            // Run the item's normal pickup path so Forge pickup events, special
+            // item sounds, stack merging and full-inventory behavior still apply.
+            item.setPos(owner.getX(), owner.getY() + 0.25D, owner.getZ());
+            item.setDeltaMovement(Vec3.ZERO);
+            item.setPickUpDelay(0);
+            if (item instanceof GoldSkulltulaTokenEntity token) {
+                token.collectWithRemoteTool(owner);
+            } else {
+                item.playerTouch(owner);
+            }
+        }
+        pickedItems.removeIf(item -> !item.isAlive());
     }
 
     @Override
