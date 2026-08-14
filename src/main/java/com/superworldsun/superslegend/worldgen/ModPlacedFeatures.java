@@ -61,9 +61,9 @@ public class ModPlacedFeatures {
         registerPlant(context, MAGIC_MUSHROOM_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.MAGIC_MUSHROOM_KEY), 8);
         registerPlant(context, DEKU_FLOWER_PLACED_KEY,
-                configuredFeatures.getOrThrow(ModConfiguredFeatures.DEKU_FLOWER_KEY), 14);
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.DEKU_FLOWER_KEY), 28);
         registerPlant(context, YELLOW_DEKU_FLOWER_PLACED_KEY,
-                configuredFeatures.getOrThrow(ModConfiguredFeatures.YELLOW_DEKU_FLOWER_KEY), 3);
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.YELLOW_DEKU_FLOWER_KEY), 12);
     }
 
 
