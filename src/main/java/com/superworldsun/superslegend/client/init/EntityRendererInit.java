@@ -9,6 +9,7 @@ import com.superworldsun.superslegend.client.render.hookshot.LongshotRender;
 import com.superworldsun.superslegend.client.render.magic.FireBallRenderer;
 import com.superworldsun.superslegend.client.render.magic.DekuMagicBubbleRenderer;
 import com.superworldsun.superslegend.client.render.magic.IceBallRenderer;
+import com.superworldsun.superslegend.client.render.player.DekuFlowerGliderRenderLayer;
 import com.superworldsun.superslegend.client.render.seeds.*;
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import com.superworldsun.superslegend.registries.ItemInit;
@@ -16,6 +17,7 @@ import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.ItemEntityRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -47,6 +49,7 @@ public class EntityRendererInit {
         event.registerEntityRenderer(EntityTypeInit.MAGIC_JAR.get(), MagicJarRender::new);
         event.registerEntityRenderer(EntityTypeInit.LARGE_MAGIC_JAR.get(), LargeMagicJarRender::new);
         event.registerEntityRenderer(EntityTypeInit.RUPEE_ENTITY.get(), ItemEntityRenderer::new);
+        event.registerEntityRenderer(EntityTypeInit.GOLD_SKULLTULA_TOKEN.get(), GoldSkulltulaTokenRenderer::new);
         event.registerEntityRenderer(EntityTypeInit.BOMB.get(), BombRenderer::new);
         event.registerEntityRenderer(EntityTypeInit.MASTERSWORD_SWORD_BEAM.get(), MasterSwordBeamRenderer::new);
         event.registerEntityRenderer(EntityTypeInit.WATER_BOMB.get(), WaterBombRenderer::new);
@@ -66,6 +69,7 @@ public class EntityRendererInit {
         event.registerEntityRenderer(EntityTypeInit.LONGSHOT_ENTITY.get(),  LongshotRender::new);
         event.registerEntityRenderer(EntityTypeInit.GOLD_SKULLTULA.get(), GoldSkulltulaRenderer::new);
         event.registerEntityRenderer(EntityTypeInit.NAYRUS_LOVE_CRYSTAL.get(), NayrusLoveCrystalRenderer::new);
+        event.registerEntityRenderer(EntityTypeInit.ELEGY_STATUE.get(), ElegyStatueRenderer::new);
     }
 
     private static <T extends LivingEntity, M extends EntityModel<T>> void attachRenderLayers(LivingEntityRenderer<T, M> renderer) {
@@ -78,6 +82,13 @@ public class EntityRendererInit {
     @SubscribeEvent
     @SuppressWarnings("unchecked")
     public static void attachRenderLayers(EntityRenderersEvent.AddLayers event) {
+        event.getSkins().forEach(skinName -> {
+            PlayerRenderer playerRenderer = event.getSkin(skinName);
+            if (playerRenderer != null) {
+                playerRenderer.addLayer(new DekuFlowerGliderRenderLayer(playerRenderer));
+            }
+        });
+
         if (field_EntityRenderersEvent$AddLayers_renderers == null) {
             try {
                 field_EntityRenderersEvent$AddLayers_renderers = EntityRenderersEvent.AddLayers.class.getDeclaredField("renderers");

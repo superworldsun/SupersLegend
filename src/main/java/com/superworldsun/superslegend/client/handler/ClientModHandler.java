@@ -38,10 +38,12 @@ public class ClientModHandler {
             CuriosRendererRegistry.register(ItemInit.MASK_BLASTMASK.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_BREMANMASK.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_BUNNYHOOD.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_CAPTAINSHAT.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_GREATFAIRYMASK.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_KEATONMASK.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_POSTMANSHAT.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_COUPLESMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_DONGEROSMASK.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_GAROSMASK.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_GIANTSMASK.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_GIBDOMASK.get(), GeoCurioMaskRenderer::new);
@@ -55,6 +57,7 @@ public class ClientModHandler {
             CuriosRendererRegistry.register(ItemInit.MASK_MOONMASK.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_ROMANISMASK.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_STONEMASK.get(), GeoCurioMaskRenderer::new);
+            CuriosRendererRegistry.register(ItemInit.MASK_SUNMASK.get(), GeoCurioMaskRenderer::new);
             CuriosRendererRegistry.register(ItemInit.MASK_TROUPELEADERSMASK.get(), GeoCurioMaskRenderer::new);
         });
     }

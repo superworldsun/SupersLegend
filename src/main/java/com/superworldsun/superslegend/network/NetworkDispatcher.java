@@ -58,5 +58,7 @@ public class NetworkDispatcher {
 		network_channel.registerMessage(34, SwitchToRupeeTradeMessage.class, SwitchToRupeeTradeMessage::encode, SwitchToRupeeTradeMessage::decode, SwitchToRupeeTradeMessage::receive, Optional.of(PLAY_TO_SERVER));
 		network_channel.registerMessage(35, RequestRupeeTradeAvailabilityMessage.class, RequestRupeeTradeAvailabilityMessage::encode, RequestRupeeTradeAvailabilityMessage::decode, RequestRupeeTradeAvailabilityMessage::receive, Optional.of(PLAY_TO_SERVER));
 		network_channel.registerMessage(36, RupeeTradeAvailabilityMessage.class, RupeeTradeAvailabilityMessage::encode, RupeeTradeAvailabilityMessage::decode, RupeeTradeAvailabilityMessage::receive, Optional.of(PLAY_TO_CLIENT));
+		network_channel.registerMessage(37, MineElegyStatueMessage.class, MineElegyStatueMessage::encode, MineElegyStatueMessage::decode, MineElegyStatueMessage::receive, Optional.of(PLAY_TO_SERVER));
+		network_channel.registerMessage(38, BitBowWalletSyncMessage.class, BitBowWalletSyncMessage::encode, BitBowWalletSyncMessage::decode, BitBowWalletSyncMessage::receive, Optional.of(PLAY_TO_CLIENT));
 	}
 }

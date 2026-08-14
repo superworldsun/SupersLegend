@@ -80,9 +80,9 @@ public class BlockInit {
     public static final RegistryObject<Block> YELLOW_DEKU_FLOWER_BLOCK = registerBlock("yellow_deku_flower_block",
             () -> new DekuFlowerBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(0.1f).explosionResistance(0.1f).noOcclusion().sound(SoundType.CROP)));
     public static final RegistryObject<Block> POT_BLOCK = registerBlock("pot_block",
-            () -> new Block(BlockBehaviour.Properties.of().noLootTable().requiresCorrectToolForDrops().destroyTime(0.1f).noOcclusion().explosionResistance(0.1f).sound(SoundType.GLASS)));
+            () -> new PotBlock(BlockBehaviour.Properties.of().noLootTable().requiresCorrectToolForDrops().destroyTime(0.1f).explosionResistance(0.1f).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> JAR_BLOCK = registerBlock("jar_block",
-            () -> new Block(BlockBehaviour.Properties.of().noLootTable().requiresCorrectToolForDrops().destroyTime(0.5f).explosionResistance(0.5f).sound(SoundType.GLASS)));
+            () -> new JarBlock(BlockBehaviour.Properties.of().noLootTable().requiresCorrectToolForDrops().destroyTime(0.5f).explosionResistance(0.5f).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> POSTBOX_TOP = BLOCKS.register("postbox_top",
             () -> new PostboxTopBlock(BlockBehaviour.Properties.of().noLootTable().destroyTime(2).explosionResistance(2).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> GRATE_BLOCK = BLOCKS.register("grate_block",
@@ -191,11 +191,11 @@ public class BlockInit {
     public static final RegistryObject<Block> NAYRUS_FLAME = registerBlock("nayrus_flame",
             () -> new NayrusFlame(BlockBehaviour.Properties.of().noLootTable().requiresCorrectToolForDrops().lightLevel((state) -> 15).noCollission().destroyTime(Integer.MAX_VALUE).explosionResistance(Integer.MAX_VALUE)));
     public static final RegistryObject<Block> DINS_SACRED_PEDESTAL = registerBlock("dins_sacred_pedestal",
-            () -> new DinsSacredPedestal(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().lightLevel((state) -> 11).destroyTime(30).explosionResistance(30).sound(SoundType.METAL)));
+            () -> new DinsSacredPedestal(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().lightLevel((state) -> 11).destroyTime(30).explosionResistance(30).noOcclusion().sound(SoundType.METAL)));
     public static final RegistryObject<Block> FARORES_SACRED_PEDESTAL = registerBlock("farores_sacred_pedestal",
-            () -> new FaroresSacredPedestal(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().lightLevel((state) -> 11).destroyTime(30).explosionResistance(30).sound(SoundType.METAL)));
+            () -> new FaroresSacredPedestal(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().lightLevel((state) -> 11).destroyTime(30).explosionResistance(30).noOcclusion().sound(SoundType.METAL)));
     public static final RegistryObject<Block> NAYRUS_SACRED_PEDESTAL = registerBlock("nayrus_sacred_pedestal",
-            () -> new NayrusSacredPedestal(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().lightLevel((state) -> 11).destroyTime(30).explosionResistance(30).sound(SoundType.METAL)));
+            () -> new NayrusSacredPedestal(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().lightLevel((state) -> 11).destroyTime(30).explosionResistance(30).noOcclusion().sound(SoundType.METAL)));
 
     public static final RegistryObject<Block> PEDESTAL = registerBlock("pedestal",
             () -> new PedestalBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(2.2F).explosionResistance(2.2F).sound(SoundType.STONE)));
@@ -214,7 +214,7 @@ public class BlockInit {
     public static final RegistryObject<Block> OWL_STATUE = BLOCKS.register("owl_statue",
             () -> new OwlStatueBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(8).explosionResistance(8).sound(SoundType.STONE).strength(8f, 8f)));
     public static final RegistryObject<Block> SUN_SWITCH = registerBlock("sun_switch",
-            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(2).explosionResistance(2).sound(SoundType.STONE)));
+            () -> new SunSwitchBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().destroyTime(2).explosionResistance(2).noOcclusion().sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> WARP_PAD = BLOCKS.register("warp_pad", WarpPadBlock::new);
     public static final RegistryObject<WarpPadBlock> WARP_PAD_LIGHT = BLOCKS.register("warp_pad_light", WarpPadBlock::new);

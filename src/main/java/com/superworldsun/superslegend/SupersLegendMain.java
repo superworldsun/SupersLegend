@@ -41,6 +41,7 @@ public class SupersLegendMain
         EffectInit.MOB_EFFECT.register(modEventBus);
         SoundInit.SOUNDS.register(modEventBus);
         EntityTypeInit.ENTITY_TYPES.register(modEventBus);
+        StructureTypeInit.register(modEventBus);
         BlockEntityInit.BLOCK_ENTITIES.register(modEventBus);
         MenuTypeInit.MENU_TYPES.register(modEventBus);
         RecipeSerializerInit.RECIPE_SERIALIZERS.register(modEventBus);

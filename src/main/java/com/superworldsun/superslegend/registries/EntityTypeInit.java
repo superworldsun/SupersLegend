@@ -6,7 +6,9 @@ import com.superworldsun.superslegend.entities.LargeMagicJarEntity;
 import com.superworldsun.superslegend.entities.MagicJarEntity;
 import com.superworldsun.superslegend.entities.NayrusLoveCrystalEntity;
 import com.superworldsun.superslegend.entities.RupeeEntity;
+import com.superworldsun.superslegend.entities.GoldSkulltulaTokenEntity;
 import com.superworldsun.superslegend.entities.mobs.GoldSkulltulaEntity;
+import com.superworldsun.superslegend.entities.statue.ElegyStatueEntity;
 import com.superworldsun.superslegend.entities.projectiles.arrows.*;
 import com.superworldsun.superslegend.entities.projectiles.bombs.BombEntity;
 import com.superworldsun.superslegend.entities.projectiles.bombs.WaterBombEntity;
@@ -54,6 +56,17 @@ public class EntityTypeInit
                             .updateInterval(1)
                             .fireImmune()
                             .build("nayrus_love_crystal"));
+
+    public static final RegistryObject<EntityType<ElegyStatueEntity>> ELEGY_STATUE =
+            ENTITY_TYPES.register("elegy_statue",
+                    () -> EntityType.Builder.<ElegyStatueEntity>of(ElegyStatueEntity::new, MobCategory.MISC)
+                            // Only the low platform is physical. The player-shaped model above it
+                            // intentionally remains pass-through.
+                            .sized(0.875F, 0.125F)
+                            .clientTrackingRange(10)
+                            .updateInterval(1)
+                            .fireImmune()
+                            .build("elegy_statue"));
 
     public static final RegistryObject<EntityType<FireArrowEntity>> FIRE_ARROW = ENTITY_TYPES.register("fire_arrow",
             () -> EntityType.Builder.<FireArrowEntity>of(FireArrowEntity::new, MobCategory.MISC)
@@ -121,6 +134,15 @@ public class EntityTypeInit
                     .clientTrackingRange(6)
                     .updateInterval(10)
                     .build("rupee"));
+
+    public static final RegistryObject<EntityType<GoldSkulltulaTokenEntity>> GOLD_SKULLTULA_TOKEN =
+            ENTITY_TYPES.register("gold_skulltula_token",
+                    () -> EntityType.Builder.<GoldSkulltulaTokenEntity>of(
+                                    GoldSkulltulaTokenEntity::new, MobCategory.MISC)
+                            .sized(0.35F, 0.35F)
+                            .clientTrackingRange(8)
+                            .updateInterval(2)
+                            .build("gold_skulltula_token"));
 
     public static final RegistryObject<EntityType<BombEntity>> BOMB = ENTITY_TYPES.register("bomb",
             BombEntity::createEntityType);

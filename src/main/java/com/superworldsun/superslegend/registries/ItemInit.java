@@ -514,7 +514,8 @@ public class ItemInit {
     // ARMORS
 
     public static final RegistryObject<Item> ROCS_CAPE = ITEMS.register("rocs_cape",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new RocsCapeArmor(ArmorInit.ROCSCAPE, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> KOKIRI_CAP = ITEMS.register("kokiri_cap",
             () -> new KokiriArmor(ArmorInit.KOKIRI, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> KOKIRI_TUNIC = ITEMS.register("kokiri_tunic",
@@ -560,11 +561,11 @@ public class ItemInit {
     public static final RegistryObject<Item> DARK_HELMET = ITEMS.register("dark_helmet",
             () -> new DarkOreArmor(ArmorInit.DARK_ORE, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1).durability(385)));
     public static final RegistryObject<Item> DARK_CHESTPLATE = ITEMS.register("dark_chestplate",
-            () -> new DarkOreArmor(ArmorInit.DARK_ORE, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1).durability(385)));
+            () -> new DarkOreArmor(ArmorInit.DARK_ORE, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1).durability(560)));
     public static final RegistryObject<Item> DARK_LEGGINGS = ITEMS.register("dark_leggings",
-            () -> new DarkOreArmor(ArmorInit.DARK_ORE, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1).durability(385)));
+            () -> new DarkOreArmor(ArmorInit.DARK_ORE, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1).durability(528)));
     public static final RegistryObject<Item> DARK_GREAVES = ITEMS.register("dark_greaves",
-            () -> new DarkOreArmor(ArmorInit.DARK_ORE, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1).durability(385)));
+            () -> new DarkOreArmor(ArmorInit.DARK_ORE, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1).durability(455)));
 
     public static final RegistryObject<Item> HEROS_NEW_CAP = ITEMS.register("heros_new_cap",
             () -> new ArmorItem(ArmorInit.HEROS_NEW, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
