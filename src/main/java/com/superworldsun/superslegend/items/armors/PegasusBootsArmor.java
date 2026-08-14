@@ -1,8 +1,10 @@
 package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.Config;
+import com.superworldsun.superslegend.client.render.armor.GeoArmorRendererExtension;
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
+import com.superworldsun.superslegend.items.item.RocsFeather;
 import com.superworldsun.superslegend.registries.TagInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.util.PlayerAnimationUtil;
@@ -29,17 +31,30 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.Animation;
+import software.bernie.geckolib.core.object.PlayState;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 @Mod.EventBusSubscriber(modid = SupersLegendMain.MOD_ID)
-public class PegasusBootsArmor extends NonEnchantArmor {
+public class PegasusBootsArmor extends NonEnchantArmor implements GeoItem {
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     public static final int WARM_UP_DURATION_TICKS = 20;
     private static final UUID SPEED_MODIFIER_ID = UUID.fromString("eb65b146-8dc1-4b48-a927-5a1042935012");
     private static final UUID STEP_HEIGHT_MODIFIER_ID = UUID.fromString("9595d7cd-a755-42ac-87c6-85df9132958d");
@@ -67,6 +82,27 @@ public class PegasusBootsArmor extends NonEnchantArmor {
 
     public PegasusBootsArmor(ArmorMaterial material, Type type, Properties properties) {
         super(material, type, properties);
+    }
+
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new GeoArmorRendererExtension<PegasusBootsArmor>("pegasus_boots")
+                .setAnimationName("iron_boots"));
+    }
+
+    private PlayState animationPredicate(AnimationState<PegasusBootsArmor> state) {
+        state.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 0, this::animationPredicate));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 
     public static void setForwardOnlyInput(Player player, boolean forwardOnly) {
@@ -129,7 +165,7 @@ public class PegasusBootsArmor extends NonEnchantArmor {
         boolean inShortDrop = SHORT_DROP_PLAYERS.contains(playerId);
         boolean canRun = isWearingBoots
                 && hasForwardInput
-                && (player.onGround() || inShortDrop)
+                && (player.onGround() || inShortDrop || wasRunning)
                 && (player.isSprinting() || inShortDrop)
                 && !player.isInWater()
                 && player.getFoodData().getFoodLevel() > 0;
@@ -193,6 +229,27 @@ public class PegasusBootsArmor extends NonEnchantArmor {
         }
     }
 
+    @SubscribeEvent
+    public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
+        if (event.getEntity() instanceof Player player
+                && !player.level().isClientSide
+                && isCharging(player)
+                && !RocsFeather.isHeldBy(player)) {
+            Vec3 movement = player.getDeltaMovement();
+            player.setDeltaMovement(movement.x, 0.0D, movement.z);
+            player.hurtMarked = true;
+        }
+    }
+
+    public static boolean isCharging(Player player) {
+        UUID playerId = player.getUUID();
+        return player.getItemBySlot(EquipmentSlot.FEET).is(ItemInit.PEGASUS_BOOTS.get())
+                && FORWARD_ONLY_PLAYERS.contains(playerId)
+                && (player.isSprinting() || WARM_UP_TICKS_BY_PLAYER.containsKey(playerId))
+                && !player.isInWater()
+                && player.getFoodData().getFoodLevel() > 0;
+    }
+
     private static void setStepHeight(Player player, boolean enabled) {
         AttributeInstance stepHeight = player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get());
         if (stepHeight == null) {
@@ -253,10 +310,13 @@ public class PegasusBootsArmor extends NonEnchantArmor {
 
         for (AttributeModifier modifier : weapon.getAttributeModifiers(EquipmentSlot.MAINHAND)
                 .get(Attributes.ATTACK_DAMAGE)) {
-            switch (modifier.getOperation()) {
-                case ADDITION -> additiveDamage += modifier.getAmount();
-                case MULTIPLY_BASE -> multiplyBase += modifier.getAmount();
-                case MULTIPLY_TOTAL -> multiplyTotal *= 1.0D + modifier.getAmount();
+            AttributeModifier.Operation operation = modifier.getOperation();
+            if (operation == AttributeModifier.Operation.ADDITION) {
+                additiveDamage += modifier.getAmount();
+            } else if (operation == AttributeModifier.Operation.MULTIPLY_BASE) {
+                multiplyBase += modifier.getAmount();
+            } else if (operation == AttributeModifier.Operation.MULTIPLY_TOTAL) {
+                multiplyTotal *= 1.0D + modifier.getAmount();
             }
         }
 

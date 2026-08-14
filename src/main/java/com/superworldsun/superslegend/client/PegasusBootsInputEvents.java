@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.client;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.items.armors.PegasusBootsArmor;
+import com.superworldsun.superslegend.items.item.RocsFeather;
 import com.superworldsun.superslegend.network.NetworkDispatcher;
 import com.superworldsun.superslegend.network.message.PegasusBootsInputMessage;
 import com.superworldsun.superslegend.registries.ItemInit;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -48,7 +50,7 @@ public class PegasusBootsInputEvents {
             return;
         }
 
-        boolean forwardOnly = isForwardOnly(minecraft, player);
+        boolean forwardOnly = hasChargeInput(minecraft, player);
         UUID playerId = player.getUUID();
         boolean playerChanged = !playerId.equals(lastPlayerId);
         if (playerChanged) {
@@ -132,22 +134,36 @@ public class PegasusBootsInputEvents {
         return warmUpTicksRemaining > 0 && player != null && isRunEligible(minecraft, player);
     }
 
+    public static boolean isCharging() {
+        Minecraft minecraft = Minecraft.getInstance();
+        LocalPlayer player = minecraft.player;
+        return player != null && isRunEligible(minecraft, player);
+    }
+
+    @SubscribeEvent
+    public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (event.getEntity() == minecraft.player && isCharging()
+                && !RocsFeather.isHeldBy(minecraft.player)) {
+            Vec3 movement = minecraft.player.getDeltaMovement();
+            minecraft.player.setDeltaMovement(movement.x, 0.0D, movement.z);
+        }
+    }
+
     private static boolean isRunEligible(Minecraft minecraft, LocalPlayer player) {
-        return isForwardOnly(minecraft, player)
+        return hasChargeInput(minecraft, player)
                 && player.getItemBySlot(EquipmentSlot.FEET).is(ItemInit.PEGASUS_BOOTS.get())
-                && (player.onGround() || shortDropGrace)
+                && (player.onGround() || shortDropGrace || wasRunEligible)
                 && (player.isSprinting() || shortDropGrace)
                 && !player.isInWater()
                 && player.getFoodData().getFoodLevel() > 0;
     }
 
-    private static boolean isForwardOnly(Minecraft minecraft, LocalPlayer player) {
+    private static boolean hasChargeInput(Minecraft minecraft, LocalPlayer player) {
         return minecraft.screen == null
                 && player.input != null
                 && player.input.up
-                && !player.input.down
-                && !player.input.left
-                && !player.input.right;
+                && !player.input.down;
     }
 
     private static Vec3 findOneBlockGapLanding(LocalPlayer player, double groundHeight) {
