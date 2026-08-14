@@ -7,7 +7,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -16,13 +15,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class DongerosMask extends Item implements ICurioItem {
+public class DongerosMask extends GeoCurioMaskItem {
     public DongerosMask(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, "dongeros_mask");
     }
     //TODO, [priority after port], now that frogs are in the game, have a way to talk to them like the mask of truth
     @Override
