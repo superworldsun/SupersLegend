@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -14,9 +15,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class SpikedPegBlock extends Block {
+
+    private static final Map<UUID, Long> POP_UP_DAMAGE_PROTECTION = new HashMap<>();
 
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape HITBOX_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 24.0D, 14.0D);
@@ -45,7 +53,38 @@ public class SpikedPegBlock extends Block {
 
     @Override
     public void entityInside(@NotNull BlockState pState, Level level, @NotNull BlockPos pPos, Entity entity) {
-        entity.hurt(level.damageSources().cactus(), 2.0F);
+        if (entity instanceof Player player && isProtectedFromPopUp(player, level.getGameTime())) {
+            return;
+        }
+        boolean damaged = entity.hurt(level.damageSources().cactus(), 2.0F);
+
+        if (!level.isClientSide && damaged && entity instanceof LivingEntity livingEntity) {
+            Vec3 movementAfterDamage = livingEntity.getDeltaMovement();
+            if (movementAfterDamage.y > 0.0D) {
+                // A jump timed with the damage frame can combine with vanilla's
+                // hurt response and become a damage boost. The peg remains fully
+                // standable, but a successful damage tick can never add lift.
+                livingEntity.setDeltaMovement(movementAfterDamage.x, 0.0D,
+                        movementAfterDamage.z);
+                livingEntity.hurtMarked = true;
+            }
+        }
+    }
+
+    static void protectFromPopUp(Player player, long gameTime) {
+        POP_UP_DAMAGE_PROTECTION.put(player.getUUID(), gameTime + 3L);
+    }
+
+    private static boolean isProtectedFromPopUp(Player player, long gameTime) {
+        Long protectedUntil = POP_UP_DAMAGE_PROTECTION.get(player.getUUID());
+        if (protectedUntil == null) {
+            return false;
+        }
+        if (gameTime <= protectedUntil) {
+            return true;
+        }
+        POP_UP_DAMAGE_PROTECTION.remove(player.getUUID());
+        return false;
     }
 
     @Override
