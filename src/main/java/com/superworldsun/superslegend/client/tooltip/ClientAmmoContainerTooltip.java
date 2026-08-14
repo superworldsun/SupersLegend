@@ -35,7 +35,7 @@ public class ClientAmmoContainerTooltip implements ClientTooltipComponent {
     @Override
     public void renderImage(Font font, int x, int y, GuiGraphics graphics) {
         for (int slot = 0; slot < slots; slot++) {
-            blit(graphics, x + slot * 18 + 1, y + 1, Texture.SLOT);
+            blit(graphics, x + slot * 18 + 1, y + 1, 0, 0, 18, 20);
         }
         drawBorder(graphics, x, y);
 
@@ -51,42 +51,22 @@ public class ClientAmmoContainerTooltip implements ClientTooltipComponent {
     }
 
     private void drawBorder(GuiGraphics graphics, int x, int y) {
-        blit(graphics, x, y, Texture.BORDER_CORNER_TOP);
-        blit(graphics, x + slots * 18 + 1, y, Texture.BORDER_CORNER_TOP);
+        blit(graphics, x, y, 0, 20, 1, 1);
+        blit(graphics, x + slots * 18 + 1, y, 0, 20, 1, 1);
 
         for (int slot = 0; slot < slots; slot++) {
-            blit(graphics, x + slot * 18 + 1, y, Texture.BORDER_HORIZONTAL_TOP);
-            blit(graphics, x + slot * 18 + 1, y + 20, Texture.BORDER_HORIZONTAL_BOTTOM);
+            blit(graphics, x + slot * 18 + 1, y, 0, 20, 18, 1);
+            blit(graphics, x + slot * 18 + 1, y + 20, 0, 60, 18, 1);
         }
 
-        blit(graphics, x, y + 1, Texture.BORDER_VERTICAL);
-        blit(graphics, x + slots * 18 + 1, y + 1, Texture.BORDER_VERTICAL);
-        blit(graphics, x, y + 20, Texture.BORDER_CORNER_BOTTOM);
-        blit(graphics, x + slots * 18 + 1, y + 20, Texture.BORDER_CORNER_BOTTOM);
+        blit(graphics, x, y + 1, 0, 18, 1, 20);
+        blit(graphics, x + slots * 18 + 1, y + 1, 0, 18, 1, 20);
+        blit(graphics, x, y + 20, 0, 60, 1, 1);
+        blit(graphics, x + slots * 18 + 1, y + 20, 0, 60, 1, 1);
     }
 
-    private void blit(GuiGraphics graphics, int x, int y, Texture texture) {
-        graphics.blit(TEXTURE, x, y, 0, texture.x, texture.y, texture.width, texture.height, 128, 128);
-    }
-
-    private enum Texture {
-        SLOT(0, 0, 18, 20),
-        BORDER_VERTICAL(0, 18, 1, 20),
-        BORDER_HORIZONTAL_TOP(0, 20, 18, 1),
-        BORDER_HORIZONTAL_BOTTOM(0, 60, 18, 1),
-        BORDER_CORNER_TOP(0, 20, 1, 1),
-        BORDER_CORNER_BOTTOM(0, 60, 1, 1);
-
-        private final int x;
-        private final int y;
-        private final int width;
-        private final int height;
-
-        Texture(int x, int y, int width, int height) {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-        }
+    private void blit(GuiGraphics graphics, int x, int y,
+                      int textureX, int textureY, int width, int height) {
+        graphics.blit(TEXTURE, x, y, 0, textureX, textureY, width, height, 128, 128);
     }
 }
