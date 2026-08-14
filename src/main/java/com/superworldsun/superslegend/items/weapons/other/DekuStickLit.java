@@ -1,13 +1,12 @@
 package com.superworldsun.superslegend.items.weapons.other;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import com.superworldsun.superslegend.items.customclass.NonEnchantItem;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -16,35 +15,30 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class DekuStickLit extends NonEnchantItem {
 	public DekuStickLit() {
 		super(new Properties().stacksTo(1).durability(400));
+	}
+
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+		return slotChanged || oldStack.getItem() != newStack.getItem();
 	}
 
 	// TODO: Implement custom break sound
@@ -106,6 +100,9 @@ public class DekuStickLit extends NonEnchantItem {
 
 	private void burnCobweb(Level level, BlockPos pos, Player player) {
 		level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+		if (player instanceof ServerPlayer serverPlayer) {
+			ModAdvancementHelper.award(serverPlayer, "web_burner", "burned_cobweb");
+		}
 		playIgniteSound(level, player.blockPosition());
 		spawnFlameParticles((ServerLevel) level, pos.getX() + 0.5, pos.getY() + 0.3, pos.getZ() + 0.5);
 		// TODO: Implement fire spread to nearby cobwebs
