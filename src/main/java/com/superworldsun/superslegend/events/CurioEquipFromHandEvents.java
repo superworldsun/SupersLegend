@@ -1,6 +1,7 @@
 package com.superworldsun.superslegend.events;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.items.wallet.RupeeWalletItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -36,6 +37,11 @@ public final class CurioEquipFromHandEvents {
     public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
         Player player = event.getEntity();
         ItemStack heldStack = event.getItemStack();
+        // Wallet right-click is reserved for its deposit/withdrawal screen.
+        // Wallets can still be equipped normally through the Curios inventory.
+        if (heldStack.getItem() instanceof RupeeWalletItem) {
+            return;
+        }
         ICuriosHelper helper = CuriosApi.getCuriosHelper();
         Optional<ICurio> heldCurio = helper.getCurio(heldStack).resolve();
         Optional<ICuriosItemHandler> curiosHandler = helper.getCuriosHandler(player).resolve();
