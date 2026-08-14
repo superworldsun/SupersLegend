@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.items.weapons.wand;
 
+import com.superworldsun.superslegend.util.IceExtinguishUtil;
+
 import com.superworldsun.superslegend.blocks.TorchTowerTopUnlit;
 import com.superworldsun.superslegend.capability.magic.MagicProvider;
 import com.superworldsun.superslegend.entities.projectiles.magic.FireballEntity;
@@ -167,6 +169,7 @@ public class FireRod extends NonEnchantItem {
         DamageSource damageSource = player.damageSources().playerAttack(player);
         entityHit.getEntity().hurt(damageSource, DAMAGE);
         entityHit.getEntity().setSecondsOnFire(IGNITE_DURATION);
+        IceExtinguishUtil.markFireRodIgnition(entityHit.getEntity(), player);
     }
 
     @NotNull

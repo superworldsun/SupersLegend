@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.items.weapons.wand;
 
+import com.superworldsun.superslegend.util.IceExtinguishUtil;
+
 import com.superworldsun.superslegend.blocks.TorchTowerTopLit;
 import com.superworldsun.superslegend.capability.magic.MagicProvider;
 import com.superworldsun.superslegend.entities.projectiles.magic.IceballEntity;
@@ -154,7 +156,10 @@ public class IceRod extends NonEnchantItem {
 
     private static void onEntityHit(Player player, EntityHitResult entityHit) {
         DamageSource damageSource = player.damageSources().playerAttack(player);
-        entityHit.getEntity().hurt(damageSource, DAMAGE);
+        Entity target = entityHit.getEntity();
+        if (target.hurt(damageSource, DAMAGE)) {
+            IceExtinguishUtil.extinguishIfBurning(target, player);
+        }
     }
 
     @NotNull

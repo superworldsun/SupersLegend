@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.magic;
 
+import com.superworldsun.superslegend.util.IceExtinguishUtil;
+
 import com.superworldsun.superslegend.registries.EntityTypeInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -19,7 +21,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
@@ -70,7 +71,9 @@ public class IceballEntity extends AbstractHurtingProjectile {
         List<Entity> entitiesInRadius = level().getEntities(this, getBoundingBox().inflate(EFFECT_RADIUS), canHit.and(isInRadius));
 
         entitiesInRadius.forEach(entity -> {
-            entity.hurt(level().damageSources().playerAttack(Objects.requireNonNull(getOwner())), DAMAGE);
+            if (entity.hurt(level().damageSources().playerAttack(Objects.requireNonNull(getOwner())), DAMAGE)) {
+                IceExtinguishUtil.extinguishIfBurning(entity);
+            }
             ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, SLOW_DURATION));
         });
 

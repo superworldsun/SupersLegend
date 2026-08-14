@@ -1,5 +1,7 @@
 package com.superworldsun.superslegend.entities.projectiles.arrows;
 
+import com.superworldsun.superslegend.util.IceExtinguishUtil;
+
 import com.superworldsun.superslegend.registries.*;
 import com.superworldsun.superslegend.util.BuildingHelper;
 import com.superworldsun.superslegend.util.ProjectileFluidCollisionHelper;
@@ -15,7 +17,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -326,6 +327,7 @@ public class MagicIceArrowEntity extends AbstractArrow
         // Reset the damage immunity from the arrow hit so the bonus magic damage applies
         entity.invulnerableTime = 0;
         entity.hurt(damageSources().magic(), 5.0F);
+        IceExtinguishUtil.extinguishIfBurning(entity);
 
         if (entity.isAlive())
         {
