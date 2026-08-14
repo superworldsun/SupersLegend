@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.entities.mobs;
 
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.entities.GoldSkulltulaTokenEntity;
 import com.superworldsun.superslegend.world.GoldSkulltulaSpawnData;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -11,6 +12,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.tags.DamageTypeTags;
@@ -56,6 +58,8 @@ public class GoldSkulltulaEntity extends Monster implements GeoEntity {
     private UUID spawnOwner;
     private long spawnNight = -1L;
     private boolean deathRecorded;
+    private boolean tokenDropPending;
+    private boolean tokenDropSpawned;
 
     public GoldSkulltulaEntity(EntityType<? extends GoldSkulltulaEntity> type, Level level) {
         super(type, level);
@@ -424,7 +428,25 @@ public class GoldSkulltulaEntity extends Monster implements GeoEntity {
     @Override
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHit) {
         super.dropCustomDeathLoot(source, looting, recentlyHit);
-        spawnAtLocation(ItemInit.GOLD_SKULLTULA_TOKEN.get());
+        tokenDropPending = true;
+    }
+
+    @Override
+    protected void tickDeath() {
+        super.tickDeath();
+
+        // LivingEntity removes its corpse on the final death tick. Spawn the token
+        // only after that removal, so it never appears inside the visible body.
+        if (!level().isClientSide && isRemoved() && tokenDropPending && !tokenDropSpawned) {
+            tokenDropSpawned = true;
+            GoldSkulltulaTokenEntity token = new GoldSkulltulaTokenEntity(level(),
+                    getX(), getY() + 0.25D, getZ(),
+                    new net.minecraft.world.item.ItemStack(ItemInit.GOLD_SKULLTULA_TOKEN.get()));
+            level().addFreshEntity(token);
+
+            level().playSound(null, getX(), getY(), getZ(), SoundInit.GOLD_SKULLTULA_TOKEN_SPAWN.get(),
+                    SoundSource.PLAYERS, 1.0F, 1.0F);
+        }
     }
 
     @Override
@@ -435,6 +457,8 @@ public class GoldSkulltulaEntity extends Monster implements GeoEntity {
         tag.putBoolean("Dormant", isDormant());
         tag.putInt("NextLocatorSound", nextLocatorSoundTick);
         tag.putInt("IdleSoundsRemaining", idleSoundsRemaining);
+        tag.putBoolean("TokenDropPending", tokenDropPending);
+        tag.putBoolean("TokenDropSpawned", tokenDropSpawned);
         if (spawnOwner != null) {
             tag.putUUID("SpawnOwner", spawnOwner);
             tag.putLong("SpawnNight", spawnNight);
@@ -451,6 +475,8 @@ public class GoldSkulltulaEntity extends Monster implements GeoEntity {
         setAttachmentDirection(Direction.from3DDataValue(tag.getByte("Attachment")));
         nextLocatorSoundTick = Math.max(1, tag.getInt("NextLocatorSound"));
         idleSoundsRemaining = Math.max(0, tag.getInt("IdleSoundsRemaining"));
+        tokenDropPending = tag.getBoolean("TokenDropPending");
+        tokenDropSpawned = tag.getBoolean("TokenDropSpawned");
         spawnOwner = tag.hasUUID("SpawnOwner") ? tag.getUUID("SpawnOwner") : null;
         spawnNight = tag.contains("SpawnNight") ? tag.getLong("SpawnNight") : -1L;
         setNoGravity(isDetached() && !onGround() ? false : true);

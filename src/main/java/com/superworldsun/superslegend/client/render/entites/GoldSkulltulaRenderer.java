@@ -18,6 +18,7 @@ public class GoldSkulltulaRenderer extends GeoEntityRenderer<GoldSkulltulaEntity
 
     public GoldSkulltulaRenderer(EntityRendererProvider.Context context) {
         super(context, new GoldSkulltulaModel());
+        addRenderLayer(new GoldSkulltulaEmissiveLayer(this));
         shadowRadius = 0.22F;
     }
 
