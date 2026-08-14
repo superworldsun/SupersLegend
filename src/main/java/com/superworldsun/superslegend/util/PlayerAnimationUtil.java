@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Player;
  */
 public final class PlayerAnimationUtil {
     private static final int PEGASUS_WEAPON_FORWARD_FLAG = 1 << 8;
+    private static final int DEKU_FLOWER_GLIDING_FLAG = 1 << 9;
 
     public enum ArmsRaisedSource {
         MANUAL(1),
@@ -62,6 +63,26 @@ public final class PlayerAnimationUtil {
         int updatedFlags = weaponForward
                 ? flags | PEGASUS_WEAPON_FORWARD_FLAG
                 : flags & ~PEGASUS_WEAPON_FORWARD_FLAG;
+        if (flags != updatedFlags) {
+            state.superslegend$setAnimationFlags(updatedFlags);
+        }
+    }
+
+    /**
+     * Returns the server-synchronized Deku Flower glide pose. Unlike the local
+     * flight controller, this value is available for every tracked player.
+     */
+    public static boolean isDekuFlowerGliding(Player player) {
+        return (((IPlayerAnimationState) player).superslegend$getAnimationFlags()
+                & DEKU_FLOWER_GLIDING_FLAG) != 0;
+    }
+
+    public static void setDekuFlowerGliding(Player player, boolean gliding) {
+        IPlayerAnimationState state = (IPlayerAnimationState) player;
+        int flags = state.superslegend$getAnimationFlags();
+        int updatedFlags = gliding
+                ? flags | DEKU_FLOWER_GLIDING_FLAG
+                : flags & ~DEKU_FLOWER_GLIDING_FLAG;
         if (flags != updatedFlags) {
             state.superslegend$setAnimationFlags(updatedFlags);
         }
