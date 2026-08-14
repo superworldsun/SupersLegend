@@ -1,7 +1,6 @@
 package com.superworldsun.superslegend.items.ammobags;
 
 import com.superworldsun.superslegend.SupersLegendMain;
-import com.superworldsun.superslegend.util.ItemNBTHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -246,10 +245,12 @@ public abstract class AmmoContainerItem extends Item implements ICurioItem {
             return contents;
         }
 
-        CompoundTag legacyItemTag = ItemNBTHelper.getCompound(containerStack, "storedItem", true);
+        CompoundTag legacyItemTag = containerTag != null
+                && containerTag.contains("storedItem", Tag.TAG_COMPOUND)
+                ? containerTag.getCompound("storedItem") : null;
         if (legacyItemTag != null) {
             ItemStack legacyStack = ItemStack.of(legacyItemTag);
-            int legacyCount = ItemNBTHelper.getInt(containerStack, "itemCount", 0);
+            int legacyCount = containerTag.getInt("itemCount");
             if (!legacyStack.isEmpty() && legacyCount > 0) {
                 legacyStack.setCount(legacyCount);
                 contents.add(legacyStack);
