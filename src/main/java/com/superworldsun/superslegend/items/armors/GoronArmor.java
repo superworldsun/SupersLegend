@@ -2,6 +2,7 @@ package com.superworldsun.superslegend.items.armors;
 
 import com.superworldsun.superslegend.SupersLegendMain;
 import com.superworldsun.superslegend.api.IncomingDamageModifier;
+import com.superworldsun.superslegend.client.render.armor.GeoArmorRendererExtension;
 import com.superworldsun.superslegend.items.customclass.NonEnchantArmor;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -10,11 +11,13 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
+import java.util.function.Consumer;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = SupersLegendMain.MOD_ID)
 public class GoronArmor extends NonEnchantArmor implements IncomingDamageModifier, GeoItem {
@@ -22,6 +25,12 @@ public class GoronArmor extends NonEnchantArmor implements IncomingDamageModifie
 
 	public GoronArmor(ArmorMaterial material, Type type, Properties properties) {
 		super(material, type, properties);
+	}
+
+	@Override
+	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+		consumer.accept(new GeoArmorRendererExtension<GoronArmor>("goron_armor")
+				.setAnimationName("kokiri_armor"));
 	}
 
 	private PlayState predicate(AnimationState animationState) {
