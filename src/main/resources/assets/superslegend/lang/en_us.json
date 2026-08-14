@@ -6,6 +6,9 @@
   "creativetab.items_tab": "SupersLegend",
   "creativetab.apparel_tab": "SupersLegend Apparel",
   "creativetab.blocks_tab": "SupersLegend Blocks",
+  "curios.identifier.wallet": "Wallet",
+  "curios.modifiers.wallet": "When used as wallet:",
+  "entity.superslegend.elegy_statue": "Elegy of Emptiness Statue",
 
   "item.superslegend.rupee": "Rupee",
   "item.superslegend.blue_rupee": "Blue Rupee",
@@ -168,6 +171,11 @@
   "item.superslegend.master_ore": "Master Ore",
   "item.superslegend.master_ore_chunk": "Master Ore Chunk",
   "item.superslegend.dark_ore": "Dark Ore",
+  "item.superslegend.dark_sword": "Dark Sword",
+  "item.superslegend.dark_pickaxe": "Dark Pickaxe",
+  "item.superslegend.dark_axe": "Dark Axe",
+  "item.superslegend.dark_shovel": "Dark Shovel",
+  "item.superslegend.dark_hoe": "Dark Hoe",
   "item.superslegend.master_sword_blade": "Master Sword Blade",
   "item.superslegend.master_sword_hilt": "Master Sword Hilt",
   "item.superslegend.poison_bucket": "Poison Bucket",
@@ -584,6 +592,9 @@
   "superslegend.subtitle.deku_link_launch": "Deku Scrub launches from a flower",
   "superslegend.subtitle.skulltula_idle": "Gold Skulltula scratches",
   "superslegend.subtitle.skulltula_death": "Gold Skulltula dies",
+  "superslegend.subtitle.gold_skulltula_token_spawn": "A Gold Skulltula Token appears",
+  "superslegend.subtitle.small_item_fanfare": "Item obtained",
+  "superslegend.subtitle.item_fanfare": "Important item obtained",
   "superslegend.message.hylian_sign_requires_book": "You need the Book of Mudora to edit Hylian text",
   "superslegend.message.hylian_book_requires_mudora": "You need the Book of Mudora to edit this Hylian book",
   "screen.superslegend.rupee_trade.error.invalid_trader": "That trader is no longer available",
@@ -595,5 +606,6 @@
   "screen.superslegend.rupee_trade.error.already_committed": "That purchase has already completed",
   "entity.superslegend.gold_skulltula": "Gold Skulltula",
   "item.superslegend.gold_skulltula_token": "Gold Skulltula Token",
-  "item.superslegend.gold_skulltula_spawn_egg": "Gold Skulltula Spawn Egg"
+  "item.superslegend.gold_skulltula_spawn_egg": "Gold Skulltula Spawn Egg",
+  "superslegend.message.gold_skulltula_tokens_collected": "You've collected %s Gold Skulltula Tokens!"
 }
