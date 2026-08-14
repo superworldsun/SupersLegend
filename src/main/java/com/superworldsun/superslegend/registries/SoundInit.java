@@ -49,6 +49,9 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> DEKU_LINK_LAUNCH = register("entity.deku_link_launch");
     public static final RegistryObject<SoundEvent> SKULLTULA_IDLE = registerFixedRange("entity.skulltula_idle", 32.0F);
     public static final RegistryObject<SoundEvent> SKULLTULA_DEATH = register("entity.skulltula_death");
+    public static final RegistryObject<SoundEvent> GOLD_SKULLTULA_TOKEN_SPAWN = register("entity.gold_skulltula_token_spawn");
+    public static final RegistryObject<SoundEvent> SMALL_ITEM_FANFARE = register("item.small_item_fanfare");
+    public static final RegistryObject<SoundEvent> ITEM_FANFARE = register("item.item_fanfare");
     public static final RegistryObject<SoundEvent> HOVER_BOOTS = register("item.hover_boots");
     public static final RegistryObject<SoundEvent> OOT_BOOMERANG_FLY_LOOP = register("item.oot_boomerang_fly_loop");
     public static final RegistryObject<SoundEvent> ALTTP_BOOMERANG_FLY_LOOP = register("item.alttp_boomerang_fly_loop");

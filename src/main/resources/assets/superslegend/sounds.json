@@ -716,5 +716,20 @@
 		"category": "hostile",
 		"subtitle": "superslegend.subtitle.skulltula_death",
 		"sounds": [ "superslegend:entity/skulltula_death" ]
+	},
+	"entity.gold_skulltula_token_spawn": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.gold_skulltula_token_spawn",
+		"sounds": [ "superslegend:entity/gold_skulltula_token_spawned" ]
+	},
+	"item.small_item_fanfare": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.small_item_fanfare",
+		"sounds": [ "superslegend:item/small_item_fanfare" ]
+	},
+	"item.item_fanfare": {
+		"category": "player",
+		"subtitle": "superslegend.subtitle.item_fanfare",
+		"sounds": [ "superslegend:item/item_fanfare" ]
 	}
 }
