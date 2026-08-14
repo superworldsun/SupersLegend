@@ -1,9 +1,11 @@
 package com.superworldsun.superslegend.events;
 
 import com.superworldsun.superslegend.SupersLegendMain;
+import com.superworldsun.superslegend.advancement.ModAdvancementHelper;
 import com.superworldsun.superslegend.registries.BlockInit;
 import com.superworldsun.superslegend.registries.ItemInit;
 import com.superworldsun.superslegend.registries.SoundInit;
+import com.superworldsun.superslegend.util.PlayerAnimationUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -58,6 +60,7 @@ public final class DekuFlowerFlightEvents {
     private static final int INPUT_TIMEOUT_TICKS = 8;
     private static final double SAFE_LANDING_DEPTH = 2.0D;
     private static final int FALL_PROTECTION_TICKS = 600;
+    private static final double ADVANCEMENT_GLIDE_DISTANCE = 12.0D;
 
     private static final Map<Player, FlowerFlightState> CLIENT_STATES = new WeakHashMap<>();
     private static final Map<Player, FlowerFlightState> SERVER_STATES = new WeakHashMap<>();
@@ -212,7 +215,8 @@ public final class DekuFlowerFlightEvents {
 
     public static boolean isGliding(Player player) {
         FlowerFlightState state = getStates(player).get(player);
-        return state != null && state.phase == FlightPhase.GLIDING;
+        return (state != null && state.phase == FlightPhase.GLIDING)
+                || PlayerAnimationUtil.isDekuFlowerGliding(player);
     }
 
     public static boolean isFlowerAbilityActive(Player player) {
@@ -317,6 +321,9 @@ public final class DekuFlowerFlightEvents {
         double heightGained = player.getY() - state.launchY;
         if (heightGained >= state.ascentHeight || player.verticalCollision) {
             state.phase = FlightPhase.GLIDING;
+            if (!player.level().isClientSide) {
+                PlayerAnimationUtil.setDekuFlowerGliding(player, true);
+            }
             Vec3 movement = player.getDeltaMovement();
             player.setDeltaMovement(movement.x, STARTING_GLIDE_LIFT, movement.z);
             player.hasImpulse = true;
@@ -337,6 +344,13 @@ public final class DekuFlowerFlightEvents {
     private static void tickGliding(Player player, Map<Player, FlowerFlightState> states,
                                     FlowerFlightState state) {
         if (player.onGround() || player.isShiftKeyDown() || state.cancelRequested) {
+            double landingDistanceSqr = Mth.square(player.getX() - (state.flowerPos.getX() + 0.5D))
+                    + Mth.square(player.getZ() - (state.flowerPos.getZ() + 0.5D));
+            if (player.onGround() && landingDistanceSqr >= Mth.square(ADVANCEMENT_GLIDE_DISTANCE)
+                    && player instanceof ServerPlayer serverPlayer) {
+                ModAdvancementHelper.award(serverPlayer, "like_a_leaf_on_the_wind", "glide_distance");
+                ModAdvancementHelper.award(serverPlayer, "graceful_landing", "safe_landing");
+            }
             player.fallDistance = 0.0F;
             finishFlight(player, states, state);
             return;
@@ -347,6 +361,10 @@ public final class DekuFlowerFlightEvents {
         double flowerCenterZ = state.flowerPos.getZ() + 0.5D;
         double distanceFromFlowerSqr = Mth.square(player.getX() - flowerCenterX)
                 + Mth.square(player.getZ() - flowerCenterZ);
+        if (distanceFromFlowerSqr >= Mth.square(ADVANCEMENT_GLIDE_DISTANCE)
+                && player instanceof ServerPlayer serverPlayer) {
+            ModAdvancementHelper.award(serverPlayer, "like_a_leaf_on_the_wind", "glide_distance");
+        }
         if (distanceFromFlowerSqr >= Mth.square(state.maximumGlideDistance)) {
             finishFlight(player, states, state);
             return;
@@ -412,6 +430,7 @@ public final class DekuFlowerFlightEvents {
         );
         states.put(player, state);
         if (!player.level().isClientSide) {
+            PlayerAnimationUtil.setDekuFlowerGliding(player, false);
             FALL_PROTECTION.remove(player.getUUID());
         }
 
@@ -473,6 +492,9 @@ public final class DekuFlowerFlightEvents {
 
     private static void finish(Player player, Map<Player, FlowerFlightState> states,
                                FlowerFlightState state, boolean eject) {
+        if (!player.level().isClientSide) {
+            PlayerAnimationUtil.setDekuFlowerGliding(player, false);
+        }
         restoreVisibility(player, state);
         if (eject) {
             player.setDeltaMovement(0.0D, 0.2D, 0.0D);
