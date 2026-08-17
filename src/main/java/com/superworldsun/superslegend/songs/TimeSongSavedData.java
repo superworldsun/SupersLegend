@@ -198,7 +198,12 @@ public final class TimeSongSavedData extends SavedData {
             }
         }
 
-        remainingTicks--;
+        //Measure the effect in song-scaled world ticks instead of real server ticks.
+        if (mode == Mode.DOUBLE) {
+            remainingTicks -= 2;
+        } else if (shouldRunInvertedTick(level)) {
+            remainingTicks--;
+        }
         if (remainingTicks <= 0) {
             clearEffect(level);
             syncToAllPlayers();
